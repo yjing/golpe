@@ -112,4 +112,3 @@ CakeLog::config('error', array(
  * Configures JSON Exceptions Handler 
  */
 App::uses('AppJSONExceptionHandler', 'Lib');
-CakePlugin::load('UsersManager', array('bootstrap' => false, 'routes' => false));
