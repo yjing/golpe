@@ -40,6 +40,8 @@ abstract class RESTController extends AppController {
                 $auth[$action] = array($roles);
             }
         }
+        
+        return $auth;
     }
     
     public function isAuthorized($user = null) {
