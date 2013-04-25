@@ -19,8 +19,6 @@ abstract class RESTController extends AppController {
         $this->Auth->unauthorizedRedirect = false;
         
         $this->_authorization = $this->_normalize(Configure::read("APPCONFIG.authorization." . $this->name));
-        debug(Configure::read("APPCONFIG.authorization." . $this->name));
-        debug($this->_authorization);
         $this->_roles = Configure::read("APPCONFIG.roles");
         
     }
@@ -53,31 +51,25 @@ abstract class RESTController extends AppController {
         if (!isset($user) || !isset($user['role']) || !in_array($user['role'], $this->_roles)) {
             throw new Exception("Unknown user role.");
         }
-        if(isset($this->_authorization) && $this->_authorization !== false) {
-            if ( isset($this->_authorization[$this->action]) ) {
-                $action_auth = $this->_authorization[$this->action];
-                if ($action_auth !== false) {
-                    if($action_auth == "*" || in_array("*", $action_auth) || in_array($user['role'], $action_auth)) {
-                        return true;
-                    }
-                }
-            }
-        }
-       
-//        if(isset($this->_authorization[$this->action]) &&
-//                isset($user) && 
-//                isset($user['role']) && 
-//                in_array($user['role'], $this->_roles)) {
-//        
-//            $action_auth = $this->_authorization[$this->action];
-//            if(in_array("*", $action_auth) || in_array($user['role'], $action_auth)) {
-//                return true;
-//            }
-//            
-//        }
         
-        $this->Auth->authError = "Unauthorized";
-        return false;
+        $ret = false;
+        if(is_array($this->_authorization)) {
+            $action_auth = $this->_authorization[$this->action];
+            if(isset($action_auth)){
+                if(is_array($action_auth)) {
+                    $ret = in_array($user['role'], $action_auth);
+                }
+                $ret = $action_auth;
+            }
+            $ret = false;
+        }
+        $ret = $this->_authorization;
+        
+        if(!$ret) {
+            $this->Auth->authError = "Unauthorized";
+        }
+        return $ret;
+            
     }
 
     public function index() {
