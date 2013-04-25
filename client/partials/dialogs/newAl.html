@@ -1,0 +1,52 @@
+
+<form id="alform" ng-submit="hideNewAl();" class="form-horizontal" target="iframeNewAl" action='http://mscazure.dyndns.org/server/activity_logs' method='POST' enctype='multipart/form-data'>
+    <div class="control-group">
+        <label class="control-label" for="data[ActivityLog][title]">Title</label>
+        <div class="controls">
+            <input type='text' name='data[ActivityLog][title]' value='Test'>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="data[ActivityLog][content]">Content</label>
+        <div class="controls">
+            <textarea name='data[ActivityLog][content]'></textarea>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="data[ActivityLog][visibility_level]">Visibility level</label>
+        <div class="controls">
+            <select name='data[ActivityLog][visibility_level]'>
+                <option selected>PRIVATE</option>
+                <option>SUPERVISOR</option>
+                <option>TEAM</option>
+                <option>PUBLIC</option>
+            </select>
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+            <label class="checkbox">
+                <input name='data[ActivityLog][question]' type="checkbox"> Question
+            </label>
+        </div>
+    </div>
+    <div class="control-group" ng-repeat="file in files">
+        <div class="controls">
+            <input type='file' name='data[Media][{{$index}}]' >
+            <span class="btn btn-link" ng-click='removeFile($index);'><i class="icon-remove"></i> remove</span>
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+            <span class="btn" ng-click='addFile();'><i class="icon-file"></i> add file</span>
+        </div>
+    </div>
+
+    <!--<div class="control-group">-->
+        <!--<div class="controls">-->
+            <!--<input type='button' class="btn btn-primary submit-btn" value='Add!!' ng-click='submitALForm();' />-->
+            <!--<input type='button' class="btn btn-primary" value='Cancel' ng-click='hideNewAl();' />-->
+        <!--</div>-->
+    <!--</div>-->
+
+</form>

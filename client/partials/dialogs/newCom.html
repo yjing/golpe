@@ -1,0 +1,21 @@
+<form id="comform" target="iframeNewComment" action='http://mscazure.dyndns.org/server/comments' method='POST' enctype='multipart/form-data'>
+    <input type='hidden' name='data[Comment][visibility_level]' value="{{al.ActivityLog.visibility_level}}" >
+    <input type='hidden' name='data[Target][alias]' value="ActivityLog" >
+    <input type='hidden' name='data[Target][id]' value="{{al.ActivityLog.id}}" >
+    <div class="control-group">
+        <div class="controls">
+            <textarea name='data[Comment][content]' style="width: 80%;"></textarea>
+        </div>
+    </div>
+    <div class="control-group" ng-repeat="file in files">
+        <div class="controls">
+            <input type='file' name='data[Media][{{$index}}]' >
+            <span class="btn btn-link" ng-click='removeFile($index);'><i class="icon-remove"></i></span>
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+            <span class="btn" ng-click='addFile();'><i class="icon-file"></i> add file</span>
+        </div>
+    </div>
+</form>
