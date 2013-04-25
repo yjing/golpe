@@ -44,8 +44,6 @@ class ActivityLogsController extends RESTController {
             "Comment" => array("id", "user_id", "visibility_level"),
             "User" => array("id", "username", "role")
         ));
-        debug("CIAO");
-        die();
         
         $this->_setResponseJSON($this->ActivityLog->find('all',
             array(
