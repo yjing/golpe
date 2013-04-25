@@ -13,6 +13,14 @@ Configure::write("APPCONFIG", array(
             "edit" => "ADMIN",
             "delete" => "ADMIN"
         ),
-        "ActivityLogs" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR')
+        "ActivityLogs" => array( 
+            // Actions
+            "index" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR'),
+            "view" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR',
+            "add" => "ADMIN",
+            "update" => "ADMIN",
+            "edit" => "ADMIN",
+            "delete" => "ADMIN"
+        )
     )
 ));
