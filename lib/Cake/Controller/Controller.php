@@ -483,9 +483,7 @@ class Controller extends Object implements CakeEventListener {
 					'action' => $request->params['action']
 				));
 			}
-			$ret =  $method->invokeArgs($this, $request->params['pass']);
-                        debug("MMMM");
-                        return $ret;
+			return $method->invokeArgs($this, $request->params['pass']);
 
 		} catch (ReflectionException $e) {
 			if ($this->scaffold !== false) {
