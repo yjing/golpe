@@ -11,7 +11,8 @@ class ActivityLogsController extends RESTController {
         parent::beforeFilter();
     }
 
-    public function index() {
+    public static function index() {
+//    public function index() {
         parent::index();
         
 //        $user = $this->Session->read("Auth.User");
