@@ -97,7 +97,7 @@ class UsersController extends RESTController {
             
             $this->_setResponseJSON(array(
                 'logged'=>$loggedIn, 
-                'user'=>$this->Auth->user()
+                'User'=>$this->Auth->user()
                 )
             );
         } else {

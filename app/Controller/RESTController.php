@@ -12,6 +12,22 @@ abstract class RESTController extends AppController {
         if (!$this->Auth->loggedIn() && !in_array($this->action, $this->Auth->allowedActions)) {
             throw new UnauthorizedException();
         }
+        
+    }
+    
+    public function isAuthorized($user = null) {
+        debug($user['role']);
+        debug($this->name);
+        debug($this->action);
+        
+//        if(isset($this->actionsMap[$user['role']]) &&
+//            isset($this->actionsMap[$user['role']][$this->name]) &&
+//            in_array($this->action, $this->actionsMap[$user['role']][$this->name])) {
+//            
+//            return true;
+//        }
+        
+        return true;
     }
 
     public function index() {
