@@ -23,18 +23,30 @@ abstract class RESTController extends AppController {
     }
     
     public function isAuthorized($user = null) {
-        
-        if(isset($this->_authorization[$this->action]) &&
-                isset($user) && 
-                isset($user['role']) && 
-                in_array($user['role'], $this->_roles)) {
-        
-            $action_auth = $this->_authorization[$this->action];
-            if(in_array("*", $action_auth) || in_array($user['role'], $action_auth)) {
-                return true;
-            }
-            
+        if (!isset($user) || !isset($user['role']) || !in_array($user['role'], $this->_roles)) {
+            throw new Exception("Unknown user role.");
         }
+        
+        if ( isset($this->_authorization[$this->action]) ) {
+            $action_auth = $this->_authorization[$this->action];
+            if ($action_auth !== false) {
+                if($action_auth == "*" || in_array("*", $action_auth) || in_array($user['role'], $action_auth)) {
+                    return true;
+                }
+            }
+        }
+       
+//        if(isset($this->_authorization[$this->action]) &&
+//                isset($user) && 
+//                isset($user['role']) && 
+//                in_array($user['role'], $this->_roles)) {
+//        
+//            $action_auth = $this->_authorization[$this->action];
+//            if(in_array("*", $action_auth) || in_array($user['role'], $action_auth)) {
+//                return true;
+//            }
+//            
+//        }
         
         $this->Auth->authError = "Unauthorized";
         return false;
