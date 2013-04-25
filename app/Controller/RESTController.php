@@ -14,8 +14,6 @@ abstract class RESTController extends AppController {
         if (!$this->Auth->loggedIn() && !in_array($this->action, $this->Auth->allowedActions)) {
             throw new UnauthorizedException();
         }
-        
-        $this->Auth->authorize = 'Controller';
         $this->Auth->unauthorizedRedirect = false;
         $this->_authorization = Configure::read("APPCONFIG.authorization." . $this->name);
         $this->_authorization = Configure::read("APPCONFIG.roles");
