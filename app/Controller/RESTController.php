@@ -56,16 +56,20 @@ abstract class RESTController extends AppController {
         
         $ret = false;
         if(is_array($this->_authorization)) {
+            debug("HERE");
             if (isset($this->_authorization[$this->action])) {
                 $action_auth = $this->_authorization[$this->action];
                 if(is_array($action_auth)) {
                     $ret = in_array($user['role'], $action_auth);
+                } else {
+                    $ret = $action_auth;
                 }
-                $ret = $action_auth;
+            } else {
+                $ret = in_array($user['role'], $this->_authorization);
             }
-            $ret = in_array($user['role'], $this->_authorization);
+        } else {
+            $ret = $this->_authorization;
         }
-        $ret = $this->_authorization;
         
         if(!$ret) {
             $this->Auth->authError = "Unauthorized";
