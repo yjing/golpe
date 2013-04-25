@@ -1,8 +1,9 @@
 <?php
 
-App::import('Controller', 'REST');
+//App::import('Controller', 'REST');
 
-class UsersController extends RESTController {
+class UsersController extends AppController {
+//class UsersController extends RESTController {
 
     public function index() {
         parent::index();
@@ -10,6 +11,7 @@ class UsersController extends RESTController {
         $this->User->recursive = 0;
         $result = $this->find('all');
         
+        debug($result);die();
         $this->_setResponseJSON(Set::remove($result, '{n}.User.password'));
     }
 
