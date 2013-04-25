@@ -38,19 +38,15 @@ class ActivityLogsController extends RESTController {
                 break;
         }
         
+        
+        debug("CIAO");
+        die();
         $this->ActivityLog->contain(array(
             "Media" => array("id", "user_id", "visibility_level"),
             "Comment" => array("id", "user_id", "visibility_level"),
             "User" => array("id", "username", "role")
         ));
         
-        debug($this->ActivityLog->find('all',
-            array(
-                'conditions' => $conditions,
-                'recursive' => 1
-            )
-        ));
-        die();
         $this->_setResponseJSON($this->ActivityLog->find('all',
             array(
                 'conditions' => $conditions,
