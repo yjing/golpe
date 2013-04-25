@@ -40,8 +40,7 @@ class AppController extends Controller {
         'Auth' => array(
             'authenticate' => array(
                 'Form'
-            ),
-            'authorize' => 'Controller'
+            )
         )
     );
     
