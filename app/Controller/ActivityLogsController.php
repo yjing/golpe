@@ -14,6 +14,7 @@ class ActivityLogsController extends RESTController {
     public function index() {
         parent::index();
         
+        $db = $this->User->getDataSource();
         $subQuery = $db->buildStatement(
             array(
                 'fields'     => array('"ActivityLog"."id"'),
