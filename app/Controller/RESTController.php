@@ -34,6 +34,7 @@ abstract class RESTController extends AppController {
         }
         if (!is_array($auth)) {
             $auth = array($auth);
+            return $auth;
         }
         foreach ($auth as $action => $roles) {
             if (!is_array($roles)) {
