@@ -24,6 +24,8 @@ abstract class RESTController extends AppController {
     
     public function isAuthorized($user = null) {
         
+        debug($this->_authorization);
+        debug($this->action);
         debug((isset($this->_authorization[$this->action]) &&
                 isset($user) && 
                 isset($user['role']) && 
