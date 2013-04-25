@@ -107,3 +107,8 @@ CakeLog::config('error', array(
 	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
 	'file' => 'error',
 ));
+
+/**
+ * Configures JSON Exceptions Handler 
+ */
+App::uses('AppJSONExceptionHandler', 'Lib');
