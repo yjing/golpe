@@ -6,8 +6,8 @@ Configure::write("APPCONFIG", array(
         // RESOURCES/Controllers
         "Users" => array(
             // ACTIONS
-            "index" => false,
-            "view" => "*",
+            "index" => array("SUPERVISOR"),
+            "view" => array("*", "STUDENT"),
 //            "view" => array('SUPERVISOR', 'ADMIN'),
         )
     )
