@@ -5,15 +5,7 @@ abstract class RESTController extends AppController {
     public $components = array('RequestHandler');
     
     public function beforeFilter() {
-//        parent::beforeFilter();
-        $this->autoRender = false;
         $this->RequestHandler->renderAs($this, 'json');
-        
-        // In a REST service, if unauthorized, I just need to send a 501 status code to the client
-//        $this->Auth->autoRedirect = false;
-//        if (!$this->Auth->loggedIn() && !in_array($this->action, $this->Auth->allowedActions)) {
-//            throw new UnauthorizedException();
-//        }
     }
 
     public function index() {
