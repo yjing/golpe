@@ -17,21 +17,42 @@ abstract class RESTController extends AppController {
         
         $this->Auth->authorize = 'Controller';
         $this->Auth->unauthorizedRedirect = false;
-        $this->_authorization = Configure::read("APPCONFIG.authorization." . $this->name);
+        
+        $this->_authorization = $this->_normalize(Configure::read("APPCONFIG.authorization." . $this->name));
+        debug(Configure::read("APPCONFIG.authorization." . $this->name));
+        debug($this->_authorization);
         $this->_roles = Configure::read("APPCONFIG.roles");
         
+    }
+    
+    private function _normalize($auth) {
+        if (!isset($auth) || $auth === false) {
+            return false;
+        }
+        if ($auth === true) {
+            return true;
+        }
+        if (!is_array($auth)) {
+            $auth = array($auth);
+        }
+        foreach ($auth as $action => $roles) {
+            if (!is_array($roles) && $roles !== false && $roles !== true) {
+                $auth[$action] = array($roles);
+            }
+        }
     }
     
     public function isAuthorized($user = null) {
         if (!isset($user) || !isset($user['role']) || !in_array($user['role'], $this->_roles)) {
             throw new Exception("Unknown user role.");
         }
-        
-        if ( isset($this->_authorization[$this->action]) ) {
-            $action_auth = $this->_authorization[$this->action];
-            if ($action_auth !== false) {
-                if($action_auth == "*" || in_array("*", $action_auth) || in_array($user['role'], $action_auth)) {
-                    return true;
+        if(isset($this->_authorization) && $this->_authorization !== false) {
+            if ( isset($this->_authorization[$this->action]) ) {
+                $action_auth = $this->_authorization[$this->action];
+                if ($action_auth !== false) {
+                    if($action_auth == "*" || in_array("*", $action_auth) || in_array($user['role'], $action_auth)) {
+                        return true;
+                    }
                 }
             }
         }
