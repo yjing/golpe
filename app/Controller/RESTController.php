@@ -34,7 +34,7 @@ abstract class RESTController extends AppController {
             }
             
         }
-        
+        $this->Auth->authError = "Unauthorized";
         return false;
     }
 
