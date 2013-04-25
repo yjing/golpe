@@ -52,6 +52,10 @@ class UsersController extends RESTController {
         
     }
 
+    public function update($id = null) {
+        parent::update($id);
+    }
+    
     public function edit($id = null) {
         parent::edit($id);
         
