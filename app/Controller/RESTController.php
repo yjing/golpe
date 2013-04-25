@@ -61,7 +61,7 @@ abstract class RESTController extends AppController {
                 } else {
                     $ret = $action_auth;
                 }
-            } else {
+            } else {debug("HERE");
                 $ret = in_array($user['role'], $this->_authorization);
             }
         } else {
