@@ -73,9 +73,9 @@
  *
  * @see ErrorHandler for more information on exception handling and configuration.
  */
-	Configure::write('Exception', array(
-		'handler' => 'ErrorHandler::handleException',
-		'renderer' => 'ExceptionRenderer',
+        
+        Configure::write('Exception', array(
+		'handler' => 'AppJSONExceptionHandler::handleException',
 		'log' => true
 	));
 
