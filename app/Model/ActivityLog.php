@@ -2,6 +2,7 @@
 
 App::import('Model', 'Media');
 App::import('Model', 'ActivityLogMedia');
+App::import('Model', 'UserAwareModel');
 App::import('Component', 'Session');
 
 // app/Model/User.php
