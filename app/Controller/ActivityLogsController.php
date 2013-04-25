@@ -13,10 +13,6 @@ class ActivityLogsController extends RESTController {
 
     public function index() {
         parent::index();
-    }
-    
-    public function index2() {
-        parent::index();
         
 //        $user = $this->Session->read("Auth.User");
         $user = $this->Auth->user();
