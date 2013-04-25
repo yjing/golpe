@@ -12,6 +12,6 @@ Configure::write("APPCONFIG", array(
             "edit" => "ADMIN",
             "delete" => "ADMIN"
         ),
-        "Activity_logs" => true
+        "ActivityLogs" => true
     )
 ));
