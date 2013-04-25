@@ -6,11 +6,16 @@ App::uses('UsersManagerAppController', 'UsersManager.Controller');
  */
 class UsersController extends UsersManagerAppController {
 
-/**
- * Scaffold
- *
- * @var mixed
- */
-	public $scaffold;
+    
+    public function index() {
+        parent::index();
+        
+        $this->User->recursive = 0;
+        $result = $this->paginate();
+        
+        debug($result);die();
+        
+//        $this->_setResponseJSON(Set::remove($result, '{n}.User.password'));
+    }
 
 }
