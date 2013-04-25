@@ -4,6 +4,11 @@ App::import('Controller', 'REST');
 
 class UsersController extends RESTController {
 
+    public function beforeFilter() {
+        $this->Auth->allow(array('add', 'login', 'logout'));
+        parent::beforeFilter();
+    }
+    
     public function index() {
         parent::index();
         
