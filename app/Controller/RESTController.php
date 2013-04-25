@@ -3,6 +3,7 @@
 abstract class RESTController extends AppController {
 
     public $components = array('RequestHandler');
+    private $_authorization;
     
     public function beforeFilter() {
         $this->RequestHandler->renderAs($this, 'json');
@@ -13,25 +14,24 @@ abstract class RESTController extends AppController {
             throw new UnauthorizedException();
         }
         
-        debug(Configure::read("APPCONFIG.authorization"));
+        $this->_authorization = Configure::read("APPCONFIG.authorization." . $this->name);
+        debug($this->_authorization);
         
     }
     
     public function isAuthorized($user = null) {
-        debug($user['role']);
-        debug($this->name);
-        debug($this->action);
-        debug(isset($user));
-        debug(isset($user['role']));
+        $action_auth = $this->_authorization[$this->action];
+        if(in_array("*", $action_auth) || in_array($user['role'], $action_auth)) {
+            return true;
+        }
         
-//        if(isset($this->actionsMap[$user['role']]) &&
-//            isset($this->actionsMap[$user['role']][$this->name]) &&
-//            in_array($this->action, $this->actionsMap[$user['role']][$this->name])) {
-//            
-//            return true;
-//        }
+//        debug($user['role']);
+//        debug($this->name);
+//        debug($this->action);
+//        debug(isset($user));
+//        debug(isset($user['role']));
         
-        return true;
+        return false;
     }
 
     public function index() {
