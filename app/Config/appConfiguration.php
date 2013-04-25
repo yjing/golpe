@@ -16,7 +16,7 @@ Configure::write("APPCONFIG", array(
         "ActivityLogs" => array( 
             // Actions
             "index" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR'),
-            "view" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR',
+            "view" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR'),
             "add" => "ADMIN",
             "update" => "ADMIN",
             "edit" => "ADMIN",
