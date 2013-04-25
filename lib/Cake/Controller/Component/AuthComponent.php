@@ -348,23 +348,22 @@ class AuthComponent extends Component {
  * @throws ForbiddenException
  */
 	protected function _unauthorized(Controller $controller) {
-//		if ($this->unauthorizedRedirect === false) {
-//			throw new ForbiddenException($this->authError);
-//		}
-//
-//		$this->flash($this->authError);
-//		if ($this->unauthorizedRedirect === true) {
-//			$default = '/';
-//			if (!empty($this->loginRedirect)) {
-//				$default = $this->loginRedirect;
-//			}
-//			$url = $controller->referer($default, true);
-//		} else {
-//			$url = $this->unauthorizedRedirect;
-//		}
-//		$controller->redirect($url, null, true);
-//		return false;
-        throw new UnauthorizedException();
+		if ($this->unauthorizedRedirect === false) {
+			throw new ForbiddenException($this->authError);
+		}
+
+		$this->flash($this->authError);
+		if ($this->unauthorizedRedirect === true) {
+			$default = '/';
+			if (!empty($this->loginRedirect)) {
+				$default = $this->loginRedirect;
+			}
+			$url = $controller->referer($default, true);
+		} else {
+			$url = $this->unauthorizedRedirect;
+		}
+		$controller->redirect($url, null, true);
+		return false;
 	}
 
 /**
