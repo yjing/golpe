@@ -14,6 +14,23 @@ class ActivityLogsController extends RESTController {
     public function index() {
         parent::index();
         
+        $subQuery = $db->buildStatement(
+            array(
+                'fields'     => array('"ActivityLog"."id"'),
+                'table'      => $db->fullTableName($this->User),
+                'alias'      => 'ActivityLog',
+                'limit'      => null,
+                'offset'     => null,
+                'joins'      => array('Media'),
+                'conditions' => null,
+                'order'      => null,
+                'group'      => null
+            ),
+            $this->ActivityLog
+        );
+        debug($subQuery);
+        
+        die();
         $user = $this->Auth->user();
         
         $mode = "";
