@@ -4,7 +4,7 @@ App::import('Controller', 'REST');
 
 class ActivityLogsController extends RESTController {
 
-    public $uses = array('ActivityLog', 'User');
+    public $uses = array('ActivityLog', 'ActivityLogMedia', 'User');
     public $components = array('Session', 'RequestHandler');
     
     public function beforeFilter() {
@@ -16,7 +16,7 @@ class ActivityLogsController extends RESTController {
         
         $db = $this->User->getDataSource();
         $u = $db->fullTableName($this->ActivityLog);
-        $d = $db->fullTableName($this->ActivityLog->Media);
+        $d = $db->fullTableName($this->ActivityLogMedia);
         debug($u);
         debug($d);
         
