@@ -6,7 +6,10 @@ Configure::write("APPCONFIG", array(
         // RESOURCES/Controllers
         "Users" => array( 
             "index" => "ADMIN",
-            "view" => true 
+            "view" => true,
+            "add" => "ADMIN",
+            "edit" => "ADMIN",
+            "delete" => "ADMIN"
         )
     )
 ));
