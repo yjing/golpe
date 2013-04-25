@@ -11,54 +11,52 @@ class ActivityLogsController extends RESTController {
         parent::beforeFilter();
     }
     
-//    public function index() {
-//        parent::index();
-//        $user = $this->Auth->user();
-//        debug($user);
-//        die();
-//    }
-
     public function index() {
         parent::index();
         
 //        $user = $this->Session->read("Auth.User");
         $user = $this->Auth->user();
-        debug("CIAO");
+        
+        $mode = "";
+        if(isset($this->request->query['mode'])) {
+            $mode = $this->request->query['mode'];
+        }
+        if(!in_array($mode, array("mine", "team", "public"))) {
+            $mode = "mine";
+        }
+        
+        $conditions = array();
+        switch ($mode) {
+            case "team":
+                $conditions["ActivityLog.user_id"] = $this->User->getTeamComponentsId($user['id']);
+                break;
+            case "public":
+                $conditions["ActivityLog.visibility_level"] = "PUBLIC";
+                break;
+            default:
+                $conditions["ActivityLog.user_id"] = $user['id'];
+                break;
+        }
+        
+        $this->ActivityLog->contain(array(
+            "Media" => array("id", "user_id", "visibility_level"),
+            "Comment" => array("id", "user_id", "visibility_level"),
+            "User" => array("id", "username", "role")
+        ));
+        
+        debug($this->ActivityLog->find('all',
+            array(
+                'conditions' => $conditions,
+                'recursive' => 1
+            )
+        ));
         die();
-//        
-//        $mode = "";
-//        if(isset($this->request->query['mode'])) {
-//            $mode = $this->request->query['mode'];
-//        }
-//        if(!in_array($mode, array("mine", "team", "public"))) {
-//            $mode = "mine";
-//        }
-//        
-//        $conditions = array();
-//        switch ($mode) {
-//            case "team":
-//                $conditions["ActivityLog.user_id"] = $this->User->getTeamComponentsId($user['id']);
-//                break;
-//            case "public":
-//                $conditions["ActivityLog.visibility_level"] = "PUBLIC";
-//                break;
-//            default:
-//                $conditions["ActivityLog.user_id"] = $user['id'];
-//                break;
-//        }
-//        
-//        $this->ActivityLog->contain(array(
-//            "Media" => array("id", "user_id", "visibility_level"),
-//            "Comment" => array("id", "user_id", "visibility_level"),
-//            "User" => array("id", "username", "role")
-//        ));
-//        
-//        $this->_setResponseJSON($this->ActivityLog->find('all',
-//            array(
-//                'conditions' => $conditions,
-//                'recursive' => 1
-//            )
-//        ));
+        $this->_setResponseJSON($this->ActivityLog->find('all',
+            array(
+                'conditions' => $conditions,
+                'recursive' => 1
+            )
+        ));
     }
 
 //    public function view($id = null) {
