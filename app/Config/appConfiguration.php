@@ -5,6 +5,7 @@ Configure::write("APPCONFIG", array(
     'authorization' => array (
         // RESOURCES/Controllers
         "Users" => array( 
+            // Actions
             "index" => "ADMIN",
             "view" => true,
             "add" => "ADMIN",
@@ -12,6 +13,6 @@ Configure::write("APPCONFIG", array(
             "edit" => "ADMIN",
             "delete" => "ADMIN"
         ),
-        "ActivityLogs" => true
+        "ActivityLogs" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR')
     )
 ));
