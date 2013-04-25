@@ -7,7 +7,7 @@ Configure::write("APPCONFIG", array(
         "Users" => array(
             // ACTIONS
             "index" => "ADMIN",
-            "view" => true
+            "view" => array()
         )
     )
 ));
