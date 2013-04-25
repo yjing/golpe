@@ -476,8 +476,7 @@ class Controller extends Object implements CakeEventListener {
 	public function invokeAction(CakeRequest $request) {
 		try {
 			$method = new ReflectionMethod($this, $request->params['action']);
-                        debug($method);
-                        debug($this->index());
+                        
 			if ($this->_isPrivateAction($method, $request)) {
 				throw new PrivateActionException(array(
 					'controller' => $this->name . "Controller",
