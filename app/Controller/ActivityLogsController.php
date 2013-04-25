@@ -18,7 +18,7 @@ class ActivityLogsController extends RESTController {
         $subQuery = $db->buildStatement(
             array(
                 'fields'     => array('"ActivityLog"."id"'),
-                'table'      => $db->fullTableName($this->User),
+                'table'      => $db->fullTableName($this->ActivityLog),
                 'alias'      => 'ActivityLog',
                 'limit'      => null,
                 'offset'     => null,
