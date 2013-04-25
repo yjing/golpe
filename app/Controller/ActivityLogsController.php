@@ -14,13 +14,8 @@ class ActivityLogsController extends RESTController {
     public function index() {
         parent::index();
         $user = $this->Auth->user();
-        
-        $this->_setResponseJSON($this->ActivityLog->find('all',
-            array(
-                'conditions' => $conditions,
-                'recursive' => 1
-            )
-        ));
+        debug($user);
+        die();
     }
 
 //    public function index() {
