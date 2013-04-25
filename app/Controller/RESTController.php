@@ -24,20 +24,11 @@ abstract class RESTController extends AppController {
     
     public function isAuthorized($user = null) {
         
-        debug($this->_authorization);
-        debug($this->action);
-        debug((isset($this->_authorization[$this->action]) &&
-                isset($user) && 
-                isset($user['role']) && 
-                in_array($user['role'], $this->_roles)));
-        
         if(isset($this->_authorization[$this->action]) &&
                 isset($user) && 
                 isset($user['role']) && 
                 in_array($user['role'], $this->_roles)) {
         
-            debug((in_array("*", $action_auth) || in_array($user['role'], $action_auth)));
-            
             $action_auth = $this->_authorization[$this->action];
             if(in_array("*", $action_auth) || in_array($user['role'], $action_auth)) {
                 return true;
