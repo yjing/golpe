@@ -9,7 +9,7 @@ class UsersController extends UsersManagerAppController {
     public $uses = array('UsersManager.User');
     
     public function index() {
-        parent::index();
+//        parent::index();
         
         $this->User->recursive = 0;
         $result = $this->paginate();
