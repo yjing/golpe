@@ -14,6 +14,8 @@ abstract class RESTController extends AppController {
         if (!$this->Auth->loggedIn() && !in_array($this->action, $this->Auth->allowedActions)) {
             throw new UnauthorizedException();
         }
+        
+        $this->Auth->authorize = 'Controller';
         $this->Auth->unauthorizedRedirect = false;
         $this->_authorization = Configure::read("APPCONFIG.authorization." . $this->name);
         $this->_authorization = Configure::read("APPCONFIG.roles");
@@ -22,17 +24,25 @@ abstract class RESTController extends AppController {
     
     public function isAuthorized($user = null) {
         
+        debug((isset($this->_authorization[$this->action]) &&
+                isset($user) && 
+                isset($user['role']) && 
+                in_array($user['role'], $this->_roles)));
+        
         if(isset($this->_authorization[$this->action]) &&
                 isset($user) && 
                 isset($user['role']) && 
                 in_array($user['role'], $this->_roles)) {
         
+            debug((in_array("*", $action_auth) || in_array($user['role'], $action_auth)));
+            
             $action_auth = $this->_authorization[$this->action];
             if(in_array("*", $action_auth) || in_array($user['role'], $action_auth)) {
                 return true;
             }
             
         }
+        
         $this->Auth->authError = "Unauthorized";
         return false;
     }
