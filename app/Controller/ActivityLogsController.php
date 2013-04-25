@@ -23,7 +23,7 @@ class ActivityLogsController extends RESTController {
         
 //        $user = $this->Session->read("Auth.User");
         $user = $this->Auth->user();
-        debug();
+        debug("CIAO");
         die();
 //        
 //        $mode = "";
