@@ -8,7 +8,7 @@ class UsersController extends RESTController {
         parent::index();
         
         $this->User->recursive = 0;
-        $result = $this->find('all');
+        $result = $this->User->find('all');
         
         $this->_setResponseJSON(Set::remove($result, '{n}.User.password'));
     }
