@@ -52,6 +52,8 @@ abstract class RESTController extends AppController {
             throw new Exception("Unknown user role.");
         }
         
+        debug($this->_authorization);
+        
         $ret = false;
         if(is_array($this->_authorization)) {
             if (isset($this->_authorization[$this->action])) {
