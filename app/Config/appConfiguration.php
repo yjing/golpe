@@ -4,10 +4,6 @@ Configure::write("APPCONFIG", array(
     'roles' => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR', 'ADMIN', 'EXTERNALE'),
     'authorization' => array (
         // RESOURCES/Controllers
-//        "Users" => array(
-//            // ACTIONS
-//            "index" => "ADMIN",
-//            "view" => array()
-//        )
+        "Users" => "ADMIN"
     )
 ));
