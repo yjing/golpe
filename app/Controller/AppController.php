@@ -35,4 +35,14 @@ class AppController extends Controller {
     
     public $layout = 'plain';
     
+    public $components = array(
+        'Session',
+        'Auth' => array(
+            'authenticate' => array(
+                'Form'
+            ),
+            'authorize' => 'Controller'
+        )
+    );
+    
 }

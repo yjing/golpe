@@ -31,16 +31,16 @@
 /**
 * REST Configuration
 */
-Router::resourceMap(array(
-    array('action' => 'index', 'method' => 'GET', 'id' => false),
-    array('action' => 'view', 'method' => 'GET', 'id' => true),
-    array('action' => 'add', 'method' => 'POST', 'id' => false),
-    array('action' => 'edit', 'method' => 'PUT', 'id' => true),
-    array('action' => 'delete', 'method' => 'DELETE', 'id' => true),
-    array('action' => 'update', 'method' => 'POST', 'id' => true)
-));
+        Router::resourceMap(array(
+            array('action' => 'index', 'method' => 'GET', 'id' => false),
+            array('action' => 'view', 'method' => 'GET', 'id' => true),
+            array('action' => 'add', 'method' => 'POST', 'id' => false),
+            array('action' => 'edit', 'method' => 'PUT', 'id' => true),
+            array('action' => 'delete', 'method' => 'DELETE', 'id' => true),
+            array('action' => 'update', 'method' => 'POST', 'id' => true)
+        ));
 
-Router::mapResources(array('users'));
+        Router::mapResources(array('users'));
 
 /**
  * Load the CakePHP default routes. Only remove this if you do not want to use
