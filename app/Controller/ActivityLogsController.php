@@ -9,6 +9,7 @@ class ActivityLogsController extends RESTController {
     
     public function beforeFilter() {
         parent::beforeFilter();
+        debug("BEFORE");
     }
 
     public function index() {
