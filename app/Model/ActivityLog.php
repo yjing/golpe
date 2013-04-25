@@ -4,6 +4,7 @@ App::import('Model', 'Media');
 App::import('Model', 'ActivityLogMedia');
 App::import('Model', 'UserAwareModel');
 App::import('Component', 'Session');
+App::import('Behavior', 'HasMedia');
 
 // app/Model/User.php
 class ActivityLog extends UserAwareModel {
