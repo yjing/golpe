@@ -36,8 +36,12 @@ abstract class RESTController extends AppController {
             $auth = array($auth);
         }
         foreach ($auth as $action => $roles) {
-            if (!is_array($roles) && $roles !== false && $roles !== true) {
-                $auth[$action] = array($roles);
+            if (!is_array($roles)) {
+                if($roles !== false && $roles !== true) {
+                    $auth[$action] = array($roles);
+                }
+            } elseif (count($roles) == 0) {
+                $auth[$action] = false;
             }
         }
         
