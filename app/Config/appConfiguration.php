@@ -8,6 +8,7 @@ Configure::write("APPCONFIG", array(
             "index" => "ADMIN",
             "view" => true,
             "add" => "ADMIN",
+            "update" => "ADMIN",
             "edit" => "ADMIN",
             "delete" => "ADMIN"
         )
