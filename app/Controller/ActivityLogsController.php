@@ -15,21 +15,10 @@ class ActivityLogsController extends RESTController {
         parent::index();
         
         $db = $this->User->getDataSource();
-        $subQuery = $db->buildStatement(
-            array(
-                'fields'     => array('"ActivityLog"."id"'),
-                'table'      => $db->fullTableName($this->ActivityLog),
-                'alias'      => 'ActivityLog',
-                'limit'      => null,
-                'offset'     => null,
-                'joins'      => array('ActivityLogMedia'),
-                'conditions' => null,
-                'order'      => null,
-                'group'      => null
-            ),
-            $this->ActivityLog
-        );
-        debug($subQuery);
+        $u = $db->fullTableName($this->ActivityLog);
+        $d = $db->fullTableName($this->ActivityLog->Media);
+        debug($u);
+        debug($d);
         
         die();
         $user = $this->Auth->user();
