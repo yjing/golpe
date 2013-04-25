@@ -39,8 +39,8 @@ class ActivityLogsController extends RESTController {
         }
         
         
-//        debug("CIAO");
-//        die();
+        debug("CIAO");
+        die();
 //        $this->ActivityLog->contain(array(
 //            "Media" => array("id", "user_id", "visibility_level"),
 //            "Comment" => array("id", "user_id", "visibility_level"),
