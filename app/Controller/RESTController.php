@@ -75,7 +75,7 @@ abstract class RESTController extends AppController {
             
     }
 
-    public function index() {
+    public static function index() {
       
         if (!$this->request->is('get')) {
             
