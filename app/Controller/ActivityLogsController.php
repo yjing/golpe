@@ -22,7 +22,7 @@ class ActivityLogsController extends RESTController {
                 'alias'      => 'ActivityLog',
                 'limit'      => null,
                 'offset'     => null,
-                'joins'      => array('Media'),
+                'joins'      => array('ActivityLogMedia'),
                 'conditions' => null,
                 'order'      => null,
                 'group'      => null
