@@ -4,6 +4,7 @@ abstract class RESTController extends AppController {
 
     public $components = array('RequestHandler');
     private $_authorization;
+    private $_roles;
     
     public function beforeFilter() {
         $this->RequestHandler->renderAs($this, 'json');
@@ -15,21 +16,23 @@ abstract class RESTController extends AppController {
         }
         
         $this->_authorization = Configure::read("APPCONFIG.authorization." . $this->name);
-        debug($this->_authorization);
+        $this->_authorization = Configure::read("APPCONFIG.roles");
         
     }
     
     public function isAuthorized($user = null) {
-        $action_auth = $this->_authorization[$this->action];
-        if(in_array("*", $action_auth) || in_array($user['role'], $action_auth)) {
-            return true;
-        }
         
-//        debug($user['role']);
-//        debug($this->name);
-//        debug($this->action);
-//        debug(isset($user));
-//        debug(isset($user['role']));
+        if(isset($this->_authorization[$this->action]) &&
+                isset($user) && 
+                isset($user['role']) && 
+                in_array($user['role'], $this->_roles)) {
+        
+            $action_auth = $this->_authorization[$this->action];
+            if(in_array("*", $action_auth) || in_array($user['role'], $action_auth)) {
+                return true;
+            }
+            
+        }
         
         return false;
     }
