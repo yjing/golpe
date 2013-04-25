@@ -23,6 +23,8 @@ class ActivityLogsController extends RESTController {
         
 //        $user = $this->Session->read("Auth.User");
         $user = $this->Auth->user();
+        debug();
+        die();
 //        
 //        $mode = "";
 //        if(isset($this->request->query['mode'])) {
@@ -50,13 +52,13 @@ class ActivityLogsController extends RESTController {
 //            "Comment" => array("id", "user_id", "visibility_level"),
 //            "User" => array("id", "username", "role")
 //        ));
-        
-        $this->_setResponseJSON($this->ActivityLog->find('all',
-            array(
-                'conditions' => $conditions,
-                'recursive' => 1
-            )
-        ));
+//        
+//        $this->_setResponseJSON($this->ActivityLog->find('all',
+//            array(
+//                'conditions' => $conditions,
+//                'recursive' => 1
+//            )
+//        ));
     }
 
 //    public function view($id = null) {
