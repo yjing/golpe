@@ -13,12 +13,16 @@ abstract class RESTController extends AppController {
             throw new UnauthorizedException();
         }
         
+        debug(Configure::read("APPCONFIG.authorization"));
+        
     }
     
     public function isAuthorized($user = null) {
         debug($user['role']);
         debug($this->name);
         debug($this->action);
+        debug(isset($user));
+        debug(isset($user['role']));
         
 //        if(isset($this->actionsMap[$user['role']]) &&
 //            isset($this->actionsMap[$user['role']][$this->name]) &&

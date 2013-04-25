@@ -112,3 +112,5 @@ CakeLog::config('error', array(
  * Configures JSON Exceptions Handler 
  */
 App::uses('AppJSONExceptionHandler', 'Lib');
+
+require CAKE . 'Config' . DS . 'appConfiguration.php';
