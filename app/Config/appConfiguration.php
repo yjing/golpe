@@ -17,10 +17,10 @@ Configure::write("APPCONFIG", array(
             // Actions
             "index" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR'),
             "view" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR'),
-            "add" => "ADMIN",
-            "update" => "ADMIN",
-            "edit" => "ADMIN",
-            "delete" => "ADMIN"
+            "add" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR'),
+            "update" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR'),
+            "edit" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR'),
+            "delete" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR')
         )
     )
 ));
