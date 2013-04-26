@@ -50,6 +50,7 @@ abstract class UserAwareModel extends AppModel {
         }
         $queryData['conditions']["AND"]["OR"] = array(
             'AUTHUser.id' => 1,
+            'AUTHTeam.id' => 1,
             $this->alias . '.visibility_level' => 'PUBLIC'
         );
         
