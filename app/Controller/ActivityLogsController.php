@@ -55,6 +55,40 @@ class ActivityLogsController extends RESTController {
         
         $r = $this->ActivityLog->query($r);
         debug($r);
+        
+        $r = $this->ActivityLog->find('all', 
+            array(
+                'fields' => array('ActivityLog.*, User.*, Team.*'),
+                'table' => $db->fullTableName($this->ActivityLog),
+                'alias' => 'ActivityLog',
+                'group' => array(),
+                'conditions' => array(),
+                'order' => null,
+                'limit' => null,
+                'joins' => array(
+                    array(
+                        'table' => "users",
+                        'alias' => 'User',
+                        'type' => 'LEFT',
+                        'conditions' => array('ActivityLog.user_id = User.id')
+                    ),
+                    array(
+                        'table' => "teams_users",
+                        'alias' => 'tu',
+                        'type' => 'LEFT',
+                        'conditions' => array('User.id = tu.user_id')
+                    ),
+                    array(
+                        'table' => "teams",
+                        'alias' => 'Team',
+                        'type' => 'LEFT',
+                        'conditions' => array('Team.id = tu.team_id')
+                    )
+                )
+            )    
+        );
+        
+        debug($r);
         die();
         $user = $this->Auth->user();
         
