@@ -4,7 +4,7 @@ App::import('Controller', 'REST');
 
 class ActivityLogsController extends RESTController {
 
-    public $uses = array('ActivityLog', 'TeamUsers', 'User');
+    public $uses = array('ActivityLog', 'TeamUser', 'User');
     public $components = array('Session', 'RequestHandler');
     
     public function beforeFilter() {
@@ -31,13 +31,13 @@ class ActivityLogsController extends RESTController {
                 'limit' => null,
                 'joins' => array(
                     array(
-                        'table' => $db->fullTableName($this->Uses),
+                        'table' => "users",
                         'alias' => 'User',
                         'type' => 'LEFT',
                         'conditions' => array('ActivityLog.user_id = User.id')
                     ),
                     array(
-                        'table' => $db->fullTableName($this->TeamUsers),
+                        'table' => "teams_users",
                         'alias' => 'tu',
                         'type' => 'LEFT',
                         'conditions' => array('User.id = tu.user_id')
