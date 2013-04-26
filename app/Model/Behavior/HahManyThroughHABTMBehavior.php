@@ -21,7 +21,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
     public function afterFind(Model $model, $results, $primary) {
         parent::afterFind($model, $results, $primary);
         
-        foreach ($this->settings[$this->alias] as $model_name => $m) {
+        foreach ($this->settings[$model->alias] as $model_name => $m) {
             debug($model_name);
             debug($m->useTable);
             debug($m->primary_key);
