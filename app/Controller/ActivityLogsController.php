@@ -28,7 +28,7 @@ class ActivityLogsController extends RESTController {
                         'table' => $db->fullTableName($this->Uses),
                         'alias' => 'User',
                         'type' => 'LEFT',
-                        'conditions' => 'ActivityLog.user_id = User.id'
+                        'conditions' => array('ActivityLog.user_id = User.id')
                     )
                 )
             )
