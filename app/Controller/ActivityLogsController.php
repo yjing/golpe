@@ -14,45 +14,45 @@ class ActivityLogsController extends RESTController {
     public function index() {
         parent::index();
         
-        $db = $this->User->getDataSource();
-        $u = $db->fullTableName($this->ActivityLog);
-        $d = $db->fullTableName($this->ActivityLogMedia);
-        debug($u);
-        debug($d);
-        
-        $r = $db->buildStatement(
-            array(
-                'fields' => array('ActivityLog.*, User.*, Team.*'),
-                'table' => $db->fullTableName($this->ActivityLog),
-                'alias' => 'ActivityLog',
-                'group' => array(),
-                'conditions' => array(),
-                'order' => null,
-                'limit' => null,
-                'joins' => array(
-                    array(
-                        'table' => "users",
-                        'alias' => 'User',
-                        'type' => 'LEFT',
-                        'conditions' => array('ActivityLog.user_id = User.id')
-                    ),
-                    array(
-                        'table' => "teams_users",
-                        'alias' => 'tu',
-                        'type' => 'LEFT',
-                        'conditions' => array('User.id = tu.user_id')
-                    ),
-                    array(
-                        'table' => "teams",
-                        'alias' => 'Team',
-                        'type' => 'LEFT',
-                        'conditions' => array('Team.id = tu.team_id')
-                    )
-                )
-            ),
-            $this->ActivityLog
-        );
-        
+//        $db = $this->User->getDataSource();
+//        $u = $db->fullTableName($this->ActivityLog);
+//        $d = $db->fullTableName($this->ActivityLogMedia);
+//        debug($u);
+//        debug($d);
+//        
+//        $r = $db->buildStatement(
+//            array(
+//                'fields' => array('ActivityLog.*, User.*, Team.*'),
+//                'table' => $db->fullTableName($this->ActivityLog),
+//                'alias' => 'ActivityLog',
+//                'group' => array(),
+//                'conditions' => array(),
+//                'order' => null,
+//                'limit' => null,
+//                'joins' => array(
+//                    array(
+//                        'table' => "users",
+//                        'alias' => 'User',
+//                        'type' => 'LEFT',
+//                        'conditions' => array('ActivityLog.user_id = User.id')
+//                    ),
+//                    array(
+//                        'table' => "teams_users",
+//                        'alias' => 'tu',
+//                        'type' => 'LEFT',
+//                        'conditions' => array('User.id = tu.user_id')
+//                    ),
+//                    array(
+//                        'table' => "teams",
+//                        'alias' => 'Team',
+//                        'type' => 'LEFT',
+//                        'conditions' => array('Team.id = tu.team_id')
+//                    )
+//                )
+//            ),
+//            $this->ActivityLog
+//        );
+//        
 //        $r = $this->ActivityLog->query($r);
 //        debug($r);
         $user = $this->Auth->user();
@@ -60,40 +60,42 @@ class ActivityLogsController extends RESTController {
         debug($user);
         debug($team);
         
-        $r = $this->ActivityLog->find('all', 
-            array(
-                'fields' => array('ActivityLog.*', 'AUTHUser.*', 'AUTHTeam.*'),
-//                'table' => $db->fullTableName($this->ActivityLog),
-//                'alias' => 'ActivityLog',
-//                'group' => array(),
-                'conditions' => array("OR"=>array('AUTHTeam.id' => $team['Team']['id'], 'AUTHUser.id' => $user['id'])),
-//                'order' => null,
-//                'limit' => null,
-//                'recursive' => -1,
-                'joins' => array(
-                    array(
-                        'table' => "users",
-                        'alias' => 'AUTHUser',
-                        'type' => 'LEFT',
-                        'conditions' =>array(
-                            '`ActivityLog`.`user_id` = `AUTHUser`.`id`'
-                        )
-                    ),
-                    array(
-                        'table' => "teams_users",
-                        'alias' => 'tu',
-                        'type' => 'LEFT',
-                        'conditions' => array('AUTHUser.id = tu.user_id')
-                    ),
-                    array(
-                        'table' => "teams",
-                        'alias' => 'AUTHTeam',
-                        'type' => 'LEFT',
-                        'conditions' => array('AUTHTeam.id = tu.team_id')
-                    )
-                )
-            )    
-        );
+//        $r = $this->ActivityLog->find('all', 
+//            array(
+//                'fields' => array('ActivityLog.*', 'AUTHUser.*', 'AUTHTeam.*'),
+////                'table' => $db->fullTableName($this->ActivityLog),
+////                'alias' => 'ActivityLog',
+////                'group' => array(),
+//                'conditions' => array("OR"=>array('AUTHTeam.id' => $team['Team']['id'], 'AUTHUser.id' => $user['id'])),
+////                'order' => null,
+////                'limit' => null,
+////                'recursive' => -1,
+//                'joins' => array(
+//                    array(
+//                        'table' => "users",
+//                        'alias' => 'AUTHUser',
+//                        'type' => 'LEFT',
+//                        'conditions' =>array(
+//                            '`ActivityLog`.`user_id` = `AUTHUser`.`id`'
+//                        )
+//                    ),
+//                    array(
+//                        'table' => "teams_users",
+//                        'alias' => 'tu',
+//                        'type' => 'LEFT',
+//                        'conditions' => array('AUTHUser.id = tu.user_id')
+//                    ),
+//                    array(
+//                        'table' => "teams",
+//                        'alias' => 'AUTHTeam',
+//                        'type' => 'LEFT',
+//                        'conditions' => array('AUTHTeam.id = tu.team_id')
+//                    )
+//                )
+//            )    
+//        );
+        
+        $this->ActivityLog->find('all');
         
         debug($r);
         die();

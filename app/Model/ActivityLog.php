@@ -7,7 +7,8 @@ App::import('Component', 'Session');
 App::import('Behavior', 'HasMedia');
 
 // app/Model/User.php
-class ActivityLog extends UserAwareModel {
+class ActivityLog extends AppModel {
+//class ActivityLog extends UserAwareModel {
 
     public $name = 'ActivityLog';
     public $useTable = "activity_logs";
@@ -41,6 +42,14 @@ class ActivityLog extends UserAwareModel {
             return false;
             
         }
+    }
+    
+    public function beforeFind($queryData) {
+        parent::beforeFind($queryData);
+        debug($queryData);
+        
+        die();
+        return $queryData;
     }
     
 }
