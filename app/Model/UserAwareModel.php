@@ -20,8 +20,6 @@ abstract class UserAwareModel extends AppModel {
         $user = CakeSession::read('Auth.User');
         $team = $this->User->getTeam($user['id']);
         
-        debug($queryData);
-        
         if($queryData['fields'] == null) {
             $queryData['fields'][] = $this->alias . '.*';
         }
