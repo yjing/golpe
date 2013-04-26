@@ -22,7 +22,7 @@ class ActivityLogsController extends RESTController {
         
         $r = $db->buildStatement(
             array(
-                'fields' => array('ActivityLog.*, User.*, Team.* as team_id, ActivityLog.visibility_level as AUTH_VL'),
+                'fields' => array('ActivityLog.*, User.*, Team.*'),
                 'table' => $db->fullTableName($this->ActivityLog),
                 'alias' => 'ActivityLog',
                 'group' => array(),
