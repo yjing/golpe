@@ -50,7 +50,7 @@ abstract class UserAwareModel extends AppModel {
             'table' => "users",
             'alias' => 'AUTHSupervisor',
             'type' => 'LEFT',
-            'conditions' => array('AUTHSupervisor.id = '. 'User.id')
+            'conditions' => array('AUTHSupervisor.id = '. 'AUTHUser.id')
         );
         // Add the conditions for the visibility
         if(isset($queryData['conditions'])) {
