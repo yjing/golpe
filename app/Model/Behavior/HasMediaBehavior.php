@@ -38,7 +38,15 @@ class HasMediaBehavior extends ModelBehavior {
     public function afterFind(Model $model, $results, $primary) {
         parent::afterFind($model, $results, $primary);
         
-        debug($results);
+        if($primary) {
+            
+            foreach ($results as $key => $value) {
+                debug($value);
+            }
+            
+        }
+        
+//        debug($results);
         die();
     }
     
