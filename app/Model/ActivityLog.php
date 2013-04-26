@@ -56,6 +56,8 @@ class ActivityLog extends AppModel {
             'conditions' => array('AUTHUser.id = ActivityLog.user_id')
         );
         
+        debug($queryData);die();
+        
         return $queryData;
     }
     
