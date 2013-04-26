@@ -77,8 +77,10 @@ class ActivityLog extends AppModel {
     
     public function afterFind($results, $primary = false) {
         parent::afterFind($results, $primary);
-        
         debug($results);
+        if(!$primary) {
+            die();
+        }
         
         foreach ($results as $key => $value) {
             if(isset($value[$this->alias]['AUTHvisibility_level'])) {
