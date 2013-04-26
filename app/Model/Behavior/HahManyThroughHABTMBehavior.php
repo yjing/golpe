@@ -7,18 +7,23 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
             $settings = array($settings);
         }
         
-        foreach ($settings as $key => $model_name) {
-            App::import('Model', $model_name);
-            $model_class = new ReflectionClass($model_name);
-            $model = $model_class->newInstanceArgs();
+        foreach ($settings as $key => $target_name) {
+            App::import('Model', $target_name);
+            $target_class = new ReflectionClass($target_name);
+            $target_model = $target_class->newInstanceArgs();
             
-            $join_model_a = array($model->useTable, $Model->useTable);
+            $join_model_a = array($target_model->useTable, $Model->useTable);
             sort($join_model_a);
             $join_table_name = implode($join_model_a, '_');
             
-            $settings[$model_name] = array(
-                'model' => $model,
-                'join_table_name' => $join_table_name
+            $target_fk = Inflector::underscore($target_model->alias) . '_' . $target_model->primaryKey;
+            $model_fk = Inflector::underscore($Model->alias) . '_' . $Model->primaryKey;
+            
+            $settings[$target_name] = array(
+                'target_model' => $target_model,
+                'join_table_name' => $join_table_name,
+                'target_fk' => $target_fk,
+                'model_fk' => $model_fk
             );
             unset($settings[$key]);
         }
