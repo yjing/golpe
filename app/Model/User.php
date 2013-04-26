@@ -26,30 +26,6 @@ class User extends AppModel {
             )
         )
     );
-    
-    public function beforeFind($queryData) {
-        parent::beforeFind($queryData);
-        
-        if(isset($queryData)) {
-            if(!isset($queryData['joins'])) {
-                $queryData['joins'] = array();
-            }
-            $queryData['joins'][] = array(
-                'table' => "teams_users",
-                'alias' => 'tu',
-                'type' => 'LEFT',
-                'conditions' => array('User.id = tu.user_id')
-            );
-            
-            $queryData['joins'][] = array(
-                'table' => "teams",
-                'alias' => 'Team',
-                'type' => 'LEFT',
-                'conditions' => array('Team.id = tu.team_id')
-            );
-        }
-        
-    }
 
     public function beforeSave($options = array()) {
         if (isset($this->data[$this->alias]['password'])) {

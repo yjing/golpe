@@ -55,7 +55,9 @@ class ActivityLogsController extends RESTController {
         
 //        $r = $this->ActivityLog->query($r);
 //        debug($r);
-        debug($this->Auth->user());
+        $user = $this->Auth->user();
+        $team = $this->User->getTeam($user['id']);
+        debug($user, $team);
         
         $r = $this->ActivityLog->find('all', 
             array(
@@ -63,7 +65,7 @@ class ActivityLogsController extends RESTController {
 //                'table' => $db->fullTableName($this->ActivityLog),
 //                'alias' => 'ActivityLog',
 //                'group' => array(),
-                'conditions' => array("OR"=>array('AUTHTeam.id = 2', 'AUTHUser.id = 1')),
+                'conditions' => array("OR"=>array('AUTHTeam.id' => $team['id'], 'AUTHUser.id' => $user['id'])),
 //                'order' => null,
 //                'limit' => null,
 //                'recursive' => -1,
