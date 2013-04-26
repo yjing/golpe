@@ -74,7 +74,7 @@ abstract class UserAwareModel extends AppModel {
     }
     
     public function find($type = 'first', $query = array()) {
-        debug("BEFORE " . $this->alias);
+        debug("FIND " . $this->alias);
         return parent::find($type, $query);
     }
     
