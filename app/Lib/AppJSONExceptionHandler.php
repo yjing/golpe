@@ -13,7 +13,17 @@ class AppJSONExceptionHandler {
         if(Configure::read('debug') == 2) {
             $err['file'] = $error->getFile();
             $err['line'] = $error->getLine();
-            $err['trace'] = $error->getTraceAsString();
+            $err['trace'] = array();
+            
+            $prev = $error->getPrevious();
+            while ($prev != null) {
+                $err['trace'][] = array(
+                    'message' => $prev->getMessage(),
+                    'file' => $prev->getFile(),
+                    'line' => $prev->getLine()
+                );
+                $prev = $prev->getPrevious();
+            }
         }
         
         echo json_encode($err);
