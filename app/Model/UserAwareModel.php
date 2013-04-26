@@ -16,55 +16,55 @@ abstract class UserAwareModel extends AppModel {
     public function beforeFind($queryData) {
         parent::beforeFind($queryData);
         
-        App::uses('CakeSession', 'Model/Datasource');
-        $user = CakeSession::read('Auth.User');
-        $team = $this->User->getTeam($user['id']);
-        
-        if($queryData['fields'] == null) {
-            $queryData['fields'][] = $this->alias . '.*';
-        }
-        // Add the namespaced fields and models to be used for authorization
-        $queryData['fields'][] = $this->alias . '.visibility_level as AUTHvisibility_level';
-        $queryData['fields'][] = 'AUTHUser.*';
-        $queryData['fields'][] = 'AUTHSupervisor.*';
-        $queryData['fields'][] = 'AUTHTeam.*';
-        // Add the namespaced joins to retrieve the above-mentioned fields and models
-        $queryData['joins'][] = array(
-            'table' => "users",
-            'alias' => 'AUTHUser',
-            'type' => 'LEFT',
-            'conditions' => array('AUTHUser.id = '. $this->alias .'.user_id')
-        );
-        $queryData['joins'][] = array(
-            'table' => "teams_users",
-            'alias' => 'AUTHtu',
-            'type' => 'LEFT',
-            'conditions' => array('AUTHUser.id = AUTHtu.user_id')
-        );
-        $queryData['joins'][] = array(
-            'table' => "teams",
-            'alias' => 'AUTHTeam',
-            'type' => 'LEFT',
-            'conditions' => array('AUTHTeam.id = AUTHtu.team_id')
-        );
-        $queryData['joins'][] = array(
-            'table' => "users",
-            'alias' => 'AUTHSupervisor',
-            'type' => 'LEFT',
-            'conditions' => array('AUTHSupervisor.id = '. 'AUTHUser.id')
-        );
-        // Add the conditions for the visibility
-        if(isset($queryData['conditions'])) {
-            $queryData['conditions'] = array("AND" => array($queryData['conditions']));
-        }
-        $queryData['conditions']["AND"]["OR"] = array(
-            $this->alias . '.visibility_level' => 'PUBLIC',
-            'AUTHUser.id' => $user['id'],
-            "AND" => array(
-                'AUTHTeam.id' => $team['Team']['id'], 
-                $this->alias . '.visibility_level NOT IN' => array('PRIVATE', 'SUPERVISOR')
-            )
-        );
+//        App::uses('CakeSession', 'Model/Datasource');
+//        $user = CakeSession::read('Auth.User');
+//        $team = $this->User->getTeam($user['id']);
+//        
+//        if($queryData['fields'] == null) {
+//            $queryData['fields'][] = $this->alias . '.*';
+//        }
+//        // Add the namespaced fields and models to be used for authorization
+//        $queryData['fields'][] = $this->alias . '.visibility_level as AUTHvisibility_level';
+//        $queryData['fields'][] = 'AUTHUser.*';
+//        $queryData['fields'][] = 'AUTHSupervisor.*';
+//        $queryData['fields'][] = 'AUTHTeam.*';
+//        // Add the namespaced joins to retrieve the above-mentioned fields and models
+//        $queryData['joins'][] = array(
+//            'table' => "users",
+//            'alias' => 'AUTHUser',
+//            'type' => 'LEFT',
+//            'conditions' => array('AUTHUser.id = '. $this->alias .'.user_id')
+//        );
+//        $queryData['joins'][] = array(
+//            'table' => "teams_users",
+//            'alias' => 'AUTHtu',
+//            'type' => 'LEFT',
+//            'conditions' => array('AUTHUser.id = AUTHtu.user_id')
+//        );
+//        $queryData['joins'][] = array(
+//            'table' => "teams",
+//            'alias' => 'AUTHTeam',
+//            'type' => 'LEFT',
+//            'conditions' => array('AUTHTeam.id = AUTHtu.team_id')
+//        );
+//        $queryData['joins'][] = array(
+//            'table' => "users",
+//            'alias' => 'AUTHSupervisor',
+//            'type' => 'LEFT',
+//            'conditions' => array('AUTHSupervisor.id = '. 'AUTHUser.id')
+//        );
+//        // Add the conditions for the visibility
+//        if(isset($queryData['conditions'])) {
+//            $queryData['conditions'] = array("AND" => array($queryData['conditions']));
+//        }
+//        $queryData['conditions']["AND"]["OR"] = array(
+//            $this->alias . '.visibility_level' => 'PUBLIC',
+//            'AUTHUser.id' => $user['id'],
+//            "AND" => array(
+//                'AUTHTeam.id' => $team['Team']['id'], 
+//                $this->alias . '.visibility_level NOT IN' => array('PRIVATE', 'SUPERVISOR')
+//            )
+//        );
         
 //        debug($queryData);
         
