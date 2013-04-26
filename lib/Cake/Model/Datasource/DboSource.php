@@ -1075,11 +1075,11 @@ class DboSource extends DataSource {
 				}
 			}
 		}
-
+                debug($queryData);
 		$query = trim($this->generateAssociationQuery($model, null, null, null, null, $queryData, false, $null));
-
+                debug($query);
 		$resultSet = $this->fetchAll($query, $model->cacheQueries);
-
+                debug($resultSet);
 		if ($resultSet === false) {
 			$model->onError();
 			return false;
