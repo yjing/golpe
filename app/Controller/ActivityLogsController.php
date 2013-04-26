@@ -65,6 +65,7 @@ class ActivityLogsController extends RESTController {
 //                'conditions' => array(),
 //                'order' => null,
 //                'limit' => null,
+                'recursive' => -1,
                 'joins' => array(
                     array(
                         'table' => "users",
