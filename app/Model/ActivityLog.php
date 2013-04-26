@@ -51,11 +51,24 @@ class ActivityLog extends AppModel {
             $queryData['fields'][] = $this->alias . '.*';
         }
         $queryData['fields'][] = 'AUTHUser.*';
+        $queryData['fields'][] = 'AUTHTeam.*';
         $queryData['joins'][] = array(
             'table' => "users",
             'alias' => 'AUTHUser',
             'type' => 'LEFT',
             'conditions' => array('AUTHUser.id' => $this->alias . '.user_id')
+        );
+        $queryData['joins'][] = array(
+            'table' => "teams_users",
+            'alias' => 'AUTHtu',
+            'type' => 'LEFT',
+            'conditions' => array('AUTHUser.id' => 'AUTHtu.user_id')
+        );
+        $queryData['joins'][] = array(
+            'table' => "teams",
+            'alias' => 'AUTHteam',
+            'type' => 'LEFT',
+            'conditions' => array('AUTHteam.id' => 'AUTHtu.team_id')
         );
         
         debug($queryData);
