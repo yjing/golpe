@@ -65,7 +65,7 @@ class ActivityLogsController extends RESTController {
 //                'table' => $db->fullTableName($this->ActivityLog),
 //                'alias' => 'ActivityLog',
 //                'group' => array(),
-                'conditions' => array("OR"=>array('AUTHTeam.id' => $team['id'], 'AUTHUser.id' => $user['id'])),
+                'conditions' => array("OR"=>array('AUTHTeam.id' => $team['Team']['id'], 'AUTHUser.id' => $user['id'])),
 //                'order' => null,
 //                'limit' => null,
 //                'recursive' => -1,
