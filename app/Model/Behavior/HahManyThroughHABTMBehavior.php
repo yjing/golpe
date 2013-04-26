@@ -22,7 +22,6 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
             );
             unset($settings[$key]);
         }
-        debug($settings);
         $this->settings[$Model->alias] = $settings;
         
     }
@@ -31,9 +30,8 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
         parent::afterFind($model, $results, $primary);
         
         foreach ($this->settings[$model->alias] as $m_name => $m) {
-            $joinTable_a = array($model->useTable, $m->useTable);
-            sort($joinTable_a);
-            debug(implode($joinTable_a, '_'));
+            debug($this->settings[$model->alias]['model']->alias);
+            debug($this->settings[$model->alias]['join_table_name']);
         }
         
 //        foreach ($results as $key => $value) {
