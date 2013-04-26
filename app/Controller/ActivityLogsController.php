@@ -20,7 +20,7 @@ class ActivityLogsController extends RESTController {
         debug($u);
         debug($d);
         
-        $r = $this->ActivityLog->find('all',
+        $r = $dbo->buildStatement(
             array(
                 'recursive' => -1,
                 'joins' => array(
@@ -31,7 +31,8 @@ class ActivityLogsController extends RESTController {
                         'conditions' => array('ActivityLog.user_id = User.id')
                     )
                 )
-            )
+            ),
+            $this->ActivityLog
         );
         debug($r);
         die();
