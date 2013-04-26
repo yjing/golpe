@@ -77,6 +77,8 @@ class ActivityLog extends AppModel {
     public function afterFind($results, $primary = false) {
         parent::afterFind($results, $primary);
         foreach ($results as $key => $value) {
+            debug($key);
+            debug($value);
             if(isset($value['AUTHUser'])) {
                 unset($results[$key]['AUTHUser']);
             }
