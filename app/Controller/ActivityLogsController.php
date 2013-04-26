@@ -53,8 +53,8 @@ class ActivityLogsController extends RESTController {
             $this->ActivityLog
         );
         
-        $r = $this->ActivityLog->query($r);
-        debug($r);
+//        $r = $this->ActivityLog->query($r);
+//        debug($r);
         
         $r = $this->ActivityLog->find('all', 
             array(
