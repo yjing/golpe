@@ -71,74 +71,20 @@ abstract class UserAwareModel extends AppModel {
                 unset($results[$key][$this->alias]['AUTHvisibility_level']);
             }
             if(isset($value['AUTHUser'])) {
-                $results[$key]['User'] = $results[$key]['AUTHUser'];
+                if(!isset($value['User'])) {
+                    $results[$key]['User'] = $results[$key]['AUTHUser'];
+                }
                 unset($results[$key]['AUTHUser']);
             }
             if(isset($value['AUTHTeam'])) {
-                $results[$key]['Team'] = $results[$key]['AUTHTeam'];
+                if(!isset($value['Team'])) {
+                    $results[$key]['Team'] = $results[$key]['AUTHTeam'];
+                }
                 unset($results[$key]['AUTHTeam']);
             }    
         }
         return $results;
         
     }
-    
-//    public function afterFind($results, $primary = false) {
-//        
-//        App::uses('CakeSession', 'Model/Datasource');
-//        $user = CakeSession::read('Auth.User');
-//        
-//        if ($user == null) {
-//            return null;
-//        }
-//        
-//        if ($user['id'] == -1 && $user['username'] == 'msc.shell' && $user['role'] == 'SHELL') {
-//            return $results;
-//        }
-//        
-//        if ($primary) {
-//            foreach ($results as $key => $result) {
-//                if(isset($results[$key][$this->alias])) {
-//                    if(!$this->_canRead($results[$key][$this->alias], $user)) {
-//                        unset($results[$key]);
-//                    }
-//                }
-//            }
-//        } else {
-//            foreach ($results as $key => $result) {
-//                if(isset($results[$key][$this->alias])) {
-//                    foreach ($results[$key][$this->alias] as $k => $v) {
-//                        if(!$this->_canRead($v, $user)) {
-//                            unset($results[$key][$this->alias][$k]);
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        return $results;
-//    }
-//    
-//    private function _canRead($val, $user){
-//        
-//        if($val['visibility_level'] == 'PUBLIC') {
-//            return true;
-//        }
-//        
-//        if($val['user_id'] == $user['id']) {
-//            return true;
-//        }
-//        
-//        if($val['visibility_level'] == 'PRIVATE') {
-//            return false;
-//        }
-//        
-//        $team_members = $this->User->getTeamComponentsId($user['id']);
-//        if (in_array($val['user_id'], $team_members)) {
-//            return true;
-//        }
-//        
-//        return false;
-//    }
-    
     
 }
