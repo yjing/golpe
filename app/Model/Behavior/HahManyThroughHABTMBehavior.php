@@ -25,6 +25,10 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
             debug($model_name);
             debug($m->useTable);
             debug($m->primary_key);
+            debug("---");
+            debug($model->alias);
+            debug($model->useTable);
+            debug($model->primary_key);
         }
         
 //        foreach ($results as $key => $value) {
