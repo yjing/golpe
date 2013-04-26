@@ -54,7 +54,7 @@ abstract class UserAwareModel extends AppModel {
             $this->alias . '.Cvisibility_level' => 'PUBLIC'
         );
         
-        debug($queryData);
+//        debug($queryData);
         
         return $queryData;
     }
