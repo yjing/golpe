@@ -20,13 +20,14 @@ abstract class UserAwareModel extends AppModel {
         $user = CakeSession::read('Auth.User');
         $team = $this->User->getTeam($user['id']);
         
+        debug($queryData);
+        
         if($queryData['fields'] == null) {
             $queryData['fields'][] = $this->alias . '.*';
         }
         // Add the namespaced fields and models to be used for authorization
         $queryData['fields'][] = $this->alias . '.visibility_level as AUTHvisibility_level';
         $queryData['fields'][] = 'AUTHUser.*';
-//        $queryData['fields'][] = 'AUTHSupervisor.*';
         $queryData['fields'][] = 'AUTHTeam.*';
         // Add the namespaced joins to retrieve the above-mentioned fields and models
         $queryData['joins'][] = array(
@@ -47,12 +48,6 @@ abstract class UserAwareModel extends AppModel {
             'type' => 'LEFT',
             'conditions' => array('AUTHTeam.id = AUTHtu.team_id')
         );
-//        $queryData['joins'][] = array(
-//            'table' => "users",
-//            'alias' => 'AUTHSupervisor',
-//            'type' => 'LEFT',
-//            'conditions' => array('AUTHSupervisor.id = '. 'AUTHUser.id')
-//        );
         // Add the conditions for the visibility
         if(isset($queryData['conditions'])) {
             $queryData['conditions'] = array("AND" => array($queryData['conditions']));
