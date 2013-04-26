@@ -24,7 +24,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
         foreach ($this->settings[$model->alias] as $m_name => $m) {
             $joinTable_a = array($model->useTable, $m->useTable);
             sort($joinTable_a);
-            debug(implode($joinTable_a));
+            debug(implode($joinTable_a, '_'));
         }
         
 //        foreach ($results as $key => $value) {
