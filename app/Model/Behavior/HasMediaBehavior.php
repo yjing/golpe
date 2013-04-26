@@ -56,7 +56,8 @@ class HasMediaBehavior extends ModelBehavior {
                     'conditions' => 'alm.activity_log_id = '.$id,
                     'recursive' => -1
                 ));
-                debug($media);
+                
+                debug(Set::extract('Media', $media));
             }
             
         }
