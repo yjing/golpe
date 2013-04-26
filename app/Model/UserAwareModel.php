@@ -16,8 +16,6 @@ abstract class UserAwareModel extends AppModel {
     public function beforeFind($queryData) {
         parent::beforeFind($queryData);
         
-        debug("BEFORE " . $this->alias);
-        
         App::uses('CakeSession', 'Model/Datasource');
         $user = CakeSession::read('Auth.User');
         $team = $this->User->getTeam($user['id']);
@@ -73,14 +71,7 @@ abstract class UserAwareModel extends AppModel {
         return $queryData;
     }
     
-    public function find($type = 'first', $query = array()) {
-        debug("FIND " . $this->alias);
-        return parent::find($type, $query);
-    }
-    
-    public function afterFind($results, $primary = false) {
-        debug("AFTER " . $this->alias);
-    }
+//    public function afterFind($results, $primary = false) {
 //        
 //        App::uses('CakeSession', 'Model/Datasource');
 //        $user = CakeSession::read('Auth.User');

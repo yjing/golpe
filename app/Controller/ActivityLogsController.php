@@ -101,7 +101,7 @@ class ActivityLogsController extends RESTController {
             'recursive' => 2
         ));
         
-        debug($r);
+//        debug($r);
         die();
         $user = $this->Auth->user();
         
