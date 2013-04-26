@@ -16,6 +16,8 @@ abstract class UserAwareModel extends AppModel {
     public function beforeFind($queryData) {
         parent::beforeFind($queryData);
         
+        debug($this->alias);
+        
         App::uses('CakeSession', 'Model/Datasource');
         $user = CakeSession::read('Auth.User');
         $team = $this->User->getTeam($user['id']);
