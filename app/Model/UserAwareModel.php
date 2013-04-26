@@ -50,7 +50,7 @@ abstract class UserAwareModel extends AppModel {
         }
         $queryData['conditions']["AND"]["OR"] = array(
             'AUTHUser.id' => 1,
-            'ActivityLog.AUTHvisibility_level' => 'PUBLIC'
+            'AUTHvisibility_level' => 'PUBLIC'
         );
         
         debug($queryData);
