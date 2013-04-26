@@ -76,6 +76,8 @@ abstract class UserAwareModel extends AppModel {
         
         if($this->alias == 'ActivityLog') {
             debug($results);
+        } else {
+            debug("CIJA:LSJKH");
         }
         
         foreach ($results as $key => $value) {
