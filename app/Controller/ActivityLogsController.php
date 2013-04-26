@@ -58,7 +58,7 @@ class ActivityLogsController extends RESTController {
         
         $r = $this->ActivityLog->find('all', 
             array(
-                'fields' => array('ActivityLog.id, User.id, Team.id'),
+//                'fields' => array('ActivityLog.id, User.id, Team.id'),
 //                'table' => $db->fullTableName($this->ActivityLog),
 //                'alias' => 'ActivityLog',
 //                'group' => array(),
@@ -71,19 +71,20 @@ class ActivityLogsController extends RESTController {
                         'alias' => 'User',
                         'type' => 'LEFT',
                         'conditions' => array('ActivityLog.user_id = User.id')
-                    ),
-                    array(
-                        'table' => "teams_users",
-                        'alias' => 'tu',
-                        'type' => 'LEFT',
-                        'conditions' => array('User.id = tu.user_id')
-                    ),
-                    array(
-                        'table' => "teams",
-                        'alias' => 'Team',
-                        'type' => 'LEFT',
-                        'conditions' => array('Team.id = tu.team_id')
                     )
+//                    ,
+//                    array(
+//                        'table' => "teams_users",
+//                        'alias' => 'tu',
+//                        'type' => 'LEFT',
+//                        'conditions' => array('User.id = tu.user_id')
+//                    ),
+//                    array(
+//                        'table' => "teams",
+//                        'alias' => 'Team',
+//                        'type' => 'LEFT',
+//                        'conditions' => array('Team.id = tu.team_id')
+//                    )
                 )
             )    
         );
