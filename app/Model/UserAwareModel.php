@@ -76,11 +76,14 @@ abstract class UserAwareModel extends AppModel {
         
         if($this->alias == 'ActivityLog') {
             debug($results);
-        } else {
-            debug("CIJA:LSJKH");
-        }
+        } 
         
         foreach ($results as $key => $value) {
+            
+            if($this->alias == 'ActivityLog') {
+                debug($value[$this->alias]['AUTHvisibility_level']);
+            } 
+            
             if(isset($value[$this->alias]['AUTHvisibility_level'])) {
                 unset($results[$key][$this->alias]['AUTHvisibility_level']);
             }
