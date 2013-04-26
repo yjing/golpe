@@ -51,7 +51,9 @@ class HasMediaBehavior extends ModelBehavior {
                             'conditions' => 'alm.media_id = Media.id'
                         )
                     ),
-                    'conditions' => 'alm.activity_log_id = '.$id
+                    'fields' => array('Media.*', 'alm.activity_log_id'),
+                    'conditions' => 'alm.activity_log_id = '.$id,
+                    'recursive' => -1
                 ));
                 debug($media);
             }
