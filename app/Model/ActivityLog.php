@@ -48,6 +48,14 @@ class ActivityLog extends AppModel {
         parent::beforeFind($queryData);
         debug($queryData);
         
+        $queryData['fields'][] = array('AUTHUser.*');
+        $queryData['joins'][] = array(
+            'table' => "users",
+            'alias' => 'AUTHUser',
+            'type' => 'LEFT',
+            'conditions' => array('AUTHUser.id = ActivityLog.user_id')
+        );
+        
         return $queryData;
     }
     
