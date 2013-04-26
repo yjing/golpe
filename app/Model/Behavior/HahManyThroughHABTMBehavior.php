@@ -30,7 +30,10 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
             debug($model->useTable);
             debug($model->primaryKey);
             debug("---");
-            debug(Inflector::tableize("ActivityLogMedia"));
+            
+            $joinTable_a = array($model->alias, $model_name);
+            sort($joinTable_a);
+            debug(implode($joinTable_a));
         }
         
 //        foreach ($results as $key => $value) {
