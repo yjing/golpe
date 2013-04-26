@@ -16,7 +16,7 @@ abstract class UserAwareModel extends AppModel {
     public function beforeFind($queryData) {
         parent::beforeFind($queryData);
         
-        debug($queryData);
+//        debug($queryData);
         
         if($queryData['fields'] == null) {
             $queryData['fields'][] = $this->alias . '.*';

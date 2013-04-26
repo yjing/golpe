@@ -55,11 +55,11 @@ class ActivityLogsController extends RESTController {
 //        
 //        $r = $this->ActivityLog->query($r);
 //        debug($r);
-        $user = $this->Auth->user();
-        $team = $this->User->getTeam($user['id']);
-        debug($user);
-        debug($team);
-        
+//        $user = $this->Auth->user();
+//        $team = $this->User->getTeam($user['id']);
+//        debug($user);
+//        debug($team);
+//        
 //        $r = $this->ActivityLog->find('all', 
 //            array(
 //                'fields' => array('ActivityLog.*', 'AUTHUser.*', 'AUTHTeam.*'),
