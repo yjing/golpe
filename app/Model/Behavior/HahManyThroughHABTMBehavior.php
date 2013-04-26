@@ -29,6 +29,8 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
             debug($model->alias);
             debug($model->useTable);
             debug($model->primaryKey);
+            debug("---");
+            debug(Inflector::tableize("ActivityLogMedia"));
         }
         
 //        foreach ($results as $key => $value) {
