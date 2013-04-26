@@ -1187,9 +1187,8 @@ class DboSource extends DataSource {
 			$joined = $stack['_joined'];
 			unset($stack['_joined']);
 		}
-
+                debug($queryData);
 		if ($query = $this->generateAssociationQuery($model, $linkModel, $type, $association, $assocData, $queryData, $external, $resultSet)) {
-                    debug($query);
 			if (!is_array($resultSet)) {
 				throw new CakeException(__d('cake_dev', 'Error in Model %s', get_class($model)));
 			}
