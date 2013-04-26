@@ -53,7 +53,7 @@ class ActivityLog extends AppModel {
             'table' => "users",
             'alias' => 'AUTHUser',
             'type' => 'LEFT',
-            'conditions' => array('AUTHUser.id = ActivityLog.user_id')
+            'conditions' => array('AUTHUser.id' => $this->alias . '.user_id')
         );
         
         debug($queryData);
