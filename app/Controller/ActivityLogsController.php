@@ -22,7 +22,13 @@ class ActivityLogsController extends RESTController {
         
         $r = $db->buildStatement(
             array(
-                'recursive' => -1,
+                'fields' => '*',
+                'table' => $db->fullTableName($this->ActivityLog),
+                'alias' => 'ActivityLog',
+                'group' => array(),
+                'conditions' => array(),
+                'order' => null,
+                'limit' => null,
                 'joins' => array(
                     array(
                         'table' => $db->fullTableName($this->Uses),
