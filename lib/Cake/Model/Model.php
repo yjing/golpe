@@ -2689,6 +2689,7 @@ class Model extends Object implements CakeEventListener {
 		$this->id = $this->getID();
 
 		$query = $this->buildQuery($type, $query);
+                debug($query);
 		if (is_null($query)) {
 			return null;
 		}
