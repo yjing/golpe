@@ -46,7 +46,7 @@ class HasMediaBehavior extends ModelBehavior {
                 $media = $this->Media->find('all', array(
                     'joins' => array(
                         array(
-                            'table' => 'activity_logs_media',
+                            'table' => $joinModel->table,
                             'alias' => 'alm',
                             'conditions' => 'alm.media_id = Media.id'
                         )
