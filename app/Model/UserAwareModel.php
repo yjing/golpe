@@ -16,7 +16,9 @@ abstract class UserAwareModel extends AppModel {
     public function beforeFind($queryData) {
         parent::beforeFind($queryData);
         
-//        debug($queryData);
+        App::uses('CakeSession', 'Model/Datasource');
+        $user = CakeSession::read('Auth.User');
+        $team = $this->User->getTeam($user['id']);
         
         if($queryData['fields'] == null) {
             $queryData['fields'][] = $this->alias . '.*';
@@ -48,13 +50,20 @@ abstract class UserAwareModel extends AppModel {
         if(isset($queryData['conditions'])) {
             $queryData['conditions'] = array("AND" => array($queryData['conditions']));
         }
+        $queryData['conditions']["AND"]["AND"] = array(
+            'AUTHUser.id !=' => $user['id'],
+            $this->alias . '.visibility_level' => 'PRIVATE'
+        );
         $queryData['conditions']["AND"]["OR"] = array(
-            'AUTHUser.id' => 1,
-            'AUTHTeam.id' => 1,
-            $this->alias . '.Cvisibility_level' => 'PUBLIC'
+            'AUTHUser.id' => $user['id'],
+            "AND" => array(
+                'AUTHTeam.id' => $team['id'], 
+                $this->alias . '.visibility_level NOT IN' => array('PRIVATE', 'SUPERVISOR')
+            ),
+            $this->alias . '.visibility_level' => 'PUBLIC'
         );
         
-//        debug($queryData);
+        debug($queryData);
         
         return $queryData;
     }
