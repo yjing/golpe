@@ -14,7 +14,7 @@ abstract class UserAwareModel extends AppModel {
     }
     
     public function beforeFind($queryData) {
-        parent::beforeFind($queryData);
+//        parent::beforeFind($queryData);
         
 //        App::uses('CakeSession', 'Model/Datasource');
 //        $user = CakeSession::read('Auth.User');
