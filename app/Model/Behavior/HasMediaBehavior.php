@@ -13,7 +13,7 @@ class HasMediaBehavior extends ModelBehavior {
     public static $setting_uploadsBasePath_Default = "/uploads/";
     
     private $Media = null;
-
+    
     public function setup(Model $Model, $settings = array()) {
         
         if (!isset($this->settings[$Model->alias])) {
@@ -33,6 +33,13 @@ class HasMediaBehavior extends ModelBehavior {
         $join_table_CLASS = new ReflectionClass($this->settings[$Model->alias][HasMediaBehavior::$setting_joinTable_Name]);
         $this->settings[$Model->alias][HasMediaBehavior::$setting_joinTable_Model] = $join_table_CLASS->newInstanceArgs();
         
+    }
+
+    public function afterFind(Model $model, $results, $primary) {
+        parent::afterFind($model, $results, $primary);
+        
+        debug($results);
+        die();
     }
     
     public function beforeSave(Model $model) {

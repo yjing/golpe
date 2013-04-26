@@ -66,9 +66,9 @@ abstract class UserAwareModel extends AppModel {
             )
         );
         
-        debug($queryData);
+//        debug($queryData);
         
-        return $queryData;
+        return true;
     }
     
 //    public function afterFind($results, $primary = false) {
