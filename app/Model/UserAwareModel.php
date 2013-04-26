@@ -74,6 +74,8 @@ abstract class UserAwareModel extends AppModel {
     public function afterFind($results, $primary = false) {
         parent::afterFind($results, $primary);
         
+        debug($results);die();
+        
         foreach ($results as $key => $value) {
             if(isset($value[$this->alias]['AUTHvisibility_level'])) {
                 unset($results[$key][$this->alias]['AUTHvisibility_level']);
