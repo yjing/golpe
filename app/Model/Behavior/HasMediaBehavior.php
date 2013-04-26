@@ -56,14 +56,11 @@ class HasMediaBehavior extends ModelBehavior {
                     'recursive' => -1
                 ));
                 
-                $value['Media'] = $media;
-                debug($value);
+                $results[$key]['Media'] = $media;
             }
             
         }
         
-//        debug($results);
-        die();
     }
     
     public function beforeSave(Model $model) {
