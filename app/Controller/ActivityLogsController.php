@@ -22,7 +22,6 @@ class ActivityLogsController extends RESTController {
         
         $r = $this->ActivityLog->find('all',
             array(
-                'conditions' => $conditions,
                 'recursive' => -1,
                 'joins' => array(
                     array(
