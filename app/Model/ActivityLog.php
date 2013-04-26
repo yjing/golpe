@@ -12,7 +12,7 @@ class ActivityLog extends UserAwareModel {
 
     public $name = 'ActivityLog';
     public $useTable = "activity_logs";
-    public $actsAs = array('Containable', 'HasMedia');
+    public $actsAs = array('Containable', 'HasMedia', 'HahManyThroughHABTM' => array('Media'));
 
     public $belongsTo = "User";
     public $hasAndBelongsToMany = array(
