@@ -1189,7 +1189,7 @@ class DboSource extends DataSource {
 		}
                 debug($linkModel->alias);
                 debug($assocData);
-                $assocData = $linkModel->beforeFind($assocData);
+                $linkModel->beforeFind($assocData);
                 debug($assocData);
 		if ($query = $this->generateAssociationQuery($model, $linkModel, $type, $association, $assocData, $queryData, $external, $resultSet)) {
 			if (!is_array($resultSet)) {
