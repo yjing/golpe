@@ -51,43 +51,43 @@ class ActivityLog extends AppModel {
             $queryData['fields'][] = $this->alias . '.*';
         }
         $queryData['fields'][] = 'AUTHUser.*';
-        $queryData['fields'][] = 'AUTHTeam.*';
+//        $queryData['fields'][] = 'AUTHTeam.*';
         $queryData['joins'][] = array(
             'table' => "users",
             'alias' => 'AUTHUser',
             'type' => 'LEFT',
             'conditions' => array('AUTHUser.id' => $this->alias . '.user_id')
         );
-        $queryData['joins'][] = array(
-            'table' => "teams_users",
-            'alias' => 'AUTHtu',
-            'type' => 'LEFT',
-            'conditions' => array('AUTHUser.id' => 'AUTHtu.user_id')
-        );
-        $queryData['joins'][] = array(
-            'table' => "teams",
-            'alias' => 'AUTHTeam',
-            'type' => 'LEFT',
-            'conditions' => array('AUTHTeam.id' => 'AUTHtu.team_id')
-        );
+//        $queryData['joins'][] = array(
+//            'table' => "teams_users",
+//            'alias' => 'AUTHtu',
+//            'type' => 'LEFT',
+//            'conditions' => array('AUTHUser.id' => 'AUTHtu.user_id')
+//        );
+//        $queryData['joins'][] = array(
+//            'table' => "teams",
+//            'alias' => 'AUTHTeam',
+//            'type' => 'LEFT',
+//            'conditions' => array('AUTHTeam.id' => 'AUTHtu.team_id')
+//        );
         
         return $queryData;
     }
     
-    public function afterFind($results, $primary = false) {
-        parent::afterFind($results, $primary);
-        foreach ($results as $key => $value) {
-            if(isset($value['AUTHUser'])) {
-                debug($results[$key]['AUTHUser']);
-//                unset($results[$key]['AUTHUser']);
-            }
-            if(isset($value['AUTHTeam'])) {
-//                unset($results[$key]['AUTHteam']);
-            }    
-        }
-        return $results;
-        
-    }
+//    public function afterFind($results, $primary = false) {
+//        parent::afterFind($results, $primary);
+//        foreach ($results as $key => $value) {
+//            if(isset($value['AUTHUser'])) {
+//                debug($results[$key]['AUTHUser']);
+////                unset($results[$key]['AUTHUser']);
+//            }
+//            if(isset($value['AUTHTeam'])) {
+////                unset($results[$key]['AUTHteam']);
+//            }    
+//        }
+//        return $results;
+//        
+//    }
     
 }
 
