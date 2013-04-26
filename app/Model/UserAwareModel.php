@@ -45,6 +45,15 @@ abstract class UserAwareModel extends AppModel {
             'conditions' => array('AUTHTeam.id = AUTHtu.team_id')
         );
         // Add the conditions for the visibility
+        if(isset($queryData['conditions'])) {
+            $queryData['conditions'] = array("AND" => array($queryData['conditions']));
+        }
+        $queryData['conditions']["AND"]["OR"] = array(
+            'AUTHUser.id' => 1,
+            $this->alias . '.AUTHvisibility_level' => 'PUBLIC'
+        );
+        
+        debug($queryData);
         
         return $queryData;
     }
