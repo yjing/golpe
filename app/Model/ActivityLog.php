@@ -79,10 +79,10 @@ class ActivityLog extends AppModel {
         foreach ($results as $key => $value) {
             if(isset($value['AUTHUser'])) {
                 debug($results[$key]['AUTHUser']);
-                unset($results[$key]['AUTHUser']);
+//                unset($results[$key]['AUTHUser']);
             }
             if(isset($value['AUTHTeam'])) {
-                unset($results[$key]['AUTHteam']);
+//                unset($results[$key]['AUTHteam']);
             }    
         }
         return $results;
