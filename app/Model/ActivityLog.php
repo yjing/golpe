@@ -48,9 +48,9 @@ class ActivityLog extends AppModel {
         parent::beforeFind($queryData);
         debug($queryData);
         if($queryData['fields'] == null) {
-            $queryData['fields'][] = '.*';
+            $queryData['fields'][] = $this->alias . '.*';
         }
-        $queryData['fields'][] = $this->alias . 'AUTHUser.*';
+        $queryData['fields'][] = 'AUTHUser.*';
         $queryData['joins'][] = array(
             'table' => "users",
             'alias' => 'AUTHUser',
