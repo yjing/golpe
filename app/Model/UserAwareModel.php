@@ -46,12 +46,12 @@ abstract class UserAwareModel extends AppModel {
             'type' => 'LEFT',
             'conditions' => array('AUTHTeam.id = AUTHtu.team_id')
         );
-        $queryData['joins'][] = array(
-            'table' => "users",
-            'alias' => 'AUTHSupervisor',
-            'type' => 'LEFT',
-            'conditions' => array('AUTHSupervisor.id = '. 'AUTHUser.id')
-        );
+//        $queryData['joins'][] = array(
+//            'table' => "users",
+//            'alias' => 'AUTHSupervisor',
+//            'type' => 'LEFT',
+//            'conditions' => array('AUTHSupervisor.id = '. 'AUTHUser.id')
+//        );
         // Add the conditions for the visibility
         if(isset($queryData['conditions'])) {
             $queryData['conditions'] = array("AND" => array($queryData['conditions']));
