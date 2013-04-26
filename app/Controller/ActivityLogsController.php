@@ -98,7 +98,9 @@ class ActivityLogsController extends RESTController {
         $active_logs = $this->ActivityLog->find('all', array(
 //            'fields' => array('ActivityLog.id','ActivityLog.title'),
             'conditions' => 'ActivityLog.modified >= '. (time() - (7 * 24 * 60 * 60)),
-            'recursive' => -1
+            'recursive' => -1,
+            'showUser' => true,
+            'showTeam' => true
         ));
         
         debug($active_logs);
