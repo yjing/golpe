@@ -17,7 +17,7 @@ class AppJSONExceptionHandler {
             
             $t = $error->getTrace();
             foreach ($t as $value) {
-                debug($t);
+                debug($value);
             }
         }
         
