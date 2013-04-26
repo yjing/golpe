@@ -8,13 +8,14 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
         }
         
         debug($settings);
-        foreach ($settings as $model_name) {
+        foreach ($settings as $key => $model_name) {
             App::import('Model', $model_name);
             $model_class = new ReflectionClass($model_name);
             $model = $model_class->newInstanceArgs();
             $settings[$model_name] = array(
                 'model' => $model
             );
+            unset($settings[$key]);
         }
         debug($settings);
         $this->settings[$Model->alias] = $settings;
