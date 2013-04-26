@@ -66,9 +66,9 @@ class ActivityLog extends AppModel {
         );
         $queryData['joins'][] = array(
             'table' => "teams",
-            'alias' => 'AUTHteam',
+            'alias' => 'AUTHTeam',
             'type' => 'LEFT',
-            'conditions' => array('AUTHteam.id' => 'AUTHtu.team_id')
+            'conditions' => array('AUTHTeam.id' => 'AUTHtu.team_id')
         );
         
         debug($queryData);
