@@ -58,7 +58,8 @@ class HasMediaBehavior extends ModelBehavior {
                 
                 $results[$key]['Media'] = $media;
             }
-            debug($results);
+            
+            return $results;
         }
         
     }
