@@ -7,8 +7,8 @@ App::import('Component', 'Session');
 App::import('Behavior', 'HasMedia');
 
 // app/Model/User.php
-class ActivityLog extends AppModel {
-//class ActivityLog extends UserAwareModel {
+//class ActivityLog extends AppModel {
+class ActivityLog extends UserAwareModel {
 
     public $name = 'ActivityLog';
     public $useTable = "activity_logs";
@@ -44,58 +44,58 @@ class ActivityLog extends AppModel {
         }
     }
     
-    public function beforeFind($queryData) {
-        parent::beforeFind($queryData);
-        
-        if($queryData['fields'] == null) {
-            $queryData['fields'][] = $this->alias . '.*';
-        }
-        $queryData['fields'][] = $this->alias . '.visibility_level as AUTHvisibility_level';
-        $queryData['fields'][] = 'AUTHUser.*';
-        $queryData['fields'][] = 'AUTHTeam.*';
-        $queryData['joins'][] = array(
-            'table' => "users",
-            'alias' => 'AUTHUser',
-            'type' => 'LEFT',
-            'conditions' => array('AUTHUser.id = '. $this->alias .'.user_id')
-        );
-        $queryData['joins'][] = array(
-            'table' => "teams_users",
-            'alias' => 'AUTHtu',
-            'type' => 'LEFT',
-            'conditions' => array('AUTHUser.id = AUTHtu.user_id')
-        );
-        $queryData['joins'][] = array(
-            'table' => "teams",
-            'alias' => 'AUTHTeam',
-            'type' => 'LEFT',
-            'conditions' => array('AUTHTeam.id = AUTHtu.team_id')
-        );
-        
-        return $queryData;
-    }
-    
-    public function afterFind($results, $primary = false) {
-        parent::afterFind($results, $primary);
-        debug($results);
-        if(!$primary) {
-            die();
-        }
-        
-        foreach ($results as $key => $value) {
-            if(isset($value[$this->alias]['AUTHvisibility_level'])) {
-                unset($results[$key][$this->alias]['AUTHvisibility_level']);
-            }
-            if(isset($value['AUTHUser'])) {
-                unset($results[$key]['AUTHUser']);
-            }
-            if(isset($value['AUTHTeam'])) {
-                unset($results[$key]['AUTHTeam']);
-            }    
-        }
-        return $results;
-        
-    }
+//    public function beforeFind($queryData) {
+//        parent::beforeFind($queryData);
+//        
+//        if($queryData['fields'] == null) {
+//            $queryData['fields'][] = $this->alias . '.*';
+//        }
+//        $queryData['fields'][] = $this->alias . '.visibility_level as AUTHvisibility_level';
+//        $queryData['fields'][] = 'AUTHUser.*';
+//        $queryData['fields'][] = 'AUTHTeam.*';
+//        $queryData['joins'][] = array(
+//            'table' => "users",
+//            'alias' => 'AUTHUser',
+//            'type' => 'LEFT',
+//            'conditions' => array('AUTHUser.id = '. $this->alias .'.user_id')
+//        );
+//        $queryData['joins'][] = array(
+//            'table' => "teams_users",
+//            'alias' => 'AUTHtu',
+//            'type' => 'LEFT',
+//            'conditions' => array('AUTHUser.id = AUTHtu.user_id')
+//        );
+//        $queryData['joins'][] = array(
+//            'table' => "teams",
+//            'alias' => 'AUTHTeam',
+//            'type' => 'LEFT',
+//            'conditions' => array('AUTHTeam.id = AUTHtu.team_id')
+//        );
+//        
+//        return $queryData;
+//    }
+//    
+//    public function afterFind($results, $primary = false) {
+//        parent::afterFind($results, $primary);
+////        debug($results);
+////        if(!$primary) {
+////            die();
+////        }
+//        
+//        foreach ($results as $key => $value) {
+//            if(isset($value[$this->alias]['AUTHvisibility_level'])) {
+//                unset($results[$key][$this->alias]['AUTHvisibility_level']);
+//            }
+//            if(isset($value['AUTHUser'])) {
+//                unset($results[$key]['AUTHUser']);
+//            }
+//            if(isset($value['AUTHTeam'])) {
+//                unset($results[$key]['AUTHTeam']);
+//            }    
+//        }
+//        return $results;
+//        
+//    }
     
 }
 
