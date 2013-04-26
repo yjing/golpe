@@ -22,7 +22,7 @@ abstract class UserAwareModel extends AppModel {
             $queryData['fields'][] = $this->alias . '.*';
         }
         // Add the namespaced fields and models to be used for authorization
-        $queryData['fields'][] = $this->alias . '.visibility_level as AUTHvisibility_level';
+        $queryData['fields'][] = $this->alias . '.visibility_level as ActivityLog.AUTHvisibility_level';
         $queryData['fields'][] = 'AUTHUser.*';
         $queryData['fields'][] = 'AUTHTeam.*';
         // Add the namespaced joins to retrieve the above-mentioned fields and models
