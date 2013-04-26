@@ -66,7 +66,7 @@ abstract class UserAwareModel extends AppModel {
             )
         );
         
-        debug($queryData);
+//        debug($queryData);
         
         return $queryData;
     }
