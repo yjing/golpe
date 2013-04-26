@@ -40,8 +40,20 @@ class HasMediaBehavior extends ModelBehavior {
         
         if($primary) {
             
+            $joinModel = $this->settings[$model->alias][HasMediaBehavior::$setting_joinTable_Model];
             foreach ($results as $key => $value) {
-                debug($value);
+                $id = $value[$model->alias]['id'];
+                $media = $this->Media->find('all', array(
+                    'joins' => array(
+                        array(
+                            'table' => 'activity_logs_media',
+                            'alias' => 'alm',
+                            'conditions' => 'alm.media_id = Media.id'
+                        )
+                    ),
+                    'conditions' => 'alm.activity_log_id = '.$id
+                ));
+                debug($media);
             }
             
         }
