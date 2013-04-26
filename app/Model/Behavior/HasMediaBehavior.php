@@ -47,11 +47,11 @@ class HasMediaBehavior extends ModelBehavior {
                     'joins' => array(
                         array(
                             'table' => $joinModel->table,
-                            'alias' => 'alm',
-                            'conditions' => 'alm.media_id = Media.id'
+                            'alias' => $joinModel->alias,
+                            'conditions' => $joinModel->alias . '.media_id = ' . $this->Media->alias . '.id'
                         )
                     ),
-                    'fields' => array('Media.*'),
+                    'fields' => array($this->Media->alias . '.*'),
                     'conditions' => 'alm.activity_log_id = '.$id,
                     'recursive' => -1
                 ));
