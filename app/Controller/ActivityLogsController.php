@@ -71,7 +71,10 @@ class ActivityLogsController extends RESTController {
                         'table' => "users",
                         'alias' => 'AUTHUser',
                         'type' => 'LEFT',
-                        'conditions' =>'`ActivityLog`.`user_id` = `AUTHUser`.`id`'
+                        'conditions' =>array(
+                            '`ActivityLog`.`user_id` = `AUTHUser`.`id`',
+                            'AUTHUser.id = 2'
+                        )
                     )
 //                    ,
 //                    array(
