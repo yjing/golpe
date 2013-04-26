@@ -42,7 +42,6 @@ class HasMediaBehavior extends ModelBehavior {
             
             $joinModel = $this->settings[$model->alias][HasMediaBehavior::$setting_joinTable_Model];
             foreach ($results as $key => $value) {
-                debug($value);
                 $id = $value[$model->alias]['id'];
                 $media = $this->Media->find('all', array(
                     'joins' => array(
@@ -56,8 +55,8 @@ class HasMediaBehavior extends ModelBehavior {
                     'conditions' => 'alm.activity_log_id = '.$id,
                     'recursive' => -1
                 ));
-                
-                debug(Set::extract('/Media/.', $media));
+                $value['Media'] = Set::extract('/Media/.', $media);
+                debug($value);
             }
             
         }
