@@ -61,7 +61,7 @@ abstract class UserAwareModel extends AppModel {
             $this->alias . '.visibility_level' => 'PUBLIC',
             'AUTHUser.id' => $user['id'],
             "AND" => array(
-                'AUTHTeam.id' => $team['id'], 
+                'AUTHTeam.id' => $team['Team']['id'], 
                 $this->alias . '.visibility_level NOT IN' => array('PRIVATE', 'SUPERVISOR')
             )
         );
