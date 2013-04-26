@@ -46,7 +46,7 @@ class ActivityLog extends AppModel {
     
     public function beforeFind($queryData) {
         parent::beforeFind($queryData);
-        debug($queryData);
+        
         if($queryData['fields'] == null) {
             $queryData['fields'][] = $this->alias . '.*';
         }
@@ -71,9 +71,18 @@ class ActivityLog extends AppModel {
             'conditions' => array('AUTHTeam.id' => 'AUTHtu.team_id')
         );
         
-        debug($queryData);
-        
         return $queryData;
+    }
+    
+    public function afterFind($results, $primary = false) {
+        parent::afterFind($results, $primary);
+        
+        if(isset($results['AUTHUser'])) {
+            unserialize($results['AUTHUser']);
+        }
+        if(isset($results['AUTHTeam'])) {
+            unserialize($results['AUTHteam']);
+        }
     }
     
 }
