@@ -58,11 +58,11 @@ class ActivityLogsController extends RESTController {
         
         $r = $this->ActivityLog->find('all', 
             array(
-                'fields' => array('ActivityLog.*', 'AUTHUser.*'),
+                'fields' => array('ActivityLog.*', 'AUTHUser.*', 'AUTHTeam.*'),
 //                'table' => $db->fullTableName($this->ActivityLog),
 //                'alias' => 'ActivityLog',
 //                'group' => array(),
-                'conditions' => array('AUTHUser.role = \'STUDENT\''),
+                'conditions' => array('AUTHTeam.id = 1'),
 //                'order' => null,
 //                'limit' => null,
 //                'recursive' => -1,
@@ -74,20 +74,19 @@ class ActivityLogsController extends RESTController {
                         'conditions' =>array(
                             '`ActivityLog`.`user_id` = `AUTHUser`.`id`'
                         )
+                    ),
+                    array(
+                        'table' => "teams_users",
+                        'alias' => 'tu',
+                        'type' => 'LEFT',
+                        'conditions' => array('AUTHUser.id = tu.user_id')
+                    ),
+                    array(
+                        'table' => "teams",
+                        'alias' => 'AUTHTeam',
+                        'type' => 'LEFT',
+                        'conditions' => array('AUTHTeam.id = tu.team_id')
                     )
-//                    ,
-//                    array(
-//                        'table' => "teams_users",
-//                        'alias' => 'tu',
-//                        'type' => 'LEFT',
-//                        'conditions' => array('User.id = tu.user_id')
-//                    ),
-//                    array(
-//                        'table' => "teams",
-//                        'alias' => 'Team',
-//                        'type' => 'LEFT',
-//                        'conditions' => array('Team.id = tu.team_id')
-//                    )
                 )
             )    
         );
