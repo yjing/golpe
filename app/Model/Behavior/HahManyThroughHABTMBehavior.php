@@ -4,7 +4,8 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
     
     public function setup(Model $Model, $settings = array()) {
         
-        debug($settings[$Model->alias]);
+        debug($settings);
+        debug($this->settings[$Model->alias]);
         
     }
 
