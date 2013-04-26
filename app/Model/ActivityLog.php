@@ -51,7 +51,7 @@ class ActivityLog extends AppModel {
             $queryData['fields'][] = $this->alias . '.*';
         }
         $queryData['fields'][] = 'AUTHUser.*';
-//        $queryData['fields'][] = 'AUTHTeam.*';
+        $queryData['fields'][] = 'AUTHTeam.*';
         $queryData['joins'][] = array(
             'table' => "users",
             'alias' => 'AUTHUser',
@@ -74,20 +74,19 @@ class ActivityLog extends AppModel {
         return $queryData;
     }
     
-//    public function afterFind($results, $primary = false) {
-//        parent::afterFind($results, $primary);
-//        foreach ($results as $key => $value) {
-//            if(isset($value['AUTHUser'])) {
-//                debug($results[$key]['AUTHUser']);
-////                unset($results[$key]['AUTHUser']);
-//            }
-//            if(isset($value['AUTHTeam'])) {
-////                unset($results[$key]['AUTHteam']);
-//            }    
-//        }
-//        return $results;
-//        
-//    }
+    public function afterFind($results, $primary = false) {
+        parent::afterFind($results, $primary);
+        foreach ($results as $key => $value) {
+            if(isset($value['AUTHUser'])) {
+                unset($results[$key]['AUTHUser']);
+            }
+            if(isset($value['AUTHTeam'])) {
+                unset($results[$key]['AUTHteam']);
+            }    
+        }
+        return $results;
+        
+    }
     
 }
 
