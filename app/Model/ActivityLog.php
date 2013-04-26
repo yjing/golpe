@@ -50,6 +50,7 @@ class ActivityLog extends AppModel {
         if($queryData['fields'] == null) {
             $queryData['fields'][] = $this->alias . '.*';
         }
+        $queryData['fields'][] = $this->alias . '.visibility_level as AUTHvisibility_level';
         $queryData['fields'][] = 'AUTHUser.*';
         $queryData['fields'][] = 'AUTHTeam.*';
         $queryData['joins'][] = array(
@@ -80,6 +81,9 @@ class ActivityLog extends AppModel {
         debug($results);
         
         foreach ($results as $key => $value) {
+            if(isset($value[$this->alias]['AUTHvisibility_level'])) {
+                unset($results[$key][$this->alias]['AUTHvisibility_level']);
+            }
             if(isset($value['AUTHUser'])) {
                 unset($results[$key]['AUTHUser']);
             }
