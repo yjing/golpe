@@ -81,7 +81,7 @@ class ActivityLog extends AppModel {
                 unset($results[$key]['AUTHUser']);
             }
             if(isset($value['AUTHTeam'])) {
-                unset($results[$key]['AUTHteam']);
+                unset($results[$key]['AUTHTeam']);
             }    
         }
         return $results;
