@@ -15,14 +15,17 @@ abstract class UserAwareModel extends AppModel {
     
     public function beforeFind($queryData) {
         parent::beforeFind($queryData);
-        debug("BEFORE FIND...");
+        
+        debug($queryData);
         
         if($queryData['fields'] == null) {
             $queryData['fields'][] = $this->alias . '.*';
         }
+        // Add the namespaced fields and models to be used for authorization
         $queryData['fields'][] = $this->alias . '.visibility_level as AUTHvisibility_level';
         $queryData['fields'][] = 'AUTHUser.*';
         $queryData['fields'][] = 'AUTHTeam.*';
+        // Add the namespaced joins to retrieve the above-mentioned fields and models
         $queryData['joins'][] = array(
             'table' => "users",
             'alias' => 'AUTHUser',
@@ -41,6 +44,7 @@ abstract class UserAwareModel extends AppModel {
             'type' => 'LEFT',
             'conditions' => array('AUTHTeam.id = AUTHtu.team_id')
         );
+        // Add the conditions for the visibility
         
         return $queryData;
     }
