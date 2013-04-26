@@ -20,7 +20,7 @@ class ActivityLogsController extends RESTController {
         debug($u);
         debug($d);
         
-        $r = $dbo->buildStatement(
+        $r = $db->buildStatement(
             array(
                 'recursive' => -1,
                 'joins' => array(
