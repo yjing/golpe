@@ -73,7 +73,9 @@ abstract class UserAwareModel extends AppModel {
         return $queryData;
     }
     
-//    public function afterFind($results, $primary = false) {
+    public function afterFind($results, $primary = false) {
+        debug("AFTER " . $this->alias);
+    }
 //        
 //        App::uses('CakeSession', 'Model/Datasource');
 //        $user = CakeSession::read('Auth.User');
