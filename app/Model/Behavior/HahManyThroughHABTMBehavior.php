@@ -3,9 +3,20 @@
 class HahManyThroughHABTMBehavior extends ModelBehavior {
     
     public function setup(Model $Model, $settings = array()) {
+        if(!is_array($settings)) {
+            $settings = array($settings);
+        }
         
+        foreach ($settings as $model_name) {
+            App::import('Model', $model_name);
+            $model_class = new ReflectionClass($model_name);
+            $model = $model_class->newInstanceArgs();
+            $settings[$model_name] = array(
+                'model' => $model
+            );
+        }
         debug($settings);
-        debug($this->settings[$Model->alias]);
+        $this->settings[$Model->alias] = $settings;
         
     }
 
