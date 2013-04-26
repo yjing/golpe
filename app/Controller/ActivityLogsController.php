@@ -20,6 +20,21 @@ class ActivityLogsController extends RESTController {
         debug($u);
         debug($d);
         
+        $r = $this->ActivityLog->find('all',
+            array(
+                'conditions' => $conditions,
+                'recursive' => -1,
+                'joins' => array(
+                    array(
+                        'table' => $db->fullTableName($this->Uses),
+                        'alias' => 'User',
+                        'type' => 'LEFT',
+                        'conditions' => 'ActivityLog.user_id = User.id'
+                    )
+                )
+            )
+        );
+        debug($r);
         die();
         $user = $this->Auth->user();
         
