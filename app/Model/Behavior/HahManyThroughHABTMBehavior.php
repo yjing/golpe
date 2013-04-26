@@ -7,17 +7,13 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
             $settings = array($settings);
         }
         
-        debug($settings);
         foreach ($settings as $key => $model_name) {
             App::import('Model', $model_name);
             $model_class = new ReflectionClass($model_name);
             $model = $model_class->newInstanceArgs();
-            $settings[$model_name] = array(
-                'model' => $model
-            );
+            $settings[$model_name] = $model;
             unset($settings[$key]);
         }
-        debug($settings);
         $this->settings[$Model->alias] = $settings;
         
     }
@@ -25,30 +21,31 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
     public function afterFind(Model $model, $results, $primary) {
         parent::afterFind($model, $results, $primary);
         
-        if($primary) {
-            
-            $joinModel = $this->settings[$model->alias][HasMediaBehavior::$setting_joinTable_Model];
-            foreach ($results as $key => $value) {
-                $id = $value[$model->alias]['id'];
-                $media = $this->Media->find('all', array(
-                    'joins' => array(
-                        array(
-                            'table' => $joinModel->table,
-                            'alias' => $joinModel->alias,
-                            'conditions' => $joinModel->alias . '.media_id = ' . $this->Media->alias . '.id'
-                        )
-                    ),
-                    'fields' => array($this->Media->alias . '.*'),
-                    'conditions' => $joinModel->alias . '.activity_log_id = '.$id,
-                    'recursive' => -1
-                ));
-                
-                $results[$key]['Media'] = $media;
-            }
-            
-            return $results;
+        foreach ($this->settings[$this->alias] as $model_name => $m) {
+            debug($model_name);
+            debug($m->useTable);
+            debug($m->primary_key);
         }
         
+//        foreach ($results as $key => $value) {
+//            $id = $value[$model->alias]['id'];
+//            $media = $this->Media->find('all', array(
+//                'joins' => array(
+//                    array(
+//                        'table' => $joinModel->table,
+//                        'alias' => $joinModel->alias,
+//                        'conditions' => $joinModel->alias . '.media_id = ' . $this->Media->alias . '.id'
+//                    )
+//                ),
+//                'fields' => array($this->Media->alias . '.*'),
+//                'conditions' => $joinModel->alias . '.activity_log_id = '.$id,
+//                'recursive' => -1
+//            ));
+//
+//            $results[$key]['Media'] = $media;
+//        }
+
+        return $results;
     }
-    
+     
 }
