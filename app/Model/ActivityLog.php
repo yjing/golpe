@@ -48,7 +48,6 @@ class ActivityLog extends AppModel {
         parent::beforeFind($queryData);
         debug($queryData);
         
-        die();
         return $queryData;
     }
     
