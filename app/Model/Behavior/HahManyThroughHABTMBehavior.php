@@ -32,7 +32,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
         foreach ($this->settings[$model->alias] as $m_name => $m) {
             debug($m['model']->alias);
             debug($m['join_table_name']);
-            debug(Inflector::underscore($model->alias));
+            debug(Inflector::underscore($model->alias) . '_' . $model->primaryKey);
         }
         
 //        foreach ($results as $key => $value) {
