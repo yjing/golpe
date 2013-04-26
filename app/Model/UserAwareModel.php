@@ -71,6 +71,26 @@ abstract class UserAwareModel extends AppModel {
         return $queryData;
     }
     
+    public function afterFind($results, $primary = false) {
+        parent::afterFind($results, $primary);
+        
+        foreach ($results as $key => $value) {
+            if(isset($value[$this->alias]['AUTHvisibility_level'])) {
+                unset($results[$key][$this->alias]['AUTHvisibility_level']);
+            }
+            if(isset($value['AUTHUser'])) {
+                $results[$key]['User'] = $results[$key]['AUTHUser'];
+                unset($results[$key]['AUTHUser']);
+            }
+            if(isset($value['AUTHTeam'])) {
+                $results[$key]['Team'] = $results[$key]['AUTHTeam'];
+                unset($results[$key]['AUTHTeam']);
+            }    
+        }
+        return $results;
+        
+    }
+    
 //    public function afterFind($results, $primary = false) {
 //        
 //        App::uses('CakeSession', 'Model/Datasource');
