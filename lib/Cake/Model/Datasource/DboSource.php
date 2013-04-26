@@ -1075,12 +1075,12 @@ class DboSource extends DataSource {
 				}
 			}
 		}
-                debug($queryData);
+                
 		$query = trim($this->generateAssociationQuery($model, null, null, null, null, $queryData, false, $null));
-                debug($query);
-		$resultSet = $this->fetchAll($query, $model->cacheQueries);
-                debug($resultSet);
-		if ($resultSet === false) {
+                
+                $resultSet = $this->fetchAll($query, $model->cacheQueries);
+                
+                if ($resultSet === false) {
 			$model->onError();
 			return false;
 		}
@@ -1112,7 +1112,7 @@ class DboSource extends DataSource {
 
 					if (isset($db) && method_exists($db, 'queryAssociation')) {
 						$stack = array($assoc);
-						$stack['_joined'] = $joined;
+						$stack['_joined'] = $joined; //##@@
 						$db->queryAssociation($model, $linkModel, $type, $assoc, $assocData, $array, true, $resultSet, $model->recursive - 1, $stack);
 						unset($db);
 
@@ -1189,6 +1189,7 @@ class DboSource extends DataSource {
 		}
 
 		if ($query = $this->generateAssociationQuery($model, $linkModel, $type, $association, $assocData, $queryData, $external, $resultSet)) {
+                    debug($query);
 			if (!is_array($resultSet)) {
 				throw new CakeException(__d('cake_dev', 'Error in Model %s', get_class($model)));
 			}
