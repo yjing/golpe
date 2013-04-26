@@ -57,7 +57,7 @@ class HasMediaBehavior extends ModelBehavior {
                     'recursive' => -1
                 ));
                 
-                debug(Set::extract('Media', $media));
+                debug(Set::extract('/Media', $media));
             }
             
         }
