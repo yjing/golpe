@@ -78,7 +78,9 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                 
                 if(!$this->query['primary']) {
                     debug($target_list);
-                    $target = Set::extract('/' . $target_model->alias . "/.", $target_list);
+                    $target = Set::extract('/' . $target_model->alias . "/./.", $target_list);
+                    unset($target_list[$target_model->alias]);
+//                    debug($se);
                     debug($target);
                     debug($target_list);
                     die();
