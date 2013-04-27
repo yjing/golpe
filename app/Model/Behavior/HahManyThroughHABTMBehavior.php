@@ -33,10 +33,12 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
 
     public function afterFind(Model $model, $results, $primary) {
         parent::afterFind($model, $results, $primary);
+        
         foreach ($results as $i => $element) {
             foreach ($this->settings[$model->alias] as $target_name => $target_meta) {
                 $element_id = $element[$model->alias]['id'];
                 $target_model = $target_meta['target_model'];
+                $fields = array( $target_model->alias . '.*' );
                 $join = array(
                     'table' => $target_meta['join_table_name'],
                     'alias' => 'join',
@@ -44,8 +46,9 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                     . $target_model->alias . '.' . $target_model->primaryKey
                 );
                 $conditions = array(
-                    'join.' . $target_meta['model_fk'] . ' = ' . $model->alias . '.' . $model->primaryKey
+                    'join.' . $target_meta['model_fk'] . ' = ' . $element_id
                 );
+                debug($fields);
                 debug($join);
                 debug($conditions);die();
             }
