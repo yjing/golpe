@@ -45,6 +45,8 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
             $this->settings[$model->alias]['primary'] = false;
         }
         
+        debug($this->settings[$model->alias]);
+        
         return $query;
     }
     
