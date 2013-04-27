@@ -67,7 +67,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                     'recursive' => -1
                 ));
                 
-                $results[$i][$model->alias][$target_model->alias] = Set::extract(
+                $results[$i][$target_model->alias] = Set::extract(
                     '/' . $target_model->alias . '/.', 
                     $target_list
                 );
