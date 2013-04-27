@@ -294,7 +294,7 @@ function AlCtrl($scope, $location, $routeParams, $resource, $filter, auth, Dialo
                 buttons: [ { text: "Yes", click: function(){
                     DialogService.destroyDialog("confirm");
                     var ret = ALs.delete({id:elem.item.ActivityLog.id}, function(){
-                        var ALs2 = $resource('activity_logs/:id');
+                        var ALs2 = $resource('/activity_logs/:id');
                         $scope.activityLogs = ALs2.query(function(){});
                         console.log($scope.activityLogs);
                     },function(){
