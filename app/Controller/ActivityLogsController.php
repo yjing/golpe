@@ -101,7 +101,7 @@ class ActivityLogsController extends RESTController {
             'recursive' => -1
         ));
         
-        debug($active_logs);
+//        debug($active_logs);
         die();
         
         
