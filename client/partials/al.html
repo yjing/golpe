@@ -40,7 +40,7 @@
     </div>
 
     <div class="row-fluid content" ng-hide="al" style="width: 100%">
-        <select ng-show="modes != null" ng-model="alMode" ng-change="updateMode();">
+        <select ng-show="alModes != null" ng-model="alMode" ng-change="updateMode();">
             <option ng-repeat="m in alModes">{{m}}</option>
         </select> {{alMode}}
         <ul class="nav nav-tabs nav-stacked">
