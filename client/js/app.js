@@ -161,8 +161,6 @@ function supports_html5_storage() {
 
 function AlCtrl($scope, $rootScope, $location, $routeParams, $resource, $filter, auth, DialogService, WindDims) {
 
-    console.log("RUN ALCTRL");
-
     auth.auth(function(result){
         if (!result) {
             $location.url($scope.LOGIN_URI);
@@ -202,6 +200,7 @@ function AlCtrl($scope, $rootScope, $location, $routeParams, $resource, $filter,
 
     if(!$routeParams['id']) {
 
+        console.log($rootScope.mode);
         if($rootScope.mode == null || $rootScope.mode.length == 0) {
             $rootScope.mode = 'mine';
         }
