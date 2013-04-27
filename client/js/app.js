@@ -103,6 +103,8 @@ var app = angular.module('mscproject', [ 'ngResource', 'ngCookies', 'SSUtilities
             data:xsrf
         }).
         success(function(data, status, headers, config){
+            console.log(data);
+            console.log(data['User']);
             if (data['logged']) {
                 if(callback)
                     callback(data['User']);
