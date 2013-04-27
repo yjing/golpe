@@ -51,7 +51,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
         foreach ($results as $i => $element) {
             $element_id = $element[$model->alias]['HahManyThroughHABTM_ID'];
             
-            debug(Set::extract("/*/HahManyThroughHABTM_ID", $element));
+            debug(Set::extract("/*", $element));
             foreach ($this->settings[$model->alias] as $target_name => $target_meta) {
                 $target_model = $target_meta['target_model'];
                 $fields = array( $target_model->alias . '.*' );
