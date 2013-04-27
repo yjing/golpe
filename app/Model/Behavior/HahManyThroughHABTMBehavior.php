@@ -33,12 +33,12 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
         parent::afterFind($model, $results, $primary);
         foreach ($results as $i => $element) {
             foreach ($this->settings[$model->alias] as $target_name => $target_meta) {
-                $element_id = $element['id'];
+                $element_id = $element[$model->alias]['id'];
                 $target_model = $target_meta['target_model'];
                 $join = array(
                     'table' => $target_meta['join_table_name'],
                     'alias' => 'join',
-                    'conditions' => 'join' . $target_meta['target_fk'] . ' = ' 
+                    'conditions' => 'join.' . $target_meta['target_fk'] . ' = ' 
                     . $target_model->alias . '.' . $target_model->primaryKey
                 );
                 debug($join);die();
