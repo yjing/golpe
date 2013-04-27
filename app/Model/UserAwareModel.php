@@ -20,6 +20,7 @@ abstract class UserAwareModel extends AppModel {
         
             App::uses('CakeSession', 'Model/Datasource');
             $user = CakeSession::read('Auth.User');
+            debug($user);
             $this->read();
             $res = $res && ($this->data['user_id'] == $user['id']);
         }
