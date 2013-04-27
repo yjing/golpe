@@ -34,7 +34,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'ngCookies', 'SSUtilities
 
     $rootScope.getThumbUrl = function(media){
         if(media['Media']['has_thumb']) {
-            return "media/download/" + media['Media']['id'] + "?thumb=BIG";
+            return "/media/download/" + media['Media']['id'] + "?thumb=BIG";
         } else {
             console.log(media['Media']['content-type']);
             switch (media['Media']['content-type']) {
