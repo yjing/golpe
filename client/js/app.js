@@ -7,11 +7,11 @@ var app = angular.module('mscproject', [ 'ngResource', 'ngCookies', 'SSUtilities
         templateUrl: '/client/partials/login.html',
         controller: "LoginCtrl"
     });
-    $routeProvider.when('/client/al', {
+    $routeProvider.when('/client/al?mode=:mine', {
         templateUrl: '/client/partials/al.html',
         controller: "AlCtrl"
     });
-    $routeProvider.when('/client/al/:id', {
+    $routeProvider.when('/client/al/:id?mode=:mine', {
         templateUrl: '/client/partials/al.html',
         controller: "AlCtrl"
     });
