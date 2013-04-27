@@ -52,8 +52,6 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
     public function afterFind(Model $model, $results, $primary) {
         parent::afterFind($model, $results, $primary);
         
-        debug($this->query);
-        
         foreach ($results as $i => $element) {
             $element_id = $element[$model->alias]['HahManyThroughHABTM_ID'];
             
@@ -78,8 +76,13 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                     'primary' => false
                 ));
                 
-                
-//                debug($this->settings[$model->alias]['primary']);
+                if(!$this->query['primary']) {
+                    debug($target_list);
+                    $target = Set::extract('/' . $target_model->alias . "/.", $target_list);
+                    debug($target);
+                    debug($target_list);
+                    die();
+                }
                 $results[$i][$target_model->alias] = $target_list;
                 
             }
