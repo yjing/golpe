@@ -96,7 +96,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'ngCookies', 'SSUtilities
 
         $http({
             method: "POST",
-            url: "users/login",
+            url: "/users/login",
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
             },
