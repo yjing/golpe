@@ -162,6 +162,8 @@ function supports_html5_storage() {
 
 function AlCtrl($scope, $rootScope, $location, $routeParams, $resource, $filter, auth, DialogService, WindDims) {
 
+    console.log($rootScope.mode);
+
     auth.auth(function(result){
         if (!result) {
             $location.url($scope.LOGIN_URI);
@@ -200,8 +202,6 @@ function AlCtrl($scope, $rootScope, $location, $routeParams, $resource, $filter,
     }
 
     if(!$routeParams['id']) {
-
-        console.log($rootScope.mode);
 
         $scope.predicate = '-ActivityLog.modified';
         $scope.activityLogs = ALs.query({mode:$rootScope.mode}, function(){});
@@ -330,7 +330,6 @@ function AlCtrl($scope, $rootScope, $location, $routeParams, $resource, $filter,
         }
 
     } else {
-        console.log($rootScope.mode);
 
         $scope.show_media = false;
         $scope.showMedia = function(media){
