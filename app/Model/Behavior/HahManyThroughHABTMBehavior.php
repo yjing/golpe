@@ -77,7 +77,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
             }
             unset($results[$i][$model->alias]['HahManyThroughHABTM_ID']);
             
-            debug($element);
+            debug($results[$i]);
             die();
         }
         
