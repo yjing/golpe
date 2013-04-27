@@ -6,6 +6,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
         if(!is_array($settings)) {
             $settings = array($settings);
         }
+        debug('test');
         
         foreach ($settings as $key => $target_name) {
             App::import('Model', $target_name);
