@@ -41,10 +41,6 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
         }
         $query['fields'][] = $model->alias . '.id as HahManyThroughHABTM_ID';
         
-        if(!isset($query['primary'])) {
-            $query['primary'] = true;
-        }
-        
         $this->query = $query;
         return $query;
     }
@@ -73,18 +69,22 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                     'joins' => array($join),
                     'conditions' => $conditions,
                     'recursive' => -1,
-                    'primary' => false
                 ));
                 
-//                if(!$this->query['primary']) {
-                    foreach ($target_list as $j => $value) {
-                        $tmp = $target_list[$j][$target_model->alias];
-                        unset($target_list[$j][$target_model->alias]);
-                        foreach ($tmp as $key => $val) {
-                            $target_list[$j][$key] = $val;
-                        }
+                foreach ($target_list as $j => $value) {
+                    $tmp_terget = $target_list[$j][$target_model->alias];
+                    unset($target_list[$j][$target_model->alias]);
+                    
+                    $tmp_list = array();
+                    $key = 0;
+                    foreach ($tmp_terget as $val) {
+                        $tmp_list[$j][$key++] = $val;
                     }
-//                }
+                    foreach ($tmp_list as $val) {
+                        $tmp_list[$j][$key++] = $val;
+                    }
+                    $target_list = $tmp_list;
+                }
                 $results[$i][$target_model->alias] = $target_list;
                 
             }
