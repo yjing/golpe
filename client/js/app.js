@@ -32,6 +32,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'ngCookies', 'SSUtilities
     $rootScope.REDIRECT_AFTER_LOGIN = '/client/al';
     $rootScope.LOGIN_URI = '/client/login';
 
+    console.log("RUN RUN");
     $rootScope.modes = ["mine", "team", "public"];
 
     $rootScope.getThumbUrl = function(media){
@@ -159,6 +160,8 @@ function supports_html5_storage() {
 }
 
 function AlCtrl($scope, $rootScope, $location, $routeParams, $resource, $filter, auth, DialogService, WindDims) {
+
+    console.log("RUN ALCTRL");
 
     auth.auth(function(result){
         if (!result) {
