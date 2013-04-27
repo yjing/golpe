@@ -5,7 +5,7 @@ class Comment extends AppModel {
 
     public $name = 'Comment';
     public $useTable = "comments";
-    public $actsAs = array('Containable', 'HasMedia');
+    public $actsAs = array('Containable', 'HasMedia', 'HahManyThroughHABTM' => array('Media'));
     public $belongsTo = array(
         "User" => array(
             'fields' => array('id', 'username', 'role')
