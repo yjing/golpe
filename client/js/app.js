@@ -32,9 +32,8 @@ var app = angular.module('mscproject', [ 'ngResource', 'ngCookies', 'SSUtilities
     $rootScope.REDIRECT_AFTER_LOGIN = '/client/al';
     $rootScope.LOGIN_URI = '/client/login';
 
-    $rootScope.modes = ["mine", "team", "public"];
-    $rootScope.mode = "mine";
-    console.log($rootScope.mode);
+    $rootScope.alModes = ["mine", "team", "public"];
+    $rootScope.alMode = "mine";
 
     $rootScope.getThumbUrl = function(media){
         if(media['Media']['has_thumb']) {
@@ -326,7 +325,8 @@ function AlCtrl($scope, $rootScope, $location, $routeParams, $resource, $filter,
         }
 
         $scope.updateMode = function(){
-            $rootScope.mode = $scope.mode;
+            // Necessary because the select/option
+//            $rootScope.mode = $scope.mode;
             $scope.reload();
         }
 
