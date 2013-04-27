@@ -354,8 +354,8 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 INSERT INTO `users` (`id`, `username`, `password`, `role`, `created`, `modified`) VALUES (1, 's.susini', 'cb0c3cd38102fd0d0e0aec305f56fcb96ec9a640', 'STUDENT', '2013-03-23 13:14:51', '2013-03-23 13:14:51');
-INSERT INTO `users` (`id`, `username`, `password`, `role`, `created`, `modified`) VALUES (2, 'y.jing', 'cb0c3cd38102fd0d0e0aec305f56fcb96ec9a640', 'SUPERVISOR', '2013-03-23 13:14:51', '2013-03-23 13:15:51');
-INSERT INTO `users` (`id`, `username`, `password`, `role`, `created`, `modified`) VALUES (3, 'a.stuart', 'cb0c3cd38102fd0d0e0aec305f56fcb96ec9a640', 'ADMIN', '2013-03-23 13:14:51', '2013-03-23 13:14:51');
+INSERT INTO `users` (`id`, `username`, `password`, `role`, `created`, `modified`) VALUES (2, 'y.jing', 'cb0c3cd38102fd0d0e0aec305f56fcb96ec9a640', 'ADMIN', '2013-03-23 13:14:51', '2013-03-23 13:15:51');
+INSERT INTO `users` (`id`, `username`, `password`, `role`, `created`, `modified`) VALUES (3, 'q.dang', 'cb0c3cd38102fd0d0e0aec305f56fcb96ec9a640', 'SUPERVISOR', '2013-03-23 13:14:51', '2013-03-23 13:14:51');
 INSERT INTO `users` (`id`, `username`, `password`, `role`, `created`, `modified`) VALUES (4, 'student1', 'cb0c3cd38102fd0d0e0aec305f56fcb96ec9a640', 'STUDENT', NULL, NULL);
 INSERT INTO `users` (`id`, `username`, `password`, `role`, `created`, `modified`) VALUES (5, 'student2', 'cb0c3cd38102fd0d0e0aec305f56fcb96ec9a640', 'STUDENT', NULL, NULL);
 INSERT INTO `users` (`id`, `username`, `password`, `role`, `created`, `modified`) VALUES (6, 'student3', 'cb0c3cd38102fd0d0e0aec305f56fcb96ec9a640', 'STUDENT', NULL, NULL);
