@@ -38,6 +38,8 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
             $query['fields'][] = $model->alias . '.*';
         }
         $query['fields'][] = $model->alias . '.id as HahManyThroughHABTM_ID';
+        
+        return $query;
     }
     
     public function afterFind(Model $model, $results, $primary) {
