@@ -220,4 +220,8 @@ class ActivityLogsController extends RESTController {
         
     }
     
+    public function modes() {
+        $this->_setResponseJSON(array('deleted'=>$deleted));
+    }
+    
 }
