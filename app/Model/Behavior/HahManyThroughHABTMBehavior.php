@@ -78,8 +78,8 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                 
                 if(!$this->query['primary']) {
                     foreach ($target_list as $j => $value) {
-                        $tmp = $target_list[$j][$model->alias];
-                        unset($target_list[$j][$model->alias]);
+                        $tmp = $target_list[$j][$target_model->alias];
+                        unset($target_list[$j][$target_model->alias]);
                         foreach ($tmp as $key => $val) {
                             $target_list[$j][$key] = $val;
                         }
