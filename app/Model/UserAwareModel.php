@@ -13,6 +13,20 @@ abstract class UserAwareModel extends AppModel {
         
     }
     
+    public function beforeDelete($cascade = true) {
+        $res = parent::beforeDelete($cascade);
+        
+        if($res) {
+            debug($this->data);
+            debug($this->id);
+            $this->read();
+            debug($this->data);
+            debug($this->id);
+        }
+        
+        return false;
+    }
+    
     public function beforeFind($queryData) {
         parent::beforeFind($queryData);
         
