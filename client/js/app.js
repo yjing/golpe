@@ -156,7 +156,7 @@ function supports_html5_storage() {
     }
 }
 
-function DAlCtrl($scope, $location, $routeParams, $resource, $filter, auth, DialogService, WindDims) {
+function AlCtrl($scope, $location, $routeParams, $resource, $filter, auth, DialogService, WindDims) {
 
     auth.auth(function(result){
         if (!result) {
