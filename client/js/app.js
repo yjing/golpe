@@ -334,6 +334,8 @@ function AlCtrl($scope, $rootScope, $location, $routeParams, $resource, $filter,
         }
 
     } else {
+        console.log($rootScope.mode);
+
         $scope.show_media = false;
         $scope.showMedia = function(media){
             if(media['Media']['content-type'].indexOf("image/") == 0) {
