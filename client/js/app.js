@@ -326,8 +326,7 @@ function AlCtrl($scope, $rootScope, $location, $routeParams, $resource, $filter,
         }
 
         $scope.updateMode = function(){
-            console.log(">>" + $rootScope.mode);
-            console.log(">>" + $scope.mode);
+            $rootScope.mode = $scope.mode;
             $scope.reload();
         }
 
