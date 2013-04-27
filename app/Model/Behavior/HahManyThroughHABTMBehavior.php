@@ -77,11 +77,11 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                     
                     $tmp_list = array();
                     foreach ($tmp_terget as $val) {
-                        $tmp_list[$j][] = $val;
+                        $tmp_list[] = $val;
                     }
-//                    foreach ($tmp_list as $val) {
-//                        $tmp_list[$j][] = $val;
-//                    }
+                    foreach ($tmp_list as $val) {
+                        $tmp_list[] = $val;
+                    }
                     $target_list = $tmp_list;
                 }
                 $results[$i][$target_model->alias] = $target_list;
