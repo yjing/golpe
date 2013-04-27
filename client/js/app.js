@@ -32,7 +32,6 @@ var app = angular.module('mscproject', [ 'ngResource', 'ngCookies', 'SSUtilities
     $rootScope.REDIRECT_AFTER_LOGIN = '/client/al';
     $rootScope.LOGIN_URI = '/client/login';
 
-
     console.log("RUN RUN");
     $rootScope.modes = ["mine", "team", "public"];
 
