@@ -199,7 +199,10 @@ function AlCtrl($scope, $rootScope, $location, $routeParams, $resource, $filter,
 
     if(!$routeParams['id']) {
 
-        $rootScope.mode = 'mine';
+        if($rootScope.mode == null || $rootScope.mode.length == 0) {
+            $rootScope.mode = 'mine';
+        }
+
         $scope.predicate = '-ActivityLog.modified';
         $scope.activityLogs = ALs.query({mode:$rootScope.mode}, function(){});
 
