@@ -32,6 +32,8 @@ var app = angular.module('mscproject', [ 'ngResource', 'ngCookies', 'SSUtilities
     $rootScope.REDIRECT_AFTER_LOGIN = '/client/al';
     $rootScope.LOGIN_URI = '/client/login';
 
+    $rootScope.modes = ["mine", "team", "public"];
+
     $rootScope.getThumbUrl = function(media){
         if(media['Media']['has_thumb']) {
             return "/media/download/" + media['Media']['id'] + "?thumb=BIG";
@@ -156,15 +158,13 @@ function supports_html5_storage() {
     }
 }
 
-function AlCtrl($scope, $location, $routeParams, $resource, $filter, auth, DialogService, WindDims) {
+function AlCtrl($scope, $rootScope, $location, $routeParams, $resource, $filter, auth, DialogService, WindDims) {
 
     auth.auth(function(result){
         if (!result) {
             $location.url($scope.LOGIN_URI);
         }
     });
-
-    $scope.modes = ["mine", "team", "public"];
 
     $scope.mainmenu_open = "";
     $scope.toggleMenu = function() {
@@ -199,9 +199,9 @@ function AlCtrl($scope, $location, $routeParams, $resource, $filter, auth, Dialo
 
     if(!$routeParams['id']) {
 
-        $scope.mode = 'mine';
+        $rootScope.mode = 'mine';
         $scope.predicate = '-ActivityLog.modified';
-        $scope.activityLogs = ALs.query({mode:$scope.mode}, function(){});
+        $scope.activityLogs = ALs.query({mode:$rootScope.mode}, function(){});
 
         // I-FRAME LISTENER SETUP
         // Used to handle the new Activity Logs
@@ -236,7 +236,7 @@ function AlCtrl($scope, $location, $routeParams, $resource, $filter, auth, Dialo
             }
 
             // Refresh DATA
-            $scope.activityLogs = ALs.query({mode:$scope.mode}, function(){});
+            $scope.activityLogs = ALs.query({mode:$rootScope.mode}, function(){});
 
         }, true);
 
@@ -319,7 +319,7 @@ function AlCtrl($scope, $location, $routeParams, $resource, $filter, auth, Dialo
         }
 
         $scope.reload = function(){
-            $scope.activityLogs = ALs.query({mode:$scope.mode}, function(){});
+            $scope.activityLogs = ALs.query({mode:$rootScope.mode}, function(){});
         }
 
         $scope.updateMode = function(){
