@@ -2,11 +2,12 @@
 
 class HahManyThroughHABTMBehavior extends ModelBehavior {
     
+    private $query;
+    
     public function setup(Model $Model, $settings = array()) {
         if(!is_array($settings)) {
             $settings = array($settings);
         }
-        debug('test');
         
         foreach ($settings as $key => $target_name) {
             App::import('Model', $target_name);
@@ -35,18 +36,12 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
     public function beforeFind(Model $model, $query) {
         parent::beforeFind($model, $query);
         
+        $this->query = $query;
+        
         if($query['fields'] == null) {
             $query['fields'][] = $model->alias . '.*';
         }
         $query['fields'][] = $model->alias . '.id as HahManyThroughHABTM_ID';
-//        
-//        if(isset($query['primary']) && $query['primary'] === true) {
-//            $this->settings[$model->alias]['primary'] = true;
-//        } else {
-//            $this->settings[$model->alias]['primary'] = false;
-//        }
-//        
-//        debug($this->settings[$model->alias]);
         
         return $query;
     }
@@ -54,7 +49,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
     public function afterFind(Model $model, $results, $primary) {
         parent::afterFind($model, $results, $primary);
         
-//        debug($model);die();
+        debug($this->query);
         
         foreach ($results as $i => $element) {
             $element_id = $element[$model->alias]['HahManyThroughHABTM_ID'];
