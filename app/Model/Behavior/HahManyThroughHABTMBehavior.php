@@ -31,6 +31,15 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
         
     }
 
+    public function beforeFind(Model $model, $query) {
+        parent::beforeFind($model, $query);
+        
+        if($query['fields'] == null) {
+            $query['fields'][] = $model->alias . '.*';
+        }
+        $query['fields'][] = $model->alias . '.id as HahManyThroughHABTM_ID';
+    }
+    
     public function afterFind(Model $model, $results, $primary) {
         parent::afterFind($model, $results, $primary);
         
