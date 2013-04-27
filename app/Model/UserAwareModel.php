@@ -15,16 +15,13 @@ abstract class UserAwareModel extends AppModel {
     
     public function beforeDelete($cascade = true) {
         $res = parent::beforeDelete($cascade);
-        
-        if($res) {
-        
-            App::uses('CakeSession', 'Model/Datasource');
-            $user = CakeSession::read('Auth.User');
-            $to_delete = $this->findById($this->id);
-            $res = $res && ($to_delete[$this->alias]['user_id'] == $user['id']);
-        }
-        
-        return $res;
+        return $res && $this->_checkOwnership();
+    }
+    
+    public function beforeSave($options = array()) {
+        debug($options);die();
+//        $res = parent::beforeSave($options);
+//        return $res && $this->_checkOwnership();
     }
     
     public function beforeFind($queryData) {
@@ -99,6 +96,13 @@ abstract class UserAwareModel extends AppModel {
         }
         return $results;
         
+    }
+    
+    private function _checkOwnership() {
+        App::uses('CakeSession', 'Model/Datasource');
+        $user = CakeSession::read('Auth.User');
+        $to_delete = $this->findById($this->id);
+        return $to_delete[$this->alias]['user_id'] == $user['id'];
     }
     
 }
