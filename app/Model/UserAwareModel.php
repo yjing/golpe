@@ -19,9 +19,17 @@ abstract class UserAwareModel extends AppModel {
     }
     
     public function beforeSave($options = array()) {
-        debug($this->exists());die();
-//        $res = parent::beforeSave($options);
-//        return $res && $this->_checkOwnership();
+        $res = parent::beforeSave($options);
+        
+        if(!$this->exists()){
+            $res = $res && $this->_checkOwnership();
+        } else {
+            debug($this->id);
+            debug($this->data);
+            die();
+        }
+//        
+        return $res;
     }
     
     public function beforeFind($queryData) {
