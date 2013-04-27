@@ -74,12 +74,12 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                     $target_list
                 );
                 
-                debug($results[$i][$target_model->alias]);
-                
             }
             unset($results[$i][$model->alias]['HahManyThroughHABTM_ID']);
             
         }
+                
+        debug($results);
         return $results;
         
 //        foreach ($results as $key => $value) {
