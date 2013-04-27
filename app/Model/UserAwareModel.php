@@ -33,7 +33,6 @@ abstract class UserAwareModel extends AppModel {
         App::uses('CakeSession', 'Model/Datasource');
         $user = CakeSession::read('Auth.User');
         $team = $this->User->getTeam($user['id']);
-        debug($user);
         
         if($queryData['fields'] == null) {
             $queryData['fields'][] = $this->alias . '.*';
