@@ -38,14 +38,14 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
             $query['fields'][] = $model->alias . '.*';
         }
         $query['fields'][] = $model->alias . '.id as HahManyThroughHABTM_ID';
-        
-        if(isset($query['primary']) && $query['primary'] === true) {
-            $this->settings[$model->alias]['primary'] = true;
-        } else {
-            $this->settings[$model->alias]['primary'] = false;
-        }
-        
-        debug($this->settings[$model->alias]);
+//        
+//        if(isset($query['primary']) && $query['primary'] === true) {
+//            $this->settings[$model->alias]['primary'] = true;
+//        } else {
+//            $this->settings[$model->alias]['primary'] = false;
+//        }
+//        
+//        debug($this->settings[$model->alias]);
         
         return $query;
     }
@@ -80,7 +80,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                 ));
                 
                 
-                debug($this->settings[$model->alias]['primary']);
+//                debug($this->settings[$model->alias]['primary']);
                 $results[$i][$target_model->alias] = $target_list;
                 
             }
