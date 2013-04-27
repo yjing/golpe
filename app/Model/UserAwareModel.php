@@ -20,9 +20,9 @@ abstract class UserAwareModel extends AppModel {
         
             App::uses('CakeSession', 'Model/Datasource');
             $user = CakeSession::read('Auth.User');
-            $this->read();
-            debug($this->data);
-            $res = $res && ($this->data['user_id'] == $user['id']);
+            $to_delete = $this->findById($this->id);
+            debug($to_delete);
+            $res = $res && ($to_delete['user_id'] == $user['id']);
         }
         
         return $res;
@@ -34,7 +34,7 @@ abstract class UserAwareModel extends AppModel {
         App::uses('CakeSession', 'Model/Datasource');
         $user = CakeSession::read('Auth.User');
         $team = $this->User->getTeam($user['id']);
-        debug($team);
+        debug($user);
         
         if($queryData['fields'] == null) {
             $queryData['fields'][] = $this->alias . '.*';
