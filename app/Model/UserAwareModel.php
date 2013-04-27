@@ -21,8 +21,7 @@ abstract class UserAwareModel extends AppModel {
             App::uses('CakeSession', 'Model/Datasource');
             $user = CakeSession::read('Auth.User');
             $to_delete = $this->findById($this->id);
-            debug($to_delete);
-            $res = $res && ($to_delete['user_id'] == $user['id']);
+            $res = $res && ($to_delete[$this->alias]['user_id'] == $user['id']);
         }
         
         return $res;
