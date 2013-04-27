@@ -17,11 +17,13 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
             $join_table_name = implode($join_model_a, '_');
             
             $target_fk = Inflector::underscore($target_model->alias) . '_' . $target_model->primaryKey;
-            
+            $model_fk = Inflector::underscore($Model->alias) . '_' . $Model->primaryKey;
+
             $settings[$target_name] = array(
                 'target_model' => $target_model,
                 'join_table_name' => $join_table_name,
-                'target_fk' => $target_fk
+                'target_fk' => $target_fk,
+                'model_fk' => $model_fk
             );
             unset($settings[$key]);
         }
@@ -41,7 +43,11 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                     'conditions' => 'join.' . $target_meta['target_fk'] . ' = ' 
                     . $target_model->alias . '.' . $target_model->primaryKey
                 );
-                debug($join);die();
+                $conditions = array(
+                    'join.' . $target_meta['model_fk'] . ' = ' . $model->alias . '.' . $model->primaryKey
+                );
+                debug($join);
+                debug($conditions);die();
             }
         }
         
