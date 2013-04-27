@@ -48,9 +48,23 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                 $conditions = array(
                     'join.' . $target_meta['model_fk'] . ' = ' . $element_id
                 );
+                
+                debug($element);
+                
                 debug($fields);
                 debug($join);
-                debug($conditions);die();
+                debug($conditions);
+                
+                $target_list = $target_model->find('all', array(
+                    'fields' => $fields,
+                    'joins' => array($join),
+                    'conditions' => $conditions,
+                    'recursive' => -1
+                ));
+                
+                debug($target_list);
+                
+                die();
             }
         }
         
