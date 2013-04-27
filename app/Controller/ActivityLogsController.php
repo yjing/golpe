@@ -94,15 +94,15 @@ class ActivityLogsController extends RESTController {
 //                )
 //            )    
 //        );
-        
-        $active_logs = $this->ActivityLog->find('all', array(
-            'fields' => array('ActivityLog.id','ActivityLog.title'),
-            'conditions' => 'ActivityLog.modified >= '. (time() - (7 * 24 * 60 * 60)),
-            'recursive' => -1
-        ));
-        
-        debug($active_logs);
-        die();
+//        
+//        $active_logs = $this->ActivityLog->find('all', array(
+//            'fields' => array('ActivityLog.id','ActivityLog.title'),
+//            'conditions' => 'ActivityLog.modified >= '. (time() - (7 * 24 * 60 * 60)),
+//            'recursive' => -1
+//        ));
+//        
+//        debug($active_logs);
+//        die();
         
         
         
@@ -128,18 +128,18 @@ class ActivityLogsController extends RESTController {
                 $conditions["ActivityLog.user_id"] = $user['id'];
                 break;
         }
-        
-        
-        $this->ActivityLog->contain(array(
-            "Media" => array("id", "user_id", "visibility_level"),
-            "Comment" => array("id", "user_id", "visibility_level"),
-            "User" => array("id", "username", "role")
-        ));
+//        
+//        
+//        $this->ActivityLog->contain(array(
+//            "Media" => array("id", "user_id", "visibility_level"),
+//            "Comment" => array("id", "user_id", "visibility_level"),
+//            "User" => array("id", "username", "role")
+//        ));
         
         $this->_setResponseJSON($this->ActivityLog->find('all',
             array(
                 'conditions' => $conditions,
-                'recursive' => 1
+                'recursive' => -1
             )
         ));
     }
