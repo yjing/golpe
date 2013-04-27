@@ -32,8 +32,8 @@ var app = angular.module('mscproject', [ 'ngResource', 'ngCookies', 'SSUtilities
     $rootScope.REDIRECT_AFTER_LOGIN = '/client/al';
     $rootScope.LOGIN_URI = '/client/login';
 
-    console.log("RUN RUN");
     $rootScope.modes = ["mine", "team", "public"];
+    $rootScope.mode = "mine";
 
     $rootScope.getThumbUrl = function(media){
         if(media['Media']['has_thumb']) {
@@ -200,10 +200,6 @@ function AlCtrl($scope, $rootScope, $location, $routeParams, $resource, $filter,
 
     if(!$routeParams['id']) {
 
-        console.log($rootScope.mode);
-        if($rootScope.mode == null || $rootScope.mode.length == 0) {
-//            $rootScope.mode = 'mine';
-        }
         console.log($rootScope.mode);
 
         $scope.predicate = '-ActivityLog.modified';
