@@ -17,14 +17,14 @@ abstract class UserAwareModel extends AppModel {
         $res = parent::beforeDelete($cascade);
         
         if($res) {
-            debug($this->data);
-            debug($this->id);
+        
+            App::uses('CakeSession', 'Model/Datasource');
+            $user = CakeSession::read('Auth.User');
             $this->read();
-            debug($this->data);
-            debug($this->id);
+            $res = $res && ($this->data['user_id'] == $user['id']);
         }
         
-        return false;
+        return $res;
     }
     
     public function beforeFind($queryData) {
