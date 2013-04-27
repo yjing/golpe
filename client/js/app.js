@@ -161,7 +161,7 @@ function supports_html5_storage() {
 
 function AlCtrl($scope, $rootScope, $location, $routeParams, $resource, $filter, auth, DialogService, WindDims) {
 
-    console.log($rootScope.mode);
+    console.log($rootScope.alMode);
 
     auth.auth(function(result){
         if (!result) {
@@ -203,7 +203,7 @@ function AlCtrl($scope, $rootScope, $location, $routeParams, $resource, $filter,
     if(!$routeParams['id']) {
 
         $scope.predicate = '-ActivityLog.modified';
-        $scope.activityLogs = ALs.query({mode:$rootScope.mode}, function(){});
+        $scope.activityLogs = ALs.query({mode:$rootScope.alMode}, function(){});
 
         // I-FRAME LISTENER SETUP
         // Used to handle the new Activity Logs
@@ -238,7 +238,7 @@ function AlCtrl($scope, $rootScope, $location, $routeParams, $resource, $filter,
             }
 
             // Refresh DATA
-            $scope.activityLogs = ALs.query({mode:$rootScope.mode}, function(){});
+            $scope.activityLogs = ALs.query({mode:$rootScope.alMode}, function(){});
 
         }, true);
 
@@ -321,12 +321,11 @@ function AlCtrl($scope, $rootScope, $location, $routeParams, $resource, $filter,
         }
 
         $scope.reload = function(){
-            $scope.activityLogs = ALs.query({mode:$rootScope.mode}, function(){});
+            $scope.activityLogs = ALs.query({mode:$rootScope.alMode}, function(){});
         }
 
         $scope.updateMode = function(){
             // Necessary because the select/option
-//            $rootScope.mode = $scope.mode;
             $scope.reload();
         }
 
