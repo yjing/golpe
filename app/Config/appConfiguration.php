@@ -21,6 +21,7 @@ Configure::write("APPCONFIG", array(
             "update" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR'),
             "edit" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR'),
             "delete" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR')
-        )
+        ),
+        "Comments" => true
     )
 ));
