@@ -33,11 +33,11 @@ var app = angular.module('mscproject', [ 'ngResource', 'ngCookies', 'SSUtilities
     $rootScope.LOGIN_URI = '/client/login';
 
     $rootScope.getThumbUrl = function(media){
-        if(media['has_thumb']) {
-            return "media/download/" + media['id'] + "?thumb=BIG";
+        if(media['Media']['has_thumb']) {
+            return "media/download/" + media['Media']['id'] + "?thumb=BIG";
         } else {
-            console.log(media['content-type']);
-            switch (media['content-type']) {
+            console.log(media['Media']['content-type']);
+            switch (media['Media']['content-type']) {
                 case "image/png":
                     return "/client/img/default_thumbs/png.png";
                     break;
@@ -329,12 +329,12 @@ function AlCtrl($scope, $location, $routeParams, $resource, $filter, auth, Dialo
     } else {
         $scope.show_media = false;
         $scope.showMedia = function(media){
-            if(media['content-type'].indexOf("image/") == 0) {
+            if(media['Media']['content-type'].indexOf("image/") == 0) {
                 $scope.show_media = true;
-                console.log("/media/download/" + media['id']);
-                $scope.media_url = "/media/download/" + media['id'];
+                console.log("/media/download/" + media['Media']['Media']['id']);
+                $scope.media_url = "/media/download/" + media['Media']['Media']['id'];
             } else {
-                window.location.href = "/media/download/" + media['id'] + "?download=true";
+                window.location.href = "/media/download/" + media['Media']['Media']['id'] + "?download=true";
             }
         }
         $scope.hideMedia = function(){
