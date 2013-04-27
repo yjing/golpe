@@ -326,6 +326,8 @@ function AlCtrl($scope, $rootScope, $location, $routeParams, $resource, $filter,
 
         $scope.updateMode = function(){
             // Necessary because the select/option
+            console.log($rootScope.alMode);
+            console.log($scope.alMode);
             $scope.reload();
         }
 
