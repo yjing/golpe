@@ -41,10 +41,10 @@
 
     <div class="row-fluid content" ng-hide="al" style="width: 100%">
         <select ng-show="modes != null" ng-model="mode" ng-change="updateMode();">
-            <option>mine</option>
-            <option>team</option>
-            <option>public</option>
-            <!--<option ng-repeat="mode in modes">{{mode}}</option>-->
+            <!--<option>mine</option>-->
+            <!--<option>team</option>-->
+            <!--<option>public</option>-->
+            <option ng-repeat="mode in modes">{{mode}}</option>
         </select>
         <ul class="nav nav-tabs nav-stacked">
             <li ng-repeat="item in activityLogs | orderBy:predicate:reverse">
