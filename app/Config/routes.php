@@ -40,7 +40,7 @@
             array('action' => 'update', 'method' => 'POST', 'id' => true)
         ));
 
-        Router::mapResources(array('users', 'activity_logs', 'comments'));
+        Router::mapResources(array('users', 'activity_logs', 'comments', 'media'));
 
 /**
  * Load the CakePHP default routes. Only remove this if you do not want to use
