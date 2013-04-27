@@ -84,6 +84,9 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                             $target_list[$j][$key] = $val;
                         }
                     }
+                    
+                    debug($target_list);
+                    die();
                 }
                 $results[$i][$target_model->alias] = $target_list;
                 
