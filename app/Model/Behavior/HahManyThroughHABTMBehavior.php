@@ -45,6 +45,8 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
     public function afterFind(Model $model, $results, $primary) {
         parent::afterFind($model, $results, $primary);
         
+        debug($model);die();
+        
         foreach ($results as $i => $element) {
             $element_id = $element[$model->alias]['HahManyThroughHABTM_ID'];
             
