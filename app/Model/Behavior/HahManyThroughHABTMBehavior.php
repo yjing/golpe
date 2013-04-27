@@ -39,7 +39,6 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
         }
         $query['fields'][] = $model->alias . '.id as HahManyThroughHABTM_ID';
         $query['fields'][] = '\'TEST\' as HahManyThroughHABTM_TEST';
-        $query['fields'][] = '\'TEST2\' as HahManyThroughHABTM_TEST2';
         
         return $query;
     }
@@ -52,7 +51,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
         foreach ($results as $i => $element) {
             $element_id = $element[$model->alias]['HahManyThroughHABTM_ID'];
             
-            debug(Set::extract("/*", $element));
+            debug(Set::extract("/0/HahManyThroughHABTM_TEST", $element));
             foreach ($this->settings[$model->alias] as $target_name => $target_meta) {
                 $target_model = $target_meta['target_model'];
                 $fields = array( $target_model->alias . '.*' );

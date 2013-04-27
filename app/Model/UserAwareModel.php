@@ -27,7 +27,6 @@ abstract class UserAwareModel extends AppModel {
         $queryData['fields'][] = $this->alias . '.visibility_level as AUTHvisibility_level';
         $queryData['fields'][] = 'AUTHUser.id, AUTHUser.username, AUTHUser.role';
         $queryData['fields'][] = 'AUTHTeam.id, AUTHTeam.name, AUTHTeam.project_id';
-        $queryData['fields'][] = '\'AUTHTeam_id\' as AUTHTeam_id';
         // Add the namespaced joins to retrieve the above-mentioned fields and models
         $queryData['joins'][] = array(
             'table' => "users",
