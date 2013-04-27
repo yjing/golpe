@@ -38,7 +38,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
             $query['fields'][] = $model->alias . '.*';
         }
         $query['fields'][] = $model->alias . '.id as HahManyThroughHABTM_ID';
-        $query['fields'][] = '\'TEST\' as HahManyThroughHABTM.TEST';
+        $query['fields'][] = '\'TEST\' as '.$model->alias.'.TEST';
         
         return $query;
     }
