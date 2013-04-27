@@ -1,6 +1,6 @@
 <?php
 
-// app/Model/User.php
+App::import('Model', 'UserAwareModel');
 class Comment extends UserAwareModel {
 
     public $name = 'Comment';
