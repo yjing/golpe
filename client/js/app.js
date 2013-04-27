@@ -105,7 +105,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'ngCookies', 'SSUtilities
         success(function(data, status, headers, config){
             if (data['logged']) {
                 if(callback)
-                    callback(data['user']);
+                    callback(data['User']);
             } else {
                 if(callback)
                     callback(false);
