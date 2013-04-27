@@ -1,6 +1,7 @@
 <?php
 
 App::import("Model", "User");
+App::uses('CakeSession', 'Model/Datasource');
 abstract class UserAwareModel extends AppModel {
 
     private $User;
@@ -24,6 +25,8 @@ abstract class UserAwareModel extends AppModel {
         if($this->exists()){
             $res = $res && $this->_checkOwnership();
         } else {
+            $user = CakeSession::read('Auth.User');
+            $this->data[$this->alias]['user_id'] = $user['id'];
             debug($this->id);
             debug($this->data);
             die();
@@ -35,7 +38,6 @@ abstract class UserAwareModel extends AppModel {
     public function beforeFind($queryData) {
         parent::beforeFind($queryData);
         
-        App::uses('CakeSession', 'Model/Datasource');
         $user = CakeSession::read('Auth.User');
         $team = $this->User->getTeam($user['id']);
         
@@ -107,7 +109,6 @@ abstract class UserAwareModel extends AppModel {
     }
     
     private function _checkOwnership() {
-        App::uses('CakeSession', 'Model/Datasource');
         $user = CakeSession::read('Auth.User');
         $to_delete = $this->findById($this->id);
         return $to_delete[$this->alias]['user_id'] == $user['id'];
