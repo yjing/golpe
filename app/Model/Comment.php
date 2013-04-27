@@ -1,7 +1,7 @@
 <?php
 
 // app/Model/User.php
-class Comment extends AppModel {
+class Comment extends UserAwareModel {
 
     public $name = 'Comment';
     public $useTable = "comments";
