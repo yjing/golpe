@@ -11,10 +11,10 @@ var app = angular.module('mscproject', [ 'ngResource', 'ngCookies', 'SSUtilities
 //        templateUrl: '/client/partials/al.html',
 //        controller: "AlCtrl"
 //    });
-//    $routeProvider.when('/client/al/:id', {
-//        templateUrl: '/client/partials/al.html',
-//        controller: "AlCtrl"
-//    });
+    $routeProvider.when('/client/al/:id', {
+        templateUrl: '/client/partials/al.html',
+        controller: "AlCtrl"
+    });
     $routeProvider.when('/client/users', {
         templateUrl: '/client/partials/user.html',
         controller: "UserCtrl"
