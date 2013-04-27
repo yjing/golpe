@@ -44,8 +44,8 @@
             <!--<option>mine</option>-->
             <!--<option>team</option>-->
             <!--<option>public</option>-->
-            <option ng-repeat="mode in modes">{{mode}}</option>
-        </select>
+            <option ng-repeat="m in modes">{{m}}</option>
+        </select> {{mode}}
         <ul class="nav nav-tabs nav-stacked">
             <li ng-repeat="item in activityLogs | orderBy:predicate:reverse">
                 <a style="position: relative">
