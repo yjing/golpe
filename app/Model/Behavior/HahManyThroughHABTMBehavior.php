@@ -60,12 +60,6 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                     'join.' . $target_meta['model_fk'] . ' = ' . $element_id
                 );
                 
-                debug($element);
-                
-                debug($fields);
-                debug($join);
-                debug($conditions);
-                
                 $target_list = $target_model->find('all', array(
                     'fields' => $fields,
                     'joins' => array($join),
@@ -73,7 +67,11 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                     'recursive' => -1
                 ));
                 
-                debug($target_list);
+                $results[$i][$model->alias][$target_model->alias] = Set::extract(
+                    '/' . $target_model->alias . '/.', 
+                    $target_list
+                );
+                
             }
             unset($results[$i][$model->alias]['HahManyThroughHABTM_ID']);
             
