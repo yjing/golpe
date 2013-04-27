@@ -34,6 +34,9 @@ var app = angular.module('mscproject', [ 'ngResource', 'ngCookies', 'SSUtilities
 
     $rootScope.modes = ["mine", "team", "public"];
     $rootScope.mode = "mine";
+    $rootScope.$watch('mode', function(){
+        console.log("MOD: "+$rootScope.mode);
+    });
 
     $rootScope.getThumbUrl = function(media){
         if(media['Media']['has_thumb']) {
