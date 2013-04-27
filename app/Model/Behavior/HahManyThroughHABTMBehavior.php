@@ -71,8 +71,8 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                     'recursive' => -1,
                 ));
                 
+                $tmp_list = array();
                 foreach ($target_list as $j => $value) {
-                    $tmp_list = array();
                     
                     foreach ($target_list[$j][$target_model->alias] as $k => $v) {
                         $tmp_list[$k] = $v;
