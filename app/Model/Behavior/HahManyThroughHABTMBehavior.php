@@ -76,12 +76,11 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                     unset($target_list[$j][$target_model->alias]);
                     
                     $tmp_list = array();
-                    $key = 0;
                     foreach ($tmp_terget as $val) {
-                        $tmp_list[$j][$key++] = $val;
+                        $tmp_list[$j][] = $val;
                     }
                     foreach ($tmp_list as $val) {
-                        $tmp_list[$j][$key++] = $val;
+                        $tmp_list[$j][] = $val;
                     }
                     $target_list = $tmp_list;
                 }
