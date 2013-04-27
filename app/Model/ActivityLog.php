@@ -26,22 +26,22 @@ class ActivityLog extends UserAwareModel {
     
     public function beforeSave($options = array()) {
         parent::beforeSave($options);
-        
-        if($this->data[$this->alias]) {
-            
-            $this->Session = new SessionComponent(new ComponentCollection());
-            $user = $this->Session->read("Auth.User");
-
-            $this->data[$this->alias]['user_id'] = $user['id'];
-            $this->data[$this->alias]['draft'] = false;
-            
-            return true;
-            
-        } else {
-            
-            return false;
-            
-        }
+//        
+//        if($this->data[$this->alias]) {
+//            
+//            $this->Session = new SessionComponent(new ComponentCollection());
+//            $user = $this->Session->read("Auth.User");
+//
+//            $this->data[$this->alias]['user_id'] = $user['id'];
+//            $this->data[$this->alias]['draft'] = false;
+//            
+//            return true;
+//            
+//        } else {
+//            
+//            return false;
+//            
+//        }
     }
     
 //    public function beforeFind($queryData) {
