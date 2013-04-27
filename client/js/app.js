@@ -34,7 +34,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'ngCookies', 'SSUtilities
 
     $rootScope.getThumbUrl = function(media){
         if(media['has_thumb']) {
-            return "/server/media/download/" + media['id'] + "?thumb=BIG";
+            return "media/download/" + media['id'] + "?thumb=BIG";
         } else {
             console.log(media['content-type']);
             switch (media['content-type']) {
@@ -96,7 +96,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'ngCookies', 'SSUtilities
 
         $http({
             method: "POST",
-            url: "/server/users/login",
+            url: "users/login",
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
             },
@@ -124,7 +124,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'ngCookies', 'SSUtilities
     this.logout = function(callback) {
         $http({
             method: "GET",
-            url: "/server/users/logout"
+            url: "/users/logout"
         }).
         success(function(data, status, headers, config){
             console.log(data);
@@ -181,8 +181,8 @@ function AlCtrl($scope, $location, $routeParams, $resource, $filter, auth, Dialo
         }
     }
 
-    var ALs = $resource('/server/activity_logs/:id?mode=:mode');
-    var Media = $resource('/server/media/:id');
+    var ALs = $resource('/activity_logs/:id?mode=:mode');
+    var Media = $resource('media/:id');
     $scope.al = null;
     $scope.files = [];
 
@@ -292,7 +292,7 @@ function AlCtrl($scope, $location, $routeParams, $resource, $filter, auth, Dialo
                 buttons: [ { text: "Yes", click: function(){
                     DialogService.destroyDialog("confirm");
                     var ret = ALs.delete({id:elem.item.ActivityLog.id}, function(){
-                        var ALs2 = $resource('/server/activity_logs/:id');
+                        var ALs2 = $resource('activity_logs/:id');
                         $scope.activityLogs = ALs2.query(function(){});
                         console.log($scope.activityLogs);
                     },function(){
@@ -329,10 +329,10 @@ function AlCtrl($scope, $location, $routeParams, $resource, $filter, auth, Dialo
         $scope.showMedia = function(media){
             if(media['content-type'].indexOf("image/") == 0) {
                 $scope.show_media = true;
-                console.log("/server/media/download/" + media['id']);
-                $scope.media_url = "/server/media/download/" + media['id'];
+                console.log("/media/download/" + media['id']);
+                $scope.media_url = "/media/download/" + media['id'];
             } else {
-                window.location.href = "/server/media/download/" + media['id'] + "?download=true";
+                window.location.href = "/media/download/" + media['id'] + "?download=true";
             }
         }
         $scope.hideMedia = function(){
