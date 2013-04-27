@@ -17,13 +17,11 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
             $join_table_name = implode($join_model_a, '_');
             
             $target_fk = Inflector::underscore($target_model->alias) . '_' . $target_model->primaryKey;
-            $model_fk = Inflector::underscore($Model->alias) . '_' . $Model->primaryKey;
             
             $settings[$target_name] = array(
                 'target_model' => $target_model,
                 'join_table_name' => $join_table_name,
-                'target_fk' => $target_fk,
-                'model_fk' => $model_fk
+                'target_fk' => $target_fk
             );
             unset($settings[$key]);
         }
@@ -33,9 +31,18 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
 
     public function afterFind(Model $model, $results, $primary) {
         parent::afterFind($model, $results, $primary);
-        
-        foreach ($this->settings[$model->alias] as $m_name => $m) {
-            debug($m);
+        foreach ($results as $i => $element) {
+            foreach ($this->settings[$model->alias] as $target_name => $target_meta) {
+                $element_id = $element['id'];
+                $target_model = $target_meta['target_model'];
+                $join = array(
+                    'table' => $target_meta['join_table_name'],
+                    'alias' => 'join',
+                    'conditions' => 'join' . $target_meta['target_fk'] . ' = ' 
+                    . $target_model->alias . '.' . $target_model->primaryKey
+                );
+                debug($join);die();
+            }
         }
         
 //        foreach ($results as $key => $value) {
