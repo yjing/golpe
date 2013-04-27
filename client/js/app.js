@@ -202,7 +202,7 @@ function AlCtrl($scope, $rootScope, $location, $routeParams, $resource, $filter,
 
         console.log($rootScope.mode);
         if($rootScope.mode == null || $rootScope.mode.length == 0) {
-            $rootScope.mode = 'mine';
+//            $rootScope.mode = 'mine';
         }
         console.log($rootScope.mode);
 
