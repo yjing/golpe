@@ -15,6 +15,7 @@ class ActivityLogsController extends RESTController {
         parent::index();
         
         $user = $this->Auth->user();
+        $role = $user['role'];
         $team = $this->User->getTeam($user['id']);
         
         $mode = "";
@@ -22,7 +23,7 @@ class ActivityLogsController extends RESTController {
         if(isset($this->request->query['mode'])) {
             $mode = $this->request->query['mode'];
         }
-        if(!in_array($mode, $modes['modes'])) {
+        if(!in_array($mode, $modes[$role]['modes'])) {
             $mode = $modes['default'];
         }
         
