@@ -66,14 +66,13 @@ class ActivityLogsController extends RESTController {
                     // FORMAT DATE
                     $data_time = strtotime($value);
                     $delta = $now - $data_time;
-                    $data[$key . '_human'] = $delta;
-//                    if ($delta <= 60 * 1000) {
-//                        $data[$key . '_human'] = 'now';
-//                    } elseif ($delta < 1 * 60 * 60 * 1000) {
-//                        $data[$key . '_human'] = date("G:i", $data_time);
-//                    } else {
-//                        $data[$key . '_human'] = date("d M", $data_time);
-//                    }
+                    if ($delta <= 60) {
+                        $data[$key . '_human'] = 'now';
+                    } elseif ($delta < 1 * 60 * 60) {
+                        $data[$key . '_human'] = date("G:i", $data_time);
+                    } else {
+                        $data[$key . '_human'] = date("d M", $data_time);
+                    }
                     
                 }
             }
