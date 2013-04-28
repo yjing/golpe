@@ -53,25 +53,23 @@ class ActivityLogsController extends RESTController {
             )
         );
         
-        $results = $this->_formatDates($results, array('created', 'modified'));
+        $results = $this->_formatDates($results, time(), array('created', 'modified'));
         
         $this->_setResponseJSON($results);
     }
     
-    private function _formatDates($data, $fields) {
-        $time = time();
+    private function _formatDates($data, $now, $fields) {
         foreach ($data as $key => $value) {
             if(is_array($value)) {
-                $data[$key] = $this->_formatDates($value, $fields);
+                $data[$key] = $this->_formatDates($value, $now, $fields);
             } else {
                 if(in_array($key, $fields)) {
                     // FORMAT DATE
-//                    debug(date_parse_from_format("Y-m-d G:i:s", $value));
                     $data_time = strtotime($value);
-                    $delta = $time - $data_time;
+                    $delta = $now - $data_time;
                     if ($delta <= 60000) {
                         $data[$key] = 'now';
-                    } elseif ($delta < 3600000) {
+                    } elseif ($delta < 12 * 60 * 60 * 1000) {
                         $data[$key] = date("G:i", $data_time);
                     } else {
                         $data[$key] = date("d M", $data_time);
