@@ -163,9 +163,9 @@ function AlCtrl($scope, $rootScope, $location, $routeParams, $resource, $filter,
 
 
     var MODES = $resource('/activity_logs/modes');
-//    $rootScope.alModes = MODES.query({}, function(){
-//        $rootScope.alMode = $rootScope.alModes['default'];
-//    });
+    $rootScope.alModes = MODES.query({}, function(){
+        $rootScope.alMode = $rootScope.alModes['default'];
+    });
 
     auth.auth(function(result){
         if (!result) {
