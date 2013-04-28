@@ -59,6 +59,7 @@ class ActivityLogsController extends RESTController {
     }
     
     private function _formatDates($data, $fields) {
+        $time = time();
         foreach ($data as $key => $value) {
             if(is_array($value)) {
                 $data[$key] = $this->_formatDates($value, $fields);
@@ -66,8 +67,16 @@ class ActivityLogsController extends RESTController {
                 if(in_array($key, $fields)) {
                     // FORMAT DATE
 //                    debug(date_parse_from_format("Y-m-d G:i:s", $value));
-                    debug(strtotime($value));
-                    debug(time());
+                    $data_time = strtotime($value);
+                    $delta = $time - $data_time;
+                    if ($delta <= 60) {
+                        $data[$key] = 'now';
+                    } elseif ($delta < 3600) {
+                        $data[$key] = date("G:i", $data_time);
+                    } else {
+                        $data[$key] = date("m/d", $data_time);
+                    }
+                    
                 }
             }
         }
