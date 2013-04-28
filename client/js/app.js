@@ -32,17 +32,8 @@ var app = angular.module('mscproject', [ 'ngResource', 'ngCookies', 'SSUtilities
     $rootScope.REDIRECT_AFTER_LOGIN = '/client/al';
     $rootScope.LOGIN_URI = '/client/login';
 
-    $rootScope.alModes = [];
-    $rootScope.alDefaultMode = "";
-    $rootScope.alMode = "mine";
-
-    var MODES = $resource('/activity_logs/modes');
-//    MODES.query({}, function(data){
-//        console.log("MODES!!");
-//        $rootScope.alModes = data['modes'];
-//        $rootScope.alDefaultMode = data['default'];
-//        $rootScope.alMode = data['default'];
-//    });
+    $rootScope.alModes = null;
+    $rootScope.alMode = "";
 
     $rootScope.getThumbUrl = function(media){
         if(media['Media']['has_thumb']) {
@@ -170,7 +161,11 @@ function supports_html5_storage() {
 
 function AlCtrl($scope, $rootScope, $location, $routeParams, $resource, $filter, auth, DialogService, WindDims) {
 
-    console.log($rootScope.alMode);
+
+    var MODES = $resource('/activity_logs/modes');
+    $rootScope.alModes = MODES.query({}, function(){
+        $rootScope.alMode = $rootScope.alModes['default'];
+    });
 
     auth.auth(function(result){
         if (!result) {
