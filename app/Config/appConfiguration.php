@@ -2,7 +2,7 @@
 
 Configure::write("APPCONFIG", array(
     'roles' => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR', 'ADMIN', 'EXTERNALE'),
-    'activity_logs_modes' => array('all', 'news'=>true, 'mine', 'team', 'public'),
+    'activity_logs_modes' => array( 'modes' => array('all', 'news', 'mine', 'team', 'public'), 'default' => 'mine'),
     'authorization' => array (
         // RESOURCES/Controllers
         "Users" => array( 
