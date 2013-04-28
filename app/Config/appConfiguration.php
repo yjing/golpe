@@ -21,7 +21,8 @@ Configure::write("APPCONFIG", array(
             "add" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR'),
             "update" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR'),
             "edit" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR'),
-            "delete" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR')
+            "delete" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR'),
+            "modes" => true
         ),
         "Comments" => true,
         "Media" => true
