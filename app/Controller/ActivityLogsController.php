@@ -105,7 +105,7 @@ class ActivityLogsController extends RESTController {
         if(isset($this->data[$this->alias]['modified'])) {
             unset($this->data[$this->alias]['modified']);
         }
-        
+        debug($this->data);die();
         $saved = $this->ActivityLog->save($this->request->data);
         $this->_setResponseJSON($saved);
     }
