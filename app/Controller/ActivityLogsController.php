@@ -53,7 +53,7 @@ class ActivityLogsController extends RESTController {
             )
         );
         
-        $results = $this->_formatDates($results, $fields);
+        $results = $this->_formatDates($results, array('created', 'modified'));
         
         $this->_setResponseJSON($results);
     }
