@@ -189,9 +189,7 @@ class ActivityLogsController extends RESTController {
     public function modes() {
         $user = $this->Auth->user();
         $role = $user['role'];
-        
-        $modes = $this->_roles = Configure::read("APPCONFIG.activity_logs_modes");
-        debug($modes);die();
+        $modes = $this->_roles = Configure::read("APPCONFIG.activity_logs_modes.$role");
         $this->_setResponseJSON($modes);
     }
     
