@@ -133,7 +133,7 @@ class ActivityLogsController extends RESTController {
                 $conditions["ActivityLog.visibility_level"] = "PUBLIC";
                 break;
             default: //"mine"
-                $conditions["ActivityLog.user_id"] = $user['id'];
+                $conditions["ActivityLog.user_id"] = $user['User']['id'];
                 break;
         }
         
