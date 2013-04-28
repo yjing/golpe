@@ -53,7 +53,7 @@ class ActivityLogsController extends RESTController {
             )
         );
         
-//        $results = $this->_formatDates($results, time(), array('created', 'modified'));
+        $results = $this->_formatDates($results, time(), array('created', 'modified'));
         
         $this->_setResponseJSON($results);
     }
@@ -68,7 +68,7 @@ class ActivityLogsController extends RESTController {
                     $data_time = strtotime($value);
                     $delta = $now - $data_time;
                     if ($delta <= 60000) {
-                        $data[$key] = 'now';
+                        $data[$key . '_human'] = 'now';
                     } elseif ($delta < 1 * 60 * 60 * 1000) {
                         $data[$key . '_human'] = date("G:i", $data_time);
                     } else {
