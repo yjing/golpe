@@ -107,6 +107,7 @@ class ActivityLogsController extends RESTController {
         
         
         $user = $this->Auth->user();
+        $user = $this->Usser->findById($user['id']);
         
         $mode = "";
         $modes = $this->_roles = Configure::read("APPCONFIG.activity_logs_modes");
@@ -125,7 +126,8 @@ class ActivityLogsController extends RESTController {
                 // RETRIEVE NEWS... TODO
                 break;
             case "team":
-                $conditions["ActivityLog.user_id"] = $this->User->getTeamComponentsId($user['id']);
+                $conditions["Team.id"] = $user['Team']['id'];
+//                $conditions["ActivityLog.user_id"] = $this->User->getTeamComponentsId($user['id']);
                 break;
             case "public":
                 $conditions["ActivityLog.visibility_level"] = "PUBLIC";
@@ -134,20 +136,15 @@ class ActivityLogsController extends RESTController {
                 $conditions["ActivityLog.user_id"] = $user['id'];
                 break;
         }
-//        
-//        
-//        $this->ActivityLog->contain(array(
-//            "Media" => array("id", "user_id", "visibility_level"),
-//            "Comment" => array("id", "user_id", "visibility_level"),
-//            "User" => array("id", "username", "role")
-//        ));
         
-        $this->_setResponseJSON($this->ActivityLog->find('all',
+        $results = $this->ActivityLog->find('all',
             array(
                 'conditions' => $conditions,
                 'recursive' => -1
             )
-        ));
+        );
+        
+        $this->_setResponseJSON($results);
     }
 
     public function view($id = null) {
