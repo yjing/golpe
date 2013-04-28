@@ -52,8 +52,8 @@
                     <span class="label label-important" ng-show="item.ActivityLog.question">Q</span>
                     <span class="label label-success" ng-show="item.Media[0]">M:{{item.Media.length}}</span>
                     <span class="label label-warning" ng-show="item.Comment[0]">C:{{item.Comment.length}}</span>
-                    <span class="">by: {{item.User.username}}</span>
-                    <span class="">team: {{item.Team.name}}</span>
+                    <span class="label label-info" ng-show="item.ActivityLog.visibility_level == 'PUBLIC'">P</span>
+                    <span class="">by: <strong>{{item.User.username}} [{{item.Team.name}}]</strong></span>
                     <em>{{item.ActivityLog.modified}}</em>
                 </a>
             </li>
