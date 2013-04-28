@@ -35,9 +35,7 @@ class ActivityLogsController extends RESTController {
                 // RETRIEVE NEWS... TODO
                 break;
             case "team":
-                $conditions["AUTHTeam.id"] = $team['Team']['id'];
-                $conditions[] = "AUTHUser.id != " . $team['Team']['id'];
-//                $conditions["ActivityLog.user_id"] = $this->User->getTeamComponentsId($user['id']);
+                $conditions["ActivityLog.user_id"] = $this->User->getTeamComponentsId($user['id']);
                 break;
             case "public":
                 $conditions["ActivityLog.visibility_level"] = "PUBLIC";
