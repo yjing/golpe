@@ -152,43 +152,6 @@ class ActivityLogsController extends RESTController {
         
         $user = $this->Session->read("Auth.User");
         
-//        $this->ActivityLog->contain(array(
-//            "Media" => array(
-//                "id", 
-//                "filename", 
-//                "content-type", 
-//                "content-size", 
-//                "status",
-//                "visibility_level",
-//                "created", 
-//                "modified",
-//                "meta",
-//                "has_thumb",
-//                "User" => array("id", "username")
-//            ),
-//            "Comment" => array(
-//                "id", 
-//                "content",
-//                "visibility_level", 
-//                "created", 
-//                "modified",
-//                "User" => array("id", "username"),
-//                "Media" => array(
-//                    "id", 
-//                    "filename", 
-//                    "content-type", 
-//                    "content-size", 
-//                    "status",
-//                    "visibility_level",
-//                    "created", 
-//                    "modified",
-//                    "meta",
-//                    "User" => array("id", "username")
-//                )
-//            ),
-//            "User" => array("id", "username", "role", "created", "modified")
-//        ));
-        
         $this->_setResponseJSON($this->ActivityLog->find('first',
             array(
                 'conditions' => array(
@@ -224,7 +187,10 @@ class ActivityLogsController extends RESTController {
     }
     
     public function modes() {
-        $modes = $this->_roles = Configure::read("APPCONFIG.activity_logs_modes");
+        $user = $this->Auth->user();
+        $role = $user['role'];
+        
+        $modes = $this->_roles = Configure::read("APPCONFIG.activity_logs_modes.$role");
         $this->_setResponseJSON($modes);
     }
     
