@@ -126,7 +126,7 @@ class ActivityLogsController extends RESTController {
                 // RETRIEVE NEWS... TODO
                 break;
             case "team":
-                $conditions["Team.id"] = $team['Team']['id'];
+                $conditions["AUTHTeam.id"] = $team['Team']['id'];
 //                $conditions["ActivityLog.user_id"] = $this->User->getTeamComponentsId($user['id']);
                 break;
             case "public":
