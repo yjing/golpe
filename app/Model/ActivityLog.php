@@ -14,6 +14,18 @@ class ActivityLog extends UserAwareModel {
     public $useTable = "activity_logs";
     public $actsAs = array('Containable', 'HasMedia', 'HahManyThroughHABTM' => array('Media', 'Comment'));
  
+    public function beforeSave($options = array()) {
+        
+        if(isset($this->data[$this->alias]['created'])) {
+            unset($this->data[$this->alias]['created']);
+        }
+        if(isset($this->data[$this->alias]['modified'])) {
+            unset($this->data[$this->alias]['modified']);
+        }
+        
+        parent::beforeSave($options);
+    }
+    
 }
 
 ?>
