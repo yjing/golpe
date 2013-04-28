@@ -41,7 +41,7 @@
 
     <div class="row-fluid content" ng-hide="al" style="width: 100%">
         <select ng-show="alModes != null" ng-model="alMode" ng-change="updateMode();">
-            <option ng-repeat="m in alModes">{{m}}</option>
+            <option ng-repeat="m in alModes.modes">{{m}}</option>
         </select>
         <ul class="nav nav-tabs nav-stacked">
             <li ng-repeat="item in activityLogs | orderBy:predicate:reverse">
