@@ -14,98 +14,6 @@ class ActivityLogsController extends RESTController {
     public function index() {
         parent::index();
         
-//        $db = $this->User->getDataSource();
-//        $u = $db->fullTableName($this->ActivityLog);
-//        $d = $db->fullTableName($this->ActivityLogMedia);
-//        debug($u);
-//        debug($d);
-//        
-//        $r = $db->buildStatement(
-//            array(
-//                'fields' => array('ActivityLog.*, User.*, Team.*'),
-//                'table' => $db->fullTableName($this->ActivityLog),
-//                'alias' => 'ActivityLog',
-//                'group' => array(),
-//                'conditions' => array(),
-//                'order' => null,
-//                'limit' => null,
-//                'joins' => array(
-//                    array(
-//                        'table' => "users",
-//                        'alias' => 'User',
-//                        'type' => 'LEFT',
-//                        'conditions' => array('ActivityLog.user_id = User.id')
-//                    ),
-//                    array(
-//                        'table' => "teams_users",
-//                        'alias' => 'tu',
-//                        'type' => 'LEFT',
-//                        'conditions' => array('User.id = tu.user_id')
-//                    ),
-//                    array(
-//                        'table' => "teams",
-//                        'alias' => 'Team',
-//                        'type' => 'LEFT',
-//                        'conditions' => array('Team.id = tu.team_id')
-//                    )
-//                )
-//            ),
-//            $this->ActivityLog
-//        );
-//        
-//        $r = $this->ActivityLog->query($r);
-//        debug($r);
-//        $user = $this->Auth->user();
-//        $team = $this->User->getTeam($user['id']);
-//        debug($user);
-//        debug($team);
-//        
-//        $r = $this->ActivityLog->find('all', 
-//            array(
-//                'fields' => array('ActivityLog.*', 'AUTHUser.*', 'AUTHTeam.*'),
-////                'table' => $db->fullTableName($this->ActivityLog),
-////                'alias' => 'ActivityLog',
-////                'group' => array(),
-//                'conditions' => array("OR"=>array('AUTHTeam.id' => $team['Team']['id'], 'AUTHUser.id' => $user['id'])),
-////                'order' => null,
-////                'limit' => null,
-////                'recursive' => -1,
-//                'joins' => array(
-//                    array(
-//                        'table' => "users",
-//                        'alias' => 'AUTHUser',
-//                        'type' => 'LEFT',
-//                        'conditions' =>array(
-//                            '`ActivityLog`.`user_id` = `AUTHUser`.`id`'
-//                        )
-//                    ),
-//                    array(
-//                        'table' => "teams_users",
-//                        'alias' => 'tu',
-//                        'type' => 'LEFT',
-//                        'conditions' => array('AUTHUser.id = tu.user_id')
-//                    ),
-//                    array(
-//                        'table' => "teams",
-//                        'alias' => 'AUTHTeam',
-//                        'type' => 'LEFT',
-//                        'conditions' => array('AUTHTeam.id = tu.team_id')
-//                    )
-//                )
-//            )    
-//        );
-//        
-//        $active_logs = $this->ActivityLog->find('all', array(
-//            'fields' => array('ActivityLog.id','ActivityLog.title'),
-//            'conditions' => 'ActivityLog.modified >= '. (time() - (7 * 24 * 60 * 60)),
-//            'recursive' => -1
-//        ));
-//        
-//        debug($active_logs);
-//        die();
-        
-        
-        
         $user = $this->Auth->user();
         $team = $this->User->getTeam($user['id']);
         
@@ -144,7 +52,23 @@ class ActivityLogsController extends RESTController {
             )
         );
         
+        $results = $this->_formatDates($results, $fields);
+        
         $this->_setResponseJSON($results);
+    }
+    
+    private function _formatDates($data, $fields) {
+        foreach ($data as $key => $value) {
+            if(is_array($value)) {
+                $data[$key] = $this->_formatDates($value, $fields);
+            } else {
+                if(in_array($key, $fields)) {
+                    // FORMAT DATE
+                    debug($value);
+                }
+            }
+        }
+        return $data;
     }
 
     public function view($id = null) {
