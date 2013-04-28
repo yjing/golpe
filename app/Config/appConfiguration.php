@@ -1,9 +1,13 @@
 <?php
 
 Configure::write("APPCONFIG", array(
-    'roles' => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR', 'ADMIN', 'EXTERNALE'),
+    'roles' => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR', 'ADMIN', 'EXTERNAL'),
     'activity_logs_modes' => array( 
         'STUDENT' => array(
+            'modes' => array('all', 'news', 'mine', 'team', 'public'), 
+            'default' => 'news'
+        ),
+        'TEAM_LEADER' => array(
             'modes' => array('all', 'news', 'mine', 'team', 'public'), 
             'default' => 'news'
         ),
@@ -12,6 +16,10 @@ Configure::write("APPCONFIG", array(
             'default' => 'news'
         ),
         'ADMIN' => array(
+            'modes' => array('public'), 
+            'default' => 'public'
+        ),
+        'EXTERNAL' => array(
             'modes' => array('public'), 
             'default' => 'public'
         )
