@@ -24,7 +24,7 @@ class ActivityLogsController extends RESTController {
             $mode = $this->request->query['mode'];
         }
         if(!in_array($mode, $modes[$role]['modes'])) {
-            $mode = $modes['default'];
+            $mode = $modes[$role]['default'];
         }
         
         $conditions = array();
