@@ -13,16 +13,6 @@ class ActivityLog extends UserAwareModel {
     public $name = 'ActivityLog';
     public $useTable = "activity_logs";
     public $actsAs = array('Containable', 'HasMedia', 'HahManyThroughHABTM' => array('Media', 'Comment'));
-
-//    public $belongsTo = "User";
-//    public $hasAndBelongsToMany = array(
-//        "Media" => array(
-//            'order' => 'Media.modified DESC'
-//        ) 
-//        ,"Comment" => array(
-//            'order' => 'Comment.modified DESC'
-//        )
-//    );
     
 }
 
