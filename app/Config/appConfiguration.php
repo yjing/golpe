@@ -10,6 +10,10 @@ Configure::write("APPCONFIG", array(
         'SUPERVISOR' => array(
             'modes' => array('all', 'news', 'public'), 
             'default' => 'news'
+        ),
+        'ADMIN' => array(
+            'modes' => array('public'), 
+            'default' => 'public'
         )
     ),
     'authorization' => array (
