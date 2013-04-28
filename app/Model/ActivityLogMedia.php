@@ -9,6 +9,11 @@ class ActivityLogMedia extends AppModel {
     public $belongsTo = array('ActivityLog','Media');
     
 
+    public function beforeSave($options = array()) {
+        parent::beforeSave($options);
+        debug($this->data);
+        die();
+    }
 }
 
 ?>
