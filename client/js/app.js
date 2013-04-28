@@ -37,12 +37,12 @@ var app = angular.module('mscproject', [ 'ngResource', 'ngCookies', 'SSUtilities
     $rootScope.alMode = "mine";
 
     var MODES = $resource('/activity_logs/modes');
-    MODES.query({}, function(data){
-        console.log("MODES!!");
-        $rootScope.alModes = data['modes'];
-        $rootScope.alDefaultMode = data['default'];
-        $rootScope.alMode = data['default'];
-    });
+//    MODES.query({}, function(data){
+//        console.log("MODES!!");
+//        $rootScope.alModes = data['modes'];
+//        $rootScope.alDefaultMode = data['default'];
+//        $rootScope.alMode = data['default'];
+//    });
 
     $rootScope.getThumbUrl = function(media){
         if(media['Media']['has_thumb']) {
