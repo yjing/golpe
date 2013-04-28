@@ -65,7 +65,7 @@ class ActivityLogsController extends RESTController {
             } else {
                 if(in_array($key, $fields)) {
                     // FORMAT DATE
-                    debug($value + 1);
+                    debug(date_parse_from_format("Y-m-d G:i:s", $value));
                 }
             }
         }
