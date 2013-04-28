@@ -28,12 +28,20 @@ var app = angular.module('mscproject', [ 'ngResource', 'ngCookies', 'SSUtilities
     // configure html5 to get links working
     // If you don't do this, you URLs will be base.com/#/home rather than base.com/home
     $locationProvider.html5Mode(true).hashPrefix('!');
-}).run(function($rootScope) {
+}).run(function($rootScope, $resource) {
     $rootScope.REDIRECT_AFTER_LOGIN = '/client/al';
     $rootScope.LOGIN_URI = '/client/login';
 
-    $rootScope.alModes = ["mine", "team", "public"];
-    $rootScope.alMode = "mine";
+    $rootScope.alModes = [];
+    $rootScope.alDefaultMode = "";
+    $rootScope.alMode = "";
+
+    var MODES = $resource('/activity_logs/modes');
+    MODES.query(function(data){
+        $rootScope.alModes = data['modes'];
+        $rootScope.alDefaultMode = data['default'];
+        $rootScope.alMode = data['default'];
+    });
 
     $rootScope.getThumbUrl = function(media){
         if(media['Media']['has_thumb']) {
