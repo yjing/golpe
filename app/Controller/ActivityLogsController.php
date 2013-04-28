@@ -69,6 +69,7 @@ class ActivityLogsController extends RESTController {
 //                    debug(date_parse_from_format("Y-m-d G:i:s", $value));
                     $data_time = strtotime($value);
                     $delta = $time - $data_time;
+                    debug($delta);
                     if ($delta <= 60) {
                         $data[$key] = 'now';
                     } elseif ($delta < 3600) {
