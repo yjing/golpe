@@ -191,7 +191,7 @@ class ActivityLogsController extends RESTController {
                 'conditions' => array(
                     'ActivityLog.id' => $id
                 ),
-                'recursive' => 2
+                'recursive' => -1
             )
         ));
     }
@@ -221,7 +221,8 @@ class ActivityLogsController extends RESTController {
     }
     
     public function modes() {
-        $this->_setResponseJSON(array('deleted'=>$deleted));
+        $modes = $this->_roles = Configure::read("APPCONFIG.activity_logs_modes");
+        $this->_setResponseJSON($modes);
     }
     
 }
