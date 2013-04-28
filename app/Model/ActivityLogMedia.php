@@ -17,7 +17,7 @@ class ActivityLogMedia extends AppModel {
         if(isset($this->data[$this->alias]['modified'])) {
             unset($this->data[$this->alias]['modified']);
         }
-        return true;
+        return $this->data;
     }
 }
 
