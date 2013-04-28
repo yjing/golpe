@@ -99,11 +99,11 @@ class ActivityLogsController extends RESTController {
     public function add() {
         parent::add();
         
-        if(isset($this->ActivityLog->data[$this->alias]['created'])) {
-            unset($this->ActivityLog->data[$this->alias]['created']);
+        if(isset($this->data[$this->alias]['created'])) {
+            unset($this->data[$this->alias]['created']);
         }
-        if(isset($this->ActivityLog->data[$this->alias]['modified'])) {
-            unset($this->ActivityLog->data[$this->alias]['modified']);
+        if(isset($this->data[$this->alias]['modified'])) {
+            unset($this->data[$this->alias]['modified']);
         }
         
         $saved = $this->ActivityLog->save($this->request->data);
