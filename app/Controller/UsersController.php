@@ -16,7 +16,7 @@ class UsersController extends RESTController {
         $result = $this->User->find('all');
         $result = Set::remove($result, '{n}.User.password');
         $result = Set::remove($result, '{n}.Supervisor.{n}.Supervisor.password');
-        $this->_setResponseJSON();
+        $this->_setResponseJSON($result);
     }
 
     public function view($id = null) {
