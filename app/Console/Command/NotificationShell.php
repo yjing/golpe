@@ -1,7 +1,7 @@
 <?php
 
 App::import('Component', 'Notification');
-require_once '../../../lib/Cake/Controller/ComponentCollection.php';
+App::import('Component', 'ComponentController');
 class NotificationShell extends AppShell {
     
     public function notify() {
