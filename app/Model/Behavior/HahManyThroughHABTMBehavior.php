@@ -72,8 +72,6 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
         }
         $query['fields'][] = '\'' . $HABTMrecursive . '\' as HABTMrecursive';
         
-        debug($query);
-        
         $this->query = $query;
         return $query;
     }
@@ -82,9 +80,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
         parent::afterFind($model, $results, $primary);
         
         foreach ($results as $i => $element) {
-            debug($element);
             $HABTMrecursive = $element[0]['HABTMrecursive'];
-            debug($HABTMrecursive);
             if($HABTMrecursive > 0) {
                 $element_id = $element[$model->alias]['HahManyThroughHABTM_ID'];
 
@@ -111,6 +107,8 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                         'HABTMrecursive' => $HABTMrecursive - 1,
                     ));
 
+                    debug($target_list);die();
+                    
                     $results[$i][$target_model->alias] = $target_list;
 
                 }
