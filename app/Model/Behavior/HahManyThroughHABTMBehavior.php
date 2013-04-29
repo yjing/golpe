@@ -71,7 +71,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
         if(isset($query['HABTMrecursive'])) {
             $HABTMrecursive = $query['HABTMrecursive'];
         }
-        $query['fields'][] = '\'' . $HABTMrecursive . '\' as HABTMrecursive';
+//        $query['fields'][] = '\'' . $HABTMrecursive . '\' as HABTMrecursive';
         
         $this->query = $query;
         return $query;
@@ -81,8 +81,8 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
         parent::afterFind($model, $results, $primary);
         
         foreach ($results as $i => $element) {
-            $HABTMrecursive = $element[0]['HABTMrecursive'];
-            if($HABTMrecursive > 0) {
+//            $HABTMrecursive = $element[0]['HABTMrecursive'];
+//            if($HABTMrecursive > 0) {
                 $element_id = $element[$model->alias]['HahManyThroughHABTM_ID'];
 
                 foreach ($this->settings[$model->alias] as $target_name => $target_meta) {
@@ -106,7 +106,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                         'joins' => array($join),
                         'conditions' => $conditions,
                         'recursive' => -1,
-                        'HABTMrecursive' => $HABTMrecursive - 1,
+//                        'HABTMrecursive' => $HABTMrecursive - 1,
                     ));
                     
                     foreach ($target_list as $key => $value) {
@@ -119,12 +119,10 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                     
 
                 }
-//                debug($results[$i][$model->alias]);
-//                debug($i);
-                unset($results[$i][$model->alias]['HahManyThroughHABTM_ID']);
-//                debug($results[$i][$model->alias]);
                 
-            }
+                unset($results[$i][$model->alias]['HahManyThroughHABTM_ID']);
+                
+//            }
             unset($results[$i][0]);
             
         }
