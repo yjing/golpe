@@ -357,11 +357,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `supervisors_students`
+-- Table `students_supervisors`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `supervisors_students` ;
+DROP TABLE IF EXISTS `students_supervisors` ;
 
-CREATE  TABLE IF NOT EXISTS `supervisors_students` (
+CREATE  TABLE IF NOT EXISTS `students_supervisors` (
   `student_id` INT UNSIGNED NOT NULL ,
   `supervisor_id` INT UNSIGNED NOT NULL ,
   PRIMARY KEY (`student_id`, `supervisor_id`) ,
@@ -377,9 +377,9 @@ CREATE  TABLE IF NOT EXISTS `supervisors_students` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_users_has_users_users2_idx` ON `supervisors_students` (`supervisor_id` ASC) ;
+CREATE INDEX `fk_users_has_users_users2_idx` ON `students_supervisors` (`supervisor_id` ASC) ;
 
-CREATE INDEX `fk_users_has_users_users1_idx` ON `supervisors_students` (`student_id` ASC) ;
+CREATE INDEX `fk_users_has_users_users1_idx` ON `students_supervisors` (`student_id` ASC) ;
 
 
 
@@ -437,10 +437,18 @@ INSERT INTO `teams_users` (`team_id`, `user_id`, `team_leader`) VALUES (1, 1, tr
 COMMIT;
 
 -- -----------------------------------------------------
--- Data for table `supervisors_students`
+-- Data for table `activity_logs`
 -- -----------------------------------------------------
 START TRANSACTION;
-INSERT INTO `supervisors_students` (`student_id`, `supervisor_id`) VALUES (1, 3);
-INSERT INTO `supervisors_students` (`student_id`, `supervisor_id`) VALUES (4, 3);
+INSERT INTO `activity_logs` (`id`, `title`, `content`, `visibility_level`, `question`, `draft`, `user_id`, `created`, `modified`) VALUES (1, 'Default AL', 'This Active Log is inserted by default on DB construction', 'SUPERVISOR', true, false, 1, '2013-03-23 13:14:51', '2013-03-23 13:14:51');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `students_supervisors`
+-- -----------------------------------------------------
+START TRANSACTION;
+INSERT INTO `students_supervisors` (`student_id`, `supervisor_id`) VALUES (1, 3);
+INSERT INTO `students_supervisors` (`student_id`, `supervisor_id`) VALUES (4, 3);
 
 COMMIT;
