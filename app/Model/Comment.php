@@ -105,7 +105,6 @@ class Comment extends UserAwareModel {
         $this->getDataSource()->commit();
         $this->targetModel->getDataSource()->commit();
         $this->joinModel->getDataSource()->commit();
-        debug("COMMIT");
     }
     
 }
