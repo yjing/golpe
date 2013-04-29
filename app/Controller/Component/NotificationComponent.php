@@ -13,10 +13,14 @@ class NotificationComponent extends Component {
     
     public function notify($type, $id, $options = array()) {
         $notification = array(
-            'type' => $type,
-            'resource_id' => $id,
-            'message' => '',
-            'priority' => false
+            'Notification' => array(
+                'type' => $type,
+                'resource_id' => $id,
+                'message' => '',
+                'priority' => false,
+                'public' => false,
+                'to' => ""
+            )
         );
         $notification_users = array();
         
@@ -33,9 +37,9 @@ class NotificationComponent extends Component {
                     break;
                 }
                 
-                $notification['ActivityLog'] = $element['ActivityLog']['title'];
+                $notification['Notification']['message'] = $element['ActivityLog']['title'];
                 if($element['ActivityLog']['question']) {
-                    $notification['priority'] = true;
+                    $notification['Notification']['priority'] = true;
                 }
                 
                 if(in_array($visibility_level, array('SUPERVISOR'))) {
@@ -52,11 +56,12 @@ class NotificationComponent extends Component {
                     }
                 }
                 
-                if(in_array($visibility_level, array('PUBLIC'))) {
+                if($visibility_level == 'PUBLIC') {
+                    $notification['Notification']['public'] = true;
                 }
+                $notification['Notification']['to'] = implode($notification_users, ', ');
                 
                 debug($notification);
-                debug($notification_users);
 
                 break;
 
