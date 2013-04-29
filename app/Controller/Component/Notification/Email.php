@@ -63,23 +63,56 @@ class Email implements NotificationProvider {
             'recursive' => -1
         ));
         $emails = Set::extract('/User/email', $emails);
+        $this->_sendEmail($emails, $notifications);
         
-        $email_body = "There's some news for you: <br><br>\n";
+//        $email_body = "There's some news for you: <br><br>\n";
+//        foreach ($notifications as $key => $value) {
+//            $resource = split(':', $value['Notification']['resource']);
+//            $message = $value['Notification']['message'];
+//            $email_body = $email_body . 
+//            "<a href='http://mscazure.dyndns.org/client/al/$resource[1]'>[ $message ]</a><br>\n";
+//        }
+//            
+//        $Email = new CakeEmail();
+//        $Email->from(array('notifier@mscazure.dyndns.org' => 'MSCProject Notifier'))
+//            ->to('notifier@mscazure.dyndns.org')
+//            ->bcc($emails)
+//            ->subject('Notifications')
+//            ->emailFormat('html')
+//            ->send($email_body);
+        
+    }
+    
+    private function _sendEmail($emails, $notifications, $subject = "Notifications") {
+        
+        $inset = "<p class='lead'>There's some news for you: </p><p>";
         foreach ($notifications as $key => $value) {
             $resource = split(':', $value['Notification']['resource']);
             $message = $value['Notification']['message'];
-            $email_body = $email_body . 
-            "<a href='http://mscazure.dyndns.org/client/al/$resource[1]'>[ $message ]</a><br>\n";
+            $inset .= "<a href='http://mscazure.dyndns.org/client/al/$resource[1]'>[ $message ]</a><br>\n";
         }
-            
+        $inset .= "</p>";
+        
+        $email_body = str_replace('##BODY##', $inset, Email::$email_template);
+        
         $Email = new CakeEmail();
         $Email->from(array('notifier@mscazure.dyndns.org' => 'MSCProject Notifier'))
             ->to('notifier@mscazure.dyndns.org')
             ->bcc($emails)
-            ->subject('Notifications')
+            ->subject($subject)
             ->emailFormat('html')
             ->send($email_body);
-        
     }
     
+    private static $email_template = '
+        <html>
+            <head>
+                <!-- Bootstrap -->
+                <link href="http://mscazure.dyndns.org/client/css/bootstrap.css" rel="stylesheet" media="screen">
+            </head>
+            <body>
+                ##BODY##
+            </body>
+        </html>
+    ';
 }
