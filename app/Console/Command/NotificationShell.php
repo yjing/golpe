@@ -8,7 +8,7 @@ class NotificationShell extends AppShell {
     public function notify() {
         $Collection = new ComponentCollection();
 //        $Collection->init(new AppController());
-        $Notification = new NotificationComponent($Collection, array('test'=>'test'));
+        $Notification = new NotificationComponent($Collection, array('Email'));
         $Notification->notify();
         
     }
