@@ -37,6 +37,9 @@ abstract class UserAwareModel extends AppModel {
         parent::beforeFind($queryData);
         
         $user = CakeSession::read('Auth.User');
+        if($user['role'] == 'SHELL') {
+            return $queryData;
+        }
         $team = $this->User->getTeam($user['id']);
         
         if($queryData['fields'] == null) {
