@@ -40,12 +40,11 @@ class MediaController extends RESTController {
             $this->_ReportValidationErrors($id);
         }
         
-        $this->Media->recursive = -1;
         $result = $this->Media->find('first', array(
             'conditions' => array(
                 'Media.id' => $id
             ),
-            'recursive' => 0
+            'recursive' => -1
         ));
         
         if($result) {
