@@ -7,9 +7,9 @@ class Email implements NotificationProvider {
         foreach ($notifications as $key => $value) {
             $ids = split(", ", $value['Notification']['to']);
             debug($ids);
-            array_merge($user_ids, $ids);
+            $user_ids = array_merge($user_ids, $ids);
         }
-        debug($user_ids);
+        debug(array_unique($user_ids));
     }
     
 }
