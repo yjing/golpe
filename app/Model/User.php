@@ -3,7 +3,6 @@
 // app/Model/User.php
 class User extends AppModel {
 
-    public $hasAndBelongsToMany = array('Team');
     public $actsAs = array(
         'HahManyThroughHABTM' => array(
             'Supervisor' => array(
