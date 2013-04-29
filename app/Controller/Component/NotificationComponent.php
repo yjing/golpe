@@ -15,16 +15,18 @@ class NotificationComponent extends Component {
     
     public function notify() {
         
-        debug($this->settings);die();
-        
         $this->Notification = new Notification();
         $result = $this->Notification->find('all', array(
             'recursive' => -1
         ));
         
-        App::uses('Email', 'Controller/Component/Notification');
-        $Email = new Email();
-        $Email->notify($result);
+        foreach ($this->settings as $value) {
+            App::uses($value, 'Controller/Component/Notification');
+            $target_class = new ReflectionClass($value);
+            $provider = $target_class->newInstanceArgs();
+            $provider->notify($result);
+        }
+        
         
     }
 
