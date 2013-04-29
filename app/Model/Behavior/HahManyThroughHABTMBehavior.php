@@ -107,7 +107,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                         'HABTMrecursive' => $HABTMrecursive - 1,
                     ));
 
-                    debug($target_list);die();
+                    debug($target_list);
                     
                     $results[$i][$target_model->alias] = $target_list;
 
