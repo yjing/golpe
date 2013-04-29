@@ -1,8 +1,8 @@
 <?php
-App::uses('Model', 'ActivityLog');
-App::uses('Model', 'Comment');
-App::uses('Model', 'User');
-App::uses('Model', 'Notification');
+App::import('Model', 'ActivityLog');
+App::import('Model', 'Comment');
+App::import('Model', 'User');
+App::import('Model', 'Notification');
 class NotificationComponent extends Component {
     
     private $Notification = null;
