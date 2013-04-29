@@ -109,7 +109,6 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                         'HABTMrecursive' => $HABTMrecursive - 1,
                     ));
                     
-//                    $results[$i][$target_model->alias] = $target_list;
                     foreach ($target_list as $key => $value) {
                         unset($target_list[$key]);
                         $target_list[$key][$target_meta['target_model_alias']] = $value;
@@ -118,15 +117,10 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                     $results[$i][$target_meta['target_model_alias']] = $target_list;
                     
 
-                    debug("User " . $element_id);
-                    debug($target_list);
-                    debug($results[$i]);
-
                 }
                 unset($results[$i][$model->alias]['HahManyThroughHABTM_ID']);
                 
             }
-            unset($results[$i][0]['HABTMrecursive']);
             unset($results[$i][0]);
             
         }
