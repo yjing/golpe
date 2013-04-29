@@ -53,7 +53,7 @@ class Email implements NotificationProvider {
                 ->bcc($email_address)
                 ->subject('Notifications')
                 ->emailFormat('html')
-                ->send('Test');
+                ->send($email_body);
         }
     }
     
