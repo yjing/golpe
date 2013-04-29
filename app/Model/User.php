@@ -7,7 +7,7 @@ class User extends AppModel {
         'HahManyThroughHABTM' => array(
             'Supervisor' => array(
                 'target_model_name' => 'User',
-                'join_table_name'=> 'supervisors_students',
+                'join_table_name'=> 'students_supervisors',
                 'join_type' => 'LEFT',
                 'target_fk' => 'supervisor_id',
                 'model_fk' => 'student_id'
