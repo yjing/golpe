@@ -365,23 +365,24 @@ CREATE  TABLE IF NOT EXISTS `students_supervisors` (
   `student_id` INT UNSIGNED NOT NULL ,
   `supervisor_id` INT UNSIGNED NOT NULL ,
   PRIMARY KEY (`student_id`, `supervisor_id`) ,
-  CONSTRAINT `fk_users_has_users_users1`
+  CONSTRAINT `fk_users_has_users_users3`
     FOREIGN KEY (`student_id` )
     REFERENCES `users` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_users_has_users_users2`
+  CONSTRAINT `fk_users_has_users_users4`
     FOREIGN KEY (`supervisor_id` )
     REFERENCES `users` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_users_has_users_users2_idx` ON `students_supervisors` (`supervisor_id` ASC) ;
+CREATE INDEX `fk_users_has_users_users4_idx` ON `students_supervisors` (`supervisor_id` ASC) ;
 
-CREATE INDEX `fk_users_has_users_users1_idx` ON `students_supervisors` (`student_id` ASC) ;
+CREATE INDEX `fk_users_has_users_users3_idx` ON `students_supervisors` (`student_id` ASC) ;
 
 
+GRANT ALL ON ``.* TO 'mscproject';
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
