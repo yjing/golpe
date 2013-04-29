@@ -13,12 +13,10 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
             if(isset($options['target_model_name'])) {
                 App::import('Model', $options['target_model_name']);
                 $target_class = new ReflectionClass($options['target_model_name']);
-//                $target_model = $target_class->newInstanceArgs();
             } else {
                 $target_model_name = $target_name;
                 App::import('Model', $target_name);
                 $target_class = new ReflectionClass($target_name);
-//                $target_model = $target_class->newInstanceArgs();
             }
             
             if(isset($options['join_table_name'])) {
@@ -40,18 +38,21 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
             } else {
                 $model_fk = Inflector::underscore($Model->alias) . '_' . $Model->primaryKey;
             }
+            
+            if(isset($options['join_type'])) {
+                $join_type = $options['join_type'];
+            } else {
+                $join_type = 'LEFT';
+            }
 
             $settings[$target_name] = array(
                 'target_model_class' => $target_class,
                 'target_model_alias' => $target_name,
                 'join_table_name' => $join_table_name,
+                'join_type' => $join_type,
                 'target_fk' => $target_fk,
                 'model_fk' => $model_fk
             );
-            
-            if(isset($options['join_type'])) {
-                $settings[$target_name]['join_type'] = $options['join_type'];
-            }
         }
         
         $this->settings[$Model->alias] = $settings;
@@ -92,6 +93,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                     $join = array(
                         'table' => $target_meta['join_table_name'],
                         'alias' => 'join',
+                        'type' => $target_meta['join_type'],
                         'conditions' => 'join.' . $target_meta['target_fk'] . ' = ' 
                         . $target_model->alias . '.' . $target_model->primaryKey
                     );
