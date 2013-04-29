@@ -29,7 +29,7 @@ abstract class UserAwareModel extends AppModel {
             $this->data[$this->alias]['user_id'] = $user['id'];
             $res = $res && true;
         }
-//        
+        
         return $res;
     }
     
