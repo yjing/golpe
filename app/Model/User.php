@@ -4,6 +4,16 @@
 class User extends AppModel {
 
     public $hasAndBelongsToMany = array('Team');
+    public $actAs = array(
+        'HahManyThroughHABTM' => array(
+            'Supervisor' => array(
+                'target_model_name' => 'User',
+                'join_table_name'=> 'supervisors_students',
+                'target_fk' => 'supervisor_id',
+                'model_fk' => 'student_id'
+            )
+        )
+    );
     
     public $validate = array(
         'username' => array(
