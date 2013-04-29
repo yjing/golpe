@@ -39,21 +39,8 @@ class Email implements NotificationProvider {
             
             $this->User->id = $user_id;
             $email_address = $this->User->field('email');
-            $email_body = "There's some news for you: <br><br>\n";
-            foreach ($notification as $key => $value) {
-                $resource = split(':', $value['Notification']['resource']);
-                $message = $value['Notification']['message'];
-                $email_body = $email_body . 
-                "<a href='http://mscazure.dyndns.org/client/al/$resource[1]'>[ $message ]</a><br>\n";
-            }
+            $this->_sendEmail($email_address, $notification);
             
-//            $Email = new CakeEmail();
-//            $Email->from(array('notifier@mscazure.dyndns.org' => 'MSCProject Notifier'))
-//                ->to('notifier@mscazure.dyndns.org')
-//                ->bcc($email_address)
-//                ->subject('Notifications')
-//                ->emailFormat('html')
-//                ->send($email_body);
         }
     }
     
@@ -64,23 +51,6 @@ class Email implements NotificationProvider {
         ));
         $emails = Set::extract('/User/email', $emails);
         $this->_sendEmail($emails, $notifications);
-        
-//        $email_body = "There's some news for you: <br><br>\n";
-//        foreach ($notifications as $key => $value) {
-//            $resource = split(':', $value['Notification']['resource']);
-//            $message = $value['Notification']['message'];
-//            $email_body = $email_body . 
-//            "<a href='http://mscazure.dyndns.org/client/al/$resource[1]'>[ $message ]</a><br>\n";
-//        }
-//            
-//        $Email = new CakeEmail();
-//        $Email->from(array('notifier@mscazure.dyndns.org' => 'MSCProject Notifier'))
-//            ->to('notifier@mscazure.dyndns.org')
-//            ->bcc($emails)
-//            ->subject('Notifications')
-//            ->emailFormat('html')
-//            ->send($email_body);
-        
     }
     
     private function _sendEmail($emails, $notifications, $subject = "Notifications") {
