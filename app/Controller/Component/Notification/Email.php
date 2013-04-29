@@ -1,6 +1,11 @@
 <?php
 require_once 'NotificationProvider.php';
+
+
+App:import('Model', 'User');
 class Email implements NotificationProvider {
+    
+    private $User = null;
     
     public function notify($notifications) {
         $user_notifications = array();
@@ -22,15 +27,19 @@ class Email implements NotificationProvider {
             }
         }
         
+        $this->User = new User();
+        
         $this->_sendUserNotifications($user_notifications);
         $this->_sendPabilcNotifications($public_notifications);
-        
-        debug($user_notifications);
         
     }
     
     private function _sendUserNotifications($notifications) {
-        
+        foreach ($notifications as $user_id => $notification) {
+            $this->User->id = $user_id;
+            $email = $this->User->field('email');
+            debug($email);
+        }
     }
     
     private function _sendPabilcNotifications($notifications) {
