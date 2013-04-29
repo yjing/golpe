@@ -5,7 +5,7 @@ App::import('Controller', 'REST');
 class ActivityLogsController extends RESTController {
 
     public $uses = array('ActivityLog', 'TeamUser', 'User');
-    public $components = array('Session', 'RequestHandler');
+    public $components = array('Session', 'RequestHandler', 'Notification');
     
     public function beforeFilter() {
         parent::beforeFilter();
