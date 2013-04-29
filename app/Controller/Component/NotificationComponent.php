@@ -10,10 +10,14 @@ class NotificationComponent extends Component {
     private $User = null;
     
     public function initialize(Controller $controller) {
-        debug($controller->components['Notification']);
     }
     
-    public function notify($type, $id, $options = array()) {
+    public function notify() {
+        debug("NOTIFICATIONS");
+    }
+
+
+    public function createNotification($type, $id, $options = array()) {
         $notification = array(
             'Notification' => array(
                 'type' => $type,
@@ -65,7 +69,6 @@ class NotificationComponent extends Component {
                 
                 $this->Notification = new Notification();
                 $result = $this->Notification->save($notification);
-                debug($result);
 
                 break;
 
