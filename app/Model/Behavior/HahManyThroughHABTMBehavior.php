@@ -63,6 +63,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
         parent::beforeFind($model, $query);
         
         if($query['fields'] == null) {
+            $query['fields'] = array();
             $query['fields'][] = $model->alias . '.*';
         }
         $query['fields'][] = $model->alias . '.id as HahManyThroughHABTM_ID';
