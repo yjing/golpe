@@ -1,7 +1,7 @@
 <?php
 require_once 'NotificationProvider.php';
 
-
+App::uses('CakeEmail', 'Network/Email');
 App::import('Model', 'User');
 class Email implements NotificationProvider {
     
@@ -36,9 +36,15 @@ class Email implements NotificationProvider {
     
     private function _sendUserNotifications($notifications) {
         foreach ($notifications as $user_id => $notification) {
+            
             $this->User->id = $user_id;
             $email = $this->User->field('email');
-            debug($email);
+            
+            $Email = new CakeEmail();
+            $Email->from(array('notifier@mscazure.dyndns.org' => 'MSCProject'))
+                ->to($email)
+                ->subject('Notifications')
+                ->send('Test');
         }
     }
     
