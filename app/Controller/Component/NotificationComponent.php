@@ -22,12 +22,7 @@ class NotificationComponent extends Component {
                     'recursive' => -1
                 ));
                 debug($element);
-                $team_users = $this->User->find('all', array(
-                    'conditions' => array(
-                        'Team.id' => $element['Team']['id']
-                    ),
-                    'recursive' => -1
-                ));
+                $team_users = $this->User->getTeamComponents();
                 debug($team_users);
 //                $team_users = $this->User->find('all', array(
 //                    'conditions' => array(
