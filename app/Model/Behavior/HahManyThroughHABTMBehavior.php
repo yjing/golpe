@@ -83,7 +83,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
         
         foreach ($results as $i => $element) {
             debug($element);
-            $HABTMrecursive = $element[$model->alias]['HABTMrecursive'];
+            $HABTMrecursive = $element[0]['HABTMrecursive'];
             debug($HABTMrecursive);
             if($HABTMrecursive > 0) {
                 $element_id = $element[$model->alias]['HahManyThroughHABTM_ID'];
@@ -117,7 +117,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                 unset($results[$i][$model->alias]['HahManyThroughHABTM_ID']);
                 
             }
-            unset($results[$i][$model->alias]['HABTMrecursive']);
+            unset($results[$i][0]['HABTMrecursive']);
             
         }
                 
