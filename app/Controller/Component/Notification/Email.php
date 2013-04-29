@@ -42,9 +42,9 @@ class Email implements NotificationProvider {
             $email_body = "There's some news for you: <br><br>\n";
             foreach ($notification as $key => $value) {
                 $resource = split(':', $value['Notification']['resource']);
-                
+                $message = $value['Notification']['message'];
                 $email_body = $email_body . 
-                "<a href='http://mscazure.dyndns.org/al/$resource[1]'>go</a><br>\n";
+                "<a href='http://mscazure.dyndns.org/client/al/$resource[1]'>[ $message ]</a><br>\n";
             }
             
             $Email = new CakeEmail();
@@ -58,7 +58,12 @@ class Email implements NotificationProvider {
     }
     
     private function _sendPabilcNotifications($notifications) {
-        
+        $emails = $this->User-find('all', array(
+            'fields' => 'email',
+            'recursive' => -1
+        ));
+        $emails = Set::extract('/User/email', $emails);
+        debug($emails);
     }
     
 }
