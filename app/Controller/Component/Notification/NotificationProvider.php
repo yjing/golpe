@@ -1,4 +1,4 @@
 <?php
 interface NotificationProvider {
-    function notify();
+    function notify($notifications);
 }

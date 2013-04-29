@@ -3,6 +3,7 @@ App::import('Model', 'ActivityLog');
 App::import('Model', 'Comment');
 App::import('Model', 'User');
 App::import('Model', 'Notification');
+
 require_once 'Notification/Email.php';
 class NotificationComponent extends Component {
     
