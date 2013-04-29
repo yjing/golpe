@@ -82,6 +82,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
         parent::afterFind($model, $results, $primary);
         
         foreach ($results as $i => $element) {
+            debug($element);
             $HABTMrecursive = $element[$model->alias]['HABTMrecursive'];
             debug($HABTMrecursive);
             if($HABTMrecursive > 0) {
