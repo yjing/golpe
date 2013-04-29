@@ -43,7 +43,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
 
             $settings[$target_name] = array(
                 'target_model_class' => $target_class,
-                'model_alias' => $target_name,
+                'target_model_alias' => $target_name,
                 'join_table_name' => $join_table_name,
                 'target_fk' => $target_fk,
                 'model_fk' => $model_fk
@@ -107,7 +107,8 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                         'HABTMrecursive' => $HABTMrecursive - 1,
                     ));
                     
-                    $results[$i][$target_model->alias] = $target_list;
+//                    $results[$i][$target_model->alias] = $target_list;
+                    $results[$i][$target_meta['target_model_alias']] = $target_list;
                     
 
                     debug("User " . $element_id);
