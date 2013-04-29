@@ -4,7 +4,6 @@ App::import('Model', 'Comment');
 App::import('Model', 'User');
 App::import('Model', 'Notification');
 
-App::uses('Email', 'Controller/Component/Notification');
 class NotificationComponent extends Component {
     
     private $Notification = null;
@@ -21,6 +20,7 @@ class NotificationComponent extends Component {
             'recursive' => -1
         ));
         
+        App::uses('Email', 'Controller/Component/Notification');
         $Email = new Email();
         $Email->notify($result);
         
