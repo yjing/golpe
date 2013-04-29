@@ -9,17 +9,37 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
             $settings = array($settings);
         }
         
-        foreach ($settings as $key => $target_name) {
-            App::import('Model', $target_name);
-            $target_class = new ReflectionClass($target_name);
-            $target_model = $target_class->newInstanceArgs();
+        foreach ($settings as $target_name => $options) {
+            if(isset($options['target_model_name'])) {
+                App::import('Model', $options['target_model_name']);
+                $target_class = new ReflectionClass($options['target_model_name']);
+                $target_model = $target_class->newInstanceArgs();
+                
+            } else {
+                App::import('Model', $target_name);
+                $target_class = new ReflectionClass($target_name);
+                $target_model = $target_class->newInstanceArgs();
+            }
             
-            $join_model_a = array($target_model->useTable, $Model->useTable);
-            sort($join_model_a);
-            $join_table_name = implode($join_model_a, '_');
+            if(isset($options['join_table_name'])) {
+                $join_table_name = $options['join_table_name'];
+            } else {
+                $join_model_a = array($target_model->useTable, $Model->useTable);
+                sort($join_model_a);
+                $join_table_name = implode($join_model_a, '_');
+            }
             
-            $target_fk = Inflector::underscore($target_model->alias) . '_' . $target_model->primaryKey;
-            $model_fk = Inflector::underscore($Model->alias) . '_' . $Model->primaryKey;
+            if(isset($options['target_fk'])) {
+                $target_fk = $options['target_fk'];
+            } else {
+                $target_fk = Inflector::underscore($target_model->alias) . '_' . $target_model->primaryKey;
+            }
+            
+            if(isset($options['model_fk'])) {
+                $model_fk = $options['model_fk'];
+            } else {
+                $model_fk = Inflector::underscore($Model->alias) . '_' . $Model->primaryKey;
+            }
 
             $settings[$target_name] = array(
                 'target_model' => $target_model,
@@ -27,8 +47,8 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                 'target_fk' => $target_fk,
                 'model_fk' => $model_fk
             );
-            unset($settings[$key]);
         }
+        debug($settings);die();
         $this->settings[$Model->alias] = $settings;
         
     }
