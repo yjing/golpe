@@ -8,7 +8,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
         if(!is_array($settings)) {
             $settings = array($settings);
         }
-        debug("TEST");
+//        debug("TEST");
         foreach ($settings as $target_name => $options) {
             if(isset($options['target_model_name'])) {
                 App::import('Model', $options['target_model_name']);
@@ -48,7 +48,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                 'model_fk' => $model_fk
             );
         }
-        debug($settings);
+        debug($settings);die();
         $this->settings[$Model->alias] = $settings;
         
     }
