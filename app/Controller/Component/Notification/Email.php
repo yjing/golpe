@@ -5,7 +5,7 @@ class Email implements NotificationProvider {
     public function notify($notifications) {
         $user_notifications = array();
         foreach ($notifications as $key => $notification) {
-            $ids = $value['Notification']['to'];
+            $ids = $notification['Notification']['to'];
             if(strlen($ids)>0) {
                 $ids = split(", ", $value['Notification']['to']);
                 
@@ -16,7 +16,7 @@ class Email implements NotificationProvider {
                     $user_notifications[$id][] = $notification;
                 }
                 
-            } elseif ($value['Notification']['public']) {
+            } elseif ($notification['Notification']['public']) {
                 
             }
         }
