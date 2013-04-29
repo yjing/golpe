@@ -414,7 +414,7 @@ CREATE INDEX `fk_users_has_users_users3_idx` ON `students_supervisors` (`student
 DROP TABLE IF EXISTS `notifications` ;
 
 CREATE  TABLE IF NOT EXISTS `notifications` (
-  `id` INT UNSIGNED NOT NULL ,
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
   `type` TEXT NOT NULL ,
   `resource` TEXT NOT NULL ,
   `message` TEXT NULL COMMENT '	\n\n' ,
