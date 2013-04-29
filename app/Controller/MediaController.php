@@ -19,7 +19,7 @@ class MediaController extends RESTController {
     public function index() {
         parent::index();
         
-        $this->Media->recursive = 0;
+        $this->Media->recursive = -1;
         $result = $this->Media->find('all');
         
         $this->_setResponseJSON($result);
@@ -28,12 +28,7 @@ class MediaController extends RESTController {
     public function view($id = null) {
         parent::view($id);
         
-        $this->Media->id = $id;
-        if (!$this->Media->exists()) {
-            $this->_ReportValidationErrors($id);
-        }
-
-        $result = $this->Media->read(null, $id);
+        $result = $this->Media->findById($id);
         $this->_setResponseJSON($result);
     }
     
