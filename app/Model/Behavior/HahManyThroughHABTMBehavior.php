@@ -126,6 +126,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                 unset($results[$i][$model->alias]['HahManyThroughHABTM_ID']);
                 
             }
+            unset($results[$i][0]['HABTMrecursive']);
             unset($results[$i][0]);
             
         }
