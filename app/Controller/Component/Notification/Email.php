@@ -44,14 +44,16 @@ class Email implements NotificationProvider {
                 $resource = split(':', $value['Notification']['resource']);
                 
                 $email_body = $email_body . 
-                "http://mscazure.dyndns.org/client/al/$resource[1]\n";
+                "<a href='http://mscazure.dyndns.org/al/$resource[1]'>go</a><br>\n";
             }
             
             $Email = new CakeEmail();
-            $Email->from(array('notifier@mscazure.dyndns.org' => 'MSCProject'))
-                ->to($email_address)
+            $Email->from(array('notifier@mscazure.dyndns.org' => 'MSCProject Notifier'))
+                ->to('notifier@mscazure.dyndns.org')
+                ->bbc($email_address)
                 ->subject('Notifications')
-                ->send($email_body);
+                ->emailFormat('html')
+                ->send('Test');
         }
     }
     
