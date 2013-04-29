@@ -44,7 +44,7 @@ class Email implements NotificationProvider {
                 $resource = split(':', $value['Notification']['resource']);
                 
                 $email_body = $email_body . 
-                "<a href='http://mscazure.dyndns.org/al/$resource[1]'>go</a><br>\n";
+                "http://mscazure.dyndns.org/client/al/$resource[1]\n";
             }
             
             $Email = new CakeEmail();
