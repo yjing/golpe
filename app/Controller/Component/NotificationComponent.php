@@ -15,6 +15,8 @@ class NotificationComponent extends Component {
     
     public function notify() {
         
+        debug($this->settings);die();
+        
         $this->Notification = new Notification();
         $result = $this->Notification->find('all', array(
             'recursive' => -1
