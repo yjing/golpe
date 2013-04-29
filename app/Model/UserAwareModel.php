@@ -90,7 +90,7 @@ abstract class UserAwareModel extends AppModel {
                 $this->alias . '.visibility_level NOT IN' => array('PRIVATE', 'SUPERVISOR')
             );
         }
-//        debug($queryData);
+        debug($queryData);
         return $queryData;
     }
     
