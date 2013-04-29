@@ -33,6 +33,9 @@ class ActivityLogsController extends RESTController {
                 break;
             case "news":
                 // RETRIEVE NEWS... TODO
+                if($role = 'SUPERVISOR') {
+                    $conditions["Supervisor.supervisor_id"] = $user['id'];
+                }
                 break;
             case "team":
                 $conditions["ActivityLog.user_id"] = $this->User->getTeamComponentsId($user['id']);
