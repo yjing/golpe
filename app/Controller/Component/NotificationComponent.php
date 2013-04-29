@@ -15,7 +15,7 @@ class NotificationComponent extends Component {
         $notification = array(
             'Notification' => array(
                 'type' => $type,
-                'resource_id' => $id,
+                'resource' => $type . ":" . $id,
                 'message' => '',
                 'priority' => false,
                 'public' => false,
