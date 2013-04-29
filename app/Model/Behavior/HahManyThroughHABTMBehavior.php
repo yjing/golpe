@@ -11,7 +11,6 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
         
         foreach ($settings as $target_name => $options) {
             if(isset($options['target_model_name'])) {
-                $target_model_name = $options['target_model_name'];
                 App::import('Model', $options['target_model_name']);
                 $target_class = new ReflectionClass($options['target_model_name']);
 //                $target_model = $target_class->newInstanceArgs();
@@ -43,7 +42,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
             }
 
             $settings[$target_name] = array(
-                'target_model' => $target_model,
+                'target_model_class' => $target_class,
                 'model_alias' => $target_name,
                 'join_table_name' => $join_table_name,
                 'target_fk' => $target_fk,
@@ -73,7 +72,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
         }
         $query['fields'][] = $HABTMrecursive . ' as HABTMrecursive';
         
-        debug($query);return false;
+        debug($query);
         
         $this->query = $query;
         return $query;
@@ -89,7 +88,9 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                 $element_id = $element[$model->alias]['HahManyThroughHABTM_ID'];
 
                 foreach ($this->settings[$model->alias] as $target_name => $target_meta) {
-                    $target_model = $target_meta['target_model'];
+                    $target_model_class = $target_meta['target_model_class'];
+                    $target_model = $target_model_class->newInstanceArgs();
+                    
                     $fields = array( $target_model->alias . '.*' );
                     $join = array(
                         'table' => $target_meta['join_table_name'],
