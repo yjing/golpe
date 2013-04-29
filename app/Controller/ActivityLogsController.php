@@ -48,7 +48,8 @@ class ActivityLogsController extends RESTController {
         $results = $this->ActivityLog->find('all',
             array(
                 'conditions' => $conditions,
-                'recursive' => -1
+                'recursive' => -1,
+                'HABTMrecursive' => 3
             )
         );
         
