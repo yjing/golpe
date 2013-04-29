@@ -35,6 +35,7 @@ class ActivityLogsController extends RESTController {
                 // RETRIEVE NEWS... TODO
                 if($role = 'SUPERVISOR') {
                     $conditions["Supervisor.supervisor_id"] = $user['id'];
+                    debug('mmmm');
                 }
                 break;
             case "team":
