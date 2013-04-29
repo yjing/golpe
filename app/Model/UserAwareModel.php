@@ -67,7 +67,7 @@ abstract class UserAwareModel extends AppModel {
             'conditions' => array('Team.id = AUTHtu.team_id')
         );
         $queryData['joins'][] = array(
-            'table' => "supervisors_students",
+            'table' => "students_supervisors",
             'alias' => 'Supervisor',
             'type' => 'LEFT',
             'conditions' => array('Supervisor.student_id = User.id')
