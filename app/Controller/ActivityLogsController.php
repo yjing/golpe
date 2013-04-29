@@ -35,6 +35,8 @@ class ActivityLogsController extends RESTController {
                 // RETRIEVE NEWS... TODO
                 if($role == 'SUPERVISOR') {
                     $conditions["Supervisor.supervisor_id"] = $user['id'];
+                } elseif ($role == 'STUDENT') {
+                    $conditions["ActivityLog.user_id"] = ' != ' . $user['id'];
                 }
                 break;
             case "team":
