@@ -38,13 +38,20 @@ class Email implements NotificationProvider {
         foreach ($notifications as $user_id => $notification) {
             
             $this->User->id = $user_id;
-            $email = $this->User->field('email');
+            $email_address = $this->User->field('email');
+            $email_body = "There's some news for you: <br><br>\n";
+            foreach ($notification as $key => $value) {
+                $resource = split(':', $value['Notification']['resource']);
+                
+                $email_body = $email_body . 
+                "<a href='http://mscazure.dyndns.org/al/$resource[1]'>go</a><br>\n";
+            }
             
             $Email = new CakeEmail();
             $Email->from(array('notifier@mscazure.dyndns.org' => 'MSCProject'))
-                ->to($email)
+                ->to($email_address)
                 ->subject('Notifications')
-                ->send('Test');
+                ->send($email_body);
         }
     }
     
