@@ -5,7 +5,7 @@ class NotificationShell extends AppShell {
     
     public function notify() {
         
-        $Notification = new NotificationComponent();
+        $Notification = new NotificationComponent(null, null);
         $Notification->notify();
         
     }
