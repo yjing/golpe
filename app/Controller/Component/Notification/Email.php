@@ -58,7 +58,7 @@ class Email implements NotificationProvider {
     }
     
     private function _sendPabilcNotifications($notifications) {
-        $emails = $this->User-find('all', array(
+        $emails = $this->User->find('all', array(
             'fields' => 'email',
             'recursive' => -1
         ));
