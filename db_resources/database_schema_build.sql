@@ -12,6 +12,7 @@ CREATE  TABLE IF NOT EXISTS `users` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
   `username` VARCHAR(50) NOT NULL ,
   `password` VARCHAR(50) NOT NULL ,
+  `email` TEXT NOT NULL ,
   `role` VARCHAR(30) NOT NULL DEFAULT 'STUDENT' COMMENT 'Role can be among the following:\nSTUDENT\nTEACHER\nADMIN\nEXTERNAL' ,
   `created` DATETIME NULL ,
   `modified` DATETIME NULL ,
@@ -436,15 +437,15 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- Data for table `users`
 -- -----------------------------------------------------
 START TRANSACTION;
-INSERT INTO `users` (`id`, `username`, `password`, `role`, `created`, `modified`) VALUES (1, 's.susini', 'cb0c3cd38102fd0d0e0aec305f56fcb96ec9a640', 'STUDENT', '2013-03-23 13:14:51', '2013-03-23 13:14:51');
-INSERT INTO `users` (`id`, `username`, `password`, `role`, `created`, `modified`) VALUES (2, 'y.jing', 'cb0c3cd38102fd0d0e0aec305f56fcb96ec9a640', 'ADMIN', '2013-03-23 13:14:51', '2013-03-23 13:15:51');
-INSERT INTO `users` (`id`, `username`, `password`, `role`, `created`, `modified`) VALUES (3, 'q.dang', 'cb0c3cd38102fd0d0e0aec305f56fcb96ec9a640', 'SUPERVISOR', '2013-03-23 13:14:51', '2013-03-23 13:14:51');
-INSERT INTO `users` (`id`, `username`, `password`, `role`, `created`, `modified`) VALUES (4, 'student1', 'cb0c3cd38102fd0d0e0aec305f56fcb96ec9a640', 'STUDENT', '2013-03-23 13:14:51', '2013-03-23 13:14:51');
-INSERT INTO `users` (`id`, `username`, `password`, `role`, `created`, `modified`) VALUES (5, 'student2', 'cb0c3cd38102fd0d0e0aec305f56fcb96ec9a640', 'STUDENT', '2013-03-23 13:14:51', '2013-03-23 13:14:51');
-INSERT INTO `users` (`id`, `username`, `password`, `role`, `created`, `modified`) VALUES (6, 'student3', 'cb0c3cd38102fd0d0e0aec305f56fcb96ec9a640', 'STUDENT', '2013-03-23 13:14:51', '2013-03-23 13:14:51');
-INSERT INTO `users` (`id`, `username`, `password`, `role`, `created`, `modified`) VALUES (7, 'student4', 'cb0c3cd38102fd0d0e0aec305f56fcb96ec9a640', 'STUDENT', NULL, NULL);
-INSERT INTO `users` (`id`, `username`, `password`, `role`, `created`, `modified`) VALUES (8, 'student5', 'cb0c3cd38102fd0d0e0aec305f56fcb96ec9a640', 'STUDENT', NULL, NULL);
-INSERT INTO `users` (`id`, `username`, `password`, `role`, `created`, `modified`) VALUES (9, 'student6', 'cb0c3cd38102fd0d0e0aec305f56fcb96ec9a640', 'STUDENT', NULL, NULL);
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `role`, `created`, `modified`) VALUES (1, 's.susini', 'cb0c3cd38102fd0d0e0aec305f56fcb96ec9a640', 's.susini@gmail.com', 'STUDENT', '2013-03-23 13:14:51', '2013-03-23 13:14:51');
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `role`, `created`, `modified`) VALUES (2, 'y.jing', 'cb0c3cd38102fd0d0e0aec305f56fcb96ec9a640', 's.susini@gmail.com', 'ADMIN', '2013-03-23 13:14:51', '2013-03-23 13:15:51');
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `role`, `created`, `modified`) VALUES (3, 'q.dang', 'cb0c3cd38102fd0d0e0aec305f56fcb96ec9a640', 's.susini@gmail.com', 'SUPERVISOR', '2013-03-23 13:14:51', '2013-03-23 13:14:51');
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `role`, `created`, `modified`) VALUES (4, 'student1', 'cb0c3cd38102fd0d0e0aec305f56fcb96ec9a640', 's.susini@gmail.com', 'STUDENT', '2013-03-23 13:14:51', '2013-03-23 13:14:51');
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `role`, `created`, `modified`) VALUES (5, 'student2', 'cb0c3cd38102fd0d0e0aec305f56fcb96ec9a640', 's.susini@gmail.com', 'STUDENT', '2013-03-23 13:14:51', '2013-03-23 13:14:51');
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `role`, `created`, `modified`) VALUES (6, 'student3', 'cb0c3cd38102fd0d0e0aec305f56fcb96ec9a640', 's.susini@gmail.com', 'STUDENT', '2013-03-23 13:14:51', '2013-03-23 13:14:51');
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `role`, `created`, `modified`) VALUES (7, 'student4', 'cb0c3cd38102fd0d0e0aec305f56fcb96ec9a640', 's.susini@gmail.com', 'STUDENT', '2013-03-23 13:14:51', '2013-03-23 13:14:51');
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `role`, `created`, `modified`) VALUES (8, 'student5', 'cb0c3cd38102fd0d0e0aec305f56fcb96ec9a640', 's.susini@gmail.com', 'STUDENT', '2013-03-23 13:14:51', '2013-03-23 13:14:51');
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `role`, `created`, `modified`) VALUES (9, 'student6', 'cb0c3cd38102fd0d0e0aec305f56fcb96ec9a640', 's.susini@gmail.com', 'STUDENT', '2013-03-23 13:14:51', '2013-03-23 13:14:51');
 
 COMMIT;
 
