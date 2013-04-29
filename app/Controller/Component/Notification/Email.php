@@ -47,13 +47,13 @@ class Email implements NotificationProvider {
                 "<a href='http://mscazure.dyndns.org/client/al/$resource[1]'>[ $message ]</a><br>\n";
             }
             
-            $Email = new CakeEmail();
-            $Email->from(array('notifier@mscazure.dyndns.org' => 'MSCProject Notifier'))
-                ->to('notifier@mscazure.dyndns.org')
-                ->bcc($email_address)
-                ->subject('Notifications')
-                ->emailFormat('html')
-                ->send($email_body);
+//            $Email = new CakeEmail();
+//            $Email->from(array('notifier@mscazure.dyndns.org' => 'MSCProject Notifier'))
+//                ->to('notifier@mscazure.dyndns.org')
+//                ->bcc($email_address)
+//                ->subject('Notifications')
+//                ->emailFormat('html')
+//                ->send($email_body);
         }
     }
     
@@ -63,7 +63,23 @@ class Email implements NotificationProvider {
             'recursive' => -1
         ));
         $emails = Set::extract('/User/email', $emails);
-        debug($emails);
+        
+        $email_body = "There's some news for you: <br><br>\n";
+        foreach ($notification as $key => $value) {
+            $resource = split(':', $value['Notification']['resource']);
+            $message = $value['Notification']['message'];
+            $email_body = $email_body . 
+            "<a href='http://mscazure.dyndns.org/client/al/$resource[1]'>[ $message ]</a><br>\n";
+        }
+            
+        $Email = new CakeEmail();
+        $Email->from(array('notifier@mscazure.dyndns.org' => 'MSCProject Notifier'))
+            ->to('notifier@mscazure.dyndns.org')
+            ->bcc($emails)
+            ->subject('Notifications')
+            ->emailFormat('html')
+            ->send($email_body);
+        
     }
     
 }
