@@ -497,12 +497,3 @@ INSERT INTO `students_supervisors` (`student_id`, `supervisor_id`) VALUES (1, 3)
 INSERT INTO `students_supervisors` (`student_id`, `supervisor_id`) VALUES (4, 3);
 
 COMMIT;
-
--- -----------------------------------------------------
--- Data for table `students_supervisors`
--- -----------------------------------------------------
-START TRANSACTION;
-INSERT INTO `students_supervisors` (`student_id`, `supervisor_id`) VALUES (1, 3);
-INSERT INTO `students_supervisors` (`student_id`, `supervisor_id`) VALUES (4, 3);
-
-COMMIT;

@@ -2,8 +2,10 @@
 App::uses('Model', 'ActivityLog');
 App::uses('Model', 'Comment');
 App::uses('Model', 'User');
+App::uses('Model', 'Notification');
 class NotificationComponent extends Component {
     
+    private $Notification = null;
     private $ActivityLog = null;
     private $User = null;
     
@@ -61,7 +63,9 @@ class NotificationComponent extends Component {
                 }
                 $notification['Notification']['to'] = implode($notification_users, ', ');
                 
-                debug($notification);
+                $this->Notification = new Notification();
+                $result = $this->Notification->save($notification);
+                debug($result);
 
                 break;
 
