@@ -47,6 +47,10 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                 'target_fk' => $target_fk,
                 'model_fk' => $model_fk
             );
+            
+            if(isset($options['join_type'])) {
+                $settings[$target_name]['join_type'] = $options['join_type'];
+            }
         }
         
         $this->settings[$Model->alias] = $settings;
@@ -90,6 +94,8 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                     'conditions' => $conditions,
                     'recursive' => -1,
                 ));
+                
+                debug($target_list);die();
                 $results[$i][$target_model->alias] = $target_list;
                 
             }

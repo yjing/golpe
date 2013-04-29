@@ -9,6 +9,7 @@ class User extends AppModel {
             'Supervisor' => array(
                 'target_model_name' => 'User',
                 'join_table_name'=> 'supervisors_students',
+                'join_type' => 'LEFT',
                 'target_fk' => 'supervisor_id',
                 'model_fk' => 'student_id'
             )
