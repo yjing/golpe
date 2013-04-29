@@ -3,6 +3,7 @@ App::import('Model', 'ActivityLog');
 App::import('Model', 'Comment');
 App::import('Model', 'User');
 App::import('Model', 'Notification');
+App::import('Component', 'Notification/Email');
 class NotificationComponent extends Component {
     
     private $Notification = null;
@@ -13,7 +14,15 @@ class NotificationComponent extends Component {
     }
     
     public function notify() {
-        debug("NOTIFICATIONS");
+        
+        $this->Notification = new Notification();
+        $result = $this->Notification->find('all', array(
+            'recursive' => -1
+        ));
+        
+        $Email = new Email();
+        $Email->notify($result);
+        
     }
 
 
