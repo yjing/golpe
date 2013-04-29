@@ -2,7 +2,7 @@
 require_once 'NotificationProvider.php';
 
 
-App:import('Model', 'User');
+App::import('Model', 'User');
 class Email implements NotificationProvider {
     
     private $User = null;
