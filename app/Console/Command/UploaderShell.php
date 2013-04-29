@@ -29,7 +29,7 @@ class UploaderShell extends AppShell {
         
         $meds = $this->Media->find('all', array(
             'conditions' => array('status !=' => UploaderShell::$mediaStatus_AVAILABLE),
-            'recursive' => 0
+            'recursive' => -1
         ));
         
         foreach ($meds as $key => $value) {
