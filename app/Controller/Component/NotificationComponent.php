@@ -17,7 +17,7 @@ class NotificationComponent extends Component {
         
         $this->Notification = new Notification();
         $result = $this->Notification->find('all', array(
-            'fields' => array('Notification.*, max(Notification.created) as maxCreated'),
+//            'fields' => array('Notification.*, max(Notification.created) as maxCreated'),
             'recursive' => -1
         ));
         
