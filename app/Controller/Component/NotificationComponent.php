@@ -15,9 +15,8 @@ class NotificationComponent extends Component {
         switch ($type) {
             case 'ActivityLog':
                 $this->ActivityLog = new ActivityLog();
-                debug($id);
                 debug($this->ActivityLog->find('first', array(
-                    'ActivityLog.id' => $id,
+                    'conditions' => array('ActivityLog.id' => $id),
                     'recursive' => -1
                 )));
 
