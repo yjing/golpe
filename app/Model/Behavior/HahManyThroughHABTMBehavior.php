@@ -111,12 +111,10 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                     
                     foreach ($target_list as $key => $value) {
                         unset($target_list[$key][$target_model->alias]);
+                        unset($value[$target_model->alias]['HahManyThroughHABTM_ID']);
                         $target_list[$key][$target_meta['target_model_alias']] = $value[$target_model->alias];
                     }
                     
-                    $results[$i][$target_meta['target_model_alias']] = $target_list;
-                    
-
                 }
                 unset($results[$i][$model->alias]['HahManyThroughHABTM_ID']);
                 
