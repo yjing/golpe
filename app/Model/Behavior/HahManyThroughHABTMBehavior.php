@@ -19,6 +19,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
             } else {
                 App::import('Model', $target_name);
                 $target_class = new ReflectionClass($target_name);
+                debug($target_class);
                 $target_model = $target_class->newInstanceArgs();
             }
             debug($target_model);
