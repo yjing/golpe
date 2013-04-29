@@ -46,6 +46,7 @@ abstract class UserAwareModel extends AppModel {
         $queryData['fields'][] = $this->alias . '.visibility_level as AUTHvisibility_level';
         $queryData['fields'][] = 'AUTHUser.id, AUTHUser.username, AUTHUser.role';
         $queryData['fields'][] = 'AUTHTeam.id, AUTHTeam.name, AUTHTeam.project_id';
+        $queryData['fields'][] = 'Supervisor.*';
         // Add the namespaced joins to retrieve the above-mentioned fields and models
         $queryData['joins'][] = array(
             'table' => "users",
@@ -64,6 +65,12 @@ abstract class UserAwareModel extends AppModel {
             'alias' => 'AUTHTeam',
             'type' => 'LEFT',
             'conditions' => array('AUTHTeam.id = AUTHtu.team_id')
+        );
+        $queryData['joins'][] = array(
+            'table' => "users",
+            'alias' => 'Supervisor',
+            'type' => 'LEFT',
+            'conditions' => array('Supervisor.student_id = Supervisor.supervisor_id')
         );
         // Add the conditions for the visibility
         if(isset($queryData['conditions'])) {
