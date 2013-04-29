@@ -12,8 +12,15 @@ class NotificationComponent extends Component {
     }
     
     public function notify($type, $id, $options = array()) {
+        $notification = array(
+            'type' => $type,
+            'resource_id' => $id,
+            'message' => '',
+            'priority' => false
+        );
+        $notification_users = array();
+        
         $this->User = new User();
-        $notification = array();
         switch ($type) {
             case 'ActivityLog':
                 $this->ActivityLog = new ActivityLog();
@@ -21,39 +28,35 @@ class NotificationComponent extends Component {
                     'conditions' => array('ActivityLog.id' => $id),
                     'recursive' => -1
                 ));
-//                debug($element);
-                debug('NOTIFICATIONS:');
-                
                 $visibility_level = $element['ActivityLog']['visibility_level'];
                 if($visibility_level == 'PRIVATE') {
-                    debug("NONE!");
                     break;
                 }
                 
+                $notification['ActivityLog'] = $element['ActivityLog']['title'];
+                if($element['ActivityLog']['question']) {
+                    $notification['priority'] = true;
+                }
+                
                 if(in_array($visibility_level, array('SUPERVISOR'))) {
-                    $supervisor_id = $element['Supervisor']['supervisor_id'];
-                    debug("Supervisor: $supervisor_id");
+                    $notification_users[] = $element['Supervisor']['supervisor_id'];
                 }
                 
                 if(in_array($visibility_level, array('TEAM'))) {
-                    $team_users = $this->User->getTeamComponents($element['Team']['id']);
-                    debug('TEAM:');
-                    debug($team_users);
+                    // TEAM AL go also to Supervisor
+                    $notification_users[] = $element['Supervisor']['supervisor_id'];
                     
-                    $supervisor_id = $element['Supervisor']['supervisor_id'];
-                    debug("Supervisor: $supervisor_id");
+                    $team_users = $this->User->getTeamComponents($element['Team']['id']);
+                    foreach ($team_users as $key => $value) {
+                        $notification_users[] = $value['User']['id'];
+                    }
                 }
                 
                 if(in_array($visibility_level, array('PUBLIC'))) {
-                    debug('ALL');
                 }
-//                $team_users = $this->User->find('all', array(
-//                    'conditions' => array(
-//                        'Team.id' => $element['Team']['id']
-//                    ),
-//                    'recursive' => -1
-//                ));
-//                debug($team_users);
+                
+                debug($notification);
+                debug($notification_users);
 
                 break;
 
