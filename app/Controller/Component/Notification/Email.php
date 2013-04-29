@@ -50,7 +50,7 @@ class Email implements NotificationProvider {
             $Email = new CakeEmail();
             $Email->from(array('notifier@mscazure.dyndns.org' => 'MSCProject Notifier'))
                 ->to('notifier@mscazure.dyndns.org')
-                ->bbc($email_address)
+                ->bcc($email_address)
                 ->subject('Notifications')
                 ->emailFormat('html')
                 ->send('Test');
