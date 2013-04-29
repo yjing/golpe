@@ -65,7 +65,7 @@ class Email implements NotificationProvider {
         $emails = Set::extract('/User/email', $emails);
         
         $email_body = "There's some news for you: <br><br>\n";
-        foreach ($notification as $key => $value) {
+        foreach ($notifications as $key => $value) {
             $resource = split(':', $value['Notification']['resource']);
             $message = $value['Notification']['message'];
             $email_body = $email_body . 
