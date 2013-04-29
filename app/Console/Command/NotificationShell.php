@@ -6,9 +6,9 @@ App::import('Component', 'ComponentController');
 class NotificationShell extends AppShell {
     
     public function notify() {
+        
         $Collection = new ComponentCollection();
-//        $Collection->init(new AppController());
-        $Notification = new NotificationComponent($Collection, array('Email'));
+        $Notification = new NotificationComponent($Collection, Configure::read("APPCONFIG.notification.providers"));
         $Notification->notify();
         
     }

@@ -47,5 +47,8 @@ Configure::write("APPCONFIG", array(
         ),
         "Comments" => true,
         "Media" => true
+    ),
+    'notification' => array(
+        'providers' => array('Email')
     )
 ));
