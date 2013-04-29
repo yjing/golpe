@@ -71,6 +71,8 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
         }
         $query['fields'][] = $HABTMrecursive . ' as HABTMrecursive';
         
+        debug($query);die();
+        
         $this->query = $query;
         return $query;
     }
@@ -97,13 +99,13 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                         'join.' . $target_meta['model_fk'] . ' = ' . $element_id
                     );
 
-//                    $target_list = $target_model->find('all', array(
-//                        'fields' => $fields,
-//                        'joins' => array($join),
-//                        'conditions' => $conditions,
-//                        'recursive' => -1,
-//                        'HABTMrecursive' => $HABTMrecursive - 1,
-//                    ));
+                    $target_list = $target_model->find('all', array(
+                        'fields' => $fields,
+                        'joins' => array($join),
+                        'conditions' => $conditions,
+                        'recursive' => -1,
+                        'HABTMrecursive' => $HABTMrecursive - 1,
+                    ));
 
                     $results[$i][$target_model->alias] = $target_list;
 
