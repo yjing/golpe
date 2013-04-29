@@ -15,13 +15,7 @@ class ActivityLog extends UserAwareModel {
     public $actsAs = array('Containable', 'HasMedia', 
         'HahManyThroughHABTM' => array(
             'Media' => array(), 
-            'Comment' => array(),
-            'Supervisor' => array(
-                'target_model_name' => 'User',
-                'join_table_name'=> 'supervisors_students',
-                'target_fk' => 'supervisor_id',
-                'model_fk' => 'student_id'
-            )
+            'Comment' => array()
         )
     );
     
