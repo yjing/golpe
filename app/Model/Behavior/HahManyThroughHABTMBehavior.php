@@ -10,7 +10,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
         }
         
         foreach ($settings as $target_name => $options) {
-        debug("TEST");
+        debug("TEST ".$target_name);
             if(isset($options['target_model_name'])) {
                 App::import('Model', $options['target_model_name']);
                 $target_class = new ReflectionClass($options['target_model_name']);
@@ -48,6 +48,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                 'target_fk' => $target_fk,
                 'model_fk' => $model_fk
             );
+        debug("END TEST ".$target_name);
         }
         debug($settings);
         $this->settings[$Model->alias] = $settings;
