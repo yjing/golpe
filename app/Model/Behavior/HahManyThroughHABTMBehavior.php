@@ -48,7 +48,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                 'model_fk' => $model_fk
             );
         }
-        debug($settings);
+        
         $this->settings[$Model->alias] = $settings;
         
     }

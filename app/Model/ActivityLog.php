@@ -18,7 +18,7 @@ class ActivityLog extends UserAwareModel {
             'Comment' => array(),
             'Supervisor' => array(
                 'target_model_name' => 'User',
-                'join_table_name'=> 'supervisors',
+                'join_table_name'=> 'supervisors_students',
                 'target_fk' => 'supervisor_id',
                 'model_fk' => 'student_id'
             )

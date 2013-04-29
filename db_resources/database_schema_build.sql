@@ -344,6 +344,44 @@ CREATE INDEX `fk_media_has_comments_comments1_idx` ON `comments_media` (`comment
 CREATE INDEX `fk_media_has_comments_media1_idx` ON `comments_media` (`media_id` ASC) ;
 
 
+-- -----------------------------------------------------
+-- Table `supervisors_users`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `supervisors_users` ;
+
+CREATE  TABLE IF NOT EXISTS `supervisors_users` (
+  `student_id` INT NOT NULL ,
+  `supervisor_id` INT NOT NULL ,
+  PRIMARY KEY (`student_id`, `supervisor_id`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `supervisors_students`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `supervisors_students` ;
+
+CREATE  TABLE IF NOT EXISTS `supervisors_students` (
+  `student_id` INT UNSIGNED NOT NULL ,
+  `supervisor_id` INT UNSIGNED NOT NULL ,
+  PRIMARY KEY (`student_id`, `supervisor_id`) ,
+  CONSTRAINT `fk_users_has_users_users1`
+    FOREIGN KEY (`student_id` )
+    REFERENCES `users` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_users_has_users_users2`
+    FOREIGN KEY (`supervisor_id` )
+    REFERENCES `users` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE INDEX `fk_users_has_users_users2_idx` ON `supervisors_students` (`supervisor_id` ASC) ;
+
+CREATE INDEX `fk_users_has_users_users1_idx` ON `supervisors_students` (`student_id` ASC) ;
+
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
@@ -356,9 +394,9 @@ START TRANSACTION;
 INSERT INTO `users` (`id`, `username`, `password`, `role`, `created`, `modified`) VALUES (1, 's.susini', 'cb0c3cd38102fd0d0e0aec305f56fcb96ec9a640', 'STUDENT', '2013-03-23 13:14:51', '2013-03-23 13:14:51');
 INSERT INTO `users` (`id`, `username`, `password`, `role`, `created`, `modified`) VALUES (2, 'y.jing', 'cb0c3cd38102fd0d0e0aec305f56fcb96ec9a640', 'ADMIN', '2013-03-23 13:14:51', '2013-03-23 13:15:51');
 INSERT INTO `users` (`id`, `username`, `password`, `role`, `created`, `modified`) VALUES (3, 'q.dang', 'cb0c3cd38102fd0d0e0aec305f56fcb96ec9a640', 'SUPERVISOR', '2013-03-23 13:14:51', '2013-03-23 13:14:51');
-INSERT INTO `users` (`id`, `username`, `password`, `role`, `created`, `modified`) VALUES (4, 'student1', 'cb0c3cd38102fd0d0e0aec305f56fcb96ec9a640', 'STUDENT', NULL, NULL);
-INSERT INTO `users` (`id`, `username`, `password`, `role`, `created`, `modified`) VALUES (5, 'student2', 'cb0c3cd38102fd0d0e0aec305f56fcb96ec9a640', 'STUDENT', NULL, NULL);
-INSERT INTO `users` (`id`, `username`, `password`, `role`, `created`, `modified`) VALUES (6, 'student3', 'cb0c3cd38102fd0d0e0aec305f56fcb96ec9a640', 'STUDENT', NULL, NULL);
+INSERT INTO `users` (`id`, `username`, `password`, `role`, `created`, `modified`) VALUES (4, 'student1', 'cb0c3cd38102fd0d0e0aec305f56fcb96ec9a640', 'STUDENT', '2013-03-23 13:14:51', '2013-03-23 13:14:51');
+INSERT INTO `users` (`id`, `username`, `password`, `role`, `created`, `modified`) VALUES (5, 'student2', 'cb0c3cd38102fd0d0e0aec305f56fcb96ec9a640', 'STUDENT', '2013-03-23 13:14:51', '2013-03-23 13:14:51');
+INSERT INTO `users` (`id`, `username`, `password`, `role`, `created`, `modified`) VALUES (6, 'student3', 'cb0c3cd38102fd0d0e0aec305f56fcb96ec9a640', 'STUDENT', '2013-03-23 13:14:51', '2013-03-23 13:14:51');
 INSERT INTO `users` (`id`, `username`, `password`, `role`, `created`, `modified`) VALUES (7, 'student4', 'cb0c3cd38102fd0d0e0aec305f56fcb96ec9a640', 'STUDENT', NULL, NULL);
 INSERT INTO `users` (`id`, `username`, `password`, `role`, `created`, `modified`) VALUES (8, 'student5', 'cb0c3cd38102fd0d0e0aec305f56fcb96ec9a640', 'STUDENT', NULL, NULL);
 INSERT INTO `users` (`id`, `username`, `password`, `role`, `created`, `modified`) VALUES (9, 'student6', 'cb0c3cd38102fd0d0e0aec305f56fcb96ec9a640', 'STUDENT', NULL, NULL);
@@ -388,11 +426,21 @@ COMMIT;
 -- Data for table `teams_users`
 -- -----------------------------------------------------
 START TRANSACTION;
-INSERT INTO `teams_users` (`team_id`, `user_id`, `team_leader`) VALUES (1, 4, NULL);
-INSERT INTO `teams_users` (`team_id`, `user_id`, `team_leader`) VALUES (1, 5, NULL);
-INSERT INTO `teams_users` (`team_id`, `user_id`, `team_leader`) VALUES (2, 6, NULL);
-INSERT INTO `teams_users` (`team_id`, `user_id`, `team_leader`) VALUES (2, 7, NULL);
-INSERT INTO `teams_users` (`team_id`, `user_id`, `team_leader`) VALUES (3, 8, NULL);
-INSERT INTO `teams_users` (`team_id`, `user_id`, `team_leader`) VALUES (3, 9, NULL);
+INSERT INTO `teams_users` (`team_id`, `user_id`, `team_leader`) VALUES (1, 4, false);
+INSERT INTO `teams_users` (`team_id`, `user_id`, `team_leader`) VALUES (1, 5, false);
+INSERT INTO `teams_users` (`team_id`, `user_id`, `team_leader`) VALUES (2, 6, false);
+INSERT INTO `teams_users` (`team_id`, `user_id`, `team_leader`) VALUES (2, 7, true);
+INSERT INTO `teams_users` (`team_id`, `user_id`, `team_leader`) VALUES (3, 8, true);
+INSERT INTO `teams_users` (`team_id`, `user_id`, `team_leader`) VALUES (3, 9, false);
+INSERT INTO `teams_users` (`team_id`, `user_id`, `team_leader`) VALUES (1, 1, true);
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `supervisors_students`
+-- -----------------------------------------------------
+START TRANSACTION;
+INSERT INTO `supervisors_students` (`student_id`, `supervisor_id`) VALUES (1, 3);
+INSERT INTO `supervisors_students` (`student_id`, `supervisor_id`) VALUES (4, 3);
 
 COMMIT;
