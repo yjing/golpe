@@ -110,7 +110,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                     ));
                     
                     foreach ($target_list as $key => $value) {
-//                        unset($target_list[$key]);
+                        unset($target_list[$key][$target_model->alias]);
                         $target_list[$key][$target_meta['target_model_alias']] = $value;
                     }
                     
