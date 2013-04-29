@@ -17,8 +17,11 @@ class NotificationComponent extends Component {
         
         $this->Notification = new Notification();
         $result = $this->Notification->find('all', array(
+            'fields' => array('Notification.*, max(Notification.created) as maxCreated'),
             'recursive' => -1
         ));
+        
+        debug($result);die();
         
         foreach ($this->settings as $value) {
             App::uses($value, 'Controller/Component/Notification');
