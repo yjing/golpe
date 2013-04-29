@@ -65,6 +65,12 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
         }
         $query['fields'][] = $model->alias . '.id as HahManyThroughHABTM_ID';
         
+        $HABTMrecursive = 1;
+        if(isset($query['HABTMrecursive'])) {
+            $HABTMrecursive = $query['HABTMrecursive'];
+        }
+        $query['fields'][] = $HABTMrecursive . ' as HABTMrecursive';
+        
         $this->query = $query;
         return $query;
     }
@@ -73,33 +79,38 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
         parent::afterFind($model, $results, $primary);
         
         foreach ($results as $i => $element) {
-            $element_id = $element[$model->alias]['HahManyThroughHABTM_ID'];
-            
-            foreach ($this->settings[$model->alias] as $target_name => $target_meta) {
-                $target_model = $target_meta['target_model'];
-                $fields = array( $target_model->alias . '.*' );
-                $join = array(
-                    'table' => $target_meta['join_table_name'],
-                    'alias' => 'join',
-                    'conditions' => 'join.' . $target_meta['target_fk'] . ' = ' 
-                    . $target_model->alias . '.' . $target_model->primaryKey
-                );
-                $conditions = array(
-                    'join.' . $target_meta['model_fk'] . ' = ' . $element_id
-                );
-                
-                $target_list = $target_model->find('all', array(
-                    'fields' => $fields,
-                    'joins' => array($join),
-                    'conditions' => $conditions,
-                    'recursive' => -1,
-                ));
-                
-                debug($target_list);die();
-                $results[$i][$target_model->alias] = $target_list;
+            $HABTMrecursive = $element[$model->alias]['HABTMrecursive'];
+            if($HABTMrecursive > 0) {
+                $element_id = $element[$model->alias]['HahManyThroughHABTM_ID'];
+
+                foreach ($this->settings[$model->alias] as $target_name => $target_meta) {
+                    $target_model = $target_meta['target_model'];
+                    $fields = array( $target_model->alias . '.*' );
+                    $join = array(
+                        'table' => $target_meta['join_table_name'],
+                        'alias' => 'join',
+                        'conditions' => 'join.' . $target_meta['target_fk'] . ' = ' 
+                        . $target_model->alias . '.' . $target_model->primaryKey
+                    );
+                    $conditions = array(
+                        'join.' . $target_meta['model_fk'] . ' = ' . $element_id
+                    );
+
+                    $target_list = $target_model->find('all', array(
+                        'fields' => $fields,
+                        'joins' => array($join),
+                        'conditions' => $conditions,
+                        'recursive' => -1,
+                        'HABTMrecursive' => $HABTMrecursive - 1,
+                    ));
+
+                    $results[$i][$target_model->alias] = $target_list;
+
+                }
+                unset($results[$i][$model->alias]['HahManyThroughHABTM_ID']);
                 
             }
-            unset($results[$i][$model->alias]['HahManyThroughHABTM_ID']);
+            unset($results[$i][$model->alias]['HABTMrecursive']);
             
         }
                 
