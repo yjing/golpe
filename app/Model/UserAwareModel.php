@@ -79,10 +79,7 @@ abstract class UserAwareModel extends AppModel {
         $queryData['conditions']["AND"]["OR"] = array(
             $this->alias . '.visibility_level' => 'PUBLIC',
             'User.id' => $user['id'],
-//            "AND" => array(
-//                'Team.id' => $team['Team']['id'], 
-//                $this->alias . '.visibility_level NOT IN' => array('PRIVATE', 'SUPERVISOR')
-//            )
+            'User.role' => array('SUPERVISOR', 'ADMIN')
         );
         if ($team != null) {
             $queryData['conditions']["AND"]["OR"]["AND"] = array(
