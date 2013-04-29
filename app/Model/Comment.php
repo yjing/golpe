@@ -76,7 +76,7 @@ class Comment extends UserAwareModel {
     
     public function afterSave($created) {
         parent::afterSave($created);
-        if ($created) { debug("CREATED");
+        if ($created) {
             
             // After Comment insertion change Target MODIFICATION DATE
             $this->targetObject[$this->targetModel->alias]['modified'] = $this->data[$this->alias]['modified'];
@@ -92,8 +92,6 @@ class Comment extends UserAwareModel {
             $this->joinModel->create();
             $new_join = $this->joinModel->save($join);
             
-            debug('$new_join');
-            debug($new_join);
             
             if(!$new_join) {
                 $this->getDataSource()->rollback();
@@ -107,7 +105,7 @@ class Comment extends UserAwareModel {
         $this->getDataSource()->commit();
         $this->targetModel->getDataSource()->commit();
         $this->joinModel->getDataSource()->commit();
-        
+        debug("COMMIT");
     }
     
 }
