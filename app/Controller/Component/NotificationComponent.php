@@ -4,7 +4,7 @@ App::import('Model', 'Comment');
 App::import('Model', 'User');
 App::import('Model', 'Notification');
 
-require_once 'Notification/Email.php';
+App::import('Component', 'Notification/Email');
 class NotificationComponent extends Component {
     
     private $Notification = null;
