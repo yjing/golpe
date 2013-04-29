@@ -1,4 +1,5 @@
 <?php
+require_once 'NotificationProvider.php';
 class Email implements NotificationProvider {
     
     public function notify($notifications) {
