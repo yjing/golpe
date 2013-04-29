@@ -9,10 +9,10 @@ class NotificationComponent extends Component {
     
     public function initialize(Controller $controller) {
         debug($controller->components['Notification']);
-        $this->User = new User();
     }
     
     public function notify($type, $id, $options = array()) {
+        $this->User = new User();
         $notification = array();
         switch ($type) {
             case 'ActivityLog':
