@@ -4,7 +4,7 @@
 class User extends AppModel {
 
     public $hasAndBelongsToMany = array('Team');
-    public $actAs = array(
+    public $actsAs = array(
         'HahManyThroughHABTM' => array(
             'Supervisor' => array(
                 'target_model_name' => 'User',
