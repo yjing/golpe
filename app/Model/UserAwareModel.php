@@ -44,33 +44,33 @@ abstract class UserAwareModel extends AppModel {
         }
         // Add the namespaced fields and models to be used for authorization
         $queryData['fields'][] = $this->alias . '.visibility_level as AUTHvisibility_level';
-        $queryData['fields'][] = 'AUTHUser.id, AUTHUser.username, AUTHUser.role';
-        $queryData['fields'][] = 'AUTHTeam.id, AUTHTeam.name, AUTHTeam.project_id';
-        $queryData['fields'][] = 'Supervisor.supervisor_id as AUTHUser.supervisor_id';
+        $queryData['fields'][] = 'User.id, User.username, User.role';
+        $queryData['fields'][] = 'Team.id, Team.name, Team.project_id';
+        $queryData['fields'][] = 'Supervisor.*';
         // Add the namespaced joins to retrieve the above-mentioned fields and models
         $queryData['joins'][] = array(
             'table' => "users",
-            'alias' => 'AUTHUser',
+            'alias' => 'User',
             'type' => 'LEFT',
-            'conditions' => array('AUTHUser.id = '. $this->alias .'.user_id')
+            'conditions' => array('User.id = '. $this->alias .'.user_id')
         );
         $queryData['joins'][] = array(
             'table' => "teams_users",
             'alias' => 'AUTHtu',
             'type' => 'LEFT',
-            'conditions' => array('AUTHUser.id = AUTHtu.user_id')
+            'conditions' => array('User.id = AUTHtu.user_id')
         );
         $queryData['joins'][] = array(
             'table' => "teams",
-            'alias' => 'AUTHTeam',
+            'alias' => 'Team',
             'type' => 'LEFT',
-            'conditions' => array('AUTHTeam.id = AUTHtu.team_id')
+            'conditions' => array('Team.id = AUTHtu.team_id')
         );
         $queryData['joins'][] = array(
             'table' => "supervisors_students",
             'alias' => 'Supervisor',
             'type' => 'LEFT',
-            'conditions' => array('Supervisor.student_id = AUTHUser.id')
+            'conditions' => array('Supervisor.student_id = User.id')
         );
         // Add the conditions for the visibility
         if(isset($queryData['conditions'])) {
@@ -78,15 +78,15 @@ abstract class UserAwareModel extends AppModel {
         }
         $queryData['conditions']["AND"]["OR"] = array(
             $this->alias . '.visibility_level' => 'PUBLIC',
-            'AUTHUser.id' => $user['id'],
+            'User.id' => $user['id'],
 //            "AND" => array(
-//                'AUTHTeam.id' => $team['Team']['id'], 
+//                'Team.id' => $team['Team']['id'], 
 //                $this->alias . '.visibility_level NOT IN' => array('PRIVATE', 'SUPERVISOR')
 //            )
         );
         if ($team != null) {
             $queryData['conditions']["AND"]["OR"]["AND"] = array(
-                'AUTHTeam.id' => $team['Team']['id'], 
+                'Team.id' => $team['Team']['id'], 
                 $this->alias . '.visibility_level NOT IN' => array('PRIVATE', 'SUPERVISOR')
             );
         }
@@ -102,18 +102,7 @@ abstract class UserAwareModel extends AppModel {
             if(isset($value[$this->alias]['AUTHvisibility_level'])) {
                 unset($results[$key][$this->alias]['AUTHvisibility_level']);
             }
-            if(isset($value['AUTHUser'])) {
-                if(!isset($value['User'])) {
-                    $results[$key]['User'] = $results[$key]['AUTHUser'];
-                }
-                unset($results[$key]['AUTHUser']);
-            }
-            if(isset($value['AUTHTeam'])) {
-                if(!isset($value['Team'])) {
-                    $results[$key]['Team'] = $results[$key]['AUTHTeam'];
-                }
-                unset($results[$key]['AUTHTeam']);
-            }    
+            
         }
         return $results;
         
