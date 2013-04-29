@@ -86,13 +86,13 @@
                                 list-style-type: none;
                                 margin: 0;">
                                 <li ng-repeat="media in al.Media"
-                                    ng-click="showMedia(media);"
+                                    ng-click="showMedia(media.Media);"
                                     style="position:relative;margin:5px; display:inline-block;float:left;overflow: hidden; width: 200px; height: 200px;
                                     cursor: pointer;
                                     border: 2px #ffffff solid;
                                     background-size: 100% 100%;
                                     overflow: hidden;">
-                                    <img ng-src="{{getThumbUrl(media);}}" width="200" height="200">
+                                    <img ng-src="{{getThumbUrl(media.Media);}}" width="200" height="200">
                                     <span style="word-wrap:break-word; position: absolute; right: 5px; bottom: 5px; left: 5px; padding: 3px; background-color: #ffffff; background-color: rgba(255, 255, 255, 0.9);">{{media.Media.filename}}</span>
                                 </li>
                             </ul>

@@ -382,7 +382,7 @@ CREATE INDEX `fk_users_has_users_users4_idx` ON `students_supervisors` (`supervi
 CREATE INDEX `fk_users_has_users_users3_idx` ON `students_supervisors` (`student_id` ASC) ;
 
 
-GRANT ALL ON ``.* TO 'mscproject';
+-- GRANT ALL ON ``.* TO 'mscproject';
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
