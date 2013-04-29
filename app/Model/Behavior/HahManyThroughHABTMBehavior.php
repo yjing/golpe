@@ -52,7 +52,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                 $settings[$target_name]['join_type'] = $options['join_type'];
             }
         }
-        
+        debug($settings);die();
         $this->settings[$Model->alias] = $settings;
         
     }
