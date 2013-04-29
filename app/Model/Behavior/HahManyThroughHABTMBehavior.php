@@ -21,6 +21,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                 $target_class = new ReflectionClass($target_name);
                 $target_model = $target_class->newInstanceArgs();
             }
+            debug($target_model);
             
             if(isset($options['join_table_name'])) {
                 $join_table_name = $options['join_table_name'];
@@ -29,18 +30,21 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                 sort($join_model_a);
                 $join_table_name = implode($join_model_a, '_');
             }
+            debug($join_table_name);
             
             if(isset($options['target_fk'])) {
                 $target_fk = $options['target_fk'];
             } else {
                 $target_fk = Inflector::underscore($target_model->alias) . '_' . $target_model->primaryKey;
             }
+            debug($target_fk);
             
             if(isset($options['model_fk'])) {
                 $model_fk = $options['model_fk'];
             } else {
                 $model_fk = Inflector::underscore($Model->alias) . '_' . $Model->primaryKey;
             }
+            debug($model_fk);
 
             $settings[$target_name] = array(
                 'target_model' => $target_model,
@@ -48,7 +52,8 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                 'target_fk' => $target_fk,
                 'model_fk' => $model_fk
             );
-        debug("END TEST ".$settings);
+        debug($settings);
+        debug("END TEST ");
         }
         debug($settings);
         $this->settings[$Model->alias] = $settings;
