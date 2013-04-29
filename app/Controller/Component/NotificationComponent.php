@@ -21,9 +21,32 @@ class NotificationComponent extends Component {
                     'conditions' => array('ActivityLog.id' => $id),
                     'recursive' => -1
                 ));
-                debug($element);
-                $team_users = $this->User->getTeamComponents($element['Team']['id']);
-                debug($team_users);
+//                debug($element);
+                debug('NOTIFICATIONS:');
+                
+                $visibility_level = $element['ActivityLog']['visibility_level'];
+                if($visibility_level == 'PRIVATE') {
+                    debug("NONE!");
+                    break;
+                }
+                
+                if(in_array($visibility_level, array('SUPERVISOR'))) {
+                    $supervisor_id = $element['Supervisor']['supervisor_id'];
+                    debug("Supervisor: $supervisor_id");
+                }
+                
+                if(in_array($visibility_level, array('TEAM'))) {
+                    $team_users = $this->User->getTeamComponents($element['Team']['id']);
+                    debug('TEAM:');
+                    debug($team_users);
+                    
+                    $supervisor_id = $element['Supervisor']['supervisor_id'];
+                    debug("Supervisor: $supervisor_id");
+                }
+                
+                if(in_array($visibility_level, array('PUBLIC'))) {
+                    debug('ALL');
+                }
 //                $team_users = $this->User->find('all', array(
 //                    'conditions' => array(
 //                        'Team.id' => $element['Team']['id']
