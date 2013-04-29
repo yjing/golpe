@@ -4,7 +4,7 @@ App::import('Model', 'Comment');
 App::import('Model', 'User');
 App::import('Model', 'Notification');
 
-App::import('Email', 'Controller/Component/Notification');
+App::uses('Email', 'Controller/Component/Notification');
 class NotificationComponent extends Component {
     
     private $Notification = null;
