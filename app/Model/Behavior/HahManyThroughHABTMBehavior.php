@@ -71,7 +71,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
         }
         $query['fields'][] = $HABTMrecursive . ' as HABTMrecursive';
         
-        debug($query);die();
+        debug($query);return false;
         
         $this->query = $query;
         return $query;
