@@ -15,11 +15,12 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                 App::import('Model', $options['target_model_name']);
                 $target_class = new ReflectionClass($options['target_model_name']);
                 $target_model = $target_class->newInstanceArgs();
-                
+                $model_alias = $options['target_model_name'];
             } else {
                 App::import('Model', $target_name);
                 $target_class = new ReflectionClass($target_name);
                 $target_model = $target_class->newInstanceArgs();
+                $model_alias = $target_name;
             }
             
             if(isset($options['join_table_name'])) {
@@ -47,6 +48,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
 
             $settings[$target_name] = array(
                 'target_model' => $target_model,
+                'model_alias' => $model_alias,
                 'join_table_name' => $join_table_name,
                 'target_fk' => $target_fk,
                 'model_fk' => $model_fk
@@ -96,22 +98,6 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                     'conditions' => $conditions,
                     'recursive' => -1,
                 ));
-                
-//                $tmp_list = array();
-//                foreach ($target_list as $j => $value) {
-//                    
-//                    foreach ($target_list[$j][$target_model->alias] as $k => $v) {
-//                        $tmp_list[$k] = $v;
-//                    }
-//                    
-//                    foreach ($target_list as $k => $v) {
-//                        if($k != $target_model->alias) {
-//                            $tmp_list[$k] = $v;
-//                        }
-//                    }
-//                    
-//                }
-//                $target_list = $tmp_list;
                 $results[$i][$target_model->alias] = $target_list;
                 
             }
@@ -119,28 +105,8 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
             
         }
                 
-//        debug($results);
         return $results;
         
-//        foreach ($results as $key => $value) {
-//            $id = $value[$model->alias]['id'];
-//            $media = $this->Media->find('all', array(
-//                'joins' => array(
-//                    array(
-//                        'table' => $joinModel->table,
-//                        'alias' => $joinModel->alias,
-//                        'conditions' => $joinModel->alias . '.media_id = ' . $this->Media->alias . '.id'
-//                    )
-//                ),
-//                'fields' => array($this->Media->alias . '.*'),
-//                'conditions' => $joinModel->alias . '.activity_log_id = '.$id,
-//                'recursive' => -1
-//            ));
-//
-//            $results[$key]['Media'] = $media;
-//        }
-
-        return $results;
     }
      
 }
