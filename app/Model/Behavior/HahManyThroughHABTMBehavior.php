@@ -11,13 +11,15 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
         
         foreach ($settings as $target_name => $options) {
             if(isset($options['target_model_name'])) {
+                $target_model_name = $options['target_model_name'];
                 App::import('Model', $options['target_model_name']);
                 $target_class = new ReflectionClass($options['target_model_name']);
-                $target_model = $target_class->newInstanceArgs();
+//                $target_model = $target_class->newInstanceArgs();
             } else {
+                $target_model_name = $target_name;
                 App::import('Model', $target_name);
                 $target_class = new ReflectionClass($target_name);
-                $target_model = $target_class->newInstanceArgs();
+//                $target_model = $target_class->newInstanceArgs();
             }
             
             if(isset($options['join_table_name'])) {
@@ -52,7 +54,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                 $settings[$target_name]['join_type'] = $options['join_type'];
             }
         }
-        debug($settings);die();
+        
         $this->settings[$Model->alias] = $settings;
         
     }
