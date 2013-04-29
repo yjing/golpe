@@ -3,6 +3,9 @@ App::uses('Model', 'ActivityLog');
 App::uses('Model', 'Comment');
 App::uses('Model', 'Media');
 class NotificationComponent extends Component {
+    
+    private $ActivityLog = null;
+    
     public function initialize(Controller $controller) {
         debug($controller->components['Notification']);
     }
