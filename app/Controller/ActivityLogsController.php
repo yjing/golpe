@@ -113,6 +113,10 @@ class ActivityLogsController extends RESTController {
         }
         
         $saved = $this->ActivityLog->save($this->request->data);
+        
+        $this->Notification->notify('ActivityLog', $saved);
+        $this->Notification->notify('ActivityLog', $this->ActivityLog->read());
+        
         $this->_setResponseJSON($saved);
     }
 
