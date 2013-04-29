@@ -65,6 +65,8 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
         if($query['fields'] == null) {
             $query['fields'] = array();
             $query['fields'][] = $model->alias . '.*';
+        } elseif (!is_array($query['fields'])) {
+            $query['fields'] = array($query['fields']);
         }
         $query['fields'][] = $model->alias . '.id as HahManyThroughHABTM_ID';
         
