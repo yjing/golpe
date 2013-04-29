@@ -14,7 +14,6 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                 App::import('Model', $options['target_model_name']);
                 $target_class = new ReflectionClass($options['target_model_name']);
             } else {
-                $target_model_name = $target_name;
                 App::import('Model', $target_name);
                 $target_class = new ReflectionClass($target_name);
             }
@@ -22,7 +21,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
             if(isset($options['join_table_name'])) {
                 $join_table_name = $options['join_table_name'];
             } else {
-                $join_model_a = array($target_model->useTable, $Model->useTable);
+                $join_model_a = array(Inflector::tableize($target_name), $Model->useTable);
                 sort($join_model_a);
                 $join_table_name = implode($join_model_a, '_');
             }
