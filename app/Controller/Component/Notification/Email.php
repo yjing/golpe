@@ -9,7 +9,7 @@ class Email implements NotificationProvider {
             if(strlen($ids)>0) {
                 $ids = split(", ", $value['Notification']['to']);
                 
-                foreach ($ids as $k => $id) {
+                foreach ($ids as $k => $id) {debug($id);
                     if(!isset($user_notifications[$id])) {
                         $user_notifications[$id] = array();
                     }
