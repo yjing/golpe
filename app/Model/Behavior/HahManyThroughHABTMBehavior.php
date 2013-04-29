@@ -115,8 +115,9 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
                         $target_list[$key][$target_meta['target_model_alias']] = $value[$target_model->alias];
                     }
                     
+                    $results[$i][$target_meta['target_model_alias']] = $target_list;
+                    
                 }
-                unset($results[$i][$model->alias]['HahManyThroughHABTM_ID']);
                 
             }
             unset($results[$i][0]);
