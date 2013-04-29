@@ -80,6 +80,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
         
         foreach ($results as $i => $element) {
             $HABTMrecursive = $element[$model->alias]['HABTMrecursive'];
+            debug($HABTMrecursive);
             if($HABTMrecursive > 0) {
                 $element_id = $element[$model->alias]['HahManyThroughHABTM_ID'];
 
