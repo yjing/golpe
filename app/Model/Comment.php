@@ -5,7 +5,7 @@ class Comment extends UserAwareModel {
 
     public $name = 'Comment';
     public $useTable = "comments";
-    public $actsAs = array('Containable', 'HasMedia', 'HahManyThroughHABTM' => array('Media'));
+    public $actsAs = array('Containable', 'HasMedia', 'HahManyThroughHABTM' => array('Media' => array()));
     public $belongsTo = array(
         "User" => array(
             'fields' => array('id', 'username', 'role')
