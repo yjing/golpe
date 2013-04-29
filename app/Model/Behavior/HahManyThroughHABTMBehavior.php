@@ -70,7 +70,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
         if(isset($query['HABTMrecursive'])) {
             $HABTMrecursive = $query['HABTMrecursive'];
         }
-        $query['fields'][] = $HABTMrecursive . ' as HABTMrecursive';
+        $query['fields'][] = '\'' . $HABTMrecursive . '\' as HABTMrecursive';
         
         debug($query);
         
