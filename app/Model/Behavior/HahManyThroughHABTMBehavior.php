@@ -29,7 +29,7 @@ class HahManyThroughHABTMBehavior extends ModelBehavior {
             if(isset($options['target_fk'])) {
                 $target_fk = $options['target_fk'];
             } else {
-                $target_fk = Inflector::underscore($target_model->alias) . '_' . $target_model->primaryKey;
+                $target_fk = Inflector::underscore($target_name) . '_id';
             }
             
             if(isset($options['model_fk'])) {
