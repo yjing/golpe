@@ -49,6 +49,13 @@ Configure::write("APPCONFIG", array(
         "Media" => true
     ),
     'notification' => array(
-        'providers' => array('Email')
+        'providers' => array(
+            'Email'=>array(
+                'time_laps' => 30*60
+            ),
+            'Android'=>array(
+                'time_laps' => 60
+            )
+        )
     )
 ));

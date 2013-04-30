@@ -2,7 +2,6 @@
 
 App::import('Component', 'Notification');
 App::import('Component', 'ComponentController');
-//App::import('Controller', 'App');
 class NotificationShell extends AppShell {
     
     public function notify() {

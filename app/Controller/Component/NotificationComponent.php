@@ -15,19 +15,16 @@ class NotificationComponent extends Component {
     
     public function notify() {
         
-        $this->Notification = new Notification();
-        $result = $this->Notification->find('all', array(
-//            'fields' => array('Notification.*, max(Notification.created) as maxCreated'),
-            'recursive' => -1
-        ));
+//        $this->Notification = new Notification();
+//        $result = $this->Notification->find('all', array(
+//            'recursive' => -1
+//        ));
         
-        debug($result);die();
-        
-        foreach ($this->settings as $value) {
-            App::uses($value, 'Controller/Component/Notification');
-            $target_class = new ReflectionClass($value);
-            $provider = $target_class->newInstanceArgs();
-            $provider->notify($result);
+        foreach ($this->settings as $provider => $options) {
+            App::uses($provider, 'Controller/Component/Notification');
+            $target_class = new ReflectionClass($provider);
+            $provider_obj = $target_class->newInstanceArgs();
+            $provider_obj->notify($result);
         }
         
         

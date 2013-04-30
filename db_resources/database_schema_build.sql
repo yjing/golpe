@@ -428,6 +428,18 @@ CREATE  TABLE IF NOT EXISTS `notifications` (
 ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `notification_times`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `notification_times` ;
+
+CREATE  TABLE IF NOT EXISTS `notification_times` (
+  `provider_name` TEXT NOT NULL ,
+  `last_notification_time` DATETIME NOT NULL ,
+  PRIMARY KEY (`provider_name`) )
+ENGINE = InnoDB;
+
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
@@ -496,5 +508,14 @@ COMMIT;
 START TRANSACTION;
 INSERT INTO `students_supervisors` (`student_id`, `supervisor_id`) VALUES (1, 3);
 INSERT INTO `students_supervisors` (`student_id`, `supervisor_id`) VALUES (4, 3);
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `notification_times`
+-- -----------------------------------------------------
+START TRANSACTION;
+INSERT INTO `notification_times` (`provider_name`, `last_notification_time`) VALUES ('Email', '0');
+INSERT INTO `notification_times` (`provider_name`, `last_notification_time`) VALUES ('Android', '0');
 
 COMMIT;
