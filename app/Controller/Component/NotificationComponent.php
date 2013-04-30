@@ -39,6 +39,7 @@ class NotificationComponent extends Component {
                     'recursive' => -1
                 ));
 
+                debug($result);
                 $count = count($result);
 
                 if($count > 0) {
