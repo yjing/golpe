@@ -30,12 +30,14 @@ class NotificationComponent extends Component {
                 'recursive' => -1
             ));
             
-            debug($result);die();
+            $new_time = $result[count($result)]['Notification']['created'];
+            debug($new_time);die();
             
-//            App::uses($provider, 'Controller/Component/Notification');
-//            $target_class = new ReflectionClass($provider);
-//            $provider_obj = $target_class->newInstanceArgs();
-//            $provider_obj->notify($result);
+            App::uses($provider, 'Controller/Component/Notification');
+            $target_class = new ReflectionClass($provider);
+            $provider_obj = $target_class->newInstanceArgs();
+            $provider_obj->notify($result);
+            
         }
         
         
