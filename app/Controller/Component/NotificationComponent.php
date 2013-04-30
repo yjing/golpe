@@ -29,30 +29,26 @@ class NotificationComponent extends Component {
             $last_notification_t = $this->NotificationTime->field('last_notification_time');
             $last_notification_time = strtotime($last_notification_t);
             
-            debug($now - $last_notification_time);
-            debug("($now - $last_notification_time) > $time_lapse");
-            debug(($now - $last_notification_time) > $time_lapse);
-            
             if(($now - $last_notification_time) > $time_lapse) {
+                debug("$provider provider: start notification procedure.");
+                
                 $result = $this->Notification->find('all', array(
                     'conditions' => array('Notification.created >' => $last_notification_t),
                     'recursive' => -1
                 ));
-
-                debug($result);
+                
                 $count = count($result);
-
                 if($count > 0) {
 
-    //                App::uses($provider, 'Controller/Component/Notification');
-    //                $target_class = new ReflectionClass($provider);
-    //                $provider_obj = $target_class->newInstanceArgs();
-    //                $provider_obj->notify($result);
+                    App::uses($provider, 'Controller/Component/Notification');
+                    $target_class = new ReflectionClass($provider);
+                    $provider_obj = $target_class->newInstanceArgs();
+                    $provider_obj->notify($result);
+                    
+                    debug("$provider provider: notified $count elements.");
 
                     $new_time = $result[$count - 1]['Notification']['created'];
                     $this->NotificationTime->saveField('last_notification_time', $new_time);
-                } else {
-                    $this->NotificationTime->saveField('last_notification_time', $now);
                 }
                 
             }
