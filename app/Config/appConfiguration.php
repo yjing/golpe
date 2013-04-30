@@ -46,7 +46,8 @@ Configure::write("APPCONFIG", array(
             "modes" => true
         ),
         "Comments" => true,
-        "Media" => true
+        "Media" => true,
+        "Devices" => true
     ),
     'notification' => array(
         'providers' => array(
