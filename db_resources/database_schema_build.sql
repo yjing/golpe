@@ -565,6 +565,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 INSERT INTO `devices` (`id`, `user_id`) VALUES ('c5b24d4a-ca57-487f-88fe-a5bdeee304fe', 1);
+INSERT INTO `devices` (`id`, `user_id`) VALUES ('b36de0ab-1165-4dff-a12e-d036b13efb1f', 3);
 
 COMMIT;
 
@@ -574,6 +575,9 @@ COMMIT;
 START TRANSACTION;
 INSERT INTO `device_properties` (`id`, `device_id`, `key`, `value`) VALUES (1, 'c5b24d4a-ca57-487f-88fe-a5bdeee304fe', 'os', 'Android');
 INSERT INTO `device_properties` (`id`, `device_id`, `key`, `value`) VALUES (2, 'c5b24d4a-ca57-487f-88fe-a5bdeee304fe', 'gcm_key', 'd7e95c39-9686-483a-8f0d-b3d9bb23d5f6');
-INSERT INTO `device_properties` (`id`, `device_id`, `key`, `value`) VALUES (3, 'c5b24d4a-ca57-487f-88fe-a5bdeee304fe', 'language', 'en');
+INSERT INTO `device_properties` (`id`, `device_id`, `key`, `value`) VALUES (3, 'c5b24d4a-ca57-487f-88fe-a5bdeee304fe', 'apy_version', '16');
+INSERT INTO `device_properties` (`id`, `device_id`, `key`, `value`) VALUES (4, 'b36de0ab-1165-4dff-a12e-d036b13efb1f', 'os', 'Android');
+INSERT INTO `device_properties` (`id`, `device_id`, `key`, `value`) VALUES (5, 'b36de0ab-1165-4dff-a12e-d036b13efb1f', 'gcm_key', 'bc7c1472-c0d2-40d1-ba16-390d2af26056');
+INSERT INTO `device_properties` (`id`, `device_id`, `key`, `value`) VALUES (6, 'b36de0ab-1165-4dff-a12e-d036b13efb1f', 'api_version', '14');
 
 COMMIT;
