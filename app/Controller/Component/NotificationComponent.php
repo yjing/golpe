@@ -31,26 +31,27 @@ class NotificationComponent extends Component {
             $last_notification_time = strtotime($last_notification_time);
             $time_limit = $last_notification_time + $time_lapse;
             
-            debug($time_limit);
-            debug($now);
-            debug($now - $time_limit);die();
+            $do_notify = $now - $time_limit >= 0;
+            debug($do_notify);
             
-            $result = $this->Notification->find('all', array(
-                'conditions' => array('Notification.created >' => $last_notification_time),
-                'recursive' => -1
-            ));
-            
-            $count = count($result);
-            
-            if($count > 0) {
+            if($do_notify) {
+                $result = $this->Notification->find('all', array(
+                    'conditions' => array('Notification.created >' => $last_notification_time),
+                    'recursive' => -1
+                ));
 
-//                App::uses($provider, 'Controller/Component/Notification');
-//                $target_class = new ReflectionClass($provider);
-//                $provider_obj = $target_class->newInstanceArgs();
-//                $provider_obj->notify($result);
-                
-                $new_time = $result[$count - 1]['Notification']['created'];
-                $this->NotificationTime->saveField('last_notification_time', $new_time);
+                $count = count($result);
+
+                if($count > 0) {
+
+    //                App::uses($provider, 'Controller/Component/Notification');
+    //                $target_class = new ReflectionClass($provider);
+    //                $provider_obj = $target_class->newInstanceArgs();
+    //                $provider_obj->notify($result);
+
+                    $new_time = $result[$count - 1]['Notification']['created'];
+                    $this->NotificationTime->saveField('last_notification_time', $new_time);
+                }
             }
             
         }
