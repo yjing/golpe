@@ -31,6 +31,8 @@ class NotificationComponent extends Component {
                 'conditions' => array('Notification.created >' => $time),
                 'recursive' => -1
             ));
+            debug('RESULT/S');
+            debug($result);
             
             $count = count($result);
             
