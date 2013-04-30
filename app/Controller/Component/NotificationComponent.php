@@ -26,8 +26,8 @@ class NotificationComponent extends Component {
             $time_lapse = $options['time_lapse'];
             
             $this->NotificationTime->id = $provider;
-            $last_notification_time = $this->NotificationTime->field('last_notification_time');
-            $last_notification_time = strtotime($last_notification_time);
+            $last_notification_t = $this->NotificationTime->field('last_notification_time');
+            $last_notification_time = strtotime($last_notification_t);
             
             debug($now - $last_notification_time);
             debug("($now - $last_notification_time) > $time_lapse");
@@ -35,7 +35,7 @@ class NotificationComponent extends Component {
             
             if(($now - $last_notification_time) > $time_lapse) {
                 $result = $this->Notification->find('all', array(
-                    'conditions' => array('Notification.created >' => $last_notification_time),
+                    'conditions' => array('Notification.created >' => $last_notification_t),
                     'recursive' => -1
                 ));
 
