@@ -46,17 +46,17 @@ class NotificationComponent extends Component {
                     $provider_obj = $target_class->newInstanceArgs();
                     $provider_obj->notify($result);
                     
-                    echo "$provider provider: notified $count elements.\n";
+                    echo "Notified $count elements.\n";
 
                     $new_time = $result[$count - 1]['Notification']['created'];
                     $this->NotificationTime->saveField('last_notification_time', $new_time);
                     
                 } else {
-                    echo "$provider provider: no elements to notify.\n";
+                    echo "No elements to notify.\n";
                 }
                 
             }
-            echo "\n";
+            echo "---------------------------------------------------------------\n";
             
         }
         
