@@ -26,7 +26,7 @@ class NotificationComponent extends Component {
         foreach ($this->settings as $provider => $options) {
             
             $this->NotificationTime->id = $provider;
-            $time = $this->field('last_notification_time');
+            $time = $this->NotificationTime->field('last_notification_time');
             debug($time);die();
             
             App::uses($provider, 'Controller/Component/Notification');
