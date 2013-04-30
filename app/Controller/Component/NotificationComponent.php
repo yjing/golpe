@@ -29,8 +29,9 @@ class NotificationComponent extends Component {
             $last_notification_t = $this->NotificationTime->field('last_notification_time');
             $last_notification_time = strtotime($last_notification_t);
             
+            echo "$provider provider:\n";
             if(($now - $last_notification_time) > $time_lapse) {
-                echo "$provider provider: start notification procedure.";
+                echo "$provider provider: start notification procedure.\n";
                 
                 $result = $this->Notification->find('all', array(
                     'conditions' => array('Notification.created >' => $last_notification_t),
@@ -45,16 +46,17 @@ class NotificationComponent extends Component {
                     $provider_obj = $target_class->newInstanceArgs();
                     $provider_obj->notify($result);
                     
-                    echo "$provider provider: notified $count elements.";
+                    echo "$provider provider: notified $count elements.\n";
 
                     $new_time = $result[$count - 1]['Notification']['created'];
                     $this->NotificationTime->saveField('last_notification_time', $new_time);
                     
                 } else {
-                    echo "$provider provider: no elements to notify.";
+                    echo "$provider provider: no elements to notify.\n";
                 }
                 
             }
+            echo "\n";
             
         }
         
