@@ -565,8 +565,8 @@ COMMIT;
 -- Data for table `devices`
 -- -----------------------------------------------------
 START TRANSACTION;
-INSERT INTO `devices` (`id`, `user_id`, `visivility_level`) VALUES ('c5b24d4a-ca57-487f-88fe-a5bdeee304fe', 1, NULL);
-INSERT INTO `devices` (`id`, `user_id`, `visivility_level`) VALUES ('b36de0ab-1165-4dff-a12e-d036b13efb1f', 3, NULL);
+INSERT INTO `devices` (`id`, `user_id`, `visivility_level`) VALUES ('c5b24d4a-ca57-487f-88fe-a5bdeee304fe', 1, 'PRIVATE');
+INSERT INTO `devices` (`id`, `user_id`, `visivility_level`) VALUES ('b36de0ab-1165-4dff-a12e-d036b13efb1f', 3, 'PRIVATE');
 
 COMMIT;
 
