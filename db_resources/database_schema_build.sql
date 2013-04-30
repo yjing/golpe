@@ -434,7 +434,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `notification_times` ;
 
 CREATE  TABLE IF NOT EXISTS `notification_times` (
-  `provider_name` TEXT NOT NULL ,
+  `provider_name` VARCHAR(255) NOT NULL ,
   `last_notification_time` DATETIME NOT NULL ,
   PRIMARY KEY (`provider_name`) )
 ENGINE = InnoDB;
