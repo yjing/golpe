@@ -31,6 +31,8 @@ class NotificationComponent extends Component {
             $last_notification_time = strtotime($last_notification_time);
             $time_limit = $last_notification_time + $time_lapse;
             
+            debug($time_limit);
+            debug($now);
             debug($now - $time_limit);die();
             
             $result = $this->Notification->find('all', array(
