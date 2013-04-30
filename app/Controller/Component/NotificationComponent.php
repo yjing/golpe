@@ -3,10 +3,12 @@ App::import('Model', 'ActivityLog');
 App::import('Model', 'Comment');
 App::import('Model', 'User');
 App::import('Model', 'Notification');
+App::import('Model', 'NotificationTime');
 
 class NotificationComponent extends Component {
     
     private $Notification = null;
+    private $NotificationTime = null;
     private $ActivityLog = null;
     private $User = null;
     
@@ -19,8 +21,14 @@ class NotificationComponent extends Component {
 //        $result = $this->Notification->find('all', array(
 //            'recursive' => -1
 //        ));
+        $this->NotificationTime = new NotificationTime();
         
         foreach ($this->settings as $provider => $options) {
+            
+            $this->NotificationTime->id = $provider;
+            $time = $this->field('last_notification_time');
+            debug($time);die();
+            
             App::uses($provider, 'Controller/Component/Notification');
             $target_class = new ReflectionClass($provider);
             $provider_obj = $target_class->newInstanceArgs();
