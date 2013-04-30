@@ -17,22 +17,25 @@ class NotificationComponent extends Component {
     
     public function notify() {
         
-//        $this->Notification = new Notification();
-//        $result = $this->Notification->find('all', array(
-//            'recursive' => -1
-//        ));
+        $this->Notification = new Notification();
         $this->NotificationTime = new NotificationTime();
         
         foreach ($this->settings as $provider => $options) {
             
             $this->NotificationTime->id = $provider;
             $time = $this->NotificationTime->field('last_notification_time');
-            debug($time);die();
             
-            App::uses($provider, 'Controller/Component/Notification');
-            $target_class = new ReflectionClass($provider);
-            $provider_obj = $target_class->newInstanceArgs();
-            $provider_obj->notify($result);
+            $result = $this->Notification->find('all', array(
+                'conditions' => array('last_notification_time >' => $time),
+                'recursive' => -1
+            ));
+            
+            debug($result);die();
+            
+//            App::uses($provider, 'Controller/Component/Notification');
+//            $target_class = new ReflectionClass($provider);
+//            $provider_obj = $target_class->newInstanceArgs();
+//            $provider_obj->notify($result);
         }
         
         
