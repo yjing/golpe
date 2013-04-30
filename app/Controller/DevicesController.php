@@ -1,0 +1,49 @@
+<?php
+
+App::import('Controller', 'REST');
+
+class DevicesController extends RESTController {
+
+    
+    public function beforeFilter() {
+        parent::beforeFilter();
+    }
+    
+    public function index() {
+        parent::index();
+        
+        $this->Device->recursive = -1;
+        $result = $this->Device->find('all');
+        
+        $this->_setResponseJSON($result);
+    }
+
+    public function view($id = null) {
+        parent::view($id);
+        
+        $this->_ReportUnsupportedMethod();
+    }
+
+    public function add() {
+        parent::add();
+        
+        $this->_ReportUnsupportedMethod();
+        
+    }
+
+    public function edit($id = null) {
+        parent::edit($id);
+        
+        $this->_ReportUnsupportedMethod();
+    }
+
+    public function delete($id = null) {
+        parent::delete($id);
+        
+        $this->_ReportUnsupportedMethod();
+        
+    }
+
+}
+
+?>
