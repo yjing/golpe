@@ -24,20 +24,16 @@ class NotificationComponent extends Component {
         foreach ($this->settings as $provider => $options) {
             
             $time_lapse = $options['time_lapse'];
-            debug($time_lapse);
             
             $this->NotificationTime->id = $provider;
             $last_notification_time = $this->NotificationTime->field('last_notification_time');
-            
             $last_notification_time = strtotime($last_notification_time);
-            $time_limit = $last_notification_time + $time_lapse;
             
-            debug($now);
-            debug($time_limit);
-            $do_notify = $now - $time_limit >= 0;
-            debug($do_notify);
+            debug($now - $last_notification_time);
+            debug("($now - $last_notification_time) > $time_lapse");
+            debug(($now - $last_notification_time) > $time_lapse);
             
-            if($do_notify) {
+            if(($now - $last_notification_time) > $time_lapse) {
                 $result = $this->Notification->find('all', array(
                     'conditions' => array('Notification.created >' => $last_notification_time),
                     'recursive' => -1
