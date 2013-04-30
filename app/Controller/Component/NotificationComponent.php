@@ -41,7 +41,8 @@ class NotificationComponent extends Component {
                 $count = count($result);
                 if($count > 0) {
 
-                    App::uses($provider, 'Controller/Component/Notification');
+//                    App::uses($provider, 'Controller/Component/Notification');
+                    App::import('Component', $provider);
                     $target_class = new ReflectionClass($provider);
                     $provider_obj = $target_class->newInstanceArgs();
                     $provider_obj->notify($result);
