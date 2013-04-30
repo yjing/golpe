@@ -33,13 +33,15 @@ class NotificationComponent extends Component {
             $count = count($result);
             
             if($count > 0) {
-                $new_time = $result[$count - 1]['Notification']['created'];
-                debug($new_time);die();
 
-                App::uses($provider, 'Controller/Component/Notification');
-                $target_class = new ReflectionClass($provider);
-                $provider_obj = $target_class->newInstanceArgs();
-                $provider_obj->notify($result);
+//                App::uses($provider, 'Controller/Component/Notification');
+//                $target_class = new ReflectionClass($provider);
+//                $provider_obj = $target_class->newInstanceArgs();
+//                $provider_obj->notify($result);
+                
+                $new_time = $result[$count - 1]['Notification']['created'];
+                $time = $this->NotificationTime->saveField('last_notification_time', $new_time);
+                die();
             }
             
         }
