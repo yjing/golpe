@@ -55,6 +55,8 @@ class NotificationComponent extends Component {
                     echo "No elements to notify.\n";
                 }
                 
+            } else {
+                echo "Not started\n";
             }
             echo "---------------------------------------------------------------\n";
             
