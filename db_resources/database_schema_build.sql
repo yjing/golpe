@@ -448,6 +448,7 @@ DROP TABLE IF EXISTS `devices` ;
 CREATE  TABLE IF NOT EXISTS `devices` (
   `id` CHAR(36) NOT NULL ,
   `user_id` INT UNSIGNED NOT NULL ,
+  `visivility_level` TEXT NOT NULL DEFAULT 'PRIVATE' ,
   PRIMARY KEY (`id`) ,
   CONSTRAINT `fk_devices_users1`
     FOREIGN KEY (`user_id` )
@@ -564,8 +565,8 @@ COMMIT;
 -- Data for table `devices`
 -- -----------------------------------------------------
 START TRANSACTION;
-INSERT INTO `devices` (`id`, `user_id`) VALUES ('c5b24d4a-ca57-487f-88fe-a5bdeee304fe', 1);
-INSERT INTO `devices` (`id`, `user_id`) VALUES ('b36de0ab-1165-4dff-a12e-d036b13efb1f', 3);
+INSERT INTO `devices` (`id`, `user_id`, `visivility_level`) VALUES ('c5b24d4a-ca57-487f-88fe-a5bdeee304fe', 1, NULL);
+INSERT INTO `devices` (`id`, `user_id`, `visivility_level`) VALUES ('b36de0ab-1165-4dff-a12e-d036b13efb1f', 3, NULL);
 
 COMMIT;
 
