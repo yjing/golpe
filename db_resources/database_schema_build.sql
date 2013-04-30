@@ -448,7 +448,7 @@ DROP TABLE IF EXISTS `devices` ;
 CREATE  TABLE IF NOT EXISTS `devices` (
   `id` CHAR(36) NOT NULL ,
   `user_id` INT UNSIGNED NOT NULL ,
-  `visivility_level` TEXT NOT NULL DEFAULT 'PRIVATE' ,
+  `visivility_level` TEXT NOT NULL ,
   PRIMARY KEY (`id`) ,
   CONSTRAINT `fk_devices_users1`
     FOREIGN KEY (`user_id` )
