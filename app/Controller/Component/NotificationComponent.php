@@ -22,17 +22,20 @@ class NotificationComponent extends Component {
         
         foreach ($this->settings as $provider => $options) {
             
+            $time_lapse = $options['time_lapse'];
+            debug($time_lapse);
             $this->NotificationTime->id = $provider;
             $time = $this->NotificationTime->field('last_notification_time');
-            debug('LAST NOTIFICATION');
+            
+            $time = strtotime($time);
             debug($time);
+            $delta = $time - $time_lapse;
+            debug($delta);die();
             
             $result = $this->Notification->find('all', array(
                 'conditions' => array('Notification.created >' => $time),
                 'recursive' => -1
             ));
-            debug('RESULT/S');
-            debug($result);
             
             $count = count($result);
             
@@ -45,9 +48,6 @@ class NotificationComponent extends Component {
                 
                 $new_time = $result[$count - 1]['Notification']['created'];
                 $time = $this->NotificationTime->saveField('last_notification_time', $new_time);
-                debug('NEW LAST NOTIFICATION');
-                debug($new_time);
-                die();
             }
             
         }
