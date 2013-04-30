@@ -21,7 +21,7 @@ class NotificationComponent extends Component {
         $this->NotificationTime = new NotificationTime();
         
         foreach ($this->settings as $provider => $options) {
-            
+            debug($options);
             $time_lapse = $options['time_lapse'];
             debug($time_lapse);
             $this->NotificationTime->id = $provider;
