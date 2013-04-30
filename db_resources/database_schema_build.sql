@@ -440,6 +440,46 @@ CREATE  TABLE IF NOT EXISTS `notification_times` (
 ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `devices`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `devices` ;
+
+CREATE  TABLE IF NOT EXISTS `devices` (
+  `id` CHAR(36) NOT NULL ,
+  `users_id` INT UNSIGNED NOT NULL ,
+  PRIMARY KEY (`id`) ,
+  CONSTRAINT `fk_devices_users1`
+    FOREIGN KEY (`users_id` )
+    REFERENCES `users` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE INDEX `fk_devices_users1_idx` ON `devices` (`users_id` ASC) ;
+
+
+-- -----------------------------------------------------
+-- Table `device_properties`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `device_properties` ;
+
+CREATE  TABLE IF NOT EXISTS `device_properties` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `device_id` CHAR(36) NOT NULL ,
+  `key` TEXT NOT NULL ,
+  `value` TEXT NOT NULL ,
+  PRIMARY KEY (`id`) ,
+  CONSTRAINT `fk_device_properties_devices1`
+    FOREIGN KEY (`device_id` )
+    REFERENCES `devices` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE INDEX `fk_device_properties_devices1_idx` ON `device_properties` (`device_id` ASC) ;
+
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
@@ -517,5 +557,23 @@ COMMIT;
 START TRANSACTION;
 INSERT INTO `notification_times` (`provider_name`, `last_notification_time`) VALUES ('Email', '0');
 INSERT INTO `notification_times` (`provider_name`, `last_notification_time`) VALUES ('Android', '0');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `devices`
+-- -----------------------------------------------------
+START TRANSACTION;
+INSERT INTO `devices` (`id`, `users_id`) VALUES ('c5b24d4a-ca57-487f-88fe-a5bdeee304fe', 1);
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `device_properties`
+-- -----------------------------------------------------
+START TRANSACTION;
+INSERT INTO `device_properties` (`id`, `device_id`, `key`, `value`) VALUES (1, 'c5b24d4a-ca57-487f-88fe-a5bdeee304fe', 'os', 'Android');
+INSERT INTO `device_properties` (`id`, `device_id`, `key`, `value`) VALUES (2, 'c5b24d4a-ca57-487f-88fe-a5bdeee304fe', 'gcm_key', 'd7e95c39-9686-483a-8f0d-b3d9bb23d5f6');
+INSERT INTO `device_properties` (`id`, `device_id`, `key`, `value`) VALUES (3, 'c5b24d4a-ca57-487f-88fe-a5bdeee304fe', 'language', 'en');
 
 COMMIT;
