@@ -53,7 +53,7 @@ Configure::write("APPCONFIG", array(
             'Email'=>array(
                 'time_lapse' => 30*60
             ),
-            'AndroidNotification.Android'=>array(
+            'Android'=>array(
                 'time_lapse' => 60
             )
         )
