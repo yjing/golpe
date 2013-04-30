@@ -26,7 +26,7 @@ class NotificationComponent extends Component {
             $time = $this->NotificationTime->field('last_notification_time');
             
             $result = $this->Notification->find('all', array(
-                'conditions' => array('last_notification_time >' => $time),
+                'conditions' => array('Notification.last_notification_time >' => $time),
                 'recursive' => -1
             ));
             
