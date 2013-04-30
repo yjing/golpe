@@ -24,6 +24,8 @@ class NotificationComponent extends Component {
             
             $this->NotificationTime->id = $provider;
             $time = $this->NotificationTime->field('last_notification_time');
+            debug('LAST NOTIFICATION');
+            debug($time);
             
             $result = $this->Notification->find('all', array(
                 'conditions' => array('Notification.created >' => $time),
@@ -41,6 +43,8 @@ class NotificationComponent extends Component {
                 
                 $new_time = $result[$count - 1]['Notification']['created'];
                 $time = $this->NotificationTime->saveField('last_notification_time', $new_time);
+                debug('NEW LAST NOTIFICATION');
+                debug($new_time);
                 die();
             }
             
