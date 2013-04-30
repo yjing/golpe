@@ -447,16 +447,16 @@ DROP TABLE IF EXISTS `devices` ;
 
 CREATE  TABLE IF NOT EXISTS `devices` (
   `id` CHAR(36) NOT NULL ,
-  `users_id` INT UNSIGNED NOT NULL ,
+  `user_id` INT UNSIGNED NOT NULL ,
   PRIMARY KEY (`id`) ,
   CONSTRAINT `fk_devices_users1`
-    FOREIGN KEY (`users_id` )
+    FOREIGN KEY (`user_id` )
     REFERENCES `users` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_devices_users1_idx` ON `devices` (`users_id` ASC) ;
+CREATE INDEX `fk_devices_users1_idx` ON `devices` (`user_id` ASC) ;
 
 
 -- -----------------------------------------------------
@@ -564,7 +564,7 @@ COMMIT;
 -- Data for table `devices`
 -- -----------------------------------------------------
 START TRANSACTION;
-INSERT INTO `devices` (`id`, `users_id`) VALUES ('c5b24d4a-ca57-487f-88fe-a5bdeee304fe', 1);
+INSERT INTO `devices` (`id`, `user_id`) VALUES ('c5b24d4a-ca57-487f-88fe-a5bdeee304fe', 1);
 
 COMMIT;
 
