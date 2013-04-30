@@ -49,6 +49,8 @@ class NotificationComponent extends Component {
 
                     $new_time = $result[$count - 1]['Notification']['created'];
                     $this->NotificationTime->saveField('last_notification_time', $new_time);
+                } else {
+                    debug("$provider provider: no elements to notify.");
                 }
                 
             }
