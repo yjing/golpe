@@ -46,21 +46,23 @@ class User extends AppModel {
     
     public function beforeFind($queryData) {
         parent::beforeFind($queryData);
-        $supervisor_opt = null;
-        
-        debug(in_array('supervisor', $queryData));
-        
-        if(in_array('supervisor', $queryData)) {
-            if(isset($queryData['supervisor']) && is_array($queryData['supervisor'])) {
-                $supervisor_opt = $queryData['supervisor'];
-            } else {
-                $supervisor_opt = array();
-            }
-        }
+        $supervisor_opt = $this->getConfigElement($queryData, 'supervisor');
         debug($supervisor_opt);
         debug($queryData);
         die();
         
+    }
+    
+    public function getConfigElement($config_array, $key) {
+        $result = null;
+        if(in_array($key, $config_array)) {
+            if(isset($config_array[$key]) && is_array($config_array[$key])) {
+                $result = $config_array[$key];
+            } else {
+                $result = array();
+            }
+        }
+        return $result;
     }
     
     public function getTeam($userId){
