@@ -69,12 +69,18 @@ class User extends AppModel {
             foreach ($this->associations as $association_name => $queryData) {
                 $asso = $this->findAssociation($association_name);
                 debug($asso);
+                $asso['function']("test");
             }
         }
         
         return $results;
     }
     
+    public function &testF($param) {
+        debug($param);
+    }
+
+
     public function findAssociation($association_name) {
         if(array_key_exists($association_name, $this->hasOne)) {
             return array(
@@ -97,7 +103,8 @@ class User extends AppModel {
         if(array_key_exists($association_name, $this->hasAndBelongsToMany)) {
             return array(
                 'type' => 'hasAndBelongsToMany',
-                'config' => $this->hasAndBelongsToMany[$association_name]
+                'config' => $this->hasAndBelongsToMany[$association_name],
+                'function' => &$this->testF
             );
         }
         return null;
