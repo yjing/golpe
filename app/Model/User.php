@@ -3,8 +3,6 @@
 // app/Model/User.php
 class User extends AppModel {
     
-    private static $LINKS_KEY = "links";
-    
     private static $SUPERVISOR_KEY = "supervisor";
     private $supervisor_opt;
     public $hasAndBelongsToMany = array('Team');
@@ -50,14 +48,15 @@ class User extends AppModel {
         return true;
     }
     
-    private $links;
+    private static $ASSOCIATIONS_KEY = "associations";
+    private $association;
     private $models = array();
     
     public function beforeFind($queryData) {
         parent::beforeFind($queryData);
         
         $queryData['recursive'] = -1;
-        $this->links = $this->getConfigElement($queryData, User::$LINKS_KEY); // <--- CHANGE!!!! User to the real class name
+        $this->association = $this->getConfigElement($queryData, User::$ASSOCIATIONS_KEY); // <--- CHANGE!!!! User to the real class name
         
         return $queryData;
     }
@@ -65,8 +64,8 @@ class User extends AppModel {
     public function afterFind($results, $primary = false) {
         parent::afterFind($results, $primary);
         
-        foreach ($this->links as $model => $config) {
-            debug($this->findLink($model));
+        foreach ($this->association as $model => $config) {
+            debug($this->findAssociation($model));
         }
         
 //        foreach ($results as $index => $element) {
@@ -76,9 +75,18 @@ class User extends AppModel {
         return $results;
     }
     
-    public function findLink($model) {
-        if(array_key_exists($model, $this->hasAndBelongsToMany)) {
-            return $this->hasAndBelongsToMany[$model];
+    public function findAssociation($association_name) {
+        if(array_key_exists($association_name, $this->hasOne)) {
+            return $this->hasOne[$association_name];
+        }
+        if(array_key_exists($association_name, $this->hasMany)) {
+            return $this->hasMany[$association_name];
+        }
+        if(array_key_exists($association_name, $this->belongsTo)) {
+            return $this->belongsTo[$association_name];
+        }
+        if(array_key_exists($association_name, $this->hasAndBelongsToMany)) {
+            return $this->hasAndBelongsToMany[$association_name];
         }
         return null;
     }
