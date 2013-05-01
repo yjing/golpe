@@ -56,21 +56,27 @@ abstract class RESTController extends AppController {
     
     public function afterFilter() {
         parent::afterFilter();
-        $this->Log = new Log();
-        $user = CakeSession::read('Auth.User');
         
-        $log = array(
-            'Log' => array(
-                'user_id' => $user['id'],
-                'session_id' => CakeSession::id(),
-                'action' => $this->action,
-                'resource' => $this->modelClass,
-                'resource_id' => $this->logs['resource_id'],
-                'important' => $this->logs['important'],
-                'result' => $this->logs['result']
-            )
-        );
-        $this->Log->save($log);
+        // LOGGING
+        if($this->logs != null && $this->logs !== false) {
+            $this->Log = new Log();
+            $user = CakeSession::read('Auth.User');
+
+            $log = array(
+                'Log' => array(
+                    'user_id' => $user['id'],
+                    'session_id' => CakeSession::id(),
+                    'action' => $this->action,
+                    'resource' => $this->modelClass,
+                    'resource_id' => $this->logs['resource_id'],
+                    'important' => $this->logs['important'],
+                    'result' => $this->logs['result']
+                )
+            );
+            $this->Log->save($log);
+        } else {
+            debug("NOT LOGGED "+$this->action);
+        }
     }
     
     public function isAuthorized($user = null) {
