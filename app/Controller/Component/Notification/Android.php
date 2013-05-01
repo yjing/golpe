@@ -1,5 +1,5 @@
 <?php
-require_once '../../../../../Controller/Component/Notification/NotificationProvider.php';
+require_once 'NotificationProvider.php';
 
 App::import('Model', 'User');
 class Android implements NotificationProvider {
