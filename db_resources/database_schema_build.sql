@@ -488,7 +488,7 @@ DROP TABLE IF EXISTS `logs` ;
 
 CREATE  TABLE IF NOT EXISTS `logs` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
-  `users_id` INT UNSIGNED NOT NULL ,
+  `user_id` INT UNSIGNED NOT NULL ,
   `session_id` TEXT NOT NULL ,
   `created` DATETIME NULL ,
   `action` TEXT NOT NULL ,
@@ -498,13 +498,13 @@ CREATE  TABLE IF NOT EXISTS `logs` (
   `result` TINYINT(1) NOT NULL ,
   PRIMARY KEY (`id`) ,
   CONSTRAINT `fk_logs_users1`
-    FOREIGN KEY (`users_id` )
+    FOREIGN KEY (`user_id` )
     REFERENCES `users` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_logs_users1_idx` ON `logs` (`users_id` ASC) ;
+CREATE INDEX `fk_logs_users1_idx` ON `logs` (`user_id` ASC) ;
 
 
 
