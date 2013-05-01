@@ -56,9 +56,12 @@ class User extends AppModel {
         parent::afterFind($results, $primary);
         
         if(isset($this->supervisor_opt)) {
-            debug($primary);
-            foreach ($results as $key => $element) {
-                debug($element);
+            if ($primary) {
+                foreach ($results as $key => $element) {
+                    $element_id = $element[$this->alias][$this->primaryKey];
+                    debug($element_id);
+                    debug($element);
+                }
             }
             
 //            $join = array(
