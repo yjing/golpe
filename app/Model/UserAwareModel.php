@@ -21,15 +21,14 @@ abstract class UserAwareModel extends AppModel {
     
     public function beforeSave($options = array()) {
         $res = parent::beforeSave($options);
+        $user = CakeSession::read('Auth.User');
+        if($user['role'] == 'SHELL') {
+            return true;
+        }
         
         if($this->exists()){
-            if($user['role'] == 'SHELL') {
-                debug("HERE");
-                return true;
-            }
             $res = $res && $this->_checkOwnership();
         } else {
-            $user = CakeSession::read('Auth.User');
             $this->data[$this->alias]['user_id'] = $user['id'];
             return true;
         }
