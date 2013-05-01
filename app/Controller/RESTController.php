@@ -53,7 +53,7 @@ abstract class RESTController extends AppController {
         parent::afterFilter();
         
         debug(CakeSession::id());
-        debug($this->data);
+        debug(Set::extract('/ActivityLog/question',$this->data));
         debug($this->modelClass); die();
         $user = CakeSession::read('Auth.User');
         $this->Log = new Log();
