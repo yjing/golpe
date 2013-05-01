@@ -53,7 +53,7 @@ class User extends AppModel {
 //        debug($supervisor_opt);
 //        debug(is_null($supervisor_opt));
 //        
-//        debug($queryData);
+        debug($queryData);
         die();
         
     }
