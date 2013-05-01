@@ -134,7 +134,7 @@ class ActivityLogsController extends RESTController {
             $this->logs['result'] = true;
             $this->logs['resource'] = 'ActivityLog';
             $this->logs['resource_id'] = $saved['ActivityLog']['id'];
-            $this->logs['important'] = $saved['ActivityLog']['question']=='true';
+            $this->logs['important'] = isset($saved['ActivityLog']['question']) && $saved['ActivityLog']['question']=='true';
         }
     }
 
