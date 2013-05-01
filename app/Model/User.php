@@ -57,7 +57,7 @@ class User extends AppModel {
         
         $queryData['recursive'] = -1;
         $this->associations = $this->getConfigElement($queryData, User::$ASSOCIATIONS_KEY); // <--- CHANGE!!!! User to the real class name
-        
+        debug($this->associations);
         return $queryData;
     }
     
