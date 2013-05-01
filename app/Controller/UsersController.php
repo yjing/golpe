@@ -118,7 +118,7 @@ class UsersController extends RESTController {
                 'user'=>null
             )
         );
-        $this->logs = false;
+        $this->logs['disable'] = true;
     }
     
     /**

@@ -163,7 +163,7 @@ class MediaController extends RESTController {
         }
         
         // LOGGING
-        $this->logs = false;
+        $this->logs['disable'] = true;
         
     }
 
@@ -189,7 +189,7 @@ class MediaController extends RESTController {
             $this->_ReportValidationErrors($this->Media->validationErrors);
         }
         // LOGGING
-        $this->logs = false;
+        $this->logs['disable'] = true;
     }
 
     public function delete($id = null) {
@@ -205,7 +205,7 @@ class MediaController extends RESTController {
             $this->_setResponseJSON('Medium Not deleted');
         }
         // LOGGING
-        $this->logs = false;
+        $this->logs['disable'] = true;
         
     }
     
