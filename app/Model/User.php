@@ -44,6 +44,14 @@ class User extends AppModel {
         return true;
     }
     
+    public function beforeFind($queryData) {
+        parent::beforeFind($queryData);
+        
+        debug($queryData);
+        die();
+        
+    }
+    
     public function getTeam($userId){
         $query = "select Team.* 
                   from users as u join teams_users as tu on (u.id = tu.user_id) 
