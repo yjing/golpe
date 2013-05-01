@@ -3,6 +3,8 @@
 // app/Model/User.php
 class User extends AppModel {
     
+    private static $LINKS_KEY = "links";
+    
     private static $SUPERVISOR_KEY = "supervisor";
     private $supervisor_opt;
     public $hasAndBelongsToMany = array('Team');
@@ -48,12 +50,12 @@ class User extends AppModel {
         return true;
     }
     
-    private $_queryData;
+    private $links;
     public function beforeFind($queryData) {
         parent::beforeFind($queryData);
         
         $queryData['recursive'] = -1;
-        $this->_queryData = $queryData;
+        $this->links = $this->getConfigElement($queryData, User::$LINKS_KEY); // <--- CHANGE!!!! User to the real class name
         
         return $queryData;
     }
@@ -61,6 +63,11 @@ class User extends AppModel {
     public function afterFind($results, $primary = false) {
         parent::afterFind($results, $primary);
         
+        debug($this->links);
+        
+        foreach ($results as $index => $element) {
+            $element_id = $element[$this->alias];
+        }
         
         return $results;
     }
