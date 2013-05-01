@@ -51,7 +51,7 @@ class User extends AppModel {
         debug(in_array('supervisor', $queryData));
         
         if(in_array('supervisor', $queryData)) {
-            if(is_array($queryData['supervisor'])) {
+            if(isset($queryData['supervisor']) && is_array($queryData['supervisor'])) {
                 $supervisor_opt = $queryData['supervisor'];
             } else {
                 $supervisor_opt = array();
