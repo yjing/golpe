@@ -47,6 +47,11 @@ abstract class RESTController extends AppController {
         return $auth;
     }
     
+    public function afterFilter() {
+        parent::afterFilter();
+        debug($this->data);die();
+    }
+    
     public function isAuthorized($user = null) {
         if (!isset($user) || !isset($user['role']) || !in_array($user['role'], $this->_roles)) {
             throw new Exception("Unknown user role.");
