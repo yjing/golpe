@@ -59,7 +59,7 @@ abstract class RESTController extends AppController {
         parent::afterFilter();
         
         // LOGGING
-        if( !($this->logs['disable'] === true) ) {
+        if( array_key_exists($this->logs, 'disable') && !($this->logs['disable'] === true) ) {
             $this->Log = new Log();
             $user = CakeSession::read('Auth.User');
 
