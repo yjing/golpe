@@ -44,13 +44,12 @@ class User extends AppModel {
         return true;
     }
     
-    private static $t = true;
     public function beforeFind($queryData) {
         parent::beforeFind($queryData);
         
         $supervisor_opt = $this->getConfigElement($queryData, 'supervisor');
         
-        return $queryData;
+        return true;
         
     }
     
