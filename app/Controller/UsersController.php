@@ -118,6 +118,7 @@ class UsersController extends RESTController {
                 'user'=>null
             )
         );
+        $this->logs = false;
     }
     
     /**
