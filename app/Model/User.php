@@ -5,6 +5,7 @@ class User extends AppModel {
     
     private static $SUPERVISOR_KEY = "supervisor";
     private $supervisor_opt;
+    public $hasMany = array('ActivityLog');
 
 //    public $actsAs = array(
 //        'HahManyThroughHABTM' => array(
@@ -50,7 +51,7 @@ class User extends AppModel {
     public function beforeFind($queryData) {
         parent::beforeFind($queryData);
         $this->supervisor_opt = $this->getConfigElement($queryData, User::$SUPERVISOR_KEY);
-        debug($queryData['recursive']);die();
+        debug($this->hasMany);die();
     }
     
     public function afterFind($results, $primary = false) {
