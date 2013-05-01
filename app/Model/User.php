@@ -70,8 +70,15 @@ class User extends AppModel {
                         'join.student_id = ' . $element_id
                     );
                     
+                    $supervisor = $this->find('first', array(
+                        'joins' => array($join),
+                        'conditions' => $conditions,
+                        'recursive' => -1,
+                    ));
+                    
                     debug($join);
                     debug($conditions);
+                    debug($supervisor);
                 }
             }
         }
