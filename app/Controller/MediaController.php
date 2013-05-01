@@ -163,9 +163,7 @@ class MediaController extends RESTController {
         }
         
         // LOGGING
-        $this->logs['result'] = true;
-        $this->logs['resource'] = 'media';
-        $this->logs['resource_id'] = $this->Media->id;
+        $this->logs = false;
         
     }
 
@@ -190,6 +188,8 @@ class MediaController extends RESTController {
         } else {
             $this->_ReportValidationErrors($this->Media->validationErrors);
         }
+        // LOGGING
+        $this->logs = false;
     }
 
     public function delete($id = null) {
@@ -204,6 +204,8 @@ class MediaController extends RESTController {
         } else {
             $this->_setResponseJSON('Medium Not deleted');
         }
+        // LOGGING
+        $this->logs = false;
         
     }
     
