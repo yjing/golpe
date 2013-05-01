@@ -60,13 +60,15 @@ abstract class RESTController extends AppController {
         $user = CakeSession::read('Auth.User');
         
         $log = array(
-            'user_id' => $user['id'],
-            'session_id' => CakeSession::id(),
-            'action' => $this->action,
-            'resource' => $this->modelClass,
-            'resource_id' => $this->logs['resource_id'],
-            'important' => $this->logs['important'],
-            'result' => $this->logs['result']
+            'Log' => array(
+                'user_id' => $user['id'],
+                'session_id' => CakeSession::id(),
+                'action' => $this->action,
+                'resource' => $this->modelClass,
+                'resource_id' => $this->logs['resource_id'],
+                'important' => $this->logs['important'],
+                'result' => $this->logs['result']
+            )
         );
         debug($log);
     }

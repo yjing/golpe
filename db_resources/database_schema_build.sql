@@ -489,10 +489,13 @@ DROP TABLE IF EXISTS `logs` ;
 CREATE  TABLE IF NOT EXISTS `logs` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
   `users_id` INT UNSIGNED NOT NULL ,
-  `important` TINYINT(1) NOT NULL DEFAULT false COMMENT '	' ,
-  `resource` TEXT NOT NULL ,
-  `action` TEXT NOT NULL ,
+  `session_id` TEXT NOT NULL ,
   `created` DATETIME NULL ,
+  `action` TEXT NOT NULL ,
+  `resource` TEXT NOT NULL ,
+  `resource_id` INT UNSIGNED NULL ,
+  `important` TINYINT(1) NOT NULL DEFAULT false COMMENT '	' ,
+  `result` TINYINT(1) NOT NULL ,
   PRIMARY KEY (`id`) ,
   CONSTRAINT `fk_logs_users1`
     FOREIGN KEY (`users_id` )
