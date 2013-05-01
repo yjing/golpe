@@ -49,14 +49,29 @@ class User extends AppModel {
     
     public function beforeFind($queryData) {
         parent::beforeFind($queryData);
-        debug(isset($this->supervisor_opt));
         $this->supervisor_opt = $this->getConfigElement($queryData, User::$SUPERVISOR_KEY);
     }
     
     public function afterFind($results, $primary = false) {
         parent::afterFind($results, $primary);
         
-        debug(isset($this->supervisor_opt));
+        if(isset($this->supervisor_opt)) {
+            
+            foreach ($results as $key => $element) {
+                debug($element);
+            }
+            
+//            $join = array(
+//                'table' => 'students_supervisors',
+//                'alias' => 'join',
+//                'type' => 'LEFT',
+//                'conditions' => 'User.id = join.supervisor_id'
+//            );
+//            $conditions = array(
+//                'join.student_id = ' . $element_id
+//            );
+            
+        }
         
         return $results;
     }
