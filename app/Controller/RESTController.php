@@ -52,6 +52,7 @@ abstract class RESTController extends AppController {
     public function afterFilter() {
         parent::afterFilter();
         
+        debug(CakeSession::id());
         debug($this->data);
         debug($this->modelClass); die();
         $user = CakeSession::read('Auth.User');
