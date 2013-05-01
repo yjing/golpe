@@ -61,6 +61,7 @@ class User extends AppModel {
     public function getConfigElement($config_array, $key) {
         $result = null;
         debug(in_array($key, $config_array));
+        debug($config_array[$key]);
         if(in_array($key, $config_array)) {
             
             if(isset($config_array[$key]) && is_array($config_array[$key])) {
