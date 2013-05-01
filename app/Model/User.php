@@ -59,21 +59,21 @@ class User extends AppModel {
             if ($primary) {
                 foreach ($results as $key => $element) {
                     $element_id = $element[$this->alias][$this->primaryKey];
-                    debug($element_id);
-                    debug($element);
+                    
+                    $join = array(
+                        'table' => 'students_supervisors',
+                        'alias' => 'join',
+                        'type' => 'LEFT',
+                        'conditions' => 'User.id = join.supervisor_id'
+                    );
+                    $conditions = array(
+                        'join.student_id = ' . $element_id
+                    );
+                    
+                    debug($join);
+                    debug($conditions);
                 }
             }
-            
-//            $join = array(
-//                'table' => 'students_supervisors',
-//                'alias' => 'join',
-//                'type' => 'LEFT',
-//                'conditions' => 'User.id = join.supervisor_id'
-//            );
-//            $conditions = array(
-//                'join.student_id = ' . $element_id
-//            );
-            
         }
         
         return $results;
