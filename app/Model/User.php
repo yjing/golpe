@@ -57,36 +57,49 @@ class User extends AppModel {
         
         $queryData['recursive'] = -1;
         $this->associations = $this->getConfigElement($queryData, User::$ASSOCIATIONS_KEY); // <--- CHANGE!!!! User to the real class name
-        debug($this->associations);
+        
         return $queryData;
     }
     
     public function afterFind($results, $primary = false) {
         parent::afterFind($results, $primary);
         
-        foreach ($this->associations as $model => $config) {
-            debug($this->findAssociation($model));
+        foreach ($results as $index => $element) {
+            $element_id = $element[$this->alias];
+            foreach ($this->associations as $association_name => $queryData) {
+                $test = $this->findAssociation($association_name);
+                $test['test']();
+            }
         }
-        
-//        foreach ($results as $index => $element) {
-//            $element_id = $element[$this->alias];
-//        }
         
         return $results;
     }
     
     public function findAssociation($association_name) {
         if(array_key_exists($association_name, $this->hasOne)) {
-            return $this->hasOne[$association_name];
+            return array(
+                'type' => 'hasOne',
+                'config' => $this->hasOne[$association_name]
+            );
         }
         if(array_key_exists($association_name, $this->hasMany)) {
-            return $this->hasMany[$association_name];
+            return array(
+                'type' => 'hasMany',
+                'config' => $this->hasMany[$association_name]
+            );
         }
         if(array_key_exists($association_name, $this->belongsTo)) {
-            return $this->belongsTo[$association_name];
+            return array(
+                'type' => 'belongsTo',
+                'config' => $this->belongsTo[$association_name]
+            );
         }
         if(array_key_exists($association_name, $this->hasAndBelongsToMany)) {
-            return $this->hasAndBelongsToMany[$association_name];
+            return array(
+                'type' => 'hasAndBelongsToMany',
+                'config' => $this->hasAndBelongsToMany[$association_name],
+                'test' => function () {debug($this->hasAndBelongsToMany);}
+            );
         }
         return null;
     }
