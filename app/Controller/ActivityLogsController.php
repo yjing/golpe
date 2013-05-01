@@ -118,7 +118,7 @@ class ActivityLogsController extends RESTController {
         
         $this->_setResponseJSON($saved);
         
-        // LOG
+        // LOGGING
         if ($saved) {
             $this->logs['result'] = true;
             $this->logs['resource_id'] = $saved['ActivityLog']['id'];
@@ -137,8 +137,16 @@ class ActivityLogsController extends RESTController {
         }
         
         $this->ActivityLog->id = $id;
-        $this->_setResponseJSON($this->ActivityLog->save($this->data));
+        $saved = $this->ActivityLog->save($this->data);
         
+        $this->_setResponseJSON($saved);
+        
+        // LOGGING
+        if ($saved) {
+            $this->logs['result'] = true;
+            $this->logs['important'] = $saved['ActivityLog']['question']===true;
+        }
+        $this->logs['resource_id'] = $id;
     }
 
     public function delete($id = null) {
@@ -148,6 +156,11 @@ class ActivityLogsController extends RESTController {
         
         $this->_setResponseJSON(array('deleted'=>$deleted));
         
+        // LOGGING
+        if ($deleted) {
+            $this->logs['result'] = true;
+        }
+        $this->logs['resource_id'] = $id;
     }
     
     public function modes() {
