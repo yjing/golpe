@@ -169,9 +169,10 @@ class ActivityLogsController extends RESTController {
         $this->_setResponseJSON(array('deleted'=>$deleted));
         
         // LOGGING
-        if ($deleted) {
+        if ($deleted !== false) {
             $this->logs['result'] = true;
         }
+        $this->logs['resource'] = 'ActivityLog';
         $this->logs['resource_id'] = $id;
     }
     
