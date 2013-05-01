@@ -32,7 +32,6 @@ class UploaderShell extends AppShell {
             'recursive' => -1
         ));
         
-        debug($meds);
         foreach ($meds as $key => $value) {
             try {
                 $m_id = $value['Media']['id'];
@@ -61,6 +60,7 @@ class UploaderShell extends AppShell {
                     flock($lockfile_handle, LOCK_UN);
                 }
             } catch (Exception $e) {
+                echo $e->getMessage();
                 // POSSIBLY DELETE LOCKFILE
                 unlink("/uploads/$m_id.lock");
                 // POSSIBLY RELEASE THE EX LOCK
