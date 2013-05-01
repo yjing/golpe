@@ -7,6 +7,11 @@ abstract class RESTController extends AppController {
     private $_roles;
     
     private $Log;
+    public $logs = array(
+        'resource_id' => null,
+        'important' => false,
+        'result' => true
+    );
     
     public function beforeFilter() {
         $this->RequestHandler->renderAs($this, 'json');
@@ -51,17 +56,19 @@ abstract class RESTController extends AppController {
     
     public function afterFilter() {
         parent::afterFilter();
-        
-        debug(CakeSession::id());
-        debug(Set::extract('/ActivityLog/question[:first]/.',$this->data));
-        debug($this->modelClass); die();
-        $user = CakeSession::read('Auth.User');
         $this->Log = new Log();
+        $user = CakeSession::read('Auth.User');
+        
         $log = array(
             'user_id' => $user['id'],
-            'object' => '',
-            'action' => ''
+            'session_id' => CakeSession::id(),
+            'action' => $this->action,
+            'resource' => $this->modelClass,
+            'resource_id' => $logs['resource_id'],
+            'important' => $logs['important'],
+            'result' => $logs['result']
         );
+        degug($log);
     }
     
     public function isAuthorized($user = null) {
@@ -101,6 +108,8 @@ abstract class RESTController extends AppController {
             
         }
         
+        $this->logs['resource_id'] = null;
+        
     }
 
     public function view($id = null) {
@@ -111,6 +120,7 @@ abstract class RESTController extends AppController {
             
         }
         
+        $this->logs['resource_id'] = $id;
     }
 
     public function add() {
@@ -120,6 +130,8 @@ abstract class RESTController extends AppController {
             $this->_ReportMethodNotAllowed("POST", 'add');
             
         }
+        
+        $this->logs['resource_id'] = null;
         
     }
 
@@ -131,6 +143,7 @@ abstract class RESTController extends AppController {
             
         }
         
+        $this->logs['resource_id'] = $id;
     }
 
     public function edit($id = null) {
@@ -141,6 +154,7 @@ abstract class RESTController extends AppController {
             
         }
         
+        $this->logs['resource_id'] = $id;
     }
 
     public function delete($id = null) {
@@ -151,6 +165,7 @@ abstract class RESTController extends AppController {
             
         }
         
+        $this->logs['resource_id'] = $id;
     }
     
     
