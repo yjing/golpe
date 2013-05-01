@@ -48,6 +48,8 @@ class User extends AppModel {
         parent::beforeFind($queryData);
         $supervisor_opt = $this->getConfigElement($queryData, 'supervisor');
         
+        debug(in_array('test', array('pippo')));
+        
         debug($supervisor_opt);
         debug(is_null($supervisor_opt));
         
@@ -59,6 +61,7 @@ class User extends AppModel {
     public function getConfigElement($config_array, $key) {
         $result = null;
         if(in_array($key, $config_array)) {
+            
             if(isset($config_array[$key]) && is_array($config_array[$key])) {
                 $result = $config_array[$key];
             } else {
