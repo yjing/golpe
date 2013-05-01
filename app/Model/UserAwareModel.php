@@ -114,6 +114,8 @@ abstract class UserAwareModel extends AppModel {
     private function _checkOwnership() {
         $user = CakeSession::read('Auth.User');
         $to_delete = $this->findById($this->id);
+        debug($to_delete[$this->alias]['user_id']);
+        debug($user['id']);
         debug($to_delete[$this->alias]['user_id'] == $user['id']);
         return $to_delete[$this->alias]['user_id'] == $user['id'];
     }
