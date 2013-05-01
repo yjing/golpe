@@ -49,7 +49,7 @@ abstract class RESTController extends AppController {
     
     public function afterFilter() {
         parent::afterFilter();
-        debug($this->data);die();
+        debug($this->data->read());die();
     }
     
     public function isAuthorized($user = null) {
