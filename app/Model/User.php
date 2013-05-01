@@ -51,6 +51,7 @@ class User extends AppModel {
     private $_queryData;
     public function beforeFind($queryData) {
         parent::beforeFind($queryData);
+        debug($queryData);
         $this->_queryData = $queryData;
         $queryData['recursive'] = -1;
     }
