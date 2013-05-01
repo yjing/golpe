@@ -55,7 +55,7 @@ class User extends AppModel {
     public function afterFind($results, $primary = false) {
         parent::afterFind($results, $primary);
         
-        debug($this->supervisor_opt);
+        debug(isset($this->supervisor_opt));
         
         return $results;
     }
