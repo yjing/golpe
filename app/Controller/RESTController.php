@@ -1,10 +1,12 @@
 <?php
-
+App::import('Model', 'Log');
 abstract class RESTController extends AppController {
 
     public $components = array('RequestHandler');
     private $_authorization;
     private $_roles;
+    
+    private $Log;
     
     public function beforeFilter() {
         $this->RequestHandler->renderAs($this, 'json');
@@ -49,7 +51,15 @@ abstract class RESTController extends AppController {
     
     public function afterFilter() {
         parent::afterFilter();
-        debug($this->read());die();
+        debug($this->action);
+        debug($this->uses); die();
+        $user = CakeSession::read('Auth.User');
+        $this->Log = new Log();
+        $log = array(
+            'user_id' => $user['id'],
+            'object' => '',
+            'action' => ''
+        );
     }
     
     public function isAuthorized($user = null) {
