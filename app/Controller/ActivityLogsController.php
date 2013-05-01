@@ -4,7 +4,7 @@ App::import('Controller', 'REST');
 
 class ActivityLogsController extends RESTController {
 
-    public $uses = array('ActivityLog', 'TeamUser', 'User');
+    public $uses = array('ActivityLog', 'TeamUser', 'User', 'Log');
     public $components = array('Session', 'RequestHandler', 'Notification' => array('test'=>'TEST'));
     
     public function beforeFilter() {
@@ -32,6 +32,7 @@ class ActivityLogsController extends RESTController {
             case "all":
                 break;
             case "news":
+                debug($this->Log->getLastAccess());
                 // RETRIEVE NEWS... TODO
                 if($role == 'SUPERVISOR') {
                     $conditions["Supervisor.supervisor_id"] = $user['id'];
