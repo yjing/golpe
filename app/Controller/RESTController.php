@@ -68,7 +68,7 @@ abstract class RESTController extends AppController {
             'important' => $this->logs['important'],
             'result' => $this->logs['result']
         );
-        degug($log);
+        debug($log);
     }
     
     public function isAuthorized($user = null) {
