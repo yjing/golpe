@@ -50,6 +50,7 @@ class User extends AppModel {
     public function beforeFind($queryData) {
         parent::beforeFind($queryData);
         $this->supervisor_opt = $this->getConfigElement($queryData, User::$SUPERVISOR_KEY);
+        debug($queryData['recursive']);die();
     }
     
     public function afterFind($results, $primary = false) {
@@ -73,7 +74,7 @@ class User extends AppModel {
                     $findOptions = array(
                         'joins' => array($join),
                         'conditions' => $conditions,
-                        'recursive' => -1,
+                        'recursive' => 1,
                     );
                     if (isset($this->supervisor_opt['fields'])) {
                         $findOptions['fields'] = $this->supervisor_opt['fields'];
