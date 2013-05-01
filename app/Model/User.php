@@ -44,14 +44,22 @@ class User extends AppModel {
         return true;
     }
     
+    private static $t = true;
     public function beforeFind($queryData) {
         parent::beforeFind($queryData);
+        
         $supervisor_opt = $this->getConfigElement($queryData, 'supervisor');
+        debug("USERT" . User::$t);
+        if(User::$t) {
+            sleep(5);
+            User::$t = false;
+        }
+        return $queryData;
         
-        debug($supervisor_opt);
-        debug($queryData);
-        die();
-        
+    }
+    
+    public function afterFind($results, $primary = false) {
+        parent::afterFind($results, $primary);
     }
     
     public function getConfigElement($config_array, $key) {
