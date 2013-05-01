@@ -68,7 +68,7 @@ class User extends AppModel {
             $element_id = $element[$this->alias];
             foreach ($this->associations as $association_name => $queryData) {
                 $test = $this->findAssociation($association_name);
-                $test['test']();
+                $test['test']($this);
             }
         }
         
@@ -98,7 +98,7 @@ class User extends AppModel {
             return array(
                 'type' => 'hasAndBelongsToMany',
                 'config' => $this->hasAndBelongsToMany[$association_name],
-                'test' => function () {debug($this->hasAndBelongsToMany);}
+                'test' => function ($THIS) {debug($THIS->hasAndBelongsToMany);}
             );
         }
         return null;
