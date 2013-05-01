@@ -76,6 +76,10 @@ class User extends AppModel {
                         'recursive' => -1,
                     ));
                     
+                    if($supervisor) {
+                        $supervisor = array('Supervisor' => $supervisor[$this->alias]);
+                    }
+                    
                     debug($join);
                     debug($conditions);
                     debug($supervisor);
