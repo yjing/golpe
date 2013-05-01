@@ -64,9 +64,9 @@ abstract class RESTController extends AppController {
             'session_id' => CakeSession::id(),
             'action' => $this->action,
             'resource' => $this->modelClass,
-            'resource_id' => $logs['resource_id'],
-            'important' => $logs['important'],
-            'result' => $logs['result']
+            'resource_id' => $this->logs['resource_id'],
+            'important' => $this->logs['important'],
+            'result' => $this->logs['result']
         );
         degug($log);
     }
