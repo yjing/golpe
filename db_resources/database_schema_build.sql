@@ -481,6 +481,29 @@ ENGINE = InnoDB;
 CREATE INDEX `fk_device_properties_devices1_idx` ON `device_properties` (`device_id` ASC) ;
 
 
+-- -----------------------------------------------------
+-- Table `logs`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `logs` ;
+
+CREATE  TABLE IF NOT EXISTS `logs` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `users_id` INT UNSIGNED NOT NULL ,
+  `important` TINYINT(1) NOT NULL DEFAULT false COMMENT '	' ,
+  `resource` TEXT NOT NULL ,
+  `action` TEXT NOT NULL ,
+  `created` DATETIME NULL ,
+  PRIMARY KEY (`id`) ,
+  CONSTRAINT `fk_logs_users1`
+    FOREIGN KEY (`users_id` )
+    REFERENCES `users` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE INDEX `fk_logs_users1_idx` ON `logs` (`users_id` ASC) ;
+
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
