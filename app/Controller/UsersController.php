@@ -27,7 +27,10 @@ class UsersController extends RESTController {
             $this->_ReportNotExistingUser($id);
         }
 
-        $result = $this->User->read(null, $id);
+        $result = $this->User->find('first', array(
+            'conditions' => array('User.id' => $id),
+            'supervisor'
+        ));
         $this->_setResponseJSON(Set::remove($result, 'User.password'));
     }
 
