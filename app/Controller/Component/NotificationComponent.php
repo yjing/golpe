@@ -30,8 +30,6 @@ class NotificationComponent extends Component {
             $last_notification_time = strtotime($last_notification_t);
             
             echo "$provider provider:\n";
-            echo $now - $last_notification_time . '\n';
-            echo (($now - $last_notification_time) > $time_lapse) . '\n';
             if(($now - $last_notification_time) > $time_lapse) {
                 echo "$provider provider: start notification procedure.\n";
                 
