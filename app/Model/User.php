@@ -51,7 +51,7 @@ class User extends AppModel {
         $supervisor_opt = $this->getConfigElement($queryData, 'supervisor');
         debug("USERT" . User::$t);
         if(User::$t) {
-            sleep(5);
+//            sleep(5);
             User::$t = false;
         }
         return $queryData;
