@@ -70,7 +70,7 @@ abstract class RESTController extends AppController {
                 'result' => $this->logs['result']
             )
         );
-        debug($log);
+        $this->Log->save($log);
     }
     
     public function isAuthorized($user = null) {
