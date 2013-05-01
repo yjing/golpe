@@ -23,6 +23,9 @@ class MediaController extends RESTController {
         $result = $this->Media->find('all');
         
         $this->_setResponseJSON($result);
+        // LOGGING
+        $this->logs['result'] = true;
+        $this->logs['resource'] = 'Media';
     }
 
     public function view($id = null) {
@@ -31,6 +34,11 @@ class MediaController extends RESTController {
         $this->Media->recursive = -1;
         $result = $this->Media->findById($id);
         $this->_setResponseJSON($result);
+        // LOGGING
+        
+        $this->logs['result'] = true;
+        $this->logs['resource'] = 'Media';
+        $this->logs['resource_id'] = $id;
     }
     
     public function download($id = null) {
@@ -124,6 +132,11 @@ class MediaController extends RESTController {
                 }
             }
             
+            // LOGGING
+            $this->logs['result'] = true;
+            $this->logs['resource'] = 'Media';
+            $this->logs['resource_id'] = $id;
+            
             return $this->response;
         }
     }
@@ -144,11 +157,15 @@ class MediaController extends RESTController {
                 'content' => $medium,
                 '_serialize' => 'content'
             ));
-//            $this->_setResponseJSON($medium);
             
         } else {
             $this->_ReportValidationErrors($this->Media->validationErrors);
         }
+        
+        // LOGGING
+        $this->logs['result'] = true;
+        $this->logs['resource'] = 'media';
+        $this->logs['resource_id'] = $this->Media->id;
         
     }
 
