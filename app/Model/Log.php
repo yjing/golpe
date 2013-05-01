@@ -14,7 +14,7 @@ class Log extends AppModel {
             ),
             'recursive' => -1
         ));
-        return $result;
+        return $result[0]['last_access'];
     }
 }
 ?>
