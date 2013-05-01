@@ -39,7 +39,7 @@ class ActivityLogsController extends RESTController {
                 } elseif ($role == 'STUDENT') {
                     $conditions["ActivityLog.user_id"] = ' != ' . $user['id'];
                 }
-                $conditions["AvtivityLog.modified"] = ' > ' . $last_access;
+                $conditions["ActivityLog.modified"] = ' > ' . $last_access;
                 break;
             case "team":
                 $conditions["ActivityLog.user_id"] = $this->User->getTeamComponentsId($user['id']);
