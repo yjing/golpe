@@ -43,7 +43,7 @@ class UploaderShell extends AppShell {
                     if($result != false) {
                         // MEDIA UPLOADED, UPDATE THE METADATA
                         $this->Media->id = $m_id;
-                        $this->Media->saveField('status', 'AVAILABLE');
+                        $this->Media->saveField('status', 'AVAILABLE');debug("update");
                         // ACQUIRE EXCLUSIVE LOCK ON FILE TO WAIT READERS AND DELETE IT
                         foreach ($result as $location => $handle) {
                             if(flock($handle, LOCK_EX)) {
