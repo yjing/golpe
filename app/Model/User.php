@@ -56,7 +56,7 @@ class User extends AppModel {
         parent::afterFind($results, $primary);
         
         if(isset($this->supervisor_opt)) {
-            
+            debug($primary);
             foreach ($results as $key => $element) {
                 debug($element);
             }
