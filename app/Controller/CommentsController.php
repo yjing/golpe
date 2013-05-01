@@ -22,11 +22,20 @@ class CommentsController extends RESTController {
                 'recursive' => -1
             )
         ));
+        
+        // LOGGING
+        $this->logs['result'] = true;
+        $this->logs['resource'] = 'Comment';
     }
 
     public function view($id = null) {
         parent::view($id);
         $this->_setResponseJSON($this->Comment->findById($id));
+        
+        // LOGGING
+        $this->logs['result'] = true;
+        $this->logs['resource'] = 'Comment';
+        $this->logs['resource_id'] = $id;
     }
 
     public function add() {
@@ -34,12 +43,22 @@ class CommentsController extends RESTController {
         
         $saved = $this->Comment->save($this->request->data);
         $this->_setResponseJSON($saved);
+        // LOGGING
+        if ($saved) {
+            $this->logs['result'] = true;
+            $this->logs['resource'] = 'Comment';
+            $this->logs['resource_id'] = $saved['Comment']['id'];
+        }
     }
 
     public function update($id = null) {
         parent::update($id);
         
         $this->_ReportUnsupportedMethod();
+        // LOGGING
+        $this->logs['result'] = false;
+        $this->logs['resource'] = 'Comment';
+        $this->logs['resource_id'] = $id;
     }
 
     public function delete($id = null) {
@@ -48,6 +67,12 @@ class CommentsController extends RESTController {
         $deleted = $this->Comment->delete($id);
         
         $this->_setResponseJSON(array('deleted'=>$deleted));
+        // LOGGING
+        if ($deleted) {
+            $this->logs['result'] = true;
+            $this->logs['resource'] = 'Comment';
+            $this->logs['resource_id'] = $deleted['Comment']['id'];
+        }
         
     }
     
