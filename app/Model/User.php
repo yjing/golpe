@@ -2,6 +2,9 @@
 
 // app/Model/User.php
 class User extends AppModel {
+    
+    private static $SUPERVISOR_KEY = "supervisor";
+    private $supervisor_opt;
 
 //    public $actsAs = array(
 //        'HahManyThroughHABTM' => array(
@@ -37,13 +40,6 @@ class User extends AppModel {
         )
     );
     
-    private $supervisor_opt;
-
-    public function __construct($id = false, $table = null, $ds = null) {
-        parent::__construct($id, $table, $ds);
-        debug("COSTRUTTORE");
-    }
-    
     public function beforeSave($options = array()) {
         if (isset($this->data[$this->alias]['password'])) {
             $this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password']);
@@ -53,11 +49,13 @@ class User extends AppModel {
     
     public function beforeFind($queryData) {
         parent::beforeFind($queryData);
-        $this->supervisor_opt = $this->getConfigElement($queryData, 'supervisor');
+        $this->supervisor_opt = $this->getConfigElement($queryData, User::$SUPERVISOR_KEY);
     }
     
     public function afterFind($results, $primary = false) {
         parent::afterFind($results, $primary);
+        
+        debug($this->supervisor_opt);
         
         return $results;
     }
