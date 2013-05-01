@@ -122,7 +122,7 @@ class ActivityLogsController extends RESTController {
         if ($saved) {
             $this->logs['result'] = true;
             $this->logs['resource_id'] = $saved['ActivityLog']['id'];
-            $this->logs['important'] = $saved['ActivityLog']['question'];
+            $this->logs['important'] = $saved['ActivityLog']['question']===true;
         }
     }
 
