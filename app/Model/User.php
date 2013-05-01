@@ -85,7 +85,6 @@ class User extends AppModel {
                         $results[$key]['Supervisor'] = $supervisor[$this->alias];
                     }
                     
-                    debug($results[$key]);
                 }
             }
         }
