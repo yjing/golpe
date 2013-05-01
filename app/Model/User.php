@@ -70,11 +70,16 @@ class User extends AppModel {
                         'join.student_id = ' . $element_id
                     );
                     
-                    $supervisor = $this->find('first', array(
+                    $findOptions = array(
                         'joins' => array($join),
                         'conditions' => $conditions,
                         'recursive' => -1,
-                    ));
+                    );
+                    if (isset($this->supervisor_opt['fields'])) {
+                        $findOptions['fields'] = $this->supervisor_opt['fields'];
+                    }
+                    
+                    $supervisor = $this->find('first', $findOptions);
                     
                     if(count($supervisor) > 0) {
                         $results[$key]['Supervisor'] = $supervisor[$this->alias];
