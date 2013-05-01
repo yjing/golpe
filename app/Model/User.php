@@ -77,7 +77,10 @@ class User extends AppModel {
     }
     
     public function findLink($model) {
-        return $this->associations();
+        if(array_key_exists($model, $this->hasAndBelongsToMany)) {
+            return $this->hasAndBelongsToMany[$model];
+        }
+        return null;
     }
     
 //    public function beforeFind($queryData) {
