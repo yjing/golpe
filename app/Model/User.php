@@ -54,13 +54,13 @@ class User extends AppModel {
         
         $queryData['recursive'] = -1;
         $this->_queryData = $queryData;
-        debug($queryData);
+        
+        return $queryData;
     }
     
     public function afterFind($results, $primary = false) {
         parent::afterFind($results, $primary);
         
-        debug($this->_queryData);
         
         return $results;
     }
