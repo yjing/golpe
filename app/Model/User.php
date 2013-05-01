@@ -49,7 +49,7 @@ class User extends AppModel {
     }
     
     private static $ASSOCIATIONS_KEY = "associations";
-    private $association;
+    private $associations;
     private $models = array();
     
     public function beforeFind($queryData) {
@@ -64,7 +64,7 @@ class User extends AppModel {
     public function afterFind($results, $primary = false) {
         parent::afterFind($results, $primary);
         
-        foreach ($this->association as $model => $config) {
+        foreach ($this->associations as $model => $config) {
             debug($this->findAssociation($model));
         }
         
