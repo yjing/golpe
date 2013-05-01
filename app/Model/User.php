@@ -46,10 +46,13 @@ class User extends AppModel {
     
     public function beforeFind($queryData) {
         parent::beforeFind($queryData);
-        
-        debug(in_array('supervisor', $queryData));
-//        debug(is_array($queryData['supervisor']));
-//        debug(key($queryData['supervisor']));
+        $supervisor_opt = null;
+        if(in_array('supervisor', $queryData)) {
+            $supervisor_opt = array();
+        } elseif (isset ($queryData['supervisor'])) {
+            $supervisor_opt = $queryData['supervisor'];
+        }
+        debug($supervisor_opt);
         
         debug($queryData);
         die();
