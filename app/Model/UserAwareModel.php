@@ -24,6 +24,7 @@ abstract class UserAwareModel extends AppModel {
         
         if($this->exists()){
             if($user['role'] == 'SHELL') {
+                debug("HERE");
                 return true;
             }
             $res = $res && $this->_checkOwnership();
