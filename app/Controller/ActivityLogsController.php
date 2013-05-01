@@ -61,6 +61,10 @@ class ActivityLogsController extends RESTController {
         $results = $this->_formatDates($results, time(), array('created', 'modified'));
         
         $this->_setResponseJSON($results);
+        
+        // LOGGING
+        $this->logs['result'] = true;
+        $this->logs['resource'] = 'ActivityLog';
     }
     
     private function _formatDates($data, $now, $fields) {
@@ -100,6 +104,11 @@ class ActivityLogsController extends RESTController {
                 'HABTMrecursive' => 3
             )
         ));
+        
+        // LOGGING
+        $this->logs['result'] = true;
+        $this->logs['resource'] = 'ActivityLog';
+        $this->logs['resource_id'] = $id;
     }
 
     public function add() {
@@ -121,6 +130,7 @@ class ActivityLogsController extends RESTController {
         // LOGGING
         if ($saved) {
             $this->logs['result'] = true;
+            $this->logs['resource'] = 'ActivityLog';
             $this->logs['resource_id'] = $saved['ActivityLog']['id'];
             $this->logs['important'] = $saved['ActivityLog']['question']===true;
         }
@@ -170,7 +180,9 @@ class ActivityLogsController extends RESTController {
         $this->_setResponseJSON($modes);
         
         //LOGGING
-        $this->logs = false;
+        $this->logs['result'] = true;
+        $this->logs['resource'] = null;
+        $this->logs['resource_id'] = null;
     }
     
 }

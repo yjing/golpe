@@ -8,6 +8,7 @@ abstract class RESTController extends AppController {
     
     private $Log;
     public $logs = array(
+        'resource' => null,
         'resource_id' => null,
         'important' => false,
         'result' => true
@@ -67,16 +68,15 @@ abstract class RESTController extends AppController {
                     'user_id' => $user['id'],
                     'session_id' => CakeSession::id(),
                     'action' => $this->action,
-                    'resource' => $this->modelClass,
+                    'resource' => $this->logs['resource_id'],
                     'resource_id' => $this->logs['resource_id'],
                     'important' => $this->logs['important'],
                     'result' => $this->logs['result']
                 )
             );
             $this->Log->save($log);
-        } else {
-            debug("NOT LOGGED "+$this->action);
         }
+        
     }
     
     public function isAuthorized($user = null) {
