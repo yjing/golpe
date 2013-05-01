@@ -49,11 +49,7 @@ class User extends AppModel {
         parent::beforeFind($queryData);
         
         $supervisor_opt = $this->getConfigElement($queryData, 'supervisor');
-        debug("USERT" . User::$t);
-        if(User::$t) {
-//            sleep(5);
-            User::$t = false;
-        }
+        
         return $queryData;
         
     }
