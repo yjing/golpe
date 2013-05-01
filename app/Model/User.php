@@ -36,7 +36,14 @@ class User extends AppModel {
             )
         )
     );
+    
+    private $supervisor_opt;
 
+    public function __construct($id = false, $table = null, $ds = null) {
+        parent::__construct($id, $table, $ds);
+        debug("COSTRUTTORE");
+    }
+    
     public function beforeSave($options = array()) {
         if (isset($this->data[$this->alias]['password'])) {
             $this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password']);
@@ -46,16 +53,13 @@ class User extends AppModel {
     
     public function beforeFind($queryData) {
         parent::beforeFind($queryData);
-        $supervisor_opt = $this->getConfigElement($queryData, 'supervisor');
-        
-        debug($supervisor_opt);
-        debug($queryData);
-        die();
-        
+        $this->supervisor_opt = $this->getConfigElement($queryData, 'supervisor');
     }
     
     public function afterFind($results, $primary = false) {
         parent::afterFind($results, $primary);
+        
+        return $results;
     }
     
     public function getConfigElement($config_array, $key) {
