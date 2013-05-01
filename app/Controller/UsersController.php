@@ -29,10 +29,14 @@ class UsersController extends RESTController {
 
         $result = $this->User->find('first', array(
             'conditions' => array('User.id' => $id),
-            'supervisor'
-            => array(
-                'fields' => array('username', 'id')
+            'associations' => array(
+                'Team' => array(
+                    'fields' => array('id', 'name')
+                )
             )
+//            'supervisor'=> array(
+//                'fields' => array('username', 'id')
+//            )
         ));
         $this->_setResponseJSON(Set::remove($result, 'User.password'));
     }

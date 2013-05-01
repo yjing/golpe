@@ -5,7 +5,7 @@ class User extends AppModel {
     
     private static $SUPERVISOR_KEY = "supervisor";
     private $supervisor_opt;
-    public $hasAndBelongsToMany = array('Tram');
+    public $hasAndBelongsToMany = array('Team');
 
 //    public $actsAs = array(
 //        'HahManyThroughHABTM' => array(
@@ -48,51 +48,65 @@ class User extends AppModel {
         return true;
     }
     
+    private $_queryData;
     public function beforeFind($queryData) {
         parent::beforeFind($queryData);
-        $this->supervisor_opt = $this->getConfigElement($queryData, User::$SUPERVISOR_KEY);
-        debug($this->hasAndBelongsToMany);die();
+        $this->_queryData = $queryData;
+        $queryData['recursive'] = -1;
     }
     
     public function afterFind($results, $primary = false) {
         parent::afterFind($results, $primary);
         
-        if(isset($this->supervisor_opt)) {
-            if ($primary) {
-                foreach ($results as $key => $element) {
-                    $element_id = $element[$this->alias][$this->primaryKey];
-                    
-                    $join = array(
-                        'table' => 'students_supervisors',
-                        'alias' => 'join',
-                        'type' => 'LEFT',
-                        'conditions' => 'User.id = join.supervisor_id'
-                    );
-                    $conditions = array(
-                        'join.student_id = ' . $element_id
-                    );
-                    
-                    $findOptions = array(
-                        'joins' => array($join),
-                        'conditions' => $conditions,
-                        'recursive' => 1,
-                    );
-                    if (isset($this->supervisor_opt['fields'])) {
-                        $findOptions['fields'] = $this->supervisor_opt['fields'];
-                    }
-                    
-                    $supervisor = $this->find('first', $findOptions);
-                    
-                    if(count($supervisor) > 0) {
-                        $results[$key]['Supervisor'] = $supervisor[$this->alias];
-                    }
-                    
-                }
-            }
-        }
+        debug($this->_queryData);
         
         return $results;
     }
+    
+//    public function beforeFind($queryData) {
+//        parent::beforeFind($queryData);
+//        $this->supervisor_opt = $this->getConfigElement($queryData, User::$SUPERVISOR_KEY);
+//    }
+//    
+//    public function afterFind($results, $primary = false) {
+//        parent::afterFind($results, $primary);
+//        
+//        if(isset($this->supervisor_opt)) {
+//            if ($primary) {
+//                foreach ($results as $key => $element) {
+//                    $element_id = $element[$this->alias][$this->primaryKey];
+//                    
+//                    $join = array(
+//                        'table' => 'students_supervisors',
+//                        'alias' => 'join',
+//                        'type' => 'LEFT',
+//                        'conditions' => 'User.id = join.supervisor_id'
+//                    );
+//                    $conditions = array(
+//                        'join.student_id = ' . $element_id
+//                    );
+//                    
+//                    $findOptions = array(
+//                        'joins' => array($join),
+//                        'conditions' => $conditions,
+//                        'recursive' => 1,
+//                    );
+//                    if (isset($this->supervisor_opt['fields'])) {
+//                        $findOptions['fields'] = $this->supervisor_opt['fields'];
+//                    }
+//                    
+//                    $supervisor = $this->find('first', $findOptions);
+//                    
+//                    if(count($supervisor) > 0) {
+//                        $results[$key]['Supervisor'] = $supervisor[$this->alias];
+//                    }
+//                    
+//                }
+//            }
+//        }
+//        
+//        return $results;
+//    }
     
     public function getConfigElement($config_array, $key) {
         $result = null;
