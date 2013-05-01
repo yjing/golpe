@@ -29,9 +29,12 @@ class UsersController extends RESTController {
 
         $result = $this->User->find('first', array(
             'conditions' => array('User.id' => $id),
-            'links' => array(
+            'associations' => array(
                 'Team' => array(
-                    'fields' => array('id', 'name')
+                    'fields' => array('id', 'name'),
+//                    'associations' => array(
+//                        'Project'
+//                    )
                 )
             ),
 //            'supervisor'=> array(
