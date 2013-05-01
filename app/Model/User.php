@@ -47,7 +47,9 @@ class User extends AppModel {
     public function beforeFind($queryData) {
         parent::beforeFind($queryData);
         $supervisor_opt = $this->getConfigElement($queryData, 'supervisor');
-        debug($supervisor_opt);
+        
+        debug(is_null($supervisor_opt));
+        
         debug($queryData);
         die();
         
