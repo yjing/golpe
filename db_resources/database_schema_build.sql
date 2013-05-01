@@ -92,8 +92,8 @@ CREATE  TABLE IF NOT EXISTS `teams_users` (
   CONSTRAINT `fk_teams_has_users_teams1`
     FOREIGN KEY (`team_id` )
     REFERENCES `teams` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_teams_has_users_users1`
     FOREIGN KEY (`user_id` )
     REFERENCES `users` (`id` )
@@ -196,13 +196,13 @@ CREATE  TABLE IF NOT EXISTS `activity_logs_comments` (
   CONSTRAINT `fk_ativity_logs_has_comment_ativity_logs1`
     FOREIGN KEY (`activity_log_id` )
     REFERENCES `activity_logs` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_ativity_logs_has_comment_comment1`
     FOREIGN KEY (`comment_id` )
     REFERENCES `comments` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 CREATE INDEX `fk_ativity_logs_has_comment_comment1_idx` ON `activity_logs_comments` (`comment_id` ASC) ;
@@ -253,13 +253,13 @@ CREATE  TABLE IF NOT EXISTS `messages_recipients` (
   CONSTRAINT `fk_messages_has_users_messages1`
     FOREIGN KEY (`message_id` )
     REFERENCES `messages` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_messages_has_users_users1`
     FOREIGN KEY (`user_id` )
     REFERENCES `users` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 CREATE INDEX `fk_messages_has_users_users1_idx` ON `messages_recipients` (`user_id` ASC) ;
@@ -279,13 +279,13 @@ CREATE  TABLE IF NOT EXISTS `activity_logs_media` (
   CONSTRAINT `fk_media_has_ativity_logs_media1`
     FOREIGN KEY (`media_id` )
     REFERENCES `media` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_media_has_ativity_logs_ativity_logs1`
     FOREIGN KEY (`activity_log_id` )
     REFERENCES `activity_logs` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 CREATE INDEX `fk_media_has_ativity_logs_ativity_logs1_idx` ON `activity_logs_media` (`activity_log_id` ASC) ;
@@ -305,13 +305,13 @@ CREATE  TABLE IF NOT EXISTS `media_messages` (
   CONSTRAINT `fk_media_has_messages_media1`
     FOREIGN KEY (`media_id` )
     REFERENCES `media` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_media_has_messages_messages1`
     FOREIGN KEY (`message_id` )
     REFERENCES `messages` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 CREATE INDEX `fk_media_has_messages_messages1_idx` ON `media_messages` (`message_id` ASC) ;
@@ -331,13 +331,13 @@ CREATE  TABLE IF NOT EXISTS `comments_media` (
   CONSTRAINT `fk_media_has_comments_media1`
     FOREIGN KEY (`media_id` )
     REFERENCES `media` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_media_has_comments_comments1`
     FOREIGN KEY (`comment_id` )
     REFERENCES `comments` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 CREATE INDEX `fk_media_has_comments_comments1_idx` ON `comments_media` (`comment_id` ASC) ;
@@ -346,18 +346,6 @@ CREATE INDEX `fk_media_has_comments_media1_idx` ON `comments_media` (`media_id` 
 
 
 -- -----------------------------------------------------
--- Table `supervisors_users`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `supervisors_users` ;
-
-CREATE  TABLE IF NOT EXISTS `supervisors_users` (
-  `student_id` INT NOT NULL ,
-  `supervisor_id` INT NOT NULL ,
-  PRIMARY KEY (`student_id`, `supervisor_id`) )
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `students_supervisors`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `students_supervisors` ;
@@ -369,34 +357,8 @@ CREATE  TABLE IF NOT EXISTS `students_supervisors` (
   CONSTRAINT `fk_users_has_users_users3`
     FOREIGN KEY (`student_id` )
     REFERENCES `users` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_users_has_users_users4`
-    FOREIGN KEY (`supervisor_id` )
-    REFERENCES `users` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-CREATE INDEX `fk_users_has_users_users2_idx` ON `students_supervisors` (`supervisor_id` ASC) ;
-
-CREATE INDEX `fk_users_has_users_users1_idx` ON `students_supervisors` (`student_id` ASC) ;
-
-
--- -----------------------------------------------------
--- Table `students_supervisors`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `students_supervisors` ;
-
-CREATE  TABLE IF NOT EXISTS `students_supervisors` (
-  `student_id` INT UNSIGNED NOT NULL ,
-  `supervisor_id` INT UNSIGNED NOT NULL ,
-  PRIMARY KEY (`student_id`, `supervisor_id`) ,
-  CONSTRAINT `fk_users_has_users_users3`
-    FOREIGN KEY (`student_id` )
-    REFERENCES `users` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_users_has_users_users4`
     FOREIGN KEY (`supervisor_id` )
     REFERENCES `users` (`id` )
@@ -474,8 +436,8 @@ CREATE  TABLE IF NOT EXISTS `device_properties` (
   CONSTRAINT `fk_device_properties_devices1`
     FOREIGN KEY (`device_id` )
     REFERENCES `devices` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 CREATE INDEX `fk_device_properties_devices1_idx` ON `device_properties` (`device_id` ASC) ;
