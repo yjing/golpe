@@ -51,6 +51,8 @@ class User extends AppModel {
     }
     
     private $links;
+    private $models = array();
+    
     public function beforeFind($queryData) {
         parent::beforeFind($queryData);
         
@@ -63,13 +65,19 @@ class User extends AppModel {
     public function afterFind($results, $primary = false) {
         parent::afterFind($results, $primary);
         
-        debug($this->links);
-        
-        foreach ($results as $index => $element) {
-            $element_id = $element[$this->alias];
+        foreach ($this->links as $model => $config) {
+            debug($this->findLink($model));
         }
         
+//        foreach ($results as $index => $element) {
+//            $element_id = $element[$this->alias];
+//        }
+        
         return $results;
+    }
+    
+    public function findLink($model) {
+        return $this->associations();
     }
     
 //    public function beforeFind($queryData) {
