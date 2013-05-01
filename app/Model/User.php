@@ -48,18 +48,19 @@ class User extends AppModel {
         parent::beforeFind($queryData);
         $supervisor_opt = $this->getConfigElement($queryData, 'supervisor');
         
-        debug(in_array('test', array('pippo')));
-        
-        debug($supervisor_opt);
-        debug(is_null($supervisor_opt));
-        
-        debug($queryData);
+//        debug(in_array('test', array('pippo')));
+//        
+//        debug($supervisor_opt);
+//        debug(is_null($supervisor_opt));
+//        
+//        debug($queryData);
         die();
         
     }
     
     public function getConfigElement($config_array, $key) {
         $result = null;
+        debug(in_array($key, $config_array));
         if(in_array($key, $config_array)) {
             
             if(isset($config_array[$key]) && is_array($config_array[$key])) {
