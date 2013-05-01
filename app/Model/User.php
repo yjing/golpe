@@ -5,7 +5,7 @@ class User extends AppModel {
     
     private static $SUPERVISOR_KEY = "supervisor";
     private $supervisor_opt;
-    public $hasMany = array('ActivityLog');
+    public $hasAndBelongsToMany = array('Tram');
 
 //    public $actsAs = array(
 //        'HahManyThroughHABTM' => array(
@@ -51,7 +51,7 @@ class User extends AppModel {
     public function beforeFind($queryData) {
         parent::beforeFind($queryData);
         $this->supervisor_opt = $this->getConfigElement($queryData, User::$SUPERVISOR_KEY);
-        debug($this->hasMany);die();
+        debug($this->hasAndBelongsToMany);die();
     }
     
     public function afterFind($results, $primary = false) {
