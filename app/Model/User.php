@@ -56,7 +56,7 @@ class User extends AppModel {
         parent::beforeFind($queryData);
         
         $queryData['recursive'] = -1;
-        $this->associations = $this->getConfigElement($queryData, User::$ASSOCIATIONS_KEY); // <--- CHANGE!!!! User to the real class name
+        $this->associations = $this->getConfigElement($queryData, self::$ASSOCIATIONS_KEY);
         
         return $queryData;
     }
@@ -104,12 +104,13 @@ class User extends AppModel {
             return array(
                 'type' => 'hasAndBelongsToMany',
                 'config' => $this->hasAndBelongsToMany[$association_name],
-                'function' => &$this->testF
+                'function' => $this->testF
             );
         }
         return null;
     }
-    
+
+
 //    public function beforeFind($queryData) {
 //        parent::beforeFind($queryData);
 //        $this->supervisor_opt = $this->getConfigElement($queryData, User::$SUPERVISOR_KEY);
@@ -198,5 +199,3 @@ class User extends AppModel {
     }
 
 }
-
-?>
