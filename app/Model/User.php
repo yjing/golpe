@@ -5,7 +5,7 @@ class User extends AppModel {
     
     private static $SUPERVISOR_KEY = "supervisor";
     private $supervisor_opt;
-//    public $hasAndBelongsToMany = array('Team');
+    public $hasAndBelongsToMany = array('Team');
 
 //    public $actsAs = array(
 //        'HahManyThroughHABTM' => array(
