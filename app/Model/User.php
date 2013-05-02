@@ -100,13 +100,15 @@ class User extends AppModel {
         }
         
         $join = array(
-            'table' => 'students_supervisors',
-            'alias' => 'join',
+            'table' => $association_config['joinTable'],
+            'alias' => $association_config['with'],
             'type' => 'LEFT',
-            'conditions' => 'User.id = join.supervisor_id'
+            'conditions' => $association_config['className'] . '.' . $associated_model->primaryKey 
+                . ' = ' . $association_config['with'] . '.' . $association_config['associationForeignKey']
         );
         debug($association_name);
         debug($association_config);
+        debug($join);
     }
     
     private function loadModel($model_name) {
