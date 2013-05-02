@@ -104,7 +104,7 @@ class User extends AppModel {
             return array(
                 'type' => 'hasAndBelongsToMany',
                 'config' => $this->hasAndBelongsToMany[$association_name],
-                'function' => $this->testF
+                'function' => '$this->testF'
             );
         }
         return null;
