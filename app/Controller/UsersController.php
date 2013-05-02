@@ -36,7 +36,7 @@ class UsersController extends RESTController {
                         'Project'
                     )
                 ),
-                'Supervisor'
+                'Supervisor' => array()
             ),
 //            'supervisor'=> array(
 //                'fields' => array('username', 'id')
