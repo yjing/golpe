@@ -5,7 +5,7 @@ class User extends AppModel {
     
     private static $SUPERVISOR_KEY = "supervisor";
     private $supervisor_opt;
-    public $hasAndBelongsToMany = array('Team');
+//    public $hasAndBelongsToMany = array('Team');
 
 //    public $actsAs = array(
 //        'HahManyThroughHABTM' => array(
@@ -68,11 +68,14 @@ class User extends AppModel {
             $element_id = $element[$this->alias];
             foreach ($this->associations as $association_name => $queryData) {
                 $asso = $this->findAssociation($association_name);
-                debug($asso);
-                call_user_func( array( $this, $asso['function'] ) , 
-                    $asso['config'],
-                    $element
-                );
+                if(isset($asso)) {
+                    call_user_func( array( $this, $asso['function'] ) , 
+                        $asso['config'],
+                        $element
+                    );
+                } else {
+                    throw new InternalErrorException("The $association_name association doesn't exists.");
+                }
             }
         }
         
