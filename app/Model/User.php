@@ -82,14 +82,14 @@ class User extends AppModel {
         return $results;
     }
     
-    public function getHasAndBelongsToMany($config, $element) {
-        if(array_key_exists($config['className'], $this->models)) {
-            $associated_model = $this->models[$config['className']];
+    public function getHasAndBelongsToMany($association_config, $element) {
+        if(array_key_exists($association_config['className'], $this->models)) {
+            $associated_model = $this->models[$association_config['className']];
         } else {
-            $associated_model = $this->loadModel($config['className']);
-            $this->models[$config['className']] = $associated_model;
+            $associated_model = $this->loadModel($association_config['className']);
+            $this->models[$association_config['className']] = $associated_model;
         }
-        debug($associated_model->find('all'));
+        debug($association_config);
     }
     
     private function loadModel($model_name) {
