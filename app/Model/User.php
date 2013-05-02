@@ -8,6 +8,7 @@ class User extends AppModel {
     public $hasAndBelongsToMany = array(
         'Team',
         'Supervisor' => array(
+            'className' => 'User',
             'joinTable' => 'students_supervisors',
             'foreignKey' => 'student_id',
             'associationForeignKey' => 'supervisor_id'
