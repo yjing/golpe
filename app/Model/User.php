@@ -83,12 +83,21 @@ class User extends AppModel {
     }
     
     public function getHasAndBelongsToMany($config, $element) {
-        debug($config);
-        debug($element);
+        $associated_model = $this->models[$config['className']];
+        if (!isset($associated_model)) {
+            $associated_model = $this->loadModel($config['className']);
+            $this->models[$config['className']] = $associated_model;
+        }
+        debug($associated_model->find('all'));
     }
+    
+    private function loadModel($model_name) {
+        App::import('Model', $model_name);
+        $class = new ReflectionClass($model_name);
+        return $class->newInstanceArgs();
+    } 
 
-
-    public function findAssociation($association_name) {
+    private function findAssociation($association_name) {
         if(array_key_exists($association_name, $this->hasOne)) {
             return array(
                 'type' => 'hasOne',
