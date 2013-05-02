@@ -69,7 +69,7 @@ class User extends AppModel {
             foreach ($this->associations as $association_name => $queryData) {
                 $asso = $this->findAssociation($association_name);
                 debug($asso);
-                $asso['function']("test");
+                call_user_func( array( $this, $asso['function'] ) );;
             }
         }
         
@@ -104,7 +104,7 @@ class User extends AppModel {
             return array(
                 'type' => 'hasAndBelongsToMany',
                 'config' => $this->hasAndBelongsToMany[$association_name],
-                'function' => '$this->testF'
+                'function' => 'testF'
             );
         }
         return null;
