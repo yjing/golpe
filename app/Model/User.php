@@ -106,9 +106,13 @@ class User extends AppModel {
             'conditions' => $association_config['className'] . '.' . $associated_model->primaryKey 
                 . ' = ' . $association_config['with'] . '.' . $association_config['associationForeignKey']
         );
+        $conditions = array(
+            $association_config['with'] . '.' . $association_config['foreignKey'] . ' = ' . $element_id
+        );
         debug($association_name);
         debug($association_config);
         debug($join);
+        debug($conditions);
     }
     
     private function loadModel($model_name) {
