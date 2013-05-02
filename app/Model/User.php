@@ -83,8 +83,9 @@ class User extends AppModel {
     }
     
     public function getHasAndBelongsToMany($config, $element) {
-        $associated_model = $this->models[$config['className']];
-        if (!isset($associated_model)) {
+        if(array_key_exists($config['className'], $this->models)) {
+            $associated_model = $this->models[$config['className']];
+        } else {
             $associated_model = $this->loadModel($config['className']);
             $this->models[$config['className']] = $associated_model;
         }
