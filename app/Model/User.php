@@ -107,7 +107,7 @@ class User extends AppModel {
                 . ' = ' . $association_config['with'] . '.' . $association_config['associationForeignKey']
         );
         $conditions = array(
-            $association_config['with'] . '.' . $association_config['foreignKey'] . ' = ' . $element[$this->alias]
+            $association_config['with'] . '.' . $association_config['foreignKey'] . ' = ' . $element[$this->alias]['id']
         );
         debug($association_name);
         debug($association_config);
