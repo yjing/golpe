@@ -74,7 +74,9 @@ class User extends AppModel {
         
         foreach ($results as $index => $element) {
             
+            debug($index);
             debug($this->associations);
+            debug($element);
             foreach ($this->associations as $association_name => $queryData) {
                 $asso = $this->findAssociation($association_name);
                 if(isset($asso)) {
@@ -117,13 +119,13 @@ class User extends AppModel {
             'recursive' => 1,
         ));
         
-        debug($association_name);
-        debug($association_config);
-        debug($join);
-        debug($conditions);
-        debug("-----------------------");
-        debug($res);
-        debug("-----------------------");
+//        debug($association_name);
+//        debug($association_config);
+//        debug($join);
+//        debug($conditions);
+//        debug("-----------------------");
+//        debug($res);
+//        debug("-----------------------");
         
 //      'conditions' => '',
 //	'fields' => '',
