@@ -6,7 +6,8 @@ class User extends AppModel {
     private static $SUPERVISOR_KEY = "supervisor";
     private $supervisor_opt;
     public $hasAndBelongsToMany = array(
-        'Team' => array(
+        'Team',
+        'Supervisor' => array(
             'joinTable' => 'students_supervisors',
             'foreignKey' => 'student_id',
             'associationForeignKey' => 'supervisor_id'
