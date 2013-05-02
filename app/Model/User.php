@@ -69,15 +69,19 @@ class User extends AppModel {
             foreach ($this->associations as $association_name => $queryData) {
                 $asso = $this->findAssociation($association_name);
                 debug($asso);
-                call_user_func( array( $this, $asso['function'] ) , 'test' );
+                call_user_func( array( $this, $asso['function'] ) , 
+                    $asso['config'],
+                    $element
+                );
             }
         }
         
         return $results;
     }
     
-    public function &testF($param) {
-        debug($param);
+    public function getHasAndBelongsToMany($config, $element) {
+        debug($config);
+        debug($element);
     }
 
 
@@ -85,26 +89,29 @@ class User extends AppModel {
         if(array_key_exists($association_name, $this->hasOne)) {
             return array(
                 'type' => 'hasOne',
-                'config' => $this->hasOne[$association_name]
+                'config' => $this->hasOne[$association_name],
+                'function' => 'getHasOne'
             );
         }
         if(array_key_exists($association_name, $this->hasMany)) {
             return array(
                 'type' => 'hasMany',
-                'config' => $this->hasMany[$association_name]
+                'config' => $this->hasMany[$association_name],
+                'function' => 'getHasMany'
             );
         }
         if(array_key_exists($association_name, $this->belongsTo)) {
             return array(
                 'type' => 'belongsTo',
-                'config' => $this->belongsTo[$association_name]
+                'config' => $this->belongsTo[$association_name],
+                'function' => 'getBelongsTo'
             );
         }
         if(array_key_exists($association_name, $this->hasAndBelongsToMany)) {
             return array(
                 'type' => 'hasAndBelongsToMany',
                 'config' => $this->hasAndBelongsToMany[$association_name],
-                'function' => 'testF'
+                'function' => 'getHasAndBelongsToMany'
             );
         }
         return null;
