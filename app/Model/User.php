@@ -73,10 +73,6 @@ class User extends AppModel {
         parent::afterFind($results, $primary);
         
         foreach ($results as $index => $element) {
-            
-            debug($index);
-            debug($this->links);
-            debug($element);
             foreach ($this->links as $association_name => $queryData) {
                 $asso = $this->findAssociation($association_name);
                 if(isset($asso)) {
@@ -118,14 +114,6 @@ class User extends AppModel {
             'conditions' => $conditions,
             'recursive' => 1,
         ));
-        
-//        debug($association_name);
-//        debug($association_config);
-//        debug($join);
-//        debug($conditions);
-//        debug("-----------------------");
-//        debug($res);
-//        debug("-----------------------");
         
 //      'conditions' => '',
 //	'fields' => '',
