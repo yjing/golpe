@@ -109,10 +109,26 @@ class User extends AppModel {
         $conditions = array(
             $association_config['with'] . '.' . $association_config['foreignKey'] . ' = ' . $element[$this->alias]['id']
         );
+        
+        $res = $associated_model->find('all', array(
+            'joins' => array($join),
+            'conditions' => $conditions,
+            'recursive' => 1,
+        ));
+        
         debug($association_name);
         debug($association_config);
         debug($join);
         debug($conditions);
+        debug("-----------------------");
+        debug($res);
+        debug("-----------------------");
+        
+//      'conditions' => '',
+//	'fields' => '',
+//	'order' => '',
+//	'limit' => '',
+//	'offset' => '',
     }
     
     private function loadModel($model_name) {
