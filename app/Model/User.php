@@ -5,7 +5,13 @@ class User extends AppModel {
     
     private static $SUPERVISOR_KEY = "supervisor";
     private $supervisor_opt;
-    public $hasAndBelongsToMany = array('Team');
+    public $hasAndBelongsToMany = array(
+        'Team' => array(
+            'joinTable' => 'students_supervisors',
+            'foreignKey' => 'student_id',
+            'associationForeignKey' => 'supervisor_id'
+        )
+    );
 
 //    public $actsAs = array(
 //        'HahManyThroughHABTM' => array(
@@ -89,6 +95,13 @@ class User extends AppModel {
             $associated_model = $this->loadModel($association_config['className']);
             $this->models[$association_config['className']] = $associated_model;
         }
+        
+        $join = array(
+            'table' => 'students_supervisors',
+            'alias' => 'join',
+            'type' => 'LEFT',
+            'conditions' => 'User.id = join.supervisor_id'
+        );
         debug($association_config);
     }
     
