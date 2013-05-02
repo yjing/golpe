@@ -57,14 +57,14 @@ class User extends AppModel {
     }
     
     private static $ASSOCIATIONS_KEY = "associations";
-    private $associations;
+    private $links;
     private $models = array();
     
     public function beforeFind($queryData) {
         parent::beforeFind($queryData);
         
         $queryData['recursive'] = -1;
-        $this->associations = $this->getConfigElement($queryData, self::$ASSOCIATIONS_KEY);
+        $this->links = $this->getConfigElement($queryData, self::$ASSOCIATIONS_KEY);
         
         return $queryData;
     }
@@ -75,9 +75,9 @@ class User extends AppModel {
         foreach ($results as $index => $element) {
             
             debug($index);
-            debug($this->associations);
+            debug($this->links);
             debug($element);
-            foreach ($this->associations as $association_name => $queryData) {
+            foreach ($this->links as $association_name => $queryData) {
                 $asso = $this->findAssociation($association_name);
                 if(isset($asso)) {
                     call_user_func( array( $this, $asso['function'] ), 
