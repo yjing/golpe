@@ -77,9 +77,7 @@ class User extends AppModel {
                 debug($this->links);
                 foreach ($this->links as $association_name => $queryData) {
                     
-                    $tmp = $this->normalizeArrayElement(&$association_name, &$queryData);
-//                    $queryData = $tmp['queryData'];
-//                    $association_name = $tmp['association_name'];
+                    $this->normalizeArrayElement($association_name, $queryData);
                     
                     $asso = $this->findAssociation($association_name);
                     if(isset($asso)) {
@@ -99,7 +97,8 @@ class User extends AppModel {
         return $results;
     }
     
-    private function normalizeArrayElement($key, $value) {
+    // IMPORTANT: HAS SIDE EFFECT!!! MODIFY THE INPUT DATA!!!
+    private function normalizeArrayElement(&$key, &$value) {
         if(!is_string($key)) {
             $key = $value;
             $value = array();
