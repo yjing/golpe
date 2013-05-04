@@ -65,13 +65,15 @@ class User extends AppModel {
         
         $queryData['recursive'] = -1;
         $this->links = $this->getConfigElement($queryData, self::$ASSOCIATIONS_KEY);
-        debug($queryData);
+        debug($this->links);
         
         return $queryData;
     }
     
     public function afterFind($results, $primary = false) {
         parent::afterFind($results, $primary);
+        
+        debug($this->links);
         
         if(isset($this->links)) {
             foreach ($results as $index => $element) {
@@ -211,15 +213,10 @@ class User extends AppModel {
     
     public function getConfigElement($config_array, $key) {
         $result = null;
-        debug('in_array($key, $config_array, true)');
-        debug(in_array($key, $config_array, true));
         
         if(in_array($key, $config_array, true)) {
             $result = array();
         } elseif (array_key_exists($key, $config_array)) {
-                debug('array_key_exists($key, $config_array)');
-                debug(array_key_exists($key, $config_array));
-                debug($config_array[$key]);
             $result = $config_array[$key];
         }
         return $result;
