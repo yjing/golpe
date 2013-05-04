@@ -118,7 +118,7 @@ class User extends AppModel {
         ));
         
         $alias = $associated_model->alias;
-        debug(Set::extract("/$alias/.", $res));
+        debug(array("$association_name" => Set::extract("/$alias/.", $res)));
         
 //      'conditions' => '',
 //	'fields' => '',
