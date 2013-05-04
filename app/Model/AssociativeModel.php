@@ -56,16 +56,36 @@ abstract class AssociativeModel extends AppModel {
     }
     
     private function getHasOne($association_name, $association_config, $queryData, $element) {
-//        debug('$association_config');
-//        debug($association_config);
-//        debug('$association_name');
-//        debug($association_name);
-//        debug('$queryData');
-//        debug($queryData);
+        debug('$association_config');
+        debug($association_config);
+        debug('$association_name');
+        debug($association_name);
+        debug('$queryData');
+        debug($queryData);
         
-        $res = $this->getHasMany($association_name, $association_config, $queryData, $element);
-//        debug($res);
-//        debug(isset($res[1]));
+        die();
+        $associated_model = $this->getModel($association_config['className']);
+        
+        $conditions = array(
+            $association_config['className'] . '.' . $association_config['foreignKey'] . ' = ' . $element[$this->alias]['id']
+        );
+        
+        $options = array(
+            'conditions' => $conditions,
+            'recursive' => -1,
+        );
+        $nested_associations = $this->getConfigElement($queryData, self::$ASSOCIATIONS_KEY);
+        if(isset($nested_associations) && !empty($nested_associations)) {
+            $options[self::$ASSOCIATIONS_KEY] = $nested_associations;
+        }
+        
+        $fields = $this->getConfigElement($queryData, 'fields');
+        if(isset($fields) && !empty($fields)) {
+            $options['fields'] = $fields;
+        }
+        
+        $res = $associated_model->find('all', $options);
+        
         die();
     }
     
@@ -105,11 +125,9 @@ abstract class AssociativeModel extends AppModel {
         
         $associated_model = $this->getModel($association_config['className']);
         
-        debug("HERE 1");
         $conditions = array(
             $association_config['className'] . '.' . $association_config['foreignKey'] . ' = ' . $element[$this->alias]['id']
         );
-        debug("HERE 2");
         
         $options = array(
             'conditions' => $conditions,
