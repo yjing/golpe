@@ -1,6 +1,6 @@
 <?php
 
-// app/Model/User.php
+App::import('Model', 'AssociativeModel');
 class User extends AssociativeModel {
     
 //    private static $SUPERVISOR_KEY = "supervisor";
