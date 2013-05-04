@@ -56,17 +56,26 @@ abstract class AssociativeModel extends AppModel {
     }
     
     private function getHasOne($association_name, $association_config, $queryData, $element) {
-        debug('$association_config');
-        debug($association_config);
-        debug('$association_name');
-        debug($association_name);
-        debug('$queryData');
-        debug($queryData);
+//        debug('$association_config');
+//        debug($association_config);
+//        debug('$association_name');
+//        debug($association_name);
+//        debug('$queryData');
+//        debug($queryData);
+//        
+        if(isset($queryData['unArray_if_single_value'])) {
+            unset($queryData);
+        }
         
         $res = $this->getHasMany($association_name, $association_config, $queryData, $element);
-        debug($res);
-//        debug(isset($res[1]));
-        die();
+        if(count($res) > 0) {
+            if(count($res) > 1) {
+                $elem_id = $element['id'];
+                throw new Exception("HasOne Association Violation: element $elem_id has more than ONE associated $association_name.");
+            }
+            $res = $res[0];
+        }
+        return $res;
     }
     
     private function getBelongsTo($association_name, $association_config, $queryData, $element) {
