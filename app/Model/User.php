@@ -76,6 +76,10 @@ class User extends AppModel {
             foreach ($results as $index => $element) {
                 debug($this->links);
                 foreach ($this->links as $association_name => $queryData) {
+                    debug('$association_name');
+                    debug($association_name);
+                    debug('$queryData');
+                    debug($queryData);
                     $asso = $this->findAssociation($association_name);
                     if(isset($asso)) {
                         call_user_func( array( $this, $asso['function'] ), 
