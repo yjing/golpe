@@ -29,24 +29,25 @@ class UsersController extends RESTController {
 
         $result = $this->User->find('first', array(
             'conditions' => array('User.id' => $id),
-            'associations' => array(
-                'Team' => array(
-                    'fields' => array('id', 'name'),
-                    'associations' => array(
-                        'Project' => array()
-                    )
-                ),
-                'Supervisor' => array(
-                    "unArray_if_single_value",
-                    "fields" => array('id', 'username', 'role'),
-                    'associations' => array(
-                        'Supervisor' => array(
-                            "unArray_if_single_value",
-                            "fields" => array('id', 'username', 'role')
-                        )
-                    )
-                )
-            )
+            'recursive' => 3
+//            'associations' => array(
+//                'Team' => array(
+//                    'fields' => array('id', 'name'),
+//                    'associations' => array(
+//                        'Project' => array()
+//                    )
+//                ),
+//                'Supervisor' => array(
+//                    "unArray_if_single_value",
+//                    "fields" => array('id', 'username', 'role'),
+//                    'associations' => array(
+//                        'Supervisor' => array(
+//                            "unArray_if_single_value",
+//                            "fields" => array('id', 'username', 'role')
+//                        )
+//                    )
+//                )
+//            )
         ));
         $this->_setResponseJSON(Set::remove($result, 'User.password'));
     }

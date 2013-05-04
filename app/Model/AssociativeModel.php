@@ -6,20 +6,14 @@ abstract class AssociativeModel extends AppModel {
     private $links;
     private $models = array();
     
-    
-    public function beforeSave($options = array()) {
-        if (isset($this->data[$this->alias]['password'])) {
-            $this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password']);
-        }
-        return true;
-    }
-    
-    
     public function beforeFind($queryData) {
         parent::beforeFind($queryData);
         
-        $queryData['recursive'] = -1;
-        $this->links = $this->getConfigElement($queryData, self::$ASSOCIATIONS_KEY);
+        $links = $this->getConfigElement($queryData, self::$ASSOCIATIONS_KEY);
+        if (isset($links)) {
+            $this->links = $this->getConfigElement($queryData, self::$ASSOCIATIONS_KEY);
+            $queryData['recursive'] = -1;
+        }
         
         return $queryData;
     }
@@ -59,7 +53,6 @@ abstract class AssociativeModel extends AppModel {
             $key = $value;
             $value = array();
         }
-//        return array("association_name" => $key, "queryData" => $value);
     }
 
 
