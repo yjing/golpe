@@ -121,6 +121,9 @@ class User extends AppModel {
         
         $alias = $associated_model->alias;
         $res = Set::extract("/$alias/.", $res);
+        
+        debug($res);
+        
         return $res = array($association_name => $res);
         
     }
