@@ -63,28 +63,30 @@ abstract class AssociativeModel extends AppModel {
         debug('$queryData');
         debug($queryData);
         
-        die();
-//        
-//        $associated_model = $this->getModel($association_config['className']);
-//        
-//        $conditions = array(
-//            $association_config['className'] . '.' . $association_config['foreignKey'] . ' = ' . $element[$this->alias]['id']
-//        );
-//        
-//        $options = array(
-//            'conditions' => $conditions,
-//            'recursive' => -1,
-//        );
-//        $nested_associations = $this->getConfigElement($queryData, self::$ASSOCIATIONS_KEY);
-//        if(isset($nested_associations) && !empty($nested_associations)) {
-//            $options[self::$ASSOCIATIONS_KEY] = $nested_associations;
-//        }
-//        
-//        $fields = $this->getConfigElement($queryData, 'fields');
-//        if(isset($fields) && !empty($fields)) {
-//            $options['fields'] = $fields;
-//        }
-//        
+        
+        $associated_model = $this->getModel($association_config['className']);
+        
+        $conditions = array(
+            $association_config['className'] . '.' . $associated_model->primaryKey . ' = ' 
+                . $element[$this->alias][$association_config['foreignKey']]
+        );
+        
+        $options = array(
+            'conditions' => $conditions,
+            'recursive' => -1,
+        );
+        $nested_associations = $this->getConfigElement($queryData, self::$ASSOCIATIONS_KEY);
+        if(isset($nested_associations) && !empty($nested_associations)) {
+            $options[self::$ASSOCIATIONS_KEY] = $nested_associations;
+        }
+        
+        $fields = $this->getConfigElement($queryData, 'fields');
+        if(isset($fields) && !empty($fields)) {
+            $options['fields'] = $fields;
+        }
+        debug($options);
+        
+        
 //        $res = $associated_model->find('all', $options);
 //        
 //        // DATA FORMAT
@@ -98,6 +100,7 @@ abstract class AssociativeModel extends AppModel {
 //            $res = $res[0];
 //        }
         
+        die();
         return $res;
         
     }
