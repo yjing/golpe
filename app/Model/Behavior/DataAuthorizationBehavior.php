@@ -10,6 +10,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
     private $super_roles;
     
     public function setup(Model $model, $config = array()) {
+            $this->config = Configure::read("APPCONFIG.data_access");
     }
     
     public function beforeFind(Model $model, $query) {
@@ -27,11 +28,25 @@ class DataAuthorizationBehavior extends ModelBehavior {
             return $queryData;
         }
         
-        debug($logged_user);
+        $joins = $this->getConfigElement($this->config, 'joins');
+        
+        debug($joins);
         
     }
     public function afterFind(Model $model, $results, $primary) {
         parent::afterFind($model, $results, $primary);
         
+    }
+    
+    
+    public function getConfigElement($config_array, $key) {
+        $result = null;
+        
+        if(in_array($key, $config_array, true)) {
+            $result = array();
+        } elseif (array_key_exists($key, $config_array)) {
+            $result = $config_array[$key];
+        }
+        return $result;
     }
 }

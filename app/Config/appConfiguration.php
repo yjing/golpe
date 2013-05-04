@@ -50,6 +50,13 @@ Configure::write("APPCONFIG", array(
         "Media" => true,
         "Devices" => true
     ),
+    'data_access'=> array(
+        'joins' => array(
+            'User',
+            'Team',
+            'Supervisor'
+        )
+    ),
     'notification' => array(
         'providers' => array(
             'Email'=>array(
