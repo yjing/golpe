@@ -148,9 +148,12 @@ class User extends AppModel {
         // DATA FORMAT
         $alias = $associated_model->alias;
         $alias_data = Set::extract("{n}.$alias", $res);
-//        $alias_data = Set::extract("/$alias/.", $res);
         $res_without_alias = Set::remove($res, "{n}.$alias");
         $res = Set::merge($alias_data, $res_without_alias);
+        
+        if ($this->isAssociative($res)) {
+            $res = array($res);
+        }
         
         $unArray_if_single_value = $this->getConfigElement($queryData, 'unArray_if_single_value');
         if (isset($unArray_if_single_value) && $unArray_if_single_value !== false && count($res) == 1) {
@@ -160,6 +163,9 @@ class User extends AppModel {
         return $res;
         
     }
+    
+    function isVector($var) { return count(array_diff_key($var, range(0, count($var) - 1))) == 0; }
+    function isAssociative($var) { return !isVector($var); }
     
     private function loadModel($model_name) {
         App::import('Model', $model_name);
