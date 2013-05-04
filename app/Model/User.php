@@ -74,19 +74,19 @@ class User extends AppModel {
         
         if(isset($this->links)) {
             foreach ($results as $index => $element) {
-                debug($this->links);
                 foreach ($this->links as $association_name => $queryData) {
                     
                     $this->normalizeKeyValueToAssociative($association_name, $queryData);
                     
                     $asso = $this->findAssociation($association_name);
                     if(isset($asso)) {
-                        call_user_func( array( $this, $asso['function'] ), 
+                        $res = call_user_func( array( $this, $asso['function'] ), 
                             $association_name,
                             $asso['config'],
                             $queryData,
                             $element
                         );
+                        $results[$index][$association_name] = $res;
                     } else {
                         throw new InternalErrorException("The $association_name association doesn't exists.");
                     }
@@ -108,7 +108,6 @@ class User extends AppModel {
 
 
     private function getHasAndBelongsToMany($association_name, $association_config, $queryData, $element) {
-        debug($queryData);
         
         if(array_key_exists($association_config['className'], $this->models)) {
             $associated_model = $this->models[$association_config['className']];
@@ -152,9 +151,6 @@ class User extends AppModel {
         if (isset($unArray_if_single_value) && $unArray_if_single_value !== false && count($res) == 1) {
             $res = $res[0];
         }
-        
-        $res = array($association_name => $res);
-        debug($res);
         
         return $res;
         
