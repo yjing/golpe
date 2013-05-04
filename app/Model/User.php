@@ -116,9 +116,13 @@ class User extends AppModel {
             'conditions' => $conditions,
             'recursive' => 1,
         ));
-        
         $alias = $associated_model->alias;
-        debug(array("$association_name" => Set::extract("/$alias/.", $res)));
+        $res = Set::extract("/$alias/.", $res);
+        if(count($res) == 1) {
+            debug(array('test' => Set::extract("/.", $res)));
+        }
+        
+//        debug(array("$association_name" => ));
         
 //      'conditions' => '',
 //	'fields' => '',
