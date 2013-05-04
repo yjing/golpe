@@ -74,6 +74,7 @@ class User extends AppModel {
         
         if(isset($this->links)) {
             foreach ($results as $index => $element) {
+                debug($this->links);
                 foreach ($this->links as $association_name => $queryData) {
                     $asso = $this->findAssociation($association_name);
                     if(isset($asso)) {
