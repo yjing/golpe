@@ -65,6 +65,7 @@ class User extends AppModel {
         
         $queryData['recursive'] = -1;
         $this->links = $this->getConfigElement($queryData, self::$ASSOCIATIONS_KEY);
+        debug($this->alias);
         debug($this->links);
         
         return $queryData;
@@ -73,6 +74,7 @@ class User extends AppModel {
     public function afterFind($results, $primary = false) {
         parent::afterFind($results, $primary);
         
+        debug($this->alias);
         debug($this->links);
         
         if(isset($this->links)) {
