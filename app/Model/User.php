@@ -121,7 +121,7 @@ class User extends AppModel {
             'recursive' => 0,
         );
         $nested_associations = $this->getConfigElement($queryData, self::$ASSOCIATIONS_KEY);
-        if(isset($nested_associations)) {
+        if(isset($nested_associations) && !empty($nested_associations)) {
             $options[self::$ASSOCIATIONS_KEY] = $nested_associations;
         }
         debug($options);
