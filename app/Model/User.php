@@ -77,7 +77,7 @@ class User extends AppModel {
                 debug($this->links);
                 foreach ($this->links as $association_name => $queryData) {
                     
-                    $tmp = normalizeArrayElement(&$association_name, &$queryData);
+                    $tmp = $this->normalizeArrayElement(&$association_name, &$queryData);
                     $queryData = $tmp['queryData'];
                     $association_name = $tmp['association_name'];
                     
