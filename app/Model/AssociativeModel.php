@@ -1,21 +1,17 @@
 <?php
 abstract class AssociativeModel extends AppModel {
     
-    private static $SUPERVISOR_KEY = "supervisor";
-    private static $ASSOCIATIONS_KEY = "associations";
     private $links;
     private $models = array();
     
     public function beforeFind($queryData) {
         parent::beforeFind($queryData);
         
-        $links = $this->getConfigElement($queryData, self::$ASSOCIATIONS_KEY);
+        $links = $this->getConfigElement($queryData, 'associations');
         if (isset($links)) {
-            $this->links = $this->getConfigElement($queryData, self::$ASSOCIATIONS_KEY);
+            $this->links = $this->getConfigElement($queryData, 'associations');
             $queryData['recursive'] = -1;
         }
-        
-        $queryData['recursive'] = -1;
         
         return $queryData;
     }
@@ -58,24 +54,16 @@ abstract class AssociativeModel extends AppModel {
     }
     
     private function getHasOne($association_name, $association_config, $queryData, $element) {
-//        debug('$association_config');
-//        debug($association_config);
-//        debug('$association_name');
-//        debug($association_name);
-//        debug('$queryData');
-//        debug($queryData);
-//        
         
         $res = $this->getHasMany($association_name, $association_config, $queryData, $element);
-//        debug(range(0, count($res) - 1));
-//        debug(array_keys($res));
+
         if(count( array_diff(array_keys($res), range(0, count($res) - 1))) > 1 ){
             return $res;
         }
         
         if(count($res) > 0) {
             if(count($res) > 1) {
-                $elem_id = $element[$this->alias]['id'];
+                $elem_id = $element[$this->alias][$this->primaryKey];
                 throw new Exception("HasOne Association Violation: element $elem_id has more than ONE associated $association_name.");
             }
             $res = $res[0];
@@ -97,9 +85,9 @@ abstract class AssociativeModel extends AppModel {
             'conditions' => $conditions,
             'recursive' => -1,
         );
-        $nested_associations = $this->getConfigElement($queryData, self::$ASSOCIATIONS_KEY);
+        $nested_associations = $this->getConfigElement($queryData, 'associations');
         if(isset($nested_associations) && !empty($nested_associations)) {
-            $options[self::$ASSOCIATIONS_KEY] = $nested_associations;
+            $options['associations'] = $nested_associations;
         }
         
         $fields = $this->getConfigElement($queryData, 'fields');
@@ -120,16 +108,17 @@ abstract class AssociativeModel extends AppModel {
         $associated_model = $this->getModel($association_config['className']);
         
         $conditions = array(
-            $association_config['className'] . '.' . $association_config['foreignKey'] . ' = ' . $element[$this->alias]['id']
+            $association_config['className'] . '.' . $association_config['foreignKey'] . ' = ' 
+                . $element[$this->alias][$this->primaryKey]
         );
         
         $options = array(
             'conditions' => $conditions,
             'recursive' => -1,
         );
-        $nested_associations = $this->getConfigElement($queryData, self::$ASSOCIATIONS_KEY);
+        $nested_associations = $this->getConfigElement($queryData, 'associations');
         if(isset($nested_associations) && !empty($nested_associations)) {
-            $options[self::$ASSOCIATIONS_KEY] = $nested_associations;
+            $options['associations'] = $nested_associations;
         }
         
         $fields = $this->getConfigElement($queryData, 'fields');
@@ -156,14 +145,6 @@ abstract class AssociativeModel extends AppModel {
 
     private function getHasAndBelongsToMany($association_name, $association_config, $queryData, $element) {
         
-//        debug('$association_config');
-//        debug($association_config);
-//        debug('$association_name');
-//        debug($association_name);
-//        debug('$queryData');
-//        debug($queryData);
-//        die();
-        
         $associated_model = $this->getModel($association_config['className']);
         
         $join = array(
@@ -174,7 +155,8 @@ abstract class AssociativeModel extends AppModel {
                 . ' = ' . $association_config['with'] . '.' . $association_config['associationForeignKey']
         );
         $conditions = array(
-            $association_config['with'] . '.' . $association_config['foreignKey'] . ' = ' . $element[$this->alias]['id']
+            $association_config['with'] . '.' . $association_config['foreignKey'] . ' = ' 
+                . $element[$this->alias][$this->primaryKey]
         );
         
         $options = array(
@@ -182,9 +164,9 @@ abstract class AssociativeModel extends AppModel {
             'conditions' => $conditions,
             'recursive' => -1,
         );
-        $nested_associations = $this->getConfigElement($queryData, self::$ASSOCIATIONS_KEY);
+        $nested_associations = $this->getConfigElement($queryData, 'associations');
         if(isset($nested_associations) && !empty($nested_associations)) {
-            $options[self::$ASSOCIATIONS_KEY] = $nested_associations;
+            $options['associations'] = $nested_associations;
         }
         
         $fields = $this->getConfigElement($queryData, 'fields');
