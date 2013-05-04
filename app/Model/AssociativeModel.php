@@ -65,7 +65,7 @@ abstract class AssociativeModel extends AppModel {
 //        
         
         $res = $this->getHasMany($association_name, $association_config, $queryData, $element);
-        debug(array_keys($res));die();
+        debug(array_keys(array_keys($res)));die();
         if(count($res) > 0) {
             if(count($res) > 1) {
                 $elem_id = $element[$this->alias]['id'];
