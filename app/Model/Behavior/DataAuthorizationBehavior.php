@@ -30,7 +30,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
         }
         
         $joins_config = $this->getConfigElement($this->config, 'joins');
-        $joins = $this->generateJoins($joins_config);
+        $joins = $this->generateJoins($model, $joins_config);
         
         
         
