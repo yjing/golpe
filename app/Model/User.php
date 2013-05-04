@@ -151,8 +151,8 @@ class User extends AppModel {
         $res_without_alias = Set::remove($res, "{n}.$alias");
         $res = Set::merge($alias_data, $res_without_alias);
         
+        debug($res);
         if ($this->is_assoc($res)) {
-            debug($res);
             $res = array($res);
             debug($res);
         }
