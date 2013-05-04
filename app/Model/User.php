@@ -72,17 +72,19 @@ class User extends AppModel {
     public function afterFind($results, $primary = false) {
         parent::afterFind($results, $primary);
         
-        foreach ($results as $index => $element) {
-            foreach ($this->links as $association_name => $queryData) {
-                $asso = $this->findAssociation($association_name);
-                if(isset($asso)) {
-                    call_user_func( array( $this, $asso['function'] ), 
-                        $association_name,
-                        $asso['config'],
-                        $element
-                    );
-                } else {
-                    throw new InternalErrorException("The $association_name association doesn't exists.");
+        if(isset($this->links)) {
+            foreach ($results as $index => $element) {
+                foreach ($this->links as $association_name => $queryData) {
+                    $asso = $this->findAssociation($association_name);
+                    if(isset($asso)) {
+                        call_user_func( array( $this, $asso['function'] ), 
+                            $association_name,
+                            $asso['config'],
+                            $element
+                        );
+                    } else {
+                        throw new InternalErrorException("The $association_name association doesn't exists.");
+                    }
                 }
             }
         }
