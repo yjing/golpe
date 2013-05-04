@@ -57,8 +57,19 @@ class DataAuthorizationBehavior extends ModelBehavior {
     private function generateJoins($parent_model, $join_config) {
         foreach ($join_config as $key => $value) {
             $this->normalizeKeyValueToAssociative($key, $value);
+            $asso = $this->findAssociation($parent_model, $key);
             
-            debug($this->findAssociation($parent_model, $key));
+            debug($key);
+            debug($asso);
+            
+            $ret_joins = array();
+            
+            $ret_joins[] = array(
+                'table' => "teams",
+                'alias' => 'Team',
+                'type' => 'LEFT',
+                'conditions' => array('Team.id = AUTHtu.team_id')  
+            );
             
             if(isset($value['joins'])) {
                 $p_model = $this->getModel($key);
