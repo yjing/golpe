@@ -88,20 +88,7 @@ abstract class AssociativeModel extends AppModel {
         $alias = $associated_model->alias;
         $res = $associated_model->find('first', $options);
         $res = Set::extract($alias, $res);
-        debug($res);
-//        
-//        // DATA FORMAT
-//        $alias = $associated_model->alias;
-//        $alias_data = Set::extract("{n}.$alias", $res);
-//        $res_without_alias = Set::remove($res, "{n}.$alias");
-//        $res = Set::merge($alias_data, $res_without_alias);
-//        
-//        $unArray_if_single_value = $this->getConfigElement($queryData, 'unArray_if_single_value');
-//        if (isset($unArray_if_single_value) && $unArray_if_single_value !== false && count($res) == 1) {
-//            $res = $res[0];
-//        }
         
-        die();
         return $res;
         
     }
