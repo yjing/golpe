@@ -117,7 +117,6 @@ class User extends AppModel {
         $options = array(
             'joins' => array($join),
             'conditions' => $conditions,
-            'associations' => $queryData['associations'],
             'recursive' => 0,
         );
         $nested_associations = $this->getConfigElement($queryData, self::$ASSOCIATIONS_KEY);
