@@ -11,6 +11,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
     public function beforeFind(Model $model, $query) {
         parent::beforeFind($model, $query);
         $this->config = array($model->alias . ' ' . rand(5, 15));
+        debug($this->config);
     }
     public function afterFind(Model $model, $results, $primary) {
         parent::afterFind($model, $results, $primary);
