@@ -62,24 +62,28 @@ abstract class AssociativeModel extends AppModel {
         debug($association_name);
         debug('$queryData');
         debug($queryData);
+        
+        $associated_model = $this->getModel($association_config['className']);
+        
     }
 
     private function getHasAndBelongsToMany($association_name, $association_config, $queryData, $element) {
         
-        debug('$association_config');
-        debug($association_config);
-        debug('$association_name');
-        debug($association_name);
-        debug('$queryData');
-        debug($queryData);
-        die();
+//        debug('$association_config');
+//        debug($association_config);
+//        debug('$association_name');
+//        debug($association_name);
+//        debug('$queryData');
+//        debug($queryData);
+//        die();
         
-        if(array_key_exists($association_config['className'], $this->models)) {
-            $associated_model = $this->models[$association_config['className']];
-        } else {
-            $associated_model = $this->loadModel($association_config['className']);
-            $this->models[$association_config['className']] = $associated_model;
-        }
+        $associated_model = $this->getModel($association_config['className']);
+//        if(array_key_exists($association_config['className'], $this->models)) {
+//            $associated_model = $this->models[$association_config['className']];
+//        } else {
+//            $associated_model = $this->loadModel($association_config['className']);
+//            $this->models[$association_config['className']] = $associated_model;
+//        }
         
         $join = array(
             'table' => $association_config['joinTable'],
@@ -122,6 +126,18 @@ abstract class AssociativeModel extends AppModel {
         
         return $res;
         
+    }
+    
+    private function getModel($class_name) {
+        
+        if(array_key_exists($class_name, $this->models)) {
+            $model = $this->models[$class_name];
+        } else {
+            $model = $this->loadModel($class_name);
+            $this->models[$class_name] = $model;
+        }
+        
+        return $model;
     }
     
     private function loadModel($model_name) {
