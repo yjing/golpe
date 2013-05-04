@@ -56,29 +56,26 @@ class DataAuthorizationBehavior extends ModelBehavior {
     
     private function generateJoins($parent_model, $join_config) {
         $ret_joins = array();
-        foreach ($join_config as $key => $value) {
-            $this->normalizeKeyValueToAssociative($key, $value);
-            $asso = $this->findAssociation($parent_model, $key);
-            $asso_model = $this->getModel($key);
+        foreach ($join_config as $join_name => $join_config) {
+            $this->normalizeKeyValueToAssociative($join_name, $join_config);
+            $asso = $this->findAssociation($parent_model, $join_name);
+            $asso_model = $this->getModel($join_name);
             
-            debug($key);
+            debug($join_name);
             debug($asso);
             
             
-            $ret_joins[] = array(
-                'table' => Inflector::tableize($asso['config']['className']),
-                'alias' => $key,
-                'type' => 'LEFT',
-                'conditions' => array(
-                    $parent_model->alias . '.' . $asso['config']['foreignKey'] . ' = ' 
-                        . $asso['config']['className'] . '.' . $asso_model->primaryKey
-                )  
+            $ret_joins[] = call_user_func( array( $this, $asso['function'] ), 
+                $asso,
+                $join_name,
+                $parent_model,
+                $asso_model
             );
             debug($ret_joins);die();
             
             $recursive_joins = null;
-            if(isset($value['joins'])) {
-                $recursive_joins = $this->generateJoins($asso_model, $value['joins']);
+            if(isset($join_config['joins'])) {
+                $recursive_joins = $this->generateJoins($asso_model, $join_config['joins']);
             }
             if(isset($recursive_joins)) {
                 $ret_joins = array_merge($ret_joins, $recursive_joins);
@@ -86,6 +83,19 @@ class DataAuthorizationBehavior extends ModelBehavior {
             
         }
         return $ret_joins;
+    }
+    
+    private function generateBelongsToJoin($asso, $association_name, Model $parent_model, Model $association_model) {
+        $join = array(
+            'table' => Inflector::tableize($asso['config']['className']),
+            'alias' => $association_name,
+            'type' => 'LEFT',
+            'conditions' => array(
+                $parent_model->alias . '.' . $asso['config']['foreignKey'] . ' = '
+                    . $asso['config']['className'] . '.' . $association_model->primaryKey
+            )
+        );
+        return $join;
     }
     
     private function getModel($class_name) {
@@ -122,7 +132,8 @@ class DataAuthorizationBehavior extends ModelBehavior {
         if(array_key_exists($association_name, $model->belongsTo)) {
             return array(
                 'type' => 'belongsTo',
-                'config' => $model->belongsTo[$association_name]
+                'config' => $model->belongsTo[$association_name],
+                'function' => 'generateBelongsToJoin'
             );
         }
         if(array_key_exists($association_name, $model->hasAndBelongsToMany)) {
