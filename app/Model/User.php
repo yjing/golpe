@@ -117,7 +117,8 @@ class User extends AppModel {
             'recursive' => 1,
         ));
         
-        debug($res);
+        $alias = $associated_model->alias;
+        debug(Set::extract("/$alias/.", $res));
         
 //      'conditions' => '',
 //	'fields' => '',
