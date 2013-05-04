@@ -14,7 +14,9 @@ class User extends AssociativeModel {
             'associationForeignKey' => 'supervisor_id'
         )
     );
-    
+    public $hasMany = array('AcrtivityLog');
+
+
     public $validate = array(
         'username' => array(
             'required' => array(

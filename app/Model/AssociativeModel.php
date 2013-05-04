@@ -64,6 +64,7 @@ abstract class AssociativeModel extends AppModel {
         debug($queryData);
         
         $associated_model = $this->getModel($association_config['className']);
+        die();
         
     }
 
@@ -78,12 +79,6 @@ abstract class AssociativeModel extends AppModel {
 //        die();
         
         $associated_model = $this->getModel($association_config['className']);
-//        if(array_key_exists($association_config['className'], $this->models)) {
-//            $associated_model = $this->models[$association_config['className']];
-//        } else {
-//            $associated_model = $this->loadModel($association_config['className']);
-//            $this->models[$association_config['className']] = $associated_model;
-//        }
         
         $join = array(
             'table' => $association_config['joinTable'],
