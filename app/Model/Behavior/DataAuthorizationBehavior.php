@@ -56,31 +56,33 @@ class DataAuthorizationBehavior extends ModelBehavior {
     
     private function generateJoins($parent_model, $join_config) {
         $ret_joins = array();
-        foreach ($join_config as $join_name => $join_config) {
-            $this->normalizeKeyValueToAssociative($join_name, $join_config);
-            $asso = $this->findAssociation($parent_model, $join_name);
-            $asso_model = $this->getModel($join_name);
-            
-            debug($join_name);
-            
-            
-            $ret_joins[] = call_user_func( array( $this, $asso['function'] ), 
-                $asso,
-                $join_name,
-                $parent_model,
-                $asso_model
-            );
-            
-            debug($asso);
-            
-            $recursive_joins = null;
-            if(isset($join_config['joins'])) {
-                $recursive_joins = $this->generateJoins($asso_model, $join_config['joins']);
+        if(isset($join_config)) {
+            foreach ($join_config as $join_name => $join_config) {
+                $this->normalizeKeyValueToAssociative($join_name, $join_config);
+                $asso = $this->findAssociation($parent_model, $join_name);
+                $asso_model = $this->getModel($join_name);
+
+                debug($join_name);
+
+
+                $ret_joins[] = call_user_func( array( $this, $asso['function'] ), 
+                    $asso,
+                    $join_name,
+                    $parent_model,
+                    $asso_model
+                );
+
+                debug($asso);
+
+                $recursive_joins = null;
+                if(isset($join_config['joins'])) {
+                    $recursive_joins = $this->generateJoins($asso_model, $join_config['joins']);
+                }
+                if(isset($recursive_joins)) {
+                    $ret_joins = array_merge($ret_joins, $recursive_joins);
+                }
+
             }
-            if(isset($recursive_joins)) {
-                $ret_joins = array_merge($ret_joins, $recursive_joins);
-            }
-            
         }
         return $ret_joins;
     }
