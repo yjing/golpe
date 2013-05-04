@@ -152,7 +152,9 @@ class User extends AppModel {
         $res = Set::merge($alias_data, $res_without_alias);
         
         if ($this->isAssociative($res)) {
+            debug($res);
             $res = array($res);
+            debug($res);
         }
         
         $unArray_if_single_value = $this->getConfigElement($queryData, 'unArray_if_single_value');
