@@ -62,7 +62,6 @@ class DataAuthorizationBehavior extends ModelBehavior {
             $asso_model = $this->getModel($join_name);
             
             debug($join_name);
-            debug($asso);
             
             
             $ret_joins[] = call_user_func( array( $this, $asso['function'] ), 
@@ -71,6 +70,8 @@ class DataAuthorizationBehavior extends ModelBehavior {
                 $parent_model,
                 $asso_model
             );
+            
+            debug($asso);
             
             $recursive_joins = null;
             if(isset($join_config['joins'])) {
