@@ -53,8 +53,9 @@ class UsersController extends RESTController {
         $result = $this->User->find('first', array(
             'conditions' => array('User.id' => $id),
             'associations' => array(
-                'Profile',
-                'ActivityLog' => array(
+                'Profile'=> array(
+                    "unArray_if_single_value"
+                ),'ActivityLog' => array(
                     "unArray_if_single_value",
                     "fields" => array('id', 'title', 'content')
                 ),
