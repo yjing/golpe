@@ -54,8 +54,8 @@ Configure::write("APPCONFIG", array(
         'joins' => array(
             'User' => array(
                 'joins' => array(
-                    'Supervisor' => array(),
-                    'Team' => array()
+                    'Team',
+                    'Supervisor'
                 )
             )
         )
