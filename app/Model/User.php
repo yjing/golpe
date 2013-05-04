@@ -147,13 +147,13 @@ class User extends AppModel {
         
         $alias = $associated_model->alias;
         
-        debug($res);
+//        debug($res);
         $test1 = Set::extract("/$alias/.", $res);
-        debug($test1);
+//        debug($test1);
         $test2 = Set::remove($res, "{n}.$alias");
-        debug($test2);
+//        debug($test2);
         
-        debug(Set::merge($test1, $test2));
+        return Set::merge($test1, $test2);
         
         debug($res);
         
