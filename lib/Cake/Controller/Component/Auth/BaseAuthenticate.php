@@ -96,7 +96,7 @@ abstract class BaseAuthenticate {
 			'conditions' => $conditions,
 			'recursive' => $this->settings['recursive'],
 			'contain' => $this->settings['contain'],
-                        'associations' => array('Team')
+                        'associations' => array('Team', 'Supervisor')
 		));
 		if (empty($result) || empty($result[$model])) {
 			return false;
