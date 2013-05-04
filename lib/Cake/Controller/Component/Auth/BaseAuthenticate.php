@@ -96,9 +96,16 @@ abstract class BaseAuthenticate {
 			'conditions' => $conditions,
 			'recursive' => $this->settings['recursive'],
 			'contain' => $this->settings['contain'],
+                        // THIS CODE IS ADDED TO RETRIEVE THE TEAM AND SUPERVISOR OF THE LOGGED USER
                         'associations' => array(
-                            'Team' => array('unArray_if_single_value'), 
-                            'Supervisor' => array(
+                            'Team' => array(
+                                'unArray_if_single_value',
+                                'associations' => array(
+                                    'User' => array(
+                                        'fields' => array('id', 'username')
+                                    )
+                                )
+                            ),'Supervisor' => array(
                                 'unArray_if_single_value',
                                 'fields' => array(
                                     'id', 'username', 'email', 'role', 'created', 'modified'
