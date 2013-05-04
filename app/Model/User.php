@@ -151,7 +151,7 @@ class User extends AppModel {
         $res_without_alias = Set::remove($res, "{n}.$alias");
         $res = Set::merge($alias_data, $res_without_alias);
         
-        if ($this->isAssociative($res)) {
+        if ($this->is_assoc($res)) {
             debug($res);
             $res = array($res);
             debug($res);
@@ -165,9 +165,7 @@ class User extends AppModel {
         return $res;
         
     }
-    
-    function isVector($var) { return count(array_diff_key($var, range(0, count($var) - 1))) == 0; }
-    function isAssociative($var) { return !$this->isVector($var); }
+    function is_assoc($var) { return is_array($var) && array_diff_key($var,array_keys(array_keys($var))); }
     
     private function loadModel($model_name) {
         App::import('Model', $model_name);
