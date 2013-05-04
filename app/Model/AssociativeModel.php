@@ -102,7 +102,7 @@ abstract class AssociativeModel extends AppModel {
     }
     
     private function getHasMany($association_name, $association_config, $queryData, $element) {
-        
+        debug("HERE 1");
         $associated_model = $this->getModel($association_config['className']);
         
         $conditions = array(
@@ -118,13 +118,13 @@ abstract class AssociativeModel extends AppModel {
             $options[self::$ASSOCIATIONS_KEY] = $nested_associations;
         }
         
+        debug("HERE 2");
         $fields = $this->getConfigElement($queryData, 'fields');
         if(isset($fields) && !empty($fields)) {
             $options['fields'] = $fields;
         }
-        debug("HERE 1");
+        
         $res = $associated_model->find('all', $options);
-        debug("HERE 2");
         
         // DATA FORMAT
         $alias = $associated_model->alias;
