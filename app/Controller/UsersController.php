@@ -36,7 +36,9 @@ class UsersController extends RESTController {
                         'Project'
                     )
                 ),
-                'Supervisor' => array()
+                'Supervisor' => array(
+                    "unArray_if_single_value" => true
+                )
             ),
 //            'supervisor'=> array(
 //                'fields' => array('username', 'id')
