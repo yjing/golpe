@@ -56,12 +56,6 @@ abstract class AssociativeModel extends AppModel {
     }
     
     private function getBelongsTo($association_name, $association_config, $queryData, $element) {
-        debug('$association_config');
-        debug($association_config);
-        debug('$association_name');
-        debug($association_name);
-        debug('$queryData');
-        debug($queryData);
         
         
         $associated_model = $this->getModel($association_config['className']);
@@ -94,12 +88,6 @@ abstract class AssociativeModel extends AppModel {
     }
     
     private function getHasMany($association_name, $association_config, $queryData, $element) {
-//        debug('$association_config');
-//        debug($association_config);
-//        debug('$association_name');
-//        debug($association_name);
-//        debug('$queryData');
-//        debug($queryData);
         
         $associated_model = $this->getModel($association_config['className']);
         
