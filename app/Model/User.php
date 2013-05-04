@@ -75,6 +75,7 @@ class User extends AppModel {
         if(isset($this->links)) {
             foreach ($results as $index => $element) {
                 foreach ($this->links as $association_name => $queryData) {
+                    debug($element);
                     
                     $this->normalizeKeyValueToAssociative($association_name, $queryData);
                     
