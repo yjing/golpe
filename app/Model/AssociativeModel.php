@@ -54,9 +54,25 @@ abstract class AssociativeModel extends AppModel {
             $value = array();
         }
     }
-
+    
+    private function getHasMany($association_name, $association_config, $queryData, $element) {
+        debug('$association_config');
+        debug($association_config);
+        debug('$association_name');
+        debug($association_name);
+        debug('$queryData');
+        debug($queryData);
+    }
 
     private function getHasAndBelongsToMany($association_name, $association_config, $queryData, $element) {
+        
+        debug('$association_config');
+        debug($association_config);
+        debug('$association_name');
+        debug($association_name);
+        debug('$queryData');
+        debug($queryData);
+        die();
         
         if(array_key_exists($association_config['className'], $this->models)) {
             $associated_model = $this->models[$association_config['className']];
