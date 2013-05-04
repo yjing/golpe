@@ -153,6 +153,8 @@ class User extends AppModel {
         $test2 = Set::remove($res, "{n}.$alias");
         debug($test2);
         
+        debug(Set::merge($test1, $test2));
+        
         debug($res);
         
         $unArray_if_single_value = $this->getConfigElement($queryData, 'unArray_if_single_value');
