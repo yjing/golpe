@@ -86,13 +86,6 @@ class User extends AppModel {
                             $queryData,
                             $element
                         );
-                        debug('$results[$index]');
-                        debug($results[$index]);
-                        
-                        debug('$results[$index][$association_name]');
-                        debug($results[$index][$association_name]);
-                        
-                        debug('$res');
                         debug($res);
                         
                         $results[$index][$association_name] = $res;
