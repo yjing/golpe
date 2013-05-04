@@ -55,25 +55,25 @@ class DataAuthorizationBehavior extends ModelBehavior {
         if(array_key_exists($association_name, $model->hasOne)) {
             return array(
                 'type' => 'hasOne',
-                'config' => $this->hasOne[$association_name]
+                'config' => $model->hasOne[$association_name]
             );
         }
         if(array_key_exists($association_name, $model->hasMany)) {
             return array(
                 'type' => 'hasMany',
-                'config' => $this->hasMany[$association_name]
+                'config' => $model->hasMany[$association_name]
             );
         }
         if(array_key_exists($association_name, $model->belongsTo)) {
             return array(
                 'type' => 'belongsTo',
-                'config' => $this->belongsTo[$association_name]
+                'config' => $model->belongsTo[$association_name]
             );
         }
         if(array_key_exists($association_name, $model->hasAndBelongsToMany)) {
             return array(
                 'type' => 'hasAndBelongsToMany',
-                'config' => $this->hasAndBelongsToMany[$association_name]
+                'config' => $model->hasAndBelongsToMany[$association_name]
             );
         }
         return null;
