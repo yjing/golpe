@@ -4,7 +4,7 @@
  *
  * @author susini
  */
-class TestCBBehavior extends ModelBehavior {
+class DataAuthorizationBehavior extends ModelBehavior {
     public function beforeFind(Model $model, $query) {
         parent::beforeFind($model, $query);
         

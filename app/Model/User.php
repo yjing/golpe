@@ -3,7 +3,6 @@
 App::import('Model', 'AssociativeModel');
 class User extends AssociativeModel {
     
-//    private static $SUPERVISOR_KEY = "supervisor";
     private $supervisor_opt;
     public $hasAndBelongsToMany = array(
         'Team',
@@ -16,7 +15,7 @@ class User extends AssociativeModel {
     );
     public $hasMany = array('ActivityLog');
     public $hasOne = array('Profile');
-    public $actsAs = array('TestCB');
+    public $actsAs = array('DataAuthorization');
 
 
     public $validate = array(
