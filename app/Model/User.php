@@ -75,6 +75,7 @@ class User extends AppModel {
         if(isset($this->links)) {
             foreach ($results as $index => $element) {
                 foreach ($this->links as $association_name => $queryData) {
+                    debug($queryData);
                     $asso = $this->findAssociation($association_name);
                     if(isset($asso)) {
                         call_user_func( array( $this, $asso['function'] ), 
@@ -116,24 +117,11 @@ class User extends AppModel {
             'conditions' => $conditions,
             'recursive' => 1,
         ));
+        
         $alias = $associated_model->alias;
         $res = Set::extract("/$alias/.", $res);
-        debug('$association_config[\'unArray_if_single_value\']');
-        debug($association_config);
-        debug($association_config['unArray_if_single_value']);
-        if(count($res) == 1 && $association_config['unArray_if_single_value']) {
-            $res = array($association_name => $res[0]);
-        } else {
-            $res = array($association_name => $res);
-        }
+        return $res = array($association_name => $res);
         
-        debug($res);
-        
-//      'conditions' => '',
-//	'fields' => '',
-//	'order' => '',
-//	'limit' => '',
-//	'offset' => '',
     }
     
     private function loadModel($model_name) {
