@@ -138,6 +138,11 @@ class User extends AppModel {
             $options[self::$ASSOCIATIONS_KEY] = $nested_associations;
         }
         
+        $fields = $this->getConfigElement($queryData, 'fields');
+        if(isset($fields) && !empty($fields)) {
+            $options['fields'] = $fields;
+        }
+        
         $res = $associated_model->find('all', $options);
         
         $alias = $associated_model->alias;
