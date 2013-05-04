@@ -114,12 +114,19 @@ class User extends AppModel {
             $association_config['with'] . '.' . $association_config['foreignKey'] . ' = ' . $element[$this->alias]['id']
         );
         
-        $res = $associated_model->find('all', array(
+        $options = array(
             'joins' => array($join),
             'conditions' => $conditions,
             'associations' => $queryData['associations'],
-            'recursive' => 1,
-        ));
+            'recursive' => 0,
+        );
+        $nested_associations = $this->getConfigElement($queryData, self::$ASSOCIATIONS_KEY);
+        if(isset($nested_associations)) {
+            $options[self::$ASSOCIATIONS_KEY] = $nested_associations;
+        }
+        debug($options);
+        
+        $res = $associated_model->find('all', $options);
         
         $alias = $associated_model->alias;
         $res = Set::extract("/$alias/.", $res);
