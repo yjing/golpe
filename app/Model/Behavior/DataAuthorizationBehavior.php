@@ -34,7 +34,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
         foreach ($joins_config as $join_name => $join_config) {
             $this->normalizeKeyValueToAssociative($join_name, $join_config);
             
-            debug($this->findAssociation($join_name));
+            debug($this->findAssociation($model, $join_name));
             
             $joins[] = array(
                 'table' => "teams",
@@ -51,26 +51,26 @@ class DataAuthorizationBehavior extends ModelBehavior {
     }
     
     
-    private function findAssociation($association_name) {
-        if(array_key_exists($association_name, $this->hasOne)) {
+    private function findAssociation($model, $association_name) {
+        if(array_key_exists($association_name, $model->hasOne)) {
             return array(
                 'type' => 'hasOne',
                 'config' => $this->hasOne[$association_name]
             );
         }
-        if(array_key_exists($association_name, $this->hasMany)) {
+        if(array_key_exists($association_name, $model->hasMany)) {
             return array(
                 'type' => 'hasMany',
                 'config' => $this->hasMany[$association_name]
             );
         }
-        if(array_key_exists($association_name, $this->belongsTo)) {
+        if(array_key_exists($association_name, $model->belongsTo)) {
             return array(
                 'type' => 'belongsTo',
                 'config' => $this->belongsTo[$association_name]
             );
         }
-        if(array_key_exists($association_name, $this->hasAndBelongsToMany)) {
+        if(array_key_exists($association_name, $model->hasAndBelongsToMany)) {
             return array(
                 'type' => 'hasAndBelongsToMany',
                 'config' => $this->hasAndBelongsToMany[$association_name]
