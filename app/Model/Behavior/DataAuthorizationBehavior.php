@@ -27,6 +27,8 @@ class DataAuthorizationBehavior extends ModelBehavior {
             return $queryData;
         }
         
+        debug($logged_user);
+        
     }
     public function afterFind(Model $model, $results, $primary) {
         parent::afterFind($model, $results, $primary);
