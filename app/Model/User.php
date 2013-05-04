@@ -86,6 +86,15 @@ class User extends AppModel {
                             $queryData,
                             $element
                         );
+                        debug('$results[$index]');
+                        debug($results[$index]);
+                        
+                        debug('$results[$index][$association_name]');
+                        debug($results[$index][$association_name]);
+                        
+                        debug('$res');
+                        debug($res);
+                        
                         $results[$index][$association_name] = $res;
                     } else {
                         throw new InternalErrorException("The $association_name association doesn't exists.");
@@ -151,7 +160,6 @@ class User extends AppModel {
         if (isset($unArray_if_single_value) && $unArray_if_single_value !== false && count($res) == 1) {
             $res = $res[0];
         }
-        debug($res);
         
         return $res;
         
