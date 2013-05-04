@@ -147,7 +147,8 @@ class User extends AppModel {
         
         // DATA FORMAT
         $alias = $associated_model->alias;
-        $alias_data = Set::extract("/$alias/.", $res);
+        $alias_data = Set::extract("{n}.$alias", $res);
+//        $alias_data = Set::extract("/$alias/.", $res);
         $res_without_alias = Set::remove($res, "{n}.$alias");
         $res = Set::merge($alias_data, $res_without_alias);
         
