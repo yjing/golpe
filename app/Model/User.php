@@ -123,16 +123,21 @@ class User extends AppModel {
         if(isset($nested_associations) && !empty($nested_associations)) {
             $options[self::$ASSOCIATIONS_KEY] = $nested_associations;
         }
-        debug($options);
         
         $res = $associated_model->find('all', $options);
         
         $alias = $associated_model->alias;
         $res = Set::extract("/$alias/.", $res);
         
+        $unArray_if_single_value = $this->getConfigElement($queryData, 'unArray_if_single_value');
+        if (isset($unArray_if_single_value) && $unArray_if_single_value !== false && count($res) == 1) {
+            $res = $res[0];
+        }
+        
+        $res = array($association_name => $res);
         debug($res);
         
-        return $res = array($association_name => $res);
+        return $res;
         
     }
     
