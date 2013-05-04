@@ -150,7 +150,7 @@ class User extends AppModel {
         debug($res);
         $test1 = Set::extract("/$alias/.", $res);
         debug($test1);
-        $test2 = Set::remove($res, "/$alias");
+        $test2 = Set::remove($res, "{.}.$alias");
         debug($test2);
         
         debug($res);
