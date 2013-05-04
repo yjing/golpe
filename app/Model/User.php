@@ -89,6 +89,7 @@ class User extends AppModel {
                         debug($res);
                         
                         $results[$index][$association_name] = $res;
+                        debug($results[$index]);
                     } else {
                         throw new InternalErrorException("The $association_name association doesn't exists.");
                     }
