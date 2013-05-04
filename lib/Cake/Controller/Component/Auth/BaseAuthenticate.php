@@ -101,7 +101,7 @@ abstract class BaseAuthenticate {
                             'Team' => array(
                                 'unArray_if_single_value',
                                 'associations' => array(
-                                    'User' => array(
+                                    'Student' => array(
                                         'fields' => array('id', 'username')
                                     )
                                 )
