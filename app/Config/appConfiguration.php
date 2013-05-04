@@ -24,6 +24,7 @@ Configure::write("APPCONFIG", array(
             'default' => 'public'
         )
     ),
+    'super_roles' => array('SHELL', 'SYSTEM'),
     'authorization' => array (
         // RESOURCES/Controllers
         "Users" => array( 
