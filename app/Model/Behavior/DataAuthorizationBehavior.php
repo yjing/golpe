@@ -71,7 +71,6 @@ class DataAuthorizationBehavior extends ModelBehavior {
                 $parent_model,
                 $asso_model
             );
-            debug($ret_joins);die();
             
             $recursive_joins = null;
             if(isset($join_config['joins'])) {
@@ -84,6 +83,11 @@ class DataAuthorizationBehavior extends ModelBehavior {
         }
         return $ret_joins;
     }
+    
+    private function notSupported($asso, $association_name, Model $parent_model, Model $association_model) {
+        return array();
+    }
+    
     
     private function generateBelongsToJoin($asso, $association_name, Model $parent_model, Model $association_model) {
         $join = array(
@@ -120,13 +124,17 @@ class DataAuthorizationBehavior extends ModelBehavior {
         if(array_key_exists($association_name, $model->hasOne)) {
             return array(
                 'type' => 'hasOne',
-                'config' => $model->hasOne[$association_name]
+                'config' => $model->hasOne[$association_name],
+//                'function' => 'generateHasOneJoin'
+                'function' => 'notSupported'
             );
         }
         if(array_key_exists($association_name, $model->hasMany)) {
             return array(
                 'type' => 'hasMany',
-                'config' => $model->hasMany[$association_name]
+                'config' => $model->hasMany[$association_name],
+//                'function' => 'generateHasManyJoin'
+                'function' => 'notSupported'
             );
         }
         if(array_key_exists($association_name, $model->belongsTo)) {
@@ -139,7 +147,9 @@ class DataAuthorizationBehavior extends ModelBehavior {
         if(array_key_exists($association_name, $model->hasAndBelongsToMany)) {
             return array(
                 'type' => 'hasAndBelongsToMany',
-                'config' => $model->hasAndBelongsToMany[$association_name]
+                'config' => $model->hasAndBelongsToMany[$association_name],
+//                'function' => 'generateHasAndBelongsToManyJoin'
+                'function' => 'notSupported'
             );
         }
         return null;

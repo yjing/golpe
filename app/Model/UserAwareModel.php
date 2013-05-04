@@ -54,12 +54,14 @@ abstract class UserAwareModel extends AppModel {
         $queryData['fields'][] = 'Team.id, Team.name, Team.project_id';
         $queryData['fields'][] = 'Supervisor.*';
         // Add the namespaced joins to retrieve the above-mentioned fields and models
+        //BELONGS TO JOIN
         $queryData['joins'][] = array(
             'table' => "users",
             'alias' => 'User',
             'type' => 'LEFT',
             'conditions' => array('User.id = '. $this->alias .'.user_id')
         );
+        
         $queryData['joins'][] = array(
             'table' => "teams_users",
             'alias' => 'AUTHtu',
@@ -72,6 +74,7 @@ abstract class UserAwareModel extends AppModel {
             'type' => 'LEFT',
             'conditions' => array('Team.id = AUTHtu.team_id')
         );
+        
         $queryData['joins'][] = array(
             'table' => "students_supervisors",
             'alias' => 'Supervisor',
