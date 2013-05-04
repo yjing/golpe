@@ -119,6 +119,7 @@ class User extends AppModel {
         $alias = $associated_model->alias;
         $res = Set::extract("/$alias/.", $res);
         debug('$association_config[\'unArray_if_single_value\']');
+        debug($association_config);
         debug($association_config['unArray_if_single_value']);
         if(count($res) == 1 && $association_config['unArray_if_single_value']) {
             $res = array($association_name => $res[0]);
