@@ -83,9 +83,9 @@ abstract class AssociativeModel extends AppModel {
             $options['fields'] = $fields;
         }
         
-        debug($options);
+        $res = $associated_model->find('all', $options);
         
-//        $res = $associated_model->find('all', $options);
+        debug($res);
         
         die();
         
