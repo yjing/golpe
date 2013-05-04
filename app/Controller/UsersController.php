@@ -33,7 +33,7 @@ class UsersController extends RESTController {
                 'Team' => array(
                     'fields' => array('id', 'name'),
                     'associations' => array(
-                        'Project' => array()
+//                        'Project' => array()
                     )
                 ),
                 'Supervisor' => array(
