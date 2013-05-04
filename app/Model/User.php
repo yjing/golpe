@@ -78,8 +78,8 @@ class User extends AppModel {
                 foreach ($this->links as $association_name => $queryData) {
                     
                     $tmp = $this->normalizeArrayElement(&$association_name, &$queryData);
-                    $queryData = $tmp['queryData'];
-                    $association_name = $tmp['association_name'];
+//                    $queryData = $tmp['queryData'];
+//                    $association_name = $tmp['association_name'];
                     
                     $asso = $this->findAssociation($association_name);
                     if(isset($asso)) {
@@ -104,7 +104,7 @@ class User extends AppModel {
             $key = $value;
             $value = array();
         }
-        return array("association_name" => $key, "queryData" => $value);
+//        return array("association_name" => $key, "queryData" => $value);
     }
 
 
