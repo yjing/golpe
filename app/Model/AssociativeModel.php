@@ -1,5 +1,6 @@
 <?php
 abstract class AssociativeModel extends AppModel {
+    
     private static $SUPERVISOR_KEY = "supervisor";
     private static $ASSOCIATIONS_KEY = "associations";
     private $links;

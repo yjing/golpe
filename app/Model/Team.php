@@ -1,6 +1,7 @@
 <?php
 
-class Team extends AppModel {
+App::import('Model', 'AssociativeModel');
+class Team extends AssociativeModel {
 }
 
 ?>
