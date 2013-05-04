@@ -151,12 +151,6 @@ class User extends AppModel {
         $res_without_alias = Set::remove($res, "{n}.$alias");
         $res = Set::merge($alias_data, $res_without_alias);
         
-        debug($res);
-        if ($this->is_assoc($res)) {
-            $res = array($res);
-            debug($res);
-        }
-        
         $unArray_if_single_value = $this->getConfigElement($queryData, 'unArray_if_single_value');
         if (isset($unArray_if_single_value) && $unArray_if_single_value !== false && count($res) == 1) {
             $res = $res[0];
@@ -165,7 +159,6 @@ class User extends AppModel {
         return $res;
         
     }
-    function is_assoc($var) { return is_array($var) && array_diff_key($var,array_keys(array_keys($var))); }
     
     private function loadModel($model_name) {
         App::import('Model', $model_name);
