@@ -104,6 +104,7 @@ abstract class AssociativeModel extends AppModel {
     private function getHasMany($association_name, $association_config, $queryData, $element) {
         debug("HERE 1");
         $associated_model = $this->getModel($association_config['className']);
+        debug("HERE 2");
         
         $conditions = array(
             $association_config['className'] . '.' . $association_config['foreignKey'] . ' = ' . $element[$this->alias]['id']
@@ -118,7 +119,6 @@ abstract class AssociativeModel extends AppModel {
             $options[self::$ASSOCIATIONS_KEY] = $nested_associations;
         }
         
-        debug("HERE 2");
         $fields = $this->getConfigElement($queryData, 'fields');
         if(isset($fields) && !empty($fields)) {
             $options['fields'] = $fields;
