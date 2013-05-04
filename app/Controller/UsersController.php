@@ -34,22 +34,22 @@ class UsersController extends RESTController {
                     "unArray_if_single_value",
                     "fields" => array('id', 'title', 'content')
                 ),
-//                'Team' => array(
-//                    'fields' => array('id', 'name'),
-//                    'associations' => array(
-////                        'Project' => array()
-//                    )
-//                ),
-//                'Supervisor' => array(
-//                    "unArray_if_single_value",
-//                    "fields" => array('id', 'username', 'role'),
-//                    'associations' => array(
-//                        'Supervisor' => array(
-//                            "unArray_if_single_value",
-//                            "fields" => array('id', 'username', 'role')
-//                        )
-//                    )
-//                )
+                'Team' => array(
+                    'fields' => array('id', 'name'),
+                    'associations' => array(
+//                        'Project' => array()
+                    )
+                ),
+                'Supervisor' => array(
+                    "unArray_if_single_value",
+                    "fields" => array('id', 'username', 'role'),
+                    'associations' => array(
+                        'Supervisor' => array(
+                            "unArray_if_single_value",
+                            "fields" => array('id', 'username', 'role')
+                        )
+                    )
+                )
             )
         ));
         $this->_setResponseJSON(Set::remove($result, 'User.password'));
