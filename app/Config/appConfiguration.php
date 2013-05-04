@@ -52,9 +52,12 @@ Configure::write("APPCONFIG", array(
     ),
     'data_access'=> array(
         'joins' => array(
-            'User',
-            'Team',
-            'Supervisor'
+            'User' => array(
+                'joins' => array(
+                    'Team',
+                    'Supervisor'
+                )
+            )
         )
     ),
     'notification' => array(
