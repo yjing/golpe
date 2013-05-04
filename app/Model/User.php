@@ -75,12 +75,12 @@ class User extends AppModel {
         if(isset($this->links)) {
             foreach ($results as $index => $element) {
                 foreach ($this->links as $association_name => $queryData) {
-                    debug($queryData);
                     $asso = $this->findAssociation($association_name);
                     if(isset($asso)) {
                         call_user_func( array( $this, $asso['function'] ), 
                             $association_name,
                             $asso['config'],
+                            $queryData,
                             $element
                         );
                     } else {
@@ -93,7 +93,7 @@ class User extends AppModel {
         return $results;
     }
     
-    public function getHasAndBelongsToMany($association_name, $association_config, $element) {
+    public function getHasAndBelongsToMany($association_name, $association_config, $queryData, $element) {
         if(array_key_exists($association_config['className'], $this->models)) {
             $associated_model = $this->models[$association_config['className']];
         } else {
@@ -115,6 +115,7 @@ class User extends AppModel {
         $res = $associated_model->find('all', array(
             'joins' => array($join),
             'conditions' => $conditions,
+            'associations' => $queryData['associations'],
             'recursive' => 1,
         ));
         
