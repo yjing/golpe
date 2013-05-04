@@ -86,8 +86,8 @@ abstract class AssociativeModel extends AppModel {
         }
         
         $alias = $associated_model->alias;
-        $res = $associated_model->find('all', $options);
-        $res = Set::extract("{n}.$alias", $res);
+        $res = $associated_model->find('first', $options);
+//        $res = Set::extract("{n}.$alias", $res);
         debug($res);
 //        
 //        // DATA FORMAT
