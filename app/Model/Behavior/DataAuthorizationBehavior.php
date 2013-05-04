@@ -32,7 +32,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
         $joins_config = $this->getConfigElement($this->config, 'joins');
         $joins = $this->generateJoins($model, $joins_config);
         
-        
+        debug($joins);
         
 //        foreach ($joins_config as $join_name => $join_config) {
 //            $this->normalizeKeyValueToAssociative($join_name, $join_config);
@@ -58,23 +58,29 @@ class DataAuthorizationBehavior extends ModelBehavior {
         foreach ($join_config as $key => $value) {
             $this->normalizeKeyValueToAssociative($key, $value);
             $asso = $this->findAssociation($parent_model, $key);
+            $asso_model = $this->getModel($key);
             
-            debug($key);
-            debug($asso);
+//            debug($key);
+//            debug($asso);
             
             $ret_joins = array();
             
             $ret_joins[] = array(
-                'table' => "teams",
-                'alias' => 'Team',
+                'table' => Inflector::tableize($asso['config']['className']),
+                'alias' => $key,
                 'type' => 'LEFT',
-                'conditions' => array('Team.id = AUTHtu.team_id')  
+                'conditions' => array(
+                    $parent_model->alias . '.' . $asso['config']['foreignKey'] . ' = ' 
+                        . $asso['config']['className'] . '.' . $asso_model->primaryKey
+                )  
             );
             
             if(isset($value['joins'])) {
-                $p_model = $this->getModel($key);
-                $this->generateJoins($p_model, $value['joins']);
+                $recursive_joins = $this->generateJoins($asso_model, $value['joins']);
             }
+            $ret_joins = array_merge($ret_joins, $recursive_joins);
+            
+            return $ret_joins;
         }
     }
     
