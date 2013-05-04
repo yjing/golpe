@@ -102,13 +102,14 @@ abstract class AssociativeModel extends AppModel {
     }
     
     private function getHasMany($association_name, $association_config, $queryData, $element) {
-        debug("HERE 1");
-        $associated_model = $this->getModel($association_config['className']);
-        debug("HERE 2");
         
+        $associated_model = $this->getModel($association_config['className']);
+        
+        debug("HERE 1");
         $conditions = array(
             $association_config['className'] . '.' . $association_config['foreignKey'] . ' = ' . $element[$this->alias]['id']
         );
+        debug("HERE 2");
         
         $options = array(
             'conditions' => $conditions,
