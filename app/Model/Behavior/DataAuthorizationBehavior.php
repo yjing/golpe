@@ -30,7 +30,11 @@ class DataAuthorizationBehavior extends ModelBehavior {
         
         $joins = $this->getConfigElement($this->config, 'joins');
         
-        debug($joins);
+        foreach ($joins as $join_name => $config) {
+            $this->normalizeKeyValueToAssociative($join_name, $config);
+            debug($join_name);
+            debug($config);
+        }
         
     }
     public function afterFind(Model $model, $results, $primary) {
@@ -38,6 +42,14 @@ class DataAuthorizationBehavior extends ModelBehavior {
         
     }
     
+    
+    // IMPORTANT: HAS SIDE EFFECT!!! MODIFY THE INPUT DATA!!!
+    private function normalizeKeyValueToAssociative(&$key, &$value) {
+        if(!is_string($key)) {
+            $key = $value;
+            $value = array();
+        }
+    }
     
     public function getConfigElement($config_array, $key) {
         $result = null;
