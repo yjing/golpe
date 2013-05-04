@@ -145,17 +145,11 @@ class User extends AppModel {
         
         $res = $associated_model->find('all', $options);
         
+        // DATA FORMAT
         $alias = $associated_model->alias;
-        
-//        debug($res);
-        $test1 = Set::extract("/$alias/.", $res);
-//        debug($test1);
-        $test2 = Set::remove($res, "{n}.$alias");
-//        debug($test2);
-        
-        return Set::merge($test1, $test2);
-        
-        debug($res);
+        $alias_data = Set::extract("/$alias/.", $res);
+        $res_without_alias = Set::remove($res, "{n}.$alias");
+        $res = Set::merge($alias_data, $res_without_alias);
         
         $unArray_if_single_value = $this->getConfigElement($queryData, 'unArray_if_single_value');
         if (isset($unArray_if_single_value) && $unArray_if_single_value !== false && count($res) == 1) {
