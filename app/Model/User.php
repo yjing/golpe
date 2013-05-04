@@ -89,7 +89,7 @@ class User extends AppModel {
                         );
                         debug($res);
                         
-                        $results[$index][][$association_name] = $res;
+                        $results[$index][$association_name] = $res;
                         debug($results[$index]);
                     } else {
                         throw new InternalErrorException("The $association_name association doesn't exists.");
@@ -149,6 +149,7 @@ class User extends AppModel {
         $res = $associated_model->find('all', $options);
         
         $alias = $associated_model->alias;
+        
 //        $res = Set::extract("/$alias/.", $res);
         
         $unArray_if_single_value = $this->getConfigElement($queryData, 'unArray_if_single_value');
