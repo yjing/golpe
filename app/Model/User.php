@@ -77,7 +77,7 @@ class User extends AppModel {
                 debug($this->links);
                 foreach ($this->links as $association_name => $queryData) {
                     
-                    $this->normalizeArrayElement($association_name, $queryData);
+                    $this->normalizeKeyValueToAssociative($association_name, $queryData);
                     
                     $asso = $this->findAssociation($association_name);
                     if(isset($asso)) {
@@ -98,7 +98,7 @@ class User extends AppModel {
     }
     
     // IMPORTANT: HAS SIDE EFFECT!!! MODIFY THE INPUT DATA!!!
-    private function normalizeArrayElement(&$key, &$value) {
+    private function normalizeKeyValueToAssociative(&$key, &$value) {
         if(!is_string($key)) {
             $key = $value;
             $value = array();
