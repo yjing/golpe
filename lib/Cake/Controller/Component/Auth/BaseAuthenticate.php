@@ -98,7 +98,12 @@ abstract class BaseAuthenticate {
 			'contain' => $this->settings['contain'],
                         'associations' => array(
                             'Team' => array('unArray_if_single_value'), 
-                            'Supervisor' => array('unArray_if_single_value')
+                            'Supervisor' => array(
+                                'unArray_if_single_value',
+                                'fields' => array(
+                                    'id', 'username', 'email', 'role', 'created', 'modified'
+                                )
+                            )
                         )
 		));
 		if (empty($result) || empty($result[$model])) {
