@@ -55,6 +55,53 @@ abstract class AssociativeModel extends AppModel {
         }
     }
     
+    private function getBelongsTo($association_name, $association_config, $queryData, $element) {
+        debug('$association_config');
+        debug($association_config);
+        debug('$association_name');
+        debug($association_name);
+        debug('$queryData');
+        debug($queryData);
+        
+        die();
+//        
+//        $associated_model = $this->getModel($association_config['className']);
+//        
+//        $conditions = array(
+//            $association_config['className'] . '.' . $association_config['foreignKey'] . ' = ' . $element[$this->alias]['id']
+//        );
+//        
+//        $options = array(
+//            'conditions' => $conditions,
+//            'recursive' => -1,
+//        );
+//        $nested_associations = $this->getConfigElement($queryData, self::$ASSOCIATIONS_KEY);
+//        if(isset($nested_associations) && !empty($nested_associations)) {
+//            $options[self::$ASSOCIATIONS_KEY] = $nested_associations;
+//        }
+//        
+//        $fields = $this->getConfigElement($queryData, 'fields');
+//        if(isset($fields) && !empty($fields)) {
+//            $options['fields'] = $fields;
+//        }
+//        
+//        $res = $associated_model->find('all', $options);
+//        
+//        // DATA FORMAT
+//        $alias = $associated_model->alias;
+//        $alias_data = Set::extract("{n}.$alias", $res);
+//        $res_without_alias = Set::remove($res, "{n}.$alias");
+//        $res = Set::merge($alias_data, $res_without_alias);
+//        
+//        $unArray_if_single_value = $this->getConfigElement($queryData, 'unArray_if_single_value');
+//        if (isset($unArray_if_single_value) && $unArray_if_single_value !== false && count($res) == 1) {
+//            $res = $res[0];
+//        }
+        
+        return $res;
+        
+    }
+    
     private function getHasMany($association_name, $association_config, $queryData, $element) {
 //        debug('$association_config');
 //        debug($association_config);
