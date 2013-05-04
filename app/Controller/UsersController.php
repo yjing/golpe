@@ -13,7 +13,30 @@ class UsersController extends RESTController {
         parent::index();
         
         $this->User->recursive = 0;
-        $result = $this->User->find('all', array('supervisor'));
+        $result = $this->User->find('all', array(
+            'associations' => array(
+                'ActivityLog' => array(
+                    "unArray_if_single_value",
+                    "fields" => array('id', 'title', 'content')
+                ),
+                'Team' => array(
+                    'fields' => array('id', 'name'),
+                    'associations' => array(
+//                        'Project' => array()
+                    )
+                ),
+                'Supervisor' => array(
+                    "unArray_if_single_value",
+                    "fields" => array('id', 'username', 'role'),
+                    'associations' => array(
+                        'Supervisor' => array(
+                            "unArray_if_single_value",
+                            "fields" => array('id', 'username', 'role')
+                        )
+                    )
+                )
+            )
+        ));
         $result = Set::remove($result, '{n}.User.password');
         $result = Set::remove($result, '{n}.Supervisor.{n}.Supervisor.password');
         $this->_setResponseJSON($result);
