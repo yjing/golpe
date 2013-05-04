@@ -165,7 +165,7 @@ class User extends AppModel {
     }
     
     function isVector($var) { return count(array_diff_key($var, range(0, count($var) - 1))) == 0; }
-    function isAssociative($var) { return !isVector($var); }
+    function isAssociative($var) { return !$this->isVector($var); }
     
     private function loadModel($model_name) {
         App::import('Model', $model_name);
