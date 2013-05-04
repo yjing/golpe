@@ -213,12 +213,13 @@ class User extends AppModel {
         $result = null;
         debug('in_array($key, $config_array, true)');
         debug(in_array($key, $config_array, true));
-        debug('array_key_exists($key, $config_array)');
-        debug(array_key_exists($key, $config_array));
         
         if(in_array($key, $config_array, true)) {
             $result = array();
         } elseif (array_key_exists($key, $config_array)) {
+                debug('array_key_exists($key, $config_array)');
+                debug(array_key_exists($key, $config_array));
+                debug($config_array[$key]);
             $result = $config_array[$key];
         }
         return $result;
