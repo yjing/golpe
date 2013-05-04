@@ -15,7 +15,6 @@ class User extends AssociativeModel {
     );
     public $hasMany = array('ActivityLog');
     public $hasOne = array('Profile');
-    public $actsAs = array('DataAuthorization');
 
 
     public $validate = array(

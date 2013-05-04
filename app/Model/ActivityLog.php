@@ -1,9 +1,5 @@
 <?php
 
-App::import('Model', 'Media');
-App::import('Model', 'ActivityLogMedia');
-App::import('Model', 'UserAwareModel');
-App::import('Component', 'Session');
 App::import('Behavior', 'HasMedia');
 
 // app/Model/User.php
@@ -14,12 +10,7 @@ class ActivityLog extends AssociativeModel {
     public $name = 'ActivityLog';
     public $useTable = "activity_logs";
     public $belongsTo = array('User');
-//    public $actsAs = array('Containable', 'HasMedia', 
-//        'HahManyThroughHABTM' => array(
-//            'Media' => array(), 
-//            'Comment' => array()
-//        )
-//    );
+    public $actsAs = array('HasMedia', 'DataAuthorization');
     
 }
 
