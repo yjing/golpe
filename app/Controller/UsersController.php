@@ -37,7 +37,7 @@ class UsersController extends RESTController {
                     )
                 ),
                 'Supervisor' => array(
-                    "unArray_if_single_value"
+//                    "unArray_if_single_value"
                 )
             ),
 //            'supervisor'=> array(
