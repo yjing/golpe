@@ -65,6 +65,7 @@ class User extends AppModel {
         
         $queryData['recursive'] = -1;
         $this->links = $this->getConfigElement($queryData, self::$ASSOCIATIONS_KEY);
+        debug($queryData);
         
         return $queryData;
     }
