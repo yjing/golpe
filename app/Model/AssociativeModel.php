@@ -66,7 +66,7 @@ abstract class AssociativeModel extends AppModel {
         
         $res = $this->getHasMany($association_name, $association_config, $queryData, $element);
         debug(range(0, count($res) - 1));
-        debug(array_keys($res));die();
+        debug(array_keys($res));
         debug(array_diff(array_keys($res), range(0, count($res) - 1)) );die();
         
         debug(array_diff_key(array_keys(array_keys($res)), range(0, count($res) - 1) ));die();
