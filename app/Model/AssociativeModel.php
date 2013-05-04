@@ -85,7 +85,7 @@ abstract class AssociativeModel extends AppModel {
             $options['fields'] = $fields;
         }
         
-        
+        $alias = $associated_model->alias;
         $res = $associated_model->find('all', $options);
         $res = Set::extract("{n}.$alias", $res);
         debug($res);
