@@ -46,10 +46,7 @@ class UsersController extends RESTController {
                         )
                     )
                 )
-            ),
-//            'supervisor'=> array(
-//                'fields' => array('username', 'id')
-//            )
+            )
         ));
         $this->_setResponseJSON(Set::remove($result, 'User.password'));
     }
