@@ -28,12 +28,20 @@ class DataAuthorizationBehavior extends ModelBehavior {
             return $queryData;
         }
         
-        $joins = $this->getConfigElement($this->config, 'joins');
+        $joins_config = $this->getConfigElement($this->config, 'joins');
+        $joins = array();
         
-        foreach ($joins as $join_name => $config) {
-            $this->normalizeKeyValueToAssociative($join_name, $config);
-            debug($join_name);
-            debug($config);
+        foreach ($joins_config as $join_name => $join_config) {
+            $this->normalizeKeyValueToAssociative($join_name, $join_config);
+            
+            debug($this->findAssociation($join_name));
+            
+            $joins[] = array(
+                'table' => "teams",
+                'alias' => 'Team',
+                'type' => 'LEFT',
+                'conditions' => array('Team.id = AUTHtu.team_id')  
+            );
         }
         
     }
@@ -42,6 +50,34 @@ class DataAuthorizationBehavior extends ModelBehavior {
         
     }
     
+    
+    private function findAssociation($association_name) {
+        if(array_key_exists($association_name, $this->hasOne)) {
+            return array(
+                'type' => 'hasOne',
+                'config' => $this->hasOne[$association_name]
+            );
+        }
+        if(array_key_exists($association_name, $this->hasMany)) {
+            return array(
+                'type' => 'hasMany',
+                'config' => $this->hasMany[$association_name]
+            );
+        }
+        if(array_key_exists($association_name, $this->belongsTo)) {
+            return array(
+                'type' => 'belongsTo',
+                'config' => $this->belongsTo[$association_name]
+            );
+        }
+        if(array_key_exists($association_name, $this->hasAndBelongsToMany)) {
+            return array(
+                'type' => 'hasAndBelongsToMany',
+                'config' => $this->hasAndBelongsToMany[$association_name]
+            );
+        }
+        return null;
+    }
     
     // IMPORTANT: HAS SIDE EFFECT!!! MODIFY THE INPUT DATA!!!
     private function normalizeKeyValueToAssociative(&$key, &$value) {
