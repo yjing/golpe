@@ -151,6 +151,7 @@ class User extends AppModel {
         if (isset($unArray_if_single_value) && $unArray_if_single_value !== false && count($res) == 1) {
             $res = $res[0];
         }
+        debug($res);
         
         return $res;
         
