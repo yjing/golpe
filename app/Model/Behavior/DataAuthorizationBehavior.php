@@ -55,6 +55,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
     
     
     private function generateJoins($parent_model, $join_config) {
+        $ret_joins = array();
         foreach ($join_config as $key => $value) {
             $this->normalizeKeyValueToAssociative($key, $value);
             $asso = $this->findAssociation($parent_model, $key);
@@ -63,7 +64,6 @@ class DataAuthorizationBehavior extends ModelBehavior {
 //            debug($key);
 //            debug($asso);
             
-            $ret_joins = array();
             
             $ret_joins[] = array(
                 'table' => Inflector::tableize($asso['config']['className']),
@@ -75,13 +75,16 @@ class DataAuthorizationBehavior extends ModelBehavior {
                 )  
             );
             
+            $recursive_joins = null;
             if(isset($value['joins'])) {
                 $recursive_joins = $this->generateJoins($asso_model, $value['joins']);
             }
-            $ret_joins = array_merge($ret_joins, $recursive_joins);
+            if(isset($recursive_joins)) {
+                $ret_joins = array_merge($ret_joins, $recursive_joins);
+            }
             
-            return $ret_joins;
         }
+        return $ret_joins;
     }
     
     private function getModel($class_name) {
