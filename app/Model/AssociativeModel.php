@@ -15,6 +15,8 @@ abstract class AssociativeModel extends AppModel {
             $queryData['recursive'] = -1;
         }
         
+        $queryData['recursive'] = -1;
+        
         return $queryData;
     }
     
