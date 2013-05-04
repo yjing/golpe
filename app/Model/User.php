@@ -75,7 +75,6 @@ class User extends AppModel {
         if(isset($this->links)) {
             foreach ($results as $index => $element) {
                 foreach ($this->links as $association_name => $queryData) {
-                    debug($element);
                     
                     $this->normalizeKeyValueToAssociative($association_name, $queryData);
                     
@@ -87,10 +86,8 @@ class User extends AppModel {
                             $queryData,
                             $element
                         );
-                        debug($res);
                         
                         $results[$index][$association_name] = $res;
-                        debug($results[$index]);
                     } else {
                         throw new InternalErrorException("The $association_name association doesn't exists.");
                     }
@@ -150,7 +147,11 @@ class User extends AppModel {
         
         $alias = $associated_model->alias;
         
-//        $res = Set::extract("/$alias/.", $res);
+        debug($res);
+        $test1 = Set::extract("/$alias/.", $res);
+        debug($test1);
+        $test2 = Set::remove("/$alias", $res);
+        debug($test2);
         
         $unArray_if_single_value = $this->getConfigElement($queryData, 'unArray_if_single_value');
         if (isset($unArray_if_single_value) && $unArray_if_single_value !== false && count($res) == 1) {
