@@ -122,8 +122,9 @@ abstract class AssociativeModel extends AppModel {
         if(isset($fields) && !empty($fields)) {
             $options['fields'] = $fields;
         }
-        
+        debug("HERE 1");
         $res = $associated_model->find('all', $options);
+        debug("HERE 2");
         
         // DATA FORMAT
         $alias = $associated_model->alias;
