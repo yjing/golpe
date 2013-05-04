@@ -7,8 +7,8 @@ class Team extends AssociativeModel {
         'Student' => array(
             'className' => 'User',
             'joinTable' => 'teams_users',
-            'foreignKey' => 'user_id',
-            'associationForeignKey' => 'team_id'
+            'foreignKey' => 'team_id',
+            'associationForeignKey' => 'user_id'
         )
     );
 }
