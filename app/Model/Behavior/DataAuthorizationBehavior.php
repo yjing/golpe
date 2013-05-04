@@ -54,12 +54,15 @@ class DataAuthorizationBehavior extends ModelBehavior {
     }
     
     
-    private function generateJoins($join_config) {
+    private function generateJoins($parent_model, $join_config) {
         foreach ($join_config as $key => $value) {
             $this->normalizeKeyValueToAssociative($key, $value);
-            debug($key);
+            
+            debug($this->findAssociation($parent_model, $key));
+            
             if(isset($value['joins'])) {
-                $this->generateJoins($value['joins']);
+                $p_model = $this->getModel($key);
+                $this->generateJoins($p_model, $value['joins']);
             }
         }
     }
