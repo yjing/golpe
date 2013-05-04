@@ -13,6 +13,7 @@ class ActivityLog extends AssociativeModel {
 
     public $name = 'ActivityLog';
     public $useTable = "activity_logs";
+    public $belongsTo = array('User');
 //    public $actsAs = array('Containable', 'HasMedia', 
 //        'HahManyThroughHABTM' => array(
 //            'Media' => array(), 
