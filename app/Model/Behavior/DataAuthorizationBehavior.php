@@ -61,8 +61,8 @@ class DataAuthorizationBehavior extends ModelBehavior {
             $asso = $this->findAssociation($parent_model, $key);
             $asso_model = $this->getModel($key);
             
-//            debug($key);
-//            debug($asso);
+            debug($key);
+            debug($asso);
             
             
             $ret_joins[] = array(
@@ -74,6 +74,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
                         . $asso['config']['className'] . '.' . $asso_model->primaryKey
                 )  
             );
+            debug($ret_joins);die();
             
             $recursive_joins = null;
             if(isset($value['joins'])) {
