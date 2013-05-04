@@ -64,7 +64,7 @@ abstract class AssociativeModel extends AppModel {
 //        debug($queryData);
 //        
         if(isset($queryData['unArray_if_single_value'])) {
-            unset($queryData);
+            unset($queryData['unArray_if_single_value']);
         }
         
         $res = $this->getHasMany($association_name, $association_config, $queryData, $element);
