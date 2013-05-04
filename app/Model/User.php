@@ -211,6 +211,11 @@ class User extends AppModel {
     
     public function getConfigElement($config_array, $key) {
         $result = null;
+        debug('in_array($key, $config_array, true)');
+        debug(in_array($key, $config_array, true));
+        debug('array_key_exists($key, $config_array)');
+        debug(array_key_exists($key, $config_array));
+        
         if(in_array($key, $config_array, true)) {
             $result = array();
         } elseif (array_key_exists($key, $config_array)) {
