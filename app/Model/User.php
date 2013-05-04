@@ -119,7 +119,7 @@ class User extends AppModel {
         $alias = $associated_model->alias;
         $res = Set::extract("/$alias/.", $res);
         if(count($res) == 1) {
-            debug(array('test' => Set::extract("/.", $res)));
+            debug(array('test' => Set::extract("/[0].", $res)));
         }
         
 //        debug(array("$association_name" => ));
