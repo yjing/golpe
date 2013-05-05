@@ -36,11 +36,7 @@ abstract class AssociativeModel extends AppModel {
                             $element
                         );
                         
-                        debug($association_name);
-                        debug($res);
-                        
                         $results[$index][$this->alias][$association_name] = $res;
-                        debug($results[$index])
                         ;
                     } else {
                         throw new InternalErrorException("The $association_name association doesn't exists.");
