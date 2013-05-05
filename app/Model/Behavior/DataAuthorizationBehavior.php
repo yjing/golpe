@@ -90,7 +90,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
         if(preg_match_all('{\#(?P<pattern>\w+)\#}', $source, $regs, PREG_OFFSET_CAPTURE)) {
             $source = str_replace($regs[0][0][0], 'ActivityLog', $source);
         }
-        if(preg_match_all('{\@\((?P<name>\w+)\)}', $source, $regs, PREG_OFFSET_CAPTURE)) {
+        if(preg_match_all('{\@\((?P<name>[\w|\.]+)\)}', $source, $regs, PREG_OFFSET_CAPTURE)) {
             debug($regs);die();
         }
         return $source;
