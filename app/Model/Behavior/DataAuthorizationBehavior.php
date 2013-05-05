@@ -31,20 +31,21 @@ class DataAuthorizationBehavior extends ModelBehavior {
         
         $joins_config = $this->getConfigElement($this->config, 'joins');
         $joins = $this->generateJoins($model, $joins_config);
-        $fields = array_merge(array($model->alias . '.*'), $this->generateFields($joins_config));
+        
+        
+        $conditions = $this->getConfigElement($joins_config, 'conditions');
+        $html = "";
+        $this->debugConds($conditions, $html);
+        die();
         
 //        debug($joins);
 //        debug($fields);
         
         $query['joins'] = array_merge($query['joins'], $joins);
         $query['fields'] = $fields;
-        $query['conditions'] = array( 'AND' => array(
-                $query['conditions'],
-                'A_Team.id IS NOT NULL'
-            )
-        );
         
-//        debug($query);
+        
+        
         return $query;
         
     }
@@ -53,26 +54,15 @@ class DataAuthorizationBehavior extends ModelBehavior {
         
     }
     
-    
-    private function generateFields($join_config) {
-        $ret_fields = array();
-        if(isset($join_config)) {
-            foreach ($join_config as $join_name => $join_config) {
-                $this->normalizeKeyValueToAssociative($join_name, $join_config);
-                $ret_fields[] = 'A_' . $join_name . '.*';
-                
-                $recursive_fields = null;
-                if(isset($join_config['joins'])) {
-                    $recursive_fields = $this->generateFields($join_config['joins']);
-                }
-                if(isset($recursive_fields)) {
-                    foreach ($recursive_fields as $j) {
-                        $ret_fields[] = $j;
-                    }
-                }
+    private function debugConds($conds, &$html) {
+        foreach ($conds as $key => $value) {
+            $html .= $key . '</br>';
+            if(!is_array($value)) {
+                $html .= $value . '</br>';
+            } else {
+                $this->debugConds($conds, $html);
             }
-        }        
-        return $ret_fields;
+        }
     }
     
     private function generateJoins($parent_model, $join_config) {
