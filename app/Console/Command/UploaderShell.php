@@ -37,9 +37,7 @@ class UploaderShell extends AppShell {
         $meds = Set::extract('/Media/.', $meds);
         
         foreach ($meds as $key => $media) {
-            $this->media_meta[] = array(
-                'm_id' => $media[id]
-            );
+            $this->media_meta[] = Set::extract('/.', $media);
         }
         debug($this->media_meta);
     }
