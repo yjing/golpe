@@ -65,11 +65,11 @@ class ActivityLogsController extends RESTController {
                     ),
                     'Comment' => array(
                         "unArray_if_single_value",
-                        'fields' => array('count(*) as count')
+                        'fields' => array('count(*) as Media.count')
                     ),
                     'Media' => array(
                         "unArray_if_single_value",
-                        'fields' => array('count(*) as count')
+                        'fields' => array('count(*) as Media.count')
                     )
                 )
             )
