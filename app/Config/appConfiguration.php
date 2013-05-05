@@ -61,14 +61,21 @@ Configure::write("APPCONFIG", array(
         ),
         'conditions' => array(
             'OR' => array(
+                // PUBLIC resources can be read by everybody
                 '#MainResource#.visibility_level' => 'PUBLIC',
+                // OWNER can always read his resources
                 'User.id' => '@(User.id)',
                 'AND' => array(
+                    // No private resource can be read by non OWNERs
                     '#MainResource#.visibility_level !=' => 'PRIVATE',
                     'OR' => array(
+                        '#MainResource#.user.id = @(User.Supervisor.id) ' .
+                            'AND #MainResource#.visibility_level = \'SUPERVISOR\'',
+                        // TEAM MEMEBERS can read each other resources with a TEAM visibility_level
                         'Team.id = @(User.Team.id) ' .
                             'AND \'@(User.role)\' = \'STUDENT\' ' .
                             'AND #MainResource#.visibility_level = \'TEAM\'',
+                        // TEAM MEMEBERS can read their_student's resources with a TEAM visibility_level
                         'StudentsSupervisor.supervisor_id = @(User.id) ' .
                             'AND \'@(User.role)\' = \'SUPERVISOR\' ' .
                             'AND #MainResource#.visibility_level IN (\'TEAM\', \'SUPERVISOR\')',
