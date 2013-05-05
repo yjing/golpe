@@ -57,9 +57,11 @@ class DataAuthorizationBehavior extends ModelBehavior {
         
         debug($query['conditions']);
         if(isset($query['conditions'])) {
-            $query['conditions']['AND'] = array(
-                $query['conditions'],
-                $conditions
+            $query['conditions'] = array(
+                'AND' => array(
+                    $query['conditions'],
+                    $conditions
+                )
             );
         } else {
             $query['conditions'] = $conditions;
