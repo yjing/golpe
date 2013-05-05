@@ -162,7 +162,7 @@ abstract class AssociativeModel extends AppModel {
                 . ' = ' . $association_config['with'] . '.' . $association_config['associationForeignKey']
         );
         $conditions = array(
-            $association_config['with'] . '.' . $association_config['foreignKey'] . ' sdasda= ' 
+            'ddd'.$association_config['with'] . '.' . $association_config['foreignKey'] . ' = ' 
                 . $element[$this->alias][$this->primaryKey]
         );
         
