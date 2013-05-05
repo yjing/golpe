@@ -55,7 +55,8 @@ class UploaderShell extends AppShell {
         debug($this->media_meta);
     }
 
-    public function upload() {
+    public function upload() {}
+    public function uploadOLD() {
         
         // This user is used to inform the UserAwareModel (Media) that the 
         // call has been issued by the SHELL and has access to all data.
