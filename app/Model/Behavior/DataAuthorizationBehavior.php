@@ -29,10 +29,10 @@ class DataAuthorizationBehavior extends ModelBehavior {
 //        debug($model->belongsTo);
 //        debug($model->hasAndBelongsToMany);
         
-        debug($logged_user);
-        debug(Set::extract('User.id', $logged_user));
-        debug(Set::extract('User.Team.id', $logged_user));
-        die();
+//        debug($logged_user);
+//        debug(Set::extract('User.id', $logged_user));
+//        debug(Set::extract('User.Team.id', $logged_user));
+//        die();
         
         
         if(in_array($logged_user['role'], Configure::read("APPCONFIG.super_roles"))) {
@@ -67,6 +67,9 @@ class DataAuthorizationBehavior extends ModelBehavior {
     
     private function debugConds($conds, &$html) {
         foreach ($conds as $key => $value) {
+            
+            debug(ereg('#MainResource#', $key, $regs));
+            
             $html .= str_replace('@MainResource', 'ActivityLog', $key) . ' ### ';
             if(!is_array($value)) {
                 $html .= $value . ' ### ';
