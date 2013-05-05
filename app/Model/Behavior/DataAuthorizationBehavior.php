@@ -4,6 +4,7 @@
  *
  * @author susini
  */
+App::uses('CakeSession', 'Model/Datasource');
 class DataAuthorizationBehavior extends ModelBehavior {
     
     private $config;
