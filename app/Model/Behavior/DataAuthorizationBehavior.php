@@ -46,7 +46,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
     }
     
     
-    private function generateFields($parent_model, $join_config) {
+    private function generateFields($join_config) {
         $ret_fields = array();
         if(isset($join_config)) {
             foreach ($join_config as $join_name => $join_config) {
