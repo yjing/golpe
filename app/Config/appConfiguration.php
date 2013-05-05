@@ -67,8 +67,9 @@ Configure::write("APPCONFIG", array(
                 'OR' => array(
                    'AND' => array(
                        '@(User.Team.id)  IS NULL',
-                        '#MainResource#.visibility_level NOT IN' => array('PRIVATE', 'SUPERVISOR')
-                    ),'AND' => array(
+//                        '#MainResource#.visibility_level NOT IN' => array('PRIVATE', 'SUPERVISOR')
+                    ),
+                    'AND' => array(
                         'Team.id' => '@(User.Team.id)',
                         '#MainResource#.visibility_level NOT IN' => array('PRIVATE', 'SUPERVISOR')
                     )
