@@ -62,6 +62,12 @@ class ActivityLogsController extends RESTController {
                             'Supervisor',
                             'Team'
                         )
+                    ),
+                    'Comment' => array(
+                        'fields' => array('count(*)')
+                    ),
+                    'Media' => array(
+                        'fields' => array('count(*)')
                     )
                 )
             )
