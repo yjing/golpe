@@ -112,8 +112,6 @@ class DataAuthorizationBehavior extends ModelBehavior {
                     . $association_model->alias . '.' . $association_model->primaryKey
             )
         );
-        debug($join);
-        die();
     }
     
     private function generateBelongsToJoin($asso, $association_name, Model $parent_model, Model $association_model) {
