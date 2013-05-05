@@ -71,9 +71,9 @@ class DataAuthorizationBehavior extends ModelBehavior {
             
             $str = 'foobar: 2008';
             preg_match('/(?P<name>\w+): (?P<digit>\d+)/', $str, $matches);
-            debug($matches);die();
+            debug($matches);
             
-            debug(preg_match('{\#(.*)\#}', $key, $regs, PREG_OFFSET_CAPTURE));
+            debug(preg_match('{\#(?P<name>\w+)\#}', $key, $regs, PREG_OFFSET_CAPTURE));
             debug($regs);
             debug(preg_match('{\@\(.*\)\}', $key, $regs, PREG_OFFSET_CAPTURE));
             debug($regs);
