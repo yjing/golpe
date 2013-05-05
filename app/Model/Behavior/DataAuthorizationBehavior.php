@@ -87,7 +87,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
     }
     
     private function replaceNames(&$source) {
-        if(preg_match('{\#(?P<pattern>.*)\#}', $source, $regs, PREG_OFFSET_CAPTURE)) {
+        if(preg_match('{\#(?P<pattern>\w+)\#}', $source, $regs, PREG_OFFSET_CAPTURE)) {
             debug($regs);die();
             $source = str_replace($regs[0][0], 'ActivityLog', $source);
         }
