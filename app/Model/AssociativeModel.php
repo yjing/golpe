@@ -181,11 +181,7 @@ abstract class AssociativeModel extends AppModel {
             $options['fields'] = $fields;
         }
         
-        debug($options);
-        
         $res = $associated_model->find('all', $options);
-        
-        debug($res);
         
         // DATA FORMAT
         $alias = $associated_model->alias;
