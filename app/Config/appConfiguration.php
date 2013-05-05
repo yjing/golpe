@@ -69,7 +69,7 @@ Configure::write("APPCONFIG", array(
                     // No private resource can be read by non OWNERs
                     '#MainResource#.visibility_level !=' => 'PRIVATE',
                     'OR' => array(
-                        '#MainResource#.user.id = @(User.Supervisor.id) ' .
+                        '#MainResource#.user_id = @(User.Supervisor.id) ' .
                             'AND #MainResource#.visibility_level = \'SUPERVISOR\'',
                         // TEAM MEMEBERS can read each other resources with a TEAM visibility_level
                         'Team.id = @(User.Team.id) ' .
