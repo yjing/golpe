@@ -9,6 +9,10 @@ class DataAuthorizationBehavior extends ModelBehavior {
     private $config;
     private $models;
     
+    private $logged_user;
+    private $main_resource_name;
+
+
     public function setup(Model $model, $config = array()) {
         $this->config = Configure::read("APPCONFIG.data_access");
         $this->models = array();
@@ -17,9 +21,9 @@ class DataAuthorizationBehavior extends ModelBehavior {
     public function beforeFind(Model $model, $query) {
         parent::beforeFind($model, $query);
         
-        $logged_user = CakeSession::read('Auth.User');
-        if(isset($logged_user)) {
-            $logged_user = array('User' => $logged_user);
+        $this->logged_user = CakeSession::read('Auth.User');
+        if(isset($this->logged_user)) {
+            $this->logged_user = array('User' => $this->logged_user);
         }
         
 //        debug($query);
@@ -35,7 +39,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
 //        die();
         
         
-        if(in_array($logged_user['User']['role'], Configure::read("APPCONFIG.super_roles"))) {
+        if(in_array($this->logged_user['User']['role'], Configure::read("APPCONFIG.super_roles"))) {
             return $query;
         }
         
@@ -94,6 +98,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
             foreach ($regs[0] as $key => $value) {
                 debug($value[0] . ' @ ' . $value[1]);
                 debug('pattern: ' . $regs['pattern'][$key][0]);
+                debug('value: ' . Set::extract($regs['pattern'][$key][0], $this->logged_user));
             }
             debug($regs);die();
         }
