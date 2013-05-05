@@ -157,17 +157,17 @@ class DataAuthorizationBehavior extends ModelBehavior {
             'alias'=> $asso['config']['with'],
             'type' => 'LEFT',
             'conditions' => array(
-                'A_' . $parent_model->alias . '.' . $parent_model->primaryKey . ' = ' 
+                $parent_model->alias . '.' . $parent_model->primaryKey . ' = ' 
                     . $asso['config']['with'] . '.' . $asso['config']['foreignKey']
             )
         );
         $join[] = array(
             'table' => Inflector::tableize($asso['config']['className']),
-            'alias'=> 'A_' . $association_name,
+            'alias'=> $association_name,
             'type' => 'LEFT',
             'conditions' => array(
                 $asso['config']['with'] . '.' . $asso['config']['associationForeignKey'] . ' = '
-                    . 'A_' . $association_name . '.' . $association_model->primaryKey
+                    . $association_name . '.' . $association_model->primaryKey
             )
         );
         return $join;
@@ -177,11 +177,11 @@ class DataAuthorizationBehavior extends ModelBehavior {
         $join = array();
         $join[] = array(
             'table' => Inflector::tableize($asso['config']['className']),
-            'alias' => 'A_' . $association_name,
+            'alias' => $association_name,
             'type' => 'LEFT',
             'conditions' => array(
                 $parent_model->alias . '.' . $asso['config']['foreignKey'] . ' = '
-                    . 'A_' . $association_name . '.' . $association_model->primaryKey
+                    . $association_name . '.' . $association_model->primaryKey
             )
         );
         return $join;
