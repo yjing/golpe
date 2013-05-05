@@ -78,6 +78,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
                 }
                 if(isset($recursive_joins)) {
                     foreach ($recursive_joins as $j) {
+                        debug($j);
                         $ret_joins[] = $j;
                     }
                 }
