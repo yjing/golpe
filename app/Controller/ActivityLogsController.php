@@ -56,7 +56,9 @@ class ActivityLogsController extends RESTController {
             array(
                 'conditions' => $conditions,
                 'recursive' => -1,
-                'HABTMrecursive' => 3
+                'associations' => array(
+                    'User'
+                )
             )
         );
         
