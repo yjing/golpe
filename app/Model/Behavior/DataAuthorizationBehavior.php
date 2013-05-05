@@ -119,7 +119,8 @@ class DataAuthorizationBehavior extends ModelBehavior {
     }
     
     private function generateBelongsToJoin($asso, $association_name, Model $parent_model, Model $association_model) {
-        $join = array(
+        $join = array();
+        $join[] = array(
             'table' => Inflector::tableize($asso['config']['className']),
             'alias' => $association_name,
             'type' => 'LEFT',
