@@ -38,7 +38,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
         
         $query['joins'] = array_merge($query['joins'], $joins);
         $query['fields'] = $fields;
-        $query['conditions'] = array(
+        $query['conditions'][] = array(
             'A_Team.id IS NULL'
         );
         
