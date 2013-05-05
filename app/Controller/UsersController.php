@@ -146,6 +146,7 @@ class UsersController extends RESTController {
 
     public function login() {
         if ($this->request->is('post')) {
+            $this->Auth->logout();
             $loggedIn = $this->Auth->login();
             
             
