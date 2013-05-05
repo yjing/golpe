@@ -93,6 +93,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
         if(preg_match_all('{\@\((?P<name>[\w|\.]+)\)}', $source, $regs, PREG_OFFSET_CAPTURE)) {
             foreach ($regs[0] as $key => $value) {
                 debug($value[0] . ' @ ' . $value[1]);
+                debug('pattern: ' . $regs['pattern'][$key][0]);
             }
             debug($regs);die();
         }
