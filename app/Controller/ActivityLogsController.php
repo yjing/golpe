@@ -59,7 +59,8 @@ class ActivityLogsController extends RESTController {
                 'associations' => array(
                     'User' => array(
                         'associations' => array(
-                            'Supervisor'
+                            'Supervisor',
+                            'Team'
                         )
                     )
                 )
