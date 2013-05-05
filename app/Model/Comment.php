@@ -11,7 +11,16 @@ class Comment extends AssociativeModel {
             'fields' => array('id', 'username', 'role')
         )
     );
-    public $hasAndBelongsToMany = array("ActivityLog", "Media");
+    public $hasAndBelongsToMany = array(
+        "ActivityLog", 
+        "Media", 
+        "CommentMedia" => array(
+            'className' => 'Media',
+            'joinTable' => 'comments_media',
+            'foreignKey' => 'comment_id',
+            'associationForeignKey' => 'media_id'
+        )
+    );
     
     public $targets = array('ActivityLog');
     
