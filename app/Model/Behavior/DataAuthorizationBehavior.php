@@ -58,12 +58,13 @@ class DataAuthorizationBehavior extends ModelBehavior {
         $ret_joins = array();
         if(isset($join_config)) {
             foreach ($join_config as $join_name => $join_config) {
+                debug($join_name);
+                
                 $this->normalizeKeyValueToAssociative($join_name, $join_config);
                 $asso = $this->findAssociation($parent_model, $join_name);
+                debug($asso);
+                
                 $asso_model = $this->getModel($asso['className']);
-
-                debug($join_name);
-                debug($join_config);
 
                 $ret_joins[] = call_user_func( array( $this, $asso['function'] ), 
                     $asso,
@@ -78,7 +79,6 @@ class DataAuthorizationBehavior extends ModelBehavior {
                 if(isset($join_config['joins'])) {
                     $recursive_joins = $this->generateJoins($asso_model, $join_config['joins']);
                 }
-                debug($asso);
                 if(isset($recursive_joins)) {
                     $ret_joins = array_merge($ret_joins, $recursive_joins);
                 }
