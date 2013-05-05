@@ -117,7 +117,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
             'alias'=> $asso['config']['with'],
             'type' => 'LEFT',
             'conditions' => array(
-                $parent_model->alias . '.' . $parent_model->primaryKey . ' = ' 
+                'A_' . $parent_model->alias . '.' . $parent_model->primaryKey . ' = ' 
                     . $asso['config']['with'] . '.' . $asso['config']['foreignKey']
             )
         );
