@@ -58,9 +58,11 @@ class ActivityLogsController extends RESTController {
                 'recursive' => -1,
                 'associations' => array(
                     'User' => array(
+                        "unArray_if_single_value",
                         'fields' => array('id', 'username'),
                         'associations' => array(
                             'Supervisor' => array(
+                                "unArray_if_single_value",
                                 'fields' => array('id', 'username')
                             ),
 //                            'Team'
