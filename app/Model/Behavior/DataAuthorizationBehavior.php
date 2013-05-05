@@ -18,6 +18,9 @@ class DataAuthorizationBehavior extends ModelBehavior {
         parent::beforeFind($model, $query);
         
         $logged_user = CakeSession::read('Auth.User');
+        if(isset($logged_user)) {
+            $logged_user = array('User' => $logged_user);
+        }
         
 //        debug($query);
 //        
