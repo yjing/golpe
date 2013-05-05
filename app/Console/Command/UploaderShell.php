@@ -28,7 +28,7 @@ class UploaderShell extends AppShell {
         ));
         
         $meds = $this->Media->find('all', array(
-            'conditions' => array('status !=' => UploaderShell::$mediaStatus_AVAILABLE),
+            'conditions' => array('Media.status !=' => UploaderShell::$mediaStatus_AVAILABLE),
             'recursive' => -1
         ));
         
