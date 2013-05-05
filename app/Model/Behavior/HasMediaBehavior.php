@@ -92,7 +92,7 @@ class HasMediaBehavior extends ModelBehavior {
                         'recursive' => -1
                     )
                 );
-                debug($model->data);
+                debug($model->id);
                 $has_media_obj_id = $model->id;
             }
            
