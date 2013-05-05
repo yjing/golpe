@@ -21,7 +21,9 @@ class CommentsController extends RESTController {
                 'conditions' => array('Comment.user_id' => $user['id']),
                 'recursive' => -1,
                 'associations' => array(
-                    'ActivityLog',
+                    'ActivityLog' => array(
+                        'fields' => array('id')
+                    )
                 )
             )
         ));
