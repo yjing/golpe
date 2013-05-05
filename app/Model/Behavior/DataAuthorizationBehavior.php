@@ -68,7 +68,9 @@ class DataAuthorizationBehavior extends ModelBehavior {
     private function debugConds($conds, &$html) {
         foreach ($conds as $key => $value) {
             
-            debug(preg_match('{^\#.*\#}', $key, $regs, PREG_OFFSET_CAPTURE));
+            debug(preg_match('{\#(.*)\#}', $key, $regs, PREG_OFFSET_CAPTURE));
+            debug($regs);
+            debug(preg_match('{\@(.*)\@}', $key, $regs, PREG_OFFSET_CAPTURE));
             debug($regs);
             
             $html .= str_replace('@MainResource', 'ActivityLog', $key) . ' ### ';
