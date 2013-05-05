@@ -22,7 +22,6 @@ class DataAuthorizationBehavior extends ModelBehavior {
         parent::beforeFind($model, $query);
         
         $this->main_resource_name = $model->alias;
-        debug($this->main_resource_name);
         
         $this->logged_user = CakeSession::read('Auth.User');
         if(isset($this->logged_user)) {
@@ -47,7 +46,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
         }
         
         $joins_config = $this->getConfigElement($this->config, 'joins');
-        $model_joins = $this->getConfigElement($this->config, $model->alias);
+        $model_joins = $this->getConfigElement($this->getConfigElement($this->config, $model->alias), 'joins');
         
         debug($this->config);
         debug($joins_config);
