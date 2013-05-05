@@ -31,7 +31,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
         
         debug($logged_user);
         debug(Set::extract('User.id', $logged_user));
-        debug(Set::extract('Team.id', $logged_user));
+        debug(Set::extract('User.Team.id', $logged_user));
         die();
         
         
