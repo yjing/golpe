@@ -165,7 +165,7 @@ abstract class AssociativeModel extends AppModel {
             $association_config['with'] . '.' . $association_config['foreignKey'] . ' = ' 
                 . $element[$this->alias][$this->primaryKey]
         );
-        
+        debug($conditions);
         $options = array(
             'joins' => array($join),
             'conditions' => $conditions,
