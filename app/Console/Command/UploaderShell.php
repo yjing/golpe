@@ -22,11 +22,9 @@ class UploaderShell extends AppShell {
         // call has been issued by the SHELL and has access to all data.
         App::uses('CakeSession', 'Model/Datasource');
         CakeSession::write("Auth.User", array(
-            'User' => array(
-                'id' => '-1',
-                'username' => 'msc.shell',
-                'role' => 'SHELL'
-            )
+            'id' => '-1',
+            'username' => 'msc.shell',
+            'role' => 'SHELL'
         ));
         
         $meds = $this->Media->find('all', array(
