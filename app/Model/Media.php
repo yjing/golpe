@@ -1,7 +1,7 @@
 <?php
 
-App::import("Model", "UserAwareModel");
-class Media extends UserAwareModel {
+App::import("Model", "AssociativeModel");
+class Media extends AssociativeModel {
 
     public $name = 'Media';
     
