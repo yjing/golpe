@@ -85,8 +85,13 @@ class NotificationComponent extends Component {
                 $this->ActivityLog = new ActivityLog();
                 $element = $this->ActivityLog->find('first', array(
                     'conditions' => array('ActivityLog.id' => $id),
-                    'recursive' => -1
+                    'accociations' => array(
+                        'Supervisor'
+                    )
                 ));
+                
+                debug($element);die();
+                
                 $visibility_level = $element['ActivityLog']['visibility_level'];
                 if($visibility_level == 'PRIVATE') {
                     break;
