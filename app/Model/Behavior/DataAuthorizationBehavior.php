@@ -98,11 +98,11 @@ class DataAuthorizationBehavior extends ModelBehavior {
         );
         $join[] = array(
             'table' => Inflector::tableize($asso['config']['className']),
-            'alias'=> $association_model->alias,
+            'alias'=> $association_name,
             'type' => 'LEFT',
             'conditions' => array(
                 $asso['config']['with'] . '.' . $asso['config']['associationForeignKey'] . ' = '
-                    . $association_model->alias . '.' . $association_model->primaryKey
+                    . $association_name . '.' . $association_model->primaryKey
             )
         );
         return $join;
@@ -116,7 +116,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
             'type' => 'LEFT',
             'conditions' => array(
                 $parent_model->alias . '.' . $asso['config']['foreignKey'] . ' = '
-                    . $asso['config']['className'] . '.' . $association_model->primaryKey
+                    . $association_name . '.' . $association_model->primaryKey
             )
         );
         return $join;
