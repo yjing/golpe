@@ -92,8 +92,9 @@ class NotificationComponent extends Component {
                         'associations' => array(
                             'User' => array(
                                 'associations' => array(
-                                    'Supervisor',
+                                    'Supervisor' => array("unArray_if_single_value"),
                                     'Team' => array(
+                                        "unArray_if_single_value",
                                         'associations' => array(
                                             'Student'
                                         )
