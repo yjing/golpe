@@ -55,7 +55,6 @@ class DataAuthorizationBehavior extends ModelBehavior {
         $conditions = $this->getConfigElement($this->config, 'conditions');
         $this->elabConds($conditions);
         
-        debug($query['conditions']);
         if(isset($query['conditions'])) {
             $query['conditions'] = array(
                 'AND' => array(
@@ -67,8 +66,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
             $query['conditions'] = $conditions;
         }
         
-        debug($query);
-        die();
+//        debug($query);
         
         return $query;
         
