@@ -91,6 +91,9 @@ class DataAuthorizationBehavior extends ModelBehavior {
             $source = str_replace($regs[0][0][0], 'ActivityLog', $source);
         }
         if(preg_match_all('{\@\((?P<name>[\w|\.]+)\)}', $source, $regs, PREG_OFFSET_CAPTURE)) {
+            foreach ($regs[0] as $key => $value) {
+                debug($value[0] . ' @ ' . $value[1]);
+            }
             debug($regs);die();
         }
         return $source;
