@@ -34,6 +34,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
         
         $query['joins'] = array_merge($query['joins'], $joins);
         
+        debug($query);
         return $query;
         
     }
