@@ -1,7 +1,7 @@
 <?php
 
-App::import('Model', 'UserAwareModel');
-class Comment extends UserAwareModel {
+App::import('Model', 'AssociativeModel');
+class Comment extends AssociativeModel {
 
     public $name = 'Comment';
     public $useTable = "comments";
