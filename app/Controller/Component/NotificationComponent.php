@@ -86,7 +86,7 @@ class NotificationComponent extends Component {
                 $element = $this->ActivityLog->find('first', array(
                     'conditions' => array('ActivityLog.id' => $id),
                     'accociations' => array(
-                        'Supervisor'
+//                        'Supervisor'
                     )
                 ));
                 
