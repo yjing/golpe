@@ -28,7 +28,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
             $this->logged_user = array('User' => $this->logged_user);
         }
         
-        debug($query);
+//        debug($query);
 //        
 //        debug($model->hasOne);
 //        debug($model->hasMany);
@@ -63,7 +63,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
             $query['conditions'] = $conditions;
         }
         
-        debug($conditions);
+        debug($query);
         die();
         
         return $query;
