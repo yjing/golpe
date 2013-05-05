@@ -61,8 +61,8 @@ Configure::write("APPCONFIG", array(
         ),
         'conditions' => array(
             'OR' => array(
-                '#MainResource#.visibility_level #MainResource#' => 'PUBLIC',
-                'User.id' => '@(User.id)',
+                '#MainResource#.visibility_level' => 'PUBLIC',
+                'User.id' => '@(User.id) * @(User.id)',
                 'StudentsSupervisors.supervisor_id' => '@(User.id)',
                 'OR' => array(
                    'User.Team.id  IS NULL',
