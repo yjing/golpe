@@ -63,7 +63,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
                 $asso_model = $this->getModel($join_name);
 
                 debug($join_name);
-
+                debug($join_config);
 
                 $ret_joins[] = call_user_func( array( $this, $asso['function'] ), 
                     $asso,
