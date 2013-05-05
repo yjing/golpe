@@ -40,7 +40,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
         $query['fields'] = $fields;
         $query['conditions'] = array( 'AND' => array(
                 $query['conditions'],
-                'A_Team.id IS NULL'
+                'A_Team.id IS NOT NULL'
             )
         );
         
