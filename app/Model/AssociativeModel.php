@@ -251,10 +251,12 @@ abstract class AssociativeModel extends AppModel {
     public function getConfigElement($config_array, $key) {
         $result = null;
         
-        if(in_array($key, $config_array, true)) {
-            $result = array();
-        } elseif (array_key_exists($key, $config_array)) {
-            $result = $config_array[$key];
+        if(isset($config_array)) {
+            if(in_array($key, $config_array, true)) {
+                $result = array();
+            } elseif (array_key_exists($key, $config_array)) {
+                $result = $config_array[$key];
+            }
         }
         return $result;
     }

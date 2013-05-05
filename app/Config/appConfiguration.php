@@ -86,10 +86,10 @@ Configure::write("APPCONFIG", array(
         ),
         'Comment' => array(
             'joins' => array(
-                "ActivityLog", "Media"
+                "ActivityLog"
             ),
             'conditions' => array(
-                
+                'ActivityLogsComment.comment_id = Comment.id'
             )
         )
     ),
