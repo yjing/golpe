@@ -85,8 +85,10 @@ class DataAuthorizationBehavior extends ModelBehavior {
                 }
 
                 $k = $this->replaceDynamics($key);
-                $conds[$k] = $conds[$key];
-                unset($conds[$key]);
+                if($k != $key) {
+                    $conds[$k] = $conds[$key];
+                    unset($conds[$key]);
+                }
             }
             debug($conds);
         }
