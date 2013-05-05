@@ -83,14 +83,6 @@ Configure::write("APPCONFIG", array(
                 )
                 
             )
-        ),
-        'Comment' => array(
-            'joins' => array(
-                "ActivityLog"
-            ),
-            'conditions' => array(
-                'ActivityLog.user_id != @(User.id)'
-            )
         )
     ),
     'notification' => array(
