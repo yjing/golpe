@@ -32,11 +32,12 @@ class DataAuthorizationBehavior extends ModelBehavior {
         $joins_config = $this->getConfigElement($this->config, 'joins');
         $joins = $this->generateJoins($model, $joins_config);
         $fields = $this->generateFields($joins_config);
+        debug($joins);
         debug($fields);die();
         $query['joins'] = array_merge($query['joins'], $joins);
         $query['fields'] = array_merge($query['fields'], $fields);
         
-        debug($query);
+//        debug($query);
         return $query;
         
     }
@@ -188,7 +189,6 @@ class DataAuthorizationBehavior extends ModelBehavior {
             );
         }
         if(array_key_exists($association_name, $model->hasAndBelongsToMany)) {
-            debug($model->hasAndBelongsToMany[$association_name]);
             return array(
                 'type' => 'hasAndBelongsToMany',
                 'config' => $model->hasAndBelongsToMany[$association_name],
