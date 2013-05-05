@@ -36,17 +36,10 @@ abstract class AssociativeModel extends AppModel {
                             $element
                         );
                         
-                        
-                        // DATA FORMAT
-                        $alias = $association_name;
-                        $alias_data = Set::extract("{n}.$alias", $res);
-                        $res_without_alias = Set::remove($res, "{n}.$alias");
-                        $res = Set::merge($alias_data, $res_without_alias);
-                        
                         debug($association_name);
                         debug($res);
                         
-                        $results[$index][$association_name] = $res;
+                        $results[$index][$this->alias][$association_name] = $res;
                         debug($results[$index])
                         ;
                     } else {
