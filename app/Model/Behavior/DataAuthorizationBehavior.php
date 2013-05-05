@@ -57,7 +57,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
     
     private function debugConds($conds, &$html) {
         foreach ($conds as $key => $value) {
-            $html .= $key . ' ### ';
+            $html .= str_replace('@MainResource', 'ActivityLog', $key) . ' ### ';
             if(!is_array($value)) {
                 $html .= $value . ' ### ';
             } else {
