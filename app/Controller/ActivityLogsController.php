@@ -64,13 +64,18 @@ class ActivityLogsController extends RESTController {
                             'Supervisor' => array(
                                 "unArray_if_single_value",
                                 'fields' => array('id', 'username')
-                            ),
-//                            'Team'
+                            )
                         )
                     ),
                     'Comment' => array(
                         "unArray_if_single_value",
-                        'fields' => array('count(*) as count')
+                        'fields' => array('count(*) as count'),
+                        'associations' => array(
+                            'Media' => array(
+                                "unArray_if_single_value",
+                                'fields' => array('count(*) as count')
+                            )
+                        )
                     ),
                     'Media' => array(
                         "unArray_if_single_value",
