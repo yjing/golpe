@@ -7,7 +7,7 @@ abstract class AssociativeModel extends AppModel {
     public function beforeFind($queryData) {
         parent::beforeFind($queryData);
         
-        debug($queryData);die();
+        debug($queryData);
         
         $links = $this->getConfigElement($queryData, 'associations');
         if (isset($links)) {
@@ -20,6 +20,8 @@ abstract class AssociativeModel extends AppModel {
     
     public function afterFind($results, $primary = false) {
         parent::afterFind($results, $primary);
+        
+        debug($results);
         
 //        debug("AFTER FINDING " . $this->alias);
         
