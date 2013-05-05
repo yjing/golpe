@@ -16,17 +16,36 @@ class DataAuthorizationBehavior extends ModelBehavior {
     public function setup(Model $model, $config = array()) {
         $this->config = Configure::read("APPCONFIG.data_access");
         $this->models = array();
+        
+        $this->logged_user = CakeSession::read('Auth.User');
+        if(isset($this->logged_user)) {
+            $this->logged_user = array('User' => $this->logged_user);
+        }
+    }
+    
+    public function beforeSave(Model $model) {
+        
+        if(in_array($this->logged_user['User']['role'], Configure::read("APPCONFIG.super_roles"))) {
+            return true;
+        }
+        
+        if($model->exists()){
+            return $this->_checkOwnership();
+        } else {
+            $model->data[$model->alias]['user_id'] = $this->logged_user['User']['id'];
+            return true;
+        }
+    }
+    
+    private function _checkOwnership($model) {
+        $elem = $model->findById($model->id);
+        return $elem !== false && $elem[$model->alias]['user_id'] == $this->logged_user['User']['id'];
     }
     
     public function beforeFind(Model $model, $query) {
         parent::beforeFind($model, $query);
         
         $this->main_resource_name = $model->alias;
-        
-        $this->logged_user = CakeSession::read('Auth.User');
-        if(isset($this->logged_user)) {
-            $this->logged_user = array('User' => $this->logged_user);
-        }
         
         if(in_array($this->logged_user['User']['role'], Configure::read("APPCONFIG.super_roles"))) {
             return $query;
