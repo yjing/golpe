@@ -71,6 +71,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
                     $parent_model,
                     $asso_model
                 );
+                debug($ret_joins);
 
 
                 $recursive_joins = null;
