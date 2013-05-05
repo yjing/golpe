@@ -149,7 +149,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
             );
         }
         if(array_key_exists($association_name, $model->hasAndBelongsToMany)) {
-            debug("HABTM");
+            debug($model->hasAndBelongsToMany[$association_name]);
             return array(
                 'type' => 'hasAndBelongsToMany',
                 'config' => $model->hasAndBelongsToMany[$association_name],
