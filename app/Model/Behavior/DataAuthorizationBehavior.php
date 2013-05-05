@@ -78,8 +78,6 @@ class DataAuthorizationBehavior extends ModelBehavior {
             $html .= str_replace('@MainResource', 'ActivityLog', $key) . ' ### ';
             if(!is_array($value)) {
                 $this->replaceDynamics($value);
-                debug(preg_match('{\@\((?P<name>.*)\)}', $value, $regs, PREG_OFFSET_CAPTURE));
-                debug($regs);
                 $html .= $value . ' ### ';
             } else {
                 $this->debugConds($conds[$key], $html);
