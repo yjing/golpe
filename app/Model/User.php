@@ -3,7 +3,6 @@
 App::import('Model', 'AssociativeModel');
 class User extends AssociativeModel {
     
-    private $supervisor_opt;
     public $hasAndBelongsToMany = array(
         'Team',
         'Supervisor' => array(
