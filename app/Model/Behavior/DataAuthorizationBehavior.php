@@ -17,14 +17,14 @@ class DataAuthorizationBehavior extends ModelBehavior {
     public function setup(Model $model, $config = array()) {
         $this->config = Configure::read("APPCONFIG.data_access");
         $this->models = array();
+    }
+    
+    public function beforeSave(Model $model) {
         
         $this->logged_user = CakeSession::read('Auth.User');
         if(isset($this->logged_user)) {
             $this->logged_user = array('User' => $this->logged_user);
         }
-    }
-    
-    public function beforeSave(Model $model) {
         
         if(in_array($this->logged_user['User']['role'], Configure::read("APPCONFIG.super_roles"))) {
             return true;
@@ -53,6 +53,11 @@ class DataAuthorizationBehavior extends ModelBehavior {
     
     public function beforeFind(Model $model, $query) {
         parent::beforeFind($model, $query);
+        
+        $this->logged_user = CakeSession::read('Auth.User');
+        if(isset($this->logged_user)) {
+            $this->logged_user = array('User' => $this->logged_user);
+        }
         
         $this->main_resource_name = $model->alias;
         debug($this->logged_user);
