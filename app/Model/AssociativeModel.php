@@ -7,6 +7,8 @@ abstract class AssociativeModel extends AppModel {
     public function beforeFind($queryData) {
         parent::beforeFind($queryData);
         
+        debug($queryData);die();
+        
         $links = $this->getConfigElement($queryData, 'associations');
         if (isset($links)) {
             $this->links = $this->getConfigElement($queryData, 'associations');
