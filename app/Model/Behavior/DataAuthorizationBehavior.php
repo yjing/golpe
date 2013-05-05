@@ -31,7 +31,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
         
         $joins_config = $this->getConfigElement($this->config, 'joins');
         $joins = $this->generateJoins($model, $joins_config);
-        $fields = $this->generateFields($joins_config);
+        $fields = array_merge(array($model->alias . '.*'), $this->generateFields($joins_config));
         debug($joins);
         debug($fields);die();
         $query['joins'] = array_merge($query['joins'], $joins);
@@ -52,7 +52,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
         if(isset($join_config)) {
             foreach ($join_config as $join_name => $join_config) {
                 $this->normalizeKeyValueToAssociative($join_name, $join_config);
-                $ret_fields[] = 'A_' . $join_name;
+                $ret_fields[] = 'A_' . $join_name . '.*';
                 
                 $recursive_fields = null;
                 if(isset($join_config['joins'])) {
