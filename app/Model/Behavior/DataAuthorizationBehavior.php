@@ -50,6 +50,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
         $ret_fields = array();
         if(isset($join_config)) {
             foreach ($join_config as $join_name => $join_config) {
+                $this->normalizeKeyValueToAssociative($join_name, $join_config);
                 $ret_fields[] = 'A_' . $join_name;
                 
                 $recursive_fields = null;
