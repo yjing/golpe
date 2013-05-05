@@ -57,9 +57,9 @@ class DataAuthorizationBehavior extends ModelBehavior {
     private function debugConds($conds, &$html) {
         foreach ($conds as $key => $value) {
             $html .= $key . (!is_array($value)) . '</br>';
-            if(!is_array($value)) {
-                $html .= $value . '</br>';
-            } 
+//            if(!is_array($value)) {
+//                $html .= $value . '</br>';
+//            } 
 //            else {
 //                $this->debugConds($conds, $html);
 //            }
