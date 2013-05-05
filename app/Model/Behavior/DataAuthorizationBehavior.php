@@ -28,50 +28,17 @@ class DataAuthorizationBehavior extends ModelBehavior {
             $this->logged_user = array('User' => $this->logged_user);
         }
         
-//        debug($query);
-//        
-//        debug($model->hasOne);
-//        debug($model->hasMany);
-//        debug($model->belongsTo);
-//        debug($model->hasAndBelongsToMany);
-        
-//        debug($logged_user);
-//        debug(Set::extract('User.id', $logged_user));
-//        debug(Set::extract('User.Team.id', $logged_user));
-//        die();
-        
-        
         if(in_array($this->logged_user['User']['role'], Configure::read("APPCONFIG.super_roles"))) {
             return $query;
         }
         
         $joins_config = $this->getConfigElement($this->config, 'joins');
-        $model_joins = $this->getConfigElement($this->getConfigElement($this->config, $model->alias), 'joins');
-        
-//        debug($this->config);
-//        debug($joins_config);
-//        debug($model_joins);
-        
-        if(isset($model_joins)) {
-            $joins_config = array_merge($joins_config, $model_joins);
-        }
-        
-//        debug($joins_config);
-        
         $joins = $this->generateJoins($model, $joins_config);
         $query['joins'] = array_merge($query['joins'], $joins);
 
-//        debug($joins);
-//        debug($fields);
         
         $conditions = $this->getConfigElement($this->config, 'conditions');
-        $model_conditions = $this->getConfigElement($this->getConfigElement($this->config, $model->alias), 'conditions');
-        if(isset($model_conditions)) {
-            $conditions = array_merge($conditions, $model_conditions);
-        }
         $this->elabConds($conditions);
-        
-//        debug($conditions);
         
         if(isset($query['conditions'])) {
             $query['conditions'] = array(
@@ -83,9 +50,6 @@ class DataAuthorizationBehavior extends ModelBehavior {
         } else {
             $query['conditions'] = $conditions;
         }
-        
-//        debug($query);
-//        die();
         
         return $query;
         
