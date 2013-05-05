@@ -58,7 +58,9 @@ class ActivityLogsController extends RESTController {
                 'recursive' => -1,
                 'associations' => array(
                     'User' => array(
-                        'Supervisor' => array()
+                        'associations' => array(
+                            'Supervisor'
+                        )
                     )
                 )
             )
