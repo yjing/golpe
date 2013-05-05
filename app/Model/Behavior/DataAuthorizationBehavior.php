@@ -30,7 +30,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
         }
         
         if($model->exists()){
-            return $this->_checkOwnership();
+            return $this->_checkOwnership($model);
         } else {
             $model->data[$model->alias]['user_id'] = $this->logged_user['User']['id'];
             return true;
