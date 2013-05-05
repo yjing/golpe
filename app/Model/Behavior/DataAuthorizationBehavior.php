@@ -72,12 +72,12 @@ class DataAuthorizationBehavior extends ModelBehavior {
                     $asso_model
                 );
 
-                debug($asso);
 
                 $recursive_joins = null;
                 if(isset($join_config['joins'])) {
                     $recursive_joins = $this->generateJoins($asso_model, $join_config['joins']);
                 }
+                debug($asso);
                 if(isset($recursive_joins)) {
                     $ret_joins = array_merge($ret_joins, $recursive_joins);
                 }
