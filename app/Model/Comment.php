@@ -5,7 +5,7 @@ class Comment extends AssociativeModel {
 
     public $name = 'Comment';
     public $useTable = "comments";
-    public $actsAs = array('HasMedia');
+    public $actsAs = array('HasMedia', 'DataAuthorization');
     public $belongsTo = array(
         "User" => array(
             'fields' => array('id', 'username', 'role')
