@@ -19,7 +19,10 @@ class CommentsController extends RESTController {
         $this->_setResponseJSON($this->Comment->find('all',
             array(
                 'conditions' => array('Comment.user_id' => $user['id']),
-                'recursive' => -1
+                'recursive' => -1,
+                'associations' => array(
+                    'ActivityLog',
+                )
             )
         ));
         
