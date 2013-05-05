@@ -16,6 +16,34 @@ class UploaderShell extends AppShell {
 
     public $uses = array('Media');
 
+    
+    private $media_meta = array();
+    public function upload2() {
+        
+        // This user is used to inform the UserAwareModel (Media) that the 
+        // call has been issued by the SHELL and has access to all data.
+        App::uses('CakeSession', 'Model/Datasource');
+        CakeSession::write("Auth.User", array(
+            'id' => '-1',
+            'username' => 'msc.shell',
+            'role' => 'SHELL'
+        ));
+        
+        $meds = $this->Media->find('all', array(
+            'conditions' => array('Media.status !=' => UploaderShell::$mediaStatus_AVAILABLE),
+            'recursive' => -1
+        ));
+        
+        $meds = Set::extract('/Media/.', $meds);
+        
+        foreach ($meds as $key => $media) {
+            $this->media_meta[] = array(
+                'm_id' => $media[id]
+            );
+        }
+        debug($this->media_meta);
+    }
+
     public function upload() {
         
         // This user is used to inform the UserAwareModel (Media) that the 
