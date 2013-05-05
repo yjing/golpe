@@ -97,7 +97,7 @@ class ActivityLogsController extends RESTController {
         
         $user = $this->Session->read("Auth.User");
         
-        $this->_setResponseJSON($this->ActivityLog->find('first',
+        $this->_setResponseJSON($this->ActivityLog->find('all',
             array(
                 'conditions' => array(
                     'ActivityLog.id' => $id
