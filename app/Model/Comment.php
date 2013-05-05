@@ -5,13 +5,13 @@ class Comment extends AssociativeModel {
 
     public $name = 'Comment';
     public $useTable = "comments";
-    public $actsAs = array('Containable', 'HasMedia', 'HahManyThroughHABTM' => array('Media' => array()));
+    public $actsAs = array('HasMedia');
     public $belongsTo = array(
         "User" => array(
             'fields' => array('id', 'username', 'role')
         )
     );
-    public $hasAndBelongsToMany = array("Media");
+    public $hasAndBelongsToMany = array("ActivityLog", "Media");
     
     public $targets = array('ActivityLog');
     
