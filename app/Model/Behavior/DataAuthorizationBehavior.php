@@ -69,7 +69,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
         
     }
     
-    private function debugConds($conds, &$html) {
+    private function debugConds(&$conds, &$html) {
         if(isset($conds)) {
             foreach ($conds as $key => $value) {
 
@@ -77,16 +77,18 @@ class DataAuthorizationBehavior extends ModelBehavior {
 //                preg_match('/(?P<name>\w+): (?P<digit>\d+)/', $str, $matches);
 //                debug($matches);
 
-                $k = $this->replaceDynamics($key);
-
-                $html .= $k . ' ### ';
                 if(!is_array($value)) {
                     $v = $this->replaceDynamics($value);
-                    $html .= $v . ' ### ';
+                    $conds[$key] = $v;
                 } else {
                     $this->debugConds($conds[$key], $html);
                 }
+
+                $k = $this->replaceDynamics($key);
+                $conds[$k] = $conds[$key];
+                unset($conds[$key]);
             }
+            debug($conds);
         }
     }
     
