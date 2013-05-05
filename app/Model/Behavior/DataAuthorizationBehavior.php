@@ -66,7 +66,8 @@ class DataAuthorizationBehavior extends ModelBehavior {
             $query['conditions'] = $conditions;
         }
         
-//        debug($query);die();
+        debug($query);
+        die();
         
         return $query;
         
