@@ -63,16 +63,20 @@ Configure::write("APPCONFIG", array(
             'OR' => array(
                 '#MainResource#.visibility_level' => 'PUBLIC',
                 'User.id' => '@(User.id)',
-                'StudentsSupervisor.supervisor_id' => '@(User.Supervisor.id)',
-                'OR' => array(
-                   'AND' => array(
-                       '#MainResource#.visibility_level NOT IN' => array('PRIVATE', 'SUPERVISOR'),
-                       'OR' => array(
-                           '@(User.Team.id)  IS NULL',
-                            'Team.id' => '@(User.Team.id)'
-                       )
-                   )
+                'Team.id' => '@(User.Team.id)',
+                'AND' => array(
+                    'StudentsSupervisor.supervisor_id' => '@(User.Supervisor.id)',
+                    '#MainResource#.visibility_level !=' => 'PRIVATE',
                 )
+//                'OR' => array(
+//                   'AND' => array(
+//                       '#MainResource#.visibility_level NOT IN' => array('PRIVATE', 'SUPERVISOR'),
+//                       'OR' => array(
+//                           '@(User.Team.id)  IS NULL',
+//                            'Team.id' => '@(User.Team.id)'
+//                       )
+//                   )
+//                )
             )
         )
     ),
