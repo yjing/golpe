@@ -21,6 +21,8 @@ class DataAuthorizationBehavior extends ModelBehavior {
     public function beforeFind(Model $model, $query) {
         parent::beforeFind($model, $query);
         
+        $this->main_resource_name = $model->alias;
+        
         $this->logged_user = CakeSession::read('Auth.User');
         if(isset($this->logged_user)) {
             $this->logged_user = array('User' => $this->logged_user);
@@ -45,21 +47,24 @@ class DataAuthorizationBehavior extends ModelBehavior {
         
         $joins_config = $this->getConfigElement($this->config, 'joins');
         $joins = $this->generateJoins($model, $joins_config);
-        
-        $conditions = $this->getConfigElement($this->config, 'conditions');
-        $html = "";
-        debug($conditions);
-        $this->debugConds($conditions, $html);
-        debug($html);
-        die();
-        
+        $query['joins'] = array_merge($query['joins'], $joins);
+
 //        debug($joins);
 //        debug($fields);
         
-        $query['joins'] = array_merge($query['joins'], $joins);
-        $query['fields'] = $fields;
+        $conditions = $this->getConfigElement($this->config, 'conditions');
+        $this->debugConds($conditions);
+        if(isset($query['conditions'])) {
+            $query['conditions']['AND'] = array(
+                $query['conditions'],
+                $conditions
+            );
+        } else {
+            $query['conditions'] = $conditions;
+        }
         
-        
+        debug($conditions);
+        die();
         
         return $query;
         
@@ -69,19 +74,15 @@ class DataAuthorizationBehavior extends ModelBehavior {
         
     }
     
-    private function debugConds(&$conds, &$html) {
+    private function elabConds(&$conds) {
         if(isset($conds)) {
             foreach ($conds as $key => $value) {
-
-//                $str = 'foobar: 2008';
-//                preg_match('/(?P<name>\w+): (?P<digit>\d+)/', $str, $matches);
-//                debug($matches);
 
                 if(!is_array($value)) {
                     $v = $this->replaceDynamics($value);
                     $conds[$key] = $v;
                 } else {
-                    $this->debugConds($conds[$key], $html);
+                    $this->elabConds($conds[$key]);
                 }
 
                 $k = $this->replaceDynamics($key);
@@ -89,25 +90,19 @@ class DataAuthorizationBehavior extends ModelBehavior {
                     $conds[$k] = $conds[$key];
                     unset($conds[$key]);
                 }
+                
             }
-            debug($conds);
         }
     }
     
     private function replaceDynamics($source) {
         if(preg_match_all('{\#(?P<pattern>\w+)\#}', $source, $regs, PREG_OFFSET_CAPTURE)) {
-            $source = str_replace($regs[0][0][0], 'ActivityLog', $source);
+            $source = str_replace($regs[0][0][0], $this->main_resource_name, $source);
         }
         if(preg_match_all('{\@\((?P<pattern>[\w|\.]+)\)}', $source, $regs, PREG_OFFSET_CAPTURE)) {
             foreach ($regs[0] as $key => $value) {
-                
                 $source = str_replace($value[0], Set::extract($regs['pattern'][$key][0], $this->logged_user), $source);
-                
-//                debug($value[0] . ' @ ' . $value[1]);
-//                debug('pattern: ' . $regs['pattern'][$key][0]);
-//                debug('value: ' . Set::extract($regs['pattern'][$key][0], $this->logged_user));
             }
-//            debug($regs);die();
         }
         return $source;
     }
