@@ -37,7 +37,20 @@ class UploaderShell extends AppShell {
         $meds = Set::extract('/Media/.', $meds);
         
         foreach ($meds as $key => $media) {
-            $this->media_meta[] = Set::extract('/.', $media);
+            $m_id = $media['id'];
+            
+            $m = array(
+                'm_id' => $m_id,
+                'filename' => $media['filename'],
+                'content-type' => $media['content-type'],
+                'content-size' => $media['content-size'],
+                'loc' => "/uploads/$m_id"
+            );
+            if($media['has_thumb']) {
+                $m['big_thumb'] = "/uploads/$m_id.200.thumb";
+                $m['small_thumb'] = "/uploads/$m_id.75.thumb";
+            }
+            $this->media_meta[] = $m;
         }
         debug($this->media_meta);
     }
