@@ -58,11 +58,9 @@ class DataAuthorizationBehavior extends ModelBehavior {
         $ret_joins = array();
         if(isset($join_config)) {
             foreach ($join_config as $join_name => $join_config) {
-                debug($join_name);
                 
                 $this->normalizeKeyValueToAssociative($join_name, $join_config);
                 $asso = $this->findAssociation($parent_model, $join_name);
-                debug($asso);
                 
                 $asso_model = $this->getModel($asso['config']['className']);
 
@@ -72,7 +70,6 @@ class DataAuthorizationBehavior extends ModelBehavior {
                     $parent_model,
                     $asso_model
                 );
-                debug($ret_joins);
 
 
                 $recursive_joins = null;
@@ -92,6 +89,23 @@ class DataAuthorizationBehavior extends ModelBehavior {
         return array();
     }
     
+    
+    private function generateHasAndBelongsToManyJoin($asso, $association_name, Model $parent_model, Model $association_model) {
+        debug($asso);
+        
+        $join = array();
+        $join[] = array(
+            'table' => $asso['config']['joinTable'],
+            'alias'=> $asso['config']['with'],
+            'type' => 'LEFT',
+            'conditions' => array(
+                $parent_model->alias . '.' . $parent_model->primaryKey . ' = ' 
+                    . $asso['config']['with'] . '.' . $asso['config']['foreignKey']
+            )
+        );
+        debug($join);
+        die();
+    }
     
     private function generateBelongsToJoin($asso, $association_name, Model $parent_model, Model $association_model) {
         $join = array(
@@ -153,8 +167,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
             return array(
                 'type' => 'hasAndBelongsToMany',
                 'config' => $model->hasAndBelongsToMany[$association_name],
-//                'function' => 'generateHasAndBelongsToManyJoin'
-                'function' => 'notSupported'
+                'function' => 'generateHasAndBelongsToManyJoin'
             );
         }
         return null;
