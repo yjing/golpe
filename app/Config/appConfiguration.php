@@ -66,7 +66,7 @@ Configure::write("APPCONFIG", array(
                 'StudentsSupervisor.supervisor_id' => '@(User.Supervisor.id)',
                 'OR' => array(
                    'AND' => array(
-                       '@(User.Team.id)  IS NULLp',
+                       '@(User.Team.id)  IS NULL dddddd',
                         '#MainResource#.visibility_level NOT IN' => array('PRIVATE', 'SUPERVISOR')
                     ),
                     'AND' => array(
