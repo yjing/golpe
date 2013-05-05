@@ -17,7 +17,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
     public function beforeFind(Model $model, $query) {
         parent::beforeFind($model, $query);
         
-//        debug($query);
+        debug($query);
 //        
 //        debug($model->hasOne);
 //        debug($model->hasMany);
@@ -33,19 +33,6 @@ class DataAuthorizationBehavior extends ModelBehavior {
         $joins = $this->generateJoins($model, $joins_config);
         
         debug($joins);
-        
-//        foreach ($joins_config as $join_name => $join_config) {
-//            $this->normalizeKeyValueToAssociative($join_name, $join_config);
-//            
-//            debug($this->findAssociation($model, $join_name));
-//            
-//            $joins[] = array(
-//                'table' => "teams",
-//                'alias' => 'Team',
-//                'type' => 'LEFT',
-//                'conditions' => array('Team.id = AUTHtu.team_id')  
-//            );
-//        }
         
     }
     public function afterFind(Model $model, $results, $primary) {
