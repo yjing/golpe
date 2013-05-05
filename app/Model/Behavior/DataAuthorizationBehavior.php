@@ -32,7 +32,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
         $joins_config = $this->getConfigElement($this->config, 'joins');
         $joins = $this->generateJoins($model, $joins_config);
         
-        array_merge($query['joins'], $joins);
+        $query['joins'] = array_merge($query['joins'], $joins);
         
         debug($query);
         
