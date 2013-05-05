@@ -22,7 +22,12 @@ class CommentsController extends RESTController {
                 'recursive' => -1,
                 'associations' => array(
                     'ActivityLog' => array(
-                        'fields' => array('id')
+                        'fields' => array('id'),
+                        'associations' => array(
+                            'User'=> array(
+                                'fields' => array('id')
+                            )
+                        )
                     )
                 )
             )
