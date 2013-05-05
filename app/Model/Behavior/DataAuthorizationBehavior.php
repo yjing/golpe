@@ -55,7 +55,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
         parent::beforeFind($model, $query);
         
         $this->main_resource_name = $model->alias;
-        
+        debug($this->logged_user);
         if(in_array($this->logged_user['User']['role'], Configure::read("APPCONFIG.super_roles"))) {
             debug("SUPERUSER");
             return $query;
