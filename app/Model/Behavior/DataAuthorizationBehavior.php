@@ -91,8 +91,6 @@ class DataAuthorizationBehavior extends ModelBehavior {
     
     
     private function generateHasAndBelongsToManyJoin($asso, $association_name, Model $parent_model, Model $association_model) {
-        debug($asso);
-        
         $join = array();
         $join[] = array(
             'table' => $asso['config']['joinTable'],
@@ -112,6 +110,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
                     . $association_model->alias . '.' . $association_model->primaryKey
             )
         );
+        return $join;
     }
     
     private function generateBelongsToJoin($asso, $association_name, Model $parent_model, Model $association_model) {
