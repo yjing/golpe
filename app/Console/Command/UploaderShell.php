@@ -32,6 +32,8 @@ class UploaderShell extends AppShell {
             'recursive' => -1
         ));
         
+        debug($meds);
+        
         foreach ($meds as $key => $value) {
             try {
                 $m_id = $value['Media']['id'];
