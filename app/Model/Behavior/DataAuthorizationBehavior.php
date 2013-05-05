@@ -60,10 +60,9 @@ class DataAuthorizationBehavior extends ModelBehavior {
             $html .= $key . ' ### ';
             if(!is_array($value)) {
                 $html .= $value . ' ### ';
-            } 
-//            else {
-//                $this->debugConds($conds, $html);
-//            }
+            } else {
+                $this->debugConds($conds[$key], $html);
+            }
         }
     }
     
