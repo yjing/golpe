@@ -73,10 +73,11 @@ class DataAuthorizationBehavior extends ModelBehavior {
 //            preg_match('/(?P<name>\w+): (?P<digit>\d+)/', $str, $matches);
 //            debug($matches);
             
-            $this->replaceNames($key);
+            $this->replaceDynamics($key);
             
             $html .= str_replace('@MainResource', 'ActivityLog', $key) . ' ### ';
             if(!is_array($value)) {
+                $this->replaceDynamics($value);
                 debug(preg_match('{\@\((?P<name>.*)\)}', $value, $regs, PREG_OFFSET_CAPTURE));
                 debug($regs);
                 $html .= $value . ' ### ';
@@ -86,9 +87,12 @@ class DataAuthorizationBehavior extends ModelBehavior {
         }
     }
     
-    private function replaceNames(&$source) {
+    private function replaceDynamics(&$source) {
         if(preg_match_all('{\#(?P<pattern>\w+)\#}', $source, $regs, PREG_OFFSET_CAPTURE)) {
             $source = str_replace($regs[0][0][0], 'ActivityLog', $source);
+        }
+        if(preg_match_all('{\@\((?P<name>\w+)\)}', $source, $regs, PREG_OFFSET_CAPTURE)) {
+            debug($regs);die();
         }
     }
     
