@@ -32,7 +32,7 @@ class UploaderShell extends AppShell {
             'recursive' => -1
         ));
         
-        debug($meds);
+//        debug($meds);
         
         foreach ($meds as $key => $value) {
             try {
