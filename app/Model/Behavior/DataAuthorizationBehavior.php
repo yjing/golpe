@@ -103,6 +103,15 @@ class DataAuthorizationBehavior extends ModelBehavior {
                     . $asso['config']['with'] . '.' . $asso['config']['foreignKey']
             )
         );
+        $join[] = array(
+            'table' => $asso['config']['className'],
+            'alias'=> $association_name,
+            'type' => 'LEFT',
+            'conditions' => array(
+                $asso['config']['with'] . '.' . $asso['config']['associationForeignKey'] . ' = '
+                    . $association_model->alias . '.' . $association_model->primaryKey
+            )
+        );
         debug($join);
         die();
     }
