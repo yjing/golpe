@@ -89,7 +89,7 @@ Configure::write("APPCONFIG", array(
                 "ActivityLog"
             ),
             'conditions' => array(
-//                'ActivityLogsComment.comment_id = Comment.id'
+                'ActivityLog.user_id != @(User.id)'
             )
         )
     ),
