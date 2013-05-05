@@ -69,11 +69,7 @@ Configure::write("APPCONFIG", array(
 //                        'Team.id = @(User.Team.id) AND #MainResource#.visibility_level = \'TEAM\'',
 //                        'StudentsSupervisor.supervisor_id = @(User.Supervisor.id) AND #MainResource#.visibility_level IN (\'TEAM\', \'SUPERVISOR\')',
 //                    )
-//                    'OR' => array(
-//                        'Team.id' => '@(User.Team.id)',
-//                        'StudentsSupervisor.supervisor_id' => '@(User.Supervisor.id)',
-//                    )
-                )
+//                )
                 
             )
             
