@@ -32,9 +32,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
         $joins_config = $this->getConfigElement($this->config, 'joins');
         $joins = $this->generateJoins($model, $joins_config);
         
-        
-        debug($joins_config);
-        $conditions = $this->getConfigElement($joins_config, 'conditions');
+        $conditions = $this->getConfigElement($this->config, 'conditions');
         $html = "";
         debug($conditions);
         $this->debugConds($conditions, $html);
