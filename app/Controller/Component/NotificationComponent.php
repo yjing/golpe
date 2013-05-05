@@ -100,7 +100,7 @@ class NotificationComponent extends Component {
                     )
                 );
                 
-                debug($element);die();
+//                debug($element);die();
                 
                 $visibility_level = $element['ActivityLog']['visibility_level'];
                 if($visibility_level == 'PRIVATE') {
