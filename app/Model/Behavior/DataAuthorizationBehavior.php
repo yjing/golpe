@@ -17,6 +17,8 @@ class DataAuthorizationBehavior extends ModelBehavior {
     public function beforeFind(Model $model, $query) {
         parent::beforeFind($model, $query);
         
+        $logged_user = CakeSession::read('Auth.User');
+        
 //        debug($query);
 //        
 //        debug($model->hasOne);
@@ -24,7 +26,10 @@ class DataAuthorizationBehavior extends ModelBehavior {
 //        debug($model->belongsTo);
 //        debug($model->hasAndBelongsToMany);
         
-        $logged_user = CakeSession::read('Auth.User');
+        debug($logged_user);
+        die();
+        
+        
         if(in_array($logged_user['role'], Configure::read("APPCONFIG.super_roles"))) {
             return $query;
         }
