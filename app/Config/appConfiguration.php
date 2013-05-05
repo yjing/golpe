@@ -67,7 +67,7 @@ Configure::write("APPCONFIG", array(
                     '#MainResource#.visibility_level !=' => 'PRIVATE',
                     'OR' => array(
                         'Team.id = @(User.Team.id) AND #MainResource#.visibility_level = \'TEAM\'',
-                        'StudentsSupervisor.supervisor_id = @(User.Supervisor.id) AND #MainResource#.visibility_level IN (\'TEAM\', \'SUPERVISOR\')',
+                        'StudentsSupervisor.supervisor_id = @(User.id) AND #MainResource#.visibility_level IN (\'TEAM\', \'SUPERVISOR\')',
                     )
                 )
                 
