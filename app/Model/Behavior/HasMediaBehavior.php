@@ -84,7 +84,14 @@ class HasMediaBehavior extends ModelBehavior {
             if($created) {
                 $has_media_obj_id = $has_media_obj['id'];
             } else {
-                $model->read();
+//                $model->read();
+                $model->find('first', array(
+                        'conditions' => array(
+                            $model->alias . '.' .$model->primaryKey => $model->id
+                        ),
+                        'recursive' => -1
+                    )
+                );
                 debug($model->data);
                 $has_media_obj_id = $model->id;
             }

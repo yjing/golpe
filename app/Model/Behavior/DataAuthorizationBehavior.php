@@ -41,7 +41,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
         $elem = $model->find('first',
             array(
                 'conditions' => array(
-                    'ActivityLog.id' => $model->id
+                    $model->alias . '.' .$model->primaryKey => $model->id
                 ),
                 'recursive' => -1
             )
