@@ -113,14 +113,14 @@ class NotificationComponent extends Component {
                 }
                 
                 if(in_array($visibility_level, array('SUPERVISOR'))) {
-                    $notification_users[] = $element['ActivityLog']['Supervisor']['supervisor_id'];
+                    $notification_users[] = $element['ActivityLog']['User']['Supervisor']['supervisor_id'];
                 }
                 
                 if(in_array($visibility_level, array('TEAM'))) {
                     // TEAM AL go also to Supervisor
-                    $notification_users[] = $element['ActivityLog']['Supervisor']['supervisor_id'];
+                    $notification_users[] = $element['ActivityLog']['User']['Supervisor']['supervisor_id'];
                     
-                    $team_users = $this->User->getTeamComponents($element['ActivityLog']['Team']['id']);
+                    $team_users = $this->User->getTeamComponents($element['ActivityLog']['User']['Team']['id']);
                     foreach ($team_users as $key => $value) {
                         $notification_users[] = $value['User']['id'];
                     }
