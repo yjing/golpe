@@ -38,7 +38,15 @@ class DataAuthorizationBehavior extends ModelBehavior {
     }
     
     private function _checkOwnership($model) {
-        $elem = $model->findById($model->id);
+        $elem = $model->find('first',
+            array(
+                'conditions' => array(
+                    'ActivityLog.id' => $model->id
+                ),
+                'recursive' => -1
+            )
+        );
+//        $elem = $model->findById($model->id);
         return $elem !== false && $elem[$model->alias]['user_id'] == $this->logged_user['User']['id'];
     }
     
