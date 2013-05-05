@@ -96,11 +96,14 @@ class DataAuthorizationBehavior extends ModelBehavior {
         }
         if(preg_match_all('{\@\((?P<pattern>[\w|\.]+)\)}', $source, $regs, PREG_OFFSET_CAPTURE)) {
             foreach ($regs[0] as $key => $value) {
-                debug($value[0] . ' @ ' . $value[1]);
-                debug('pattern: ' . $regs['pattern'][$key][0]);
-                debug('value: ' . Set::extract($regs['pattern'][$key][0], $this->logged_user));
+                
+                $source = str_replace($value[0], Set::extract($regs['pattern'][$key][0], $this->logged_user));
+                
+//                debug($value[0] . ' @ ' . $value[1]);
+//                debug('pattern: ' . $regs['pattern'][$key][0]);
+//                debug('value: ' . Set::extract($regs['pattern'][$key][0], $this->logged_user));
             }
-            debug($regs);die();
+//            debug($regs);die();
         }
         return $source;
     }
