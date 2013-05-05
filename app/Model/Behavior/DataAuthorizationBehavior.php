@@ -36,6 +36,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
         $html = "";
         debug($conditions);
         $this->debugConds($conditions, $html);
+        debug($html);
         die();
         
 //        debug($joins);
