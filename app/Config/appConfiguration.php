@@ -83,17 +83,14 @@ Configure::write("APPCONFIG", array(
                 )
                 
             )
-            
-//                'OR' => array(
-//                   'AND' => array(
-//                       '#MainResource#.visibility_level NOT IN' => array('PRIVATE', 'SUPERVISOR'),
-//                       'OR' => array(
-//                           '@(User.Team.id)  IS NULL',
-//                            'Team.id' => '@(User.Team.id)'
-//                       )
-//                   )
-//                )
-            
+        ),
+        'Comment' => array(
+            'joins' => array(
+                "ActivityLog", "Media"
+            ),
+            'conditions' => array(
+                
+            )
         )
     ),
     'notification' => array(
