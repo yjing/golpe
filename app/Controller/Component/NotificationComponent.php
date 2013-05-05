@@ -82,6 +82,7 @@ class NotificationComponent extends Component {
         $this->User = new User();
         switch ($type) {
             case 'ActivityLog':
+                Configure::write('debug', 0);
                 $this->ActivityLog = new ActivityLog();
                 $element = $this->ActivityLog->find('first', array(
                     'conditions' => array('ActivityLog.id' => $id),
