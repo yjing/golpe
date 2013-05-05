@@ -35,7 +35,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
 //        die();
         
         
-        if(in_array($logged_user['role'], Configure::read("APPCONFIG.super_roles"))) {
+        if(in_array($logged_user['User']['role'], Configure::read("APPCONFIG.super_roles"))) {
             return $query;
         }
         
@@ -66,32 +66,34 @@ class DataAuthorizationBehavior extends ModelBehavior {
     }
     
     private function debugConds($conds, &$html) {
-        foreach ($conds as $key => $value) {
-            
-            
-//            $str = 'foobar: 2008';
-//            preg_match('/(?P<name>\w+): (?P<digit>\d+)/', $str, $matches);
-//            debug($matches);
-            
-            $this->replaceDynamics($key);
-            
-            $html .= str_replace('@MainResource', 'ActivityLog', $key) . ' ### ';
-            if(!is_array($value)) {
-                $this->replaceDynamics($value);
-                $html .= $value . ' ### ';
-            } else {
-                $this->debugConds($conds[$key], $html);
+        if(isset($conds)) {
+            foreach ($conds as $key => $value) {
+
+//                $str = 'foobar: 2008';
+//                preg_match('/(?P<name>\w+): (?P<digit>\d+)/', $str, $matches);
+//                debug($matches);
+
+                $k = $this->replaceDynamics($key);
+
+                $html .= $k . ' ### ';
+                if(!is_array($value)) {
+                    $v = $this->replaceDynamics($value);
+                    $html .= $v . ' ### ';
+                } else {
+                    $this->debugConds($conds[$key], $html);
+                }
             }
         }
     }
     
-    private function replaceDynamics(&$source) {
+    private function replaceDynamics($source) {
         if(preg_match_all('{\#(?P<pattern>\w+)\#}', $source, $regs, PREG_OFFSET_CAPTURE)) {
             $source = str_replace($regs[0][0][0], 'ActivityLog', $source);
         }
         if(preg_match_all('{\@\((?P<name>\w+)\)}', $source, $regs, PREG_OFFSET_CAPTURE)) {
             debug($regs);die();
         }
+        return $source;
     }
     
     private function generateJoins($parent_model, $join_config) {
