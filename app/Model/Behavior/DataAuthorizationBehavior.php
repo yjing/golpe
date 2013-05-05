@@ -60,7 +60,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
             foreach ($join_config as $join_name => $join_config) {
                 $this->normalizeKeyValueToAssociative($join_name, $join_config);
                 $asso = $this->findAssociation($parent_model, $join_name);
-                $asso_model = $this->getModel($join_name);
+                $asso_model = $this->getModel($asso['className']);
 
                 debug($join_name);
                 debug($join_config);
