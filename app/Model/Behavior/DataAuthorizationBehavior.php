@@ -17,7 +17,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
     public function beforeFind(Model $model, $query) {
         parent::beforeFind($model, $query);
         
-        debug($query);
+//        debug($query);
 //        
 //        debug($model->hasOne);
 //        debug($model->hasMany);
@@ -26,13 +26,15 @@ class DataAuthorizationBehavior extends ModelBehavior {
         
         $logged_user = CakeSession::read('Auth.User');
         if(in_array($logged_user['role'], Configure::read("APPCONFIG.super_roles"))) {
-            return $queryData;
+            return $query;
         }
         
         $joins_config = $this->getConfigElement($this->config, 'joins');
         $joins = $this->generateJoins($model, $joins_config);
         
-        debug($joins);
+        array_merge($query['joins'], $joins);
+        
+        debug($query);
         
     }
     public function afterFind(Model $model, $results, $primary) {
