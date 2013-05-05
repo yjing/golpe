@@ -34,7 +34,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
         $fields = array_merge(array($model->alias . '.*'), $this->generateFields($joins_config));
         
         $query['joins'] = array_merge($query['joins'], $joins);
-        $query['fields'] = array_merge($query['fields'], $fields);
+        $query['fields'] = $fields;
         
 //        debug($query);
         return $query;
