@@ -31,8 +31,10 @@ class DataAuthorizationBehavior extends ModelBehavior {
         
         $joins_config = $this->getConfigElement($this->config, 'joins');
         $joins = $this->generateJoins($model, $joins_config);
-        
+        $fields = $this->generateFields($joins_config);
+        debug($fields);die();
         $query['joins'] = array_merge($query['joins'], $joins);
+        $query['fields'] = array_merge($query['fields'], $fields);
         
         debug($query);
         return $query;
@@ -43,6 +45,26 @@ class DataAuthorizationBehavior extends ModelBehavior {
         
     }
     
+    
+    private function generateFields($parent_model, $join_config) {
+        $ret_fields = array();
+        if(isset($join_config)) {
+            foreach ($join_config as $join_name => $join_config) {
+                $ret_fields[] = 'A_' . $join_name;
+                
+                $recursive_fields = null;
+                if(isset($join_config['joins'])) {
+                    $recursive_fields = $this->generateFields($join_config['joins']);
+                }
+                if(isset($recursive_fields)) {
+                    foreach ($recursive_fields as $j) {
+                        $ret_fields[] = $j;
+                    }
+                }
+            }
+        }        
+        return $ret_fields;
+    }
     
     private function generateJoins($parent_model, $join_config) {
         $ret_joins = array();
@@ -98,11 +120,11 @@ class DataAuthorizationBehavior extends ModelBehavior {
         );
         $join[] = array(
             'table' => Inflector::tableize($asso['config']['className']),
-            'alias'=> $association_name,
+            'alias'=> 'A_' . $association_name,
             'type' => 'LEFT',
             'conditions' => array(
                 $asso['config']['with'] . '.' . $asso['config']['associationForeignKey'] . ' = '
-                    . $association_name . '.' . $association_model->primaryKey
+                    . 'A_' . $association_name . '.' . $association_model->primaryKey
             )
         );
         return $join;
@@ -112,11 +134,11 @@ class DataAuthorizationBehavior extends ModelBehavior {
         $join = array();
         $join[] = array(
             'table' => Inflector::tableize($asso['config']['className']),
-            'alias' => $association_name,
+            'alias' => 'A_' . $association_name,
             'type' => 'LEFT',
             'conditions' => array(
                 $parent_model->alias . '.' . $asso['config']['foreignKey'] . ' = '
-                    . $association_name . '.' . $association_model->primaryKey
+                    . 'A_' . $association_name . '.' . $association_model->primaryKey
             )
         );
         return $join;
