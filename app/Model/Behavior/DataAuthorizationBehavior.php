@@ -75,8 +75,8 @@ class DataAuthorizationBehavior extends ModelBehavior {
             
             debug(preg_match('{\#(<name>.*)\#}', $key, $regs, PREG_OFFSET_CAPTURE));
             debug($regs);
-            debug(preg_match('{\@\(.*\)\}', $key, $regs, PREG_OFFSET_CAPTURE));
-            debug($regs);
+//            debug(preg_match('{\@\(.*\)\}', $key, $regs, PREG_OFFSET_CAPTURE));
+//            debug($regs);
             
             $html .= str_replace('@MainResource', 'ActivityLog', $key) . ' ### ';
             if(!is_array($value)) {
