@@ -75,11 +75,11 @@ class DataAuthorizationBehavior extends ModelBehavior {
             
             debug(preg_match('{\#(?P<name>.*)\#}', $key, $regs, PREG_OFFSET_CAPTURE));
             debug($regs);
-            debug(preg_match('{\@\((?P<name>.*)\)}', $key, $regs, PREG_OFFSET_CAPTURE));
-            debug($regs);
             
             $html .= str_replace('@MainResource', 'ActivityLog', $key) . ' ### ';
             if(!is_array($value)) {
+                debug(preg_match('{\@\((?P<name>.*)\)}', $value, $regs, PREG_OFFSET_CAPTURE));
+                debug($regs);
                 $html .= $value . ' ### ';
             } else {
                 $this->debugConds($conds[$key], $html);
