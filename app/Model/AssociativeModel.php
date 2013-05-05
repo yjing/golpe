@@ -165,7 +165,7 @@ abstract class AssociativeModel extends AppModel {
             $association_config['with'] . '.' . $association_config['foreignKey'] . ' = ' 
                 . $element[$this->alias][$this->primaryKey]
         );
-        debug($conditions);
+        
         $options = array(
             'joins' => array($join),
             'conditions' => $conditions,
@@ -181,7 +181,11 @@ abstract class AssociativeModel extends AppModel {
             $options['fields'] = $fields;
         }
         
+        debug($options);
+        
         $res = $associated_model->find('all', $options);
+        
+        debug($res);
         
         // DATA FORMAT
         $alias = $associated_model->alias;
