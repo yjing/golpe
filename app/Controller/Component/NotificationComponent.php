@@ -93,14 +93,19 @@ class NotificationComponent extends Component {
                             'User' => array(
                                 'associations' => array(
                                     'Supervisor',
-                                    'Team'
+                                    'Team' => array(
+                                        'associations' => array(
+                                            'Student'
+                                        )
+                                    )
                                 )
                             )
                         )
                     )
                 );
                 
-//                debug($element);die();
+                debug($element);
+//                die();
                 
                 $visibility_level = $element['ActivityLog']['visibility_level'];
                 if($visibility_level == 'PRIVATE') {
@@ -118,11 +123,11 @@ class NotificationComponent extends Component {
                 
                 if(in_array($visibility_level, array('TEAM'))) {
                     // TEAM AL go also to Supervisor
-                    $notification_users[] = $element['ActivityLog']['User']['Supervisor']['supervisor_id'];
+                    $notification_users[] = $element['ActivityLog']['User']['Supervisor']['id'];
                     
-                    $team_users = $this->User->getTeamComponents($element['ActivityLog']['User']['Team']['id']);
-                    foreach ($team_users as $key => $value) {
-                        $notification_users[] = $value['User']['id'];
+//                    $team_users = $this->User->getTeamComponents($element['ActivityLog']['User']['Team']['id']);
+                    foreach ($element['ActivityLog']['User']['Team']['Student'] as $key => $value) {
+                        $notification_users[] = $value['id'];
                     }
                 }
                 
