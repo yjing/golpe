@@ -35,7 +35,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
         $conditions = $this->getConfigElement($this->config, 'conditions');
         $html = "";
         debug($conditions);
-//        $this->debugConds($conditions, $html);
+        $this->debugConds($conditions, $html);
         die();
         
 //        debug($joins);
@@ -56,7 +56,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
     
     private function debugConds($conds, &$html) {
         foreach ($conds as $key => $value) {
-            $html .= $key . '</br>';
+            $html .= $key . (!is_array($value)) . '</br>';
             if(!is_array($value)) {
                 $html .= $value . '</br>';
             } 
