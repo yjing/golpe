@@ -32,9 +32,11 @@ class LogActionsComponent extends Component {
             $this->importance = false;
             $this->action_result = false;
             
+            $method = "";
             if(isset($controller->request->params['[method]'])) {
                 $method = $controller->request->params['[method]'];
             }
+            $controller_path = "";
             if(isset($controller->request->params['controller'])) {
                 $controller_path = $controller->request->params['controller'];
             }
