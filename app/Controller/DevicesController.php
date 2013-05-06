@@ -14,16 +14,16 @@ class DevicesController extends RESTController {
     public function index() {
         parent::index();
         
-        $result = $this->Device->find('all', array(
-            'fields' => array('id', 'user_id'),
-            'associations' => array(
-                'DeviceProperty' => array(
-                    'fields' => array('key', 'value')
-                )
-            )
-        ));
-        
-        debug($result);
+//        $result = $this->Device->find('all', array(
+//            'fields' => array('id', 'user_id'),
+//            'associations' => array(
+//                'DeviceProperty' => array(
+//                    'fields' => array('key', 'value')
+//                )
+//            )
+//        ));
+//        
+//        debug($result);
         $result = "{\"hello\"}";
         $this->_setResponseJSON($result);
     }
