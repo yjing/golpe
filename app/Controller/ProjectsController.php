@@ -56,6 +56,22 @@ class ProjectsController extends RESTController {
         if($this->Project->exists()) {
             $data = Set::remove($this->request->data, 'Project.id');
             $saved = $this->Project->save($data);
+            if($saved){
+               $saved =  $this->Project->find('first', array(
+                   'conditions' => array(
+                       'Project.id' => $id
+                   ),
+                   'associations' => array(
+                       'Team' => array(
+                           'associations' => array(
+                               'Student' => array(
+                                   'fields' => array('id', 'username')
+                               )
+                           )
+                       )
+                   )
+               ));
+            }
         } else {
             throw new BadRequestException("Project doesn't exists.");
         }
