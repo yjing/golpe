@@ -92,30 +92,33 @@ class DevicesController extends RESTController {
                 // NO NEED TO UPDATE NOTHING ON THE DEVICE, JUST PROPERTIES
                 $rm_props = Set::extract('/RemoveDeviceProperty', $data);
                 $rm_props_ids = Set::extract('/RemoveDeviceProperty/key', $rm_props);
-                if(!is_array($rm_props_ids)) {
-                    $rm_props_ids = array($rm_props_ids);
-                    $rm_props_ids[] = "CCCCCC";
+                $conditions = array(
+                    'device_id' => $id
+                );
+                if(is_array($rm_props_ids)) {
+                    $conditions['key IN'] = $rm_props_ids;
+                } else {
+                    $conditions['key'] = $rm_props_ids;
                 }
-                $this->DeviceProperty->deleteAll(array(
-                    'device_id' => $id,
-                    'key IN' => $rm_props_ids
-                ), false);
+                
+                $this->DeviceProperty->deleteAll($conditions, false);
                 
                 $props = Set::extract('/DeviceProperty', $data);
                 $props = Set::remove($props, '{n}.DeviceProperty.device_id');
                 $props = Set::insert($props, '{n}.DeviceProperty.device_id', $id);
                 $props_ids = Set::extract('/DeviceProperty/key', $props);
-                if(!is_array($props_ids)) {
-                    $props_ids = array($props_ids);
-                    $props_ids[] = 3;
+                $conditions = array(
+                    'device_id' => $id
+                );
+                if(is_array($props_ids)) {
+                    $conditions['key IN'] = $props_ids;
+                } else {
+                    $conditions['key'] = $props_ids;
                 }
                 
                 $db_props = $this->DeviceProperty->find('all', array(
                     'recursive' => -1,
-                    'conditions' => array(
-                        'device_id' => $id,
-                        'key IN' => $props_ids
-                    )
+                    'conditions' => $conditions
                 ));
                 
                 $props = Set::merge($db_props, $props);
