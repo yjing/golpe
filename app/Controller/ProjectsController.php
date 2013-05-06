@@ -49,7 +49,7 @@ class ProjectsController extends RESTController {
         if($saved){
             $saved =  $this->Project->find('first', array(
                 'conditions' => array(
-                    'Project.id' => $id
+                    'Project.id' => $saved['Project']['id']
                 ),
                 'associations' => array(
                     'Team' => array(
