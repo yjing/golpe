@@ -110,6 +110,7 @@ class DevicesController extends RESTController {
                 $conditions = array(
                     'device_id' => $id
                 );
+                debug($props_ids);
                 if(!is_array($props_ids) || count($props_ids) == 1) {
                     $conditions['key'] = $props_ids;
                 } else {
