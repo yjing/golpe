@@ -116,7 +116,7 @@ class ActivityLogsController extends RESTController {
         
         $user = $this->Session->read("Auth.User");
         
-        $this->_setResponseJSON($this->ActivityLog->find('first',
+        $al = $this->ActivityLog->find('first',
             array(
                 'conditions' => array(
                     'ActivityLog.id' => $id
@@ -132,7 +132,9 @@ class ActivityLogsController extends RESTController {
                     'Comment'
                 )
             )
-        ));
+        );
+        $this->_setResponseJSON($al);
+        $this->LogActions->setActionResult(count($al) == 0);
     }
 
     public function add() {
