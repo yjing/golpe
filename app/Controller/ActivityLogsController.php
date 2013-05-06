@@ -133,6 +133,9 @@ class ActivityLogsController extends RESTController {
                 )
             )
         );
+        
+        debug($al);
+        
         $this->_setResponseJSON($al);
         $this->LogActions->setActionResult(count($al) == 0);
     }
