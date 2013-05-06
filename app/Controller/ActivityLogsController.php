@@ -162,8 +162,7 @@ class ActivityLogsController extends RESTController {
             if(isset($saved['ActivityLog']['question']) && $saved['ActivityLog']['question']=='true') {
                 $importance += 1;
             }
-            debug($this->request->data);
-            if( count($this->request->data['Media'])>0 ) {
+            if( $this->request->data['Media'] ) {
                 $importance += 1;
             }
             $this->LogActions->setImportance($importance);
