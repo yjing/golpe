@@ -125,7 +125,7 @@ class MediaController extends RESTController {
                     throw new NotFoundException('File temporary unavailable.', $er);
                 }
             }
-            
+            debug("GGGG");
             $this->LogActivities->setResult(true);
             $this->LogActivities->beforeRender($this);
             return $this->response;
