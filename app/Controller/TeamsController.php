@@ -70,28 +70,24 @@ class TeamsController extends RESTController {
     public function update($id = null) {
         parent::update($id);
 
-        $this->Project->id = $id;
-        if ($this->Project->exists()) {
-            $data = Set::remove($this->request->data, 'Project.id');
-            $saved = $this->Project->save($data);
+        $this->Team->id = $id;
+        if ($this->Team->exists()) {
+            $data = Set::remove($this->request->data, 'Team.id');
+            $saved = $this->Team->save($data);
             if ($saved) {
-                $saved = $this->Project->find('first', array(
+                $saved = $this->Team->find('first', array(
                     'conditions' => array(
                         'Project.id' => $id
                     ),
                     'associations' => array(
-                        'Team' => array(
-                            'associations' => array(
-                                'Student' => array(
-                                    'fields' => array('id', 'username')
-                                )
-                            )
+                        'Student' => array(
+                            'fields' => array('id', 'username')
                         )
                     )
                         ));
             }
         } else {
-            throw new BadRequestException("Project doesn't exists.");
+            throw new BadRequestException("Team doesn't exists.");
         }
         $this->_setResponseJSON($saved);
     }
@@ -103,7 +99,7 @@ class TeamsController extends RESTController {
         if ($this->Team->exists()) {
             $deleted = $this->Team->delete($id);
         } else {
-            throw new BadRequestException("Project doesn't exists.");
+            throw new BadRequestException("Team doesn't exists.");
         }
 
         $this->_setResponseJSON(array('deleted' => $deleted));
