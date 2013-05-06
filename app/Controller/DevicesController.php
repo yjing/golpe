@@ -79,9 +79,9 @@ class DevicesController extends RESTController {
         
         $this->_setResponseJSON($result);
     }
-
-    public function edit($id = null) {
-        parent::edit($id);
+    
+    public function update($id = null) {
+        parent::update($id);
         
         $this->Device->id = $id;
         if($this->Device->exists()) {
@@ -100,6 +100,13 @@ class DevicesController extends RESTController {
         } else {
             throw new BadRequestException("Device doesn't exists.");
         }
+        
+    }
+
+    public function edit($id = null) {
+        parent::edit($id);
+        
+        $this->_ReportUnsupportedMethod();
         
     }
 
