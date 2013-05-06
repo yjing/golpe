@@ -48,6 +48,7 @@ class DevicesController extends RESTController {
         if($data) {
             $this->Device->getDataSource()->begin();
             $saved = $this->Device->save($data);
+            debug($saved);
             if($saved) {
                 debug($saved['Device']['id']);
                 $props = Set::extract('/DeviceProperty', $data);
