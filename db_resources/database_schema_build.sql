@@ -453,10 +453,12 @@ CREATE  TABLE IF NOT EXISTS `logs` (
   `user_id` INT UNSIGNED NOT NULL ,
   `session_id` TEXT NOT NULL ,
   `created` DATETIME NULL ,
+  `method` VARCHAR(7) NULL ,
+  `controller` TEXT NULL ,
   `action` TEXT NOT NULL ,
   `resource` TEXT NULL ,
   `resource_id` TEXT NULL ,
-  `important` TINYINT(1) NOT NULL DEFAULT false COMMENT '	' ,
+  `importance` INT UNSIGNED NULL DEFAULT 1 COMMENT '	' ,
   `result` TINYINT(1) NOT NULL ,
   PRIMARY KEY (`id`) ,
   CONSTRAINT `fk_logs_users1`
