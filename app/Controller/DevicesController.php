@@ -92,43 +92,47 @@ class DevicesController extends RESTController {
                 // NO NEED TO UPDATE NOTHING ON THE DEVICE, JUST PROPERTIES
                 $rm_props = Set::extract('/RemoveDeviceProperty', $data);
                 $rm_props_ids = Set::extract('/RemoveDeviceProperty/key', $rm_props);
-                $conditions = array(
-                    'device_id' => $id
-                );
-                if(count($rm_props_ids) == 1) {
-                    $conditions['key'] = $rm_props_ids[0];
-                } else {
-                    $conditions['key IN'] = $rm_props_ids;
+                if(count($rm_props_ids) > 0) {
+                    $conditions = array(
+                        'device_id' => $id
+                    );
+                    if(count($rm_props_ids) == 1) {
+                        $conditions['key'] = $rm_props_ids[0];
+                    } else {
+                        $conditions['key IN'] = $rm_props_ids;
+                    }
+
+                    $this->DeviceProperty->deleteAll($conditions, false);
                 }
-                
-                $this->DeviceProperty->deleteAll($conditions, false);
                 
                 $props = Set::extract('/DeviceProperty', $data);
                 $props = Set::remove($props, '{n}.DeviceProperty.device_id');
                 $props = Set::insert($props, '{n}.DeviceProperty.device_id', $id);
                 $props_ids = Set::extract('/DeviceProperty/key', $props);
-                $conditions = array(
-                    'device_id' => $id
-                );
-                debug($props_ids);
-                debug(count($props_ids));
-                if(count($props_ids) == 1) {
-                    $conditions['key'] = $props_ids[0];
-                } else {
-                    $conditions['key'] = $props_ids;
-                }
-                
-                $db_props = $this->DeviceProperty->find('all', array(
-                    'recursive' => -1,
-                    'conditions' => $conditions
-                ));
-                
-                $props = Set::merge($db_props, $props);
-                debug($props);
-                
-                $saved = $this->DeviceProperty->saveAll($props);
-                if($saved) {
-                    $result = $result;
+                if(count($props_ids) > 0) {
+                    $conditions = array(
+                        'device_id' => $id
+                    );
+                    debug($props_ids);
+                    debug(count($props_ids));
+                    if(count($props_ids) == 1) {
+                        $conditions['key'] = $props_ids[0];
+                    } else {
+                        $conditions['key'] = $props_ids;
+                    }
+
+                    $db_props = $this->DeviceProperty->find('all', array(
+                        'recursive' => -1,
+                        'conditions' => $conditions
+                    ));
+
+                    $props = Set::merge($db_props, $props);
+                    debug($props);
+
+                    $saved = $this->DeviceProperty->saveAll($props);
+                    if($saved) {
+                        $result = $result;
+                    }
                 }
                 
             } else {
