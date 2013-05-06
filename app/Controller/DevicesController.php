@@ -48,6 +48,8 @@ class DevicesController extends RESTController {
         $data = json_decode($this->request->input(), true);
         
         if($data) {
+            $result = array();
+            
             $this->Device->getDataSource()->begin();
             $data['Device']['visibility_level'] = 'PRIVATE';
             $saved = $this->Device->save($data);
@@ -58,15 +60,24 @@ class DevicesController extends RESTController {
                 
                 $this->DeviceProperty->getDataSource()->begin();
                 $prop_save = $this->DeviceProperty->saveAll($props);
-                debug($prop_save);
                 
-                $this->DeviceProperty->getDataSource()->rollback();
-                $this->Device->getDataSource()->rollback();
+                if($prop_save) {
+                    $this->DeviceProperty->getDataSource()->commit();
+                    $this->Device->getDataSource()->commit();
+                    
+                    $result = Set::insert($saved, 'DeviceProperty', $props);
+                    
+                } else {
+                    $this->DeviceProperty->getDataSource()->rollback();
+                    $this->Device->getDataSource()->rollback();
+                }
+                
             }
         } else {
             throw new BadRequestException("Data format error.");
         }
-        die();
+        
+        $this->_setResponseJSON($result);
     }
 
     public function edit($id = null) {
