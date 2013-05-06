@@ -93,6 +93,7 @@ class NotificationComponent extends Component {
             if($element) {
                 
                 $visibility_level = Set::get($element, "/$model->alias/visibility_level");
+                $recipients = array();
                 if($visibility_level != 'PUBLIC') {
                     $recipients = $this->generateRecipients($element, $model);
                 }
