@@ -71,6 +71,9 @@ abstract class AssociativeModel extends AppModel {
         if(count($res) > 0) {
             if(count($res) > 1) {
                 $elem_id = $element[$this->alias][$this->primaryKey];
+                if(is_string($elem_id)) {
+                    $elem_id = "'$elem_id'";
+                }
                 throw new Exception("HasOne Association Violation: element $elem_id has more than ONE associated $association_name.");
             }
             $res = $res[0];
