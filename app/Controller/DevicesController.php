@@ -51,7 +51,7 @@ class DevicesController extends RESTController {
             if($saved) {
                 debug($saved['Device']['id']);
                 $props = Set::extract('/DeviceProperty', $data);
-                $props = Set::insert($props, '/DeviceProperty/device_id', $saved['Device']['id']);
+//                $props = Set::insert($props, '/DeviceProperty/device_id', $saved['Device']['id']);
                 debug($props);
                 
 //                $this->_setResponseJSON($result);
