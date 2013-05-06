@@ -39,6 +39,7 @@ class UploaderShell extends AppShell {
         foreach ($meds as $key => $m) {
             $media_id = $m['id'];
             
+            debug($m);
             $media = array(
                 'm_id' => $media_id,
                 'filename' => $m['filename'],
@@ -55,7 +56,7 @@ class UploaderShell extends AppShell {
                 $media['sthumb_fname'] = "$media_id.75.thumb";
             }
             
-            debug($media);
+            debug($media);die();
             
             $lockfile_handle = fopen($media['lockfile'], 'c');
             if( flock( $lockfile_handle, LOCK_EX+LOCK_NB ) ) {
