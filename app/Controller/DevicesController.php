@@ -4,7 +4,9 @@ App::import('Controller', 'REST');
 
 class DevicesController extends RESTController {
 
-    
+//    public $actsAs = array();
+
+
     public function beforeFilter() {
         parent::beforeFilter();
     }
@@ -12,8 +14,11 @@ class DevicesController extends RESTController {
     public function index() {
         parent::index();
         
-        $this->Device->recursive = -1;
-        $result = $this->Device->find('all');
+        $result = $this->Device->find('all', array(
+            'associations' => array(
+                'DeviceProperty'
+            )
+        ));
         
         $this->_setResponseJSON($result);
     }

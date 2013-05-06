@@ -1,9 +1,10 @@
 <?php
 
-App::import('Model', 'UserAwareModel');
-class Device extends UserAwareModel {
+App::import('Model', 'AssociativeModel');
+class Device extends AssociativeModel {
 
     public $name = 'Device';
     public $useTable = "devices";
+    public $hasMany = array('DeviceProperty');
 }
 ?>
