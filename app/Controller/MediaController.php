@@ -20,7 +20,11 @@ class MediaController extends RESTController {
         parent::index();
         
         $this->Media->recursive = -1;
-        $result = $this->Media->find('all');
+        $result = $this->Media->find('all', array(
+            'association' => array(
+                'Comment', 'ActivityLog'
+            )
+        ));
         
         $this->_setResponseJSON($result);
         // LOGGING
