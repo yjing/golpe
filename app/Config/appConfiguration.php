@@ -48,7 +48,8 @@ Configure::write("APPCONFIG", array(
             "add",
             "update",
             "delete",
-        )
+        ),
+        "Projects" => array('ADMIN')
     ),
     'data_access'=> array(
         'joins' => array(
