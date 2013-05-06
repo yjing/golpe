@@ -128,7 +128,7 @@ class DevicesController extends RESTController {
 
                     $saved = $this->DeviceProperty->saveAll($props);
                     if($saved) {
-                        $result = $result;
+                        $result = $props;
                     }
                 }
                 
