@@ -51,11 +51,11 @@ Configure::write("APPCONFIG", array(
         "Devices" => array(
             // Actions
             "index" => array('ADMIN', 'SYSTEM'),
-            "view" => true,
-            "add" => true,
-            "update" => true,
-            "edit" => true,
-            "delete" => true,
+            "view" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR', 'ADMIN', 'SYSTEM'),
+            "add" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR', 'ADMIN', 'SYSTEM'),
+            "update" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR', 'ADMIN', 'SYSTEM'),
+            "edit" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR', 'ADMIN', 'SYSTEM'),
+            "delete" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR', 'ADMIN', 'SYSTEM'),
         )
     ),
     'data_access'=> array(
