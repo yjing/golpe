@@ -7,11 +7,12 @@ class LogActionsComponent extends Component {
     public function startup(Controller $controller) {
         parent::startup($controller);
         $this->config = $this->getConfigElement($controller->components, 'LogActions', true);
+        debug($controller->action);
     }
     
     public function beforeRender(Controller $controller) {
         parent::beforeRender($controller);
-        debug($controller->response);
+        debug($controller->response->statusCode());
         debug($controller->action);
     }
     
