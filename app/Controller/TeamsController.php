@@ -47,6 +47,7 @@ class TeamsController extends RESTController {
     
     public function add() {
         
+        debug($this->request->data);
         $data = Set::remove($this->request->data, 'Team.id');
         $project_id = $data['Team']['project_id'];
         
