@@ -100,9 +100,9 @@ class NotificationComponent extends Component {
                     )
                 )
             ));
-            debug(Set::get("/$model->alias/visibility_level", $element));
-            debug(Set::get("/$model->alias/title", $element));
-            debug(Set::get("/$model->alias/User/Supervisor/supervisor_id", $element));
+            debug(Set::get($element, "/$model->alias/visibility_level"));
+            debug(Set::get($element, "/$model->alias/title"));
+            debug(Set::get($element, "/$model->alias/User/Supervisor/supervisor_id"));
             die();
         }
         switch ($type) {
