@@ -45,6 +45,7 @@ class DevicesController extends RESTController {
         parent::add();
         
         $data = $this->request->input();
+        debug($data);
         try {
             $data = json_decode($data);
             debug($data);
