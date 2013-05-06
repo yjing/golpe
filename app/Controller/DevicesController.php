@@ -113,8 +113,6 @@ class DevicesController extends RESTController {
                     $conditions = array(
                         'device_id' => $id
                     );
-                    debug($props_ids);
-                    debug(count($props_ids));
                     if(count($props_ids) == 1) {
                         $conditions['key'] = $props_ids[0];
                     } else {
@@ -127,7 +125,6 @@ class DevicesController extends RESTController {
                     ));
 
                     $props = Set::merge($db_props, $props);
-                    debug($props);
 
                     $saved = $this->DeviceProperty->saveAll($props);
                     if($saved) {
