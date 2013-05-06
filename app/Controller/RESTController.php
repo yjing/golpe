@@ -80,8 +80,9 @@ abstract class RESTController extends AppController {
                         $ret = $action_level;
                     } elseif (is_string($action_level)) {
                         $ret = ($action_level == $user_role);
+                    } else {
+                        $ret = FALSE;
                     }
-                    $ret = FALSE;
                 }
             } else {
                 $ret = FALSE;
@@ -92,8 +93,9 @@ abstract class RESTController extends AppController {
                 $ret = $this->_authorization;
             } elseif (is_string($this->_authorization)) {
                 $ret = ($this->_authorization == $user_role);
+            } else {
+                $ret = FALSE;
             }
-            $ret = FALSE;
         }
         
         if(!$ret) {
