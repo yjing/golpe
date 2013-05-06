@@ -109,7 +109,7 @@ class TeamsController extends RESTController {
         $this->_setResponseJSON(array('deleted' => $deleted));
     }
     
-    public function addMember($team_id, $user_id) {
+    public function addMember($team_id, $user_id, $team_leader = false) {
         parent::add();
         
         $saved = $this->TeamUser->find('first', array(
@@ -124,6 +124,7 @@ class TeamsController extends RESTController {
                 'TeamUser' => array(
                     'team_id' => $team_id,
                     'user_id' => $user_id,
+                    'team_leader' => $team_leader
                 )
             );
 
