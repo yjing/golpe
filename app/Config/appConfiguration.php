@@ -1,7 +1,8 @@
 <?php
 
 Configure::write("APPCONFIG", array(
-    'roles' => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR', 'ADMIN', 'EXTERNAL'),
+    'roles' => array('STUDENT', 'SUPERVISOR', 'ADMIN', 'SYSTEM'),
+    'super_roles' => array('SHELL', 'SYSTEM'),
     'activity_logs_modes' => array( 
         'STUDENT' => array(
             'modes' => array('all', 'news', 'mine', 'team', 'public'), 
@@ -24,7 +25,6 @@ Configure::write("APPCONFIG", array(
             'default' => 'public'
         )
     ),
-    'super_roles' => array('SHELL', 'SYSTEM'),
     'authorization' => array (
         // RESOURCES/Controllers
         "Users" => array( 
