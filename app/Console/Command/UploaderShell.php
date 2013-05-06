@@ -75,7 +75,7 @@ class UploaderShell extends AppShell {
                     
                     // ALL NEEDED FILES ARE AVAILABLE
                     // FIRST TRANSFER MAIN FILE
-                    $uploading_file_handler = fopen($media['file'], 'r');
+                    $uploading_file_handler = fopen("$uploads_dir/$media_id", 'r');
                     $uploaded = $this->uploafFile(
                         $blobRestProxy, 
                         $uploading_file_handler, 
