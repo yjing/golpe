@@ -44,7 +44,7 @@ Configure::write("APPCONFIG", array(
         "Devices" => array(
             // Actions
             "index" => true,
-            "view" => array('ADMIN'),
+            "view" => array('ADMIN', 'SYSTEM'),
             "add",
             "update",
             "edit",
