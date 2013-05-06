@@ -11,7 +11,7 @@ class LogActionsComponent extends Component {
     
     public function beforeRender(Controller $controller) {
         parent::beforeRender($controller);
-        debug($controller->{'action'});
+        debug($controller->{$controller->modelClass}->data);
         debug($controller->action);
     }
     
