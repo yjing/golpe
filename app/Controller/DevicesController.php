@@ -38,7 +38,6 @@ class DevicesController extends RESTController {
                 )
             )
         ));
-        debug($result);die();
         $this->_setResponseJSON($result);
     }
 
