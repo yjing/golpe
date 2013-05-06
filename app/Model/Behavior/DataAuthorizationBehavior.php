@@ -222,7 +222,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
     
     private function loadModel($model_name) {
         App::import('Model', $model_name);
-        debug("HERE");
+        debug($model_name);
         $class = new ReflectionClass($model_name);
         debug("HERE");
         return $class->newInstanceArgs();
