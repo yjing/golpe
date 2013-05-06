@@ -52,6 +52,7 @@ abstract class RESTController extends AppController {
             throw new Exception("Unknown user role.");
         }
         
+        $user_role = $user['role'];
         $ret = false;
         if(is_array($this->_authorization)) {
             
@@ -59,7 +60,7 @@ abstract class RESTController extends AppController {
             if(isset($action_level)) {
                 if(is_array($action_level)) {
                     debug($action_level);
-                    $role_level = Set::get($action_level, $user['role']);
+                    $role_level = Set::get($action_level, $user_role);
                     if(isset($role_level)) {
                         debug($role_level);
                         $ret = $role_level;
@@ -78,7 +79,7 @@ abstract class RESTController extends AppController {
         }
         
         if(!$ret) {
-            $this->Auth->authError = "Role Unauthorized";
+            $this->Auth->authError = "ROLE: $user_role Unauthorized";
         }
         return $ret;
             
