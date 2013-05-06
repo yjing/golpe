@@ -95,8 +95,8 @@ class DevicesController extends RESTController {
                 $conditions = array(
                     'device_id' => $id
                 );
-                if(!is_array($rm_props_ids) || count($rm_props_ids) == 1) {
-                    $conditions['key'] = $rm_props_ids;
+                if(count($rm_props_ids) == 1) {
+                    $conditions['key'] = $rm_props_ids[0];
                 } else {
                     $conditions['key IN'] = $rm_props_ids;
                 }
@@ -112,10 +112,10 @@ class DevicesController extends RESTController {
                 );
                 debug($props_ids);
                 debug(count($props_ids));
-                if(!is_array($props_ids) || count($props_ids) == 1) {
-                    $conditions['key'] = $props_ids;
+                if(count($props_ids) == 1) {
+                    $conditions['key'] = $props_ids[0];
                 } else {
-                    $conditions['key IN'] = $props_ids;
+                    $conditions['key'] = $props_ids;
                 }
                 
                 $db_props = $this->DeviceProperty->find('all', array(
