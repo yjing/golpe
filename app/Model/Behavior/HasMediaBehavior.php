@@ -189,7 +189,6 @@ class HasMediaBehavior extends ModelBehavior {
             }
             
             if (!$media_saved) {
-                debug("ROLLBACK");
                 $joinModel->getDataSource()->commit();
                 $this->Media->getDataSource()->rollback();
                 $model->getDataSource()->rollback();
