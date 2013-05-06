@@ -35,7 +35,7 @@ class UploaderShell extends AppShell {
         ));
         
         $meds = Set::extract('/Media/.', $meds);
-        $uploads_dir = '/ulpoads';
+        $uploads_dir = '/uploads';
         foreach ($meds as $key => $m) {
             
             $media_id = $m['id'];
