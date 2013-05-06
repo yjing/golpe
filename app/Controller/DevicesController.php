@@ -92,6 +92,9 @@ class DevicesController extends RESTController {
                 // NO NEED TO UPDATE NOTHING ON THE DEVICE, JUST PROPERTIES
                 $rm_props = Set::extract('/RemoveDeviceProperty', $data);
                 $rm_props_ids = Set::extract('/RemoveDeviceProperty/key', $rm_props);
+                if(!is_array($rm_props_ids)) {
+                    $rm_props_ids = array($rm_props_ids);
+                }
                 $this->DeviceProperty->deleteAll(array(
                     'device_id' => $id,
                     'key IN' => $rm_props_ids
@@ -102,6 +105,9 @@ class DevicesController extends RESTController {
                 $props = Set::remove($props, '{n}.DeviceProperty.device_id');
                 $props = Set::insert($props, '{n}.DeviceProperty.device_id', $id);
                 $props_ids = Set::extract('/DeviceProperty/key', $props);
+                if(!is_array($props_ids)) {
+                    $props_ids = array($props_ids);
+                }
                 
                 $db_props = $this->DeviceProperty->find('all', array(
                     'recursive' => -1,
