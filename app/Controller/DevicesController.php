@@ -47,7 +47,7 @@ class DevicesController extends RESTController {
         $data = $this->request->input();
         debug($data);
         try {
-            $data = json_decode($data);
+            $data = json_decode($data, true);
             debug($data);
         } catch (Exception $e) {
             debug($e->getMessage());
