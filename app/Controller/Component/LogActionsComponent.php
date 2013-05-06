@@ -36,7 +36,7 @@ class LogActionsComponent extends Component {
                     'user_id' => $this->logged_user['id'],
                     'session_id' => CakeSession::id(),
                     'method' => $controller->request->params['[method]'],
-                    'controller' => $controller->name,
+                    'controller' => $controller->request->params['controller'],
                     'action' => $controller->action,
                     'resource' => $this->resource_name,
                     'resource_id' => $this->resource_id,
