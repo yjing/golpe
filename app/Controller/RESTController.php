@@ -56,25 +56,27 @@ abstract class RESTController extends AppController {
         if(is_array($this->_authorization)) {
             
             $action_level = Set::get($this->_authorization, $this->action);
-            debug($action_level);die();
-            
-            if (isset($this->_authorization[$this->action])) {
-                $action_auth = $this->_authorization[$this->action];
-                if(is_array($action_auth)) {
-                    $ret = in_array($user['role'], array_keys($action_auth));
-//                    $ret = in_array($user['role'], $action_auth);
+            if(isset($action_level)) {
+                if(is_array($action_level)) {
+                    $role_level = Set::get($action_level, $user['role']);
+                    if(isset($role_level)) {
+                        $ret = $role_level;
+                    } else {
+                        $ret = true;
+                    }
                 } else {
-                    $ret = $action_auth;
+                    $ret = $action_level;
                 }
             } else {
-                $ret = in_array($user['role'], array_keys($this->_authorization));
+                $ret = true;
             }
+            
         } else {
             $ret = $this->_authorization;
         }
         
         if(!$ret) {
-            $this->Auth->authError = "Unauthorized";
+            $this->Auth->authError = "Role Unauthorized";
         }
         return $ret;
             
