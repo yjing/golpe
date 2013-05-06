@@ -69,10 +69,8 @@ abstract class RESTController extends AppController {
             $action_level = Set::get($this->_authorization, $this->action);
             if(isset($action_level)) {
                 if(is_array($action_level)) {
-                    debug($action_level);
                     $role_level = Set::get($action_level, $user_role);
                     if(isset($role_level)) {
-                        debug($role_level);
                         $ret = $role_level;
                     } else {
                         $ret = FALSE;
