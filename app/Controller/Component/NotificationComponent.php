@@ -105,7 +105,7 @@ class NotificationComponent extends Component {
                     )
                 );
                 
-                debug($element);
+//                debug($element);
 //                die();
                 
                 $visibility_level = $element['ActivityLog']['visibility_level'];
