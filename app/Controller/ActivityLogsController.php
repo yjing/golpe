@@ -84,12 +84,8 @@ class ActivityLogsController extends RESTController {
         );
         
         $results = $this->_formatDates($results, time(), array('created', 'modified'));
-        
         $this->_setResponseJSON($results);
         
-        // LOGGING
-        $this->logs['result'] = true;
-        $this->logs['resource'] = 'ActivityLog';
     }
     
     private function _formatDates($data, $now, $fields) {
@@ -157,10 +153,11 @@ class ActivityLogsController extends RESTController {
         
         // LOGGING
         if ($saved) {
-            $this->logs['result'] = true;
-            $this->logs['resource'] = 'ActivityLog';
-            $this->logs['resource_id'] = $saved['ActivityLog']['id'];
-            $this->logs['important'] = isset($saved['ActivityLog']['question']) && $saved['ActivityLog']['question']=='true';
+            $this->LogActions->setResourceId($saved['ActivityLog']['id']);
+            $this->LogActions->setImportant(isset($saved['ActivityLog']['question']) && 
+                    $saved['ActivityLog']['question']=='true');
+        } else {
+            $this->LogActions->setActionResult(false);
         }
     }
 
@@ -179,12 +176,14 @@ class ActivityLogsController extends RESTController {
         
         $this->_setResponseJSON($saved);
         
+        
         // LOGGING
         if ($saved) {
-            $this->logs['result'] = true;
-            $this->logs['important'] = $saved['ActivityLog']['question']===1;
+            $this->LogActions->setImportant($saved['ActivityLog']['question']===1);
+        } else {
+            $this->LogActions->setActionResult(false);
         }
-        $this->logs['resource_id'] = $id;
+        
     }
 
     public function delete($id = null) {
@@ -195,11 +194,9 @@ class ActivityLogsController extends RESTController {
         $this->_setResponseJSON(array('deleted'=>$deleted));
         
         // LOGGING
-        if ($deleted !== false) {
-            $this->logs['result'] = true;
+        if (!$deleted) {
+            $this->LogActions->setActionResult(false);
         }
-        $this->logs['resource'] = 'ActivityLog';
-        $this->logs['resource_id'] = $id;
     }
     
     public function modes() {
@@ -207,11 +204,6 @@ class ActivityLogsController extends RESTController {
         $role = $user['role'];
         $modes = $this->_roles = Configure::read("APPCONFIG.activity_logs_modes.$role");
         $this->_setResponseJSON($modes);
-        
-        //LOGGING
-        $this->logs['result'] = true;
-        $this->logs['resource'] = null;
-        $this->logs['resource_id'] = null;
     }
     
 }

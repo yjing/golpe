@@ -1,18 +1,9 @@
 <?php
-App::import('Model', 'Log');
 abstract class RESTController extends AppController {
 
     public $components = array('RequestHandler');
     private $_authorization;
     private $_roles;
-    
-    private $Log;
-    public $logs = array(
-        'resource' => null,
-        'resource_id' => null,
-        'important' => false,
-        'result' => true
-    );
     
     public function beforeFilter() {
         $this->RequestHandler->renderAs($this, 'json');
@@ -58,24 +49,6 @@ abstract class RESTController extends AppController {
     public function afterFilter() {
         parent::afterFilter();
         
-        // LOGGING
-        if( isset($this->logs['disable']) && !($this->logs['disable'] === true) ) {
-            $this->Log = new Log();
-            $user = CakeSession::read('Auth.User');
-
-            $log = array(
-                'Log' => array(
-                    'user_id' => $user['id'],
-                    'session_id' => CakeSession::id(),
-                    'action' => $this->action,
-                    'resource' => $this->logs['resource'],
-                    'resource_id' => $this->logs['resource_id'],
-                    'important' => $this->logs['important'],
-                    'result' => $this->logs['result']
-                )
-            );
-            $this->Log->save($log);
-        }
     }
     
     public function isAuthorized($user = null) {
