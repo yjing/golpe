@@ -12,12 +12,12 @@ use WindowsAzure\Blob\Models\CreateBlobOptions;
 class UploaderShell extends AppShell {
     
     private static $connectionString = 'DefaultEndpointsProtocol=http;AccountName=mscproject;AccountKey=kDb7vEfCwC56US6nOQgPzUgPkW511tgpf4spyuzd4f0LHnmoMXSq40Fjys6+vaK+n93hADHoRBpovkD6gQfMxg==';
+    private static $CONTAINER = 'usermedia';
     private static $mediaStatus_AVAILABLE = 'AVAILABLE';
 
     public $uses = array('Media');
 
     
-    private $media_meta = array();
     public function upload2() {
         
         // This user is used to inform the UserAwareModel (Media) that the 
@@ -36,23 +36,193 @@ class UploaderShell extends AppShell {
         
         $meds = Set::extract('/Media/.', $meds);
         
-        foreach ($meds as $key => $media) {
-            $m_id = $media['id'];
+        foreach ($meds as $key => $m) {
+            $media_id = $m['id'];
             
-            $m = array(
-                'm_id' => $m_id,
-                'filename' => $media['filename'],
-                'content-type' => $media['content-type'],
-                'content-size' => $media['content-size'],
-                'loc' => "/uploads/$m_id"
+            $media = array(
+                'm_id' => $media_id,
+                'filename' => $m['filename'],
+                'type' => $m['content-type'],
+                'size' => $m['content-size'],
+                'file' => "/uploads/$media_id",
+                'lockfile' => "/uploads/$media_id.lock",
+                'hasthumb' => $m['has_thumb']
             );
-            if($media['has_thumb']) {
-                $m['big_thumb'] = "/uploads/$m_id.200.thumb";
-                $m['small_thumb'] = "/uploads/$m_id.75.thumb";
+            if($m['has_thumb']) {
+                $media['bthumb'] = "/uploads/$media_id.200.thumb";
+                $media['bthumb_fname'] = "$media_id.200.thumb";
+                $media['sthumb'] = "/uploads/$media_id.75.thumb";
+                $media['sthumb_fname'] = "$media_id.75.thumb";
             }
-            $this->media_meta[] = $m;
+            
+            $lockfile_handle = fopen($media['lockfile'], 'c');
+            if( flock( $lockfile_handle, LOCK_EX+LOCK_NB ) ) {
+                
+                // CHECK FILES
+                if(file_exists($media['file'])) {
+                    if($media['hasthumb'] && (!file_exists($media['bthumb']) || !file_exists($media['sthumb']))){
+                        // MINOR ERROR -> delete thumbs and change DB
+                    }
+                    
+                    // Create BLOB SERVICE.
+                    $blobRestProxy = ServicesBuilder::getInstance()->createBlobService(self::$connectionString);
+                    
+                    // ALL NEEDED FILES ARE AVAILABLE
+                    // FIRST TRANSFER MAIN FILE
+                    $uploading_file_handler = fopen($media['file'], 'r');
+                    $uploaded = $this->uploafFile(
+                        $blobRestProxy, 
+                        $uploading_file_handler, 
+                        $media['type'], 
+                        $media['id'], 
+                        3
+                    );
+                    if($uploaded) {
+                        echo "Upload: $media_id done...";
+                        
+                        $b_thumb_handler = fopen($media['bthumb'], 'r');
+                        $up_b_thumb = $this->uploafFile(
+                            $blobRestProxy, 
+                            $b_thumb_handler, 
+                            "image/png", 
+                            $media['bthumb_fname'], 
+                            3
+                        );
+                        $filename = $media['bthumb'];
+                        if(!$up_b_thumb) {
+                            // WARNING
+                            echo "Warning: $filename can't be uploaded...\n";
+                            echo "Warning: the thumb will be unavailable\n";
+                        } else {
+                            echo "Upload: $filename done...";
+                        }
+                        
+                        $s_thumb_handler = fopen($media['sthumb'], 'r');
+                        $up_s_thumb = $this->uploafFile(
+                            $blobRestProxy, 
+                            $s_thumb_handler, 
+                            "image/png", 
+                            $media['sthumb_fname'], 
+                            3
+                        );
+                        $filename = $media['sthumb'];
+                        if(!$up_s_thumb) {
+                            // WARNING
+                            echo "Warning: $filename can't be uploaded...\n";
+                            echo "Warning: the thumb will be unavailable\n";
+                        } else {
+                            echo "Upload: $filename done...";
+                        }
+                        
+                        // UPDATE MEDIA
+                        $updated_media = array(
+                            'id' => $media['id'],
+                            'status' => self::$mediaStatus_AVAILABLE,
+                            'has_thumb' => ($up_b_thumb && $up_s_thumb)
+                        );
+                        
+                        $saved = $this->Media->save($updated_media);
+                        
+                        if($saved) {
+                            echo "Media $media_id updated...";
+                            
+                            // FILES ARE NO MORE NECESSARY, MEDIA IS AVAILABLE
+                            if(flock($uploading_file_handler, LOCK_EX)){
+                                unlink($media['file']);
+                                flock($uploading_file_handler, LOCK_UN);
+                                fclose($uploading_file_handler);
+                            }
+                            if(flock($b_thumb_handler, LOCK_EX)){
+                                unlink($media['bthumb']);
+                                flock($b_thumb_handler, LOCK_UN);
+                                fclose($b_thumb_handler);
+                            }
+                            if(flock($s_thumb_handler, LOCK_EX)){
+                                unlink($media['sthumb']);
+                                flock($s_thumb_handler, LOCK_UN);
+                                fclose($s_thumb_handler);
+                            }
+                            
+                            if(!$media['has_thumb']) {
+                                if(!$up_b_thumb) {
+                                    $filename = $media['bthumb_fname'];
+                                    $blobRestProxy->deleteBlob("usermedia", $filename);
+                                    echo "$filename removed from container...";
+                                }
+                                if(!$up_s_thumb) {
+                                    $filename = $media['sthumb_fname'];
+                                    $blobRestProxy->deleteBlob("usermedia", $filename);
+                                    echo "$filename removed from container...";
+                                }
+                            }
+                            
+                        } else {
+                            // ERROR
+                            fclose($uploading_file_handler);
+                            fclose($b_thumb_handler);
+                            fclose($s_thumb_handler);
+                            
+                            $blobRestProxy->deleteBlob("usermedia", $media_id);
+                            if($up_b_thumb) {
+                                $blobRestProxy->deleteBlob("usermedia", $media['bthumb_fname']);
+                            }
+                            if($up_s_thumb) {
+                                $blobRestProxy->deleteBlob("usermedia", $media['sthumb_fname']);
+                            }
+                            
+                            echo "Error: $media_id can't be UPDATED...\n";
+                        }
+                        
+                        
+                    } else {
+                        // ERROR
+                        fclose($uploading_file_handler);
+                        
+                        $filename = $media['file'];
+                        echo "Error: $filename can't be uploaded...\n";
+                    }
+                    
+                } else {
+                    // ERROR
+                    $filename = $media['file'];
+                    echo "Error: $filename doesn't exist...\n";
+                }
+                
+                unlink($media['lockfile']);
+                flock($lockfile_handle, LOCK_UN);
+            }
+            fclose($lockfile_handle);
         }
-        debug($this->media_meta);
+    }
+    
+    private function uploafFile($service, $handler, $content_type, $filename, $max_attempts) {
+        $attempts = 0;
+        $ret = false;
+        while ($attempts < $max_attempts) {
+            try {
+                
+                $opts = new CreateBlobOptions();
+                $opts->setBlobContentType($content_type);
+                $service->createBlockBlob(
+                        self::$CONTAINER,
+                        $filename,
+                        $handler,
+                        $opts
+                );
+                return true;
+                
+            } catch (ServiceException $e) {
+                echo "Attempt $attempts failed... ";
+                echo "[" . $e->getCode(). " - " . $e->getMessage() . "]\n";
+            }
+            
+            $lapse = pow(2, $attempts+1);
+            echo "Waiting $lapse seconds...\n";
+            sleep($lapse);
+            
+            $attempts++;
+        }
+        return $ret;
     }
 
     public function upload() {}
@@ -164,6 +334,7 @@ class UploaderShell extends AppShell {
             }
 
         } catch (Exception $e) {
+            echo $e->getMessage();
             fclose($uploading_file_handler);
             fclose($uploading_big_thumb_handler);
             fclose($uploading_small_thumb_handler);
