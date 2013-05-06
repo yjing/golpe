@@ -46,11 +46,12 @@ abstract class RESTController extends AppController {
         if(!is_string($key)) {
             $key = $value;
             $value = null;
-        } else {
-            if(!is_array($value)) {
-                $value = array($value);
-            }
-        }
+        } 
+//        else {
+//            if(!is_array($value)) {
+//                $value = array($value);
+//            }
+//        }
     }
     
     private function _normalize($auth) {
