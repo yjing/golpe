@@ -186,6 +186,8 @@ class ActivityLogsController extends RESTController {
         if($this->ActivityLog->exists()) {
             $saved = $this->ActivityLog->save($this->data);
             $this->_setResponseJSON($saved);
+        } else {
+            throw new BadRequestException("Activity Log doesn't exist.");
         }
         
         // LOGGING
