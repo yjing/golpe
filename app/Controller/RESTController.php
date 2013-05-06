@@ -88,8 +88,6 @@ abstract class RESTController extends AppController {
             
         }
         
-        $this->logs['resource_id'] = null;
-        
     }
 
     public function view($id = null) {
