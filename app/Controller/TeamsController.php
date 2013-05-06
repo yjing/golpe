@@ -110,9 +110,7 @@ class TeamsController extends RESTController {
     }
     
     public function addMember($team_id, $user_id) {
-        if (!$this->request->is('put')) {
-            $this->_ReportMethodNotAllowed("PUT", 'addMember');
-        }
+        parent::add();
         
         $data = array(
             'TeamUser' => array(
@@ -136,6 +134,19 @@ class TeamsController extends RESTController {
         }
         $this->_setResponseJSON($saved);
         
+    }
+    
+    public function removeMember($team_id, $user_id) {
+        parent::delete();
+        
+        $data = array(
+            'TeamUser' => array(
+                'team_id' => $team_id,
+                'user_id' => $user_id,
+            )
+        );
+        $deleted = $this->TeamUser->deleteAll($data);
+        $this->_setResponseJSON(array('deleted'=>$deleted));
     }
 
 }
