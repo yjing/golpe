@@ -94,7 +94,10 @@ class DevicesController extends RESTController {
                 $props = Set::remove($props, '{n}.DeviceProperty.device_id');
                 $props = Set::insert($props, '{n}.DeviceProperty.device_id', $id);
                 
-                $result = $this->DeviceProperty->saveAll($props);
+                $saved = $this->DeviceProperty->saveAll($props);
+                if($saved) {
+                    $result = $result;
+                }
                 
             } else {
                 throw new BadRequestException("Data format error.");
