@@ -128,7 +128,7 @@ class ProjectsController extends RESTController {
                         'Team.id' => $saved['Team']['id']
                     ),
                     'associations' => array(
-                        'Students' => array(
+                        'Student' => array(
                             'fields' => array('id', 'username')
                         )
                     )
