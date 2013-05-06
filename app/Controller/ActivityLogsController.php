@@ -182,10 +182,11 @@ class ActivityLogsController extends RESTController {
         }
         
         $this->ActivityLog->id = $id;
-        $saved = $this->ActivityLog->save($this->data);
-        
-        $this->_setResponseJSON($saved);
-        
+        $saved = false;
+        if($this->ActivityLog->exists()) {
+            $saved = $this->ActivityLog->save($this->data);
+            $this->_setResponseJSON($saved);
+        }
         
         // LOGGING
         if ($saved) {
