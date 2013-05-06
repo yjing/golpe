@@ -16,6 +16,7 @@ class LogActionsComponent extends Component {
         $this->config = $this->getConfigElement($controller->components, 'LogActions', true);
         $this->log_actions = $this->getConfigElement($this->config, 'log_actions', true);
         if(in_array($controller->action, $this->log_actions)) {
+            // SET DEFAULT VALUES
             $this->resource_name = $controller->modelClass;
             $this->resource_id = null;
             $this->important = false;
@@ -26,8 +27,8 @@ class LogActionsComponent extends Component {
     public function beforeRender(Controller $controller) {
         parent::beforeRender($controller);
         if(in_array($controller->action, $this->log_actions)) {
-            debug($controller->response->statusCode());
-            debug($controller->action);
+            $this->action_rerult =  $controller->response->statusCode() < 300;
+            debug($this->action_rerult);
         }
     }
     
