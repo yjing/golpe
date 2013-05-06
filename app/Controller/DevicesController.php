@@ -14,9 +14,10 @@ class DevicesController extends RESTController {
         parent::index();
         
         $result = $this->Device->find('all', array(
-//            'associations' => array(
-//                'DeviceProperty'
-//            )
+            'recursive' => -1,
+            'associations' => array(
+                'DeviceProperty'
+            )
         ));
         
         $this->_setResponseJSON($result);
