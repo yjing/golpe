@@ -126,6 +126,7 @@ class MediaController extends RESTController {
                 }
             }
             
+            $this->LogActivities->beforeRender($this);
             return $this->response;
         }
     }
