@@ -141,9 +141,7 @@ class ActivityLogsController extends RESTController {
         ));
         
         // LOGGING
-        $this->logs['result'] = true;
-        $this->logs['resource'] = 'ActivityLog';
-        $this->logs['resource_id'] = $id;
+        $this->LogActions->setResourceId($id);
     }
 
     public function add() {
