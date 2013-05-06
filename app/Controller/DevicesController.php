@@ -44,8 +44,8 @@ class DevicesController extends RESTController {
     public function add() {
         parent::add();
         
-        debug($this->request->data);
-        
+        debug($this->request);
+        die();
     }
 
     public function edit($id = null) {
