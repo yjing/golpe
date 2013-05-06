@@ -16,7 +16,7 @@ class LogActionsComponent extends Component {
     public function startup(Controller $controller) {
         parent::startup($controller);
         
-        debug($controller->request->params);
+        debug($controller->request->params);die();
         
         $this->config = $this->getConfigElement($controller->components, 'LogActions', true);
         $this->log_actions = $this->getConfigElement($this->config, 'log_actions', true);
