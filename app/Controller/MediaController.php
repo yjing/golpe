@@ -11,7 +11,7 @@ App::import('Controller', 'REST');
 
 class MediaController extends RESTController {
 
-    public $components = array('LogActions');
+    public $components = array('RequestHandler', 'LogActions');
     
     public function index() {
         parent::index();
