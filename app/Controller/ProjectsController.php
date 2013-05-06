@@ -7,7 +7,7 @@ class ProjectsController extends RESTController {
         
         $results = $this->Project->find('all', array(
             'associations' => array(
-                'Teams'
+                'Team'
             )
         ));
         
