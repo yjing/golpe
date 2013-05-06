@@ -55,6 +55,8 @@ class UploaderShell extends AppShell {
                 $media['sthumb_fname'] = "$media_id.75.thumb";
             }
             
+            debug($media);
+            
             $lockfile_handle = fopen($media['lockfile'], 'c');
             if( flock( $lockfile_handle, LOCK_EX+LOCK_NB ) ) {
                 
