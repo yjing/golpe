@@ -4,7 +4,7 @@ App::import('Controller', 'REST');
 
 class TeamsController extends RESTController {
 
-    public $uses = array('Project', 'Team', 'StudentTeam');
+    public $uses = array('Project', 'Team', 'TeamUser');
 
     public function index() {
         parent::index();
@@ -114,7 +114,7 @@ class TeamsController extends RESTController {
             $this->_ReportMethodNotAllowed("PUT", 'addMember');
         }
         
-        debug($team_id->StudentTeam->find('all'));
+        debug($team_id->TeamUser->find('all'));
         die();
         
     }
