@@ -7,7 +7,7 @@ class LogActionsComponent extends Component {
     public function startup(Controller $controller) {
         parent::startup($controller);
         if(isset($controller->components['LogActions'])) {
-            $this->config = $controller->components[$this->name];
+            $this->config = $controller->components['LogActions'];
         }
     }
     
