@@ -107,6 +107,8 @@ class NotificationComponent extends Component {
                 switch ($type) {
                     case 'ActivityLog':
                         //message & priority
+                        $res_id = Set::get($element, "/ActivityLog/id");
+                        $notification['Notification']['resource'] = "ActivityLog:$res_id";
                         $notification['Notification']['message'] = Set::get($element, "/ActivityLog/title");
                         $notification['Notification']['priority'] = Set::get($element, "/ActivityLog/question") == true;
                         break;
