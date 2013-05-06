@@ -157,7 +157,7 @@ class ActivityLogsController extends RESTController {
         // LOGGING
         if ($saved) {
             $this->LogActions->setResourceId($saved['ActivityLog']['id']);
-            $this->LogActions->setImportant(isset($saved['ActivityLog']['question']) && 
+            $this->LogActions->setImportance(isset($saved['ActivityLog']['question']) && 
                     $saved['ActivityLog']['question']=='true');
         } else {
             $this->LogActions->setActionResult(false);
@@ -182,7 +182,7 @@ class ActivityLogsController extends RESTController {
         
         // LOGGING
         if ($saved) {
-            $this->LogActions->setImportant($saved['ActivityLog']['question']===1);
+            $this->LogActions->setImportance($saved['ActivityLog']['question']===1);
         } else {
             $this->LogActions->setActionResult(false);
         }
