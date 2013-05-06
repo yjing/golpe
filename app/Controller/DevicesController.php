@@ -94,7 +94,7 @@ class DevicesController extends RESTController {
                 $props = Set::remove($props, '{n}.DeviceProperty.device_id');
                 $props = Set::insert($props, '{n}.DeviceProperty.device_id', $id);
                 debug($props);
-                $props_ids = Set::extract('/DeviceProperty/id', $props);
+                $props_ids = Set::extract('/DeviceProperty/key', $props);
                 debug($props_ids);die();
                 
                 
