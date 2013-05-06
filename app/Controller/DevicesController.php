@@ -45,9 +45,11 @@ class DevicesController extends RESTController {
         parent::add();
         
         $data = json_decode($this->request->input(), true);
-        debug($data);
+        
         if($data) {
             $this->Device->getDataSource()->begin();
+            $data['Device']['user_id'] = 1;
+            $data['Device']['visibility_level'] = 'PRIVATE';
             $saved = $this->Device->save($data);
             debug($saved);
             if($saved) {
