@@ -41,17 +41,15 @@ Configure::write("APPCONFIG", array(
         ),
         "Comments" => true,
         "Media" => true,
-        "Devices" 
-//        => array(
-//            // Actions
-//            "index" => 'ADMIN',
-//            "view" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR', 'ADMIN', 'SYSTEM'),
-//            "add" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR', 'ADMIN', 'SYSTEM'),
-//            "update" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR', 'ADMIN', 'SYSTEM'),
-//            "edit" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR', 'ADMIN', 'SYSTEM'=>array('ciao'=>true)),
-//            "delete",
-////            "delete" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR', 'ADMIN', 'SYSTEM'),
-//        )
+        "Devices" => array(
+            // Actions
+            "index" => true,
+            "view" => array('ADMIN'),
+            "add",
+            "update",
+            "edit",
+            "delete",
+        )
     ),
     'data_access'=> array(
         'joins' => array(
