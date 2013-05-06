@@ -93,41 +93,45 @@ class NotificationComponent extends Component {
             if($element) {
                 
                 $visibility_level = Set::get($element, "/$model->alias/visibility_level");
-                $recipients = array();
-                if($visibility_level != 'PUBLIC') {
-                    $recipients = $this->generateRecipients($element, $model);
-                }
                 
-                $notification = array(
-                    'Notification' => array(
-                        'type' => $type,
-                        'public' => ($visibility_level == 'PUBLIC'),
-                        'to' => implode($recipients, ', ')
-                    )
-                );
-                switch ($type) {
-                    case 'ActivityLog':
-                        //message & priority
-                        $res_id = Set::get($element, "/ActivityLog/id");
-                        $notification['Notification']['resource'] = "ActivityLog:$res_id";
-                        $notification['Notification']['message'] = Set::get($element, "/ActivityLog/title");
-                        $notification['Notification']['priority'] = Set::get($element, "/ActivityLog/question") == true;
-                        
-                        break;
+                if($visibility_level != 'PRIVATE') {
+                
+                    $recipients = array();
+                    if($visibility_level != 'PUBLIC') {
+                        $recipients = $this->generateRecipients($element, $model);
+                    }
 
-                    case 'Comment':
-                        //message & priority
-                        $res_id = Set::get($element, "/Comment/id");
-                        $notification['Notification']['resource'] = "Comment:$res_id";
-                        $notification['Notification']['message'] = Set::get($element, "/Comment/content");
-                        $notification['Notification']['priority'] = false;
-//                        $notification['Notification']['priority'] = Set::get($element, "/ActivityLog/question") == true;
-                        
-                        break;
+                    $notification = array(
+                        'Notification' => array(
+                            'type' => $type,
+                            'public' => ($visibility_level == 'PUBLIC'),
+                            'to' => implode($recipients, ', ')
+                        )
+                    );
+                    switch ($type) {
+                        case 'ActivityLog':
+                            //message & priority
+                            $res_id = Set::get($element, "/ActivityLog/id");
+                            $notification['Notification']['resource'] = "ActivityLog:$res_id";
+                            $notification['Notification']['message'] = Set::get($element, "/ActivityLog/title");
+                            $notification['Notification']['priority'] = Set::get($element, "/ActivityLog/question") == true;
+
+                            break;
+
+                        case 'Comment':
+                            //message & priority
+                            $res_id = Set::get($element, "/Comment/id");
+                            $notification['Notification']['resource'] = "Comment:$res_id";
+                            $notification['Notification']['message'] = Set::get($element, "/Comment/content");
+                            $notification['Notification']['priority'] = false;
+    //                        $notification['Notification']['priority'] = Set::get($element, "/ActivityLog/question") == true;
+
+                            break;
+                    }
+
+                    $Notification = $this->getModel('Notification');
+                    $Notification->save($notification);
                 }
-                
-                $Notification = $this->getModel('Notification');
-                $Notification->save($notification);
             }
         }
         
