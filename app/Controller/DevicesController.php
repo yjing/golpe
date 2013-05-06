@@ -60,7 +60,7 @@ class DevicesController extends RESTController {
         } else {
             throw new BadRequestException("Data format error.");
         }
-        
+        die();
     }
 
     public function edit($id = null) {
