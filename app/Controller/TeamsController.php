@@ -113,10 +113,28 @@ class TeamsController extends RESTController {
         if (!$this->request->is('put')) {
             $this->_ReportMethodNotAllowed("PUT", 'addMember');
         }
-        debug($team_id);
-        debug($user_id);
-        debug($this->TeamUser->find('all'));
-        die();
+        
+        $data = array(
+            'TeamUser' => array(
+                'team_id' => $team_id,
+                'user_id' => $user_id,
+            )
+        );
+        
+        $saved = $this->TeamUser->save($data);
+        if($saved) {
+            $saved = $this->Team->find('first', array(
+                'conditions' => array(
+                    'Team.id' => $team_id
+                ),
+                'associations' => array(
+                    'Student' => array(
+                        'fields' => array('id', 'username')
+                    )
+                )
+                    ));
+        }
+        $this->_setResponseJSON($saved);
         
     }
 
