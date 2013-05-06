@@ -93,11 +93,19 @@ class DevicesController extends RESTController {
                 $props = Set::extract('/DeviceProperty', $data);
                 $props = Set::remove($props, '{n}.DeviceProperty.device_id');
                 $props = Set::insert($props, '{n}.DeviceProperty.device_id', $id);
-                debug($props);
                 $props_ids = Set::extract('/DeviceProperty/key', $props);
-                debug($props_ids);die();
                 
+                $saved_props = $this->DeviceProperty->find('all', array(
+                    'conditions' => array(
+                        'device_id' => $id,
+                        'key IN' => $props_ids
+                    )
+                ));
                 
+                debug($saved_props);
+                $props = array_merge($props, $saved_props);
+                debug($props);
+                die();
                 $saved = $this->DeviceProperty->saveAll($props);
                 if($saved) {
                     $result = $result;
