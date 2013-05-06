@@ -153,7 +153,7 @@ class TeamsController extends RESTController {
             throw new BadRequestException("The User is not member of the selected Team.");
         }
         
-        $this->_setResponseJSON(array('deleted'=>$deleted));
+        $this->_setResponseJSON(array('deleted'=>($deleted != false)));
     }
 
 }
