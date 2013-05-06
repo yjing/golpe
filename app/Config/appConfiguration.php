@@ -48,7 +48,8 @@ Configure::write("APPCONFIG", array(
             "add" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR', 'ADMIN', 'SYSTEM'),
             "update" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR', 'ADMIN', 'SYSTEM'),
             "edit" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR', 'ADMIN', 'SYSTEM'),
-            "delete" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR', 'ADMIN', 'SYSTEM'),
+            "delete",
+//            "delete" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR', 'ADMIN', 'SYSTEM'),
         )
     ),
     'data_access'=> array(
