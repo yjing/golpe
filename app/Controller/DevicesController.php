@@ -104,7 +104,7 @@ class DevicesController extends RESTController {
                 ));
                 
                 debug($saved_props);
-                $props = array_merge($props, $saved_props);
+                $props = Set::merge($props, $saved_props);
                 debug($props);
                 die();
                 $saved = $this->DeviceProperty->saveAll($props);
