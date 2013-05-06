@@ -65,7 +65,7 @@ abstract class RESTController extends AppController {
         $user_role = $user['role'];
         $ret = false;
         if(is_array($this->_authorization)) {
-            debug($this->_authorization);die();
+            
             if(array_key_exists($user_role, $this->_authorization)) {
                 $ret = $this->_authorization[$user_role];
             } else {
