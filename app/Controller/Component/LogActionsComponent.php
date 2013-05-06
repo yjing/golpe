@@ -1,6 +1,6 @@
 <?php
 
-App::uses('Log', 'Model');
+
 class LogActionsComponent extends Component {
     
     private $config;
@@ -26,6 +26,7 @@ class LogActionsComponent extends Component {
             $this->resource_id = null;
             $this->important = false;
             $this->action_rerult = false;
+            App::uses('Log', 'Model');
             
             $log = array(
                 'Log' => array(
