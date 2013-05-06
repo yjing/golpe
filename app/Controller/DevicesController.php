@@ -22,7 +22,7 @@ class DevicesController extends RESTController {
                 )
             )
         ));
-        $result = "{\"hello\"}";
+        
         $this->_setResponseJSON($result);
     }
 
