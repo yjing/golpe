@@ -138,8 +138,20 @@ class TeamsController extends RESTController {
     
     public function removeMember($team_id, $user_id) {
         parent::delete();
-        $query = "delete from teams_users where user_id = $user_id and team_id = $team_id;";
-        $deleted = $this->TeamUser->query($query);
+        $data = $this->TeamUser->find('first', array(
+            'recursive' => -1,
+            'conditions' => array(
+                'TeamUser.user_id' => $user_id,
+                'TeamUser.team_id' => $team_id,
+            )
+        ));
+        
+        if($data) {
+            $query = "delete from teams_users where user_id = $user_id and team_id = $team_id;";
+            $deleted = $this->TeamUser->query($query);
+        } else {
+            throw new BadRequestException("The User is not member of the selected Team.");
+        }
         
         $this->_setResponseJSON(array('deleted'=>$deleted));
     }
