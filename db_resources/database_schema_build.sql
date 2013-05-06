@@ -458,7 +458,7 @@ CREATE  TABLE IF NOT EXISTS `logs` (
   `action` TEXT NOT NULL ,
   `resource` TEXT NULL ,
   `resource_id` TEXT NULL ,
-  `importance` INT UNSIGNED NULL DEFAULT 1 COMMENT '	' ,
+  `importance` INT UNSIGNED NULL DEFAULT 0,
   `result` TINYINT(1) NOT NULL ,
   PRIMARY KEY (`id`) ,
   CONSTRAINT `fk_logs_users1`
