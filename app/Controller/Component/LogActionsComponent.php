@@ -11,7 +11,7 @@ class LogActionsComponent extends Component {
     private $resource_name;
     private $resource_id = null;
     private $important = false;
-    private $action_rerult = false;
+    private $action_result = false;
     
     public function startup(Controller $controller) {
         parent::startup($controller);
@@ -29,7 +29,7 @@ class LogActionsComponent extends Component {
                 $this->resource_id = $controller->request->params['id'];
             }
             $this->important = false;
-            $this->action_rerult = false;
+            $this->action_result = false;
             
             $log = array(
                 'Log' => array(
@@ -41,7 +41,7 @@ class LogActionsComponent extends Component {
                     'resource' => $this->resource_name,
                     'resource_id' => $this->resource_id,
                     'important' => $this->important,
-                    'result' => $this->action_rerult
+                    'result' => $this->action_result
                 )
             );
             
@@ -64,10 +64,12 @@ class LogActionsComponent extends Component {
                     'resource' => $this->resource_name,
                     'resource_id' => $this->resource_id,
                     'important' => $this->important,
-                    'result' => $this->action_rerult && ( $controller->response->statusCode() < 300 )
+                    'result' => $this->action_result && ( $controller->response->statusCode() < 300 )
                 )
             );
-            $this->Log->save($log);
+            debug($log);
+            $saved = $this->Log->save($log);
+            debug($saved);
         }
     }
     
@@ -84,7 +86,7 @@ class LogActionsComponent extends Component {
     }
     
     public function setActionResult($result) {
-        $this->action_rerult = $result;
+        $this->action_result = $result;
     }
 
 
