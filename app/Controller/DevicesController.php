@@ -15,7 +15,7 @@ class DevicesController extends RESTController {
         parent::index();
         
         $result = $this->Device->find('all', array(
-            'fields' => array('id', 'user_id'),
+//            'fields' => array('id', 'user_id'),
 //            'associations' => array(
 //                'DeviceProperty' => array(
 //                    'fields' => array('key', 'value')
