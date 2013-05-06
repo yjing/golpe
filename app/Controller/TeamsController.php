@@ -114,7 +114,7 @@ class TeamsController extends RESTController {
             $this->_ReportMethodNotAllowed("PUT", 'addMember');
         }
         
-        debug($team_id->TeamUser->find('all'));
+        debug($this->TeamUser->find('all'));
         die();
         
     }
