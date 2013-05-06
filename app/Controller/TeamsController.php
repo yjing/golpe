@@ -112,25 +112,34 @@ class TeamsController extends RESTController {
     public function addMember($team_id, $user_id) {
         parent::add();
         
-        $data = array(
-            'TeamUser' => array(
-                'team_id' => $team_id,
-                'user_id' => $user_id,
+        $saved = $this->TeamUser->find('first', array(
+            'recursive' => -1,
+            'conditions' => array(
+                'TeamUser.user_id' => $user_id,
+                'TeamUser.team_id' => $team_id,
             )
-        );
-        
-        $saved = $this->TeamUser->save($data);
-        if($saved) {
-            $saved = $this->Team->find('first', array(
-                'conditions' => array(
-                    'Team.id' => $team_id
-                ),
-                'associations' => array(
-                    'Student' => array(
-                        'fields' => array('id', 'username')
-                    )
+        ));
+        if(!$saved) {
+            $data = array(
+                'TeamUser' => array(
+                    'team_id' => $team_id,
+                    'user_id' => $user_id,
                 )
-                    ));
+            );
+
+            $saved = $this->TeamUser->save($data);
+            if($saved) {
+                $saved = $this->Team->find('first', array(
+                    'conditions' => array(
+                        'Team.id' => $team_id
+                    ),
+                    'associations' => array(
+                        'Student' => array(
+                            'fields' => array('id', 'username')
+                        )
+                    )
+                        ));
+            }
         }
         $this->_setResponseJSON($saved);
         
