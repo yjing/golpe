@@ -7,6 +7,8 @@ App::import('Model', 'NotificationTime');
 
 class NotificationComponent extends Component {
     
+    private $models = array();
+    
     private $Notification = null;
     private $NotificationTime = null;
     private $ActivityLog = null;
@@ -78,8 +80,27 @@ class NotificationComponent extends Component {
             )
         );
         $notification_users = array();
-        
-        $this->User = new User();
+        $model = $this->getModel($type);
+        debug($model->belongsTo);
+        die();
+        $element = $model->find('first', array(
+            'conditions' => array(
+                $model->alias . '.' . $model->primaryKey => $id
+            ),
+            'associations' => array(
+                'User' => array(
+                    'associations' => array(
+                        'Supervisor' => array("unArray_if_single_value"),
+                        'Team' => array(
+                            "unArray_if_single_value",
+                            'associations' => array(
+                                'Student'
+                            )
+                        )
+                    )
+                )
+            )
+        ));
         switch ($type) {
             case 'ActivityLog':
                 $this->ActivityLog = new ActivityLog();
@@ -146,5 +167,24 @@ class NotificationComponent extends Component {
                 break;
         }
     }
+    
+    
+    private function getModel($class_name) {
+        
+        if(array_key_exists($class_name, $this->models)) {
+            $model = $this->models[$class_name];
+        } else {
+            $model = $this->loadModel($class_name);
+            $this->models[$class_name] = $model;
+        }
+        
+        return $model;
+    }
+    
+    private function loadModel($model_name) {
+        App::import('Model', $model_name);
+        $class = new ReflectionClass($model_name);
+        return $class->newInstanceArgs();
+    } 
     
 }
