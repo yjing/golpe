@@ -8,6 +8,8 @@ class LogActionsComponent extends Component {
     private $Log;
     
     private $log_id;
+    private $method;
+    private $controller_path;
     private $resource_name;
     private $resource_id = null;
     private $importance = 0;
@@ -26,28 +28,25 @@ class LogActionsComponent extends Component {
             // SET DEFAULT VALUES
             $this->resource_name = $controller->modelClass;
             $this->resource_id = null;
-            debug($controller->request->params);
-            if(isset($controller->request->params['id'])) {
-                $this->resource_id = $controller->request->params['id'];
+            if(isset($controller->request->params['pass'][0])) {
+                $this->resource_id = $controller->request->params['pass'][0];
             }
             $this->importance = false;
             $this->action_result = false;
             
-            $method = "";
             if(isset($controller->request->params['[method]'])) {
-                $method = $controller->request->params['[method]'];
+                $this->method = $controller->request->params['[method]'];
             }
-            $controller_path = "";
             if(isset($controller->request->params['controller'])) {
-                $controller_path = $controller->request->params['controller'];
+                $this->controller_path = $controller->request->params['controller'];
             }
             
             $log = array(
                 'Log' => array(
                     'user_id' => $this->logged_user['id'],
                     'session_id' => CakeSession::id(),
-                    'method' => $method,
-                    'controller' => $controller_path,
+                    'method' => $this->method,
+                    'controller' => $this->controller_path,
                     'action' => $controller->action,
                     'resource' => $this->resource_name,
                     'resource_id' => $this->resource_id,
