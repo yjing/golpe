@@ -27,9 +27,6 @@ class MediaController extends RESTController {
         ));
         
         $this->_setResponseJSON($result);
-        // LOGGING
-        $this->logs['result'] = true;
-        $this->logs['resource'] = 'Media';
     }
 
     public function view($id = null) {
@@ -38,11 +35,6 @@ class MediaController extends RESTController {
         $this->Media->recursive = -1;
         $result = $this->Media->findById($id);
         $this->_setResponseJSON($result);
-        // LOGGING
-        
-        $this->logs['result'] = true;
-        $this->logs['resource'] = 'Media';
-        $this->logs['resource_id'] = $id;
     }
     
     public function download($id = null) {
@@ -136,11 +128,6 @@ class MediaController extends RESTController {
                 }
             }
             
-            // LOGGING
-            $this->logs['result'] = true;
-            $this->logs['resource'] = 'Media';
-            $this->logs['resource_id'] = $id;
-            
             return $this->response;
         }
     }
@@ -166,9 +153,6 @@ class MediaController extends RESTController {
             $this->_ReportValidationErrors($this->Media->validationErrors);
         }
         
-        // LOGGING
-        $this->logs['disable'] = true;
-        
     }
 
     public function edit($id = null) {
@@ -192,8 +176,6 @@ class MediaController extends RESTController {
         } else {
             $this->_ReportValidationErrors($this->Media->validationErrors);
         }
-        // LOGGING
-        $this->logs['disable'] = true;
     }
 
     public function delete($id = null) {
@@ -208,14 +190,8 @@ class MediaController extends RESTController {
         } else {
             $this->_setResponseJSON('Medium Not deleted');
         }
-        // LOGGING
-        $this->logs['disable'] = true;
         
     }
-    
-    /**
-     * ERROR HANDLER HELPERS:
-     */
 
 }
 
