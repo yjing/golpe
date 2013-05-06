@@ -94,7 +94,7 @@ class NotificationComponent extends Component {
                 
                 $visibility_level = Set::get($element, "/$model->alias/visibility_level");
                 if($visibility_level != 'PUBLIC') {
-                    $recipients = $this->generateRecipients($element);
+                    $recipients = $this->generateRecipients($element, $model);
                 }
                 
                 $notification = array(
@@ -190,7 +190,24 @@ class NotificationComponent extends Component {
                 break;
         }
     }
-
+    
+    private function generateRecipients($element, $model){
+        $ret = array();
+        $visibility_level = Set::get($element, "/$model->alias/visibility_level");
+        if(in_array($visibility_level, array('SUPERVISOR', 'TEAM'))) {
+            $supervisor_id = Set::get($element, "/$model->alias/User/Supervisor/id");
+            if(isset($supervisor_id)) {
+                $ret[] = $supervisor_id;
+            }
+        }
+        if($visibility_level == 'TEAM') {
+            $team_members = Set::extract($element, "/$model->alias/User/Team/Student/id");
+            if(isset($team_members)) {
+                $ret = array_merge($ret, $team_members);
+            }
+        }
+        return $ret;
+    }
 
     private function getModel($class_name) {
         
