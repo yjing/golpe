@@ -43,7 +43,7 @@ class ProjectsController extends RESTController {
     public function add() {
         parent::add();
         
-        Set::remove($this->request->data, '{n}.Project.id');
+        $this->request->data = Set::remove($this->request->data, '{n}.Project.id');
         debug($this->request->data);
         $saved = '';
         
