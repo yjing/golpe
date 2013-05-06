@@ -32,12 +32,19 @@ class LogActionsComponent extends Component {
             $this->importance = false;
             $this->action_result = false;
             
+            if(isset($controller->request->params['[method]'])) {
+                $method = $controller->request->params['[method]'];
+            }
+            if(isset($controller->request->params['controller'])) {
+                $controller_path = $controller->request->params['controller'];
+            }
+            
             $log = array(
                 'Log' => array(
                     'user_id' => $this->logged_user['id'],
                     'session_id' => CakeSession::id(),
-                    'method' => $controller->request->params['[method]'],
-                    'controller' => $controller->request->params['controller'],
+                    'method' => $method,
+                    'controller' => $controller_path,
                     'action' => $controller->action,
                     'resource' => $this->resource_name,
                     'resource_id' => $this->resource_id,
