@@ -95,10 +95,10 @@ class DevicesController extends RESTController {
                 $conditions = array(
                     'device_id' => $id
                 );
-                if(is_array($rm_props_ids)) {
-                    $conditions['key IN'] = $rm_props_ids;
-                } else {
+                if(!is_array($rm_props_ids) || count($rm_props_ids) == 1) {
                     $conditions['key'] = $rm_props_ids;
+                } else {
+                    $conditions['key IN'] = $rm_props_ids;
                 }
                 
                 $this->DeviceProperty->deleteAll($conditions, false);
@@ -110,10 +110,10 @@ class DevicesController extends RESTController {
                 $conditions = array(
                     'device_id' => $id
                 );
-                if(is_array($props_ids)) {
-                    $conditions['key IN'] = $props_ids;
-                } else {
+                if(!is_array($props_ids) || count($props_ids) == 1) {
                     $conditions['key'] = $props_ids;
+                } else {
+                    $conditions['key IN'] = $props_ids;
                 }
                 
                 $db_props = $this->DeviceProperty->find('all', array(
