@@ -137,9 +137,9 @@ class DataAuthorizationBehavior extends ModelBehavior {
                 
                 $this->normalizeKeyValueToAssociative($join_name, $join_config);
                 $asso = $this->findAssociation($parent_model, $join_name);
-                debug("HERE");
-                $asso_model = $this->getModel($asso['config']['className']);
                 
+                $asso_model = $this->getModel($asso['config']['className']);
+                debug("HERE");
                 $joins_array = call_user_func( array( $this, $asso['function'] ), 
                     $asso,
                     $join_name,
