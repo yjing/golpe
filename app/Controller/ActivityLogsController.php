@@ -9,11 +9,8 @@ class ActivityLogsController extends RESTController {
         'Session', 
         'RequestHandler', 
         'LogActions',
-        'Notification' => array('test'=>'TEST'));
-    
-    public function beforeFilter() {
-        parent::beforeFilter();
-    }
+        'Notification'
+    );
     
     public function index() {
         parent::index();
