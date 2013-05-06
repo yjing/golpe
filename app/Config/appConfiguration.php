@@ -48,7 +48,7 @@ Configure::write("APPCONFIG", array(
             "view" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR', 'ADMIN', 'SYSTEM'),
             "add" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR', 'ADMIN', 'SYSTEM'),
             "update" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR', 'ADMIN', 'SYSTEM'),
-            "edit" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR', 'ADMIN', 'SYSTEM'),
+            "edit" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR', 'ADMIN', 'SYSTEM'=>array('ciao')),
             "delete",
 //            "delete" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR', 'ADMIN', 'SYSTEM'),
         )
