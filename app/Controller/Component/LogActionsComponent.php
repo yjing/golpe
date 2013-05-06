@@ -1,12 +1,13 @@
 <?php
 
-
+App::import('Model', 'Log');
 class LogActionsComponent extends Component {
     
     private $config;
     private $logged_user;
-    private $log_id;
+    private $Log;
     
+    private $log_id;
     private $resource_name;
     private $resource_id = null;
     private $important = false;
@@ -26,7 +27,6 @@ class LogActionsComponent extends Component {
             $this->resource_id = null;
             $this->important = false;
             $this->action_rerult = false;
-            App::uses('Log', 'Model');
             
             $log = array(
                 'Log' => array(
@@ -39,15 +39,32 @@ class LogActionsComponent extends Component {
                     'result' => $this->action_rerult
                 )
             );
-            $this->Log->save($log);
+            $this->Log = new Log();
+            $saved = $this->Log->save($log);
+            
+            if($saved) {
+                $this->log_id = $saved['Log']['id'];
+            }
         }
     }
     
     public function beforeRender(Controller $controller) {
         parent::beforeRender($controller);
         if(in_array($controller->action, $this->log_actions)) {
-            $this->action_rerult =  $controller->response->statusCode() < 300;
-            debug($this->action_rerult);
+            
+            $log = array(
+                'Log' => array(
+                    'id' => $this->log_id,
+                    'user_id' => $this->logged_user['id'],
+                    'session_id' => CakeSession::id(),
+                    'action' => $controller->action,
+                    'resource' => $this->resource_name,
+                    'resource_id' => $this->resource_id,
+                    'important' => $this->important,
+                    'result' => ( $controller->response->statusCode() < 300 )
+                )
+            );
+            $this->Log->save($log);
         }
     }
     
