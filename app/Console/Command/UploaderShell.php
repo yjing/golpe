@@ -84,7 +84,7 @@ class UploaderShell extends AppShell {
                         3
                     );
                     if($uploaded) {
-                        echo "Upload: $media_id done...";
+                        echo "Upload: $media_id done...\n";
                         
                         $up_b_thumb = false;
                         $up_s_thumb = false;
@@ -100,7 +100,7 @@ class UploaderShell extends AppShell {
                             );
                             
                             if($up_b_thumb) {
-                                echo "Upload: $b_thumb done...";
+                                echo "Upload: $b_thumb done...\n";
                                 
                                 $s_thumb_handler = fopen("$uploads_dir/$s_thumb", 'r');
                                 $up_s_thumb = $this->uploafFile(
@@ -112,7 +112,7 @@ class UploaderShell extends AppShell {
                                 );
                                 
                                 if($up_s_thumb) {
-                                    echo "Upload: $s_thumb done...";
+                                    echo "Upload: $s_thumb done...\n";
                                 } else {
                                     // WARNING
                                     $has_thumb = false;
