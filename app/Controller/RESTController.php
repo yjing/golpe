@@ -30,7 +30,7 @@ abstract class RESTController extends AppController {
                 foreach ($array as $key => $value) {
                     $this->normalizeKeyValueToAssociative($key, $value);
                     if(isset($value) && is_array($value)) {
-                        $value = $this->_normalize2($value);
+                        $value = $this->_normalize($value);
                     }
                     $ret[$key] = $value;
                 }
