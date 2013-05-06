@@ -92,8 +92,9 @@ class ProjectsController extends RESTController {
                             )
                         )
                     )
-                        ));
+                ));
             }
+            
         } else {
             throw new BadRequestException("Project doesn't exists.");
         }
@@ -120,14 +121,23 @@ class ProjectsController extends RESTController {
             
             $data = Set::remove($this->request->data, 'Team.id');
             $data['Team']['project_id'] = $project_id;
-            debug($data);
-            die();
+            $saved = $this->Team->save($data);
+            if($saved) {
+                $saved = $this->Team->find('first', array(
+                    'conditions' => array(
+                        'Team.id' => $saved['Team']['id']
+                    ),
+                    'associations' => array(
+                        'Students' => array(
+                            'fields' => array('id', 'username')
+                        )
+                    )
+                ));
+            }
         } else {
             throw new BadRequestException("Project doesn't exists.");
         }
-        
-        
-        $saved = $this->Team->save($data);
+        $this->_setResponseJSON($saved);
     }
 
 }
