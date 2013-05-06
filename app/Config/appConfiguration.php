@@ -3,6 +3,7 @@
 Configure::write("APPCONFIG", array(
     'roles' => array('STUDENT', 'SUPERVISOR', 'ADMIN', 'SYSTEM', 'SHELL'),
     'super_roles' => array('SHELL', 'SYSTEM'),
+    'visibility_levels' => array('PRIVATE', 'SUPERVISOR', 'TEAM', 'PUBLIC'),
     'activity_logs_modes' => array( 
         'STUDENT' => array(
             'modes' => array('all', 'news', 'mine', 'team', 'public'), 
@@ -14,7 +15,7 @@ Configure::write("APPCONFIG", array(
         ),
         'ADMIN' => array(
             'modes' => array('all'), 
-            'default' => 'public'
+            'default' => 'all'
         )
     ),
     'authorization' => array (
@@ -90,9 +91,9 @@ Configure::write("APPCONFIG", array(
             'Email'=>array(
                 'time_lapse' => 30*60
             ),
-            'Android'=>array(
-                'time_lapse' => 60
-            )
+//            'Android'=>array(
+//                'time_lapse' => 60
+//            )
         )
     )
 ));
