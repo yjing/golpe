@@ -86,13 +86,14 @@ class DevicesController extends RESTController {
         $this->Device->id = $id;
         if($this->Device->exists()) {
             $data = json_decode($this->request->input(), true);
+            debug($data);
             if ($data) {
                 // NO NEED TO UPDATE NOTHING ON THE DEVICE, JUST PROPERTIES
                 $props = Set::extract('/DeviceProperty', $data);
                 $props = Set::remove($props, '{n}.DeviceProperty.device_id');
                 $props = Set::insert($props, '{n}.DeviceProperty.device_id', $id);
-                debug($props);
-                die();
+                
+                $prop_save = $this->DeviceProperty->saveAll($props);
                 
             } else {
                 throw new BadRequestException("Data format error.");
