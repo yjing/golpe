@@ -4,7 +4,7 @@ App::import('Controller', 'REST');
 
 class DevicesController extends RESTController {
 
-    public $uses = array('Device', 'DevicePropertiy');
+    public $uses = array('Device', 'DeviceProperty');
 
     public $components = array(
             'Session', 
@@ -56,11 +56,11 @@ class DevicesController extends RESTController {
                 $props = Set::extract('/DeviceProperty', $data);
                 $props = Set::insert($props, '{n}.DeviceProperty.device_id', $saved['Device']['id']);
                 
-                $this->DevicePropertiy->getDataSource()->begin();
-                $prop_save = $this->DevicePropertiy->saveAll($props);
+                $this->DeviceProperty->getDataSource()->begin();
+                $prop_save = $this->DeviceProperty->saveAll($props);
                 debug($prop_save);
                 
-                $this->DevicePropertiy->getDataSource()->rollback();
+                $this->DeviceProperty->getDataSource()->rollback();
                 $this->Device->getDataSource()->rollback();
             }
         } else {
