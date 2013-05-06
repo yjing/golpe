@@ -69,17 +69,7 @@ class NotificationComponent extends Component {
 
 
     public function createNotification($type, $id, $options = array()) {
-        $notification = array(
-            'Notification' => array(
-                'type' => $type,
-                'resource' => $type . ":" . $id,
-                'message' => '',
-                'priority' => false,
-                'public' => false,
-                'to' => ""
-            )
-        );
-        $notification_users = array();
+        
         $model = $this->getModel($type);
         if(isset($model->belongsTo['User'])){
             $element = $model->find('first', array(
@@ -100,8 +90,31 @@ class NotificationComponent extends Component {
                     )
                 )
             ));
-            if(!isset(Set::get($element, "/$model->aliasHHH"))) {
-                debug("AAAA");die();
+            if($element) {
+                
+                $visibility_level = Set::get($element, "/$model->alias/visibility_level");
+                if($visibility_level != 'PUBLIC') {
+                    $recipients = $this->generateRecipients($element);
+                }
+                
+                $notification = array(
+                    'Notification' => array(
+                        'type' => $type,
+                        'public' => ($visibility_level == 'PUBLIC'),
+                        'to' => implode($recipients, ', ')
+                    )
+                );
+                switch ($type) {
+                    case 'ActivityLog':
+                        //message & priority
+                        $notification['Notification']['message'] = Set::get($element, "/ActivityLog/title");
+                        $notification['Notification']['priority'] = Set::get($element, "/ActivityLog/question") == true;
+                        break;
+
+                    default:
+                        break;
+                }
+                debug($notification);die();
             }
             debug(Set::get($element, "/$model->alias/visibility_level"));
             debug(Set::get($element, "/$model->alias/title"));
@@ -175,8 +188,8 @@ class NotificationComponent extends Component {
                 break;
         }
     }
-    
-    
+
+
     private function getModel($class_name) {
         
         if(array_key_exists($class_name, $this->models)) {
