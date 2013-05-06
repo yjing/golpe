@@ -139,7 +139,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
                 $asso = $this->findAssociation($parent_model, $join_name);
                 if(!isset($asso)){
                     $parent_model_alias = $parent_model->alias;
-                    throw new InternalErrorException("Model $parent_model_alias doesn't have $join_name association.");
+                    throw new InternalErrorException("Model '$parent_model_alias' doesn't have '$join_name' association.");
                 }
                 $asso_model = $this->getModel($asso['config']['className']);
                 
@@ -224,9 +224,13 @@ class DataAuthorizationBehavior extends ModelBehavior {
     }
     
     private function loadModel($model_name) {
-        App::import('Model', $model_name);
-        $class = new ReflectionClass($model_name);
-        return $class->newInstanceArgs();
+        try {
+            App::import('Model', $model_name);
+            $class = new ReflectionClass($model_name);
+            return $class->newInstanceArgs();
+        } catch (Exception $e) {
+            throw new InternalErrorException("Can't load model '$model_name'");
+        }
     } 
     
     private function findAssociation($model, $association_name) {
