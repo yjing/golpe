@@ -43,7 +43,7 @@ Configure::write("APPCONFIG", array(
         "Media" => true,
         "Devices" => array(
             // Actions
-            "index" => array('SYSTEM'),
+            "index",// => array('SYSTEM'),
             "view" => array('ADMIN', 'SYSTEM'),
             "add" => false,
             "update",
