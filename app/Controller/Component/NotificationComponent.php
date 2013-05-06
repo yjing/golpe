@@ -102,7 +102,7 @@ class NotificationComponent extends Component {
             ));
             debug(Set::get($element, "/$model->alias/visibility_level"));
             debug(Set::get($element, "/$model->alias/title"));
-            debug(Set::get($element, "/$model->alias/User/Supervisor/supervisor_id"));
+            debug(Set::get($element, "/$model->alias/User/Supervisor/id"));
             die();
         }
         switch ($type) {
@@ -144,7 +144,7 @@ class NotificationComponent extends Component {
                 }
                 
                 if(in_array($visibility_level, array('SUPERVISOR'))) {
-                    $notification_users[] = $element['ActivityLog']['User']['Supervisor']['supervisor_id'];
+                    $notification_users[] = $element['ActivityLog']['User']['Supervisor']['id'];
                 }
                 
                 if(in_array($visibility_level, array('TEAM'))) {
