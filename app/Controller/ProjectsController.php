@@ -1,10 +1,11 @@
 <?php
 
 App::import('Controller', 'REST');
+
 class ProjectsController extends RESTController {
 
     public $uses = array('Project');
-    
+
     public function index() {
         parent::index();
 
@@ -47,55 +48,62 @@ class ProjectsController extends RESTController {
     public function add() {
         parent::add();
 
-        $data = Set::remove($this->request->data, 'Project.id');
-        $saved = $this->Project->save($data);
+        if ($this->request->data) {
+            $data = Set::remove($this->request->data, 'Project.id');
+            $saved = $this->Project->save($data);
 
-        if ($saved) {
-            $saved = $this->Project->find('first', array(
-                'conditions' => array(
-                    'Project.id' => $saved['Project']['id']
-                ),
-                'associations' => array(
-                    'Team' => array(
+            if ($saved) {
+                $saved = $this->Project->find('first', array(
+                        'conditions' => array(
+                            'Project.id' => $saved['Project']['id']
+                        ),
                         'associations' => array(
-                            'Student' => array(
-                                'fields' => array('id', 'username')
+                            'Team' => array(
+                                'associations' => array(
+                                    'Student' => array(
+                                        'fields' => array('id', 'username')
+                                    )
+                                )
                             )
                         )
                     )
-                )
-                    ));
+                );
+            }
+        } else {
+            throw new BadRequestException("Project: wrong data format.");
         }
-
         $this->_setResponseJSON($saved);
     }
 
     public function update($id = null) {
         parent::update($id);
 
-        $this->Project->id = $id;
-        if ($this->Project->exists()) {
-            $data = Set::remove($this->request->data, 'Project.id');
-            $saved = $this->Project->save($data);
-            if ($saved) {
-                $saved = $this->Project->find('first', array(
-                    'conditions' => array(
-                        'Project.id' => $id
-                    ),
-                    'associations' => array(
-                        'Team' => array(
-                            'associations' => array(
-                                'Student' => array(
-                                    'fields' => array('id', 'username')
+        if ($this->request->data) {
+            $this->Project->id = $id;
+            if ($this->Project->exists()) {
+                $data = Set::remove($this->request->data, 'Project.id');
+                $saved = $this->Project->save($data);
+                if ($saved) {
+                    $saved = $this->Project->find('first', array(
+                        'conditions' => array(
+                            'Project.id' => $id
+                        ),
+                        'associations' => array(
+                            'Team' => array(
+                                'associations' => array(
+                                    'Student' => array(
+                                        'fields' => array('id', 'username')
+                                    )
                                 )
                             )
                         )
-                    )
-                ));
+                            ));
+                }
+            } else {
+                throw new BadRequestException("Project doesn't exists.");
             }
-            
         } else {
-            throw new BadRequestException("Project doesn't exists.");
+            throw new BadRequestException("Project: wrong data format.");
         }
         $this->_setResponseJSON($saved);
     }
