@@ -4,6 +4,7 @@ abstract class RESTController extends AppController {
     public $components = array('RequestHandler');
     private $_authorization;
     private $_roles;
+    private $_super_roles;
     
     public function beforeFilter() {
         $this->RequestHandler->renderAs($this, 'json');
@@ -19,7 +20,8 @@ abstract class RESTController extends AppController {
         
         $this->_authorization = $this->_normalize(Configure::read("APPCONFIG.authorization." . $this->name));
         $this->_roles = Configure::read("APPCONFIG.roles");
-        debug($this->_authorization);
+        $this->_super_roles = Configure::read("APPCONFIG.super_roles");
+        
     }
     
     private function _normalize($array) {
@@ -48,8 +50,16 @@ abstract class RESTController extends AppController {
     }
     
     public function isAuthorized($user = null) {
-        if (!isset($user) || !isset($user['role']) || !in_array($user['role'], $this->_roles)) {
-            throw new Exception("Unknown user role.");
+        // GENERAL RULES
+        if(isset($user) && isset($user['role'])) {
+            if(!in_array($user['role'], $this->_roles, true)) {
+                return false;
+            }
+            if(in_array($user['role'], $this->_super_roles, true)) {
+                return true;
+            }
+        } else {
+            return false;
         }
         
         $user_role = $user['role'];
