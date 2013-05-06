@@ -125,7 +125,9 @@ class NotificationComponent extends Component {
                         
                         break;
                 }
-                debug($notification);die();
+                
+                $Notification = $this->getModel('Notification');
+                $Notification->save($notification);
             }
         }
         
