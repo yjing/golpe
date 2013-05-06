@@ -12,6 +12,7 @@ class LogActionsComponent extends Component {
     private $resource_id = null;
     private $important = false;
     private $action_result = false;
+    private $action_user_result = true;
     
     public function startup(Controller $controller) {
         parent::startup($controller);
@@ -65,7 +66,7 @@ class LogActionsComponent extends Component {
                     'resource' => $this->resource_name,
                     'resource_id' => $this->resource_id,
                     'important' => $this->important,
-                    'result' => $this->action_result && ( $controller->response->statusCode() < 300 )
+                    'result' => $this->action_user_result && ( $controller->response->statusCode() < 300 )
                 )
             );
             debug($log);
@@ -87,7 +88,7 @@ class LogActionsComponent extends Component {
     }
     
     public function setActionResult($result) {
-        $this->action_result = $result;
+        $this->action_user_result = $result;
     }
 
 
