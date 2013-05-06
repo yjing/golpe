@@ -65,27 +65,31 @@ abstract class RESTController extends AppController {
         $user_role = $user['role'];
         $ret = false;
         if(is_array($this->_authorization)) {
-            
-            $action_level = Set::get($this->_authorization, $this->action);
-            if(isset($action_level)) {
-                if(is_array($action_level)) {
-                    $role_level = Set::get($action_level, $user_role);
-                    if(isset($role_level)) {
-                        $ret = $role_level;
+            debug($this->_authorization);die();
+            if(in_array($user_role, $this->_authorization, true)) {
+                $ret = TRUE;
+            } else {
+                $action_level = Set::get($this->_authorization, $this->action);
+                if(isset($action_level)) {
+                    if(is_array($action_level)) {
+                        $role_level = Set::get($action_level, $user_role);
+                        if(isset($role_level)) {
+                            $ret = $role_level;
+                        } else {
+                            $ret = FALSE;
+                        }
                     } else {
-                        $ret = FALSE;
+                        if (is_bool($action_level)) {
+                            $ret = $action_level;
+                        } elseif (is_string($action_level)) {
+                            $ret = ($action_level == $user_role);
+                        } else {
+                            $ret = FALSE;
+                        }
                     }
                 } else {
-                    if (is_bool($action_level)) {
-                        $ret = $action_level;
-                    } elseif (is_string($action_level)) {
-                        $ret = ($action_level == $user_role);
-                    } else {
-                        $ret = FALSE;
-                    }
+                    $ret = FALSE;
                 }
-            } else {
-                $ret = FALSE;
             }
             
         } else {
