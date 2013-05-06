@@ -37,7 +37,9 @@ abstract class RESTController extends AppController {
                 }
                 $ret[$key] = $value;
             }
+            return $ret;
         }
+        return null;
     }
     // IMPORTANT: HAS SIDE EFFECT!!! MODIFY THE INPUT DATA!!!
     private function normalizeKeyValueToAssociative(&$key, &$value) {
