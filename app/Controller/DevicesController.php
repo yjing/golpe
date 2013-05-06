@@ -44,7 +44,7 @@ class DevicesController extends RESTController {
     public function add() {
         parent::add();
         
-        $this->_ReportUnsupportedMethod();
+        debug($this->request->data);
         
     }
 
