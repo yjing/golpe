@@ -40,7 +40,7 @@ class UploaderShell extends AppShell {
             $media_id = $m['id'];
             
             $media = array(
-                'm_id' => $media_id,
+                'id' => $media_id,
                 'filename' => $m['filename'],
                 'type' => $m['content-type'],
                 'size' => $m['content-size'],
