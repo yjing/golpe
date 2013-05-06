@@ -19,7 +19,7 @@ class LogActionsComponent extends Component {
         
         $this->config = $this->getConfigElement($controller->components, 'LogActions', true);
         $this->log_actions = $this->getConfigElement($this->config, 'log_actions', true);
-        if(in_array($controller->action, $this->log_actions)) {
+        if(count($this->log_actions) == 0 || in_array($controller->action, $this->log_actions)) {
             // GET LOGGED USER
             $this->logged_user = CakeSession::read('Auth.User');
             
