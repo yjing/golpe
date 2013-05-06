@@ -97,7 +97,6 @@ class MediaController extends RESTController {
                         ob_flush();
                         flush();
                     }
-                    debug("kjhsakkjf");
                     
                 } catch (ServiceException $e) {
                     // Handle exception based on error codes and messages.
