@@ -138,14 +138,9 @@ class TeamsController extends RESTController {
     
     public function removeMember($team_id, $user_id) {
         parent::delete();
+        $query = "delete from teams_users where user_id = $user_id and team_id = $team_id;";
+        $deleted = $this->query($query);
         
-        $data = array(
-            'TeamUser' => array(
-                'team_id' => $team_id,
-                'user_id' => $user_id,
-            )
-        );
-        $deleted = $this->TeamUser->deleteAll($data);
         $this->_setResponseJSON(array('deleted'=>$deleted));
     }
 
