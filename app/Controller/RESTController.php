@@ -19,12 +19,32 @@ abstract class RESTController extends AppController {
         
         $test = Configure::read("APPCONFIG.authorization." . $this->name);
         debug($test);
-        $test = Set::normalize($test);
+        $test = $this->_normalize2($test);
         debug($test);die();
         
         $this->_authorization = $this->_normalize(Configure::read("APPCONFIG.authorization." . $this->name));
         $this->_roles = Configure::read("APPCONFIG.roles");
         
+    }
+    
+    private function _normalize2($array) {
+        if(isset($array) && is_array($array)){
+            $ret = array();
+            foreach ($array as $key => $value) {
+                $this->normalizeKeyValueToAssociative($key, $value);
+                if(isset($value) && is_array($value)) {
+                    $value = $this->_normalize2($value);
+                }
+                $ret[$key] = $value;
+            }
+        }
+    }
+    // IMPORTANT: HAS SIDE EFFECT!!! MODIFY THE INPUT DATA!!!
+    private function normalizeKeyValueToAssociative(&$key, &$value) {
+        if(!is_string($key)) {
+            $key = $value;
+            $value = null;
+        }
     }
     
     private function _normalize($auth) {
