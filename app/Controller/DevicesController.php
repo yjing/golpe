@@ -16,11 +16,11 @@ class DevicesController extends RESTController {
         
         $result = $this->Device->find('all', array(
             'fields' => array('id', 'user_id'),
-            'associations' => array(
-                'DeviceProperty' => array(
-                    'fields' => array('key', 'value')
-                )
-            )
+//            'associations' => array(
+//                'DeviceProperty' => array(
+//                    'fields' => array('key', 'value')
+//                )
+//            )
         ));
         
         $this->_setResponseJSON($result);
