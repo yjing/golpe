@@ -26,6 +26,7 @@ class LogActionsComponent extends Component {
             // SET DEFAULT VALUES
             $this->resource_name = $controller->modelClass;
             $this->resource_id = null;
+            debug($controller->request->params);
             if(isset($controller->request->params['id'])) {
                 $this->resource_id = $controller->request->params['id'];
             }
