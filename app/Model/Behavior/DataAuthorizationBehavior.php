@@ -213,9 +213,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
         if(array_key_exists($class_name, $this->models)) {
             $model = $this->models[$class_name];
         } else {
-            debug("HERE");
             $model = $this->loadModel($class_name);
-            debug("HERE");
             $this->models[$class_name] = $model;
         }
         
@@ -224,8 +222,11 @@ class DataAuthorizationBehavior extends ModelBehavior {
     
     private function loadModel($model_name) {
         App::import('Model', $model_name);
+        debug("HERE");
         $class = new ReflectionClass($model_name);
+        debug("HERE");
         return $class->newInstanceArgs();
+        debug("HERE");
     } 
     
     private function findAssociation($model, $association_name) {
