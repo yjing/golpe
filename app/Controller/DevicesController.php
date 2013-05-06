@@ -4,7 +4,8 @@ App::import('Controller', 'REST');
 
 class DevicesController extends RESTController {
 
-//    public $actsAs = array();
+    public $uses = array('Device', 'DevicePropertiy');
+
     public $components = array(
             'Session', 
             'RequestHandler'
@@ -48,17 +49,18 @@ class DevicesController extends RESTController {
         
         if($data) {
             $this->Device->getDataSource()->begin();
-//            $data['Device']['user_id'] = 1;
             $data['Device']['visibility_level'] = 'PRIVATE';
             $saved = $this->Device->save($data);
-            debug($saved);
+            
             if($saved) {
-                debug($saved['Device']['id']);
                 $props = Set::extract('/DeviceProperty', $data);
                 $props = Set::insert($props, '{n}.DeviceProperty.device_id', $saved['Device']['id']);
-                debug($props);
                 
-//                $this->_setResponseJSON($result);
+                $this->DevicePropertiy->getDataSource()->begin();
+                $prop_save = $this->DevicePropertiy->saveAll($props);
+                debug($prop_save);
+                
+                $this->DevicePropertiy->getDataSource()->rollback();
                 $this->Device->getDataSource()->rollback();
             }
         } else {
