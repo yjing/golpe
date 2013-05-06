@@ -46,13 +46,16 @@ class DevicesController extends RESTController {
         
         $data = json_decode($this->request->input(), true);
         if($data) {
-            $props = Set::extract('/DeviceProperty/.', $data);
-            debug($props);die();
             $this->Device->getDataSource()->begin();
             $saved = $this->Device->save($data);
             if($saved) {
+                debug($saved['Device']['id']);
+                $props = Set::extract('/DeviceProperty', $data);
+                $props = Set::insert($props, '/DeviceProperty/device_id', $saved['Device']['id']);
+                debug($props);
                 
 //                $this->_setResponseJSON($result);
+                $this->Device->getDataSource()->rollback();
             }
         } else {
             throw new BadRequestException("Data format error.");
