@@ -83,9 +83,13 @@ abstract class AssociativeModel extends AppModel {
         
         $associated_model = $this->getModel($association_config['className']);
         
+        
+        $elem_fk = $element[$this->alias][$association_config['foreignKey']];
+        if(is_string($elem_fk)){
+            $elem_fk = "'$elem_fk'";
+        }
         $conditions = array(
-            $association_config['className'] . '.' . $associated_model->primaryKey . ' = ' 
-                . $element[$this->alias][$association_config['foreignKey']]
+            $association_config['className'] . '.' . $associated_model->primaryKey . ' = ' . $elem_fk
         );
         
         $options = array(
@@ -119,8 +123,7 @@ abstract class AssociativeModel extends AppModel {
             $elem_id = "'$elem_id'";
         }
         $conditions = array(
-            $association_config['className'] . '.' . $association_config['foreignKey'] . ' = ' 
-                . $elem_id
+            $association_config['className'] . '.' . $association_config['foreignKey'] . ' = ' . $elem_id
         );
         
         $options = array(
@@ -170,8 +173,7 @@ abstract class AssociativeModel extends AppModel {
             $elem_id = "'$elem_id'";
         }
         $conditions = array(
-            $association_config['with'] . '.' . $association_config['foreignKey'] . ' = ' 
-                . $elem_id
+            $association_config['with'] . '.' . $association_config['foreignKey'] . ' = ' . $elem_id
         );
         
         $options = array(
