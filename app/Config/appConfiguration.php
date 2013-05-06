@@ -50,7 +50,7 @@ Configure::write("APPCONFIG", array(
             "delete",
         ),
         "Projects" => array(
-            'index' => array('ADMIN')
+            'index' => 'SYSTEM'
         )
     ),
     'data_access'=> array(
