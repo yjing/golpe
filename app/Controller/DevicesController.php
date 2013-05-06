@@ -23,7 +23,7 @@ class DevicesController extends RESTController {
 //            )
 //        ));
         
-        $this->_setResponseJSON($result);
+        $this->_setResponseJSON("{\"test\"}");
     }
 
     public function view($id = null) {
