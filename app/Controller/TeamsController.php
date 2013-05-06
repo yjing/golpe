@@ -4,7 +4,7 @@ App::import('Controller', 'REST');
 
 class TeamsController extends RESTController {
 
-    public $uses = array('Project', 'Team');
+    public $uses = array('Project', 'Team', 'TeamStudent');
 
     public function index() {
         parent::index();
@@ -107,6 +107,15 @@ class TeamsController extends RESTController {
         }
 
         $this->_setResponseJSON(array('deleted' => $deleted));
+    }
+    
+    public function addMember($team_id, $user_id) {
+        if (!$this->request->is('put')) {
+            $this->_ReportMethodNotAllowed("PUT", 'addMember');
+        }
+        
+        
+        
     }
 
 }
