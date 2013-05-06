@@ -42,7 +42,11 @@ class ProjectsController extends RESTController {
     }
     public function add() {
         parent::add();
-        $this->_ReportUnsupportedMethod();
+        
+        debug($this->request->data);
+        debug($this->request->input());
+        
+        die();
     }
     public function update($id = null) {
         parent::update($id);
