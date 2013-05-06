@@ -22,7 +22,23 @@ class ProjectsController extends RESTController {
     }
     public function view($id = null) {
         parent::view($id);
-        $this->_ReportUnsupportedMethod();
+        
+        $results = $this->Project->find('first', array(
+            'conditions' => array(
+                'Project.id' => $id
+            ),
+            'associations' => array(
+                'Team' => array(
+                    'associations' => array(
+                        'Student' => array(
+                            'fields' => array('id', 'username')
+                        )
+                    )
+                )
+            )
+        ));
+        
+        $this->_setResponseJSON($results);
     }
     public function add() {
         parent::add();
