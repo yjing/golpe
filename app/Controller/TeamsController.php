@@ -1,9 +1,9 @@
 <?php
 
 App::import('Controller', 'REST');
-class ProjectsController extends RESTController {
+class TeamsController extends RESTController {
 
-    public $uses = array('Project');
+    public $uses = array('Project', 'Team');
     
     public function index() {
         parent::index();
@@ -44,7 +44,36 @@ class ProjectsController extends RESTController {
         $this->_setResponseJSON($results);
     }
 
+    
     public function add() {
+        
+        $data = Set::remove($this->request->data, 'Team.id');
+        $project_id = $data['Team']['project_id'];
+        
+        $this->Project->id = $project_id;
+        if($this->Project->exists()) {
+            
+            $saved = $this->Team->save($data);
+            if($saved) {
+                $saved = $this->Team->find('first', array(
+                    'conditions' => array(
+                        'Team.id' => $saved['Team']['id']
+                    ),
+                    'associations' => array(
+                        'Student' => array(
+                            'fields' => array('id', 'username')
+                        )
+                    )
+                ));
+            }
+            
+        } else {
+            throw new BadRequestException("Project doesn't exists.");
+        }
+        $this->_setResponseJSON($saved);
+    }
+    
+    public function addddd() {
         parent::add();
 
         $data = Set::remove($this->request->data, 'Project.id');
@@ -111,6 +140,32 @@ class ProjectsController extends RESTController {
         }
 
         $this->_setResponseJSON(array('deleted' => $deleted));
+    }
+    
+    public function addTeam($project_id) {
+        
+        $this->Project->id = $project_id;
+        if($this->Project->exists()) {
+            
+            $data = Set::remove($this->request->data, 'Team.id');
+            $data['Team']['project_id'] = $project_id;
+            $saved = $this->Team->save($data);
+            if($saved) {
+                $saved = $this->Team->find('first', array(
+                    'conditions' => array(
+                        'Team.id' => $saved['Team']['id']
+                    ),
+                    'associations' => array(
+                        'Student' => array(
+                            'fields' => array('id', 'username')
+                        )
+                    )
+                ));
+            }
+        } else {
+            throw new BadRequestException("Project doesn't exists.");
+        }
+        $this->_setResponseJSON($saved);
     }
 
 }
