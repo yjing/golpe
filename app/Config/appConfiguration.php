@@ -41,7 +41,7 @@ Configure::write("APPCONFIG", array(
         ),
         "Comments" => true,
         "Media" => true,
-        "Devices" => true
+//        "Devices"
 //        => array(
 //            // Actions
 //            "index" => array('SYSTEM'),
