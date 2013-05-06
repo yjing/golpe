@@ -1,8 +1,10 @@
 <?php
 
+App::uses('Log', 'Model');
 class LogActionsComponent extends Component {
     
     private $config;
+    private $logged_user;
     private $log_id;
     
     private $resource_name;
@@ -16,11 +18,27 @@ class LogActionsComponent extends Component {
         $this->config = $this->getConfigElement($controller->components, 'LogActions', true);
         $this->log_actions = $this->getConfigElement($this->config, 'log_actions', true);
         if(in_array($controller->action, $this->log_actions)) {
+            // GET LOGGED USER
+            $this->logged_user = CakeSession::read('Auth.User');
+            
             // SET DEFAULT VALUES
             $this->resource_name = $controller->modelClass;
             $this->resource_id = null;
             $this->important = false;
             $this->action_rerult = false;
+            
+            $log = array(
+                'Log' => array(
+                    'user_id' => $this->logged_user['id'],
+                    'session_id' => CakeSession::id(),
+                    'action' => $controller->action,
+                    'resource' => $this->resource_name,
+                    'resource_id' => $this->resource_id,
+                    'important' => $this->important,
+                    'result' => $this->action_rerult
+                )
+            );
+            $this->Log->save($log);
         }
     }
     
