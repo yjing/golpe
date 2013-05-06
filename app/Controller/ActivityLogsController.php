@@ -9,7 +9,7 @@ class ActivityLogsController extends RESTController {
         'Session', 
         'RequestHandler', 
         'LogActions' => array(
-            'log' => array('index', 'view')
+            'log_actions' => array('index', 'view')
         ), 
         'Notification' => array('test'=>'TEST'));
     
