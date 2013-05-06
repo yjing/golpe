@@ -94,6 +94,9 @@ class DevicesController extends RESTController {
                 $props = Set::remove($props, '{n}.DeviceProperty.device_id');
                 $props = Set::insert($props, '{n}.DeviceProperty.device_id', $id);
                 
+                $props_ids = Set::extract('/DeviceProperty/id', $props);
+                debug($props_ids);die();
+                
                 $saved = $this->DeviceProperty->saveAll($props);
                 if($saved) {
                     $result = $result;
