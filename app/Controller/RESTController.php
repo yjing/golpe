@@ -45,7 +45,7 @@ abstract class RESTController extends AppController {
     private function normalizeKeyValueToAssociative(&$key, &$value) {
         if(!is_string($key)) {
             $key = $value;
-            $value = null;
+            $value = TRUE;
         } 
 //        else {
 //            if(!is_array($value)) {
