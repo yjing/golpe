@@ -66,8 +66,8 @@ abstract class RESTController extends AppController {
         $ret = false;
         if(is_array($this->_authorization)) {
             debug($this->_authorization);die();
-            if(in_array($user_role, $this->_authorization, true)) {
-                $ret = TRUE;
+            if(array_key_exists($user_role, $this->_authorization)) {
+                $ret = $this->_authorization[$user_role];
             } else {
                 $action_level = Set::get($this->_authorization, $this->action);
                 if(isset($action_level)) {
