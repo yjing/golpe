@@ -83,7 +83,24 @@ class DevicesController extends RESTController {
     public function edit($id = null) {
         parent::edit($id);
         
-        $this->_ReportUnsupportedMethod();
+        $this->Device->id = $id;
+        if($this->Device->exists()) {
+            $data = json_decode($this->request->input(), true);
+            if ($data) {
+                // NO NEED TO UPDATE NOTHING ON THE DEVICE, JUST PROPERTIES
+                $props = Set::extract('/DeviceProperty', $data);
+                $props = Set::remove($props, '{n}.DeviceProperty.device_id');
+                $props = Set::insert($props, '{n}.DeviceProperty.device_id', $id);
+                debug($props);
+                die();
+                
+            } else {
+                throw new BadRequestException("Data format error.");
+            }
+        } else {
+            throw new BadRequestException("Device doesn't exists.");
+        }
+        
     }
 
     public function delete($id = null) {
