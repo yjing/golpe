@@ -5,11 +5,10 @@ App::import('Controller', 'REST');
 class DevicesController extends RESTController {
 
 //    public $actsAs = array();
-
-
-    public function beforeFilter() {
-        parent::beforeFilter();
-    }
+    public $components = array(
+            'Session', 
+            'RequestHandler'
+        );    
     
     public function index() {
         parent::index();
