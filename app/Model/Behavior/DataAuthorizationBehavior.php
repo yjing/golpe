@@ -139,7 +139,7 @@ class DataAuthorizationBehavior extends ModelBehavior {
                 $asso = $this->findAssociation($parent_model, $join_name);
                 
                 $asso_model = $this->getModel($asso['config']['className']);
-                debug("HERE");
+                
                 $joins_array = call_user_func( array( $this, $asso['function'] ), 
                     $asso,
                     $join_name,
@@ -213,7 +213,9 @@ class DataAuthorizationBehavior extends ModelBehavior {
         if(array_key_exists($class_name, $this->models)) {
             $model = $this->models[$class_name];
         } else {
+            debug("HERE");
             $model = $this->loadModel($class_name);
+            debug("HERE");
             $this->models[$class_name] = $model;
         }
         
