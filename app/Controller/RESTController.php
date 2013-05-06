@@ -17,17 +17,13 @@ abstract class RESTController extends AppController {
         $this->Auth->authorize = 'Controller';
         $this->Auth->unauthorizedRedirect = false;
         
-        $test = Configure::read("APPCONFIG.authorization." . $this->name);
-        debug($test);
-        $test = $this->_normalize2($test);
-        debug($test);die();
-        
         $this->_authorization = $this->_normalize(Configure::read("APPCONFIG.authorization." . $this->name));
         $this->_roles = Configure::read("APPCONFIG.roles");
-        
+        debug($this->_authorization);
+        die();
     }
     
-    private function _normalize2($array) {
+    private function _normalize($array) {
         if(isset($array)) {
             if(is_array($array)){
                 $ret = array();
@@ -50,35 +46,6 @@ abstract class RESTController extends AppController {
             $key = $value;
             $value = TRUE;
         }
-    }
-    
-    private function _normalize($auth) {
-        if (!isset($auth) || $auth === false) {
-            return false;
-        }
-        if ($auth === true) {
-            return true;
-        }
-        if (!is_array($auth)) {
-            $auth = array($auth);
-            return $auth;
-        }
-        foreach ($auth as $action => $roles) {
-            if (!is_array($roles)) {
-                if($roles !== false && $roles !== true) {
-                    $auth[$action] = array($roles);
-                }
-            } elseif (count($roles) == 0) {
-                $auth[$action] = false;
-            }
-        }
-        
-        return $auth;
-    }
-    
-    public function afterFilter() {
-        parent::afterFilter();
-        
     }
     
     public function isAuthorized($user = null) {
