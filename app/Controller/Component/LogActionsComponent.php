@@ -16,8 +16,6 @@ class LogActionsComponent extends Component {
     public function startup(Controller $controller) {
         parent::startup($controller);
         
-        debug($controller->request->params);die();
-        
         $this->config = $this->getConfigElement($controller->components, 'LogActions', true);
         $this->log_actions = $this->getConfigElement($this->config, 'log_actions', true);
         if(in_array($controller->action, $this->log_actions)) {
@@ -27,6 +25,9 @@ class LogActionsComponent extends Component {
             // SET DEFAULT VALUES
             $this->resource_name = $controller->modelClass;
             $this->resource_id = null;
+            if(isset($controller->request->params['id'])) {
+                $this->resource_id = $controller->request->params['id'];
+            }
             $this->important = false;
             $this->action_rerult = false;
             
@@ -34,6 +35,8 @@ class LogActionsComponent extends Component {
                 'Log' => array(
                     'user_id' => $this->logged_user['id'],
                     'session_id' => CakeSession::id(),
+                    'method' => $controller->request->params['[method]'],
+                    'controller' => $controller->name,
                     'action' => $controller->action,
                     'resource' => $this->resource_name,
                     'resource_id' => $this->resource_id,
@@ -41,6 +44,9 @@ class LogActionsComponent extends Component {
                     'result' => $this->action_rerult
                 )
             );
+        
+            debug($log);die();
+            
             $this->Log = new Log();
             $saved = $this->Log->save($log);
             
@@ -57,13 +63,10 @@ class LogActionsComponent extends Component {
             $log = array(
                 'Log' => array(
                     'id' => $this->log_id,
-                    'user_id' => $this->logged_user['id'],
-                    'session_id' => CakeSession::id(),
-                    'action' => $controller->action,
                     'resource' => $this->resource_name,
                     'resource_id' => $this->resource_id,
                     'important' => $this->important,
-                    'result' => ( $controller->response->statusCode() < 300 )
+                    'result' => $this->action_rerult && ( $controller->response->statusCode() < 300 )
                 )
             );
             $this->Log->save($log);
