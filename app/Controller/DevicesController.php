@@ -94,7 +94,7 @@ class DevicesController extends RESTController {
                 $rm_props_ids = Set::extract('/RemoveDeviceProperty/key', $rm_props);
                 if(!is_array($rm_props_ids)) {
                     $rm_props_ids = array($rm_props_ids);
-                    $rm_props_ids[] = 3;
+                    $rm_props_ids[] = "CCCCCC";
                 }
                 $this->DeviceProperty->deleteAll(array(
                     'device_id' => $id,
