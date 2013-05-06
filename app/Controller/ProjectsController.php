@@ -46,6 +46,23 @@ class ProjectsController extends RESTController {
         $data = Set::remove($this->request->data, 'Project.id');
         $saved = $this->Project->save($data);
         
+        if($saved){
+            $saved =  $this->Project->find('first', array(
+                'conditions' => array(
+                    'Project.id' => $id
+                ),
+                'associations' => array(
+                    'Team' => array(
+                        'associations' => array(
+                            'Student' => array(
+                                'fields' => array('id', 'username')
+                            )
+                        )
+                    )
+                )
+            ));
+        }
+        
         $this->_setResponseJSON($saved);
         
     }
@@ -79,6 +96,14 @@ class ProjectsController extends RESTController {
     }
     public function delete($id = null) {
         parent::delete($id);
-        $this->_ReportUnsupportedMethod();
+        
+        $this->Project->id = $id;
+        if($this->Project->exists()) {
+            $deleted = $this->Project->delete($id);
+        } else {
+            throw new BadRequestException("Project doesn't exists.");
+        }
+        
+        $this->_setResponseJSON(array('deleted' => $deleted));
     }
 }
