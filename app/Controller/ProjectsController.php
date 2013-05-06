@@ -1,10 +1,14 @@
 <?php
 
 App::import('Controller', 'REST');
+
 class ProjectsController extends RESTController {
+
+    public $uses = array('Project', 'Team');
+    
     public function index() {
         parent::index();
-        
+
         $results = $this->Project->find('all', array(
             'associations' => array(
                 'Team' => array(
@@ -15,14 +19,14 @@ class ProjectsController extends RESTController {
                     )
                 )
             )
-        ));
-        
+                ));
+
         $this->_setResponseJSON($results);
-        
     }
+
     public function view($id = null) {
         parent::view($id);
-        
+
         $results = $this->Project->find('first', array(
             'conditions' => array(
                 'Project.id' => $id
@@ -36,18 +40,19 @@ class ProjectsController extends RESTController {
                     )
                 )
             )
-        ));
-        
+                ));
+
         $this->_setResponseJSON($results);
     }
+
     public function add() {
         parent::add();
-        
+
         $data = Set::remove($this->request->data, 'Project.id');
         $saved = $this->Project->save($data);
-        
-        if($saved){
-            $saved =  $this->Project->find('first', array(
+
+        if ($saved) {
+            $saved = $this->Project->find('first', array(
                 'conditions' => array(
                     'Project.id' => $saved['Project']['id']
                 ),
@@ -60,50 +65,69 @@ class ProjectsController extends RESTController {
                         )
                     )
                 )
-            ));
+                    ));
         }
-        
+
         $this->_setResponseJSON($saved);
-        
     }
+
     public function update($id = null) {
         parent::update($id);
-        
+
         $this->Project->id = $id;
-        if($this->Project->exists()) {
+        if ($this->Project->exists()) {
             $data = Set::remove($this->request->data, 'Project.id');
             $saved = $this->Project->save($data);
-            if($saved){
-               $saved =  $this->Project->find('first', array(
-                   'conditions' => array(
-                       'Project.id' => $id
-                   ),
-                   'associations' => array(
-                       'Team' => array(
-                           'associations' => array(
-                               'Student' => array(
-                                   'fields' => array('id', 'username')
-                               )
-                           )
-                       )
-                   )
-               ));
+            if ($saved) {
+                $saved = $this->Project->find('first', array(
+                    'conditions' => array(
+                        'Project.id' => $id
+                    ),
+                    'associations' => array(
+                        'Team' => array(
+                            'associations' => array(
+                                'Student' => array(
+                                    'fields' => array('id', 'username')
+                                )
+                            )
+                        )
+                    )
+                        ));
             }
         } else {
             throw new BadRequestException("Project doesn't exists.");
         }
         $this->_setResponseJSON($saved);
     }
+
     public function delete($id = null) {
         parent::delete($id);
-        
+
         $this->Project->id = $id;
-        if($this->Project->exists()) {
+        if ($this->Project->exists()) {
             $deleted = $this->Project->delete($id);
         } else {
             throw new BadRequestException("Project doesn't exists.");
         }
-        
+
         $this->_setResponseJSON(array('deleted' => $deleted));
     }
+    
+    public function addTeam($project_id) {
+        
+        $this->Project->id = $project_id;
+        if($this->Project->exists()) {
+            
+            $data = Set::remove($this->request->data, 'Team.id');
+            $data['Team']['project_id'] = $project_id;
+            debug($data);
+            die();
+        } else {
+            throw new BadRequestException("Project doesn't exists.");
+        }
+        
+        
+        $saved = $this->Team->save($data);
+    }
+
 }
