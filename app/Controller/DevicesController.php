@@ -96,6 +96,7 @@ class DevicesController extends RESTController {
                 $props_ids = Set::extract('/DeviceProperty/key', $props);
                 
                 $saved_props = $this->DeviceProperty->find('all', array(
+                    'recursive' => -1,
                     'conditions' => array(
                         'device_id' => $id,
                         'key IN' => $props_ids
