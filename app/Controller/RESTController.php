@@ -28,16 +28,19 @@ abstract class RESTController extends AppController {
     }
     
     private function _normalize2($array) {
-        if(isset($array) && is_array($array)){
-            $ret = array();
-            foreach ($array as $key => $value) {
-                $this->normalizeKeyValueToAssociative($key, $value);
-                if(isset($value) && is_array($value)) {
-                    $value = $this->_normalize2($value);
+        if(isset($array)) {
+            if(is_array($array)){
+                $ret = array();
+                foreach ($array as $key => $value) {
+                    $this->normalizeKeyValueToAssociative($key, $value);
+                    if(isset($value) && is_array($value)) {
+                        $value = $this->_normalize2($value);
+                    }
+                    $ret[$key] = $value;
                 }
-                $ret[$key] = $value;
+                return $ret;
             }
-            return $ret;
+            return $array;
         }
         return null;
     }
@@ -46,12 +49,7 @@ abstract class RESTController extends AppController {
         if(!is_string($key)) {
             $key = $value;
             $value = TRUE;
-        } 
-//        else {
-//            if(!is_array($value)) {
-//                $value = array($value);
-//            }
-//        }
+        }
     }
     
     private function _normalize($auth) {
