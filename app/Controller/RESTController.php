@@ -19,7 +19,7 @@ abstract class RESTController extends AppController {
         
         $this->_authorization = $this->_normalize(Configure::read("APPCONFIG.authorization." . $this->name));
         $this->_roles = Configure::read("APPCONFIG.roles");
-        
+        debug($this->_authorization);
     }
     
     private function _normalize($array) {
