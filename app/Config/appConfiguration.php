@@ -41,15 +41,16 @@ Configure::write("APPCONFIG", array(
         ),
         "Comments" => true,
         "Media" => true,
-        "Devices" => array(
-            // Actions
-            "index" => false,// => array('SYSTEM'),
-            "view" => array('ADMIN', 'SYSTEM'),
-            "add" => false,
-            "update",
-            "edit",
-            "delete",
-        )
+        "Devices" => true
+//        => array(
+//            // Actions
+//            "index" => array('SYSTEM'),
+//            "view" => array('ADMIN', 'SYSTEM'),
+//            "add" => false,
+//            "update",
+//            "edit",
+//            "delete",
+//        )
     ),
     'data_access'=> array(
         'joins' => array(
