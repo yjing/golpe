@@ -78,7 +78,7 @@ class TeamsController extends RESTController {
                 if ($saved) {
                     $saved = $this->Team->find('first', array(
                         'conditions' => array(
-                            'Project.id' => $id
+                            'Team.id' => $id
                         ),
                         'associations' => array(
                             'Student' => array(
