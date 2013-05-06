@@ -58,6 +58,7 @@ class LogActionsComponent extends Component {
         parent::beforeRender($controller);
         if(in_array($controller->action, $this->log_actions)) {
             
+            debug($controller->response->statusCode());
             $log = array(
                 'Log' => array(
                     'id' => $this->log_id,
