@@ -81,26 +81,28 @@ class NotificationComponent extends Component {
         );
         $notification_users = array();
         $model = $this->getModel($type);
-        debug($model->belongsTo);
-        die();
-        $element = $model->find('first', array(
-            'conditions' => array(
-                $model->alias . '.' . $model->primaryKey => $id
-            ),
-            'associations' => array(
-                'User' => array(
-                    'associations' => array(
-                        'Supervisor' => array("unArray_if_single_value"),
-                        'Team' => array(
-                            "unArray_if_single_value",
-                            'associations' => array(
-                                'Student'
+        if(isset($model->belongsTo['User'])){
+            $element = $model->find('first', array(
+                'conditions' => array(
+                    $model->alias . '.' . $model->primaryKey => $id
+                ),
+                'associations' => array(
+                    'User' => array(
+                        'associations' => array(
+                            'Supervisor' => array("unArray_if_single_value"),
+                            'Team' => array(
+                                "unArray_if_single_value",
+                                'associations' => array(
+                                    'Student'
+                                )
                             )
                         )
                     )
                 )
-            )
-        ));
+            ));
+            debug($element);
+            die();
+        }
         switch ($type) {
             case 'ActivityLog':
                 $this->ActivityLog = new ActivityLog();
