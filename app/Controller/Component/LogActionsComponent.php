@@ -54,7 +54,7 @@ class LogActionsComponent extends Component {
                     'result' => $this->action_result
                 )
             );
-            
+            debug($log);die();
             $this->Log = new Log();
             $saved = $this->Log->save($log);
             
