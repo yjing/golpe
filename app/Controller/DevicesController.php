@@ -46,7 +46,7 @@ class DevicesController extends RESTController {
         
         $data = json_decode($this->request->input(), true);
         if($data) {
-            $props = Set::extract('/Device/DeviceProperty', $data);
+            $props = Set::extract('/DeviceProperty', $data);
             debug($props);die();
             $this->Device->getDataSource()->begin();
             $saved = $this->Device->save($data);
