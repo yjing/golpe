@@ -20,7 +20,6 @@ abstract class RESTController extends AppController {
         $this->_authorization = $this->_normalize(Configure::read("APPCONFIG.authorization." . $this->name));
         $this->_roles = Configure::read("APPCONFIG.roles");
         debug($this->_authorization);
-        die();
     }
     
     private function _normalize($array) {
@@ -55,6 +54,10 @@ abstract class RESTController extends AppController {
         
         $ret = false;
         if(is_array($this->_authorization)) {
+            
+            $action_level = Set::get($this->_authorization, $this->action);
+            debug($action_level);die();
+            
             if (isset($this->_authorization[$this->action])) {
                 $action_auth = $this->_authorization[$this->action];
                 if(is_array($action_auth)) {
