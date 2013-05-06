@@ -76,14 +76,24 @@ abstract class RESTController extends AppController {
                         $ret = FALSE;
                     }
                 } else {
-                    $ret = $action_level;
+                    if(is_bool($action_level)) {
+                        $ret = $action_level;
+                    } elseif (is_string($action_level)) {
+                        $ret = ($action_level == $user_role);
+                    }
+                    $ret = FALSE;
                 }
             } else {
                 $ret = FALSE;
             }
             
         } else {
-            $ret = $this->_authorization;
+            if(is_bool($this->_authorization)) {
+                $ret = $this->_authorization;
+            } elseif (is_string($this->_authorization)) {
+                $ret = ($this->_authorization == $user_role);
+            }
+            $ret = FALSE;
         }
         
         if(!$ret) {
