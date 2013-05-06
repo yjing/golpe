@@ -9,18 +9,18 @@ class AppJSONExceptionHandler {
         $err = array(
             'message' => AppJSONExceptionHandler::_parseMessage($error->getMessage())
         );
-        
-        if(Configure::read('debug') > 0) {
-            $err['file'] = $error->getFile();
-            $err['line'] = $error->getLine();
-            $err['trace'] = array();
-            
-            $t = $error->getTrace();
-            foreach ($t as $value) {
-                $err['trace'][] = $value;
-            }
-        }
-        
+//        
+//        if(Configure::read('debug') > 0) {
+//            $err['file'] = $error->getFile();
+//            $err['line'] = $error->getLine();
+//            $err['trace'] = array();
+//            
+//            $t = $error->getTrace();
+//            foreach ($t as $value) {
+//                $err['trace'][] = $value;
+//            }
+//        }
+//        
         echo json_encode($err);
         
     }
