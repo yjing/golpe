@@ -8,9 +8,7 @@ class ActivityLogsController extends RESTController {
     public $components = array(
         'Session', 
         'RequestHandler', 
-        'LogActions' => array(
-//            'log_actions' => array('index', 'view')
-        ), 
+        'LogActions',
         'Notification' => array('test'=>'TEST'));
     
     public function beforeFilter() {
