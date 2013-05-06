@@ -11,10 +11,7 @@ App::import('Controller', 'REST');
 
 class MediaController extends RESTController {
 
-    
-    public function beforeFilter() {
-        parent::beforeFilter();
-    }
+    public $components = array('LogActions');
     
     public function index() {
         parent::index();
@@ -35,6 +32,7 @@ class MediaController extends RESTController {
         $this->Media->recursive = -1;
         $result = $this->Media->findById($id);
         $this->_setResponseJSON($result);
+        $this->LogActions->setActionResult(count($result) == 1);
     }
     
     public function download($id = null) {
