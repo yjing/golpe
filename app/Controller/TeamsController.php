@@ -46,29 +46,32 @@ class TeamsController extends RESTController {
 
     
     public function add() {
-        
-        $data = Set::remove($this->request->data, 'Team.id');
-        $project_id = $data['Team']['project_id'];
-        
-        $this->Project->id = $project_id;
-        if($this->Project->exists()) {
-            
-            $saved = $this->Team->save($data);
-            if($saved) {
-                $saved = $this->Team->find('first', array(
-                    'conditions' => array(
-                        'Team.id' => $saved['Team']['id']
-                    ),
-                    'associations' => array(
-                        'Student' => array(
-                            'fields' => array('id', 'username')
+        if(isset($this->request->data)) {
+            $data = Set::remove($this->request->data, 'Team.id');
+            $project_id = $data['Team']['project_id'];
+
+            $this->Project->id = $project_id;
+            if($this->Project->exists()) {
+
+                $saved = $this->Team->save($data);
+                if($saved) {
+                    $saved = $this->Team->find('first', array(
+                        'conditions' => array(
+                            'Team.id' => $saved['Team']['id']
+                        ),
+                        'associations' => array(
+                            'Student' => array(
+                                'fields' => array('id', 'username')
+                            )
                         )
-                    )
-                ));
+                    ));
+                }
+
+            } else {
+                throw new BadRequestException("Project doesn't exists.");
             }
-            
         } else {
-            throw new BadRequestException("Project doesn't exists.");
+            throw new BadRequestException("Team: wrong data format.");
         }
         $this->_setResponseJSON($saved);
     }
