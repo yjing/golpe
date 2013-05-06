@@ -100,7 +100,6 @@ abstract class RESTController extends AppController {
             
         }
         
-        $this->logs['resource_id'] = $id;
     }
 
     public function add() {
@@ -110,8 +109,6 @@ abstract class RESTController extends AppController {
             $this->_ReportMethodNotAllowed("POST", 'add');
             
         }
-        
-        $this->logs['resource_id'] = null;
         
     }
 
@@ -123,7 +120,6 @@ abstract class RESTController extends AppController {
             
         }
         
-        $this->logs['resource_id'] = $id;
     }
 
     public function edit($id = null) {
@@ -134,7 +130,6 @@ abstract class RESTController extends AppController {
             
         }
         
-        $this->logs['resource_id'] = $id;
     }
 
     public function delete($id = null) {
@@ -145,7 +140,6 @@ abstract class RESTController extends AppController {
             
         }
         
-        $this->logs['resource_id'] = $id;
     }
     
     
