@@ -69,9 +69,7 @@ class LogActionsComponent extends Component {
                     'result' => $this->action_user_result && ( $controller->response->statusCode() < 300 )
                 )
             );
-            debug($log);
-            $saved = $this->Log->save($log);
-            debug($saved);
+            $this->Log->save($log);
         }
     }
     
