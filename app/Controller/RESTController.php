@@ -200,7 +200,7 @@ abstract class RESTController extends AppController {
     
     protected function _ReportValidationErrors($errors){
         $this->response->statusCode(400);
-        $this->_setResponseJSON($errors);
+        $this->_setResponseJSON(array('errors' => $errors));
     }
 
 }
