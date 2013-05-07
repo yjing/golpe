@@ -116,7 +116,7 @@ class UsersController extends RESTController {
                 if($saved) {
                     
                     if(!empty($profile)) {
-                        $profile = Set::insert($profile, 'user_id', $saved['User']['id']);
+                        $profile = Set::insert($profile, 'user_id', $id);
                         $this->Profile->set($profile);
                         $saved_profile = $this->User->save($profile);
 
