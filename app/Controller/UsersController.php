@@ -37,7 +37,7 @@ class UsersController extends RESTController {
             // REMOVE EVENTUAL CLIENT PROVIDED USER.ID
             $data = Set::remove($this->request->data, 'User.id');
             $profile = Set::get($data, '/User/Profile');
-            
+            debug($profile);
             // DATA VALIDATION
             $validation_errors = array();
             $this->User->set($data);
