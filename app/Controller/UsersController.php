@@ -235,13 +235,7 @@ class UsersController extends RESTController {
                 ),
                 'Supervisor' => array(
                     "unArray_if_single_value",
-                    "fields" => array('id', 'username', 'role'),
-                    'associations' => array(
-                        'Supervisor' => array(
-                            "unArray_if_single_value",
-                            "fields" => array('id', 'username', 'role')
-                        )
-                    )
+                    "fields" => array('id', 'username', 'role')
                 )
             )
         ));
