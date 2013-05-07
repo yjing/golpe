@@ -184,10 +184,9 @@ class UsersController extends RESTController {
                 )
             )
         ));
-        $result = Set::insert($result, 'User.password', '*****');
-        if(isset($result['User']['Supervisor']) && count($result['User']['Supervisor'])>0) {
-            $result = Set::insert($result, 'User.Supervisor.password', '*****');
-        }
+        $result = Set::remove($result, 'User.password');
+        $result = Set::remove($result, 'User.Supervisor.password');
+        $result = Set::remove($result, 'User.{n}.Supervisor.password');
         return $result;
     }
     
@@ -214,10 +213,9 @@ class UsersController extends RESTController {
             )
         ));
         
-        $result = Set::insert($result, '{n}.User.password', '*****');
-        if(isset($result['User']['Supervisor']) && count($result['User']['Supervisor'])>0) {
-            $result = Set::insert($result, '{n}.User.Supervisor.password', '*****');
-        }
+        $result = Set::remove($result, '{n}.User.password');
+        $result = Set::remove($result, '{n}.User.Supervisor.password');
+        $result = Set::remove($result, '{n}.User.{n}.Supervisor.password');
         return $result;
     }
 
