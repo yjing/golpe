@@ -18,9 +18,14 @@ class User extends AssociativeModel {
 
     public $validate = array(
         'username' => array(
-            'first' => array (
+            'lenght' => array (
                 'rule'    => array('minLength', 3),
-                'message' => 'Usernames must be at least 3 characters long.'
+                'message' => 'Usernames must be at least 3 characters long.',
+                'last' => false
+            ),
+            'format' => array(
+                'rule' => 'alphaNumeric',
+                'message' => 'Only alphabets and numbers allowed'
             ),
             'uniqueness' => array (
                 'rule'    => 'isUnique',
@@ -28,8 +33,12 @@ class User extends AssociativeModel {
             )
         ),
         'password' => array(
-            'rule'    => array('minLength', 3),
-            'message' => 'Usernames must be at least 3 characters long.'
+            'rule'    => array('minLength', 6),
+            'message' => 'Password must be at least 6 characters long.'
+        ),
+        'email' => array(
+            'rule'    => array('email'),
+            'message' => 'Password must be at least 6 characters long.'
         ),
         'role' => array(
             'allowedChoice' => array(
