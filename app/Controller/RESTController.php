@@ -112,63 +112,27 @@ abstract class RESTController extends AppController {
     }
 
     public function index() {
-      
-        if (!$this->request->is('get')) {
-            
-            throw new MethodNotAllowedException();
-            
-        }
-        
+        $this->requireMethod('get');
     }
 
     public function view($id = null) {
-      
-        if (!$this->request->is('get')) {
-            
-            throw new MethodNotAllowedException();
-            
-        }
-        
+        $this->requireMethod('get');
     }
 
     public function add() {
-      
-        if (!$this->request->is('post')) {
-            
-            throw new MethodNotAllowedException();
-            
-        }
-        
+        $this->requireMethod('post');
     }
 
     public function update($id = null) {
-        
-        if (!$this->request->is('post')) {
-            
-            throw new MethodNotAllowedException();
-            
-        }
-        
+        $this->requireMethod('post');
     }
 
     public function edit($id = null) {
-        
-        if (!$this->request->is('put')) {
-            
-            throw new MethodNotAllowedException();
-            
-        }
-        
+        $this->requireMethod('put');
     }
 
     public function delete($id = null) {
-        
-        if (!$this->request->is('delete')) {
-            
-            throw new MethodNotAllowedException();
-            
-        }
-        
+        $this->requireMethod('delete');
     }
     
     /**
@@ -219,8 +183,14 @@ abstract class RESTController extends AppController {
     }
     
     /**
-     * RESPONSE HELPERS: 
+     * HELPERS: 
      */
+    private function requireMethod($method) {
+        if (!$this->request->is($method)) {
+            throw new MethodNotAllowedException();
+        }
+    }
+    
     protected function _setResponseJSON($content) {
         $this->set(array(
             'content' => $content,
@@ -228,9 +198,6 @@ abstract class RESTController extends AppController {
         ));
     }
     
-    /**
-     * ERROR HANDLERS HELPERS:
-     */    
     protected function _ReportValidationErrors($errors){
         throw new BadRequestException( json_encode( array( 'errors' => $errors ) ) );
     }
