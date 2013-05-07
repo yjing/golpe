@@ -8,10 +8,9 @@ class Project extends AssociativeModel {
     public $validate = array(
         'name' => array(
             'requiredName' => array (
-                'rule' => array(),
                 'required' => true,
                 'allowEmpty' => true,
-                'message' => 'Usernames must be at least 3 characters long.'
+                'message' => 'Project name must be present.'
             )
         )
     );
