@@ -42,31 +42,21 @@ class ProjectsController extends RESTController {
         parent::update($id);
 
         if ($this->request->data) {
+            $data = Set::remove($this->request->data, 'Project.id');
+            
             $this->Project->id = $id;
-            if ($this->Project->exists()) {
-                $data = Set::remove($this->request->data, 'Project.id');
-                $saved = $this->Project->save($data);
-                if ($saved) {
-                    $saved = $this->Project->find('first', array(
-                        'conditions' => array(
-                            'Project.id' => $id
-                        ),
-                        'associations' => array(
-                            'Team' => array(
-                                'associations' => array(
-                                    'Student' => array(
-                                        'fields' => array('id', 'username')
-                                    )
-                                )
-                            )
-                        )
-                            ));
-                }
-            } else {
-                throw new BadRequestException("Project doesn't exists.");
+            if (!$this->Project->exists()) {
+                throw new BadRequestException();
             }
+            
+            if ($this->Project->save($data)) {
+                $this->_setResponseJSON( $this->getDafaultFormattedProject($this->Project->id, false) );
+            } else {
+                $this->_ReportDataValidationErrors( array( 'Project' => $this->Project->validationErrors ) );
+            }
+            
         } else {
-            throw new BadRequestException("Project: wrong data format.");
+            throw new BadRequestException();
         }
         $this->_setResponseJSON($saved);
     }
