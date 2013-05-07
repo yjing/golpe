@@ -17,7 +17,7 @@ class ProjectsController extends RESTController {
     public function view($id = null) {
         parent::view($id);
 
-        $results = $this->getDafaultFormattedProject($id, true);
+        $results = $this->getDafaultFormattedProject($id);
         $this->_setResponseJSON($results);
     }
 
@@ -118,7 +118,7 @@ class ProjectsController extends RESTController {
         
     }
     
-    private function getDafaultFormattedProject($id, $show_activity_logs = false) {
+    private function getDafaultFormattedProject($id, $show_teams = true) {
         $options =  array(
             'conditions' => array( 'Project.id' => $id ),
             'recursive' => -1
