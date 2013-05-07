@@ -17,7 +17,6 @@ class ActivityLogsController extends RESTController {
         
         $user = $this->Auth->user();
         $role = $user['role'];
-        $team = $this->User->getTeam($user['id']);
         
         $mode = "";
         $modes = $this->_roles = Configure::read("APPCONFIG.activity_logs_modes");
