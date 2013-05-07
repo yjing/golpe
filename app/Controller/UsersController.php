@@ -87,6 +87,64 @@ class UsersController extends RESTController {
     }
 
     public function update($id = null) {
+        parent::update();
+        
+        $data = $this->request->data;
+        if($data) {
+            // REMOVE EVENTUAL CLIENT PROVIDED USER.ID
+            $data = Set::remove($this->request->data, 'User.id');
+            $profile = Set::get($data, '/User/Profile');
+            
+            // DATA VALIDATION
+            $validation_errors = array();
+            $this->User->id = $id;
+            $this->User->set($data);
+            if(!$this->User->validates()) {
+                $validation_errors['User'] = $this->User->validationErrors;
+            }
+            if(!empty($profile)) {
+                $this->Profile->set($profile);
+                if(!$this->Profile->validates()) {
+                    $validation_errors['User']['Profile'] = $this->Profile->validationErrors;
+                }
+            }
+            debug($validation_errors);die();
+            if(empty($validation_errors)) {
+                $this->User->getDataSource()->begin();
+                $saved = $this->User->save($data);
+                
+                if($saved) {
+                    
+                    if(!empty($profile)) {
+                        $profile = Set::insert($profile, 'user_id', $saved['User']['id']);
+                        $this->Profile->set($profile);
+                        $saved_profile = $this->User->save($profile);
+
+                        if(!$saved_profile) {
+                            $this->User->getDataSource()->rollback();
+                            throw new InternalErrorException();
+                        }
+                    }
+                    
+                    $this->User->getDataSource()->commit();
+                    $saved = $this->getDafaultFormattedUser($saved['User']['id'], FALSE);
+                    $this->_setResponseJSON($saved);
+                    
+                } else {
+                    $this->User->getDataSource()->rollback();
+                    throw new InternalErrorException();
+                }
+            } else {
+                $this->_ReportDataValidationErrors($validation_errors);
+            }
+            
+        } else {
+            throw new BadRequestException();
+        }
+        
+    }
+
+    public function updateOLD($id = null) {
         parent::update($id);
         
         $data = $this->request->data;
