@@ -4,7 +4,7 @@ App::import('Controller', 'REST');
 
 class TeamsController extends RESTController {
 
-    public $uses = array('Project', 'Team', 'TeamUser');
+    public $uses = array('Project', 'Team', 'TeamUser', 'User');
 
     public function index() {
         parent::index();
@@ -89,6 +89,12 @@ class TeamsController extends RESTController {
     public function addMember($team_id, $user_id) {
         parent::add();
         
+        $this->Team->id = $team_id;
+        $this->User->id = $user_id;
+        if(!$this->Team->exists() || !$this->User->exists()) {
+            throw new BadRequestException();
+        }
+        
         $saved = $this->TeamUser->find('first', array(
             'recursive' => -1,
             'conditions' => array(
@@ -96,7 +102,7 @@ class TeamsController extends RESTController {
                 'TeamUser.team_id' => $team_id,
             )
         ));
-        if(!$saved) {
+        if(!$saved || count($saved) == 0) {
             $data = array(
                 'TeamUser' => array(
                     'team_id' => $team_id,
@@ -104,26 +110,15 @@ class TeamsController extends RESTController {
                 )
             );
 
-            try {
-                $saved = $this->TeamUser->save($data);
-            } catch (Exception $e) {
+            $saved = $this->TeamUser->save($data);
+            if($saved) {
+                $saved = $this->getDafaultFormattedTeam($team_id, false);
+            } else {
                 throw new InternalErrorException();
             }
-            
-            if($saved) {
-                $saved = $this->Team->find('first', array(
-                    'conditions' => array(
-                        'Team.id' => $team_id
-                    ),
-                    'associations' => array(
-                        'Student' => array(
-                            'fields' => array('id', 'username')
-                        )
-                    )
-                ));
-            }
         }
-        $this->_setResponseJSON($saved);
+        
+        $this->_setResponseJSON( $this->getDafaultFormattedTeam($team_id, false) );
         
     }
     
