@@ -63,13 +63,12 @@ class UsersController extends RESTController {
 
     public function update($id = null) {
         parent::update($id);
-        debug($this->request->data);
-        debug(json_decode($this->request->input(), true));
-        if($this->request->data) {
+        
+        $data = json_decode($this->request->input(), true);
+        if($data) {
             
             $this->User->id = $id;
             if($this->User-exists()) {
-                $data = $this->request->data;
                 $data = Set::remove($data, 'User.username');
                 
                 $saved = $this->User->save($data);
