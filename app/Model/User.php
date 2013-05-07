@@ -18,6 +18,7 @@ class User extends AssociativeModel {
 
     public $validate = array(
         'username' => array(
+            'req' => array('rule'=>'required'),
             'lenght' => array (
                 'rule'    => array('minLength', 3),
                 'message' => 'Usernames must be at least 3 characters long.',
@@ -33,10 +34,12 @@ class User extends AssociativeModel {
             )
         ),
         'password' => array(
+            'req' => array('rule'=>'required'),
             'rule'    => array('minLength', 6),
             'message' => 'Password must be at least 6 characters long.'
         ),
         'email' => array(
+            'req' => array('rule'=>'required'),
             'rule'    => array('email'),
             'message' => 'Password must be at least 6 characters long.',
             'allowEmpty' => false
