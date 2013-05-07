@@ -15,7 +15,7 @@ class UsersController extends RESTController {
         parent::index();
         
         $this->User->recursive = 0;
-        $result = $this->getDafaultFormattedUsers(true);
+        $result = $this->getDafaultFormattedUsers();
         $this->_setResponseJSON($result);
         
     }
@@ -48,7 +48,7 @@ class UsersController extends RESTController {
                 
                 if($saved_p) {
                     $this->User->getDataSource()->commit();
-                    $saved = $this->getDafaultFormattedUser($saved['User']['id']);
+                    $saved = $this->getDafaultFormattedUser($saved['User']['id'], false);
                 } else {
                     $this->User->getDataSource()->rollback();
                     $saved = array();
@@ -90,7 +90,7 @@ class UsersController extends RESTController {
                         }
                     }
                     
-                    $saved = $this->getDafaultFormattedUser($id);
+                    $saved = $this->getDafaultFormattedUser($id, false);
                     
                 }
                 
@@ -130,8 +130,8 @@ class UsersController extends RESTController {
             
             
             $this->_setResponseJSON(array(
-                'logged'=>$loggedIn, 
-                'User'=>$this->Auth->user()
+                    'logged'=>$loggedIn,    
+                    'User'=>$this->Auth->user()
                 )
             );
         } else {
