@@ -76,7 +76,7 @@ class UsersController extends RESTController {
                     throw new InternalErrorException();
                 }
             } else {
-                $this->_ReportValidationErrors($errors);
+                $this->_ReportValidationErrors($validation_errors);
             }
             
         } else {
