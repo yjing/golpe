@@ -44,24 +44,20 @@ class UsersController extends RESTController {
             if(!$this->User->validates()) {
                 $validation_errors['User'] = $this->User->validationErrors;
             }
-            if(!empty($profile)) {
+            if(!empty($profile)) {debug('not empty');
                 $this->Profile->set($profile);
                 if(!$this->Profile->validates()) {
                     $validation_errors['User']['Profile'] = $this->Profile->validationErrors;
                 }
             }
-            
-            debug($validation_errors);
-            debug(empty($validation_errors));die();
-            
-            $this->User->getDataSource()->begin();
-            
-            $this->Profile->validates();
-            debug($this->Profile->validationErrors);
-            debug($this->Profile->invalidFields());
             die();
+            if(empty($validation_errors)) {
+                $this->User->getDataSource()->begin();
+                $saved = $this->User->save($data);
+            }
             
-            $saved = $this->User->save($data);
+            
+            
             
             if($saved) {
                 
