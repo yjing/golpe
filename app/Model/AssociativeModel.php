@@ -164,10 +164,13 @@ abstract class AssociativeModel extends AppModel {
         $join = array(
             'table' => $association_config['joinTable'],
             'alias' => $association_config['with'],
-            'type' => 'LEFTs',
+            'type' => 'LEFT',
             'conditions' => $association_config['className'] . '.' . $associated_model->primaryKey 
                 . ' = ' . $association_config['with'] . '.' . $association_config['associationForeignKey']
         );
+        if($associated_name == 'ActivityLog'){
+            $join['type'] = 'LEFTs';
+        }
         $elem_id = $element[$this->alias][$this->primaryKey];
         if(is_string($elem_id)){
             $elem_id = "'$elem_id'";
