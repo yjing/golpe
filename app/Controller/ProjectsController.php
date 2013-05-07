@@ -9,17 +9,18 @@ class ProjectsController extends RESTController {
     public function index() {
         parent::index();
 
-        $results = $this->Project->find('all', array(
-            'associations' => array(
-                'Team' => array(
-                    'associations' => array(
-                        'Student' => array(
-                            'fields' => array('id', 'username')
-                        )
-                    )
-                )
-            )
-                ));
+        $results = $this->getDafaultFormattedProjects(true);
+//        = $this->Project->find('all', array(
+//            'associations' => array(
+//                'Team' => array(
+//                    'associations' => array(
+//                        'Student' => array(
+//                            'fields' => array('id', 'username')
+//                        )
+//                    )
+//                )
+//            )
+//                ));
 
         $this->_setResponseJSON($results);
     }
@@ -119,6 +120,47 @@ class ProjectsController extends RESTController {
         }
 
         $this->_setResponseJSON(array('deleted' => $deleted));
+    }
+    
+    
+    private function getDafaultFormattedProjects($show_teams = false) {
+        $options =  array(
+            'recursive' => -1
+        );
+        if($show_teams) {
+            $options['associations'] = array(
+                'Team' => array(
+                    'associations' => array(
+                        'Student' => array(
+                            'fields' => array('id', 'username')
+                        )
+                    )
+                )
+            );
+        }
+        
+        return $this->Project->find('all',$options);
+        
+    }
+    
+    private function getDafaultFormattedProject($id, $show_activity_logs = false) {
+        $options =  array(
+            'conditions' => array( 'Project.id' => $id ),
+            'recursive' => -1
+        );
+        if($show_teams) {
+            $options['associations'] = array(
+                'Team' => array(
+                    'associations' => array(
+                        'Student' => array(
+                            'fields' => array('id', 'username')
+                        )
+                    )
+                )
+            );
+        }
+        
+        return $this->Project->find('all',$options);
     }
 
 }
