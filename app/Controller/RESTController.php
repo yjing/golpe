@@ -198,9 +198,9 @@ abstract class RESTController extends AppController {
         ));
     }
     
-    protected function _ReportValidationErrors($errors){
+    protected function _ReportDataValidationErrors($errors){
         $this->response->statusCode(400);
-        $this->_setResponseJSON(array('errors' => $errors));
+        $this->_setResponseJSON(array('data_validation_errors' => $errors));
     }
 
 }
