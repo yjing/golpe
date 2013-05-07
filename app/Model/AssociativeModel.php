@@ -126,7 +126,7 @@ abstract class AssociativeModel extends AppModel {
             $association_config['className'] . '.' . $association_config['foreignKey'] . ' = ' . $elem_id
         );
         if($associated_model->alias == 'ActivityLog'){
-            $conditions[] = 'skdalskaj';
+            debug($queryData['fields']);
         }
         
         $options = array(
