@@ -41,42 +41,14 @@ class UsersController extends RESTController {
             $this->User->getDataSource()->begin();
             $saved = $this->User->save($data);
             if($saved) {
+                
                 $profile = array('Profile' => Set::get($data, '/User/Profile'));
                 $profile = Set::insert($profile, 'Profile.user_id', $saved['User']['id']);
-                
                 $saved_p = $this->Profile->save($profile);
                 
                 if($saved_p) {
                     $this->User->getDataSource()->commit();
-                    
-                    $saved = $this->User->find('first', array(
-                        'conditions' => array('User.id' => $saved['User']['id']),
-                        'associations' => array(
-                            'Profile'
-                            ,'ActivityLog' => array(
-                                "unArray_if_single_value",
-                                "fields" => array('id', 'title', 'content')
-                            ),
-                            'Team' => array(
-                                'fields' => array('id', 'name', 'project_id'),
-                                'associations' => array(
-                                    'Project' => array(
-                                        'fields' => array('id', 'name')
-                                    )
-                                )
-                            ),
-                            'Supervisor' => array(
-                                "unArray_if_single_value",
-                                "fields" => array('id', 'username', 'role'),
-                                'associations' => array(
-                                    'Supervisor' => array(
-                                        "unArray_if_single_value",
-                                        "fields" => array('id', 'username', 'role')
-                                    )
-                                )
-                            )
-                        )
-                    ));
+                    $saved = $this->getDafaultFormattedUser($saved['User']['id']);
                 } else {
                     $this->User->getDataSource()->rollback();
                     $saved = array();
@@ -86,7 +58,7 @@ class UsersController extends RESTController {
         } else {
             throw new BadRequestException("User: wrong data format.");
         }
-        $this->_setResponseJSON(Set::insert($saved, 'User.password', '*****'));
+        $this->_setResponseJSON($saved);
     }
 
     public function update($id = null) {
@@ -96,25 +68,7 @@ class UsersController extends RESTController {
     
     public function edit($id = null) {
         parent::edit($id);
-        
-        $this->User->id = $id;
-        if (!$this->User->exists()) {
-            $this->_ReportNotExistingUser($id);
-        }
-
-        $this->User->set($this->request->input('json_decode'));
-        if ($this->User->validates()) {
-
-            try {
-                $user = $this->User->save();
-            } catch (Exception $exc) {
-                $this->_ReportError($exc);
-            }
-            $this->_setResponseJSON(Set::remove($user, 'User.password'));
-
-        } else {
-            $this->_ReportValidationErrors($this->User->validationErrors);
-        }
+        $this->_ReportUnsupportedMethod();
     }
 
     public function delete($id = null) {
@@ -124,11 +78,8 @@ class UsersController extends RESTController {
         if (!$this->User->exists()) {
             $this->_ReportNotExistingUser($id);
         }
-        if ($this->User->delete()) {
-            $this->_setResponseJSON('User deleted');
-        } else {
-            $this->_setResponseJSON('User Not deleted');
-        }
+        $deleted = $this->User->delete();
+        $this->_setResponseJSON(array('deleted' => $deleted));
         
     }
 
