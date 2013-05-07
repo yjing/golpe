@@ -152,15 +152,11 @@ class UsersController extends RESTController {
      * HELPERS 
      */
     
-    private function getDafaultFormattedUser($id) {
-        $result = $this->User->find('first', array(
+    private function getDafaultFormattedUser($id, $show_activity_logs = true) {
+        $options = array(
             'conditions' => array('User.id' => $id),
             'associations' => array(
-                'Profile'
-                ,'ActivityLog' => array(
-                    "unArray_if_single_value",
-                    "fields" => array('id', 'title', 'content')
-                ),
+                'Profile',
                 'Team' => array(
                     'fields' => array('id', 'name', 'project_id'),
                     'associations' => array(
@@ -173,8 +169,16 @@ class UsersController extends RESTController {
                     "unArray_if_single_value",
                     "fields" => array('id', 'username', 'role')
                 )
-            )
-        ));
+            ));
+        
+        if($show_activity_logs) {
+            $options['associations']['ActivityLog'] = array(
+                "unArray_if_single_value",
+                "fields" => array('id', 'title', 'content')
+            );
+        }
+        
+        $result = $this->User->find('first', $options);
         $result = Set::remove($result, 'User.password');
         $result = Set::remove($result, 'User.Supervisor.password');
         $result = Set::remove($result, 'User.{n}.Supervisor.password');
