@@ -39,7 +39,7 @@ class UsersController extends RESTController {
             
             $this->User->getDataSource()->begin();
             
-            $this->Profile->set($data);
+            $this->Profile->set(Set::get($data, '/User/Profile'));
             $this->Profile->validates();
             debug($this->Profile->validationErrors);
             debug($this->Profile->invalidFields());
