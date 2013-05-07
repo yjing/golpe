@@ -9,7 +9,7 @@ class Project extends AssociativeModel {
         'name' => array(
             'requiredName' => array (
                 'required' => true,
-                'allowEmpty' => true,
+                'allowEmpty' => false,
                 'message' => 'Project name must be present.'
             )
         )
