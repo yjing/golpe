@@ -9,7 +9,8 @@ class Project extends AssociativeModel {
         'name' => array(
             'requiredName' => array (
                 'required' => true,
-                'message' => 'Project name must be at least present.'
+                'allowEmpty' => false,
+                'message' => 'Usernames must be at least 3 characters long.'
             )
         )
     );
