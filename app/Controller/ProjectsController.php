@@ -26,29 +26,16 @@ class ProjectsController extends RESTController {
 
         if ($this->request->data) {
             $data = Set::remove($this->request->data, 'Project.id');
-            $saved = $this->Project->save($data);
-
-            if ($saved) {
-                $saved = $this->Project->find('first', array(
-                        'conditions' => array(
-                            'Project.id' => $saved['Project']['id']
-                        ),
-                        'associations' => array(
-                            'Team' => array(
-                                'associations' => array(
-                                    'Student' => array(
-                                        'fields' => array('id', 'username')
-                                    )
-                                )
-                            )
-                        )
-                    )
-                );
+            
+            if ($this->Project->save($data)) {
+                $this->_setResponseJSON( $this->getDafaultFormattedProject($this->Project->id, false) );
+            } else {
+                $this->_ReportDataValidationErrors( array( 'Project', $this->Project->validation_errors ) );
             }
+            
         } else {
-            throw new BadRequestException("Project: wrong data format.");
+            throw new BadRequestException();
         }
-        $this->_setResponseJSON($saved);
     }
 
     public function update($id = null) {
@@ -135,7 +122,7 @@ class ProjectsController extends RESTController {
             );
         }
         
-        return $this->Project->find('first',$options);
+        return $this->Project->find('first', $options);
     }
 
 }
