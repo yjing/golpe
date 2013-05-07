@@ -39,9 +39,9 @@ class User extends AssociativeModel {
             'message' => 'Password must be at least 6 characters long.'
         ),
         'email' => array(
-            'required' => true,
             'rule'    => array('email'),
-            'message' => 'Password must be at least 6 characters long.',
+            'message' => 'Insert a valid email',
+            'required' => true,
             'allowEmpty' => false
         ),
         'role' => array(
