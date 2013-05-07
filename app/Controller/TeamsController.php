@@ -9,7 +9,7 @@ class TeamsController extends RESTController {
     public function index() {
         parent::index();
 
-        $results = $this->getDafaultFormattedTeams(true);
+        $results = $this->getDafaultFormattedTeams();
         $this->_setResponseJSON($results);
         
     }
@@ -17,16 +17,12 @@ class TeamsController extends RESTController {
     public function view($id = null) {
         parent::view($id);
 
-        $results = $this->Team->find('first', array(
-            'conditions' => array(
-                'Team.id' => $id
-            ),
-            'associations' => array(
-                'Student' => array(
-                    'fields' => array('id', 'username')
-                )
-            )
-                ));
+        $this->Team->id = $id;
+        if (!$this->Team->exists()) {
+            throw new NotFoundException();
+        }
+        
+        $results = $this->getDafaultFormattedTeam($id);
 
         $this->_setResponseJSON($results);
     }
@@ -174,6 +170,23 @@ class TeamsController extends RESTController {
         }
         
         return $this->Team->find('all', $options);
+        
+    }
+    
+    private function getDafaultFormattedTeam($id, $show_students = true) {
+        $options =  array(
+            'conditions' => array( 'Team.id' => $id ),
+            'recursive' => -1
+        );
+        if($show_students) {
+            $options['associations'] = array(
+                'Student' => array(
+                    'fields' => array('id', 'username')
+                )
+            );
+        }
+        
+        return $this->Team->find('first', $options);
         
     }
     
