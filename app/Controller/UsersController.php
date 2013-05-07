@@ -53,14 +53,14 @@ class UsersController extends RESTController {
             
             if(empty($validation_errors)) {
                 $this->User->getDataSource()->begin();
-                $saved = $this->User->save($data);
+                $saved = $this->User->save();
                 
                 if($saved) {
                     
                     if(!empty($profile)) {
                         $profile = Set::insert($profile, 'user_id', $saved['User']['id']);
                         $this->Profile->set($profile);
-                        $saved_profile = $this->User->save($profile);
+                        $saved_profile = $this->Profile->save();
 
                         if(!$saved_profile) {
                             $this->User->getDataSource()->rollback();
@@ -111,14 +111,14 @@ class UsersController extends RESTController {
             
             if(empty($validation_errors)) {
                 $this->User->getDataSource()->begin();
-                $saved = $this->User->save($data);
+                $saved = $this->User->save();
                 
                 if($saved) {
                     
                     if(!empty($profile)) {
                         $profile = Set::insert($profile, 'user_id', $id);
                         $this->Profile->set($profile);
-                        $saved_profile = $this->User->save($profile);
+                        $saved_profile = $this->Profile->save();
 
                         if(!$saved_profile) {
                             $this->User->getDataSource()->rollback();
