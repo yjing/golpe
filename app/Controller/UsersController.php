@@ -37,8 +37,9 @@ class UsersController extends RESTController {
                 )
             )
         ));
-        $result = Set::remove($result, '{n}.User.password');
-        $result = Set::remove($result, '{n}.Supervisor.{n}.Supervisor.password');
+        $result = Set::remove($result, '{n}.password');
+//        $result = Set::remove($result, '{n}.User.password');
+//        $result = Set::remove($result, '{n}.Supervisor.{n}.Supervisor.password');
         $this->_setResponseJSON($result);
     }
 
