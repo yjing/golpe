@@ -121,7 +121,7 @@ class UsersController extends RESTController {
                         )
                     )
                 ));
-                $this->_setResponseJSON(Set::remove($saved, 'User.password'));
+                $this->_setResponseJSON(Set::insert($saved, 'User.password', '*****'));
             }
             
         } else {
