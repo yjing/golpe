@@ -123,7 +123,7 @@ abstract class AssociativeModel extends AppModel {
             $elem_id = "'$elem_id'";
         }
         $conditions = array(
-            $association_config['className'] . '.' . $association_config['foreignKey'] . ' = ' . $elem_id
+            $association_config['className'] . 'd.' . $association_config['foreignKey'] . ' = ' . $elem_id
         );
         
         $options = array(
@@ -168,10 +168,6 @@ abstract class AssociativeModel extends AppModel {
             'conditions' => $association_config['className'] . '.' . $associated_model->primaryKey 
                 . ' = ' . $association_config['with'] . '.' . $association_config['associationForeignKey']
         );
-        debug($associated_model->alias);
-        if($associated_model->alias == 'ActivityLog'){
-            $join['type'] = 'LEFTs';
-        }
         $elem_id = $element[$this->alias][$this->primaryKey];
         if(is_string($elem_id)){
             $elem_id = "'$elem_id'";
