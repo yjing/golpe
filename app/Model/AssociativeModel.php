@@ -125,8 +125,10 @@ abstract class AssociativeModel extends AppModel {
         $conditions = array(
             $association_config['className'] . '.' . $association_config['foreignKey'] . ' = ' . $elem_id
         );
-        if($associated_model->alias == 'ActivityLog'){
-            debug($queryData['fields']);
+        if(isset($queryData['fields'])){
+            $queryData['fields'][] = 'DISTINCT';
+        } else {
+            $queryData['fields'] = 'DISTINCT ' . $associated_model->alias . '.*';
         }
         
         $options = array(
