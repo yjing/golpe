@@ -125,8 +125,9 @@ abstract class AssociativeModel extends AppModel {
         $conditions = array(
             $association_config['className'] . '.' . $association_config['foreignKey'] . ' = ' . $elem_id
         );
+        
+        // ADD DISTINCT CLOUSE
         if(isset($queryData['fields'])){
-//            debug($queryData['fields']);die();
             $queryData['fields'][0] = 'DISTINCT ' . $queryData['fields'][0];
         } else {
             $queryData['fields'] = 'DISTINCT ' . $associated_model->alias . '.*';
