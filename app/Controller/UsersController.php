@@ -127,7 +127,7 @@ class UsersController extends RESTController {
                     }
                     
                     $this->User->getDataSource()->commit();
-                    $saved = $this->getDafaultFormattedUser($saved['User']['id'], FALSE);
+                    $saved = $this->getDafaultFormattedUser($id, FALSE);
                     $this->_setResponseJSON($saved);
                     
                 } else {
