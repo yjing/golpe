@@ -14,36 +14,37 @@ class DevicesController extends RESTController {
     public function index() {
         parent::index();
         
-        $result = $this->Device->find('all', array(
-            'fields' => array('id', 'user_id'),
-            'associations' => array(
-                'DeviceProperty' => array(
-                    'fields' => array('key', 'value')
-                )
-            )
-        ));
-        
+        $result = $this->getDafaultFormattedDevices();
         $this->_setResponseJSON($result);
     }
 
     public function view($id = null) {
         parent::view($id);
         
-        $result = $this->Device->find('first', array(
-            'conditions' => array('Device.id' => $id),
-            'fields' => array('id', 'user_id'),
-            'associations' => array(
-                'DeviceProperty' => array(
-                    'fields' => array('key', 'value')
-                )
-            )
-        ));
+        $this->Team->id = $id;
+        if(!$this->Team->exists()) {
+            throw new NotFoundException();
+        }
+        
+        $result = $this->getDafaultFormattedDevice($id);
         $this->_setResponseJSON($result);
+        
     }
 
     public function add() {
         parent::add();
-        
+        if (isset($this->request->data)) {
+            $data = Set::remove($this->request->data, 'Device.id');
+            $data['Device']['visibility_level'] = 'PRIVATE';
+            
+            $props = Set::expand($data, "/Device/DeviceProperty");
+            $this->DeviceProperty->set($props);
+            if(!$this->DeviceProperty->validates()) {
+                debug($this->DeviceProperty->validationErrors);
+            }
+            die();
+            
+        }
         $data = json_decode($this->request->input(), true);
         
         if($data) {
@@ -155,7 +156,30 @@ class DevicesController extends RESTController {
         throw new MethodNotAllowedException();
         
     }
-
+    
+    
+    private function getDafaultFormattedDevice($id) {
+        return $this->Device->find('all', array(
+            'conditions' => array( 'Device.id' => $id ),
+            'fields' => array('id', 'user_id'),
+            'associations' => array(
+                'DeviceProperty' => array(
+                    'fields' => array('key', 'value')
+                )
+            )
+        ));
+    }
+    
+    private function getDafaultFormattedDevices() {
+        return $this->Device->find('all', array(
+            'fields' => array('id', 'user_id'),
+            'associations' => array(
+                'DeviceProperty' => array(
+                    'fields' => array('key', 'value')
+                )
+            )
+        ));
+    }
 }
 
 ?>
