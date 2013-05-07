@@ -96,9 +96,10 @@ class UsersController extends RESTController {
             $this->User->getDataSource()->begin();
             $saved = $this->User->save($data);
             if($saved) {
-                $profile = Set::extract($data, '/User/Profile');
+                $profile = Set::extract($data, '/User/Profile/.');
                 $profile = Set::insert($data, 'Profile.user_id', $saved['User']['id']);
                 debug($profile);
+                $this->User->getDataSource()->rollback();die();
                 
                 $saved_p = $this->Profile->save($profile);
                 
