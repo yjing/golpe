@@ -79,13 +79,9 @@ class UsersController extends RESTController {
         }
         
         $query = "delete from users where id = $id";
-        $res = $this->User->query($query);
+        $deleted = $this->User->query($query);
         
-        $deleted = false;
-        if(isset($res) && count($res)>0){
-            $deleted = true;
-        }
-        $this->_setResponseJSON(array('deleted' => $deleted));
+        $this->_setResponseJSON(array('deleted'=>($deleted != false)));
         
     }
 
