@@ -20,13 +20,9 @@ class User extends AssociativeModel {
         'username' => array(
             'lenght' => array (
                 'rule'    => array('minLength', 3),
+                'required' => true,
                 'message' => 'Usernames must be at least 3 characters long.',
                 'last' => false
-            ),
-            'format' => array(
-                'rule' => 'alphaNumeric',
-                'required' => true,
-                'message' => 'Only alphabets and numbers allowed'
             ),
             'uniqueness' => array (
                 'rule'    => 'isUnique',
