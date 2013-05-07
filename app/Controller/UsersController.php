@@ -40,7 +40,7 @@ class UsersController extends RESTController {
             )
         ));
         
-        $result = Set::insert($saved, 'User.password', '*****');
+        $result = Set::insert($saved, '{n}.User.password', '*****');
         $result = Set::insert($result, '{n}.Supervisor.{n}.Supervisor.password', '*****');
         $this->_setResponseJSON($result);
     }
