@@ -31,12 +31,12 @@ Configure::write("APPCONFIG", array(
         ),
         "ActivityLogs" => array( 
             // Actions
-            "index" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR'),
-            "view" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR'),
+            "index" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR', 'ADMIN'),
+            "view" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR', 'ADMIN'),
             "add" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR'),
             "update" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR'),
             "edit" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR'),
-            "delete" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR'),
+            "delete" => array('STUDENT', 'TEAM_LEADER', 'SUPERVISOR', 'ADMIN'),
             "modes" => true
         ),
         "Comments" => true,
