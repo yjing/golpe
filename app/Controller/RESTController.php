@@ -13,7 +13,7 @@ abstract class RESTController extends AppController {
         parent::__construct($request, $response);
         if(!isset($this->components)){
             $this->components = array(RequestHandler);
-        } elseif (!in_array($this->components, 'RequestHandler')) {
+        } elseif (!in_array('RequestHandler', $this->components)) {
             $this->components[] = 'RequestHandler';
         }
     }
