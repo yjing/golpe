@@ -22,9 +22,9 @@ class User extends AssociativeModel {
                 'rule'    => array('minLength', 3),
                 'message' => 'Usernames must be at least 3 characters long.'
             ),
-            'second' => array (
-                'rule'    => array('minLength', 4),
-                'message' => 'Usernames must be at least 4 characters long.'
+            'uniqueness' => array (
+                'rule'    => 'isUnique',
+                'message' => 'This username has already been taken.'
             )
         ),
         'password' => array(
