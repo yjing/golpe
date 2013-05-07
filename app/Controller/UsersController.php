@@ -108,7 +108,7 @@ class UsersController extends RESTController {
                     $validation_errors['User']['Profile'] = $this->Profile->validationErrors;
                 }
             }
-            debug($validation_errors);die();
+            
             if(empty($validation_errors)) {
                 $this->User->getDataSource()->begin();
                 $saved = $this->User->save($data);
