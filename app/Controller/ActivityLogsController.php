@@ -109,31 +109,38 @@ class ActivityLogsController extends RESTController {
 
     public function view($id = null) {
         parent::view($id);
+        $this->ActivityLog->id = $id;
         
-        $al = $this->ActivityLog->find('first',
-            array(
-                'conditions' => array(
-                    'ActivityLog.id' => $id
-                ),
-                'recursive' => -1,
-                'associations' => array(
-                    'User' => array(
-                        'associations' => array(
-                            'Supervisor' => array()
-                        )
-                    ),
-                    'Media',
-                    'Comment'
-                )
-            )
-        );
-        
-        if(count($al) == 0) {
+        $result = null;
+        if(!$this->ActivityLog->exists()) {
             $this->response->statusCode(204);
         } else {
-            $this->_setResponseJSON($al);
+        
+            $result = $this->ActivityLog->find('first',
+                array(
+                    'conditions' => array(
+                        'ActivityLog.id' => $id
+                    ),
+                    'recursive' => -1,
+                    'associations' => array(
+                        'User' => array(
+                            'associations' => array(
+                                'Supervisor' => array()
+                            )
+                        ),
+                        'Media',
+                        'Comment'
+                    )
+                )
+            );
+
+            if(count($result) == 0) {
+                throw new UnauthorizedException();
+            }
         }
-        $this->LogActions->setActionResult(count($al) == 1);
+        
+        $this->_setResponseJSON($result);
+        $this->LogActions->setActionResult(count($result) == 1);
     }
 
     public function add() {
