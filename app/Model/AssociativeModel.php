@@ -123,8 +123,11 @@ abstract class AssociativeModel extends AppModel {
             $elem_id = "'$elem_id'";
         }
         $conditions = array(
-            $association_config['className'] . 'd.' . $association_config['foreignKey'] . ' = ' . $elem_id
+            $association_config['className'] . '.' . $association_config['foreignKey'] . ' = ' . $elem_id
         );
+        if($associated_model->alias == 'ActivityLog'){
+            $conditions[] = 'skdalskaj';
+        }
         
         $options = array(
             'conditions' => $conditions,
