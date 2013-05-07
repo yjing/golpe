@@ -91,20 +91,39 @@ class UsersController extends RESTController {
             $this->_CheckUniqueUsername($this->request->data['User']['username']);
             $data = Set::remove($this->request->data, 'User.id');
 
-            $this->User->create();
-            $this->User->set($data);
-            if ($this->User->validates()) {
-
-                try {
-                    $user = $this->User->save();
-                } catch (Exception $exc) {
-                    $this->_ReportError($exc);
-                }
-                $this->_setResponseJSON(Set::remove($user, 'User.password'));
-
-            } else {
-                $this->_ReportValidationErrors($this->User->validationErrors);
+            $saved = $this->User->save($data);
+            if($saved) {
+                $saved = $this->User->find('first', array(
+                    'conditions' => array('User.id' => $saved['User']['id']),
+                    'associations' => array(
+                        'Profile'
+                        ,'ActivityLog' => array(
+                            "unArray_if_single_value",
+                            "fields" => array('id', 'title', 'content')
+                        ),
+                        'Team' => array(
+                            'fields' => array('id', 'name', 'project_id'),
+                            'associations' => array(
+                                'Project' => array(
+                                    'fields' => array('id', 'name')
+                                )
+                            )
+                        ),
+                        'Supervisor' => array(
+                            "unArray_if_single_value",
+                            "fields" => array('id', 'username', 'role'),
+                            'associations' => array(
+                                'Supervisor' => array(
+                                    "unArray_if_single_value",
+                                    "fields" => array('id', 'username', 'role')
+                                )
+                            )
+                        )
+                    )
+                ));
+                $this->_setResponseJSON(Set::remove($saved, 'User.password'));
             }
+            
         } else {
             throw new BadRequestException("User: wrong data format.");
         }
@@ -203,7 +222,7 @@ class UsersController extends RESTController {
 
     private function _CheckUniqueUsername($username) {
         $user = $this->User->findByUsername($username);
-        if ($user) {
+        if ($user && count($user) > 0) {
             $message = array(
                 'error' => array(
                     'username' => "Username aready exists"
