@@ -58,12 +58,7 @@ class CommentsController extends RESTController {
 
     public function update($id = null) {
         parent::update($id);
-        
-        $this->_ReportUnsupportedMethod();
-        // LOGGING
-        $this->logs['result'] = false;
-        $this->logs['resource'] = 'Comment';
-        $this->logs['resource_id'] = $id;
+        throw new MethodNotAllowedException();
     }
 
     public function delete($id = null) {

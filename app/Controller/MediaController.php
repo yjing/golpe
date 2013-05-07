@@ -136,11 +136,8 @@ class MediaController extends RESTController {
         $this->Media->set($this->request->data);
         if ($this->Media->validates()) {
             
-            try {
-                $medium = $this->Media->save();
-            } catch (Exception $exc) {
-                $this->_ReportError($exc);
-            }
+            $medium = $this->Media->save();
+            
             $this->set(array(
                 'content' => $medium,
                 '_serialize' => 'content'
@@ -163,11 +160,8 @@ class MediaController extends RESTController {
         $this->Media->set($this->request->input('json_decode'));
         if ($this->Media->validates()) {
 
-            try {
-                $medium = $this->Media->save();
-            } catch (Exception $exc) {
-                $this->_ReportError($exc);
-            }
+            $medium = $this->Media->save();
+            
             $this->_setResponseJSON($medium);
 
         } else {

@@ -5,6 +5,7 @@ App::import('Controller', 'REST');
 class UsersController extends RESTController {
 
     public $uses = array('User', 'Profile');
+    public $components = array('Session');
     
     public function beforeFilter() {
         $this->Auth->allow(array('add', 'login', 'logout'));
@@ -134,7 +135,7 @@ class UsersController extends RESTController {
                 )
             );
         } else {
-            $this->_ReportMethodNotAllowed("POST", 'login');
+            throw new MethodNotAllowedException();
         }
     }
 

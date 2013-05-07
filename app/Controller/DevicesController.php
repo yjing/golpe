@@ -145,14 +145,14 @@ class DevicesController extends RESTController {
     public function edit($id = null) {
         parent::edit($id);
         
-        $this->_ReportUnsupportedMethod();
+        throw new MethodNotAllowedException();
         
     }
 
     public function delete($id = null) {
         parent::delete($id);
         
-        $this->_ReportUnsupportedMethod();
+        throw new MethodNotAllowedException();
         
     }
 

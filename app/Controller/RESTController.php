@@ -1,4 +1,7 @@
 <?php
+/**
+ * Abstract class to be extended to easy implement a RESTFul Web Service 
+ */
 abstract class RESTController extends AppController {
 
     public $components = array('RequestHandler');
@@ -6,6 +9,21 @@ abstract class RESTController extends AppController {
     private $_roles;
     private $_super_roles;
     
+    public function __construct($request = null, $response = null) {
+        parent::__construct($request, $response);
+        if(!isset($this->components)){
+            $this->components = array(RequestHandler);
+        } elseif (!in_array($this->components, 'RequestHandler')) {
+            $this->components[] = 'RequestHandler';
+        }
+    }
+    
+    /**
+     * Load the authentication configuration, and sets up the basic ENVIRONMENT variables
+     * for RESTFul Web Services Support
+     * 
+     * @throws UnauthorizedException If the user is not authorized to access the requested action.
+     */
     public function beforeFilter() {
         $this->RequestHandler->renderAs($this, 'json');
         
@@ -24,31 +42,15 @@ abstract class RESTController extends AppController {
         
     }
     
-    private function _normalize($array) {
-        if(isset($array)) {
-            if(is_array($array)){
-                $ret = array();
-                foreach ($array as $key => $value) {
-                    $this->normalizeKeyValueToAssociative($key, $value);
-                    if(isset($value) && is_array($value)) {
-                        $value = $this->_normalize($value);
-                    }
-                    $ret[$key] = $value;
-                }
-                return $ret;
-            }
-            return $array;
-        }
-        return null;
-    }
-    // IMPORTANT: HAS SIDE EFFECT!!! MODIFY THE INPUT DATA!!!
-    private function normalizeKeyValueToAssociative(&$key, &$value) {
-        if(!is_string($key)) {
-            $key = $value;
-            $value = TRUE;
-        }
-    }
-    
+    /**
+     * Authorize ACTIONS execution according to the configuration provided on
+     * /app/Config/appConfiguration.php.
+     * 
+     * INVOLVED CONFIG KEYS: APPCONFIG.authorization, APPCONFIG.roles, APPCONFIG.super_roles
+     * 
+     * @param type $user
+     * @return boolean 
+     */
     public function isAuthorized($user = null) {
         // GENERAL RULES
         if(isset($user) && isset($user['role'])) {
@@ -113,7 +115,7 @@ abstract class RESTController extends AppController {
       
         if (!$this->request->is('get')) {
             
-            $this->_ReportMethodNotAllowed("GET", 'index');
+            throw new MethodNotAllowedException();
             
         }
         
@@ -123,7 +125,7 @@ abstract class RESTController extends AppController {
       
         if (!$this->request->is('get')) {
             
-            $this->_ReportMethodNotAllowed("GET", 'view');
+            throw new MethodNotAllowedException();
             
         }
         
@@ -133,7 +135,7 @@ abstract class RESTController extends AppController {
       
         if (!$this->request->is('post')) {
             
-            $this->_ReportMethodNotAllowed("POST", 'add');
+            throw new MethodNotAllowedException();
             
         }
         
@@ -143,7 +145,7 @@ abstract class RESTController extends AppController {
         
         if (!$this->request->is('post')) {
             
-            $this->_ReportMethodNotAllowed("POST", 'update');
+            throw new MethodNotAllowedException();
             
         }
         
@@ -153,7 +155,7 @@ abstract class RESTController extends AppController {
         
         if (!$this->request->is('put')) {
             
-            $this->_ReportMethodNotAllowed("PUT", 'edit');
+            throw new MethodNotAllowedException();
             
         }
         
@@ -163,68 +165,74 @@ abstract class RESTController extends AppController {
         
         if (!$this->request->is('delete')) {
             
-            $this->_ReportMethodNotAllowed("DELETE", 'delete');
+            throw new MethodNotAllowedException();
             
         }
         
     }
     
+    /**
+     * CONFIGURATION HELPERS: 
+     */
+    
+    /**
+     * Normalize the Action Authorization configuration array.
+     * Could be turned into an helper method
+     * 
+     * @param type $array
+     * @return mixed Normalized Authorization configuration array
+     */
+    private function _normalize($array) {
+        if(isset($array)) {
+            if(is_array($array)){
+                $ret = array();
+                foreach ($array as $key => $value) {
+                    $this->normalizeKeyValueToAssociative($key, $value);
+                    if(isset($value) && is_array($value)) {
+                        $value = $this->_normalize($value);
+                    }
+                    $ret[$key] = $value;
+                }
+                return $ret;
+            }
+            return $array;
+        }
+        return null;
+    }
+    
+    /**
+     * If $key is a NUMERIC put the $value in it and assign $def_vale to $value.
+     * Used to normalize numeric entries in an associative array
+     * 
+     * IMPORTANT: HAS SIDE EFFECT!!! MODIFY THE INPUT DATA!!!
+     * 
+     * @param type $key
+     * @param type $value
+     * @param type $def_val default = TRUE
+     */
+    private function normalizeKeyValueToAssociative(&$key, &$value, $def_val = TRUE) {
+//        if(!is_string($key)) {
+        if(!is_numeric($key)) {
+            $key = $value;
+            $value = $def_val;
+        }
+    }
     
     /**
      * RESPONSE HELPERS: 
      */
-    
     protected function _setResponseJSON($content) {
         $this->set(array(
             'content' => $content,
             '_serialize' => 'content'
         ));
     }
-
-
     
     /**
      * ERROR HANDLERS HELPERS:
      */    
     protected function _ReportValidationErrors($errors){
-        $message = array(
-            'errors' => $errors,
-            'status' => 400
-        );
-        throw new BadRequestException(json_encode($message));
-    }
-    
-    protected function _ReportError($exc) {
-        $message = array(
-            'errors' => array(
-                'exception' => array(
-                    'message' => $exc->getMessage(),
-                    'code' => $exc->getCode()
-                )
-            ),
-            'message' => 'Internal Server Error',
-            'code' => 500
-        );
-        throw new InternalErrorException(json_encode($message));
-    }
-    
-    protected function _ReportMethodNotAllowed($expected, $action = null) {
-        $message = array(
-            'message' => "Expected HTTP Method: $expected",
-            'code' => 405
-        );
-        if($action) {
-            $message['action'] = $action;
-        }
-        throw new MethodNotAllowedException(json_encode($message));
-    }
-    
-    protected function _ReportUnsupportedMethod() {
-        $message = array(
-            'message' => "Unsupported Method",
-            'code' => 405
-        );
-        throw new MethodNotAllowedException(json_encode($message));
+        throw new BadRequestException( json_encode( array( 'errors' => $errors ) ) );
     }
 
 }
