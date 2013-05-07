@@ -96,12 +96,8 @@ class UsersController extends RESTController {
             $this->User->getDataSource()->begin();
             $saved = $this->User->save($data);
             if($saved) {
-                debug($data);
                 $profile = array('Profile' => Set::get($data, '/User/Profile'));
-                debug($profile);
                 $profile = Set::insert($profile, 'Profile.user_id', $saved['User']['id']);
-                debug($profile);
-                $this->User->getDataSource()->rollback();die();
                 
                 $saved_p = $this->Profile->save($profile);
                 
@@ -138,7 +134,7 @@ class UsersController extends RESTController {
                     ));
                 } else {
                     $this->User->getDataSource()->rollback();
-                    throw new BadRequestException("Some of the data cannot be saved.");
+                    $saved = array();
                 }
             }
             
