@@ -92,7 +92,7 @@ class UsersController extends RESTController {
             $data = Set::remove($this->request->data, 'User.id');
 
             $this->User->create();
-            $this->User->set($this->request->data);
+            $this->User->set($data);
             if ($this->User->validates()) {
 
                 try {
