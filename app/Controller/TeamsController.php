@@ -9,7 +9,7 @@ class TeamsController extends RESTController {
     public function index() {
         parent::index();
 
-        $results = $this->getDafaultFormattedTeams();
+        $results = $this->getDafaultFormattedTeams(true);
         $this->_setResponseJSON($results);
         
     }
