@@ -69,6 +69,7 @@ class UsersController extends RESTController {
             
             $this->User->id = $id;
             if($this->User->exists()) {
+                $data = Set::remove($data, 'User.id');
                 $data = Set::remove($data, 'User.username');
                 
                 $this->User->getDataSource()->begin();
