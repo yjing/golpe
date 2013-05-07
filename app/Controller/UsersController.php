@@ -68,8 +68,9 @@ class UsersController extends RESTController {
                         }
                     }
                     
-                    $saved = $this->getDafaultFormattedUser($saved['User']['id'], FALSE);
                     $this->User->getDataSource()->commit();
+                    $saved = $this->getDafaultFormattedUser($saved['User']['id'], FALSE);
+                    $this->_setResponseJSON($saved);
                     
                 } else {
                     $this->User->getDataSource()->rollback();
@@ -83,7 +84,6 @@ class UsersController extends RESTController {
             throw new BadRequestException();
         }
         
-        $this->_setResponseJSON($saved);
     }
 
     public function update($id = null) {
