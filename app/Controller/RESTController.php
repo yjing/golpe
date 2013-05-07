@@ -199,7 +199,8 @@ abstract class RESTController extends AppController {
     }
     
     protected function _ReportValidationErrors($errors){
-        throw new BadRequestException( json_encode( array( 'errors' => $errors ) ) );
+        $this->response->statusCode(400);
+        $this->_setResponseJSON($errors);
     }
 
 }
