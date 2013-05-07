@@ -17,6 +17,11 @@ class ProjectsController extends RESTController {
     public function view($id = null) {
         parent::view($id);
 
+        $this->Project->id = $id;
+        if (!$this->Project->exists()) {
+            throw new NotFoundException();
+        }
+        
         $results = $this->getDafaultFormattedProject($id);
         $this->_setResponseJSON($results);
     }
@@ -46,7 +51,7 @@ class ProjectsController extends RESTController {
             
             $this->Project->id = $id;
             if (!$this->Project->exists()) {
-                throw new BadRequestException();
+                throw new NotFoundException();
             }
             
             if ($this->Project->save($data)) {
@@ -67,7 +72,7 @@ class ProjectsController extends RESTController {
         if ($this->Project->exists()) {
             $deleted = $this->Project->delete($id);
         } else {
-            throw new BadRequestException("Project doesn't exists.");
+            throw new NotFoundException();
         }
 
         $this->_setResponseJSON(array('deleted' => $deleted));
