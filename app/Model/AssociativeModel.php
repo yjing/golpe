@@ -129,7 +129,7 @@ abstract class AssociativeModel extends AppModel {
 //            debug($queryData['fields']);die();
             $queryData['fields'][0] = 'DISTINCT ' . $queryData['fields'][0];
         } else {
-            $queryData['fields'] = 'DISTINCT ' . $associated_model->alias . '.*';
+            $queryData['fields'] = 'DISTINCT ';
         }
         
         $options = array(
