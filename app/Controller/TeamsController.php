@@ -111,14 +111,12 @@ class TeamsController extends RESTController {
             );
 
             $saved = $this->TeamUser->save($data);
-            if($saved) {
-                $saved = $this->getDafaultFormattedTeam($team_id, false);
-            } else {
+            if(!$saved) {
                 throw new InternalErrorException();
             }
         }
         
-        $this->_setResponseJSON( $this->getDafaultFormattedTeam($team_id, false) );
+        $this->_setResponseJSON( $this->getDafaultFormattedTeam($team_id, true) );
         
     }
     
