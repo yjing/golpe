@@ -137,7 +137,7 @@ class TeamsController extends RESTController {
             throw new NotFoundException();
         }
         
-        $this->_setResponseJSON(array('deleted' => is_array($deleted)));
+        $this->_setResponseJSON( $this->getDafaultFormattedTeam($team_id, true) );
     }
 
     
