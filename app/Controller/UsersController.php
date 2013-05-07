@@ -87,24 +87,26 @@ class UsersController extends RESTController {
     public function add() {
         parent::add();
         
-        $this->_CheckUniqueUsername($this->request->data['User']['username']);
-        $data = Set::remove($this->request->data, 'User.id');
+        if($this->request->data) {
+            $this->_CheckUniqueUsername($this->request->data['User']['username']);
+            $data = Set::remove($this->request->data, 'User.id');
 
-        debug($data);die();
-        
-        $this->User->create();
-        $this->User->set($this->request->data);
-        if ($this->User->validates()) {
-            
-            try {
-                $user = $this->User->save();
-            } catch (Exception $exc) {
-                $this->_ReportError($exc);
+            $this->User->create();
+            $this->User->set($this->request->data);
+            if ($this->User->validates()) {
+
+                try {
+                    $user = $this->User->save();
+                } catch (Exception $exc) {
+                    $this->_ReportError($exc);
+                }
+                $this->_setResponseJSON(Set::remove($user, 'User.password'));
+
+            } else {
+                $this->_ReportValidationErrors($this->User->validationErrors);
             }
-            $this->_setResponseJSON(Set::remove($user, 'User.password'));
-            
         } else {
-            $this->_ReportValidationErrors($this->User->validationErrors);
+            throw new BadRequestException("User: wrong data format.");
         }
         
     }
