@@ -44,43 +44,45 @@ class UsersController extends RESTController {
             if(!$this->User->validates()) {
                 $validation_errors['User'] = $this->User->validationErrors;
             }
-            if(!empty($profile)) {debug('not empty');
+            if(!empty($profile)) {
                 $this->Profile->set($profile);
                 if(!$this->Profile->validates()) {
                     $validation_errors['User']['Profile'] = $this->Profile->validationErrors;
                 }
             }
-            debug($validation_errors);
-            die();
+            
             if(empty($validation_errors)) {
                 $this->User->getDataSource()->begin();
                 $saved = $this->User->save($data);
-            }
-            
-            
-            
-            
-            if($saved) {
                 
-                $profile = array('Profile' => Set::get($data, '/User/Profile'));
-                $profile = Set::insert($profile, 'Profile.user_id', $saved['User']['id']);
-                $saved_p = $this->Profile->save($profile);
-                
-                if($saved_p) {
+                if($saved) {
+                    
+                    if(!empty($profile)) {
+                        $profile = Set::insert($profile, 'user_id', $saved['User']['id']);
+                        $this->Profile->set($profile);
+                        $saved_profile = $this->User->save($profile);
+
+                        if(!$saved_profile) {
+                            $this->User->getDataSource()->rollback();
+                            throw new InternalErrorException();
+                        }
+                    }
+                    
+                    $saved = $this->getDafaultFormattedUser($saved['User']['id'], FALSE);
                     $this->User->getDataSource()->commit();
-                    $saved = $this->getDafaultFormattedUser($saved['User']['id'], false);
+                    
                 } else {
                     $this->User->getDataSource()->rollback();
-                    throw new BadRequestException();
+                    throw new InternalErrorException();
                 }
-                
             } else {
-                debug($this->User->validationErrors);die();
+                $this->_ReportValidationErrors($errors);
             }
             
         } else {
             throw new BadRequestException();
         }
+        
         $this->_setResponseJSON($saved);
     }
 
