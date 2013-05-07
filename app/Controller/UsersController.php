@@ -246,7 +246,9 @@ class UsersController extends RESTController {
             )
         ));
         $result = Set::insert($result, 'User.password', '*****');
-        $result = Set::insert($result, 'User.Supervisor.password', '*****');
+        if(isset($result['User']['Supervisor']) && count($result['User']['Supervisor'])>0) {
+            $result = Set::insert($result, 'User.Supervisor.password', '*****');
+        }
         return $result;
     }
 
