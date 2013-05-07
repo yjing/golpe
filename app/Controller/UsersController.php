@@ -83,12 +83,12 @@ class UsersController extends RESTController {
                         
                         if($saved_p) {
                             $this->User->getDataSource()->commit();
-                            $saved = $this->getDafaultFormattedUser($saved['User']['id']);
                         } else {
                             $this->User->getDataSource()->rollback();
-                            $saved = array();
                         }
                     }
+                    
+                    $saved = $this->getDafaultFormattedUser($saved['User']['id']);
                     
                 }
                 
