@@ -104,7 +104,12 @@ class TeamsController extends RESTController {
                 )
             );
 
-            $saved = $this->TeamUser->save($data);
+            try {
+                $saved = $this->TeamUser->save($data);
+            } catch (Exception $e) {
+                throw InternalErrorException();
+            }
+            
             if($saved) {
                 $saved = $this->Team->find('first', array(
                     'conditions' => array(
