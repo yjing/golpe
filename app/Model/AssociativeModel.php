@@ -125,11 +125,11 @@ abstract class AssociativeModel extends AppModel {
         $conditions = array(
             $association_config['className'] . '.' . $association_config['foreignKey'] . ' = ' . $elem_id
         );
-        if(isset($queryData['fields'])){
-            $queryData['fields'][] = 'DISTINCT';
-        } else {
+//        if(isset($queryData['fields'])){
+//            $queryData['fields'][] = 'DISTINCT';
+//        } else {
             $queryData['fields'] = 'DISTINCT ' . $associated_model->alias . '.*';
-        }
+//        }
         
         $options = array(
             'conditions' => $conditions,
