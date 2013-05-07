@@ -36,10 +36,25 @@ class UsersController extends RESTController {
         if($data) {
             // REMOVE EVENTUAL CLIENT PROVIDED USER.ID
             $data = Set::remove($this->request->data, 'User.id');
+            $profile = Set::get($data, '/User/Profile');
+            
+            // DATA VALIDATION
+            $validation_errors = array();
+            $this->User->set($data);
+            if(!$this->User->validates()) {
+                $validation_errors['User'] = $this->User->validationErrors;
+            }
+            if(!empty($profile)) {
+                $this->Profile->set($profile);
+                if(!$this->Profile->validates()) {
+                    $validation_errors['Profile'] = $this->Profile->validationErrors;
+                }
+            }
+            
+            debug($validation_errors);die();
             
             $this->User->getDataSource()->begin();
             
-            $this->Profile->set(Set::get($data, '/User/Profile'));
             $this->Profile->validates();
             debug($this->Profile->validationErrors);
             debug($this->Profile->invalidFields());
