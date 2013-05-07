@@ -19,7 +19,7 @@ class User extends AssociativeModel {
     public $validate = array(
         'id' => array(
             'rule' => 'blank',
-            'on' => 'create'
+            'on'   => 'create'
         ),'username' => array(
             'first' => array (
                 'rule'    => array('minLength', 3),
