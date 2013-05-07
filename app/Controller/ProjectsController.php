@@ -9,7 +9,7 @@ class ProjectsController extends RESTController {
     public function index() {
         parent::index();
 
-        $results = $this->getDafaultFormattedProjects(true);
+        $results = $this->getDafaultFormattedProjects();
 //        = $this->Project->find('all', array(
 //            'associations' => array(
 //                'Team' => array(
