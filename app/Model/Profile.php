@@ -7,9 +7,9 @@ class Profile extends AssociativeModel {
     
     public $validate = array(
         'name' => array(
-            'first' => array (
-                'rule'    => array('maxLength', 3),
-                'message' => 'Usernames must be at least 3 characters long.'
+            'length' => array (
+                'rule'    => array('minLength', 2),
+                'message' => 'Name must be at least 2 characters long.'
             )
         )
     );
