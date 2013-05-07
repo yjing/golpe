@@ -4,6 +4,8 @@ App::import('Controller', 'REST');
 
 class UsersController extends RESTController {
 
+    public $uses = array('User', 'Profile');
+    
     public function beforeFilter() {
         $this->Auth->allow(array('add', 'login', 'logout'));
         parent::beforeFilter();
@@ -90,45 +92,54 @@ class UsersController extends RESTController {
         if($this->request->data) {
             $this->_CheckUniqueUsername($this->request->data['User']['username']);
             $data = Set::remove($this->request->data, 'User.id');
-
-            $saved = $this->User->saveAssociated($data);
+            
+            $this->User->getDataSource()->begin();
+            $saved = $this->User->save($data);
             if($saved) {
+                $profile = Set::extract($data, '/User/Profile');
+                $saved_p = $this->Profile->save($profile);
                 
-                $saved = $this->User->find('first', array(
-                    'conditions' => array('User.id' => $saved['User']['id']),
-                    'associations' => array(
-                        'Profile'
-                        ,'ActivityLog' => array(
-                            "unArray_if_single_value",
-                            "fields" => array('id', 'title', 'content')
-                        ),
-                        'Team' => array(
-                            'fields' => array('id', 'name', 'project_id'),
-                            'associations' => array(
-                                'Project' => array(
-                                    'fields' => array('id', 'name')
+                if($saved_p) {
+                    $this->User->getDataSource()->commit();
+                    
+                    $saved = $this->User->find('first', array(
+                        'conditions' => array('User.id' => $saved['User']['id']),
+                        'associations' => array(
+                            'Profile'
+                            ,'ActivityLog' => array(
+                                "unArray_if_single_value",
+                                "fields" => array('id', 'title', 'content')
+                            ),
+                            'Team' => array(
+                                'fields' => array('id', 'name', 'project_id'),
+                                'associations' => array(
+                                    'Project' => array(
+                                        'fields' => array('id', 'name')
+                                    )
                                 )
-                            )
-                        ),
-                        'Supervisor' => array(
-                            "unArray_if_single_value",
-                            "fields" => array('id', 'username', 'role'),
-                            'associations' => array(
-                                'Supervisor' => array(
-                                    "unArray_if_single_value",
-                                    "fields" => array('id', 'username', 'role')
+                            ),
+                            'Supervisor' => array(
+                                "unArray_if_single_value",
+                                "fields" => array('id', 'username', 'role'),
+                                'associations' => array(
+                                    'Supervisor' => array(
+                                        "unArray_if_single_value",
+                                        "fields" => array('id', 'username', 'role')
+                                    )
                                 )
                             )
                         )
-                    )
-                ));
-                $this->_setResponseJSON(Set::insert($saved, 'User.password', '*****'));
+                    ));
+                } else {
+                    $this->User->getDataSource()->rollback();
+                    throw new BadRequestException("Some of the data cannot be saved.");
+                }
             }
             
         } else {
             throw new BadRequestException("User: wrong data format.");
         }
-        
+        $this->_setResponseJSON(Set::insert($saved, 'User.password', '*****'));
     }
 
     public function update($id = null) {
