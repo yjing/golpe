@@ -4,12 +4,7 @@ App::import('Model', 'AssociativeModel');
 class User extends AssociativeModel {
     
     public $hasAndBelongsToMany = array(
-        'Team' => array(
-            'className' => 'Team',
-            'joinTable' => 'teams_users',
-            'foreignKey' => 'user_id',
-            'associationForeignKey' => 'team_id'
-        ),
+        'Team',
         'Supervisor' => array(
             'className' => 'User',
             'joinTable' => 'students_supervisors',
