@@ -71,13 +71,24 @@ class UsersController extends RESTController {
             if($this->User->exists()) {
                 $data = Set::remove($data, 'User.username');
                 
+                $this->User->getDataSource()->begin();
                 $saved = $this->User->save($data);
                 if($saved) {
                 
-                    $profile = array('Profile' => Set::get($data, '/User/Profile'));
-                    debug($profile);die();
-                    $profile = Set::insert($profile, 'Profile.user_id', $saved['User']['id']);
-                    $saved_p = $this->Profile->save($profile);
+                    $profile = Set::get($data, '/User/Profile');
+                    if(isset($profile)) {
+                        $profile = array('Profile'=>$profile);
+                        $profile = Set::insert($profile, 'Profile.user_id', $saved['User']['id']);
+                        $saved_p = $this->Profile->save($profile);
+                        
+                        if($saved_p) {
+                            $this->User->getDataSource()->commit();
+                            $saved = $this->getDafaultFormattedUser($saved['User']['id']);
+                        } else {
+                            $this->User->getDataSource()->rollback();
+                            $saved = array();
+                        }
+                    }
                     
                 }
                 
@@ -88,8 +99,7 @@ class UsersController extends RESTController {
         } else {
             throw new BadRequestException("User: wrong data format.");
         }
-        
-        $this->_ReportUnsupportedMethod();
+        $this->_setResponseJSON($saved);
     }
     
     public function edit($id = null) {
