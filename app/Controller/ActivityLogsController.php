@@ -110,8 +110,6 @@ class ActivityLogsController extends RESTController {
     public function view($id = null) {
         parent::view($id);
         
-        $user = $this->Session->read("Auth.User");
-        
         $al = $this->ActivityLog->find('first',
             array(
                 'conditions' => array(
@@ -129,6 +127,10 @@ class ActivityLogsController extends RESTController {
                 )
             )
         );
+        
+        if(count($al) == 0) {
+            $this->response->statusCode(204);
+        }
         
         $this->_setResponseJSON($al);
         $this->LogActions->setActionResult(count($al) == 1);
