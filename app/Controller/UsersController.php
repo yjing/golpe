@@ -78,7 +78,7 @@ class UsersController extends RESTController {
         if (!$this->User->exists()) {
             $this->_ReportNotExistingUser($id);
         }
-        $deleted = $this->User->delete($id);
+        $deleted = $this->User->delete($id, false);
         $this->_setResponseJSON(array('deleted' => $deleted));
         
     }
