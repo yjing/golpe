@@ -30,7 +30,7 @@ class ProjectsController extends RESTController {
             if ($this->Project->save($data)) {
                 $this->_setResponseJSON( $this->getDafaultFormattedProject($this->Project->id, false) );
             } else {
-                $this->_ReportDataValidationErrors( array( 'Project', $this->Project->validation_errors ) );
+                $this->_ReportDataValidationErrors( array( 'Project', $this->Project->validationErrors ) );
             }
             
         } else {
