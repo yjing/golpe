@@ -43,7 +43,7 @@ class UsersController extends RESTController {
             
             $this->User->set($data);
             $this->User->validates();
-            debug($this->User->validationErrors);
+            debug($this->User->validationErrors, true, false);
             debug($this->User->invalidFields());
             die();
             
