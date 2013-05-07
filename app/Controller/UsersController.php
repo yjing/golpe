@@ -80,6 +80,9 @@ class UsersController extends RESTController {
                     if(isset($profile)) {
                         $profile = array('Profile'=>$profile);
                         $profile = Set::insert($profile, 'Profile.user_id', $saved['User']['id']);
+                        
+                        debug($profile);die();
+                        
                         $saved_p = $this->Profile->save($profile);
                         
                         if($saved_p) {
