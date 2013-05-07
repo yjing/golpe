@@ -35,15 +35,16 @@ class UsersController extends RESTController {
         $data = $this->request->data;
         if($data) {
             // CHECK UNIQUE USERNAME
-//            $this->_CheckUniqueUsername(Set::get($data, 'User.username'));
-//            // REMOVE EVENTUAL CLIENT PROVIDED USER.ID
-//            $data = Set::remove($this->request->data, 'User.id');
+            $this->_CheckUniqueUsername(Set::get($data, 'User.username'));
+            // REMOVE EVENTUAL CLIENT PROVIDED USER.ID
+            $data = Set::remove($this->request->data, 'User.id');
             
-//            $this->User->getDataSource()->begin();
+            $this->User->getDataSource()->begin();
             
-//            $this->User->validate($data);
-//            debug($this->User->validationErrors);
-//            debug($this->User->invalidFields());
+            $this->User->set($data);
+            $this->User->validate();
+            debug($this->User->validationErrors);
+            debug($this->User->invalidFields());
             die();
             
             $saved = $this->User->save($data);
