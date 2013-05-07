@@ -63,7 +63,7 @@ class UsersController extends RESTController {
 
     public function update($id = null) {
         parent::update($id);
-        
+        debug($this->request->data);
         $data = json_decode($this->request->input(), true);
         if($data) {
             
