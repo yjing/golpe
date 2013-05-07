@@ -38,7 +38,7 @@ class TeamsController extends RESTController {
                 if ($this->Team->save($data)) {
                     $this->_setResponseJSON( $this->getDafaultFormattedTeam($this->Team->id, false) );
                 } else {
-                    $this->_setResponseJSON( array( 'Project' => $this->Team->validationErrors ) );
+                    $this->_setResponseJSON( array( 'Team' => $this->Team->validationErrors ) );
                 }
                 
             } else {
@@ -54,29 +54,23 @@ class TeamsController extends RESTController {
         parent::update($id);
 
         if (isset($this->request->data)) {
+            $data = Set::remove($this->request->data, 'Team.id');
             $this->Team->id = $id;
-            if ($this->Team->exists()) {
-                $data = Set::remove($this->request->data, 'Team.id');
-                $saved = $this->Team->save($data);
-                if ($saved) {
-                    $saved = $this->Team->find('first', array(
-                        'conditions' => array(
-                            'Team.id' => $id
-                        ),
-                        'associations' => array(
-                            'Student' => array(
-                                'fields' => array('id', 'username')
-                            )
-                        )
-                            ));
-                }
-            } else {
-                throw new BadRequestException("Team doesn't exists.");
+            
+            if (!$this->Team->exists()) {
+                throw new NotFoundException();
             }
+            
+            if($this->Team->save($data)) {
+                $this->_setResponseJSON( $this->getDafaultFormattedTeam($this->Project->id, false) );
+            } else {
+                $this->_setResponseJSON( array( 'Team' => $this->Team->validationErrors ) );
+            }
+            
         } else {
-            throw new BadRequestException("Team: wrong data format.");
+            throw new BadRequestException();
         }
-        $this->_setResponseJSON($saved);
+        
     }
 
     public function delete($id = null) {
@@ -86,13 +80,13 @@ class TeamsController extends RESTController {
         if ($this->Team->exists()) {
             $deleted = $this->Team->delete($id);
         } else {
-            throw new BadRequestException("Team doesn't exists.");
+            throw new NotFoundException();
         }
 
         $this->_setResponseJSON(array('deleted' => $deleted));
     }
     
-    public function addMember($team_id, $user_id, $team_leader = false) {
+    public function addMember($team_id, $user_id) {
         parent::add();
         
         $saved = $this->TeamUser->find('first', array(
@@ -106,8 +100,7 @@ class TeamsController extends RESTController {
             $data = array(
                 'TeamUser' => array(
                     'team_id' => $team_id,
-                    'user_id' => $user_id,
-                    'team_leader' => $team_leader
+                    'user_id' => $user_id
                 )
             );
 
@@ -122,7 +115,7 @@ class TeamsController extends RESTController {
                             'fields' => array('id', 'username')
                         )
                     )
-                        ));
+                ));
             }
         }
         $this->_setResponseJSON($saved);
@@ -143,10 +136,10 @@ class TeamsController extends RESTController {
             $query = "delete from teams_users where user_id = $user_id and team_id = $team_id;";
             $deleted = $this->TeamUser->query($query);
         } else {
-            throw new BadRequestException("The User is not member of the selected Team.");
+            throw new NotFoundException();
         }
         
-        $this->_setResponseJSON(array('deleted'=>isset($deleted)));
+        $this->_setResponseJSON(array('deleted' => is_array($deleted)));
     }
 
     
