@@ -87,9 +87,10 @@ class UsersController extends RESTController {
     public function add() {
         parent::add();
         
-        $this->_CheckUniqueUsername($this->request->data['username']);
+        $this->_CheckUniqueUsername($this->request->data['User']['username']);
+        $data = Set::remove($this->request->data, '{n}.User.id');
 
-        debug($this->request->data);
+        debug($data);die();
         
         $this->User->create();
         $this->User->set($this->request->data);
