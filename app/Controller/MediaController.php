@@ -39,7 +39,7 @@ class MediaController extends RESTController {
         
         $this->Media->id = $id;
         if (!$this->Media->exists()) {
-            $this->_ReportValidationErrors($id);
+            $this->_ReportDataValidationErrors($id);
         }
         
         $result = $this->Media->find('first', array(
@@ -144,7 +144,7 @@ class MediaController extends RESTController {
             ));
             
         } else {
-            $this->_ReportValidationErrors($this->Media->validationErrors);
+            $this->_ReportDataValidationErrors($this->Media->validationErrors);
         }
         
     }
@@ -154,7 +154,7 @@ class MediaController extends RESTController {
         
         $this->Media->id = $id;
         if (!$this->Media->exists()) {
-            $this->_ReportValidationErrors($id);
+            $this->_ReportDataValidationErrors($id);
         }
 
         $this->Media->set($this->request->input('json_decode'));
@@ -165,7 +165,7 @@ class MediaController extends RESTController {
             $this->_setResponseJSON($medium);
 
         } else {
-            $this->_ReportValidationErrors($this->Media->validationErrors);
+            $this->_ReportDataValidationErrors($this->Media->validationErrors);
         }
     }
 
@@ -174,7 +174,7 @@ class MediaController extends RESTController {
         
         $this->Media->id = $id;
         if (!$this->Media->exists()) {
-            $this->_ReportValidationErrors($id);
+            $this->_ReportDataValidationErrors($id);
         }
         if ($this->Media->delete()) {
             $this->_setResponseJSON('Medium deleted');
