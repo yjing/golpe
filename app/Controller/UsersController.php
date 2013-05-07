@@ -51,7 +51,8 @@ class UsersController extends RESTController {
                 }
             }
             
-            debug($validation_errors);die();
+            debug($validation_errors);
+            debug(empty($validation_errors));die();
             
             $this->User->getDataSource()->begin();
             
