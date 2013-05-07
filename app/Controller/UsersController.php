@@ -5,7 +5,6 @@ App::import('Controller', 'REST');
 class UsersController extends RESTController {
 
     public $uses = array('User', 'Profile');
-    public $components = array('Session');
     
     public function beforeFilter() {
         $this->Auth->allow(array('add', 'login', 'logout'));
@@ -17,7 +16,6 @@ class UsersController extends RESTController {
         
         $result = $this->getDafaultFormattedUsers();
         $this->_setResponseJSON($result);
-        
     }
 
     public function view($id = null) {
@@ -34,12 +32,21 @@ class UsersController extends RESTController {
     public function add() {
         parent::add();
         
-        if($this->request->data) {
-            $this->_CheckUniqueUsername($this->request->data['User']['username']);
+        $data = $this->request->data;
+        if($data) {
+            // CHECK UNIQUE USERNAME
+            $this->_CheckUniqueUsername(Set::get($data, 'User.username'));
+            // REMOVE EVENTUAL CLIENT PROVIDED USER.ID
             $data = Set::remove($this->request->data, 'User.id');
             
             $this->User->getDataSource()->begin();
+            
+            $this->User->validate($data);
+            debug($this->User->validationErrors);
+            debug($this->User->invalidFields());die();
+            
             $saved = $this->User->save($data);
+            
             if($saved) {
                 
                 $profile = array('Profile' => Set::get($data, '/User/Profile'));
@@ -53,10 +60,13 @@ class UsersController extends RESTController {
                     $this->User->getDataSource()->rollback();
                     throw new BadRequestException();
                 }
+                
+            } else {
+                debug($this->User->validationErrors);
             }
             
         } else {
-            throw new BadRequestException;
+            throw new BadRequestException();
         }
         $this->_setResponseJSON($saved);
     }
