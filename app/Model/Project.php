@@ -8,7 +8,7 @@ class Project extends AssociativeModel {
     public $validate = array(
         'name' => array(
             'requiredName' => array (
-                'rule' => null,
+                'rule' => 'required',
                 'required' => true,
                 'allowEmpty' => false,
                 'message' => 'Project name must be present.'
