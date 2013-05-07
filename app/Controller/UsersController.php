@@ -15,7 +15,7 @@ class UsersController extends RESTController {
         parent::index();
         
         $this->User->recursive = 0;
-        $result = $this->getDafaultFormattedUsers();
+        $result = $this->getDafaultFormattedUsers(true);
         $this->_setResponseJSON($result);
         
     }
