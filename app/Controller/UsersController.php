@@ -83,7 +83,7 @@ class UsersController extends RESTController {
                 )
             )
         ));
-        $this->_setResponseJSON(Set::insert($saved, 'User.password', '*****'));
+        $this->_setResponseJSON(Set::insert($result, 'User.password', '*****'));
     }
 
     public function add() {
