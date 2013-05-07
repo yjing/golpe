@@ -69,7 +69,7 @@ class UsersController extends RESTController {
                     }
                     
                     $this->User->getDataSource()->commit();
-                    $saved = $this->getDafaultFormattedUser($saved['User']['id'], FALSE);
+                    $saved = $this->getDafaultFormattedUser($saved['User']['id'], false);
                     $this->_setResponseJSON($saved);
                     
                 } else {
@@ -127,7 +127,7 @@ class UsersController extends RESTController {
                     }
                     
                     $this->User->getDataSource()->commit();
-                    $saved = $this->getDafaultFormattedUser($id, FALSE);
+                    $saved = $this->getDafaultFormattedUser($id, false);
                     $this->_setResponseJSON($saved);
                     
                 } else {
@@ -142,49 +142,6 @@ class UsersController extends RESTController {
             throw new BadRequestException();
         }
         
-    }
-
-    public function updateOLD($id = null) {
-        parent::update($id);
-        
-        $data = $this->request->data;
-        if($data) {
-            
-            $this->User->id = $id;
-            if($this->User->exists()) {
-                $data = Set::remove($data, 'User.id');
-                $data = Set::remove($data, 'User.username');
-                
-                $this->User->getDataSource()->begin();
-                $saved = $this->User->save($data);
-                if($saved) {
-                    
-                    $profile = Set::get($data, '/User/Profile');
-                    if(isset($profile)) {
-                        $profile = array('Profile'=>$profile);
-                        $profile = Set::insert($profile, 'Profile.user_id', $id);
-                        
-                        $saved_p = $this->Profile->save($profile);
-                        
-                        if($saved_p) {
-                            $this->User->getDataSource()->commit();
-                        } else {
-                            $this->User->getDataSource()->rollback();
-                        }
-                    }
-                    
-                    $saved = $this->getDafaultFormattedUser($id, false);
-                    
-                }
-                
-            } else {
-                throw new NotFoundException();
-            }
-            
-        } else {
-            throw new BadRequestException();
-        }
-        $this->_setResponseJSON($saved);
     }
     
     public function edit($id = null) {
