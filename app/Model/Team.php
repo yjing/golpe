@@ -11,6 +11,16 @@ class Team extends AssociativeModel {
             'associationForeignKey' => 'user_id'
         )
     );
+    
+    
+    public $validate = array(
+        'name' => array(
+            'rule' => 'notEmpty',
+            'required' => true,
+            'allowEmpty' => false,
+            'message' => 'Team name must be present.'
+        )
+    );
 }
 
 ?>
