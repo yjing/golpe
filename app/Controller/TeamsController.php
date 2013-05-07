@@ -107,7 +107,7 @@ class TeamsController extends RESTController {
             try {
                 $saved = $this->TeamUser->save($data);
             } catch (Exception $e) {
-                throw InternalErrorException();
+                throw new InternalErrorException();
             }
             
             if($saved) {
