@@ -58,7 +58,6 @@ class ProjectsController extends RESTController {
         } else {
             throw new BadRequestException();
         }
-        $this->_setResponseJSON($saved);
     }
 
     public function delete($id = null) {
