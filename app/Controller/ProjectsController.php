@@ -135,7 +135,7 @@ class ProjectsController extends RESTController {
             );
         }
         
-        return $this->Project->find('all',$options);
+        return $this->Project->find('first',$options);
     }
 
 }
