@@ -90,7 +90,7 @@ class UsersController extends RESTController {
                         }
                     }
                     
-                    $saved = $this->getDafaultFormattedUser($saved['User']['id']);
+                    $saved = $this->getDafaultFormattedUser($id);
                     
                 }
                 
