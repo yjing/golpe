@@ -9,15 +9,9 @@ class TeamsController extends RESTController {
     public function index() {
         parent::index();
 
-        $results = $this->Team->find('all', array(
-            'associations' => array(
-                'Student' => array(
-                    'fields' => array('id', 'username')
-                )
-            )
-                ));
-
+        $results = $this->getDafaultFormattedTeams();
         $this->_setResponseJSON($results);
+        
     }
 
     public function view($id = null) {
@@ -166,4 +160,21 @@ class TeamsController extends RESTController {
         $this->_setResponseJSON(array('deleted'=>isset($deleted)));
     }
 
+    
+    private function getDafaultFormattedTeams($show_students = false) {
+        $options =  array(
+            'recursive' => -1
+        );
+        if($show_students) {
+            $options['associations'] = array(
+                'Student' => array(
+                    'fields' => array('id', 'username')
+                )
+            );
+        }
+        
+        return $this->Team->find('all', $options);
+        
+    }
+    
 }
