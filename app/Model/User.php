@@ -26,8 +26,8 @@ class User extends AssociativeModel {
             'message' => 'Usernames must be at least 3 characters long.'
         ),
         'role' => array(
-            'valid' => array(
-                'rule' => array('inList', array('STUDENT', 'SUPERVISOR', 'ADMIN', 'EXTERNAL')),
+            'allowedChoice' => array(
+                'rule' => array('inList', array('STUDENT', 'SUPERVISOR', 'ADMIN', 'SYSTEM', 'SHELL')),
                 'message' => 'Please enter a valid role',
                 'allowEmpty' => false
             )
