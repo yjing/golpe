@@ -14,7 +14,6 @@ class UsersController extends RESTController {
     public function index() {
         parent::index();
         
-        $this->User->recursive = 0;
         $result = $this->getDafaultFormattedUsers();
         $this->_setResponseJSON($result);
         
@@ -25,7 +24,7 @@ class UsersController extends RESTController {
         
         $this->User->id = $id;
         if (!$this->User->exists()) {
-            $this->_ReportNotExistingUser($id);
+            throw new NotFoundException();
         }
         $result = $this->getDafaultFormattedUser($id);
         $this->_setResponseJSON($result);
@@ -51,20 +50,19 @@ class UsersController extends RESTController {
                     $saved = $this->getDafaultFormattedUser($saved['User']['id'], false);
                 } else {
                     $this->User->getDataSource()->rollback();
-                    $saved = array();
+                    throw new BadRequestException();
                 }
             }
             
         } else {
-            throw new BadRequestException("User: wrong data format.");
+            throw new BadRequestException;
         }
         $this->_setResponseJSON($saved);
     }
 
     public function update($id = null) {
         parent::update($id);
-//        debug($this->request->data);
-//        $data = json_decode($this->request->input(), true);
+        
         $data = $this->request->data;
         if($data) {
             
@@ -96,29 +94,30 @@ class UsersController extends RESTController {
                 }
                 
             } else {
-                $this->_ReportNotExistingUser($id);
+                throw new NotFoundException();
             }
             
         } else {
-            throw new BadRequestException("User: wrong data format.");
+            throw new BadRequestException();
         }
         $this->_setResponseJSON($saved);
     }
     
     public function edit($id = null) {
         parent::edit($id);
-        $this->_ReportUnsupportedMethod();
+        throw new MethodNotAllowedException();
     }
 
     public function delete($id = null) {
         parent::delete($id);
-        $this->User->id = $id;
-        if (!$this->User->exists()) {
-            $this->_ReportNotExistingUser($id);
-        }
+//        $this->User->id = $id;
+//        if (!$this->User->exists()) {
+//            throw new NotFoundException();
+//        }
         
         $query = "delete from users where id = $id";
         $deleted = $this->User->query($query);
+        debug($deleted);
         
         $this->_setResponseJSON(array('deleted'=>isset($deleted)));
         
@@ -219,39 +218,10 @@ class UsersController extends RESTController {
         return $result;
     }
 
-
-    /**
-     * ERROR HANDLER HELPERS:
-     */
-    
-    private function _ReportNotExistingUser($id){
-        $message = array(
-            'message' => 'Invalid user',
-            'id' => $id,
-            'status' => 404
-        );
-        throw new NotFoundException(json_encode($message));
-    }
-    
-    private function _ReportExistingUser($id){
-        $message = array(
-            'message' => 'User already exists',
-            'id' => $id,
-            'status' => 400
-        );
-        throw new BadRequestException(json_encode($message));
-    }
-
     private function _CheckUniqueUsername($username, $throw = true) {
         $user = $this->User->findByUsername($username);
         if ($user && count($user) > 0 && $throw) {
-            $message = array(
-                'error' => array(
-                    'username' => "Username aready exists"
-                ),
-                'status' => 400
-            );
-            throw new BadRequestException(json_encode($message));
+            throw new BadRequestException();
         }
         return !($user && count($user) > 0);
     }
