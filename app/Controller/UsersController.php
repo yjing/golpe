@@ -80,8 +80,8 @@ class UsersController extends RESTController {
         
         $query = "delete from users where id = $id";
         $deleted = $this->User->query($query);
-        debug($deleted);
-        $this->_setResponseJSON(array('deleted'=>($deleted != false)));
+        
+        $this->_setResponseJSON(array('deleted'=>isset($deleted)));
         
     }
 
