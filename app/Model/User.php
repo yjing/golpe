@@ -22,10 +22,8 @@ class User extends AssociativeModel {
             'message' => 'Usernames must be at least 3 characters long.'
         ),
         'password' => array(
-            'required' => array(
-                'rule' => array('notEmpty'),
-                'message' => 'A password is required'
-            )
+            'rule'    => array('minLength', 3),
+            'message' => 'Usernames must be at least 3 characters long.'
         ),
         'role' => array(
             'valid' => array(
