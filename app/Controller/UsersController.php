@@ -15,36 +15,9 @@ class UsersController extends RESTController {
         parent::index();
         
         $this->User->recursive = 0;
-        $result = $this->User->find('all', array(
-            'associations' => array(
-                'ActivityLog' => array(
-                    "unArray_if_single_value",
-                    "fields" => array('id', 'title', 'content')
-                ),
-                'Team' => array(
-                    'fields' => array('id', 'name', 'project_id'),
-                    'associations' => array(
-                        'Project' => array(
-                            'fields' => array('id', 'name')
-                        )
-                    )
-                ),
-                'Supervisor' => array(
-                    "unArray_if_single_value",
-                    "fields" => array('id', 'username', 'role'),
-                    'associations' => array(
-                        'Supervisor' => array(
-                            "unArray_if_single_value",
-                            "fields" => array('id', 'username', 'role')
-                        )
-                    )
-                )
-            )
-        ));
-        
-        $result = Set::insert($result, '{n}.User.password', '*****');
-        $result = Set::insert($result, '{n}.Supervisor.{n}.Supervisor.password', '*****');
+        $result = $this->getDafaultFormattedUsers();
         $this->_setResponseJSON($result);
+        
     }
 
     public function view($id = null) {
@@ -55,34 +28,6 @@ class UsersController extends RESTController {
             $this->_ReportNotExistingUser($id);
         }
         $result = $this->getDafaultFormattedUser($id);
-//        $result = $this->User->find('first', array(
-//            'conditions' => array('User.id' => $id),
-//            'associations' => array(
-//                'Profile'
-//                ,'ActivityLog' => array(
-//                    "unArray_if_single_value",
-//                    "fields" => array('id', 'title', 'content')
-//                ),
-//                'Team' => array(
-//                    'fields' => array('id', 'name', 'project_id'),
-//                    'associations' => array(
-//                        'Project' => array(
-//                            'fields' => array('id', 'name')
-//                        )
-//                    )
-//                ),
-//                'Supervisor' => array(
-//                    "unArray_if_single_value",
-//                    "fields" => array('id', 'username', 'role'),
-//                    'associations' => array(
-//                        'Supervisor' => array(
-//                            "unArray_if_single_value",
-//                            "fields" => array('id', 'username', 'role')
-//                        )
-//                    )
-//                )
-//            )
-//        ));
         $this->_setResponseJSON($result);
     }
 
@@ -242,6 +187,36 @@ class UsersController extends RESTController {
         $result = Set::insert($result, 'User.password', '*****');
         if(isset($result['User']['Supervisor']) && count($result['User']['Supervisor'])>0) {
             $result = Set::insert($result, 'User.Supervisor.password', '*****');
+        }
+        return $result;
+    }
+    
+    private function getDafaultFormattedUsers() {
+        $result = $this->User->find('all', array(
+            'associations' => array(
+                'Profile'
+                ,'ActivityLog' => array(
+                    "unArray_if_single_value",
+                    "fields" => array('id', 'title', 'content')
+                ),
+                'Team' => array(
+                    'fields' => array('id', 'name', 'project_id'),
+                    'associations' => array(
+                        'Project' => array(
+                            'fields' => array('id', 'name')
+                        )
+                    )
+                ),
+                'Supervisor' => array(
+                    "unArray_if_single_value",
+                    "fields" => array('id', 'username', 'role')
+                )
+            )
+        ));
+        
+        $result = Set::insert($result, '{n}.User.password', '*****');
+        if(isset($result['User']['Supervisor']) && count($result['User']['Supervisor'])>0) {
+            $result = Set::insert($result, '{n}.User.Supervisor.password', '*****');
         }
         return $result;
     }
