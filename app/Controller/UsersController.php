@@ -63,6 +63,32 @@ class UsersController extends RESTController {
 
     public function update($id = null) {
         parent::update($id);
+        
+        if($this->request->data) {
+            
+            $this->User->id = $id;
+            if($this->User-exists()) {
+                $data = $this->request->data;
+                $data = Set::remove($data, 'User.username');
+                
+                $saved = $this->User->save($data);
+                if($saved) {
+                
+                    $profile = array('Profile' => Set::get($data, '/User/Profile'));
+                    debug($profile);die();
+                    $profile = Set::insert($profile, 'Profile.user_id', $saved['User']['id']);
+                    $saved_p = $this->Profile->save($profile);
+                    
+                }
+                
+            } else {
+                $this->_ReportNotExistingUser($id);
+            }
+            
+        } else {
+            throw new BadRequestException("User: wrong data format.");
+        }
+        
         $this->_ReportUnsupportedMethod();
     }
     
@@ -195,9 +221,9 @@ class UsersController extends RESTController {
         throw new BadRequestException(json_encode($message));
     }
 
-    private function _CheckUniqueUsername($username) {
+    private function _CheckUniqueUsername($username, $throw = true) {
         $user = $this->User->findByUsername($username);
-        if ($user && count($user) > 0) {
+        if ($user && count($user) > 0 && $throw) {
             $message = array(
                 'error' => array(
                     'username' => "Username aready exists"
@@ -206,6 +232,7 @@ class UsersController extends RESTController {
             );
             throw new BadRequestException(json_encode($message));
         }
+        return !($user && count($user) > 0);
     }
 
 }
