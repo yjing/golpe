@@ -17,8 +17,7 @@ class Project extends AssociativeModel {
                 'rule'    => 'isUnique',
                 'message' => 'Project name has already been used.'
             )
-        ),
-        'description'
+        )
     );
     
 }

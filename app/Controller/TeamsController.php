@@ -35,26 +35,19 @@ class TeamsController extends RESTController {
             $this->Project->id = $project_id;
             if ($this->Project->exists()) {
 
-                $saved = $this->Team->save($data);
-                if ($saved) {
-                    $saved = $this->Team->find('first', array(
-                        'conditions' => array(
-                            'Team.id' => $saved['Team']['id']
-                        ),
-                        'associations' => array(
-                            'Student' => array(
-                                'fields' => array('id', 'username')
-                            )
-                        )
-                            ));
+                if ($this->Team->save($data)) {
+                    $this->_setResponseJSON( $this->getDafaultFormattedTeam($this->Team->id, false) );
+                } else {
+                    $this->_setResponseJSON( array( 'Project' => $this->Team->validationErrors ) );
                 }
+                
             } else {
-                throw new BadRequestException("Project doesn't exists.");
+                throw new BadRequestException();
             }
         } else {
-            throw new BadRequestException("Team: wrong data format.");
+            throw new BadRequestException();
         }
-        $this->_setResponseJSON($saved);
+        
     }
 
     public function update($id = null) {
