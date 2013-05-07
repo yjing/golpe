@@ -91,8 +91,9 @@ class UsersController extends RESTController {
             $this->_CheckUniqueUsername($this->request->data['User']['username']);
             $data = Set::remove($this->request->data, 'User.id');
 
-            $saved = $this->User->save($data);
+            $saved = $this->User->saveAssociated($data);
             if($saved) {
+                
                 $saved = $this->User->find('first', array(
                     'conditions' => array('User.id' => $saved['User']['id']),
                     'associations' => array(
