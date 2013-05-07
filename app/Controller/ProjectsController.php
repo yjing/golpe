@@ -10,39 +10,14 @@ class ProjectsController extends RESTController {
         parent::index();
 
         $results = $this->getDafaultFormattedProjects();
-//        = $this->Project->find('all', array(
-//            'associations' => array(
-//                'Team' => array(
-//                    'associations' => array(
-//                        'Student' => array(
-//                            'fields' => array('id', 'username')
-//                        )
-//                    )
-//                )
-//            )
-//                ));
-
         $this->_setResponseJSON($results);
+        
     }
 
     public function view($id = null) {
         parent::view($id);
 
-        $results = $this->Project->find('first', array(
-            'conditions' => array(
-                'Project.id' => $id
-            ),
-            'associations' => array(
-                'Team' => array(
-                    'associations' => array(
-                        'Student' => array(
-                            'fields' => array('id', 'username')
-                        )
-                    )
-                )
-            )
-                ));
-
+        $results = $this->getDafaultFormattedProject($id, true);
         $this->_setResponseJSON($results);
     }
 
