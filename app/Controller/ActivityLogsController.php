@@ -130,9 +130,9 @@ class ActivityLogsController extends RESTController {
         
         if(count($al) == 0) {
             $this->response->statusCode(204);
+        } else {
+            $this->_setResponseJSON($al);
         }
-        
-        $this->_setResponseJSON($al);
         $this->LogActions->setActionResult(count($al) == 1);
     }
 
