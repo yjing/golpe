@@ -62,9 +62,11 @@ class UsersController extends RESTController {
                     "fields" => array('id', 'title', 'content')
                 ),
                 'Team' => array(
-                    'fields' => array('id', 'name'),
+                    'fields' => array('id', 'name', 'project_id'),
                     'associations' => array(
-//                        'Project' => array()
+                        'Project' => array(
+                            'fields' => array('id', 'name')
+                        )
                     )
                 ),
                 'Supervisor' => array(
@@ -87,6 +89,8 @@ class UsersController extends RESTController {
         
         $this->_CheckUniqueUsername($this->request->data['username']);
 
+        debug($this->request->data);
+        
         $this->User->create();
         $this->User->set($this->request->data);
         if ($this->User->validates()) {
