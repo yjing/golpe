@@ -110,16 +110,15 @@ class UsersController extends RESTController {
 
     public function delete($id = null) {
         parent::delete($id);
-//        $this->User->id = $id;
-//        if (!$this->User->exists()) {
-//            throw new NotFoundException();
-//        }
+        $this->User->id = $id;
+        if (!$this->User->exists()) {
+            throw new NotFoundException();
+        }
         
         $query = "delete from users where id = $id";
         $deleted = $this->User->query($query);
-        debug($deleted);
         
-        $this->_setResponseJSON(array('deleted'=>isset($deleted)));
+        $this->_setResponseJSON(array('deleted'=>is_array($deleted)));
         
     }
 
