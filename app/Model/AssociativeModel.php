@@ -13,6 +13,12 @@ abstract class AssociativeModel extends AppModel {
         if (isset($links)) {
             $this->links = $this->getConfigElement($queryData, 'associations');
             $queryData['recursive'] = -1;
+            // ADD DISTINCT CLOUSE
+            if(isset($queryData['fields'])){
+                $queryData['fields'][0] = 'DISTINCT ' . $queryData['fields'][0];
+            } else {
+                $queryData['fields'] = 'DISTINCT ' . $associated_model->alias . '.*';
+            }
         }
         
         return $queryData;
@@ -21,7 +27,7 @@ abstract class AssociativeModel extends AppModel {
     public function afterFind($results, $primary = false) {
         parent::afterFind($results, $primary);
         
-        debug($results);die();
+//        debug($results);die();
         
 //        debug("AFTER FINDING " . $this->alias);
         
