@@ -117,8 +117,6 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             data:xsrf
         }).
         success(function(data, status, headers, config){
-            console.log(data);
-            console.log(data['User']);
             if (data['logged']) {
                 if(callback)
                     callback(data['User']);
@@ -128,10 +126,6 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             }
         }).
         error(function(data, status, headers, config) {
-            console.log('ERROR:');
-            console.log(data);
-            console.log(status);
-            console.log(config);
             if(callback)
                 callback(false);
         });
