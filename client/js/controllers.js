@@ -81,7 +81,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth) {
         page_title: 'Users',
         title_icon: 'icon-th-list',
         title_menu: [
-            { label: 'Users', func: $scope.goProjects, icon: 'icon-chevron-left' },
+            { label: 'Projects', func: $scope.goUsers }
 //            { label: 'Projects', func: $scope.login, icon: 'icon-chevron-left' }
         ],
 //        buttons: [
