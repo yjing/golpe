@@ -23,21 +23,6 @@ function LoginCtrl($scope, $rootScope, $location, auth) {
         )
     }
 
-    $scope.logout = function() {
-        $rootScope.toggleMenu();
-        $rootScope.busy(true);
-
-        $rootScope.user = auth.logout();
-        $rootScope.user.$then(
-            function(){
-                $rootScope.busy(false);
-            },
-            function(){
-                $rootScope.busy(false);
-            }
-        )
-    }
-
     $scope.redirectUser = function() {
         if($rootScope.user['logged']) {
             switch ($rootScope.user['User']['role']) {
@@ -67,6 +52,7 @@ function AdminCtrl($scope, $rootScope, $location, $resource, auth) {
     $scope.page_title = "Users";
     $scope.users = [{"test":"Test"}];
 
+    console.log($rootScope.user);
     if($rootScope.user == null || !$rootScope.user['logged']) {
         $rootScope.busy(true);
         $rootScope.user = auth.user();
