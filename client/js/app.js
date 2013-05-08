@@ -56,8 +56,9 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             topbar = angular.element('.topbar');
             brand = angular.element('.brand');
             body = angular.element('body');
-            body.click(function(e){
+            body.click(function(e, elem){
                 console.log(e);
+                console.log(elem);
                 $rootScope.toggleTitleMenu();
             });
 
