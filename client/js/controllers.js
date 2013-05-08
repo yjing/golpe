@@ -9,19 +9,12 @@ function LoginCtrl($scope, $rootScope, $location, auth) {
 //            icon: 'icon-chevron-left'
 //        },
         page_title: 'Login',
-//        title_icon: 'icon-th-list',
-//        title_menu: [
-//            { label: 'Users', func: $scope.login, icon: 'icon-chevron-left' },
-//            { label: 'Projects', func: $scope.login, icon: 'icon-chevron-left' }
-//        ],
 //        buttons: [
 //            { type: 'item', label: 'Users', func: $scope.login, icon: 'icon-chevron-left' },
 //            { type: 'divider-vertical' },
 //            { type: 'item', label: 'Users', func: $scope.login, icon: 'icon-chevron-left' }
 //        ],
         main_menu_items: [
-//            { type: 'item', label: 'Log Out', func: $rootScope.logout, icon: 'icon-lock' },
-//            { type: 'divider' },
             { type: 'item', label: 'Help', func: $rootScope.help },
             { type: 'item', label: 'Info', func: $rootScope.info }
         ]
@@ -81,9 +74,11 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth) {
         page_title: 'Users',
         title_icon: 'icon-th-list',
         title_menu: [
-            { label: 'Projects', func: function() {
-                    $location.url('/client/projects');
+            {
+                label: 'Projects',
+                func: function() {
                     $rootScope.toggleTitleMenu();
+                    $location.url('/client/projects');
                 }
             }
         ],
@@ -132,10 +127,16 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
         back_button: {
             icon: 'icon-chevron-left'
         },
-        page_title: 'Users',
+        page_title: 'Projects',
         title_icon: 'icon-th-list',
         title_menu: [
-            { label: 'Users', func: $scope.goUsers }
+            {
+                label: 'Users',
+                func: function() {
+                    $rootScope.toggleTitleMenu();
+                    $location.url('/client/users');
+                }
+            }
         ],
 //        buttons: [
 //            { type: 'item', label: 'Users', func: $scope.login, icon: 'icon-chevron-left' },
