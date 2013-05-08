@@ -5,42 +5,44 @@ App::import('Controller', 'REST');
 class CommentsController extends RESTController {
 
     public $uses = array('Comment');
-    public $components = array('Session', 'RequestHandler');
+    public $components = array('LogActions');
     
-    public function beforeFilter() {
-        parent::beforeFilter();
-    }
-
     public function index() {
         parent::index();
         
-        $user = $this->Session->read("Auth.User");
         
-        $this->_setResponseJSON($this->Comment->find('all',
-            array(
-                'conditions' => array('Comment.user_id' => $user['id']),
-                'recursive' => -1,
-                'associations' => array(
-                    'ActivityLog' => array(
-                        'fields' => array('id', 'user_id')
-                    )
+        $result = $this->Comment->find('all', array(
+            'associations' => array(
+                'ActivityLog' => array(
+                    'fields' => array('id', 'user_id')
                 )
             )
         ));
         
-        // LOGGING
-        $this->logs['result'] = true;
-        $this->logs['resource'] = 'Comment';
+        $this->_setResponseJSON($result);
+        
     }
 
     public function view($id = null) {
         parent::view($id);
-        $this->_setResponseJSON($this->Comment->findById($id));
         
-        // LOGGING
-        $this->logs['result'] = true;
-        $this->logs['resource'] = 'Comment';
-        $this->logs['resource_id'] = $id;
+        $this->Comment->id = $id;
+        if(!$this->Comment->exists()) {
+            throw new NotFoundException();
+        }
+        
+        $result = $this->Comment->find('first', array(
+            'conditions' => array('Comment.id' => $id),
+            'associations' => array(
+                'ActivityLog' => array(
+                    'fields' => array('id', 'user_id')
+                )
+            )
+        ));
+        
+        $this->_setResponseJSON($result);
+        $this->LogActions->setActionResult(count($result) == 1);
+        
     }
 
     public function add() {
@@ -48,12 +50,7 @@ class CommentsController extends RESTController {
         
         $saved = $this->Comment->save($this->request->data);
         $this->_setResponseJSON($saved);
-        // LOGGING
-        if ($saved) {
-            $this->logs['result'] = true;
-            $this->logs['resource'] = 'Comment';
-            $this->logs['resource_id'] = $saved['Comment']['id'];
-        }
+        
     }
 
     public function update($id = null) {
@@ -65,14 +62,7 @@ class CommentsController extends RESTController {
         parent::delete($id);
         
         $deleted = $this->Comment->delete($id);
-        
         $this->_setResponseJSON(array('deleted'=>$deleted));
-        // LOGGING
-        if ($deleted) {
-            $this->logs['result'] = true;
-            $this->logs['resource'] = 'Comment';
-            $this->logs['resource_id'] = $deleted['Comment']['id'];
-        }
         
     }
     
