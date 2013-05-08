@@ -180,3 +180,35 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
         $rootScope.toggleTitleMenu();
     }
 }
+
+
+function ProjectCtrl($scope, $rootScope, $location, auth, Projects) {
+    // TOP BAR
+    $rootScope.top_bar = {
+        back_button: {
+            icon: 'icon-chevron-left'
+        },
+        page_title: 'Project',
+//        title_icon: 'icon-th-list',
+//        title_menu: [
+//            {
+//                label: 'Users',
+//                func: function() {
+//                    $rootScope.toggleTitleMenu();
+//                    $location.url('/client/users');
+//                }
+//            }
+//        ],
+//        buttons: [
+//            { type: 'item', label: 'Users', func: $scope.login, icon: 'icon-chevron-left' },
+//            { type: 'divider-vertical' },
+//            { type: 'item', label: 'Users', func: $scope.login, icon: 'icon-chevron-left' }
+//        ],
+        main_menu_items: [
+            { type: 'item', label: 'Log Out', func: $rootScope.logout, icon: 'icon-lock' },
+            { type: 'divider' },
+            { type: 'item', label: 'Help', func: $rootScope.help },
+            { type: 'item', label: 'Info', func: $rootScope.info }
+        ]
+    };
+}
