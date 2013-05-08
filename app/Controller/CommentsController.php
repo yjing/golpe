@@ -69,6 +69,11 @@ class CommentsController extends RESTController {
     public function delete($id = null) {
         parent::delete($id);
         
+        $this->Comment->id = $id;
+        if(!$this->Comment->exists()) {
+            throw new NotFoundException();
+        }
+        
         $deleted = $this->Comment->delete($id);
         $this->_setResponseJSON(array('deleted'=>$deleted));
         
