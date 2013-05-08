@@ -7,7 +7,7 @@ class UsersController extends RESTController {
     public $uses = array('User', 'Profile');
     
     public function beforeFilter() {
-        $this->Auth->allow(array('add', 'login', 'logout'));
+        $this->Auth->allow(array('add', 'login', 'logout', 'user'));
         parent::beforeFilter();
     }
     
