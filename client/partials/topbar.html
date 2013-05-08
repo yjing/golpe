@@ -23,7 +23,7 @@ APP TOP BAR: configurable from the Controller
                 <li ng-repeat="i in top_bar.title_menu">
                     <a tabindex="-1" ng-click="eval(i);" href="#">
                         <i ng-show="i.icon!=null" class="{{i.icon}}"></i>
-                        i.label
+                        {{i.label}}
                     </a>
                 </li>
             </ul>
