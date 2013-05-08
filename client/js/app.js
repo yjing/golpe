@@ -15,9 +15,13 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         templateUrl: '/client/partials/supervisor.html',
         controller: "SupervisorCtrl"
     });
-    $routeProvider.when('/client/admin', {
-        templateUrl: '/client/partials/admin.html',
-        controller: "AdminCtrl"
+    $routeProvider.when('/client/users', {
+        templateUrl: '/client/partials/users.html',
+        controller: "UsersCtrl"
+    });
+    $routeProvider.when('/client/projects', {
+        templateUrl: '/client/partials/projects.html',
+        controller: "ProjectsCtrl"
     });
     $routeProvider.otherwise( {redirectTo: '/client/login'} );
 

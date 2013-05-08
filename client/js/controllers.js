@@ -33,7 +33,7 @@ function LoginCtrl($scope, $rootScope, $location, auth) {
                     $location.url('/client/supervisor');
                     break;
                 case 'ADMIN':
-                    $location.url('/client/admin');
+                    $location.url('/client/users');
                     break;
             }
         }
@@ -48,7 +48,7 @@ function LoginCtrl($scope, $rootScope, $location, auth) {
 
 }
 
-function AdminCtrl($scope, $rootScope, $location, Users, auth) {
+function UsersCtrl($scope, $rootScope, $location, Users, auth) {
     $scope.page_title = "Users";
     $scope.users = null;
 
@@ -75,4 +75,31 @@ function AdminCtrl($scope, $rootScope, $location, Users, auth) {
         $scope.main();
     }
 
+}
+
+function ProjectsCtrl($scope, $rootScope, $location, auth) {
+    $scope.page_title = "Users";
+
+    $scope.main = function() {
+        $rootScope.busy(true);
+//        $scope.users = Users.all();
+//        $scope.users.$then(function(){
+//            $rootScope.busy(false);
+//        });
+    }
+
+    if($rootScope.user == null || !$rootScope.user['logged']) {
+        $rootScope.busy(true);
+        $rootScope.user = auth.user();
+        $rootScope.user.$then(function(){
+            $rootScope.busy(false);
+            if(!$rootScope.user['logged']) {
+                $location.url('/client/login');
+            } else {
+                $scope.main();
+            }
+        });
+    } else {
+        $scope.main();
+    }
 }
