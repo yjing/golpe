@@ -182,8 +182,8 @@ abstract class RESTController extends AppController {
      * @param type $def_val default = TRUE
      */
     private function normalizeKeyValueToAssociative(&$key, &$value, $def_val = TRUE) {
-//        if(!is_string($key)) {
-        if(!is_numeric($key)) {
+        if(!is_string($key)) {
+//        if(!is_numeric($key)) {
             $key = $value;
             $value = $def_val;
         }
