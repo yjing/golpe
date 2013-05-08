@@ -20,8 +20,8 @@ body {
 }
 
 .brand.page_title i {
-    margin-top: 0.15em;
-    /*margin-left: 1em;*/
+    margin-top: 0.145em;
+    margin-right: 0.3em;
 }
 
 .fixbg {
