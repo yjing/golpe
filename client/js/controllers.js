@@ -82,8 +82,8 @@ function AdminCtrl($scope, $rootScope, $location, $resource, auth) {
 
     $scope.Users = $resource('/users/', {}, {
         all: {
-            url: '/users/',
-            method: 'GET'
+            method: 'GET',
+            isArray: true
         }
     });
     $scope.main = function() {
