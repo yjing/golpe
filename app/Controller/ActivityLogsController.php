@@ -155,17 +155,17 @@ class ActivityLogsController extends RESTController {
         
         $saved = $this->ActivityLog->save($this->request->data);
         if ($saved) {
-            $saved = $this->getDafaultFormattedAL($saved['ActivityLog']['id']);
+            $saved = $this->getDafaultFormattedAL($id);
             $this->_setResponseJSON($saved);
             
-            $this->Notification->createNotification('ActivityLog', $saved['ActivityLog']['id']);
+            $this->Notification->createNotification('ActivityLog', $id);
         } else {
             $this->_ReportDataValidationErrors($this->ActivityLog->validationErrors);
         }
         
         // LOGGING
         if ($saved) {
-            $this->LogActions->setResourceId($saved['ActivityLog']['id']);
+            $this->LogActions->setResourceId($id);
             
             $importance = 1;
             if(isset($saved['ActivityLog']['question']) && $saved['ActivityLog']['question']=='true') {
