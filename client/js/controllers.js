@@ -60,12 +60,15 @@ function AdminCtrl($scope, $rootScope, $location, Users, auth) {
             if(!$rootScope.user['logged']) {
                 $location.url('/client/login');
             } else {
+                console.log('BODY1');
                 $scope.main();
+                console.log('BODY1');
             }
         });
     }
 
     $scope.main = function() {
+        console.log('MAIN');
         $rootScope.busy(true);
         $scope.users = Users.all();
         $scope.users.$then(function(){
