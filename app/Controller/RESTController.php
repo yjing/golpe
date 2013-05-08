@@ -157,6 +157,8 @@ abstract class RESTController extends AppController {
                     debug($key);
                     debug($value);
                     $this->normalizeKeyValueToAssociative($key, $value);
+                    debug($key);
+                    debug($value);
                     if(isset($value) && is_array($value)) {
                         $value = $this->_normalize($value);
                     }
