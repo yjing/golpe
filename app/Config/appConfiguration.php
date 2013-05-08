@@ -4,7 +4,7 @@ Configure::write("APPCONFIG", array(
     'debug' => 1,
     'roles' => array('STUDENT', 'SUPERVISOR', 'ADMIN', 'SYSTEM', 'SHELL'),
     'super_roles' => array('SHELL', 'SYSTEM'),
-    'visibility_levels' => array('PRIVATE', 'SUPERVISOR', 'TEAM', 'PUBLIC'),
+    'visibility_levels' => array('PRIVATE', 'SUPERVISOR', 'TEAM', 'PUBLIC', 'SYSTEM'),
     'activity_logs_modes' => array( 
         'STUDENT' => array(
             'modes' => array('all', 'news', 'mine', 'team', 'public'), 
