@@ -15,9 +15,9 @@ function LoginCtrl($scope, $rootScope, $location, auth) {
             { label: 'Projects', func: $scope.login, icon: 'icon-chevron-left' }
         ],
         buttons: [
-            { label: 'Users', func: $scope.login, icon: 'icon-chevron-left' },
-            { is_divider: true, class: 'vertical-divider' },
-            { label: 'Users', func: $scope.login, icon: 'icon-chevron-left' }
+            { type: 'item', label: 'Users', func: $scope.login, icon: 'icon-chevron-left' },
+            { type: 'divider-vertical' },
+            { type: 'item', label: 'Users', func: $scope.login, icon: 'icon-chevron-left' }
         ]
     }
 
