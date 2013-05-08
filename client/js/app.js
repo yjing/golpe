@@ -24,7 +24,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             } else {
                 $rootScope.busy_monitor--;
                 if($rootScope.busy_monitor <= 0) {
-                    $rootScope.busy = 0;
+                    $rootScope.busy_monitor = 0;
                     $rootScope.busy_class = "";
                 }
             }
