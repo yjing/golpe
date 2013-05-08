@@ -3,6 +3,13 @@ function LoginCtrl($scope, $rootScope, $location, auth) {
     $scope.username = "y.jing";
     $scope.password = "30071980";
 
+    // TOP BAR
+    $rootScope.top_bar = {
+        back_button: {
+            icon: 'icon-chevron-left'
+        }
+    }
+
     $scope.login = function() {
         $rootScope.busy(true);
         $rootScope.user = auth.auth($scope.username, $scope.password);

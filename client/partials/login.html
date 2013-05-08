@@ -1,28 +1,4 @@
-<!--<div class="activity_bar {{busy_class}}" ng-show="busy_monitor > 0"></div>-->
-<!--<div class="navbar navbar-fixed-top {{busy_class}}" style="margin: 0;">-->
-    <!--<div class="navbar-inner" style="padding-left: 0px;padding-right: 0px;">-->
-        <!--<a style="font-size: 1.3em;margin-left: 0;padding-left: 8px; padding-right:0;width:50%;overflow: hidden;white-space: nowrap;" href="#" class="brand">-->
-            <!--Login-->
-        <!--</a>-->
-        <!--<ul class="nav" style="float: right;margin-right: 0px;">-->
-            <!--<li style="font-weight: bold;padding: 0; margin: 0;">-->
-                <!--<a href="#" style="padding-right: 10px;padding-left: 10px;" ng-click="toggleMenu();"><i class="icon-chevron-down"></i></a>-->
-                <!--<div class="dropdown pull-right {{mainmenu_open}}" style="left: -5px;">-->
-                    <!--&lt;!&ndash; Link or button to toggle dropdown &ndash;&gt;-->
-                    <!--<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">-->
-                        <!--<li><a tabindex="-1" href="#" ng-show="user.logged" ng-click="logout();">Logout</a></li>-->
-                        <!--<li class="divider" ng-show="user.logged" ></li>-->
-                        <!--<li><a tabindex="-1" href="#" ng-click="help();">Help</a></li>-->
-                        <!--<li><a tabindex="-1" href="#" ng-click="info();">Info</a></li>-->
-                    <!--</ul>-->
-                <!--</div>-->
-            <!--</li>-->
-        <!--</ul>-->
-    <!--</div>-->
-<!--</div>-->
 <div ng-include src="top_bar_url"></div>
-
-
 <div class="content">
     <form class="form-horizontal" style="margin: 2em;" ng-hide="checking_login" ng-submit="login();">
         <div class="control-group" ng-show="login_message != null">
