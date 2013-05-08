@@ -6,15 +6,13 @@ function LoginCtrl($scope, $rootScope, $location, $http, auth) {
     $scope.login = function() {
         $rootScope.busy(true);
         $rootScope.user = auth.auth($scope.username, $scope.password);
-        console.log("user...");
         $rootScope.user.$then(
             function(){
-                console.log("SUCCESS");
-                console.log($rootScope.user);
+                $rootScope.busy(false);
             },
             function(){
-                console.log("ERROR");
-                console.log($rootScope.user);
+                $rootScope.busy(false);
+                $scope.login_message = "Login failed";
             }
         )
     }
