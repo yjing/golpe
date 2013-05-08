@@ -20,12 +20,12 @@ function LoginCtrl($scope, $rootScope, $location, auth) {
 //            { type: 'item', label: 'Users', func: $scope.login, icon: 'icon-chevron-left' }
 //        ],
         main_menu_items: [
-            { type: 'item', label: 'Log Out', func: $rootScope.logout, icon: 'icon-lock' },
-            { type: 'divider' },
+//            { type: 'item', label: 'Log Out', func: $rootScope.logout, icon: 'icon-lock' },
+//            { type: 'divider' },
             { type: 'item', label: 'Help', func: $rootScope.help },
             { type: 'item', label: 'Info', func: $rootScope.info }
         ]
-    }
+    };
 
     $scope.login = function() {
         $rootScope.busy(true);
@@ -73,8 +73,30 @@ function LoginCtrl($scope, $rootScope, $location, auth) {
 }
 
 function UsersCtrl($scope, $rootScope, $location, Users, auth) {
-    $scope.page_title = "Users";
-    $scope.users = null;
+    // TOP BAR
+    $rootScope.top_bar = {
+        back_button: {
+            icon: 'icon-chevron-left'
+        },
+        page_title: 'Login',
+        title_icon: 'icon-th-list',
+        title_menu: [
+            { label: 'Users', func: $scope.goProjects, icon: 'icon-chevron-left' },
+//            { label: 'Projects', func: $scope.login, icon: 'icon-chevron-left' }
+        ],
+//        buttons: [
+//            { type: 'item', label: 'Users', func: $scope.login, icon: 'icon-chevron-left' },
+//            { type: 'divider-vertical' },
+//            { type: 'item', label: 'Users', func: $scope.login, icon: 'icon-chevron-left' }
+//        ],
+        main_menu_items: [
+            { type: 'item', label: 'Log Out', func: $rootScope.logout, icon: 'icon-lock' },
+            { type: 'divider' },
+            { type: 'item', label: 'Help', func: $rootScope.help },
+            { type: 'item', label: 'Info', func: $rootScope.info }
+        ]
+    };
+
 
     $rootScope.busy(false);
     $scope.main = function() {
