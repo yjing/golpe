@@ -26,57 +26,63 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     $locationProvider.html5Mode(true).hashPrefix('!');
 }).run(function($rootScope) {
 
-        // MENUS and ACTIVITY BAR
-        $rootScope.busy_class = "";
-        $rootScope.busy_monitor = 0;
-        $rootScope.busy = function(busy) {
-            if(busy) {
-                $rootScope.busy_monitor++;
-                $rootScope.busy_class = "busy";
-            } else {
-                $rootScope.busy_monitor--;
-                if($rootScope.busy_monitor <= 0) {
-                    $rootScope.busy_monitor = 0;
-                    $rootScope.busy_class = "";
-                }
+    // MENUS and ACTIVITY BAR
+    $rootScope.busy_class = "";
+    $rootScope.busy_monitor = 0;
+    $rootScope.busy = function(busy) {
+        if(busy) {
+            $rootScope.busy_monitor++;
+            $rootScope.busy_class = "busy";
+        } else {
+            $rootScope.busy_monitor--;
+            if($rootScope.busy_monitor <= 0) {
+                $rootScope.busy_monitor = 0;
+                $rootScope.busy_class = "";
             }
         }
+    }
 
-        $rootScope.mainmenu_open = "";
-        $rootScope.toggleMenu = function() {
-            if($rootScope.mainmenu_open.length == 0) {
-                $rootScope.mainmenu_open = "open";
-            } else {
-                $rootScope.mainmenu_open = "";
-            }
+    $rootScope.mainmenu_open = "";
+    $rootScope.toggleMenu = function() {
+        if($rootScope.mainmenu_open.length == 0) {
+            $rootScope.mainmenu_open = "open";
+        } else {
+            $rootScope.mainmenu_open = "";
         }
-        $rootScope.titlemenu_open = "";
-        $rootScope.toggleTitleMenu = function() {
-            menu = angular.element('.title_menu');
-            topbar = angular.element('.topbar');
-            brand = angular.element('.brand');
-//            brand.click(function(e){
-//                e.stopImmediatePropagation();
-//                e.preventDefault();
-//                return false;
-//            });
-            body = angular.element('body');
-//            body.click(function(e){
-//                $rootScope.$apply(function(){
-//                    $rootScope.toggleTitleMenu();
-//                });
-//            });
+    }
+    $rootScope.titlemenu_open = "";
+    $rootScope.toggleTitleMenu = function() {
+        menu = angular.element('.title_menu');
+        topbar = angular.element('.topbar');
+        brand = angular.element('.brand');
+        body = angular.element('body');
 
-            menu.css('position', 'absolute');
-            menu.css('top',  (brand.position().top + brand.outerHeight()) + 'px');
-            menu.css('left', (brand.position().left + 15) + 'px');
+        menu.css('position', 'absolute');
+        menu.css('top',  (brand.position().top + brand.outerHeight()) + 'px');
+        menu.css('left', (brand.position().left + 15) + 'px');
 
-            if($rootScope.titlemenu_open.length == 0) {
-                $rootScope.titlemenu_open = "open";
-            } else {
-                $rootScope.titlemenu_open = "";
-            }
+        if($rootScope.titlemenu_open.length == 0) {
+            $rootScope.titlemenu_open = "open";
+        } else {
+            $rootScope.titlemenu_open = "";
         }
+    }
+
+
+    $rootScope.logout = function() {
+        $rootScope.toggleMenu();
+        $rootScope.busy(true);
+
+        $rootScope.user = auth.logout();
+        $rootScope.user.$then(
+            function(){
+                $rootScope.busy(false);
+            },
+            function(){
+                $rootScope.busy(false);
+            }
+        )
+    }
 
     $rootScope.getThumbUrl = function(media){
         if(media['has_thumb']) {
