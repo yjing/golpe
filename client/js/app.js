@@ -68,6 +68,13 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         }
     }
 
+    $rootScope.info = function() {
+        $rootScope.toggleMenu();
+    }
+    $rootScope.help = function() {
+        $rootScope.toggleMenu();
+    }
+
     $rootScope.logout = function() {
         $rootScope.toggleMenu();
         $rootScope.busy(true);
