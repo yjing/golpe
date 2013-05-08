@@ -63,7 +63,7 @@ function LoginCtrl($scope, $rootScope, $location, auth) {
 
 }
 
-function AdminCtrl($scope, $rootScope, $location, auth) {
+function AdminCtrl($scope, $rootScope, $location, $resource, auth) {
     $scope.page_title = "Users";
     $scope.users = [{"test":"Test"}];
 
@@ -86,7 +86,11 @@ function AdminCtrl($scope, $rootScope, $location, auth) {
         }
     });
     $scope.main = function() {
+        $rootScope.busy(true);
         $scope.users = $scope.Users.all();
+        $rootScope.users.$then(function(){
+            $rootScope.busy(false);
+        });
     }
 
 }
