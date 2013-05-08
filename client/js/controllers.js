@@ -7,7 +7,11 @@ function LoginCtrl($scope, $rootScope, $location, auth) {
     $rootScope.top_bar = {
         back_button: {
             icon: 'icon-chevron-left'
-        }
+        },
+        page_title: 'Login',
+        title_menu: [
+            { lable: 'Users', func: $scope.login, icon: 'icon-chevron-left' }
+        ]
     }
 
     $scope.login = function() {
