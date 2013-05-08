@@ -179,6 +179,10 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
         $location.url('/client/users');
         $rootScope.toggleTitleMenu();
     }
+    $scope.goProject = function(item){
+        $location.url('/client/project/' + item.Project.id);
+        $rootScope.toggleTitleMenu();
+    }
 }
 
 
