@@ -24,7 +24,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     // configure html5 to get links working
     // If you don't do this, you URLs will be base.com/#/home rather than base.com/home
     $locationProvider.html5Mode(true).hashPrefix('!');
-}).run(function($rootScope, auth) {
+}).run(function($rootScope, $location, auth) {
 
     // MENUS and ACTIVITY BAR
     $rootScope.busy_class = "";
@@ -77,9 +77,11 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         $rootScope.user.$then(
             function(){
                 $rootScope.busy(false);
+                $location.url('/client/login');
             },
             function(){
                 $rootScope.busy(false);
+                $location.url('/client/login');
             }
         )
     }
