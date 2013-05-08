@@ -54,8 +54,9 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         $rootScope.toggleTitleMenu = function() {
             menu = angular.element('.title_menu');
             brand = angular.element('.brand');
-            menu.css('top', brand.css('top') + 'px');
-            menu.css('left', brand.css('left') + 'px');
+            menu.css('top', brand.css('top'));
+            menu.css('left', brand.css('left'));
+            console.log(brand.css('top'));
 
             if($rootScope.titlemenu_open.length == 0) {
                 $rootScope.titlemenu_open = "open";
