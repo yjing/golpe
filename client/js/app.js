@@ -75,6 +75,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         $rootScope.user = auth.logout();
         $rootScope.user.$then(
             function(){
+                console.log($rootScope.user);
                 $rootScope.busy(false);
                 $location.url('/client/login');
             },
