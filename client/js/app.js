@@ -51,7 +51,8 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             }
         }
         $rootScope.titlemenu_open = "";
-        $rootScope.toggleTitleMenu = function() {
+        $rootScope.toggleTitleMenu = function(elem) {
+            console.log(elem);
             if($rootScope.titlemenu_open.length == 0) {
                 $rootScope.titlemenu_open = "open";
             } else {
