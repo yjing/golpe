@@ -222,7 +222,7 @@ function ProjectCtrl($scope, $rootScope, $location, auth, Projects, $routeParams
     $rootScope.busy(false);
     $scope.main = function() {
         $rootScope.busy(true);
-        $scope.project = Projects.get($routeParams['project_id']);
+        $scope.project = Projects.get({id:$routeParams['project_id']});
         $scope.project.$then(function(){
             $rootScope.busy(false);
         });
