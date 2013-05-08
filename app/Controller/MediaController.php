@@ -32,8 +32,12 @@ class MediaController extends RESTController {
             throw new NotFoundException();
         }
         
-        $this->Media->recursive = -1;
-        $result = $this->Media->findById($id);
+        $result = $this->Media->find('first', array(
+            'conditions' => array('Media.id' => $id),
+            'associations' => array(
+                'Comment', 'ActivityLog'
+            )
+        ));
         
         if(count($result['Comment']) == 0) {
             unset($result['Comment']);
