@@ -52,6 +52,14 @@ function AdminCtrl($scope, $rootScope, $location, Users, auth) {
     $scope.page_title = "Users";
     $scope.users = null;
 
+    $scope.main = function() {
+        $rootScope.busy(true);
+        $scope.users = Users.all();
+        $scope.users.$then(function(){
+            $rootScope.busy(false);
+        });
+    }
+
     if($rootScope.user == null || !$rootScope.user['logged']) {
         $rootScope.busy(true);
         $rootScope.user = auth.user();
@@ -65,14 +73,6 @@ function AdminCtrl($scope, $rootScope, $location, Users, auth) {
         });
     } else {
         $scope.main();
-    }
-
-    $scope.main = function() {
-        $rootScope.busy(true);
-        $scope.users = Users.all();
-        $scope.users.$then(function(){
-            $rootScope.busy(false);
-        });
     }
 
 }
