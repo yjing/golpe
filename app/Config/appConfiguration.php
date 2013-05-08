@@ -1,7 +1,7 @@
 <?php
 
 Configure::write("APPCONFIG", array(
-    'debug' => 2,
+    'debug' => 1,
     'roles' => array('STUDENT', 'SUPERVISOR', 'ADMIN', 'SYSTEM', 'SHELL'),
     'super_roles' => array('SHELL', 'SYSTEM'),
     'visibility_levels' => array('PRIVATE', 'SUPERVISOR', 'TEAM', 'PUBLIC'),
