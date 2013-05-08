@@ -7,8 +7,7 @@
         <a href="#" class="brand page_title" ng-click="toggleTitleMenu()"><i class="icon-th-list"></i> {{page_title}}</a>
         <div class="dropdown pull-left title_menu {{titlemenu_open}}" style="top: 0; left: 0;">
             <ul class="dropdown-menu">
-                <li><a tabindex="-1" ng-hide="page_title == 'Projects'" href="#">Projects</a></li>
-                <li><a tabindex="-1" ng-hide="page_title == 'Users'" href="#">Users</a></li>
+                <li><a tabindex="-1" ng-hide="page_title == 'Projects'" ng-click="goProjects();" href="#">Projects</a></li>
             </ul>
         </div>
         <ul class="nav" style="float: right;margin-right: 0px;">
