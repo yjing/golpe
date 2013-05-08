@@ -62,7 +62,9 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             });
             body = angular.element('body');
             body.click(function(e){
-                $rootScope.toggleTitleMenu();
+                $rootScope.$apply(function(){
+                    $rootScope.toggleTitleMenu();
+                });
             });
 
             menu.css('position', 'absolute');
