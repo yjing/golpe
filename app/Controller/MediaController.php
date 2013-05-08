@@ -138,60 +138,14 @@ class MediaController extends RESTController {
     }
 
     public function add() {
-        parent::add();
-
-        $this->Media->create();
-        $this->Media->set($this->request->data);
-        if ($this->Media->validates()) {
-            
-            $medium = $this->Media->save();
-            
-            $this->set(array(
-                'content' => $medium,
-                '_serialize' => 'content'
-            ));
-            
-        } else {
-            $this->_ReportDataValidationErrors($this->Media->validationErrors);
-        }
-        
+        throw new MethodNotAllowedException();
     }
 
     public function edit($id = null) {
-        parent::edit($id);
-        
-        $this->Media->id = $id;
-        if (!$this->Media->exists()) {
-            $this->_ReportDataValidationErrors($id);
-        }
-
-        $this->Media->set($this->request->input('json_decode'));
-        if ($this->Media->validates()) {
-
-            $medium = $this->Media->save();
-            
-            $this->_setResponseJSON($medium);
-
-        } else {
-            $this->_ReportDataValidationErrors($this->Media->validationErrors);
-        }
+        throw new MethodNotAllowedException();
     }
 
     public function delete($id = null) {
-        parent::delete($id);
-        
-        $this->Media->id = $id;
-        if (!$this->Media->exists()) {
-            $this->_ReportDataValidationErrors($id);
-        }
-        if ($this->Media->delete()) {
-            $this->_setResponseJSON('Medium deleted');
-        } else {
-            $this->_setResponseJSON('Medium Not deleted');
-        }
-        
+        throw new MethodNotAllowedException();
     }
-
 }
-
-?>

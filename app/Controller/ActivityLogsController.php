@@ -104,21 +104,23 @@ class ActivityLogsController extends RESTController {
     public function add() {
         parent::add();
         
-        if(isset($this->request->data[$this->ActivityLog->alias]['created'])) {
-            unset($this->request->data[$this->ActivityLog->alias]['created']);
-        }
-        if(isset($this->request->data[$this->ActivityLog->alias]['modified'])) {
-            unset($this->request->data[$this->ActivityLog->alias]['modified']);
-        }
-        
-        $saved = $this->ActivityLog->save($this->request->data);
-        if ($saved) {
-            $saved = $this->getDafaultFormattedAL($saved['ActivityLog']['id']);
-            $this->_setResponseJSON($saved);
-            
-            $this->Notification->createNotification('ActivityLog', $saved['ActivityLog']['id']);
+        $saved = false;
+        if ($this->request->data) {
+            $data = Set::remove($this->request->data, 'ActivityLog.id');
+            $data = Set::remove($this->request->data, 'ActivityLog.created');
+            $data = Set::remove($this->request->data, 'ActivityLog.modified');
+
+            $saved = $this->ActivityLog->save($this->request->data);
+            if ($saved) {
+                $saved = $this->getDafaultFormattedAL($saved['ActivityLog']['id']);
+                $this->_setResponseJSON($saved);
+
+                $this->Notification->createNotification('ActivityLog', $saved['ActivityLog']['id']);
+            } else {
+                $this->_ReportDataValidationErrors($this->ActivityLog->validationErrors);
+            }
         } else {
-            $this->_ReportDataValidationErrors($this->ActivityLog->validationErrors);
+            throw new BadRequestException();
         }
         
         // LOGGING
@@ -141,26 +143,27 @@ class ActivityLogsController extends RESTController {
     public function update($id = null) {
         parent::update($id);
         
-        if(isset($this->request->data[$this->ActivityLog->alias]['created'])) {
-            unset($this->request->data[$this->ActivityLog->alias]['created']);
-        }
-        if(isset($this->request->data[$this->ActivityLog->alias]['modified'])) {
-            unset($this->request->data[$this->ActivityLog->alias]['modified']);
-        }
-        
-        $this->ActivityLog->id = $id;
-        if(!$this->ActivityLog->exists()) {
-            throw new NotFoundException();
-        }
-        
-        $saved = $this->ActivityLog->save($this->request->data);
-        if ($saved) {
-            $saved = $this->getDafaultFormattedAL($id);
-            $this->_setResponseJSON($saved);
-            
-            $this->Notification->createNotification('ActivityLog', $id);
+        $saved = false;
+        if ($this->request->data) {
+            $data = Set::remove($this->request->data, 'ActivityLog.created');
+            $data = Set::remove($this->request->data, 'ActivityLog.modified');
+
+            $this->ActivityLog->id = $id;
+            if(!$this->ActivityLog->exists()) {
+                throw new NotFoundException();
+            }
+
+            $saved = $this->ActivityLog->save($this->request->data);
+            if ($saved) {
+                $saved = $this->getDafaultFormattedAL($id);
+                $this->_setResponseJSON($saved);
+
+                $this->Notification->createNotification('ActivityLog', $id);
+            } else {
+                $this->_ReportDataValidationErrors($this->ActivityLog->validationErrors);
+            }
         } else {
-            $this->_ReportDataValidationErrors($this->ActivityLog->validationErrors);
+            throw new BadRequestException();
         }
         
         // LOGGING

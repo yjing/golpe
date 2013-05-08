@@ -47,16 +47,21 @@ class CommentsController extends RESTController {
 
     public function add() {
         parent::add();
-        $data = Set::remove($this->request->data, 'Comment.id');
         
-        if($this->Comment->save($data)) {
-            $this->_setResponseJSON( $this->getDafaultFormattedComment($this->Comment->id) );
-        } else {
-            if(count($this->Comment->validationErrors) > 0) {
-                $this->_ReportDataValidationErrors($this->Comment->validationErrors);
+        if ($this->request->data) {
+            $data = Set::remove($this->request->data, 'Comment.id');
+
+            if($this->Comment->save($data)) {
+                $this->_setResponseJSON( $this->getDafaultFormattedComment($this->Comment->id) );
             } else {
-                throw new BadRequestException();
+                if(count($this->Comment->validationErrors) > 0) {
+                    $this->_ReportDataValidationErrors($this->Comment->validationErrors);
+                } else {
+                    throw new BadRequestException();
+                }
             }
+        } else {
+            throw new BadRequestException();
         }
         
     }
