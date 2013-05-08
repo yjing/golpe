@@ -107,8 +107,6 @@ class ActivityLogsController extends RESTController {
         $saved = false;
         if ($this->request->data) {
             $data = Set::remove($this->request->data, 'ActivityLog.id');
-            $data = Set::remove($this->request->data, 'ActivityLog.created');
-            $data = Set::remove($this->request->data, 'ActivityLog.modified');
 
             $saved = $this->ActivityLog->save($this->request->data);
             if ($saved) {
@@ -145,9 +143,6 @@ class ActivityLogsController extends RESTController {
         
         $saved = false;
         if ($this->request->data) {
-            $data = Set::remove($this->request->data, 'ActivityLog.created');
-            $data = Set::remove($this->request->data, 'ActivityLog.modified');
-
             $this->ActivityLog->id = $id;
             if(!$this->ActivityLog->exists()) {
                 throw new NotFoundException();
