@@ -190,7 +190,7 @@ function ProjectCtrl($scope, $rootScope, $location, auth, Projects, $browser) {
     $rootScope.top_bar = {
         back_button: {
             icon: 'icon-chevron-left',
-            func: $browser.back
+            func: window.location.back
         },
         page_title: 'Project',
 //        title_icon: 'icon-th-list',
