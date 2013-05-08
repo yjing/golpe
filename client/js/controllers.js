@@ -78,7 +78,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth) {
 }
 
 function ProjectsCtrl($scope, $rootScope, $location, auth) {
-    $scope.page_title = "Users";
+    $scope.page_title = "Projects";
 
     $scope.main = function() {
         $rootScope.busy(true);
