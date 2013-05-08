@@ -81,7 +81,11 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth) {
         page_title: 'Users',
         title_icon: 'icon-th-list',
         title_menu: [
-            { label: 'Projects', func: $scope.goProjects }
+            { label: 'Projects', func: function() {
+                    $location.url('/client/projects');
+                    $rootScope.toggleTitleMenu();
+                }
+            }
         ],
 //        buttons: [
 //            { type: 'item', label: 'Users', func: $scope.login, icon: 'icon-chevron-left' },
@@ -119,11 +123,6 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth) {
         });
     } else {
         $scope.main();
-    }
-
-    $scope.goProjects = function(){
-        $location.url('/client/projects');
-        $rootScope.toggleTitleMenu();
     }
 }
 
