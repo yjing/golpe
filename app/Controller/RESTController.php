@@ -36,6 +36,7 @@ abstract class RESTController extends AppController {
         $this->Auth->authorize = 'Controller';
         $this->Auth->unauthorizedRedirect = false;
         
+        Configure::write('debug', 2);
         debug(Configure::read("APPCONFIG.authorization." . $this->name));
         debug(("APPCONFIG.authorization." . $this->name));
         die();
