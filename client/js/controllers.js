@@ -1,6 +1,6 @@
-function LoginCtrl($scope, $rootScope, $location, $http, auth) {
+function LoginCtrl($scope, $rootScope, $location, auth) {
     // TMP CREDENTIALS
-    $scope.username = "s.susini";
+    $scope.username = "y.jing";
     $scope.password = "30071980";
 
     $scope.login = function() {
@@ -11,7 +11,7 @@ function LoginCtrl($scope, $rootScope, $location, $http, auth) {
                 console.log($rootScope.user);
                 $rootScope.busy(false);
                 if( $rootScope.user['logged'] ) {
-
+                    $scope.redirectUser();
                 } else {
                     $scope.login_message = "Login failed";
                 }
@@ -37,4 +37,26 @@ function LoginCtrl($scope, $rootScope, $location, $http, auth) {
             }
         )
     }
+
+    $scope.redirectUser = function() {
+        if($rootScope.user['logged']) {
+            switch ($rootScope.user['User']['role']) {
+                case 'STUDENT':
+                    $location.url('/client/student');
+                    break;
+                case 'SUPERVISOR':
+                    $location.url('/client/supervisor');
+                    break;
+                case 'ADMIN':
+                    $location.url('/client/admin');
+                    break;
+            }
+        }
+    }
+}
+
+function AdminCtrl($scope, $rootScope, $location, auth) {
+    $scope.admin.users = [
+        {"test": "test"}
+    ];
 }

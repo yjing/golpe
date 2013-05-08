@@ -2,7 +2,7 @@
 <div class="navbar navbar-fixed-top {{busy_class}}" style="margin: 0;">
     <div class="navbar-inner" style="padding-left: 0px;padding-right: 0px;">
         <a style="font-size: 1.3em;margin-left: 0;padding-left: 8px; padding-right:0;width:50%;overflow: hidden;white-space: nowrap;" href="#" class="brand">
-            Login
+            {{page_title}}
         </a>
         <ul class="nav" style="float: right;margin-right: 0px;">
             <li style="font-weight: bold;padding: 0; margin: 0;">
@@ -21,29 +21,8 @@
     </div>
 </div>
 
-<div class="content">
-    <form class="form-horizontal" style="margin: 2em;" ng-hide="checking_login" ng-submit="login();">
-        <div class="control-group" ng-show="login_message != null">
-            <div class="controls">
-                <span class="alert alert-error text-center">{{login_message}}</span>
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="inputEmail">Email</label>
-            <div class="controls">
-                <input autofocus="true" type="text" id="inputEmail" placeholder="Email" ng-model="username" value="s.susini">
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="inputPassword">Password</label>
-            <div class="controls">
-                <input type="password" id="inputPassword" placeholder="Password" ng-model="password" value="30071980">
-            </div>
-        </div>
-        <div class="control-group">
-            <div class="controls">
-                <button type="submit" class="btn" ng-disabled="busy_monitor > 0">Sign in</button>
-            </div>
-        </div>
-    </form>
+<div class="row-fluid content" ng-show="al && !show_media">
+    <div class="span10 offset1">
+        {{admin.users}}
+    </div>
 </div>
