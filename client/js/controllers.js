@@ -54,7 +54,6 @@ function LoginCtrl($scope, $rootScope, $location, auth) {
         }
     }
 
-
     $rootScope.busy(true);
     $rootScope.user = auth.user();
     $rootScope.user.$then(function(){
@@ -65,8 +64,18 @@ function LoginCtrl($scope, $rootScope, $location, auth) {
 }
 
 function AdminCtrl($scope, $rootScope, $location, auth) {
-    console.log("ADMIN");
     $scope.page_title = "Users";
     $scope.users = [{"test":"Test"}];
+
+    if($rootScope.user == null || !$rootScope.user['logged']) {
+        $rootScope.busy(true);
+        $rootScope.user = auth.user();
+        $rootScope.user.$then(function(){
+            $rootScope.busy(false);
+            if(!$rootScope.user['logged']) {
+                $location.url('/client/login');
+            }
+        });
+    }
 
 }
