@@ -91,65 +91,38 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 
 })
 .service('auth', function($http, $resource){
-    this.username = null;
-    this.password = null;
 
-    this.credentials = function(username, password){
-        this.username = username;
-        this.password = password;
-    }
-
-    this.Login = $resource('/users/', {}, {
+    this.Users = $resource('/users/', {}, {
+        user : {
+            method: 'GET',
+            url : '/users/user'
+        },
         login : {
             method : 'POST',
             url : '/users/login',
             headers : {'Content-Type': 'application/x-www-form-urlencoded'}
+        },
+        logout : {
+            method: 'GET',
+            url : '/users/logout'
         }
     });
-    this.auth = function(callback){
-        var xsrf = null;
-        if(this.username!=null && this.password!=null) {
-            xsrf = $.param({
-                "data[User][username]" : this.username,
-                "data[User][password]" : this.password
-            });
-        }
 
+    this.auth = function(username, password){
+        var xsrf = $.param({
+            "data[User][username]" : username,
+            "data[User][password]" : password
+        });
         return this.Login.login(xsrf);
 
-//        $http({
-//            method: "POST",
-//            url: "/users/login",
-//            headers: {
-//                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-//            },
-//            data:xsrf
-//        }).
-//        success(function(data, status, headers, config){
-//            if (data['logged']) {
-//                if(callback)
-//                    callback(data['User']);
-//            } else {
-//                if(callback)
-//                    callback(false);
-//            }
-//        }).
-//        error(function(data, status, headers, config) {
-//            if(callback)
-//                callback(false);
-//        });
     }
 
-    this.Logout = $resource('/users/logout');
     this.logout = function() {
-        return this.Logout.get({});
-        this.username = null;
-        this.password = null;
+        return this.Users.logout();
     }
 
-    this.User = $resource('/users/user');
     this.user = function() {
-        return this.User.get({});
+        return this.Users.user();
     }
 });
 
