@@ -68,9 +68,9 @@ function LoginCtrl($scope, $rootScope, $location, auth) {
 function UsersCtrl($scope, $rootScope, $location, Users, auth) {
     // TOP BAR
     $rootScope.top_bar = {
-        back_button: {
-            icon: 'icon-chevron-left'
-        },
+//        back_button: {
+//            icon: 'icon-chevron-left'
+//        },
         page_title: 'Users',
         title_icon: 'icon-th-list',
         title_menu: [
@@ -124,9 +124,9 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth) {
 function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     // TOP BAR
     $rootScope.top_bar = {
-        back_button: {
-            icon: 'icon-chevron-left'
-        },
+//        back_button: {
+//            icon: 'icon-chevron-left'
+//        },
         page_title: 'Projects',
         title_icon: 'icon-th-list',
         title_menu: [
