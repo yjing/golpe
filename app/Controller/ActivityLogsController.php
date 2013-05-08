@@ -51,32 +51,7 @@ class ActivityLogsController extends RESTController {
                 break;
         }
         
-        $results = $this->ActivityLog->find('all',
-            array(
-                'conditions' => $conditions,
-                'recursive' => -1,
-                'associations' => array(
-                    'User' => array(
-                        "unArray_if_single_value",
-                        'fields' => array('id', 'username'),
-                        'associations' => array(
-                            'Supervisor' => array(
-                                "unArray_if_single_value",
-                                'fields' => array('id', 'username')
-                            )
-                        )
-                    ),
-                    'Comment' => array(
-                        "unArray_if_single_value",
-                        'fields' => array('count(*) as count')
-                    ),
-                    'Media' => array(
-                        "unArray_if_single_value",
-                        'fields' => array('count(*) as count')
-                    )
-                )
-            )
-        );
+        $results = $this->getDafaultFormattedALs($conditions);
         
         $results = $this->_formatDates($results, time(), array('created', 'modified'));
         $this->_setResponseJSON($results);
@@ -115,23 +90,7 @@ class ActivityLogsController extends RESTController {
             $this->response->statusCode(204);
         } else {
         
-            $result = $this->ActivityLog->find('first',
-                array(
-                    'conditions' => array(
-                        'ActivityLog.id' => $id
-                    ),
-                    'recursive' => -1,
-                    'associations' => array(
-                        'User' => array(
-                            'associations' => array(
-                                'Supervisor' => array()
-                            )
-                        ),
-                        'Media',
-                        'Comment'
-                    )
-                )
-            );
+            $result = $this->getExtendedFormattedAL($id);
 
             if(count($result) == 0) {
                 throw new UnauthorizedException();
@@ -221,6 +180,116 @@ class ActivityLogsController extends RESTController {
         $role = $user['role'];
         $modes = $this->_roles = Configure::read("APPCONFIG.activity_logs_modes.$role");
         $this->_setResponseJSON($modes);
+    }
+    
+    private function getDafaultFormattedALs($conditions) {
+        return $this->ActivityLog->find('all',
+            array(
+                'conditions' => $conditions,
+                'recursive' => -1,
+                'associations' => array(
+                    'User' => array(
+                        'associations' => array(
+                            'fields' => array('id', 'username', 'role'),
+                            'Supervisor' => array(
+                                'fields' => array('id', 'username', 'role')
+                            )
+                        )
+                    ),
+                    'Comment' => array(
+                        "unArray_if_single_value",
+                        'fields' => array('count(*) as count')
+                    ),
+                    'Media' => array(
+                        "unArray_if_single_value",
+                        'fields' => array('count(*) as count')
+                    )
+                )
+            )
+        );
+    }
+    
+    private function getDafaultFormattedAL($id) {
+        return $this->ActivityLog->find('first',
+            array(
+                'conditions' => array(
+                    'ActivityLog.id' => $id
+                ),
+                'recursive' => -1,
+                'associations' => array(
+                    'User' => array(
+                        'associations' => array(
+                            'fields' => array('id', 'username', 'role'),
+                            'Supervisor' => array(
+                                'fields' => array('id', 'username', 'role')
+                            )
+                        )
+                    ),
+                    'Media' => array(
+                        'associations' => array(
+                            'fields' => array('id', 'filename', 'content-type', 'content-size', 'meta', 'has_thumb', 'status', 'user_id'),
+                            'associations' => array(
+                                'User' => array('fields' => array('username'))
+                            )
+                        )
+                    ),
+                    'Comment' => array(
+                        'associations' => array(
+                            'fields' => array('id', 'content', 'user_id'),
+                            'associations' => array(
+                                'User' => array('fields' => array('username'))
+                            )
+                        )
+                    )
+                )
+            )
+        );
+    }
+    
+    private function getExtendedFormattedAL($id, $show_comment_media = true) {
+        $options = array(
+            'conditions' => array(
+                'ActivityLog.id' => $id
+            ),
+            'recursive' => -1,
+            'associations' => array(
+                'User' => array(
+                    'associations' => array(
+                        'fields' => array('id', 'username', 'role'),
+                        'Supervisor' => array(
+                            'fields' => array('id', 'username', 'role')
+                        )
+                    )
+                ),
+                'Media' => array(
+                    'associations' => array(
+                        'fields' => array('id', 'filename', 'content-type', 'content-size', 'meta', 'has_thumb', 'status', 'user_id'),
+                        'associations' => array(
+                            'User' => array('fields' => array('username'))
+                        )
+                    )
+                ),
+                'Comment' => array(
+                    'associations' => array(
+                        'fields' => array('id', 'content', 'user_id'),
+                        'associations' => array(
+                            'User' => array('fields' => array('username'))
+                        )
+                    )
+                )
+            )
+        );
+        if($show_comment_media) {
+            $options['associations']['Comment']['associations']['Media'] = array(
+                'associations' => array(
+                    'fields' => array('id', 'filename', 'content-type', 'content-size', 'meta', 'has_thumb', 'status', 'user_id'),
+                    'associations' => array(
+                        'User' => array('fields' => array('username'))
+                    )
+                )
+            );
+        }
+        return $this->ActivityLog->find('first', $options);
     }
     
 }
