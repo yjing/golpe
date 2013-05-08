@@ -184,9 +184,6 @@ class DevicesController extends RESTController {
         }
     }
 
-
-
-
     private function getDafaultFormattedDevice($id) {
         return $this->Device->find('first', array(
             'conditions' => array( 'Device.id' => $id ),
