@@ -56,7 +56,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             brand = angular.element('.brand');
             menu.css('top', brand.css('top'));
             menu.css('left', brand.css('left'));
-            console.log(brand.css('top'));
+            console.log(brand.outerWidth());
 
             if($rootScope.titlemenu_open.length == 0) {
                 $rootScope.titlemenu_open = "open";
