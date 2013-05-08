@@ -52,6 +52,7 @@ class Comment extends AssociativeModel {
                 $this->targetModel = $target_CLASS->newInstance();
                 
                 // And the TARGET object
+                $this->targetModel->recursive = -1;
                 $this->targetObject = $this->targetModel->findById($this->data['Target']['id']);
                 // If the object is NULL the comment won't be saved
                 // TODO: Other checks have to be implemented here (e.g. AUTHORIZATION)
