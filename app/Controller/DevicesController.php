@@ -114,7 +114,43 @@ class DevicesController extends RESTController {
         
     }
     
-    
+    public function setProperty($device_id, $key, $value) {
+        parent::add();
+        
+        $this->Device->id = $device_id;
+        if (!$this->Device->exists()) {
+            throw new NotFoundException();
+        }
+//        $device = $this->getDafaultFormattedDevice($this->Device->id);
+//        
+//        $property = $this->DeviceProperty->find('first', array(
+//            'conditions' => array(
+//                'device_id' => $device_id,
+//                'key' => $key
+//            ),
+//            'recursive' => -1
+//        ));
+        
+        $property = array(
+            'device_id' => $device_id,
+            'key' => $key,
+            'value' => $value
+        );
+        if($this->DeviceProperty->save($property)) {
+            $this->getDafaultFormattedDevice($device_id);
+        } else {
+            $this->_ReportDataValidationErrors($this->DeviceProperty->validationErrors);
+        }
+    }
+
+
+    public function unsetProperty($device_id, $key) {
+        
+    }
+
+
+
+
     private function getDafaultFormattedDevice($id) {
         return $this->Device->find('first', array(
             'conditions' => array( 'Device.id' => $id ),
