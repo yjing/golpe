@@ -55,17 +55,17 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             menu = angular.element('.title_menu');
             topbar = angular.element('.topbar');
             brand = angular.element('.brand');
-            brand.click(function(e){
-                e.stopImmediatePropagation();
-                e.preventDefault();
-                return false;
-            });
+//            brand.click(function(e){
+//                e.stopImmediatePropagation();
+//                e.preventDefault();
+//                return false;
+//            });
             body = angular.element('body');
-            body.click(function(e){
-                $rootScope.$apply(function(){
-                    $rootScope.toggleTitleMenu();
-                });
-            });
+//            body.click(function(e){
+//                $rootScope.$apply(function(){
+//                    $rootScope.toggleTitleMenu();
+//                });
+//            });
 
             menu.css('position', 'absolute');
             menu.css('top',  (brand.position().top + brand.outerHeight()) + 'px');
