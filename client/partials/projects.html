@@ -2,7 +2,7 @@
 <div class="row-fluid content">
     <div class="span10 offset1">
         <ul style="list-style-type: none; margin: 5px;">
-            <li ng-repeat="p in projects" class="well well-small" ng-click="goProject(p);" style="position: relative">
+            <li ng-repeat="p in projects" class="well well-small" ng-clicks="goProject(p);" style="position: relative">
                 <h4 class="p.show = !p.show">{{p.Project.name}}</h4>
                 <p ng-show="p.show">{{p.Project.description}}</p>
             </li>
