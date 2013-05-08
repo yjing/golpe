@@ -1,36 +1,36 @@
-<div class="activity_bar {{busy_class}}" ng-show="busy_monitor > 0"></div>
-<div class="navbar navbar-fixed-top topbar {{busy_class}}">
-    <div class="navbar-inner">
-        <ul class="nav">
-            <li class=""><a href="#" ng-click='back();'><i class="icon-chevron-left"></i></a></li>
-        </ul>
-        <a href="#" class="brand page_title" ng-click="toggleTitleMenu()"><i class="icon-th-list"></i> {{page_title}}</a>
-        <div class="dropdown pull-left title_menu {{titlemenu_open}}" style="top: 0; left: 0;">
-            <ul class="dropdown-menu">
-                <li><a tabindex="-1" ng-click="goUsers();" href="#">Users</a></li>
-            </ul>
-        </div>
-        <ul class="nav" style="float: right;margin-right: 0px;">
-            <!--<li class="item"><a href="#" ng-click="reload();"><i class="icon-repeat"></i></a></li>-->
-            <!--<li class="divider-vertical"></li>-->
-            <!--<li class="item" ng-hide="al" ng-click="newAl();"><a><i class="icon-plus"></i></a></li>-->
-            <!--<li class="item" ng-show="al" ng-click="ccc();"><a><i class="icon-remove"></i></a></li>-->
-            <!--<li class="divider-vertical"></li>-->
-            <li class="item">
-                <a href="#" ng-click="toggleMenu();"><i class="icon-chevron-down"></i></a>
-                <div class="dropdown pull-right {{mainmenu_open}}">
-                    <!-- Link or button to toggle dropdown -->
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                        <li><a tabindex="-1" href="#" ng-show="user.logged" ng-click="logout();"><i class="icon-lock"></i> Logout</a></li>
-                        <li class="divider" ng-show="user.logged" ></li>
-                        <li><a tabindex="-1" href="#" ng-click="help();">Help</a></li>
-                        <li><a tabindex="-1" href="#" ng-click="info();">Info</a></li>
-                    </ul>
-                </div>
-            </li>
-        </ul>
-    </div>
-</div>
+<!--<div class="activity_bar {{busy_class}}" ng-show="busy_monitor > 0"></div>-->
+<!--<div class="navbar navbar-fixed-top topbar {{busy_class}}">-->
+    <!--<div class="navbar-inner">-->
+        <!--<ul class="nav">-->
+            <!--<li class=""><a href="#" ng-click='back();'><i class="icon-chevron-left"></i></a></li>-->
+        <!--</ul>-->
+        <!--<a href="#" class="brand page_title" ng-click="toggleTitleMenu()"><i class="icon-th-list"></i> {{page_title}}</a>-->
+        <!--<div class="dropdown pull-left title_menu {{titlemenu_open}}" style="top: 0; left: 0;">-->
+            <!--<ul class="dropdown-menu">-->
+                <!--<li><a tabindex="-1" ng-click="goUsers();" href="#">Users</a></li>-->
+            <!--</ul>-->
+        <!--</div>-->
+        <!--<ul class="nav" style="float: right;margin-right: 0px;">-->
+            <!--&lt;!&ndash;<li class="item"><a href="#" ng-click="reload();"><i class="icon-repeat"></i></a></li>&ndash;&gt;-->
+            <!--&lt;!&ndash;<li class="divider-vertical"></li>&ndash;&gt;-->
+            <!--&lt;!&ndash;<li class="item" ng-hide="al" ng-click="newAl();"><a><i class="icon-plus"></i></a></li>&ndash;&gt;-->
+            <!--&lt;!&ndash;<li class="item" ng-show="al" ng-click="ccc();"><a><i class="icon-remove"></i></a></li>&ndash;&gt;-->
+            <!--&lt;!&ndash;<li class="divider-vertical"></li>&ndash;&gt;-->
+            <!--<li class="item">-->
+                <!--<a href="#" ng-click="toggleMenu();"><i class="icon-chevron-down"></i></a>-->
+                <!--<div class="dropdown pull-right {{mainmenu_open}}">-->
+                    <!--&lt;!&ndash; Link or button to toggle dropdown &ndash;&gt;-->
+                    <!--<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">-->
+                        <!--<li><a tabindex="-1" href="#" ng-show="user.logged" ng-click="logout();"><i class="icon-lock"></i> Logout</a></li>-->
+                        <!--<li class="divider" ng-show="user.logged" ></li>-->
+                        <!--<li><a tabindex="-1" href="#" ng-click="help();">Help</a></li>-->
+                        <!--<li><a tabindex="-1" href="#" ng-click="info();">Info</a></li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</li>-->
+        <!--</ul>-->
+    <!--</div>-->
+<!--</div>-->
 <div ng-include src="top_bar_url"></div>
 <div class="row-fluid content">
     <div class="span10 offset1">
