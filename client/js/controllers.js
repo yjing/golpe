@@ -74,8 +74,19 @@ function AdminCtrl($scope, $rootScope, $location, auth) {
             $rootScope.busy(false);
             if(!$rootScope.user['logged']) {
                 $location.url('/client/login');
+            } else {
+                $scope.main();
             }
         });
+    }
+
+    $scope.Users = $resource('/users', {}, {
+        all: {
+            method: 'GET'
+        }
+    });
+    $scope.main = function() {
+        $scope.users = $scope.Users.all();
     }
 
 }
