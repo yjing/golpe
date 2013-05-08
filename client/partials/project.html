@@ -7,7 +7,7 @@
             <p>{{project.Project.description}}</p>
         </div>
         <ul style="list-style-type: none; margin: 5px;">
-            <li ng-repeat="t in project.Team" class="well well-small" style="position: relative">
+            <li ng-repeat="t in project.Project.Team" class="well well-small" style="position: relative">
                 <h5 ng-click="p.show = !p.show">{{t.Team.name}}</h5>
             </li>
         </ul>
