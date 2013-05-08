@@ -9,8 +9,10 @@ function LoginCtrl($scope, $rootScope, $location, auth) {
             icon: 'icon-chevron-left'
         },
         page_title: 'Login',
+        title_icon: 'icon-th-list',
         title_menu: [
-            { lable: 'Users', func: $scope.login, icon: 'icon-chevron-left' }
+            { label: 'Users', func: $scope.login, icon: 'icon-chevron-left' },
+            { label: 'Projects', func: $scope.login, icon: 'icon-chevron-left' }
         ]
     }
 
