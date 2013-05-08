@@ -33,6 +33,11 @@ class DevicesController extends RESTController {
 
     public function add() {
         parent::add();
+        
+        $this->Device->create();
+        $this->Device->data['visibility_level'] = 'PRIVATE';
+        $this->_setResponseJSON( $this->Device->save() );
+        return;
         if (isset($this->request->data)) {
             $data = Set::remove($this->request->data, 'Device.id');
             $data['Device']['visibility_level'] = 'PRIVATE';
@@ -42,9 +47,9 @@ class DevicesController extends RESTController {
             if(!$this->DeviceProperty->validates()) {
                 debug($this->DeviceProperty->validationErrors);
             }
-            die();
             
         }
+        die();
         $data = json_decode($this->request->input(), true);
         
         if($data) {
