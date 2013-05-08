@@ -66,12 +66,16 @@ class Email implements NotificationProvider {
         $email_body = str_replace('##BODY##', $inset, Email::$email_template);
         
         $Email = new CakeEmail();
-        $Email->from(array('notifier@mscazure.dyndns.org' => 'MSCProject Notifier'))
-            ->to('notifier@mscazure.dyndns.org')
-            ->bcc($emails)
-            ->subject($subject)
-            ->emailFormat('html')
-            ->send($email_body);
+        try {
+            $Email->from(array('notifier@mscazure.dyndns.org' => 'MSCProject Notifier'))
+                ->to('notifier@mscazure.dyndns.org')
+                ->bcc($emails)
+                ->subject($subject)
+                ->emailFormat('html')
+                ->send($email_body);
+        } catch (Exception $e) {
+            
+        }
     }
     
     private static $email_template = '
