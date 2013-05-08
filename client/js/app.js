@@ -7,33 +7,12 @@ var app = angular.module('mscproject', [ 'ngResource', 'ngCookies', 'SSUtilities
         templateUrl: '/client/partials/login.html',
         controller: "LoginCtrl"
     });
-    $routeProvider.when('/client/al', {
-        templateUrl: '/client/partials/al.html',
-        controller: "AlCtrl"
-    });
-    $routeProvider.when('/client/al/:id', {
-        templateUrl: '/client/partials/al.html',
-        controller: "AlCtrl"
-    });
-    $routeProvider.when('/client/users', {
-        templateUrl: '/client/partials/user.html',
-        controller: "UserCtrl"
-    });
-    $routeProvider.when('/client/users/:id', {
-        templateUrl: '/client/partials/user.html',
-        controller: "UserCtrl"
-    });
     $routeProvider.otherwise( {redirectTo: '/client/login'} );
 
     // configure html5 to get links working
     // If you don't do this, you URLs will be base.com/#/home rather than base.com/home
     $locationProvider.html5Mode(true).hashPrefix('!');
 }).run(function($rootScope, $resource) {
-    $rootScope.REDIRECT_AFTER_LOGIN = '/client/al';
-    $rootScope.LOGIN_URI = '/client/login';
-
-    $rootScope.alModes = null;
-    $rootScope.alMode = null;
 
     $rootScope.getThumbUrl = function(media){
         if(media['has_thumb']) {
@@ -146,19 +125,9 @@ var app = angular.module('mscproject', [ 'ngResource', 'ngCookies', 'SSUtilities
         this.username = null;
         this.password = null;
     }
-})
-;
+});
 
-
-function supports_html5_storage() {
-    try {
-        return 'localStorage' in window && window['localStorage'] !== null;
-    } catch (e) {
-        return false;
-    }
-}
-
-function AlCtrl($scope, $rootScope, $location, $routeParams, $resource, $filter, auth, DialogService, WindDims) {
+function OLDAlCtrl($scope, $rootScope, $location, $routeParams, $resource, $filter, auth, DialogService, WindDims) {
 
     if($rootScope.alMode == null) {
         var MODES = $resource('/activity_logs/modes');
@@ -408,7 +377,7 @@ function AlCtrl($scope, $rootScope, $location, $routeParams, $resource, $filter,
 
 }
 
-function LoginCtrl($scope, $location, $cookies, $http, auth) {
+function OLDLoginCtrl($scope, $location, $cookies, $http, auth) {
 
     $scope.mainmenu_open = "";
     $scope.toggleMenu = function() {
@@ -462,4 +431,13 @@ function LoginCtrl($scope, $location, $cookies, $http, auth) {
         });
     }
 
+}
+
+
+function supports_html5_storage() {
+    try {
+        return 'localStorage' in window && window['localStorage'] !== null;
+    } catch (e) {
+        return false;
+    }
 }
