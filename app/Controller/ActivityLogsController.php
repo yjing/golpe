@@ -112,10 +112,14 @@ class ActivityLogsController extends RESTController {
         }
         
         $saved = $this->ActivityLog->save($this->request->data);
-        
-        $this->Notification->createNotification('ActivityLog', $saved['ActivityLog']['id']);
-        
-        $this->_setResponseJSON($saved);
+        if ($saved) {
+            $saved = $this->getDafaultFormattedAL($saved['ActivityLog']['id']);
+            $this->_setResponseJSON($saved);
+            
+            $this->Notification->createNotification('ActivityLog', $saved['ActivityLog']['id']);
+        } else {
+            $this->_ReportDataValidationErrors($this->ActivityLog->validationErrors);
+        }
         
         // LOGGING
         if ($saved) {
@@ -145,21 +149,35 @@ class ActivityLogsController extends RESTController {
         }
         
         $this->ActivityLog->id = $id;
-        $saved = false;
-        if($this->ActivityLog->exists()) {
-            $saved = $this->ActivityLog->save($this->data);
+        if(!$this->ActivityLog->exists()) {
+            throw new NotFoundException();
+        }
+        
+        $saved = $this->ActivityLog->save($this->request->data);
+        if ($saved) {
+            $saved = $this->getDafaultFormattedAL($saved['ActivityLog']['id']);
             $this->_setResponseJSON($saved);
+            
+            $this->Notification->createNotification('ActivityLog', $saved['ActivityLog']['id']);
         } else {
-            throw new BadRequestException("Activity Log doesn't exist.");
+            $this->_ReportDataValidationErrors($this->ActivityLog->validationErrors);
         }
         
         // LOGGING
         if ($saved) {
-            $this->LogActions->setImportance($saved['ActivityLog']['question']===1);
+            $this->LogActions->setResourceId($saved['ActivityLog']['id']);
+            
+            $importance = 1;
+            if(isset($saved['ActivityLog']['question']) && $saved['ActivityLog']['question']=='true') {
+                $importance += 1;
+            }
+            if( isset($this->request->data['Media']) ) {
+                $importance += 1;
+            }
+            $this->LogActions->setImportance($importance);
         } else {
             $this->LogActions->setActionResult(false);
         }
-        
     }
 
     public function delete($id = null) {
