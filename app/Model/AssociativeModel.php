@@ -185,10 +185,7 @@ abstract class AssociativeModel extends AppModel {
         
         // ADD DISTINCT CLOUSE
         if(isset($queryData['fields'])){
-            foreach ($queryData['fields'] as $key => $value) {
-                $queryData['fields'][$key] = 'DISTINCT ' . $value;
-            }
-//            $queryData['fields'][0] = 'DISTINCT ' . $queryData['fields'][0];
+            $queryData['fields'][0] = 'DISTINCTm ' . $queryData['fields'][0];
         } else {
             $queryData['fields'] = 'DISTINCT ' . $associated_model->alias . '.*';
         }
