@@ -47,7 +47,7 @@ class MediaController extends RESTController {
         
         $this->Media->id = $id;
         if (!$this->Media->exists()) {
-            $this->_ReportDataValidationErrors($id);
+            throw new NotFoundException();
         }
         
         $result = $this->Media->find('first', array(
