@@ -14,9 +14,9 @@ class AppJSONExceptionHandler {
         if($debug_l > 0) {
             $err['file'] = $error->getFile();
             $err['line'] = $error->getLine();
-            $err['trace'] = array();
             
             if($debug_l > 1) {
+                $err['trace'] = array();
                 $t = $error->getTrace();
                 foreach ($t as $value) {
                     $err['trace'][] = $value;
