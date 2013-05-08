@@ -5,14 +5,14 @@ function LoginCtrl($scope, $rootScope, $location, $resource, $http, auth) {
 
     // MENUS and ACTIVITY BAR
     $scope.busy_class = "";
-    $scope.busy = 0;
+    $scope.busy_monitor = 0;
     $scope.busy = function(busy) {
         if(busy) {
-            $scope.busy++;
+            $scope.busy_monitor++;
             $scope.busy_class = "busy";
         } else {
-            $scope.busy--;
-            if($scope.busy <= 0) {
+            $scope.busy_monitor--;
+            if($scope.busy_monitor <= 0) {
                 $scope.busy = 0;
                 $scope.busy_class = "";
             }
