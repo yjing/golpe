@@ -22,7 +22,7 @@ class DevicesController extends RESTController {
         parent::view($id);
         
         $this->Device->id = $id;
-        if(!$this->Deviceß->exists()) {
+        if(!$this->Device->exists()) {
             throw new NotFoundException();
         }
         
@@ -166,7 +166,7 @@ class DevicesController extends RESTController {
     private function getDafaultFormattedDevice($id) {
         return $this->Device->find('all', array(
             'conditions' => array( 'Device.id' => $id ),
-            'fields' => array('id', 'user_id'),
+            'fields' => array('id', 'user_id', 'visibility_level'),
             'associations' => array(
                 'DeviceProperty' => array(
                     'fields' => array('key', 'value')
