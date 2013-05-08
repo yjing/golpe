@@ -10,14 +10,17 @@ class AppJSONExceptionHandler {
             'message' => AppJSONExceptionHandler::_parseMessage($error->getMessage())
         );
         
-        if(Configure::read('debug') > 0) {
+        $debug_l = Configure::read('APPCONFIG.debug');
+        if($debug_l > 0) {
             $err['file'] = $error->getFile();
             $err['line'] = $error->getLine();
             $err['trace'] = array();
             
-            $t = $error->getTrace();
-            foreach ($t as $value) {
-                $err['trace'][] = $value;
+            if($debug_l > 1) {
+                $t = $error->getTrace();
+                foreach ($t as $value) {
+                    $err['trace'][] = $value;
+                }
             }
         }
         
