@@ -22,14 +22,6 @@ class MediaController extends RESTController {
             )
         ));
         
-        if(count($result['Comment']) == 0) {
-            unset($result['Comment']);
-        }
-        
-        if(count($result['ActivityLog']) == 0) {
-            unset($result['ActivityLog']);
-        }
-        
         $this->_setResponseJSON($result);
     }
 
@@ -42,6 +34,15 @@ class MediaController extends RESTController {
         
         $this->Media->recursive = -1;
         $result = $this->Media->findById($id);
+        
+        if(count($result['Comment']) == 0) {
+            unset($result['Comment']);
+        }
+        
+        if(count($result['ActivityLog']) == 0) {
+            unset($result['ActivityLog']);
+        }
+        
         $this->_setResponseJSON($result);
         $this->LogActions->setActionResult(count($result) == 1);
     }
