@@ -23,7 +23,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         templateUrl: '/client/partials/projects.html',
         controller: "ProjectsCtrl"
     });
-    $routeProvider.when('/client/project/:project_id', {
+    $routeProvider.when('/client/project/:id', {
         templateUrl: '/client/partials/project.html',
         controller: "ProjectCtrl"
     });
@@ -168,7 +168,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     });
 })
 .factory('Projects', function($resource) {
-    return $resource('/projects/', {}, {
+    return $resource('/projects/:id', {id:'@id'}, {
         all: {
             method: 'GET',
             isArray: true
