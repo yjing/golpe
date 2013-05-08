@@ -41,14 +41,15 @@ Configure::write("APPCONFIG", array(
         ),
         "Comments" => true,
         "Media" => true,
-        "Devices" => array(
-            // Actions
-            "index" => true,
-            "view",
-            "add",
-            "update",
-            "delete",
-        ),
+        "Devices" => true,
+//        array(
+//            // Actions
+//            "index" => true,
+//            "view",
+//            "add",
+//            "update",
+//            "delete",
+//        ),
         "Projects" => 'ADMIN',
         "Teams" => 'ADMIN'
     ),
