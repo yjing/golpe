@@ -39,14 +39,6 @@ class MediaController extends RESTController {
             )
         ));
         
-        if(isset($result['Media']['Comment']) && count($result['Media']['Comment']) == 0) {
-            unset($result['Media']['Comment']);
-        }
-        
-        if(isset($result['Media']['ActivityLog']) && count($result['Media']['ActivityLog']) == 0) {
-            unset($result['Media']['ActivityLog']);
-        }
-        
         $this->_setResponseJSON($result);
         $this->LogActions->setActionResult(count($result) == 1);
     }
