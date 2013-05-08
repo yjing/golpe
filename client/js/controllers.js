@@ -185,7 +185,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
 }
 
 
-function ProjectCtrl($scope, $rootScope, $location, auth, Projects) {
+function ProjectCtrl($scope, $rootScope, $location, auth, Projects, $browser) {
     // TOP BAR
     $rootScope.top_bar = {
         back_button: {
