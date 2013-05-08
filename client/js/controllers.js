@@ -78,7 +78,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth) {
         back_button: {
             icon: 'icon-chevron-left'
         },
-        page_title: 'Login',
+        page_title: 'Users',
         title_icon: 'icon-th-list',
         title_menu: [
             { label: 'Users', func: $scope.goProjects, icon: 'icon-chevron-left' },
