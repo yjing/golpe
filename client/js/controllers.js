@@ -3,32 +3,6 @@ function LoginCtrl($scope, $rootScope, $location, $resource, $http, auth) {
     $scope.username = "s.susini";
     $scope.password = "30071980";
 
-    var User = $resource('/users/user');
-    $scope.busy(true);
-    $rootScope.user = User.get({},
-        function (data) {
-
-            if(data['logged']) {
-                switch (data['User']['role']) {
-                    case 'STUDENT':
-                        //GO TO STUDENT'S HOME
-                        break;
-                    case 'SUPERVISOR':
-                        //GO TO SUPERVISOR'S HOME
-                        break;
-                    case 'ADMIN':
-                        //GO TO ADMIN'S HOME
-                        break;
-                }
-            } else {
-
-            }
-        },
-        function (data) {
-
-        }
-    );
-
     // MENUS and ACTIVITY BAR
     $scope.busy_class = "";
     $scope.busy = 0;
@@ -61,4 +35,31 @@ function LoginCtrl($scope, $rootScope, $location, $resource, $http, auth) {
             $scope.titlemenu_open = "";
         }
     }
+
+    // CONTROLLER BL
+    var User = $resource('/users/user');
+    $scope.busy(true);
+    $rootScope.user = User.get({},
+        function (data) {
+
+            if(data['logged']) {
+                switch (data['User']['role']) {
+                    case 'STUDENT':
+                        //GO TO STUDENT'S HOME
+                        break;
+                    case 'SUPERVISOR':
+                        //GO TO SUPERVISOR'S HOME
+                        break;
+                    case 'ADMIN':
+                        //GO TO ADMIN'S HOME
+                        break;
+                }
+            } else {
+
+            }
+        },
+        function (data) {
+
+        }
+    );
 }
