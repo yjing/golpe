@@ -14,18 +14,16 @@ function LoginCtrl($scope, $rootScope, $location, auth) {
             { label: 'Users', func: $scope.login, icon: 'icon-chevron-left' },
             { label: 'Projects', func: $scope.login, icon: 'icon-chevron-left' }
         ],
-        buttons: [
-            { type: 'item', label: 'Users', func: $scope.login, icon: 'icon-chevron-left' },
-            { type: 'divider-vertical' },
-            { type: 'item', label: 'Users', func: $scope.login, icon: 'icon-chevron-left' }
-        ],
+//        buttons: [
+//            { type: 'item', label: 'Users', func: $scope.login, icon: 'icon-chevron-left' },
+//            { type: 'divider-vertical' },
+//            { type: 'item', label: 'Users', func: $scope.login, icon: 'icon-chevron-left' }
+//        ],
         main_menu_items: [
-            { type: 'item', label: 'Users', func: $scope.login, icon: 'icon-chevron-left' },
-            { type: 'divider', label: 'Users', func: $scope.login, icon: 'icon-chevron-left' },
-            { type: 'item', label: 'Users', func: function(i){
-                console.log(i);
-                console.log($scope);
-            } }
+            { type: 'item', label: 'Log Out', func: $rootScope.logout, icon: 'icon-lock' },
+            { type: 'divider' },
+            { type: 'item', label: 'Help', func: $rootScope.help },
+            { type: 'item', label: 'Info', func: $rootScope.info }
         ]
     }
 
