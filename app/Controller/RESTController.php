@@ -39,7 +39,7 @@ abstract class RESTController extends AppController {
         $this->_authorization = $this->_normalize(Configure::read("APPCONFIG.authorization." . $this->name));
         $this->_roles = Configure::read("APPCONFIG.roles");
         $this->_super_roles = Configure::read("APPCONFIG.super_roles");
-        
+        debug($this->_authorization);
     }
     
     /**
@@ -66,7 +66,7 @@ abstract class RESTController extends AppController {
         
         $user_role = $user['role'];
         $ret = false;
-        debug($this->_authorization);
+        
         if(is_array($this->_authorization)) {
             if(array_key_exists($user_role, $this->_authorization)) {
                 $ret = $this->_authorization[$user_role];
