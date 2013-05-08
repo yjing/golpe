@@ -136,6 +136,7 @@ class DevicesController extends RESTController {
             'key' => $key,
             'value' => $value
         );
+        $this->DeviceProperty->id = $device_id;
         if($this->DeviceProperty->save($property)) {
             $this->getDafaultFormattedDevice($device_id);
         } else {
