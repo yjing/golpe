@@ -11,23 +11,34 @@ App::import('Controller', 'REST');
 
 class MediaController extends RESTController {
 
-    public $components = array('RequestHandler', 'LogActions');
+    public $components = array('LogActions');
     
     public function index() {
         parent::index();
         
-        $this->Media->recursive = -1;
         $result = $this->Media->find('all', array(
             'associations' => array(
                 'Comment', 'ActivityLog'
             )
         ));
         
+        if(count($result['Comment']) == 0) {
+            unset($result['Comment']);
+        }
+        
+        if(count($result['ActivityLog']) == 0) {
+            unset($result['ActivityLog']);
+        }
+        
         $this->_setResponseJSON($result);
     }
 
     public function view($id = null) {
         parent::view($id);
+        $this->Media->id = $id;
+        if(!$this->Media->exists()) {
+            throw new NotFoundException();
+        }
         
         $this->Media->recursive = -1;
         $result = $this->Media->findById($id);
