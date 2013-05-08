@@ -57,6 +57,8 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             brand = angular.element('.brand');
             brand.click(function(e){
                 e.stopImmediatePropagation();
+                e.preventDefault();
+                return false;
             });
             body = angular.element('body');
             body.click(function(e, elem){
