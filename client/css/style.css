@@ -10,6 +10,9 @@ body {
     height: 3px;
     background-color: #46a546;
 }
+.busy {
+    background-color: #b22222;
+}
 
 .fixbg {
     z-index: -10000;

@@ -4,8 +4,10 @@ function LoginCtrl($scope, $rootScope, $location, $resource, $http, auth) {
     $scope.password = "30071980";
 
     var User = $resource('/users/user');
+    $scope.busy(true);
     $rootScope.user = User.get({},
         function (data) {
+
             if(data['logged']) {
                 switch (data['User']['role']) {
                     case 'STUDENT':
@@ -27,7 +29,22 @@ function LoginCtrl($scope, $rootScope, $location, $resource, $http, auth) {
         }
     );
 
-    // MENUS
+    // MENUS and ACTIVITY BAR
+    $scope.busy_class = "";
+    $scope.busy = 0;
+    $scope.busy = function(busy) {
+        if(busy) {
+            $scope.busy++;
+            $scope.busy_class = "busy";
+        } else {
+            $scope.busy--;
+            if($scope.busy <= 0) {
+                $scope.busy = 0;
+                $scope.busy_class = "";
+            }
+        }
+    }
+
     $scope.mainmenu_open = "";
     $scope.toggleMenu = function() {
         if($scope.mainmenu_open.length == 0) {
