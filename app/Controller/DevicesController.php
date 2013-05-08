@@ -106,7 +106,7 @@ class DevicesController extends RESTController {
             throw new NotFoundException();
         }
         
-        $query = "delete from devices where id = $id";
+        $query = "delete from devices where id = '$id';";
         $deleted = $this->Device->query($query);
         
         $this->_setResponseJSON(array('deleted'=>is_array($deleted)));
