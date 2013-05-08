@@ -52,7 +52,6 @@ function AdminCtrl($scope, $rootScope, $location, $resource, auth) {
     $scope.page_title = "Users";
     $scope.users = [{"test":"Test"}];
 
-    console.log($rootScope.user);
     if($rootScope.user == null || !$rootScope.user['logged']) {
         $rootScope.busy(true);
         $rootScope.user = auth.user();
@@ -73,6 +72,7 @@ function AdminCtrl($scope, $rootScope, $location, $resource, auth) {
         }
     });
     $scope.main = function() {
+        console.log($scope.users);
         $rootScope.busy(true);
         $scope.users = $scope.Users.all();
         $scope.users.$then(function(){
