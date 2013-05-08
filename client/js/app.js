@@ -113,7 +113,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             "data[User][username]" : username,
             "data[User][password]" : password
         });
-        return this.Login.login(xsrf);
+        return this.Users.login(xsrf);
 
     }
 
