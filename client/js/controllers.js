@@ -42,6 +42,7 @@ function LoginCtrl($scope, $rootScope, $location, $resource, $http, auth) {
     $rootScope.user = User.get({});
     $rootScope.user.then(
         function (data) {
+            console.log("OK");
             $scope.busy(false);
             if(data['logged']) {
                 switch (data['User']['role']) {
