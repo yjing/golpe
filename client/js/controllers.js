@@ -1,3 +1,3 @@
-function LoginCtrl($scope, $location, $cookies, $http, auth) {
+function LoginCtrl($scope, $location, $http, auth) {
 
 }
