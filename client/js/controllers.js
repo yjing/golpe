@@ -9,6 +9,11 @@ function LoginCtrl($scope, $rootScope, $location, $http, auth) {
         $rootScope.user.$then(
             function(){
                 $rootScope.busy(false);
+                if( $rootScope.user['logged'] ) {
+
+                } else {
+                    $scope.login_message = "Login failed";
+                }
             },
             function(){
                 $rootScope.busy(false);
