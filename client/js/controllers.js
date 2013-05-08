@@ -4,6 +4,7 @@ function LoginCtrl($scope, $rootScope, $location, $resource, $http, auth) {
     $scope.password = "30071980";
 
     $scope.login = function() {
+        console.log("LOGIN");
         $rootScope.busy(true);
     }
 
