@@ -50,7 +50,7 @@ class CommentsController extends RESTController {
         $data = Set::remove($this->request->data, 'Comment.id');
         
         if($this->Comment->save($data)) {
-            $this->_setResponseJSON($data);
+            $this->_setResponseJSON( $this->getDafaultFormattedComment($this->Comment->id) );
         } else {
             $this->_ReportDataValidationErrors($this->Comment->validationErrors);
         }
@@ -68,6 +68,17 @@ class CommentsController extends RESTController {
         $deleted = $this->Comment->delete($id);
         $this->_setResponseJSON(array('deleted'=>$deleted));
         
+    }
+    
+    private function getDafaultFormattedComment($id) {
+        return $this->Comment->find('first', array(
+            'conditions' => array('Comment.id' => $id),
+            'associations' => array(
+                'ActivityLog' => array(
+                    'fields' => array('id', 'user_id')
+                )
+            )
+        ));
     }
     
 }
