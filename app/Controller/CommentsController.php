@@ -47,9 +47,13 @@ class CommentsController extends RESTController {
 
     public function add() {
         parent::add();
+        $data = Set::remove($this->request->data, 'Comment.id');
         
-        $saved = $this->Comment->save($this->request->data);
-        $this->_setResponseJSON($saved);
+        if($this->Comment->save($data)) {
+            $this->_setResponseJSON($data);
+        } else {
+            $this->_ReportDataValidationErrors($this->Comment->validationErrors);
+        }
         
     }
 
