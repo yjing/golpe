@@ -150,6 +150,7 @@ abstract class RESTController extends AppController {
      * @return mixed Normalized Authorization configuration array
      */
     private function _normalize($array) {
+                debug($array);
         if(isset($array)) {
             if(is_array($array)){
                 $ret = array();
