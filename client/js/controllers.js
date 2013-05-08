@@ -3,7 +3,7 @@ function LoginCtrl($scope, $rootScope, $location, $resource, $http, auth) {
     $scope.username = "s.susini";
     $scope.password = "30071980";
 
-    var User = $resource('/users/userNO');
+    var User = $resource('/users/2');
     $rootScope.user = User.get({},
         function (data) {
             console.log("SUCCESS");
