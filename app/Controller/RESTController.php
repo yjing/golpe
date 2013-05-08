@@ -36,10 +36,6 @@ abstract class RESTController extends AppController {
         $this->Auth->authorize = 'Controller';
         $this->Auth->unauthorizedRedirect = false;
         
-        Configure::write('debug', 1);
-        debug(Configure::read("APPCONFIG.authorization." . $this->name));
-        debug($this->_normalize(Configure::read("APPCONFIG.authorization." . $this->name)));
-        die();
         $this->_authorization = $this->_normalize(Configure::read("APPCONFIG.authorization." . $this->name));
         $this->_roles = Configure::read("APPCONFIG.roles");
         $this->_super_roles = Configure::read("APPCONFIG.super_roles");
@@ -154,11 +150,8 @@ abstract class RESTController extends AppController {
             if(is_array($array)){
                 $ret = array();
                 foreach ($array as $key => $value) {
-                    debug($key);
-                    debug($value);
                     $this->normalizeKeyValueToAssociative($key, $value);
-                    debug($key);
-                    debug($value);
+                    
                     if(isset($value) && is_array($value)) {
                         $value = $this->_normalize($value);
                     }
@@ -183,7 +176,6 @@ abstract class RESTController extends AppController {
      */
     private function normalizeKeyValueToAssociative(&$key, &$value, $def_val = TRUE) {
         if(!is_string($key)) {
-//        if(!is_numeric($key)) {
             $key = $value;
             $value = $def_val;
         }

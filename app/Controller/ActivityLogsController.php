@@ -6,8 +6,7 @@ class ActivityLogsController extends RESTController {
 
     public $uses = array('ActivityLog', 'TeamUser', 'User', 'Log');
     public $components = array(
-        'Session', 
-        'RequestHandler', 
+        'Session',
         'LogActions',
         'Notification'
     );
