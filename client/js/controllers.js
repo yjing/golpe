@@ -75,6 +75,9 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth) {
         $scope.main();
     }
 
+    $scope.goProject = function(){
+        $location.url('/client/projects');
+    }
 }
 
 function ProjectsCtrl($scope, $rootScope, $location, auth) {
@@ -101,5 +104,9 @@ function ProjectsCtrl($scope, $rootScope, $location, auth) {
         });
     } else {
         $scope.main();
+    }
+
+    $scope.goUsers = function(){
+        $location.url('/client/users');
     }
 }
