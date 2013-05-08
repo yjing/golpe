@@ -1,17 +1,31 @@
 <div class="activity_bar {{busy_class}}"></div>
-<div class="navbar navbar-fixed-top topbar {{busy_class}}" style="margin: 0;">
-    <div class="navbar-inner" style="padding-left: 0px;padding-right: 0px;">
-        <a style="font-size: 1.3em;margin-left: 0;padding-left: 8px; padding-right:0;width:50%;overflow: hidden;white-space: nowrap;" href="#" class="brand">
-            {{page_title}}
-        </a>
+<div class="navbar navbar-fixed-top topbar {{busy_class}}">
+    <div class="navbar-inner">
+        <ul ng-show="al" class="nav">
+            <li class=""><a href="#" ng-click='back();'><i class="icon-chevron-left"></i></a></li>
+        </ul>
+        <a href="#" class="brand">Activity Logs</a>
+        <div class="dropdown pull-right {{titlemenu_open}}" style="top: 0; left: 0;">
+            <ul class="dropdown-menu">
+                <li><a tabindex="-1" href="#" ng-click="logout();"><i class="icon-lock"></i> Log Out</a></li>
+                <li class="divider"></li>
+                <li><a tabindex="-1" href="#">Help</a></li>
+                <li><a tabindex="-1" href="#">Info</a></li>
+            </ul>
+        </div>
         <ul class="nav" style="float: right;margin-right: 0px;">
-            <li style="font-weight: bold;padding: 0; margin: 0;">
-                <a href="#" style="padding-right: 10px;padding-left: 10px;" ng-click="toggleMenu();"><i class="icon-chevron-down"></i></a>
-                <div class="dropdown pull-right {{mainmenu_open}}" style="left: -5px;">
+            <li class="item"><a href="#" ng-click="reload();"><i class="icon-repeat"></i></a></li>
+            <li class="divider-vertical"></li>
+            <li class="item" ng-hide="al" ng-click="newAl();"><a><i class="icon-plus"></i></a></li>
+            <li class="item" ng-show="al" ng-click="ccc();"><a><i class="icon-remove"></i></a></li>
+            <li class="divider-vertical"></li>
+            <li class="item">
+                <a href="#" ng-click="toggleMenu();"><i class="icon-chevron-down"></i></a>
+                <div class="dropdown pull-right {{mainmenu_open}}">
                     <!-- Link or button to toggle dropdown -->
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                        <li><a tabindex="-1" href="#" ng-show="user.logged" ng-click="logout();">Logout</a></li>
-                        <li class="divider"ng-show="user.logged" ></li>
+                        <li><a tabindex="-1" href="#" ng-click="logout();"><i class="icon-lock"></i> Log Out</a></li>
+                        <li class="divider"></li>
                         <li><a tabindex="-1" href="#">Help</a></li>
                         <li><a tabindex="-1" href="#">Info</a></li>
                     </ul>
