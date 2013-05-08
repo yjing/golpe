@@ -10,7 +10,7 @@ body {
     height: 3px;
     background-color: #46a546;
 }
-.busy {
+.activity_bar.busy {
     background-color: #b22222;
 }
 
