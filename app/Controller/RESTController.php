@@ -42,7 +42,7 @@ abstract class RESTController extends AppController {
         
         if(in_array($this->action, array('add', 'update'))) {
             if(isset($this->request->data)) {
-                debug($this->request->data);
+                debug($this->alias . '.created');
                 $this->request->data = Set::remove($this->request->data, $this->alias . '.created');
                 $this->request->data = Set::remove($this->request->data, $this->alias . '.modified');
             }
