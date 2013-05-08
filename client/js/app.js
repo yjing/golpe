@@ -23,7 +23,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         templateUrl: '/client/partials/projects.html',
         controller: "ProjectsCtrl"
     });
-    $routeProvider.when('/client/projects/:project_id', {
+    $routeProvider.when('/client/project/:project_id', {
         templateUrl: '/client/partials/project.html',
         controller: "ProjectCtrl"
     });
