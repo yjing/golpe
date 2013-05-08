@@ -41,11 +41,12 @@ function LoginCtrl($scope, $rootScope, $location, $resource, $http, auth) {
     $scope.busy(true);
     $rootScope.user = User.get({},
         function (data) {
-
+            $scope.busy(false);
             if(data['logged']) {
                 switch (data['User']['role']) {
                     case 'STUDENT':
                         //GO TO STUDENT'S HOME
+                        $location.url("/client/al");
                         break;
                     case 'SUPERVISOR':
                         //GO TO SUPERVISOR'S HOME
@@ -55,11 +56,11 @@ function LoginCtrl($scope, $rootScope, $location, $resource, $http, auth) {
                         break;
                 }
             } else {
-
+                $scope.busy(false);
             }
         },
         function (data) {
-
+            $scope.busy(false);
         }
     );
 }
