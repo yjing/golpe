@@ -21,7 +21,7 @@ function LoginCtrl($scope, $rootScope, $location, $resource, $http, auth) {
                 switch (data['User']['role']) {
                     case 'STUDENT':
                         //GO TO STUDENT'S HOME
-                        $location.url("/client/al");
+//                        $location.url("/client/al");
                         break;
                     case 'SUPERVISOR':
                         //GO TO SUPERVISOR'S HOME
