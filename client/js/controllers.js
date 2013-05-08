@@ -40,7 +40,7 @@ function LoginCtrl($scope, $rootScope, $location, $resource, $http, auth) {
     var User = $resource('/users/user');
     $scope.busy(true);
     $rootScope.user = User.get({});
-    $rootScope.user.then(
+    $rootScope.user.$then(
         function (data) {
             console.log("OK");
             $scope.busy(false);
