@@ -75,7 +75,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth) {
         $scope.main();
     }
 
-    $scope.goProject = function(){
+    $scope.goProjects = function(){
         $location.url('/client/projects');
         $rootScope.toggleTitleMenu();
     }
