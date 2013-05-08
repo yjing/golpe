@@ -121,22 +121,24 @@ class DevicesController extends RESTController {
         if (!$this->Device->exists()) {
             throw new NotFoundException();
         }
-//        $device = $this->getDafaultFormattedDevice($this->Device->id);
-//        
-//        $property = $this->DeviceProperty->find('first', array(
-//            'conditions' => array(
-//                'device_id' => $device_id,
-//                'key' => $key
-//            ),
-//            'recursive' => -1
-//        ));
+        
+        $property = $this->DeviceProperty->find('first', array(
+            'conditions' => array(
+                'device_id' => $device_id,
+                'key' => $key
+            ),
+            'recursive' => -1
+        ));
+        if(isset($property) && count($property) > 0) {
+            $this->DeviceProperty->id = $property['DeviceProperty']['id'];
+        }
         
         $property = array(
             'device_id' => $device_id,
             'key' => $key,
             'value' => $value
         );
-        $this->DeviceProperty->id = $device_id;
+        
         if($this->DeviceProperty->save($property)) {
             $this->getDafaultFormattedDevice($device_id);
         } else {
