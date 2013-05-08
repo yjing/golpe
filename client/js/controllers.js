@@ -4,9 +4,24 @@ function LoginCtrl($scope, $rootScope, $location, $resource, $http, auth) {
     $scope.password = "30071980";
 
     var User = $resource('/users/user');
-    $rootScope.user = User.get({}, function(data){
-        console.log($rootScope.user);
-    });
+    $rootScope.user = User.get({},
+        function (a, b, c, d, e) {
+            console.log("SUCCESS");
+            console.log(a);
+            console.log(b);
+            console.log(c);
+            console.log(d);
+            console.log(e);
+        },
+        function (a, b, c, d, e) {
+            console.log("ERROR");
+            console.log(a);
+            console.log(b);
+            console.log(c);
+            console.log(d);
+            console.log(e);
+        }
+    );
 
     // MENUS
     $scope.mainmenu_open = "";
