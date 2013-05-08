@@ -53,6 +53,15 @@ function LoginCtrl($scope, $rootScope, $location, auth) {
             }
         }
     }
+
+
+    $rootScope.busy(true);
+    $rootScope.user = auth.user();
+    $rootScope.user.$then(function(){
+        $rootScope.busy(false);
+        $scope.redirectUser();
+    });
+
 }
 
 function AdminCtrl($scope, $rootScope, $location, auth) {
