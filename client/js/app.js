@@ -12,7 +12,40 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     // configure html5 to get links working
     // If you don't do this, you URLs will be base.com/#/home rather than base.com/home
     $locationProvider.html5Mode(true).hashPrefix('!');
-}).run(function($rootScope, $resource) {
+}).run(function($rootScope) {
+
+        // MENUS and ACTIVITY BAR
+        $rootScope.busy_class = "";
+        $rootScope.busy_monitor = 0;
+        $rootScope.busy = function(busy) {
+            if(busy) {
+                $rootScope.busy_monitor++;
+                $rootScope.busy_class = "busy";
+            } else {
+                $rootScope.busy_monitor--;
+                if($rootScope.busy_monitor <= 0) {
+                    $rootScope.busy = 0;
+                    $rootScope.busy_class = "";
+                }
+            }
+        }
+
+        $rootScope.mainmenu_open = "";
+        $rootScope.toggleMenu = function() {
+            if($rootScope.mainmenu_open.length == 0) {
+                $rootScope.mainmenu_open = "open";
+            } else {
+                $rootScope.mainmenu_open = "";
+            }
+        }
+        $rootScope.titlemenu_open = "";
+        $rootScope.toggleTitleMenu = function() {
+            if($rootScope.titlemenu_open.length == 0) {
+                $rootScope.titlemenu_open = "open";
+            } else {
+                $rootScope.titlemenu_open = "";
+            }
+        }
 
     $rootScope.getThumbUrl = function(media){
         if(media['has_thumb']) {
