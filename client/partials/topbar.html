@@ -45,12 +45,14 @@ APP TOP BAR: configurable from the Controller
 
             <!-- MAIN MENU -->
             <li class="item">
-                <a href="#" ng-click="toggleMenu();"><i class="icon-chevron-down"></i></a>
+                <a href="#" ng-click="toggleMenu();">
+                    <i class="icon-chevron-down"></i>
+                </a>
                 <div class="dropdown pull-right {{mainmenu_open}}">
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                        <li ng-repeat="i in top_bar.main_menu_items" class="{{i.is_divider}}">
-                            <a ng-hide="i.is_divider" tabindex="{{$index}}" href="#" ng-click="eval(this);">
-                                <i ng-show="i.icon_class!=null" class="{{i.icon_class}}"></i>
+                    <ul class="dropdown-menu">
+                        <li ng-repeat="i in top_bar.main_menu_items" class="{{type}}">
+                            <a ng-hide="i.type == 'divider'" tabindex="{{$index}}" href="#" ng-click="eval(i);">
+                                <i ng-show="i.icon!=null" class="{{i.icon}}"></i>
                                 {{i.label}}
                             </a>
                         </li>
