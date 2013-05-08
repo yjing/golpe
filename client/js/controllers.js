@@ -52,7 +52,7 @@ function AdminCtrl($scope, $rootScope, $location, Users, auth) {
     $scope.page_title = "Users";
     $scope.users = null;
 
-    debug($rootScope.user == null || !$rootScope.user['logged']);
+    console.log($rootScope.user == null || !$rootScope.user['logged']);
     if($rootScope.user == null || !$rootScope.user['logged']) {
         $rootScope.busy(true);
         $rootScope.user = auth.user();
