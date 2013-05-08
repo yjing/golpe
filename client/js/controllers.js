@@ -9,11 +9,11 @@ function LoginCtrl($scope, $rootScope, $location, auth) {
 //            icon: 'icon-chevron-left'
 //        },
         page_title: 'Login',
-        title_icon: 'icon-th-list',
-        title_menu: [
-            { label: 'Users', func: $scope.login, icon: 'icon-chevron-left' },
-            { label: 'Projects', func: $scope.login, icon: 'icon-chevron-left' }
-        ],
+//        title_icon: 'icon-th-list',
+//        title_menu: [
+//            { label: 'Users', func: $scope.login, icon: 'icon-chevron-left' },
+//            { label: 'Projects', func: $scope.login, icon: 'icon-chevron-left' }
+//        ],
 //        buttons: [
 //            { type: 'item', label: 'Users', func: $scope.login, icon: 'icon-chevron-left' },
 //            { type: 'divider-vertical' },
