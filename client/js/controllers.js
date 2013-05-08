@@ -5,7 +5,7 @@ function LoginCtrl($scope, $rootScope, $location, $resource, $http, auth) {
 
     var User = $resource('/users/user');
     $rootScope.user = User.get({}, function(data){
-        console.log(data);
+        console.log($rootScope.user);
     });
 
     // MENUS
