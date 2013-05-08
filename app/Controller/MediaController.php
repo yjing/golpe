@@ -39,12 +39,12 @@ class MediaController extends RESTController {
             )
         ));
         
-        if(isset($result['Comment']) && count($result['Comment']) == 0) {
-            unset($result['Comment']);
+        if(isset($result['Media']['Comment']) && count($result['Media']['Comment']) == 0) {
+            unset($result['Media']['Comment']);
         }
         
-        if(isset($result['ActivityLog']) && count($result['ActivityLog']) == 0) {
-            unset($result['ActivityLog']);
+        if(isset($result['Media']['ActivityLog']) && count($result['Media']['ActivityLog']) == 0) {
+            unset($result['Media']['ActivityLog']);
         }
         
         $this->_setResponseJSON($result);
