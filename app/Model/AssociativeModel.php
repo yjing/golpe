@@ -21,7 +21,7 @@ abstract class AssociativeModel extends AppModel {
     public function afterFind($results, $primary = false) {
         parent::afterFind($results, $primary);
         
-//        debug($results);
+        debug($results);die();
         
 //        debug("AFTER FINDING " . $this->alias);
         
