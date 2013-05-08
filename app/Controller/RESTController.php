@@ -41,8 +41,8 @@ abstract class RESTController extends AppController {
         $this->_super_roles = Configure::read("APPCONFIG.super_roles");
         
         if(in_array($this->action, array('add', 'update'))) {
-            debug($this->request->data);
             if(isset($this->request->data)) {
+                debug($this->request->data);
                 $this->request->data = Set::remove($this->request->data, $this->alias . '.created');
                 $this->request->data = Set::remove($this->request->data, $this->alias . '.modified');
             }
