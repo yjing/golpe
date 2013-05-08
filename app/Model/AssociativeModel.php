@@ -17,7 +17,7 @@ abstract class AssociativeModel extends AppModel {
             if(isset($queryData['fields'])){
                 $queryData['fields'][0] = 'DISTINCT ' . $queryData['fields'][0];
             } else {
-                $queryData['fields'] = 'DISTINCT ' . $associated_model->alias . '.*';
+                $queryData['fields'] = 'DISTINCT ' . $this->alias . '.*';
             }
         }
         
