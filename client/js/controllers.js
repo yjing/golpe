@@ -50,7 +50,7 @@ function LoginCtrl($scope, $rootScope, $location, auth) {
 
 function AdminCtrl($scope, $rootScope, $location, $resource, auth) {
     $scope.page_title = "Users";
-    $scope.users = [{"test":"Test"}];
+    $scope.users = null;
 
     if($rootScope.user == null || !$rootScope.user['logged']) {
         $rootScope.busy(true);
