@@ -15,7 +15,7 @@ body {
     background-color: #df8505;
 }
 
-.navbar-fixed-top {
+.navbar-fixed-top.busy {
     top: 3px;
 }
 
