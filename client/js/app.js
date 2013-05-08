@@ -99,6 +99,13 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         this.password = password;
     }
 
+    this.Login = $resource('/users/', {}, {
+        login : {
+            method : 'POST',
+            url : '/users/login',
+            headers : {'Content-Type': 'application/x-www-form-urlencoded'}
+        }
+    });
     this.auth = function(callback){
         var xsrf = null;
         if(this.username!=null && this.password!=null) {
@@ -108,49 +115,41 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             });
         }
 
-        $http({
-            method: "POST",
-            url: "/users/login",
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-            },
-            data:xsrf
-        }).
-        success(function(data, status, headers, config){
-            if (data['logged']) {
-                if(callback)
-                    callback(data['User']);
-            } else {
-                if(callback)
-                    callback(false);
-            }
-        }).
-        error(function(data, status, headers, config) {
-            if(callback)
-                callback(false);
-        });
+        return this.Login.login(xsrf);
+
+//        $http({
+//            method: "POST",
+//            url: "/users/login",
+//            headers: {
+//                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+//            },
+//            data:xsrf
+//        }).
+//        success(function(data, status, headers, config){
+//            if (data['logged']) {
+//                if(callback)
+//                    callback(data['User']);
+//            } else {
+//                if(callback)
+//                    callback(false);
+//            }
+//        }).
+//        error(function(data, status, headers, config) {
+//            if(callback)
+//                callback(false);
+//        });
     }
 
-    this.logout = function(callback) {
-        $http({
-            method: "GET",
-            url: "/users/logout"
-        }).
-        success(function(data, status, headers, config){
-            console.log(data);
-            console.log(status);
-            console.log(config);
-            callback(true);
-        }).
-        error(function(data, status, headers, config) {
-            console.log('ERROR:');
-            console.log(data);
-            console.log(status);
-            console.log(config);
-            callback(false);
-        });
+    this.Logout = $resource('/users/logout');
+    this.logout = function() {
+        return this.Logout.get({});
         this.username = null;
         this.password = null;
+    }
+
+    this.User = $resource('/users/user');
+    this.user = function() {
+        return this.User.get({});
     }
 });
 
