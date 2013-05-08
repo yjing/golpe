@@ -11,7 +11,7 @@ APP TOP BAR: configurable from the Controller
         icon-chevron-left
         -->
         <ul class="nav" ng-show="top_bar.back_button != null">
-            <li><a href="#" ng-click='top_bar.back_button.func(elem);'><i class="top_bar.back_button.icon"></i></a></li>
+            <li><a href="#" ng-click='top_bar.back_button.func(elem);'><i ng-class="top_bar.back_button.icon"></i></a></li>
         </ul>
         <!-- PAGE TITLE -->
         <a href="#" class="brand page_title" ng-click="toggleTitleMenu()"><i class="icon-th-list"></i> {{page_title}}</a>
