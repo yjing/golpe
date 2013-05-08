@@ -88,7 +88,7 @@ function AdminCtrl($scope, $rootScope, $location, $resource, auth) {
     $scope.main = function() {
         $rootScope.busy(true);
         $scope.users = $scope.Users.all();
-        $rootScope.users.$then(function(){
+        $scope.users.$then(function(){
             $rootScope.busy(false);
         });
     }
