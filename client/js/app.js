@@ -134,12 +134,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         all: {
             method: 'GET',
             isArray: true
-        }
-    });
-})
-.service('auth', function($http, $resource){
-
-    this.Users = $resource('/users/', {}, {
+        },
         user : {
             method: 'GET',
             url : '/users/user'
@@ -154,23 +149,26 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             url : '/users/logout'
         }
     });
+})
+.service('auth', function(Users){
 
     this.auth = function(username, password){
         var xsrf = $.param({
             "data[User][username]" : username,
             "data[User][password]" : password
         });
-        return this.Users.login(xsrf);
+        return Users.login(xsrf);
 
     }
 
     this.logout = function() {
-        return this.Users.logout();
+        return Users.logout();
     }
 
     this.user = function() {
-        return this.Users.user();
+        return Users.user();
     }
+
 });
 
 function OLDAlCtrl($scope, $rootScope, $location, $routeParams, $resource, $filter, auth, DialogService, WindDims) {
