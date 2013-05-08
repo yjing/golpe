@@ -4,7 +4,7 @@
         <ul ng-show="al" class="nav">
             <li class=""><a href="#" ng-click='back();'><i class="icon-chevron-left"></i></a></li>
         </ul>
-        <a href="#" class="brand">Activity Logs</a>
+        <a href="#" class="brand">{{page_title}}</a>
         <div class="dropdown pull-right {{titlemenu_open}}" style="top: 0; left: 0;">
             <ul class="dropdown-menu">
                 <li><a tabindex="-1" href="#" ng-click="logout();"><i class="icon-lock"></i> Log Out</a></li>
@@ -35,7 +35,7 @@
     </div>
 </div>
 
-<div class="row-fluid content" ng-show="al && !show_media">
+<div class="row-fluid content">
     <div class="span10 offset1">
         {{admin.users}}
     </div>
