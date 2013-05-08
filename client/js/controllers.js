@@ -1,4 +1,4 @@
-function LoginCtrl($scope, $rootScope, $location, $resource, $http, auth) {
+function LoginCtrl($scope, $rootScope, $location, $http, auth) {
     // TMP CREDENTIALS
     $scope.username = "s.susini";
     $scope.password = "30071980";

@@ -90,7 +90,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     }
 
 })
-.service('auth', function($http){
+.service('auth', function($http, $resource){
     this.username = null;
     this.password = null;
 
