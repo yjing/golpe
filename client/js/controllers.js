@@ -8,6 +8,7 @@ function LoginCtrl($scope, $rootScope, $location, $http, auth) {
         $rootScope.user = auth.auth($scope.username, $scope.password);
         $rootScope.user.$then(
             function(){
+                console.log($rootScope.user);
                 $rootScope.busy(false);
                 if( $rootScope.user['logged'] ) {
 
