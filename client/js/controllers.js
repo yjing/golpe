@@ -185,7 +185,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
 }
 
 
-function ProjectCtrl($scope, $rootScope, $location, auth, Projects, $browser) {
+function ProjectCtrl($scope, $rootScope, $location, auth, Projects, $routeParams) {
     // TOP BAR
     $rootScope.top_bar = {
         back_button: {
@@ -217,4 +217,29 @@ function ProjectCtrl($scope, $rootScope, $location, auth, Projects, $browser) {
             { type: 'item', label: 'Info', func: $rootScope.info }
         ]
     };
+
+
+    $rootScope.busy(false);
+    $scope.main = function() {
+        $rootScope.busy(true);
+        $scope.project = Projects.get($routeParams['project_id']);
+        $scope.project.$then(function(){
+            $rootScope.busy(false);
+        });
+    }
+
+    if($rootScope.user == null || !$rootScope.user['logged']) {
+        $rootScope.busy(true);
+        $rootScope.user = auth.user();
+        $rootScope.user.$then(function(){
+            $rootScope.busy(false);
+            if(!$rootScope.user['logged']) {
+                $location.url('/client/login');
+            } else {
+                $scope.main();
+            }
+        });
+    } else {
+        $scope.main();
+    }
 }
