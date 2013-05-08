@@ -191,6 +191,7 @@ function ProjectCtrl($scope, $rootScope, $location, auth, Projects, $browser) {
         back_button: {
             icon: 'icon-chevron-left',
             func: function() {
+                console.log("OK");
                 $location.url('/client/projects');
             }
         },
