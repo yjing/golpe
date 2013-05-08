@@ -13,6 +13,11 @@ function LoginCtrl($scope, $rootScope, $location, auth) {
         title_menu: [
             { label: 'Users', func: $scope.login, icon: 'icon-chevron-left' },
             { label: 'Projects', func: $scope.login, icon: 'icon-chevron-left' }
+        ],
+        buttons: [
+            { label: 'Users', func: $scope.login, icon: 'icon-chevron-left' },
+            { is_divider: true },
+            { label: 'Users', func: $scope.login, icon: 'icon-chevron-left' }
         ]
     }
 

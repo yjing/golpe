@@ -25,7 +25,7 @@ APP TOP BAR: configurable from the Controller
         <div ng-show="top_bar.title_menu != null" class="dropdown pull-left title_menu {{titlemenu_open}}" style="top: 0; left: 0;">
             <ul class="dropdown-menu">
                 <li ng-repeat="i in top_bar.title_menu">
-                    <a tabindex="-1" ng-click="eval(i);" href="#">
+                    <a tabindex="{{$index}}" ng-click="eval(i);" href="#">
                         <i ng-show="i.icon!=null" class="{{i.icon}}"></i>
                         {{i.label}}
                     </a>
