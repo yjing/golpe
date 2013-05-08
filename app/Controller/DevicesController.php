@@ -151,8 +151,12 @@ class DevicesController extends RESTController {
     }
 
 
-    public function unsetProperty($device_id, $key) {
+    public function unsetProperty($device_id, $key = null) {
         parent::delete();
+        
+        if(empty($key)) {
+         throw new BadRequestException();   
+        }
         
         $this->Device->id = $device_id;
         if (!$this->Device->exists()) {
