@@ -57,11 +57,7 @@ function LoginCtrl($scope, $rootScope, $location, auth) {
 
 function AdminCtrl($scope, $rootScope, $location, auth) {
     console.log("ADMIN");
-    $scope.admin = {
-        'page_title': "Users",
-        'users': [
-            {'test': "test"}
-        ]
-    };
+    $scope.page_title = "Users";
+    $scope.users = [{"test":"Test"}];
 
 }
