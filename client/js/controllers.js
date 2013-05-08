@@ -80,8 +80,9 @@ function AdminCtrl($scope, $rootScope, $location, $resource, auth) {
         });
     }
 
-    $scope.Users = $resource('/users', {}, {
+    $scope.Users = $resource('/users/', {}, {
         all: {
+            url: '/users/',
             method: 'GET'
         }
     });
