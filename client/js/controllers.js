@@ -81,15 +81,15 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth) {
     }
 }
 
-function ProjectsCtrl($scope, $rootScope, $location, auth) {
+function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     $scope.page_title = "Projects";
 
     $scope.main = function() {
         $rootScope.busy(true);
-//        $scope.users = Users.all();
-//        $scope.users.$then(function(){
-//            $rootScope.busy(false);
-//        });
+        $scope.projects = Projects.all();
+        $scope.projects.$then(function(){
+            $rootScope.busy(false);
+        });
     }
 
     if($rootScope.user == null || !$rootScope.user['logged']) {
