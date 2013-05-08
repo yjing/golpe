@@ -1,0 +1,46 @@
+<!--
+APP TOP BAR: configurable from the Controller
+    $scope.top_bar = {
+        [...]
+    }
+-->
+<div class="activity_bar {{top_bar.busy_class}}" ng-show="busy_monitor > 0"></div>
+<div class="navbar navbar-fixed-top topbar {{top_bar.busy_class}}">
+    <div class="navbar-inner">
+        <!-- BACK BUTTON
+        icon-chevron-left
+        -->
+        <ul class="nav" ng-show="top_bar.back_button != null">
+            <li><a href="#" ng-click='top_bar.back_button.func(elem);'><i class="top_bar.back_button.icon"></i></a></li>
+        </ul>
+        <!-- PAGE TITLE -->
+        <a href="#" class="brand page_title" ng-click="toggleTitleMenu()"><i class="icon-th-list"></i> {{page_title}}</a>
+        <div class="dropdown pull-left title_menu {{titlemenu_open}}" style="top: 0; left: 0;">
+            <ul class="dropdown-menu">
+                <li><a tabindex="-1" ng-click="goUsers();" href="#">Users</a></li>
+            </ul>
+        </div>
+        <!-- BUTTONS AND MENU -->
+        <ul class="nav" style="float: right;margin-right: 0px;">
+            <!-- BUTTONS -->
+            <!-- I.CLASS CAN BE item or divider-vertical -->
+            <li ng-repeat="i in top_bar.buttons" class="{{i.class}}" ng-click="eval(this);"><a ng-hide="i.is_divider"><i class=""></i></a></li>
+            <li class="divider-vertical"></li>
+
+            <!-- MAIN MENU -->
+            <li class="item">
+                <a href="#" ng-click="toggleMenu();"><i class="icon-chevron-down"></i></a>
+                <div class="dropdown pull-right {{mainmenu_open}}">
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <li ng-repeat="i in top_bar.main_menu_items" class="{{i.is_divider}}">
+                            <a ng-hide="i.is_divider" tabindex="{{$index}}" href="#" ng-click="eval(this);">
+                                <i ng-show="i.icon_class!=null" class="{{i.icon_class}}"></i>
+                                {{i.label}}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

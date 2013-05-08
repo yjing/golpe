@@ -52,6 +52,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth) {
     $scope.page_title = "Users";
     $scope.users = null;
 
+    $rootScope.busy(false);
     $scope.main = function() {
         $rootScope.busy(true);
         $scope.users = Users.all();
@@ -84,6 +85,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth) {
 function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     $scope.page_title = "Projects";
 
+    $rootScope.busy(false);
     $scope.main = function() {
         $rootScope.busy(true);
         $scope.projects = Projects.all();
