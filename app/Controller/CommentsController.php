@@ -52,7 +52,11 @@ class CommentsController extends RESTController {
         if($this->Comment->save($data)) {
             $this->_setResponseJSON( $this->getDafaultFormattedComment($this->Comment->id) );
         } else {
-            $this->_ReportDataValidationErrors($this->Comment->validationErrors);
+            if(count($this->Comment->validationErrors) > 0) {
+                $this->_ReportDataValidationErrors($this->Comment->validationErrors);
+            } else {
+                throw new BadRequestException();
+            }
         }
         
     }
