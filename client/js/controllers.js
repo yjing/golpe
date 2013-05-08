@@ -3,6 +3,10 @@ function LoginCtrl($scope, $rootScope, $location, $resource, $http, auth) {
     $scope.username = "s.susini";
     $scope.password = "30071980";
 
+    $scope.login = function() {
+        $rootScope.busy(true);
+    }
+
     // CONTROLLER BL
     var User = $resource('/users/user');
     $rootScope.busy(true);

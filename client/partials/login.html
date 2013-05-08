@@ -20,8 +20,7 @@
 </div>
 
 <div class="content">
-    <form class="form-horizontal" style="margin: 2em;" ng-hide="checking_login">
-
+    <form class="form-horizontal" style="margin: 2em;" ng-hide="checking_login" ng-submit="login();">
         <div class="control-group">
             <label class="control-label" for="inputEmail">Email</label>
             <div class="controls">
@@ -36,12 +35,7 @@
         </div>
         <div class="control-group">
             <div class="controls">
-                <button type="button" class="btn" ng-click="login();">Sign in</button>
-            </div>
-        </div>
-        <div class="control-group" ng-show="show_logout">
-            <div class="controls">
-                <button type="button" class="btn btn-primary" ng-click="logout();">Log Out</button>
+                <button type="submit" class="btn" ng-disabled="busy_monitor > 0">Sign in</button>
             </div>
         </div>
     </form>
