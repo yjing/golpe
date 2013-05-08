@@ -44,9 +44,10 @@ abstract class RESTController extends AppController {
             if(isset($this->request->data)) {
                 $this->request->data = Set::remove($this->request->data, $this->modelClass . '.created');
                 $this->request->data = Set::remove($this->request->data, $this->modelClass . '.modified');
-            }
-            if($this->action == 'add') {
-                $data = Set::remove($this->request->data, $this->modelClass . '.id');
+                
+                if($this->action == 'add') {
+                    $data = Set::remove($this->request->data, $this->modelClass . '.id');
+                }
             }
         }
     }
