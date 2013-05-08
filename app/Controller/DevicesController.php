@@ -88,64 +88,7 @@ class DevicesController extends RESTController {
     public function update($id = null) {
         parent::update($id);
         
-        $result = array();
-        $this->Device->id = $id;
-        if($this->Device->exists()) {
-            $data = json_decode($this->request->input(), true);
-            
-            if ($data) {
-                // NO NEED TO UPDATE NOTHING ON THE DEVICE, JUST PROPERTIES
-                $rm_props = Set::extract('/RemoveDeviceProperty', $data);
-                $rm_props_ids = Set::extract('/RemoveDeviceProperty/key', $rm_props);
-                if(count($rm_props_ids) > 0) {
-                    $conditions = array(
-                        'device_id' => $id
-                    );
-                    if(count($rm_props_ids) == 1) {
-                        $conditions['key'] = $rm_props_ids[0];
-                    } else {
-                        $conditions['key IN'] = $rm_props_ids;
-                    }
-
-                    $this->DeviceProperty->deleteAll($conditions, false);
-                }
-                
-                $props = Set::extract('/DeviceProperty', $data);
-                $props = Set::remove($props, '{n}.DeviceProperty.device_id');
-                $props = Set::insert($props, '{n}.DeviceProperty.device_id', $id);
-                $props_ids = Set::extract('/DeviceProperty/key', $props);
-                if(count($props_ids) > 0) {
-                    $conditions = array(
-                        'device_id' => $id
-                    );
-                    if(count($props_ids) == 1) {
-                        $conditions['key'] = $props_ids[0];
-                    } else {
-                        $conditions['key'] = $props_ids;
-                    }
-
-                    $db_props = $this->DeviceProperty->find('all', array(
-                        'recursive' => -1,
-                        'conditions' => $conditions
-                    ));
-
-                    $props = Set::merge($db_props, $props);
-
-                    $saved = $this->DeviceProperty->saveAll($props);
-                    if($saved) {
-                        $result = $props;
-                    }
-                }
-                
-            } else {
-                throw new BadRequestException("Data format error.");
-            }
-        } else {
-            throw new BadRequestException("Device doesn't exists.");
-        }
-        
-        $this->_setResponseJSON($result);
-        
+        throw new MethodNotAllowedException();
     }
 
     public function edit($id = null) {
@@ -158,7 +101,16 @@ class DevicesController extends RESTController {
     public function delete($id = null) {
         parent::delete($id);
         
-        throw new MethodNotAllowedException();
+        $this->Device->id = $id;
+        if (!$this->Device->exists()) {
+            throw new NotFoundException();
+        }
+        
+        $query = "delete from devices where id = $id";
+        $deleted = $this->Device->query($query);
+        
+        $this->_setResponseJSON(array('deleted'=>is_array($deleted)));
+        
         
     }
     
