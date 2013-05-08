@@ -35,8 +35,9 @@
 <div class="row-fluid content">
     <div class="span10 offset1">
         <ul>
-            <li ng-repeat="u in users">
-
+            <li ng-repeat="p in projects">
+                <h4>{{p.Project.name}}</h4>
+                <p>{{p.Project.description}}</p>
             </li>
         </ul>
     </div>
