@@ -180,6 +180,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
         $rootScope.toggleTitleMenu();
     }
     $scope.goProject = function(item){
+        console.log(item);
         $location.url('/client/project/' + item.Project.id);
         $rootScope.toggleTitleMenu();
     }
