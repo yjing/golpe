@@ -52,7 +52,7 @@ APP TOP BAR: configurable from the Controller
                     <ul class="dropdown-menu">
                         <li ng-repeat="i in top_bar.main_menu_items" class="{{i.type}}">
                             <a ng-hide="i.type == 'divider'" tabindex="{{$index}}" href="#" ng-click="eval(i);">
-                                <i ng-show="i.icon!=null" class="{{i.icon}}"></i>
+                                <i class="{{i.icon}}"></i>
                                 {{i.label}}
                             </a>
                         </li>
