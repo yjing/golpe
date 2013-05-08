@@ -114,8 +114,12 @@ class DevicesController extends RESTController {
         
     }
     
-    public function setProperty($device_id, $key, $value) {
+    public function setProperty($device_id, $key = null, $value = "") {
         parent::add();
+        
+        if(empty($key)) {
+         throw new BadRequestException();   
+        }
         
         $this->Device->id = $device_id;
         if (!$this->Device->exists()) {
