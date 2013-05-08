@@ -39,7 +39,7 @@ function LoginCtrl($scope, $rootScope, $location, $resource, $http, auth) {
     // CONTROLLER BL
     var User = $resource('/users/user');
     $scope.busy(true);
-    $rootScope.user = User.get({},
+    $scope.user = User.get({},
         function (data) {
             $scope.busy(false);
             if(data['logged']) {
