@@ -183,6 +183,13 @@ abstract class AssociativeModel extends AppModel {
             $association_config['with'] . '.' . $association_config['foreignKey'] . ' = ' . $elem_id
         );
         
+        // ADD DISTINCT CLOUSE
+        if(isset($queryData['fields'])){
+            $queryData['fields'][0] = 'DISTINCT ' . $queryData['fields'][0];
+        } else {
+            $queryData['fields'] = 'DISTINCT ' . $associated_model->alias . '.*';
+        }
+        
         $options = array(
             'joins' => array($join),
             'conditions' => $conditions,
