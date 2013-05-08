@@ -14,7 +14,7 @@ APP TOP BAR: configurable from the Controller
             <li><a href="#" ng-click='top_bar.back_button.func(elem);'><i ng-class="top_bar.back_button.icon"></i></a></li>
         </ul>
         <!-- PAGE TITLE -->
-        <a href="#" class="brand page_title" ng-click="toggleTitleMenu()"><i class="icon-th-list"></i> {{page_title}}</a>
+        <a href="#" class="brand page_title" ng-click="toggleTitleMenu()"><i class="icon-th-list"></i> {{top_bar.page_title}}</a>
         <div class="dropdown pull-left title_menu {{titlemenu_open}}" style="top: 0; left: 0;">
             <ul class="dropdown-menu">
                 <li ng-repeat="i in top_bar.title_menu"><a tabindex="-1" ng-click="eval(i);" href="#">Users</a></li>
