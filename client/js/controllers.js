@@ -6,12 +6,24 @@ function LoginCtrl($scope, $rootScope, $location, $resource, $http, auth) {
     var User = $resource('/users/user');
     $rootScope.user = User.get({},
         function (data) {
-            console.log("SUCCESS");
-            console.log(data);
+            if(data['logged']) {
+                switch (data['User']['role']) {
+                    case 'STUDENT':
+                        //GO TO STUDENT'S HOME
+                        break;
+                    case 'SUPERVISOR':
+                        //GO TO SUPERVISOR'S HOME
+                        break;
+                    case 'ADMIN':
+                        //GO TO ADMIN'S HOME
+                        break;
+                }
+            } else {
+
+            }
         },
         function (data) {
-            console.log("ERROR");
-            console.log(data);
+
         }
     );
 
