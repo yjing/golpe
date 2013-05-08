@@ -21,8 +21,8 @@ class DevicesController extends RESTController {
     public function view($id = null) {
         parent::view($id);
         
-        $this->Team->id = $id;
-        if(!$this->Team->exists()) {
+        $this->Device->id = $id;
+        if(!$this->Deviceß->exists()) {
             throw new NotFoundException();
         }
         
