@@ -24,20 +24,16 @@ function LoginCtrl($scope, $rootScope, $location, $http, auth) {
     }
 
     $scope.logout = function() {
+        $rootScope.toggleMenu();
         $rootScope.busy(true);
+
         $rootScope.user = auth.logout();
         $rootScope.user.$then(
             function(){
                 $rootScope.busy(false);
-//                if( $rootScope.user['logged'] ) {
-//
-//                } else {
-//                    $scope.login_message = "Login failed";
-//                }
             },
             function(){
                 $rootScope.busy(false);
-//                $scope.login_message = "Login failed";
             }
         )
     }
