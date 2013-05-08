@@ -128,6 +128,14 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     }
 
 })
+.factory('Users', function() {
+    return $resource('/users/', {}, {
+        all: {
+            method: 'GET',
+            isArray: true
+        }
+    });
+})
 .service('auth', function($http, $resource){
 
     this.Users = $resource('/users/', {}, {

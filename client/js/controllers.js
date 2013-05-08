@@ -48,7 +48,7 @@ function LoginCtrl($scope, $rootScope, $location, auth) {
 
 }
 
-function AdminCtrl($scope, $rootScope, $location, $resource, auth) {
+function AdminCtrl($scope, $rootScope, $location, Users, auth) {
     $scope.page_title = "Users";
     $scope.users = null;
 
@@ -65,16 +65,9 @@ function AdminCtrl($scope, $rootScope, $location, $resource, auth) {
         });
     }
 
-    $scope.Users = $resource('/users/', {}, {
-        all: {
-            method: 'GET',
-            isArray: true
-        }
-    });
     $scope.main = function() {
-        console.log($scope.users);
         $rootScope.busy(true);
-        $scope.users = $scope.Users.all();
+        $scope.users = Users.all();
         $scope.users.$then(function(){
             $rootScope.busy(false);
         });
