@@ -2,8 +2,8 @@
 <div class="row-fluid content">
     <div class="span10 offset1">
         <ul style="list-style-type: none; margin: 5px;">
-            <li ng-repeat="p in projects" class="well well-small" ng-click="goProject(p);">
-                <h4>{{p.Project.name}}</h4>
+            <li ng-repeat="p in projects" class="well well-small" ng-click="goProject(p);" style="position: relative">
+                <h4>{{p.Project.name}}</h4> <i class="icon-chevron-right" style="position: absolute; right: 1em;"></i>
                 <p>{{p.Project.description}}</p>
             </li>
         </ul>
