@@ -72,8 +72,9 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         $rootScope.toggleMenu();
         $rootScope.busy(true);
 
-        $rootScope.user = auth.logout();
-        $rootScope.user.$then(
+        $rootScope.user = null;
+        var logout = auth.logout();
+        logout.$then(
             function(){
                 $rootScope.busy(false);
                 $location.url('/client/login');
