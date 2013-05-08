@@ -56,7 +56,7 @@ class DevicesController extends RESTController {
             $result = array();
             
             $this->Device->getDataSource()->begin();
-            $data['Device']['visibility_level'] = 'PRIVATE';
+            $data['Device']['visibility_level'] = 'SYSTEM';
             $saved = $this->Device->save($data);
             
             if($saved) {
