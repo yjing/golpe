@@ -87,6 +87,7 @@ function AdminCtrl($scope, $rootScope, $location, $resource, auth) {
         }
     });
     $scope.main = function() {
+        $rootScope.toggleTitleMenu();
         $rootScope.busy(true);
         $scope.users = $scope.Users.all();
         $scope.users.$then(function(){
