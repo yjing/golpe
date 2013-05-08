@@ -55,6 +55,9 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             menu = angular.element('.title_menu');
             topbar = angular.element('.topbar');
             brand = angular.element('.brand');
+            brand.click(function(e){
+                e.stopImmediatePropagation();
+            });
             body = angular.element('body');
             body.click(function(e, elem){
                 console.log(e);
