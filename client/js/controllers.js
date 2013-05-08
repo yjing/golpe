@@ -94,4 +94,20 @@ function AdminCtrl($scope, $rootScope, $location, $resource, auth) {
         });
     }
 
+
+    $scope.logout = function() {
+        $rootScope.toggleMenu();
+        $rootScope.busy(true);
+
+        $rootScope.user = auth.logout();
+        $rootScope.user.$then(
+            function(){
+                $rootScope.busy(false);
+            },
+            function(){
+                $rootScope.busy(false);
+            }
+        )
+    }
+
 }
