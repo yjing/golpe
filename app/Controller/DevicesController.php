@@ -35,7 +35,7 @@ class DevicesController extends RESTController {
         parent::add();
         
         $this->Device->create();
-        $this->Device->data['visibility_level'] = 'PRIVATE';
+        $this->Device->data['Device']['visibility_level'] = 'PRIVATE';
         $this->_setResponseJSON( $this->Device->save() );
         return;
         if (isset($this->request->data)) {
@@ -177,7 +177,7 @@ class DevicesController extends RESTController {
     
     private function getDafaultFormattedDevices() {
         return $this->Device->find('all', array(
-            'fields' => array('id', 'user_id'),
+            'fields' => array('id', 'user_id', 'visibility_level'),
             'associations' => array(
                 'DeviceProperty' => array(
                     'fields' => array('key', 'value')
