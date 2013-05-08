@@ -7,16 +7,15 @@ function LoginCtrl($scope, $rootScope, $location, $http, auth) {
         $rootScope.busy(true);
         $rootScope.user = auth.auth($scope.username, $scope.password);
         console.log("user...");
-        console.log($rootScope.user);
-//        $rootScope.user.then(
-//            function(){
-//                console.log("SUCCESS");
-//                console.log($rootScope.user);
-//            },
-//            function(){
-//                console.log("ERROR");
-//                console.log($rootScope.user);
-//            }
-//        )
+        $rootScope.user.$then(
+            function(){
+                console.log("SUCCESS");
+                console.log($rootScope.user);
+            },
+            function(){
+                console.log("ERROR");
+                console.log($rootScope.user);
+            }
+        )
     }
 }
