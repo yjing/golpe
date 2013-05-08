@@ -4,8 +4,11 @@ function LoginCtrl($scope, $rootScope, $location, $resource, $http, auth) {
     $scope.password = "30071980";
 
     $scope.login = function() {
-        console.log("LOGIN");
         $rootScope.busy(true);
+        auth.credentials($scope.username, $scope.password);
+        auth.auth(function(result){
+            console.log(result);
+        })
     }
 
     // CONTROLLER BL
