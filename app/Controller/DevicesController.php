@@ -140,7 +140,7 @@ class DevicesController extends RESTController {
         );
         
         if($this->DeviceProperty->save($property)) {
-            $this->getDafaultFormattedDevice($device_id);
+            $this->_setResponseJSON( $this->getDafaultFormattedDevice($device_id) );
         } else {
             $this->_ReportDataValidationErrors($this->DeviceProperty->validationErrors);
         }
@@ -148,7 +148,32 @@ class DevicesController extends RESTController {
 
 
     public function unsetProperty($device_id, $key) {
+        parent::delete();
         
+        $this->Device->id = $device_id;
+        if (!$this->Device->exists()) {
+            throw new NotFoundException();
+        }
+        
+        $property = $this->DeviceProperty->find('first', array(
+            'conditions' => array(
+                'device_id' => $device_id,
+                'key' => $key
+            ),
+            'recursive' => -1
+        ));
+        if(isset($property) && count($property) > 0) {
+            
+            $deleted = $this->DeviceProperty->delete($property['DeviceProperty']['id']);
+            if($deleted) {
+                $this->_setResponseJSON( $this->getDafaultFormattedDevice($device_id) );
+            } else {
+                throw new InternalErrorException();
+            }
+            
+        } else {
+            throw new NotFoundException();
+        }
     }
 
 
