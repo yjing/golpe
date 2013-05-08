@@ -377,7 +377,7 @@ function OLDAlCtrl($scope, $rootScope, $location, $routeParams, $resource, $filt
 
 }
 
-function OLDLoginCtrl($scope, $location, $cookies, $http, auth) {
+function OLDLoginCtrl($scope, $location, $http, auth) {
 
     $scope.mainmenu_open = "";
     $scope.toggleMenu = function() {
