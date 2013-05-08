@@ -154,12 +154,12 @@ abstract class RESTController extends AppController {
             if(is_array($array)){
                 $ret = array();
                 foreach ($array as $key => $value) {
+                    debug($key);
+                    debug($value);
                     $this->normalizeKeyValueToAssociative($key, $value);
                     if(isset($value) && is_array($value)) {
                         $value = $this->_normalize($value);
                     }
-                    debug($key);
-                    debug($value);
                     $ret[$key] = $value;
                 }
                 return $ret;
