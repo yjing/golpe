@@ -21,7 +21,7 @@ function LoginCtrl($scope, $rootScope, $location, auth) {
         ],
         main_menu_items: [
             { type: 'item', label: 'Users', func: $scope.login, icon: 'icon-chevron-left' },
-            { type: 'divider' },
+            { type: 'divider', label: 'Users', func: $scope.login, icon: 'icon-chevron-left' },
             { type: 'item', label: 'Users', func: $scope.login }
         ]
     }
