@@ -163,6 +163,14 @@ class UsersController extends RESTController {
         
     }
 
+    public function user() {
+        $this->_setResponseJSON(array(
+                'logged'=>$loggedIn,    
+                'User'=>$this->Auth->user()
+            )
+        );
+    }
+    
     public function login() {
         if ($this->request->is('post')) {
             $this->Auth->logout();
