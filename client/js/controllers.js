@@ -81,8 +81,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth) {
         page_title: 'Users',
         title_icon: 'icon-th-list',
         title_menu: [
-            { label: 'Projects', func: $scope.goUsers }
-//            { label: 'Projects', func: $scope.login, icon: 'icon-chevron-left' }
+            { label: 'Projects', func: $scope.goProjects }
         ],
 //        buttons: [
 //            { type: 'item', label: 'Users', func: $scope.login, icon: 'icon-chevron-left' },
@@ -129,7 +128,28 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth) {
 }
 
 function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
-    $scope.page_title = "Projects";
+    // TOP BAR
+    $rootScope.top_bar = {
+        back_button: {
+            icon: 'icon-chevron-left'
+        },
+        page_title: 'Users',
+        title_icon: 'icon-th-list',
+        title_menu: [
+            { label: 'Users', func: $scope.goUsers }
+        ],
+//        buttons: [
+//            { type: 'item', label: 'Users', func: $scope.login, icon: 'icon-chevron-left' },
+//            { type: 'divider-vertical' },
+//            { type: 'item', label: 'Users', func: $scope.login, icon: 'icon-chevron-left' }
+//        ],
+        main_menu_items: [
+            { type: 'item', label: 'Log Out', func: $rootScope.logout, icon: 'icon-lock' },
+            { type: 'divider' },
+            { type: 'item', label: 'Help', func: $rootScope.help },
+            { type: 'item', label: 'Info', func: $rootScope.info }
+        ]
+    };
 
     $rootScope.busy(false);
     $scope.main = function() {
