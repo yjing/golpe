@@ -5,15 +5,15 @@ function LoginCtrl($scope, $rootScope, $location, auth) {
 
     // TOP BAR
     $rootScope.top_bar = {
-//        back_button: {
-//            icon: 'icon-chevron-left'
-//        },
+        back_button: {
+            icon: 'icon-chevron-left'
+        },
         page_title: 'Login',
-//        title_icon: 'icon-th-list',
-//        title_menu: [
-//            { label: 'Users', func: $scope.login, icon: 'icon-chevron-left' },
-//            { label: 'Projects', func: $scope.login, icon: 'icon-chevron-left' }
-//        ]
+        title_icon: 'icon-th-list',
+        title_menu: [
+            { label: 'Users', func: $scope.login, icon: 'icon-chevron-left' },
+            { label: 'Projects', func: $scope.login, icon: 'icon-chevron-left' }
+        ]
     }
 
     $scope.login = function() {
