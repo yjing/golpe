@@ -19,6 +19,10 @@ body {
     top: 3px;
 }
 
+.brand.page_title:after {
+    content: "<i class='icon-remove'></i>";
+}
+
 .fixbg {
     z-index: -10000;
     position: fixed;
