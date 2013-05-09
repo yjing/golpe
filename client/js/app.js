@@ -562,10 +562,10 @@ function GenericResource(resource, uri, def, config) {
                     }
                     if(callbacks.each) {
                         for(var i=0; i<data.length; i++) {
+                            console.log("HERE");
                             var ret = callbacks.each(data[i], headers);
                             if(ret != null) {
                                 data[i] = ret;
-                                console.log("HERE");
                                 console.log(data[i]);
                             }
                         }
