@@ -203,7 +203,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
         $scope.p_index = index;
 
         // IF PROJECT IS NOT IN FULLPROJECTS FETCH IT
-        if($scope.projects[index].mode == 'partial') {
+        if($scope.projects[index].status == 'partial') {
             $rootScope.busy(true);
             var proj = Projects.get(
                 {id:$scope.projects[index].Project.id},

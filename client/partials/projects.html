@@ -22,9 +22,11 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane {{description_active}} tab1">
-                    <h3 ng-hide="projects[p_index].mode == 'edit'" ng-click="editProject();" >{{projects[p_index].Project.name}}</h3>
-                    <p ng-hide="projects[p_index].mode == 'edit'" ng-click="editProject();" >{{projects[p_index].Project.description}}</p>
-                    <input ng-hide="projects[p_index].mode == 'edit'" type="button" class="btn btn-small" value="Edit" ng-click="editProject();">
+                    <div ng-hide="projects[p_index].mode == 'edit'">
+                        <h3 ng-click="editProject();" >{{projects[p_index].Project.name}}</h3>
+                        <p ng-click="editProject();" >{{projects[p_index].Project.description}}</p>
+                        <input type="button" class="btn btn-small" value="Edit" ng-click="editProject();">
+                    </div>
                     <p ng-show="projects[p_index].mode == 'edit'">
                         <input autofocus="true" type="text" class="input-xlarge" ng-model="projects[p_index].Project.name">
                         <span class="error">{{projects[p_index].errors.Project.name}}</span>
