@@ -42,7 +42,7 @@
                             <ul class="students_list">
                                 <li ng-repeat="u in t.Student">{{u.username}}</li>
                                 <li ng-show="t_id == t.id">
-                                    <span ng-repeat="s in students ">
+                                    <span ng-repeat="s in students | filter:s.User.role='STUDENT'">
                                         {{s.User.username}}
                                     </span>
                                 </li>
