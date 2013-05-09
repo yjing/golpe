@@ -164,6 +164,10 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
                 if($scope.projects.length > 0) {
                     $scope.showProject(0);
                 }
+            },
+            function(data) {
+                $rootScope.busy(false);
+                $rootScope.handleError(data);
             }
         );
     }
@@ -208,6 +212,10 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
                     proj.mode = 'normal';
                     proj.status = 'complete';
                     $scope.projects[index] = proj;
+                },
+                function(data) {
+                    $rootScope.busy(false);
+                    $rootScope.handleError(data);
                 }
             );
         }
@@ -246,6 +254,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
                 $rootScope.busy(false);
                 $rootScope.handleError(data);
                 $scope.projects[$scope.p_index].errors = data.data;
+                console.log($scope.projects[$scope.p_index]);
             }
         );
     }
