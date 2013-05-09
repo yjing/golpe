@@ -243,6 +243,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
             },
             "new":true
         });
+        console.log($scope.projects);
     }
 
     $scope.description_active = 'active';
