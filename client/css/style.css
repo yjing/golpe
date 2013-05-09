@@ -99,6 +99,16 @@ ul.nav.nav-tabs.nav-stacked > li.active a {
     padding: 1.5em 1em;
 }
 
+/* TEAM BOX */
+.team_list {
+    list-style-type: none;
+    padding: 0.5em;
+    margin: 0;
+}
+.team_box {
+    display: inline-block;
+}
+
 /* TOPBAR */
 div.topbar { margin: 0; }
 div.topbar > div:first-child { padding-left: 0px; padding-right: 0px; }
