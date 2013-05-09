@@ -190,13 +190,16 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
         $scope.projects[index].active = 'active';
         $scope.shownProject = index;
 
-        $rootScope.busy(true);
-        $scope.project = Projects.get({id:$scope.projects[index].Project.id});
-        $scope.project.$then(function(){
-            $scope.fullProjects[index] = $scope.project;
-            console.log($scope.fullProjects);
-            $rootScope.busy(false);
-        });
+        if($scope.fullProjects[index] == null) {
+            $rootScope.busy(true);
+            $scope.project = Projects.get({id:$scope.projects[index].Project.id});
+            $scope.project.$then(function(){
+                $scope.fullProjects[index] = $scope.project;
+                $rootScope.busy(false);
+            });
+        } else {
+            $scope.project = $scope.fullProjects[index];
+        }
     }
 }
 
