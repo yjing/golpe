@@ -202,11 +202,13 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
                 $scope.projects[index] = proj;
                 // SETUP THE CURRENT PROJECT
                 $scope.projects[index].full = true;
+                $scope.projects[index].active = 'active';
+                $scope.p_index = index;
             });
+        } else {
+            $scope.projects[index].active = 'active';
+            $scope.p_index = index;
         }
-
-        $scope.projects[index].active = 'active';
-        $scope.p_index = index;
     }
 
     $scope.edit = false;
