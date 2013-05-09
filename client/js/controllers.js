@@ -198,12 +198,13 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
             $scope.project = Projects.get({id:$scope.projects[index].Project.id});
             $scope.project.$then(function(){
                 $scope.fullProjects[index] = $scope.project;
+                $scope.formerDescription = $scope.project.Project.description;
                 $rootScope.busy(false);
             });
         } else {
             $scope.project = $scope.fullProjects[index];
+            $scope.formerDescription = $scope.project.Project.description;
         }
-        $scope.formerDescription = $scope.project.Project.description;
     }
     $scope.cancelUpdate = function(){
         $scope.project['Project']['description'] = $scope.formerDescription;
