@@ -27,6 +27,7 @@
                     <input ng-hide="projects[p_index].mode == 'edit'" type="button" class="btn btn-small" value="Edit" ng-click="editProject();">
                     <p ng-show="projects[p_index].mode == 'edit'">
                         <input autofocus="true" type="text" class="input-xlarge" ng-model="projects[p_index].Project.name">
+                        {{projects[p_index].errors.Project.name}}
                         <textarea ng-model="projects[p_index].Project.description"></textarea>
                         <input type="submit" class="btn btn-small" value="Save" ng-click="saveProject();">
                         <input type="button" class="btn btn-small" value="Cancel" ng-click="cancelEdit();">
