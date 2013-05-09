@@ -2,9 +2,8 @@
 <div class="row-fluid content" ng-init="test = 'Test'">
     <div class="span2 offset1">
         <ul class="nav nav-pills nav-stacked">
-            <li ng-repeat="p in projects" class="" ng-click="test = p.Project.description" style="position: relative" ng-init="p.show = true">
-                <h4 ng-click="p.show = !p.show">{{p.Project.name}}</h4>
-                <!--<p ng-show="p.show">{{p.Project.description}}</p>-->
+            <li ng-repeat="p in projects">
+                {{p.Project.name}}
             </li>
         </ul>
     </div>
