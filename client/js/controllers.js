@@ -165,6 +165,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
                     if($scope.projects.length > 0) {
                         $scope.showProject(0);
                     }
+                    console.log($scope.projects);
                 }
             }
         });
