@@ -155,21 +155,34 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     $scope.main = function() {
         $scope.edit = false;
         $rootScope.busy(true);
-        Projects.all({
-            callbacks: {
-                each: function(data) {
-                    data.mode = 'partial';
-                    return data;
-                },
-                success: function(data){
-                    $rootScope.busy(false);
-                    $scope.projects = data;
-                    if($scope.projects.length > 0) {
-                        $scope.showProject(0);
-                    }
+        $scope.projects = Projects.all(
+            function(data){
+
+                angular.forEach($scope.projects, function(key, value){
+                    $scope.projects[key].mode = 'partial';
+                });
+
+                $rootScope.busy(false);
+                if($scope.projects.length > 0) {
+                    $scope.showProject(0);
                 }
             }
-        });
+//            {
+//                callbacks: {
+//                    each: function(data) {
+//                        data.mode = 'partial';
+//                        return data;
+//                    },
+//                    success: function(data){
+//                        $rootScope.busy(false);
+//                        $scope.projects = data;
+//                        if($scope.projects.length > 0) {
+//                            $scope.showProject(0);
+//                        }
+//                    }
+//                }
+//            }
+        );
     }
 
     if($rootScope.user == null || !$rootScope.user['logged']) {

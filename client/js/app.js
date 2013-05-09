@@ -168,7 +168,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     });
 })
 .factory('Projects', function($resource) {
-    return new GenericResource($resource, '/projects/:id', {id:'@id'}, {
+    return resource('/projects/:id', {id:'@id'}, {
         all: {
             method: 'GET',
             isArray: true
@@ -177,6 +177,15 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             method: 'GET'
         }
     });
+//    return new GenericResource($resource, '/projects/:id', {id:'@id'}, {
+//        all: {
+//            method: 'GET',
+//            isArray: true
+//        },
+//        get: {
+//            method: 'GET'
+//        }
+//    });
 })
 .service('auth', function(Users){
 
