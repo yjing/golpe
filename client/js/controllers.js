@@ -193,6 +193,8 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
         if($scope.p_index != null) {
             $scope.projects[$scope.p_index].active = '';
         }
+        $scope.projects[index].active = 'active';
+        $scope.p_index = index;
 
         // IF PROJECT IS NOT IN FULLPROJECTS FETCH IT
         if($scope.projects[index].full != true) {
@@ -205,9 +207,6 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
                 $scope.projects[index].active = 'active';
                 $scope.p_index = index;
             });
-        } else {
-            $scope.projects[index].active = 'active';
-            $scope.p_index = index;
         }
     }
 
