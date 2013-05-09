@@ -253,7 +253,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
             function(data) {
                 $rootScope.busy(false);
                 $rootScope.handleError(data);
-                $scope.projects[$scope.p_index].errors = data.data;
+                $scope.projects[$scope.p_index].errors = data.data.data_validation_errors;
                 console.log($scope.projects[$scope.p_index]);
             }
         );
