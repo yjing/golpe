@@ -26,12 +26,10 @@
                     <p ng-hide="edit" ng-click="editProject();" >{{projects[p_index].Project.description}}</p>
                     <input ng-hide="edit" type="button" class="btn btn-small" value="Edit" ng-click="editProject();">
                     <p ng-show="edit">
-                        <form>
-                            <input type="text" class="input-xlarge" ng-model="projects[p_index].Project.name">
-                            <textarea ng-model="projects[p_index].Project.description"></textarea>
-                            <input type="submit" class="btn btn-small" value="Save" ng-submit="saveProject();">
-                            <input type="button" class="btn btn-small" value="Cancel" ng-click="cancelEdit();">
-                        </form>
+                        <input type="text" class="input-xlarge" ng-model="projects[p_index].Project.name">
+                        <textarea ng-model="projects[p_index].Project.description"></textarea>
+                        <input type="submit" class="btn btn-small" value="Save" ng-click="saveProject();">
+                        <input type="button" class="btn btn-small" value="Cancel" ng-click="cancelEdit();">
                     </p>
                 </div>
                 <div class="tab-pane {{teams_active}} tab2">
