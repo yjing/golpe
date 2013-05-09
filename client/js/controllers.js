@@ -212,10 +212,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     }
 
     $scope.editProject = function(){
-        $scope.projects[$scope.p_index].undoEdit = {
-            'Project': angular.copy($scope.projects[$scope.p_index]),
-            'mode': $scope.projects[$scope.p_index].mode
-        };
+        $scope.projects[$scope.p_index].old = angular.copy($scope.projects[$scope.p_index]);
         $scope.projects[$scope.p_index].mode = 'edit';
     }
     $scope.cancelEdit = function(){
@@ -223,11 +220,8 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
             $scope.projects.splice($scope.projects.length, 1);
             $scope.showProject(0);
         } else {
-            console.log($scope.projects[$scope.p_index].undoEdit.Project);
-//            $scope.projects[$scope.p_index].mode = $scope.projects[$scope.p_index].undoEdit.mode;
-//            $scope.projects[$scope.p_index].Project = $scope.projects[$scope.p_index].undoEdit.Project;
-            $scope.projects[$scope.p_index] = $scope.projects[$scope.p_index].undoEdit.Project;
-            $scope.projects[$scope.p_index].undoEdit = null;
+            $scope.projects[$scope.p_index] = $scope.projects[$scope.p_index].old;
+
 //            $scope.projects[$scope.p_index].Project.description = $scope.projects[$scope.p_index].description;
 //            $scope.projects[$scope.p_index].Project.name = $scope.projects[$scope.p_index].name;
 //            $scope.projects[$scope.p_index].mode = $scope.projects[$scope.p_index].modeBeforeEdit;
