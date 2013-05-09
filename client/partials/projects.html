@@ -32,7 +32,7 @@
                             <span class="name">{{t.name}} <button class="btn btn-link list-item-remove"><i class="icon-remove"></i></button></span>
                             <ul class="students_list">
                                 <li ng-repeat="u in t.Student">{{u.username}}</li>
-                                <li><a href="#"></a><i class="icon-plus"></i> add</a></li>
+                                <li ng-click="alert('NEW!');" style="cursor: pointer;"><i class="icon-plus"></i> add</li>
                             </ul>
                         </li>
                         <li style="clear: both;"></li>
