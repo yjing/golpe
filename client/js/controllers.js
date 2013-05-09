@@ -121,7 +121,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth) {
     }
 }
 
-function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
+function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, Users) {
     // TOP BAR
     $rootScope.top_bar = {
 //        back_button: {
@@ -275,6 +275,17 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     $scope.addStudent = function(p_id, t_id){
         console.log(p_id);
         console.log(t_id);
+        $rootScope.busy(true);
+        $scope.students = Users.all(
+            function(data){
+                $rootScope.busy(false);
+                console.log($scope.users);
+            },
+            function(err_data){
+                $rootScope.handleError(err_data);
+                $rootScope.busy(false);
+            }
+        );
     }
 
     $scope.isActive = function(index) {
@@ -292,65 +303,5 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     $scope.showDescription = function() {
         $scope.description_active = 'active';
         $scope.teams_active = '';
-    }
-}
-
-
-function ProjectCtrl($scope, $rootScope, $location, auth, Projects, $routeParams) {
-    // TOP BAR
-    $rootScope.top_bar = {
-        back_button: {
-            icon: 'icon-chevron-left',
-            func: function() {
-                $location.url('/client/projects');
-            }
-        },
-        page_title: 'Project',
-//        title_icon: 'icon-th-list',
-//        title_menu: [
-//            {
-//                label: 'Users',
-//                func: function() {
-//                    $rootScope.toggleTitleMenu();
-//                    $location.url('/client/users');
-//                }
-//            }
-//        ],
-//        buttons: [
-//            { type: 'item', label: 'Users', func: $scope.login, icon: 'icon-chevron-left' },
-//            { type: 'divider-vertical' },
-//            { type: 'item', label: 'Users', func: $scope.login, icon: 'icon-chevron-left' }
-//        ],
-        main_menu_items: [
-            { type: 'item', label: 'Log Out', func: $rootScope.logout, icon: 'icon-lock' },
-            { type: 'divider' },
-            { type: 'item', label: 'Help', func: $rootScope.help },
-            { type: 'item', label: 'Info', func: $rootScope.info }
-        ]
-    };
-
-
-    $rootScope.busy(false);
-    $scope.main = function() {
-        $rootScope.busy(true);
-        $scope.project = Projects.get({id:$routeParams['id']});
-        $scope.project.$then(function(){
-            $rootScope.busy(false);
-        });
-    }
-
-    if($rootScope.user == null || !$rootScope.user['logged']) {
-        $rootScope.busy(true);
-        $rootScope.user = auth.user();
-        $rootScope.user.$then(function(){
-            $rootScope.busy(false);
-            if(!$rootScope.user['logged']) {
-                $location.url('/client/login');
-            } else {
-                $scope.main();
-            }
-        });
-    } else {
-        $scope.main();
     }
 }
