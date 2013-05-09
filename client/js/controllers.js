@@ -217,6 +217,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
                         $rootScope.busy(false);
                         $scope.projects[index] = data;
                         $scope.p_index = index;
+                        console.log($scope.projects[index]);
                     }
                 }
             });
