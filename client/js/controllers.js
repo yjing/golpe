@@ -184,6 +184,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     $scope.fullProjects = [];
     $scope.editDescription = false;
     $scope.showProject = function(index){
+        $scope.editDescription = false;
         if($scope.shownProject != null) {
             $scope.projects[$scope.shownProject].active = '';
         }
@@ -201,6 +202,13 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
         } else {
             $scope.project = $scope.fullProjects[index];
         }
+    }
+    $scope.saveProject = function(){
+        $scope.editDescription = false;
+        if($scope.project != null) {
+            $scope.project.$save();
+        }
+
     }
 }
 
