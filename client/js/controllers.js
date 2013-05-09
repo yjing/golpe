@@ -247,7 +247,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
             );
         } else {
             $scope.projects[$scope.p_index].$save(
-//                {id:$scope.projects[$scope.p_index].Project.id},
+                {id:$scope.projects[$scope.p_index].Project.id},
                 $scope.projects[$scope.p_index],
                 function() {
                     $scope.projects[$scope.p_index].mode = 'complete';
