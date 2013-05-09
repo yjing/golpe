@@ -209,6 +209,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     $scope.cancelUpdate = function(){
         $scope.project['Project']['description'] = $scope.formerDescription;
         $scope.formerDescription = '';
+        $scope.editDescription = false;
     }
     $scope.saveProject = function(){
         $scope.editDescription = false;
@@ -216,7 +217,6 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
         if($scope.project != null) {
             $scope.project.$save({id:$scope.project['Project']['id']},
                 function() {
-                    console.log('DONE');
                     $rootScope.busy(false);
                 }
             );
