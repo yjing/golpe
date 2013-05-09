@@ -192,7 +192,10 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     this.all = function(f1, f2) {
         return this.res.all(
             function(p1, p2, p3, p4){
-                console.log(p1, p2, p3, p4)
+                console.log(p1)
+                console.log(p2)
+                console.log(p3)
+                console.log(p4)
                 f1();
             },
             function() {
