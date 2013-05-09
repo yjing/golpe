@@ -174,8 +174,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             isArray: true
         },
         get: {
-            method: 'GET',
-            isArray: true
+            method: 'GET'
         }
     });
 })
