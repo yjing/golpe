@@ -153,7 +153,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, Projects2) 
 
     $rootScope.busy(false);
     $scope.main = function() {
-        var t = Projects2.all({id:1},  {}, {
+        var t = Projects2.all({},  {}, {
             each: function(data){
                 data.mode = 'partial';
             }
@@ -162,16 +162,26 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, Projects2) 
 
         $scope.edit = false;
         $rootScope.busy(true);
-        $scope.projects = Projects.all();
-        $scope.projects.$then(function(){
-            for(var i=0; i<$scope.projects.length; i++) {
-                $scope.projects[i].mode = 'partial';
-            }
-            $rootScope.busy(false);
-            if($scope.projects.length > 0) {
-                $scope.showProject(0);
+        $scope.projects = Projects2.all({},{},{
+            each: function(data) {
+                data.mode = 'partial';
+            },
+            success: function(data){
+                $rootScope.busy(false);
+                if($scope.projects.length > 0) {
+                    $scope.showProject(0);
+                }
             }
         });
+//        $scope.projects.$then(function(){
+//            for(var i=0; i<$scope.projects.length; i++) {
+//                $scope.projects[i].mode = 'partial';
+//            }
+//            $rootScope.busy(false);
+//            if($scope.projects.length > 0) {
+//                $scope.showProject(0);
+//            }
+//        });
     }
 
     if($rootScope.user == null || !$rootScope.user['logged']) {
