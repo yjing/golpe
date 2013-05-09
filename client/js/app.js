@@ -190,7 +190,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     });
 
     this.all = function() {
-        var proj = this.res.all(function(){console.log('first then...')});//.$then(function(){console.log('second then...');});
+        return this.res.all(function(){console.log('first then...')}).$then(function(){console.log('second then...');});
     }
 
     return this;
