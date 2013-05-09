@@ -291,6 +291,12 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
         $scope.teams_disabled = true;
     }
 
+    $scope.isActive = function(index) {
+        if(index == $scope.p_index) {
+            return 'active';
+        }
+    }
+
     $scope.description_active = 'active';
     $scope.teams_active = '';
     $scope.showTeams = function() {
