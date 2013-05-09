@@ -153,15 +153,13 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
 
     $rootScope.busy(false);
     $scope.main = function() {
-        $scope.edit = false;
         $rootScope.busy(true);
         $scope.projects = Projects.all(
-            function(data){
+            function(){
+                $rootScope.busy(false);
                 for(var i=0; i<$scope.projects.length; i++) {
                     $scope.projects[i].mode = 'partial';
                 }
-
-                $rootScope.busy(false);
                 if($scope.projects.length > 0) {
                     $scope.showProject(0);
                 }
@@ -202,23 +200,15 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
         // IF PROJECT IS NOT IN FULLPROJECTS FETCH IT
         if($scope.projects[index].mode == 'partial') {
             $rootScope.busy(true);
-            Projects.get({
-                params: {id:$scope.projects[index].Project.id},
-                callbacks: {
-                    foreach: function(data) {
-                        data.mode = 'ok';
-                        data.active = 'active';
-                        return data;
-                    },
-                    success: function(data, headers){
-                        $rootScope.busy(false);
+            $scope.projects = Projects.get(
+                {id:$scope.projects[index].Project.id},
+                function(data, headers){
+                    $rootScope.busy(false);
 
-                        $scope.projects[index] = data;
-                        $scope.p_index = index;
-                        console.log($scope.projects[index]);
-                    }
+                    $scope.projects[index].mode = 'ok';
+                    $scope.projects[index].active = 'active';
                 }
-            });
+            );
         }
     }
 
