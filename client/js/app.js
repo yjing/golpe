@@ -540,14 +540,14 @@ function GenericResource(resource, uri, def, config) {
                 if(callbacks) {
                     if(callbacks.first && data.length > 0) {
                         var ret = callbacks.first(data[0], headers);
-                        if(ret) {
+                        if(ret != null) {
                             data[0] = ret;
                         }
                     }
                     if(callbacks.even) {
                         for(var i=0; i<data.length; i+=2) {
                             var ret = callbacks.even(data[i], headers);
-                            if(ret) {
+                            if(ret != null) {
                                 data[i] = ret;
                             }
                         }
@@ -555,7 +555,7 @@ function GenericResource(resource, uri, def, config) {
                     if(callbacks.odd) {
                         for(var i=1; i<data.length; i+=2) {
                             var ret = callbacks.odd(data[i], headers);
-                            if(ret) {
+                            if(ret != null) {
                                 data[i] = ret;
                             }
                         }
@@ -563,7 +563,7 @@ function GenericResource(resource, uri, def, config) {
                     if(callbacks.each) {
                         for(var i=0; i<data.length; i++) {
                             var ret = callbacks.each(data[i], headers);
-                            if(ret) {
+                            if(ret != null) {
                                 data[i] = ret;
                                 console.log(data[i]);
                             }
@@ -571,7 +571,7 @@ function GenericResource(resource, uri, def, config) {
                     }
                     if(callbacks.last && data.length > 0) {
                         var ret = callbacks.last(data[data.length - 1], headers);
-                        if(ret) {
+                        if(ret != null) {
                             data[data.length - 1] = ret;
                         }
                     }
