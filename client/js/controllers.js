@@ -290,7 +290,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     }
     $scope.add = function(t_id, s_id){
         $rootScope.busy(true);
-        var Test = $resource('/teams/addMember/:tid/:sid',{},{
+        var Test = $resource('/teams/addMember/:tid/:sid',{tid:1, sid:1},{
             add: {
                 method: 'POST'
             }
