@@ -13,11 +13,11 @@
                 <li class="active"><a href="#">Description</a></li>
                 <li><a href="#">Teams</a></li>
             </ul>
-            <div class="tab-content">
+            <div class="tab-content" ng-init="mode = 'normal">
                 <div class="tab-pane active tab1">
                     <p ng-show="mode = 'normal';" ng-click="mode = 'edit'">{{project.Project.description}}</p>
                     <p ng-show="mode = 'edit';">
-                        <textarea>{{project.Project.description}}</textarea>
+                        <textarea>{{project.Project.description}}</textarea><br>
                         <input type="button" class="btn btn-small" value="save" value="Save">
                     </p>
                 </div>
