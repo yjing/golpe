@@ -209,10 +209,26 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             payload,
             function(data, headers){
                 if(callbacks) {
+                    if(callbacks.first && data.length > 0) {
+                        callbacks.first(data[0], headers);
+                    }
+                    if(callbacks.even) {
+                        for(var i=0; i<data.length; i+=2) {
+                            callbacks.even(data[i], headers);
+                        }
+                    }
+                    if(callbacks.odd) {
+                        for(var i=1; i<data.length; i+=2) {
+                            callbacks.odd(data[i], headers);
+                        }
+                    }
                     if(callbacks.each) {
                         for(var i=0; i<data.length; i++) {
-                            callbacks.each(data[i]);
+                            callbacks.each(data[i], headers);
                         }
+                    }
+                    if(callbacks.last && data.length > 0) {
+                        callbacks.last(data[0], headers);
                     }
                     if(callbacks.success) {
                         callbacks.success(data, headers);

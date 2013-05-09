@@ -166,6 +166,12 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, Projects2) 
             each: function(data) {
                 data.mode = 'partial';
             },
+            even: function(data){
+                data.Project.name += ' EVEN ';
+            },
+            odd: function(data){
+                data.Project.name += ' ODD ';
+            },
             success: function(data){
                 $rootScope.busy(false);
                 if($scope.projects.length > 0) {
