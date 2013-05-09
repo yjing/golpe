@@ -2,7 +2,7 @@
 <div class="row-fluid content" ng-init="test = 'Test'">
     <div class="span2 offset1">
         <ul class="nav nav-tabs nav-stacked">
-            <li ng-repeat="p in projects" class="{{p.active}}">
+            <li ng-repeat="p in projects" class="{{p.active}}" ng-hide="p.new">
                 <a href="#" ng-click="showProject($index);">{{p.Project.name}}</a>
             </li>
             <li class="text-right">
