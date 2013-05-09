@@ -45,10 +45,10 @@
                                     Add Student <i style="margin-left: 1em" class="icon-plus"></i>
                                 </li>
                             </ul>
-                            <ul ng-show="t_id == t.id">
+                            <ul ng-show="t_id == t.id" ng-init="sList = [];">
                                 <li ng-repeat="s in students | filter:s.User.role='STUDENT'">
                                     <span>
-                                        {{s.User.username}}
+                                        <input type="checkbox" ng-model="s.selected"> {{s.User.username}}
                                     </span>
                                 </li>
                             </ul>
