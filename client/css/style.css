@@ -112,6 +112,7 @@ ul.nav.nav-tabs.nav-stacked > li.active a {
     padding: 1%;
     margin: 1%;
     width: 28%;
+    height: 100%;
     border: 1px solid rgb(221, 221, 221);
 
     -webkit-border-radius: 3px;
@@ -119,7 +120,7 @@ ul.nav.nav-tabs.nav-stacked > li.active a {
 }
 .list-item-remove {
     position: absolute;
-    right: -10px;
+    right: -5px;
     top: 0;
     height: 100%;
 }
