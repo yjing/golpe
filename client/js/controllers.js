@@ -185,8 +185,9 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
 
 
     $scope.showProject = function(p){
-        console.log(p);
-        $scope.project = p.Project;
+        p.active = 'active';
+        $scope.project.active = '';
+        $scope.project = p;
     }
 }
 
