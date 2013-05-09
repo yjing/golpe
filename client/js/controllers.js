@@ -273,6 +273,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, Users) {
     }
 
     $scope.t_id = null;
+    $scope.students = null;
     $scope.addStudent = function(p_id, t_id){
         $scope.t_id = t_id;
         $rootScope.busy(true);
