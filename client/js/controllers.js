@@ -219,7 +219,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     $scope.cancelEdit = function(){
         $scope.edit = false;
         if($scope.projects[$scope.p_index].new) {
-            $scope.projects[$scope.p_index] = undefined;
+            $scope.projects.pop();
         } else {
             $scope.projects[$scope.p_index].Project.description = $scope.projects[$scope.p_index].description;
             $scope.projects[$scope.p_index].Project.name = $scope.projects[$scope.p_index].name;
