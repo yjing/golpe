@@ -41,13 +41,15 @@
                             <span class="name">{{t.name}} <button class="btn btn-link list-item-remove"><i class="icon-remove"></i></button></span>
                             <ul class="students_list">
                                 <li ng-repeat="u in t.Student">{{u.username}}</li>
-                                <li ng-show="t_id == t.id">
-                                    <span ng-repeat="s in students | filter:s.User.role='STUDENT'">
-                                        {{s.User.username}}
-                                    </span>
-                                </li>
                                 <li ng-click="addStudent(projects[p_index].Project.id, t.id);" class="text-right" style="cursor: pointer; background-color: #efefef">
                                     Add Student <i style="margin-left: 1em" class="icon-plus"></i>
+                                </li>
+                            </ul>
+                            <ul ng-show="t_id == t.id">
+                                <li ng-repeat="s in students | filter:s.User.role='STUDENT'">
+                                    <span>
+                                        {{s.User.username}}
+                                    </span>
                                 </li>
                             </ul>
                         </li>
