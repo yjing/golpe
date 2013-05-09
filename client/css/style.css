@@ -118,7 +118,7 @@ ul.nav.nav-tabs.nav-stacked > li.active a {
 }
 .list-item-remove {
     position: absolute;
-    right: 1em;
+    right: 5px;
     top: 0;
     height: 100%;
 }
