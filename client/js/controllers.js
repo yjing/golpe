@@ -151,6 +151,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
         ]
     };
 
+    $scope.projects = [];
     $rootScope.busy(false);
     $scope.main = function() {
         $scope.edit = false;
@@ -159,8 +160,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
             function(){
 
                 for(var i=0; i<projs.length; i++) {
-                    console.log(projs[i].Project.id);
-//                    $scope.projects[projs[i].Project.id] = projs[i];
+                    $scope.projects[projs[i].Project.id] = projs[i];
                 }
                 $rootScope.busy(false);
                 if($scope.projects.length > 0) {
