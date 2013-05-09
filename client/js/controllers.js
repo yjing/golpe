@@ -227,14 +227,13 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
         $scope.edit = false;
         $rootScope.busy(true);
         if($scope.projects[$scope.p_index].new) {
-            $scope.projects[$scope.p_index] = Projects.save($scope.projects[$scope.p_index],
+            var proj = Projects.save($scope.projects[$scope.p_index],
                 function() {
                     $rootScope.busy(false);
-                    $scope.projects[$scope.p_index].new = false;
+                    $scope.projects[$scope.p_index] = proj;
                 },
                 function() {
                     $rootScope.busy(false);
-                    $scope.projects[$scope.p_index] = null;
                 }
             );
         } else {
