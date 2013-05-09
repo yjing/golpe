@@ -204,8 +204,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
                 {id:$scope.projects[index].Project.id},
                 function(data, headers){
                     $rootScope.busy(false);
-                    proj.mode = 'ok';
-                    proj.active = 'active';
+                    proj.mode = 'complete';
                     $scope.projects[index] = proj;
                 }
             );
@@ -213,46 +212,29 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     }
 
     $scope.editProject = function(){
-        $scope.projects[$scope.p_index].description = $scope.projects[$scope.p_index].Project.description;
-        $scope.projects[$scope.p_index].name = $scope.projects[$scope.p_index].Project.name;
-        $scope.projects[$scope.p_index].modeBeforeEdit = $scope.projects[$scope.p_index].mode;
+//        $scope.projects[$scope.p_index].description = $scope.projects[$scope.p_index].Project.description;
+//        $scope.projects[$scope.p_index].name = $scope.projects[$scope.p_index].Project.name;
+//        $scope.projects[$scope.p_index].modeBeforeEdit = $scope.projects[$scope.p_index].mode;
         $scope.projects[$scope.p_index].mode = 'edit';
     }
     $scope.cancelEdit = function(){
-        if($scope.projects[$scope.p_index].new) {
-            $scope.projects.splice($scope.projects.length, 1);
-            $scope.showProject(0);
-        } else {
-            $scope.projects[$scope.p_index].Project.description = $scope.projects[$scope.p_index].description;
-            $scope.projects[$scope.p_index].Project.name = $scope.projects[$scope.p_index].name;
-            $scope.projects[$scope.p_index].mode = $scope.projects[$scope.p_index].modeBeforeEdit;
-            $scope.projects[$scope.p_index].description = null;
-            $scope.projects[$scope.p_index].name = null;
-            $scope.projects[$scope.p_index].modeBeforeEdit = null;
-        }
+//        if($scope.projects[$scope.p_index].new) {
+//            $scope.projects.splice($scope.projects.length, 1);
+//            $scope.showProject(0);
+//        } else {
+//            $scope.projects[$scope.p_index].Project.description = $scope.projects[$scope.p_index].description;
+//            $scope.projects[$scope.p_index].Project.name = $scope.projects[$scope.p_index].name;
+//            $scope.projects[$scope.p_index].mode = $scope.projects[$scope.p_index].modeBeforeEdit;
+//            $scope.projects[$scope.p_index].description = null;
+//            $scope.projects[$scope.p_index].name = null;
+//            $scope.projects[$scope.p_index].modeBeforeEdit = null;
+//        }
     }
     $scope.saveProject = function(){
         $rootScope.busy(true);
-        par = null;
-        if($scope.projects[$scope.p_index].mode != 'new') {
-            par = { id:$scope.projects[$scope.p_index].Project.id} ;
-        }
-        Projects.call('save', {
-            params: par,
-            payload: $scope.projects[$scope.p_index],
-            callbacks: {
-                success: function(data){
-                    $rootScope.busy(false);
-                    $scope.projects[$scope.p_index] = data;
-                },
-                error: function(err_data){
-                    $rootScope.busy(false);
-                }
-            }
-        });
-        return;
-        if($scope.projects[$scope.p_index].new) {
-            var proj = Projects.save($scope.projects[$scope.p_index],
+        if($scope.projects[$scope.p_index].mode == 'new') {
+            var proj = Projects.save(
+                $scope.projects[$scope.p_index],
                 function() {
                     $scope.edit = false;
                     $rootScope.busy(false);
@@ -264,9 +246,11 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
                 }
             );
         } else {
-            var proj = Projects.$save({id:$scope.projects[$scope.p_index].Project.id}, $scope.projects[$scope.p_index],
+            var proj = Projects.$save(
+                {id:$scope.projects[$scope.p_index].Project.id},
+                $scope.projects[$scope.p_index],
                 function() {
-                    $scope.edit = false;
+                    proj.mode = 'complete';
                     $scope.projects[$scope.p_index] = proj;
                     $rootScope.busy(false);
                 },
