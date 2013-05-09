@@ -191,9 +191,9 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 
     this.all = function(f1, f2) {
         return this.res.all(
-            function(p1, p2){
-                console.log(p1)
-                console.log(p2)
+            function(data, headers){
+                console.log(data);
+                console.log(headers('Content-type'));
                 if(f1) {
                     f1(p1, p2);
                 }
