@@ -216,11 +216,14 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     $scope.editProject = function(){
         $scope.edit = true;
         $scope.project.description = $scope.project.Project.description;
+        $scope.project.name = $scope.project.Project.name;
     }
     $scope.cancelEdit = function(){
         $scope.edit = false;
         $scope.project.Project.description = $scope.project.description;
+        $scope.project.Project.name = $scope.project.name;
         $scope.project.description = null;
+        $scope.project.name = null;
     }
     $scope.saveProject = function(){
         $scope.edit = false;
