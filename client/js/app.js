@@ -565,7 +565,6 @@ function GenericResource(resource, uri, def, config) {
                             var ret = callbacks.each(data[i], headers);
                             if(ret != null) {
                                 data[i] = ret;
-                                console.log(data[i]);
                             }
                         }
                     }
