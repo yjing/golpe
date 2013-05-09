@@ -242,4 +242,8 @@ function ProjectCtrl($scope, $rootScope, $location, auth, Projects, $routeParams
     } else {
         $scope.main();
     }
+
+    $scope.showInfo = function(p){
+        $scope.project = p;
+    }
 }
