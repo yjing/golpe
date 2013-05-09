@@ -15,7 +15,11 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active tab1">
-                    <p>{{project.Project.description}}</p>
+                    <p ng-show="mode = 'normal';" ng-click="mode = 'edit'">{{project.Project.description}}</p>
+                    <p ng-show="mode = 'edit';">
+                        <textarea>{{project.Project.description}}</textarea>
+                        <input type="button" class="btn btn-small" value="save" value="Save">
+                    </p>
                 </div>
                 <div class="tab-pane tab2">
                     <p></p>
