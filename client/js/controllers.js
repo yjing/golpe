@@ -205,8 +205,13 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     }
     $scope.saveProject = function(){
         $scope.editDescription = false;
+        $rootScope.busy(true);
         if($scope.project != null) {
-            $scope.project.$save({id:$scope.project['Project']['id']});
+            $scope.project.$save({id:$scope.project['Project']['id']},
+                function() {
+                    $rootScope.busy(false);
+                }
+            );
         }
 
     }
