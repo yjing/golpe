@@ -103,6 +103,12 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         )
     }
 
+    $rootScope.handleError = function(err_data) {
+        if(err_data.status == 401) {
+            $location.url('/client/login');
+        }
+    }
+
     $rootScope.getThumbUrl = function(media){
         if(media['has_thumb']) {
             return "/media/download/" + media['id'] + "?thumb=BIG";
@@ -177,15 +183,6 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             method: 'GET'
         }
     });
-//    return new GenericResource($resource, '/projects/:id', {id:'@id'}, {
-//        all: {
-//            method: 'GET',
-//            isArray: true
-//        },
-//        get: {
-//            method: 'GET'
-//        }
-//    });
 })
 .service('auth', function(Users){
 
@@ -520,100 +517,5 @@ function supports_html5_storage() {
         return 'localStorage' in window && window['localStorage'] !== null;
     } catch (e) {
         return false;
-    }
-}
-
-function GenericResource(resource, uri, def, config) {
-    this.res = resource(uri, def, config);
-
-    this.all = function(params) {
-        return this.call('all', params);
-    }
-    this.get = function(params) {
-        return this.call('get', params);
-    }
-    this.call = function(method, passed) {
-        var success = function(data, headers){
-            if(callbacks != null) {
-                if(callbacks.first != null && data.length > 0) {
-                    var ret = callbacks.first(data[0], headers);
-                    if(ret != null) {
-                        data[0] = ret;
-                    }
-                }
-                if(callbacks.even != null) {
-                    for(var i=0; i<data.length; i+=2) {
-                        var ret = callbacks.even(data[i], headers);
-                        if(ret != null) {
-                            data[i] = ret;
-                        }
-                    }
-                }
-                if(callbacks.odd != null) {
-                    for(var i=1; i<data.length; i+=2) {
-                        var ret = callbacks.odd(data[i], headers);
-                        if(ret != null) {
-                            data[i] = ret;
-                        }
-                    }
-                }
-
-                if(callbacks.foreach != null) {
-                    if(data.length) {
-                        for(var i=0; i<data.length; i++) {
-                            var ret = callbacks.each(data[i], headers);
-                            if(ret != null) {
-                                data[i] = ret;
-                            }
-                        }
-                    } else {
-                        var ret = callbacks.each(data, headers);
-                        if(ret != null) {
-                            data = ret;
-                        }
-                    }
-                }
-                if(callbacks.last != null && data.length > 0) {
-                    var ret = callbacks.last(data[data.length - 1], headers);
-                    if(ret != null) {
-                        data[data.length - 1] = ret;
-                    }
-                }
-                if(callbacks.success != null) {
-                    callbacks.success(data, headers);
-                }
-            }
-        };
-
-        var error = function(err) {
-            if(callbacks != null && callbacks.error) {
-                callbacks.error(err);
-            }
-        };
-
-        var params = null;
-        var payload = {};
-        var callbacks = {};
-        if(passed != null) {
-            if(passed.params != null) { params = passed.params; }
-            if(passed.payload != null) { payload = passed.data; }
-            if(passed.callbacks != null) { callbacks = passed.callbacks; }
-        }
-
-        if(method != 'save') {
-            return this.res[method](
-                params,
-                payload,
-                success,
-                error
-            );
-        } else {
-            return this.res.$save(
-                payload,
-                success,
-                error
-            );
-        }
-
     }
 }
