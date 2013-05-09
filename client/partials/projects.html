@@ -28,7 +28,10 @@
                 </div>
                 <div class="tab-pane {{teams_active}} tab2">
                     <ul>
-                        <li class="team_box" ng-repeat="t in project.Project.Team">{{t.name}}</li>
+                        <li class="team_box" ng-repeat="t in project.Project.Team">
+                            {{t.name}}
+                            <button class="list-item-remove"><i class="icon-remove"></i></button>
+                        </li>
                     </ul>
                 </div>
             </div>
