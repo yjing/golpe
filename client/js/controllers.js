@@ -179,16 +179,13 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
         $location.url('/client/users');
         $rootScope.toggleTitleMenu();
     }
-    $scope.goProject = function(item){
-        $location.url('/client/project/' + item.Project.id);
-    }
 
     $scope.shownProject = null;
     $scope.showProject = function(index){
         if($scope.shownProject != null) {
             $scope.projects[$scope.shownProject].active = '';
         }
-        $scope.project = $scope.projects[index].Project;
+        $scope.project = $scope.projects[index];
         $scope.projects[index].active = 'active';
         $scope.shownProject = index;
 
