@@ -121,7 +121,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth) {
     }
 }
 
-function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, Projects2) {
+function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     // TOP BAR
     $rootScope.top_bar = {
 //        back_button: {
