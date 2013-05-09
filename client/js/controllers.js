@@ -235,6 +235,15 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
         }
 
     }
+    $scope.newProject = function(){
+        $scope.projects.push({
+            "Project": {
+                "name": "",
+                "description": ""
+            },
+            "new":true
+        });
+    }
 
     $scope.description_active = 'active';
     $scope.teams_active = '';
