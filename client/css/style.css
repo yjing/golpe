@@ -118,6 +118,12 @@ ul.nav.nav-tabs.nav-stacked > li.active a {
     -webkit-border-radius: 3px;
     border-radius: 3px;
 }
+.team_box span.name {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
 .list-item-remove {
     position: absolute;
     right: -5px;
