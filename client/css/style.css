@@ -128,7 +128,7 @@ ul.nav.nav-tabs.nav-stacked > li.active a {
 .list-item-remove {
     position: absolute;
     right: -5px;
-    top: 0;
+    top: 3px;
 }
 
 /* TOPBAR */
