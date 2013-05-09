@@ -213,7 +213,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
 
     $scope.editProject = function(){
         $scope.projects[$scope.p_index].undoEdit = {
-            'Project': $scope.projects[$scope.p_index].Project,
+            'Project': new $scope.projects[$scope.p_index].Project(),
             'mode': $scope.projects[$scope.p_index].mode
         };
         $scope.projects[$scope.p_index].mode = 'edit';
