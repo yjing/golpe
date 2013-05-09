@@ -221,7 +221,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
         console.log($scope.projects[$scope.p_index]);
         if($scope.projects[$scope.p_index].status == 'new') {
             console.log($scope.projects);
-            $scope.projects = $scope.projects.splice($scope.projects.length, 1);
+            $scope.projects.splice($scope.projects.length, 1);
             console.log($scope.projects);
             $scope.showProject(0);
         } else {
