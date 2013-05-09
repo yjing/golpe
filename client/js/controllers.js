@@ -157,6 +157,9 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
         $scope.projects = Projects.all();
         $scope.projects.$then(function(){
             $rootScope.busy(false);
+            if($scope.projects.length > 0) {
+                $scope.showProject(1);
+            }
         });
     }
 
