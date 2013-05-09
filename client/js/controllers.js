@@ -227,7 +227,12 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
         $scope.edit = false;
         $rootScope.busy(true);
         if($scope.projects[$scope.p_index].new) {
-            $scope.projects[$scope.p_index] = Projects.save($scope.projects[$scope.p_index]);
+            $scope.projects[$scope.p_index] = Projects.save($scope.projects[$scope.p_index],
+                function() {
+                    $rootScope.busy(false);
+                    $scope.projects[$scope.p_index].new = false;
+                }
+            );
         } else {
             $scope.projects[$scope.p_index].$save({id:$scope.projects[$scope.p_index].Project.id},
                 function() {
@@ -246,6 +251,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
             "new":true
         });
         $scope.showProject($scope.projects.length - 1);
+        $scope.edit = true;
     }
 
     $scope.description_active = 'active';
