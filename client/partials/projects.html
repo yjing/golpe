@@ -46,7 +46,7 @@
                                 </li>
                                 <li ng-show="t_id == t.id"><input type="text" ng-model="search" class="search-query input-small" placeholder="Search"></li>
                                 <li ng-show="t_id == t.id" ng-repeat="s in students | filter:s.User.role='STUDENT' && search"
-                                        ng-click="add(t.id, s.id);">
+                                        ng-click="add(t.id, s.User.id);">
                                     {{s.User.username}}
                                 </li>
                             </ul>
