@@ -272,9 +272,9 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, Users) {
         $scope.teams_disabled = true;
     }
 
+    $scope.t_id = null;
     $scope.addStudent = function(p_id, t_id){
-        console.log(p_id);
-        console.log(t_id);
+        $scope.t_id = t_id;
         $rootScope.busy(true);
         $scope.students = Users.all(
             function(data){
