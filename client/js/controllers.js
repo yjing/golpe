@@ -246,7 +246,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     }
     $scope.saveProject = function(){
         $rootScope.busy(true);
-        par = {};
+        par = null;
         if($scope.projects[$scope.p_index].mode != 'new') {
             par = { id:$scope.projects[$scope.p_index].Project.id} ;
         }
