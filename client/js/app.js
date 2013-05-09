@@ -178,6 +178,23 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         }
     });
 })
+.factory('Projects2', function($resource) {
+    this.res = $resource('/projects/:id', {id:'@id'}, {
+        all: {
+            method: 'GET',
+            isArray: true
+        },
+        get: {
+            method: 'GET'
+        }
+    });
+
+    this.all = function() {
+        var proj = this.res.all(function(){console.log('first then...')}).$then(function(){console.log('second then...');});
+    }
+
+    return this;
+})
 .service('auth', function(Users){
 
     this.auth = function(username, password){

@@ -121,7 +121,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth) {
     }
 }
 
-function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
+function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, Projects2) {
     // TOP BAR
     $rootScope.top_bar = {
 //        back_button: {
@@ -153,6 +153,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
 
     $rootScope.busy(false);
     $scope.main = function() {
+        Projects2.all();
         $scope.edit = false;
         $rootScope.busy(true);
         $scope.projects = Projects.all();
