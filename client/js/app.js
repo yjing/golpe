@@ -591,7 +591,7 @@ function GenericResource(resource, uri, def, config) {
             if(passed.callbacks != null) { callbacks = passed.callbacks; }
         }
 
-        if(params != null) {
+        if(method != 'save') {
             return this.res[method](
                 params,
                 payload,
