@@ -560,7 +560,7 @@ function GenericResource(resource, uri, def, config) {
                             }
                         }
                     }
-                    if(callbacks.each != null) {
+//                    if(callbacks.each != null) {
                         console.log(data.length);
                         for(var i=0; i<data.length; i++) {
                             var ret = callbacks.each(data[i], headers);
@@ -568,7 +568,7 @@ function GenericResource(resource, uri, def, config) {
                                 data[i] = ret;
                             }
                         }
-                    }
+//                    }
                     if(callbacks.last != null && data.length > 0) {
                         var ret = callbacks.last(data[data.length - 1], headers);
                         if(ret != null) {
