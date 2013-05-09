@@ -246,7 +246,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
                 }
             );
         } else {
-            $scope.projects[$scope.p_index].save(
+            $scope.projects[$scope.p_index] = Projects.save(
                 {id:$scope.projects[$scope.p_index].Project.id},
                 $scope.projects[$scope.p_index],
                 function() {
