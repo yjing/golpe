@@ -65,13 +65,16 @@ ul.nav.nav-tabs.nav-stacked li > a {
 }
 
 /* SIDE MENUS */
-.nav.nav-tabs.nav-stacked > li.active {
+ul.nav.nav-tabs.nav-stacked > li.active a {
     font-weight: bolder;
     background-color: aliceblue;
 }
 /* TABS */
 .tabbable {
     margin-bottom: 0.5em;
+}
+.tabbable .nav.nav-tabs {
+    margin-bottom: 0;
 }
 .tabbable .tab-content .tab-pane {
     border-left-color: rgb(221, 221, 221);
@@ -80,6 +83,9 @@ ul.nav.nav-tabs.nav-stacked li > a {
     border-right-color: rgb(221, 221, 221);
     border-right-style: solid;
     border-right-width: 1px;
+    border-bottom-color: rgb(221, 221, 221);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
 }
 
 /* TOPBAR */
