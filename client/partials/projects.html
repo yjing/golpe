@@ -17,8 +17,8 @@
                 <div class="tab-pane active tab1">
                     <p ng-show="mode != 'edit';" ng-click="mode = 'edit'">{{project.Project.description}}</p>
                     <p ng-show="mode == 'edit';">
-                        <textarea style="display: block; width: 100%; margin: 0">{{project.Project.description}}</textarea><br>
-                        <input type="button" class="btn btn-small" value="save" value="Save">
+                        <textarea style="display: block; width: 100%; margin: 0">{{project.Project.description}}</textarea>
+                        <input type="button" class="btn btn-small" value="Save" ng-click="mode = 'normal'">
                     </p>
                 </div>
                 <div class="tab-pane tab2">
