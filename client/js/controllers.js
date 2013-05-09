@@ -204,7 +204,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
                 {id:$scope.projects[index].Project.id},
                 function(data, headers){
                     $rootScope.busy(false);
-
+                    console.log($scope.projects);
                     $scope.projects[index].mode = 'ok';
                     $scope.projects[index].active = 'active';
                 }
