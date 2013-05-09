@@ -183,6 +183,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     $scope.shownProject = null;
     $scope.fullProjects = [];
     $scope.editDescription = false;
+    $scope.formerDescription = '';
     $scope.showProject = function(index){
         $scope.editDescription = false;
         if($scope.shownProject != null) {
@@ -202,6 +203,11 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
         } else {
             $scope.project = $scope.fullProjects[index];
         }
+        $scope.formerDescription = $scope.project.Project.description;
+    }
+    $scope.cancelUpdate = function(){
+        $scope.project.Project.description = $scope.formerDescription;
+        $scope.formerDescription = '';
     }
     $scope.saveProject = function(){
         $scope.editDescription = false;
