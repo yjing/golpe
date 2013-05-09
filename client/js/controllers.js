@@ -185,30 +185,26 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
         $rootScope.toggleTitleMenu();
     }
 
-    $scope.fullProjects = [];       // LIST OF ALREADY FETCHED PROJECTS
-    $scope.shownProject = null;     // INT: INDEX OF THE CURRENT SHOWN PROJECT
+    $scope.p_index = null;
 
     $scope.showProject = function(index){
         $scope.edit = false;
         // CHANGE ACTIVE PROJECT
-        if($scope.shownProject != null) {
-            $scope.projects[$scope.shownProject].active = '';
+        if($scope.p_index != null) {
+            $scope.projects[$scope.p_index].active = '';
         }
         // SETUP THE CURRENT PROJECT
-        $scope.project = $scope.projects[index];
         $scope.projects[index].active = 'active';
-        $scope.shownProject = index;
+        $scope.p_index = index;
 
         // IF PROJECT IS NOT IN FULLPROJECTS FETCH IT
-        if($scope.fullProjects[index] == null) {
+        if($scope.projects[index].full == null) {
             $rootScope.busy(true);
-            $scope.project = Projects.get({id:$scope.projects[index].Project.id});
+            $scope.projects[index] = Projects.get({id:$scope.projects[index].Project.id});
             $scope.project.$then(function(){
-                $scope.fullProjects[index] = $scope.project;
                 $rootScope.busy(false);
+                console.log($scope.projects);
             });
-        } else {
-            $scope.project = $scope.fullProjects[index];
         }
     }
 
