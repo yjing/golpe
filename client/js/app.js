@@ -582,20 +582,27 @@ function GenericResource(resource, uri, def, config) {
             }
         };
 
-        var params = {};
-        var payload = {};
+        var params = null;
+        var payload = {}};
         var callbacks = {};
         if(passed != null) {
             if(passed.params != null) { params = passed.params; }
             if(passed.payload != null) { payload = passed.data; }
             if(passed.callbacks != null) { callbacks = passed.callbacks; }
         }
-
-        return this.res[method](
-            params,
-            payload,
-            success,
-            error
-        );
+        if(params != null) {
+            return this.res[method](
+                params,
+                payload,
+                success,
+                error
+            );
+        } else {
+            return this.res[method](
+                payload,
+                success,
+                error
+            );
+        }
     }
 }
