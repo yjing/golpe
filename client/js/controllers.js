@@ -153,13 +153,6 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
 
     $rootScope.busy(false);
     $scope.main = function() {
-        var t = Projects.all({},  {}, {
-            each: function(data){
-                data.mode = 'partial';
-            }
-        });
-        console.log(t);
-
         $scope.edit = false;
         $rootScope.busy(true);
         $scope.projects = Projects.all({
