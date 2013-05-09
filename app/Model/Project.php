@@ -11,7 +11,8 @@ class Project extends AssociativeModel {
                 'rule' => 'notEmpty',
                 'required' => true,
                 'allowEmpty' => false,
-                'message' => 'Project name must be present.'
+                'message' => 'Project name must be present.',
+                'on' => 'create'
             ),
             'uniqueName' => array (
                 'rule'    => 'isUnique',
