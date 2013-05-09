@@ -121,7 +121,13 @@ ul.nav.nav-tabs.nav-stacked > li.active a {
 }
 @media screen and (max-width: 768px) {
     .team_box {
-        width: 94%;
+        width: 96%;
+    }
+    .team_list {
+        list-style-type: none;
+        padding: 0;
+        padding-left: 0;
+        margin: 0;
     }
 }
 
