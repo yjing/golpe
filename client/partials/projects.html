@@ -30,7 +30,7 @@
                     <ul class="team_list">
                         <li class="team_box" ng-repeat="t in project.Project.Team">
                             <span class="name">{{t.name}} <button class="btn btn-link list-item-remove"><i class="icon-remove"></i></button></span>
-                            <ul>
+                            <ul class="students_list">
                                 <li ng-repeat="u in t.Student">{{u.username}}</li>
                             </ul>
                         </li>
