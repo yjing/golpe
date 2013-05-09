@@ -242,7 +242,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
                 $scope.projects[$scope.p_index] = proj;
                 $scope.projects[$scope.p_index].mode = 'complete';
             },
-            function() {
+            function(data) {
                 $rootScope.busy(false);
 //                $scope.projects[$scope.p_index].errors = proj;
                 console.log(proj);
