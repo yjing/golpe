@@ -220,10 +220,10 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     $scope.cancelEdit = function(){
         console.log($scope.projects[$scope.p_index]);
         if($scope.projects[$scope.p_index].status == 'new') {
-            console.log($scope.projects);
             $scope.projects.splice($scope.p_index, 1);
-            console.log($scope.projects);
-//            $scope.showProject(0);
+            if($scope.projects.length > 0) {
+                $scope.showProject(0);
+            }
         } else {
             $scope.projects[$scope.p_index] = $scope.projects[$scope.p_index].old;
         }
