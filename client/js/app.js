@@ -583,7 +583,7 @@ function GenericResource(resource, uri, def, config) {
         };
 
         var params = null;
-        var payload = {}};
+        var payload = {};
         var callbacks = {};
         if(passed != null) {
             if(passed.params != null) { params = passed.params; }
@@ -605,5 +605,5 @@ function GenericResource(resource, uri, def, config) {
             );
         }
 
-
+    }
 }
