@@ -159,7 +159,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
             function(data){
 
                 angular.forEach($scope.projects, function(key, value){
-//                    $scope.projects[key].mode = 'partial';
+                    $scope.projects[key].mode = 'partial';
                     console.log($scope.projects);
 //                    console.log(key);
 //                    console.log(value);
