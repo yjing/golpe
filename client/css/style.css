@@ -110,9 +110,9 @@ ul.nav.nav-tabs.nav-stacked > li.active a {
     float: left;
     display: inline-block;
     position: relative;
-    padding: 1%;
+    padding: 1% 2%;
     margin: 1%;
-    width: 28%;
+    width: 24%;
     height: 100%;
     border: 1px solid rgb(221, 221, 221);
 
