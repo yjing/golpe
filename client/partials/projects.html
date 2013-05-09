@@ -3,13 +3,13 @@
     <div class="span2 offset1">
         <ul class="nav nav-tabs nav-stacked">
             <li ng-repeat="p in projects" class="{{p.active}}">
-                <a ng-click="console.log('ciao');">{{p.Project.name}}</a>
+                <a href="#" ng-click="showProject(p);">{{p.Project.name}}</a>
             </li>
         </ul>
     </div>
     <div class="span8">
         <div class="well well-small">
-            {{project.Project.description}}
+            {{project.description}}
         </div>
     </div>
 </div>

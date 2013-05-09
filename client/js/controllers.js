@@ -218,11 +218,6 @@ function ProjectCtrl($scope, $rootScope, $location, auth, Projects, $routeParams
         ]
     };
 
-    $scope.showInfo = function(p){
-        console.log(p);
-        $scope.project = p;
-    }
-
 
     $rootScope.busy(false);
     $scope.main = function() {
@@ -246,5 +241,11 @@ function ProjectCtrl($scope, $rootScope, $location, auth, Projects, $routeParams
         });
     } else {
         $scope.main();
+    }
+
+
+    $scope.showProject = function(p){
+        console.log(p);
+        $scope.project = p.Project;
     }
 }
