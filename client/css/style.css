@@ -11,6 +11,11 @@ textarea {
     height: 10em;
 }
 
+ul {
+    list-style-type: none;
+    padding: 0.5em;
+}
+
 .activity_bar {
     position: fixed;
     top: 0;
