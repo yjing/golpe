@@ -288,9 +288,18 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
             }
         );
     }
-    $scope.test = function(t_id, s_id){
+    $scope.add = function(t_id, s_id){
+        $rootScope.busy(true);
         var Test = $resource('/teams/addMember/:tid/:sid');
-        Test.post({tid:t_id, sid:s_id});
+        Test.post({tid:t_id, sid:s_id},{},
+            function(){
+                $rootScope.busy(false);
+            },
+            function(err){
+                $rootScope.busy(false);
+                console.log(err);
+            }
+        );
     }
 
     $scope.isActive = function(index) {
