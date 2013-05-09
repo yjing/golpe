@@ -155,13 +155,18 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     $scope.main = function() {
         $scope.edit = false;
         $rootScope.busy(true);
-        $scope.projects = Projects.all();
-        $scope.projects.$then(function(){
-            $rootScope.busy(false);
-            if($scope.projects.length > 0) {
-                $scope.showProject(0);
+        var projs = Projects.all(
+            function(){
+
+                for(var i=0; i<projs.length; i++) {
+                    $scope.projects[projs[i].Project.id] = projs[i];
+                }
+                $rootScope.busy(false);
+                if($scope.projects.length > 0) {
+                    $scope.showProject(0);
+                }
             }
-        });
+        );
     }
 
     if($rootScope.user == null || !$rootScope.user['logged']) {
