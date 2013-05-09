@@ -234,11 +234,12 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
         $rootScope.busy(true);
         if($scope.projects[$scope.p_index].mode == 'new') {
             var proj = Projects.$save(
+                {},
                 $scope.projects[$scope.p_index],
                 function() {
-                    $scope.edit = false;
                     $rootScope.busy(false);
                     $scope.projects[$scope.p_index] = proj;
+                    $scope.projects[$scope.p_index].mode = 'complete';
                 },
                 function() {
                     $rootScope.busy(false);
@@ -250,9 +251,8 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
                 {id:$scope.projects[$scope.p_index].Project.id},
                 $scope.projects[$scope.p_index],
                 function() {
-                    $scope.projects[$scope.p_index].mode = 'complete';
-                    console.log($scope.projects[$scope.p_index]);
                     $rootScope.busy(false);
+                    $scope.projects[$scope.p_index].mode = 'complete';
                 },
                 function() {
                     $rootScope.busy(false);
