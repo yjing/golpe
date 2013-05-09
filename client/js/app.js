@@ -527,24 +527,24 @@ function GenericResource(resource, uri, def, config) {
         var params = {};
         var payload = {};
         var callbacks = {};
-        if(passed) {
-            if(passed.params) { params = passed.params; }
-            if(passed.payload) { payload = passed.data; }
-            if(passed.callbacks) { callbacks = passed.callbacks; }
+        if(passed != null) {
+            if(passed.params != null) { params = passed.params; }
+            if(passed.payload != null) { payload = passed.data; }
+            if(passed.callbacks != null) { callbacks = passed.callbacks; }
         }
 //        console.log(this.res[method]);return;
         return this.res[method](
             params,
             payload,
             function(data, headers){
-                if(callbacks) {
-                    if(callbacks.first && data.length > 0) {
+                if(callbacks != null) {
+                    if(callbacks.first != null && data.length > 0) {
                         var ret = callbacks.first(data[0], headers);
                         if(ret != null) {
                             data[0] = ret;
                         }
                     }
-                    if(callbacks.even) {
+                    if(callbacks.even != null) {
                         for(var i=0; i<data.length; i+=2) {
                             var ret = callbacks.even(data[i], headers);
                             if(ret != null) {
@@ -552,7 +552,7 @@ function GenericResource(resource, uri, def, config) {
                             }
                         }
                     }
-                    if(callbacks.odd) {
+                    if(callbacks.odd != null) {
                         for(var i=1; i<data.length; i+=2) {
                             var ret = callbacks.odd(data[i], headers);
                             if(ret != null) {
@@ -560,8 +560,7 @@ function GenericResource(resource, uri, def, config) {
                             }
                         }
                     }
-                    console.log("HERE");
-                    if(callbacks.each) {
+                    if(callbacks.each != null) {
                         for(var i=0; i<data.length; i++) {
                             var ret = callbacks.each(data[i], headers);
                             if(ret != null) {
@@ -569,19 +568,19 @@ function GenericResource(resource, uri, def, config) {
                             }
                         }
                     }
-                    if(callbacks.last && data.length > 0) {
+                    if(callbacks.last != null && data.length > 0) {
                         var ret = callbacks.last(data[data.length - 1], headers);
                         if(ret != null) {
                             data[data.length - 1] = ret;
                         }
                     }
-                    if(callbacks.success) {
+                    if(callbacks.success != null) {
                         callbacks.success(data, headers);
                     }
                 }
             },
             function(err) {
-                if(callbacks && callbacks.error) {
+                if(callbacks != null && callbacks.error) {
                     callbacks.error(err);
                 }
             }
