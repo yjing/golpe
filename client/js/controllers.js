@@ -271,12 +271,10 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     $scope.description_active = 'active';
     $scope.teams_active = '';
     $scope.showTeams = function() {
-        $scope.edit = false;
         $scope.description_active = '';
         $scope.teams_active = 'active';
     }
     $scope.showDescription = function() {
-        $scope.edit = false;
         $scope.description_active = 'active';
         $scope.teams_active = '';
     }
