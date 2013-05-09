@@ -168,7 +168,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     });
 })
 .factory('Projects', function($resource) {
-    return $resource('/projects/:id', {id:'@id'}, {
+    return new GenericResource($resource, '/projects/:id', {id:'@id'}, {
         all: {
             method: 'GET',
             isArray: true
@@ -177,73 +177,6 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             method: 'GET'
         }
     });
-})
-.factory('Projects2', function($resource) {
-    this.res = $resource('/projects/:id', {id:'@id'}, {
-        all: {
-            method: 'GET',
-            isArray: true
-        },
-        get: {
-            method: 'GET'
-        }
-    });
-
-    this.all = function(params) {
-        return this.call('all', params);
-    }
-    this.get = function(params) {
-        return this.call('get', params);
-    }
-    this.call = function(method, passed) {
-        var params = {};
-        var payload = {};
-        var callbacks = {};
-        if(passed) {
-            if(passed.params) { params = passed.params; }
-            if(passed.payload) { payload = passed.data; }
-            if(passed.callbacks) { callbacks = passed.callbacks; }
-        }
-        return this.res[method](
-            params,
-            payload,
-            function(data, headers){
-                if(callbacks) {
-                    if(callbacks.first && data.length > 0) {
-                        callbacks.first(data[0], headers);
-                    }
-                    if(callbacks.even) {
-                        for(var i=0; i<data.length; i+=2) {
-                            callbacks.even(data[i], headers);
-                        }
-                    }
-                    if(callbacks.odd) {
-                        for(var i=1; i<data.length; i+=2) {
-                            callbacks.odd(data[i], headers);
-                        }
-                    }
-                    if(callbacks.each) {
-                        for(var i=0; i<data.length; i++) {
-                            callbacks.each(data[i], headers);
-                        }
-                    }
-                    if(callbacks.last && data.length > 0) {
-                        callbacks.last(data[0], headers);
-                    }
-                    if(callbacks.success) {
-                        callbacks.success(data, headers);
-                    }
-                }
-            },
-            function(err) {
-                if(callbacks && callbacks.error) {
-                    callbacks.error(err);
-                }
-            }
-        );
-    }
-
-    return this;
 })
 .service('auth', function(Users){
 
@@ -578,5 +511,63 @@ function supports_html5_storage() {
         return 'localStorage' in window && window['localStorage'] !== null;
     } catch (e) {
         return false;
+    }
+}
+
+function GenericResource(resource, uri, def, config) {
+    this.res = resource(uri, def, config);
+
+    this.all = function(params) {
+        return this.call('all', params);
+    }
+    this.get = function(params) {
+        return this.call('get', params);
+    }
+    this.call = function(method, passed) {
+        var params = {};
+        var payload = {};
+        var callbacks = {};
+        if(passed) {
+            if(passed.params) { params = passed.params; }
+            if(passed.payload) { payload = passed.data; }
+            if(passed.callbacks) { callbacks = passed.callbacks; }
+        }
+        return this.res[method](
+            params,
+            payload,
+            function(data, headers){
+                if(callbacks) {
+                    if(callbacks.first && data.length > 0) {
+                        callbacks.first(data[0], headers);
+                    }
+                    if(callbacks.even) {
+                        for(var i=0; i<data.length; i+=2) {
+                            callbacks.even(data[i], headers);
+                        }
+                    }
+                    if(callbacks.odd) {
+                        for(var i=1; i<data.length; i+=2) {
+                            callbacks.odd(data[i], headers);
+                        }
+                    }
+                    if(callbacks.each) {
+                        for(var i=0; i<data.length; i++) {
+                            callbacks.each(data[i], headers);
+                        }
+                    }
+                    if(callbacks.last && data.length > 0) {
+                        callbacks.last(data[0], headers);
+                    }
+                    if(callbacks.success) {
+                        callbacks.success(data, headers);
+                    }
+                }
+            },
+            function(err) {
+                if(callbacks && callbacks.error) {
+                    callbacks.error(err);
+                }
+            }
+        );
     }
 }

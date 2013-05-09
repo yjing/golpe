@@ -162,15 +162,9 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, Projects2) 
 
         $scope.edit = false;
         $rootScope.busy(true);
-        $scope.projects = Projects2.all({callbacks: {
+        $scope.projects = Projects.all({callbacks: {
             each: function(data) {
                 data.mode = 'partial';
-            },
-            even: function(data){
-                data.Project.name += ' EVEN ';
-            },
-            odd: function(data){
-                data.Project.name += ' ODD ';
             },
             success: function(data){
                 $rootScope.busy(false);
@@ -179,15 +173,6 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, Projects2) 
                 }
             }
         }});
-//        $scope.projects.$then(function(){
-//            for(var i=0; i<$scope.projects.length; i++) {
-//                $scope.projects[i].mode = 'partial';
-//            }
-//            $rootScope.busy(false);
-//            if($scope.projects.length > 0) {
-//                $scope.showProject(0);
-//            }
-//        });
     }
 
     if($rootScope.user == null || !$rootScope.user['logged']) {
