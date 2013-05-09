@@ -268,10 +268,9 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
                 "name": "Project Name",
                 "description": "Project Description"
             },
-            "new":true
+            "mode":'edit'
         });
         $scope.showProject($scope.projects.length - 1);
-        $scope.edit = true;
         $scope.teams_disabled = true;
     }
 
