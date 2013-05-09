@@ -157,34 +157,15 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
         $rootScope.busy(true);
         $scope.projects = Projects.all(
             function(data){
-
-                angular.forEach($scope.projects, function(key, value){
-//                    $scope.projects[key].mode = 'partial';
-                    console.log($scope.projects.{key});
-//                    console.log(key);
-//                    console.log(value);
-                });
+                for(var i=0; i<$scope.projects.length; i++) {
+                    $scope.projects[i].mode = 'partial';
+                }
 
                 $rootScope.busy(false);
                 if($scope.projects.length > 0) {
                     $scope.showProject(0);
                 }
             }
-//            {
-//                callbacks: {
-//                    each: function(data) {
-//                        data.mode = 'partial';
-//                        return data;
-//                    },
-//                    success: function(data){
-//                        $rootScope.busy(false);
-//                        $scope.projects = data;
-//                        if($scope.projects.length > 0) {
-//                            $scope.showProject(0);
-//                        }
-//                    }
-//                }
-//            }
         );
     }
 
