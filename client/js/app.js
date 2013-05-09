@@ -524,6 +524,64 @@ function GenericResource(resource, uri, def, config) {
         return this.call('get', params);
     }
     this.call = function(method, passed) {
+        var success = function(data, headers){
+            if(callbacks != null) {
+                if(callbacks.first != null && data.length > 0) {
+                    var ret = callbacks.first(data[0], headers);
+                    if(ret != null) {
+                        data[0] = ret;
+                    }
+                }
+                if(callbacks.even != null) {
+                    for(var i=0; i<data.length; i+=2) {
+                        var ret = callbacks.even(data[i], headers);
+                        if(ret != null) {
+                            data[i] = ret;
+                        }
+                    }
+                }
+                if(callbacks.odd != null) {
+                    for(var i=1; i<data.length; i+=2) {
+                        var ret = callbacks.odd(data[i], headers);
+                        if(ret != null) {
+                            data[i] = ret;
+                        }
+                    }
+                }
+
+                if(callbacks.foreach != null) {
+                    if(data.length) {
+                        for(var i=0; i<data.length; i++) {
+                            var ret = callbacks.each(data[i], headers);
+                            if(ret != null) {
+                                data[i] = ret;
+                            }
+                        }
+                    } else {
+                        var ret = callbacks.each(data, headers);
+                        if(ret != null) {
+                            data = ret;
+                        }
+                    }
+                }
+                if(callbacks.last != null && data.length > 0) {
+                    var ret = callbacks.last(data[data.length - 1], headers);
+                    if(ret != null) {
+                        data[data.length - 1] = ret;
+                    }
+                }
+                if(callbacks.success != null) {
+                    callbacks.success(data, headers);
+                }
+            }
+        };
+
+        var error = function(err) {
+            if(callbacks != null && callbacks.error) {
+                callbacks.error(err);
+            }
+        };
+
         var params = {};
         var payload = {};
         var callbacks = {};
@@ -532,66 +590,12 @@ function GenericResource(resource, uri, def, config) {
             if(passed.payload != null) { payload = passed.data; }
             if(passed.callbacks != null) { callbacks = passed.callbacks; }
         }
-//        console.log(this.res[method]);return;
+
         return this.res[method](
             params,
             payload,
-            function(data, headers){
-                if(callbacks != null) {
-                    if(callbacks.first != null && data.length > 0) {
-                        var ret = callbacks.first(data[0], headers);
-                        if(ret != null) {
-                            data[0] = ret;
-                        }
-                    }
-                    if(callbacks.even != null) {
-                        for(var i=0; i<data.length; i+=2) {
-                            var ret = callbacks.even(data[i], headers);
-                            if(ret != null) {
-                                data[i] = ret;
-                            }
-                        }
-                    }
-                    if(callbacks.odd != null) {
-                        for(var i=1; i<data.length; i+=2) {
-                            var ret = callbacks.odd(data[i], headers);
-                            if(ret != null) {
-                                data[i] = ret;
-                            }
-                        }
-                    }
-
-                    if(callbacks.foreach != null) {
-                        if(data.length) {
-                            for(var i=0; i<data.length; i++) {
-                                var ret = callbacks.each(data[i], headers);
-                                if(ret != null) {
-                                    data[i] = ret;
-                                }
-                            }
-                        } else {
-                            var ret = callbacks.each(data, headers);
-                            if(ret != null) {
-                                data = ret;
-                            }
-                        }
-                    }
-                    if(callbacks.last != null && data.length > 0) {
-                        var ret = callbacks.last(data[data.length - 1], headers);
-                        if(ret != null) {
-                            data[data.length - 1] = ret;
-                        }
-                    }
-                    if(callbacks.success != null) {
-                        callbacks.success(data, headers);
-                    }
-                }
-            },
-            function(err) {
-                if(callbacks != null && callbacks.error) {
-                    callbacks.error(err);
-                }
-            }
+            success,
+            error
         );
     }
 }

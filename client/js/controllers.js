@@ -250,7 +250,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
         if($scope.projects[$scope.p_index].mode != 'new') {
             params = { id:$scope.projects[$scope.p_index].Project.id} ;
         }
-        Projects.call('save', {
+        Projects.call('$save', {
             'params': params,
             data: $scope.projects[$scope.p_index],
             callbacks: {
