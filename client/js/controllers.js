@@ -226,8 +226,10 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     $scope.saveProject = function(){
         $scope.edit = false;
         $rootScope.busy(true);
-        if($scope.project != null) {
-            $scope.projects[$scope.p_index].$save({id:$scope.project['Project']['id']},
+        if($scope.projects[$scope.p_index].new) {
+            $scope.projects[$scope.p_index] = Projects.save();
+        } else {
+            $scope.projects[$scope.p_index].$save({id:$scope.p_index},
                 function() {
                     $rootScope.busy(false);
                 }
