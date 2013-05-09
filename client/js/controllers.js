@@ -246,12 +246,12 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     }
     $scope.saveProject = function(){
         $rootScope.busy(true);
-        params = {};
+        par = {};
         if($scope.projects[$scope.p_index].mode != 'new') {
-            params = { id:$scope.projects[$scope.p_index].Project.id} ;
+            par = { id:$scope.projects[$scope.p_index].Project.id} ;
         }
         Projects.call('save', {
-            'params': params,
+            params: par,
             data: $scope.projects[$scope.p_index],
             callbacks: {
                 success: function(data){
