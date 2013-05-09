@@ -180,39 +180,42 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
         $rootScope.toggleTitleMenu();
     }
 
-    $scope.shownProject = null;
-    $scope.fullProjects = [];
-    $scope.editDescription = false;
-    $scope.formerDescription = '';
+    $scope.fullProjects = [];       // LIST OF ALREADY FETCHED PROJECTS
+    $scope.shownProject = null;     // INT: INDEX OF THE CURRENT SHOWN PROJECT
+
     $scope.showProject = function(index){
-        $scope.editDescription = false;
+        // CHANGE ACTIVE PROJECT
         if($scope.shownProject != null) {
             $scope.projects[$scope.shownProject].active = '';
         }
+        // SETUP THE CURRENT PROJECT
         $scope.project = $scope.projects[index];
         $scope.projects[index].active = 'active';
         $scope.shownProject = index;
 
+        // IF PROJECT IS NOT IN FULLPROJECTS FETCH IT
         if($scope.fullProjects[index] == null) {
             $rootScope.busy(true);
             $scope.project = Projects.get({id:$scope.projects[index].Project.id});
             $scope.project.$then(function(){
                 $scope.fullProjects[index] = $scope.project;
-                $scope.formerDescription = $scope.project.Project.description;
                 $rootScope.busy(false);
             });
         } else {
             $scope.project = $scope.fullProjects[index];
-            $scope.formerDescription = $scope.project.Project.description;
         }
     }
-    $scope.cancelUpdate = function(){
-        $scope.project['Project']['description'] = $scope.formerDescription;
-        $scope.formerDescription = '';
-        $scope.editDescription = false;
+
+    $scope.edit = false;
+    $scope.formerDescription = '';
+    $scope.editProject = function(){
+        $scope.edit = true;
+    }
+    $scope.cancelEdit = function(){
+        $scope.edit = false;
     }
     $scope.saveProject = function(){
-        $scope.editDescription = false;
+        $scope.edit = false;
         $rootScope.busy(true);
         if($scope.project != null) {
             $scope.project.$save({id:$scope.project['Project']['id']},
