@@ -103,11 +103,12 @@ ul.nav.nav-tabs.nav-stacked > li.active a {
 .team_list {
     list-style-type: none;
     padding: 0;
+    padding-left: 2%;
     margin: 0;
 }
 .team_box {
     display: inline-block;
-    /*position: relative;*/
+    position: relative;
     padding: 1%;
     margin: 1%;
     width: 28%;
