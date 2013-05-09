@@ -181,6 +181,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     }
 
     $scope.shownProject = null;
+    $scope.fullProjects = [];
     $scope.showProject = function(index){
         if($scope.shownProject != null) {
             $scope.projects[$scope.shownProject].active = '';
@@ -192,7 +193,8 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
         $rootScope.busy(true);
         $scope.project = Projects.get({id:$scope.projects[index].Project.id});
         $scope.project.$then(function(){
-            console.log($scope.project);
+            $scope.fullProjects[index] = $scope.project;
+            console.log($scope.fullProjects);
             $rootScope.busy(false);
         });
     }
