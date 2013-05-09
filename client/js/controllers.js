@@ -216,8 +216,8 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
                     },
                     success: function(data, headers){
                         $rootScope.busy(false);
-                        data.mode = 'ok';
-                        data.active = 'active';
+//                        data.mode = 'ok';
+//                        data.active = 'active';
 
                         $scope.projects[index] = data;
                         $scope.p_index = index;
