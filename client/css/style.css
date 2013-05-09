@@ -95,8 +95,8 @@ ul.nav.nav-tabs.nav-stacked > li.active a {
     border-bottom-style: solid;
     border-bottom-width: 1px;
 }
-.tabbable .tab-content > .tab-pane p {
-    padding: 1.5em;
+.tabbable .tab-content > .tab-pane {
+    padding: 1.5em 1em;
 }
 
 /* TOPBAR */
