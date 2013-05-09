@@ -162,17 +162,19 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
 
         $scope.edit = false;
         $rootScope.busy(true);
-        $scope.projects = Projects.all({callbacks: {
-            each: function(data) {
-                data.mode = 'partial';
-            },
-            success: function(data){
-                $rootScope.busy(false);
-                if($scope.projects.length > 0) {
-                    $scope.showProject(0);
+        $scope.projects = Projects.all({
+            callbacks: {
+                each: function(data) {
+                    data.mode = 'partial';
+                },
+                success: function(data){
+                    $rootScope.busy(false);
+                    if($scope.projects.length > 0) {
+                        $scope.showProject(0);
+                    }
                 }
             }
-        }});
+        });
     }
 
     if($rootScope.user == null || !$rootScope.user['logged']) {
@@ -208,16 +210,19 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
         // IF PROJECT IS NOT IN FULLPROJECTS FETCH IT
         if($scope.projects[index].mode == 'partial') {
             $rootScope.busy(true);
-            var proj = Projects.get({id:$scope.projects[index].Project.id},
-                function(){
-                    $rootScope.busy(false);
-                    $scope.projects[index] = proj;
-                    // SETUP THE CURRENT PROJECT
-                    $scope.projects[index].mode = 'ok';
-                    $scope.projects[index].active = 'active';
-                    $scope.p_index = index;
+            var proj = Projects.get({
+                params: {id:$scope.projects[index].Project.id},
+                callbacks: {
+                    success: function(data, headers){
+                        $rootScope.busy(false);
+                        $scope.projects[index] = proj;
+                        // SETUP THE CURRENT PROJECT
+                        $scope.projects[index].mode = 'ok';
+                        $scope.projects[index].active = 'active';
+                        $scope.p_index = index;
+                    }
                 }
-            );
+            });
         }
     }
 
