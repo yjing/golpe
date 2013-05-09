@@ -212,24 +212,27 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     }
 
     $scope.editProject = function(){
-//        $scope.projects[$scope.p_index].description = $scope.projects[$scope.p_index].Project.description;
-//        $scope.projects[$scope.p_index].name = $scope.projects[$scope.p_index].Project.name;
-//        $scope.projects[$scope.p_index].modeBeforeEdit = $scope.projects[$scope.p_index].mode;
-        $scope.projects[$scope.p_index].undo = $scope.projects[$scope.p_index].Project;
+        $scope.projects[$scope.p_index].undoEdit = {
+            'Project': $scope.projects[$scope.p_index].Project,
+            'mode': $scope.projects[$scope.p_index].mode
+        };
         $scope.projects[$scope.p_index].mode = 'edit';
     }
     $scope.cancelEdit = function(){
-//        if($scope.projects[$scope.p_index].new) {
-//            $scope.projects.splice($scope.projects.length, 1);
-//            $scope.showProject(0);
-//        } else {
+        if($scope.projects[$scope.p_index].mode == 'new') {
+            $scope.projects.splice($scope.projects.length, 1);
+            $scope.showProject(0);
+        } else {
+            $scope.projects[$scope.p_index].mode = $scope.projects[$scope.p_index].undoEdit.mode;
+            $scope.projects[$scope.p_index].Project = $scope.projects[$scope.p_index].undoEdit.Project;
+            $scope.projects[$scope.p_index].undoEdit = null;
 //            $scope.projects[$scope.p_index].Project.description = $scope.projects[$scope.p_index].description;
 //            $scope.projects[$scope.p_index].Project.name = $scope.projects[$scope.p_index].name;
 //            $scope.projects[$scope.p_index].mode = $scope.projects[$scope.p_index].modeBeforeEdit;
 //            $scope.projects[$scope.p_index].description = null;
 //            $scope.projects[$scope.p_index].name = null;
 //            $scope.projects[$scope.p_index].modeBeforeEdit = null;
-//        }
+        }
     }
     $scope.saveProject = function(){
         $rootScope.busy(true);
