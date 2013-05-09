@@ -10,11 +10,15 @@
     <div class="span8">
         <div class="tabbable">
             <ul class="nav nav-tabs">
-                <li class="active"><a href="#">Description</a></li>
-                <li><a href="#">Teams</a></li>
+                <li class="{{description_active}}">
+                    <a href="#" ng-click="showDescription();">Description</a>
+                </li>
+                <li class="{{teams_active}}">
+                    <a href="#" ng-click="showTeams();">Teams</a>
+                </li>
             </ul>
             <div class="tab-content">
-                <div class="tab-pane active tab1">
+                <div class="tab-pane {{description_active}} tab1">
                     <p ng-hide="edit" ng-click="editProject();">{{project.Project.description}}</p>
                     <p ng-show="edit">
                         <textarea autofocus="true" ng-model="project.Project.description"></textarea>
@@ -22,7 +26,7 @@
                         <input type="button" class="btn btn-small" value="Cancel" ng-click="cancelEdit();">
                     </p>
                 </div>
-                <div class="tab-pane tab2">
+                <div class="tab-pane {{teams_active}} tab2">
                     <p></p>
                 </div>
             </div>

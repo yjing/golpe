@@ -207,7 +207,6 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     }
 
     $scope.edit = false;
-    $scope.formerDescription = '';
     $scope.editProject = function(){
         $scope.edit = true;
         $scope.project.description = $scope.project.Project.description;
@@ -228,6 +227,17 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
             );
         }
 
+    }
+
+    $scope.description_active = 'active';
+    $scope.teams_active = '';
+    $scope.showTeam = function() {
+        $scope.description_active = '';
+        $scope.teams_active = 'active';
+    }
+    $scope.showDescription = function() {
+        $scope.description_active = 'active';
+        $scope.teams_active = '';
     }
 }
 
