@@ -155,7 +155,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     $scope.main = function() {
         $scope.edit = false;
         $rootScope.busy(true);
-        $scope.projects = Projects.all({
+        Projects.all({
             callbacks: {
                 each: function(data) {
                     data.mode = 'partial';
@@ -163,10 +163,10 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
                 },
                 success: function(data){
                     $rootScope.busy(false);
+                    $scope.projects = data;
                     if($scope.projects.length > 0) {
                         $scope.showProject(0);
                     }
-                    console.log(data);
                 }
             }
         });
