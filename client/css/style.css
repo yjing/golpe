@@ -105,6 +105,7 @@ ul.nav.nav-tabs.nav-stacked > li.active a {
     padding: 0;
     padding-left: 2%;
     margin: 0;
+    vertical-align: top;
 }
 .team_box {
     display: inline-block;
