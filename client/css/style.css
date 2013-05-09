@@ -64,6 +64,11 @@ ul.nav.nav-tabs.nav-stacked li > a {
     }
 }
 
+/* SIDE MENUS */
+.tabbable.nav.nav-tabs > li.active {
+    font-weight: bolder;
+    background-color: aliceblue;
+}
 
 /* TOPBAR */
 div.topbar { margin: 0; }
