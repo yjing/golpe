@@ -211,6 +211,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
                     each: function(data) {
                         data.mode = 'ok';
                         data.active = 'active';
+                        console.log("UFFA!!!");
                         return data;
                     },
                     success: function(data, headers){
