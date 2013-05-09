@@ -44,10 +44,8 @@
                                 <li ng-click="addStudent(projects[p_index].Project.id, t.id);" class="text-right" style="cursor: pointer; background-color: #efefef">
                                     Add Student <i style="margin-left: 1em" class="icon-plus"></i>
                                 </li>
-                            </ul>
-                            <ul ng-show="t_id == t.id" ng-init="sList = [];">
-                                <li><input type="text" ng-model="search"></li>
-                                <li ng-repeat="s in students | filter:s.User.role='STUDENT' && search">
+                                <li ng-show="t_id == t.id"><input type="text" ng-model="search"></li>
+                                <li ng-show="t_id == t.id" ng-repeat="s in students | filter:s.User.role='STUDENT' && search">
                                     <input type="checkbox" ng-model="s.selected"> {{s.User.username}}
                                 </li>
                             </ul>
