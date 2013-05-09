@@ -1,6 +1,6 @@
 <div ng-include src="top_bar_url"></div>
 <div class="row-fluid content">
-    <div class="span4 offset1">
+    <div class="span2 offset1">
         <ul style="list-style-type: none; margin: 5px;">
             <li ng-repeat="p in projects" class="well well-small" ng-click="test = p.Project.description" style="position: relative" ng-init="p.show = true">
                 <h4 ng-click="p.show = !p.show">{{p.Project.name}}</h4>
@@ -10,7 +10,9 @@
     </div>
 </div>
 <div class="row-fluid content">
-    <div class="span6 offset1">
-        {{test}}
+    <div class="span8 offset1">
+        <div class="well well-large">
+            TEst
+        </div>
     </div>
 </div>
