@@ -561,7 +561,6 @@ function GenericResource(resource, uri, def, config) {
                         }
                     }
 
-                    console.log(data.length == undefined);
                     if(callbacks.foreach != null) {
                         if(data.length) {
                             for(var i=0; i<data.length; i++) {
