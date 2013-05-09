@@ -206,7 +206,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     $scope.saveProject = function(){
         $scope.editDescription = false;
         if($scope.project != null) {
-            $scope.project.$save();
+            $scope.project.$save({id:$scope.project['Project'['id']]});
         }
 
     }
