@@ -295,7 +295,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
                 method: 'POST'
             }
         });
-        Test.add({tid:t_id, sid:s_id},{}
+        Test.add({tid:t_id, sid:s_id},{},
             function(data){
                 $rootScope.busy(false);
                 console.log(data);
