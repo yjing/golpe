@@ -246,6 +246,24 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     }
     $scope.saveProject = function(){
         $rootScope.busy(true);
+        params = {};
+        if($scope.projects[$scope.p_index].mode != 'new') {
+            params = { id:$scope.projects[$scope.p_index].Project.id} ;
+        }
+        Projects.call('save', {
+            'params': params,
+            data: $scope.projects[$scope.p_index],
+            callbacks: {
+                success: function(data){
+                    $rootScope.busy(false);
+                    $scope.projects[$scope.p_index] = data;
+                },
+                error: function(err_data){
+                    $rootScope.busy(false);
+                }
+            }
+        });
+        return;
         if($scope.projects[$scope.p_index].new) {
             var proj = Projects.save($scope.projects[$scope.p_index],
                 function() {
