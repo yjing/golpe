@@ -153,7 +153,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, Projects2) 
 
     $rootScope.busy(false);
     $scope.main = function() {
-        var t = Projects2.call('all', {
+        var t = Projects2.call('all', {}, {
             each: function(data){
                 console.log(data);
             }
