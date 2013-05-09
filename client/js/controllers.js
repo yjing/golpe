@@ -190,12 +190,12 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     $scope.showProject = function(index){
         $scope.edit = false;
         // CHANGE ACTIVE PROJECT
-        if($scope.p_index != true) {
+        if($scope.p_index != null) {
             $scope.projects[$scope.p_index].active = '';
         }
 
         // IF PROJECT IS NOT IN FULLPROJECTS FETCH IT
-        if($scope.projects[index].full == null) {
+        if($scope.projects[index].full != true) {
             $rootScope.busy(true);
             var proj = Projects.get({id:$scope.projects[index].Project.id}, function(){
                 $rootScope.busy(false);
