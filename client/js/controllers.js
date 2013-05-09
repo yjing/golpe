@@ -218,10 +218,14 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     }
     $scope.cancelEdit = function(){
         $scope.edit = false;
-        $scope.projects[$scope.p_index].Project.description = $scope.projects[$scope.p_index].description;
-        $scope.projects[$scope.p_index].Project.name = $scope.projects[$scope.p_index].name;
-        $scope.projects[$scope.p_index].description = null;
-        $scope.projects[$scope.p_index].name = null;
+        if($scope.projects[$scope.p_index].new) {
+            $scope.projects[$scope.p_index] = undefined;
+        } else {
+            $scope.projects[$scope.p_index].Project.description = $scope.projects[$scope.p_index].description;
+            $scope.projects[$scope.p_index].Project.name = $scope.projects[$scope.p_index].name;
+            $scope.projects[$scope.p_index].description = null;
+            $scope.projects[$scope.p_index].name = null;
+        }
     }
     $scope.saveProject = function(){
         $rootScope.busy(true);
