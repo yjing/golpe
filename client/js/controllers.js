@@ -233,7 +233,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     $scope.saveProject = function(){
         $rootScope.busy(true);
         if($scope.projects[$scope.p_index].mode == 'new') {
-            var proj = Projects.save(
+            var proj = Projects.$save(
                 $scope.projects[$scope.p_index],
                 function() {
                     $scope.edit = false;
@@ -246,7 +246,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
                 }
             );
         } else {
-            var proj = Projects.$save(
+            var proj = $scope.projects[$scope.p_index].$save(
                 {id:$scope.projects[$scope.p_index].Project.id},
                 $scope.projects[$scope.p_index],
                 function() {
