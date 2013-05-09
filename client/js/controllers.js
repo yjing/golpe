@@ -162,7 +162,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, Projects2) 
 
         $scope.edit = false;
         $rootScope.busy(true);
-        $scope.projects = Projects2.all({},{},{
+        $scope.projects = Projects2.all({callbacks: {
             each: function(data) {
                 data.mode = 'partial';
             },
@@ -172,7 +172,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, Projects2) 
                     $scope.showProject(0);
                 }
             }
-        });
+        }});
 //        $scope.projects.$then(function(){
 //            for(var i=0; i<$scope.projects.length; i++) {
 //                $scope.projects[i].mode = 'partial';

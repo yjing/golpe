@@ -189,16 +189,21 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         }
     });
 
-    this.all = function(params, payload, callbacks) {
-        console.log(typeof params);
-        console.log(typeof payload);
-        console.log(typeof callbacks);
-        return this.call('all', params, payload, callbacks);
+    this.all = function(params) {
+        return this.call('all', params);
     }
-    this.get = function(params, payload, callbacks) {
-        return this.call('get', params, payload, callbacks);
+    this.get = function(params) {
+        return this.call('get', params);
     }
-    this.call = function(method, params, payload, callbacks) {
+    this.call = function(method, passed) {
+        var params = {};
+        var payload = {};
+        var callbacks = {};
+        if(passed) {
+            if(passed.params) { params = passed.params; }
+            if(passed.payload) { payload = passed.data; }
+            if(passed.callbacks) { callbacks = passed.callbacks; }
+        }
         return this.res[method](
             params,
             payload,
