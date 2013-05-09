@@ -210,7 +210,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
                 callbacks: {
                     each: function(data) {
                         data.mode = 'ok';
-                        data.active = 'active';console.log("HERE");
+                        data.active = 'active';
                         return data;
                     },
                     success: function(data, headers){
