@@ -244,7 +244,9 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
             },
             function() {
                 $rootScope.busy(false);
+//                $scope.projects[$scope.p_index].errors = proj;
                 console.log(proj);
+                console.log(data);
             }
         );
     }
