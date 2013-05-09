@@ -189,16 +189,14 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         }
     });
 
-    this.all = function() {
+    this.all = function(f1, f2) {
         return this.res.all(
-            function(par){
-                console.log('first then...')
-                console.log(par);
-            }
-        ).$then(
-            function(par){
-                console.log('second then...');
-                console.log(par);
+            function(p1, p2, p3, p4){
+                console.log(p1, p2, p3, p4)
+                f1();
+            },
+            function() {
+                f2();
             }
         );
     }
