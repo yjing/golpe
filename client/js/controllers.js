@@ -157,8 +157,9 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
         $rootScope.busy(true);
         $scope.projects = Projects.all({
             callbacks: {
-                each: function(i, data) {
+                each: function(data) {
                     data.mode = 'partial';
+                    console.log(data);
                 },
                 success: function(data){
                     $rootScope.busy(false);
