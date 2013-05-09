@@ -590,6 +590,10 @@ function GenericResource(resource, uri, def, config) {
             if(passed.payload != null) { payload = passed.data; }
             if(passed.callbacks != null) { callbacks = passed.callbacks; }
         }
+
+        console.log(params);
+        console.log(payload);
+
         if(params != null) {
             return this.res[method](
                 params,

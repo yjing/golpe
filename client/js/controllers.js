@@ -252,7 +252,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
         }
         Projects.call('save', {
             params: par,
-            data: $scope.projects[$scope.p_index],
+            payload: $scope.projects[$scope.p_index],
             callbacks: {
                 success: function(data){
                     $rootScope.busy(false);
