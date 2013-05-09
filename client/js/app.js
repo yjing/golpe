@@ -539,11 +539,17 @@ function GenericResource(resource, uri, def, config) {
             function(data, headers){
                 if(callbacks) {
                     if(callbacks.first && data.length > 0) {
-                        callbacks.first(data[0], headers);
+                        var ret = callbacks.first(data[0], headers);
+                        if(ret) {
+                            data[0] = ret;
+                        }
                     }
                     if(callbacks.even) {
                         for(var i=0; i<data.length; i+=2) {
-                            callbacks.even(data[i], headers);
+                            var ret = callbacks.even(data[i], headers);
+                            if(ret) {
+                                data[i] = ret;
+                            }
                         }
                     }
                     if(callbacks.odd) {
@@ -553,14 +559,23 @@ function GenericResource(resource, uri, def, config) {
                     }
                     if(callbacks.each) {
                         for(var i=0; i<data.length; i++) {
-                            callbacks.each(data[i], headers);
+                            var ret = callbacks.each(data[i], headers);
+                            if(ret) {
+                                data[i] = ret;
+                            }
                         }
                     }
                     if(callbacks.last && data.length > 0) {
-                        callbacks.last(data[0], headers);
+                        var ret = callbacks.last(data[data.length - 1], headers);
+                        if(ret) {
+                            data[data.length - 1] = ret;
+                        }
                     }
                     if(callbacks.success) {
-                        callbacks.success(data, headers);
+                        var ret = callbacks.success(data, headers);
+                        if(ret) {
+                            data = ret;
+                        }
                     }
                 }
             },

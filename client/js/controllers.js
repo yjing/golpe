@@ -159,6 +159,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
             callbacks: {
                 each: function(data) {
                     data.mode = 'partial';
+                    return data;
                 },
                 success: function(data){
                     $rootScope.busy(false);
