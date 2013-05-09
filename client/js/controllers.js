@@ -277,8 +277,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, Users) {
     $scope.addStudent = function(p_id, t_id){
         $scope.t_id = t_id;
         $rootScope.busy(true);
-        $scope.students = Users.all();
-        $scope.students.$then(
+        $scope.students = Users.all(
             function(data){
                 $rootScope.busy(false);
                 console.log($scope.students);
