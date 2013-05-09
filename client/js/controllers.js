@@ -157,12 +157,9 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
         $rootScope.busy(true);
         $scope.projects = Projects.all();
         $scope.projects.$then(function(){
-            $scope.projects.each(
-                function(elem) {
-                    console.log(elem);
-                    elem.mode = 'partial';
-                }
-            );
+            for(var i=0; i<$scope.projects.length; i++) {
+                $scope.projects[i].mode = 'partial';
+            }
             $rootScope.busy(false);
             if($scope.projects.length > 0) {
                 $scope.showProject(0);
