@@ -204,7 +204,6 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
             var proj = Projects.get({id:$scope.projects[index].Project.id}, function(){
                 $rootScope.busy(false);
                 $scope.projects[index] = proj;
-                console.log($scope.projects);
             });
         }
     }
