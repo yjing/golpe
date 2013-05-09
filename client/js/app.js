@@ -189,18 +189,19 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         }
     });
 
-    this.all = function(f1, f2) {
-        return this.res.all(
+    this.call = function(method, callbacks, each) {
+        return this.res[method](
             function(data, headers){
-                console.log(data);
-                console.log(headers('Content-type'));
-                if(f1) {
-                    f1(p1, p2);
+                if(each) {
+                    each(data, headers);
+                }
+                if(callbacks.success) {
+                    callbacks.error(data, headers);
                 }
             },
             function(err) {
-                if(f2) {
-                    f2(err);
+                if(callbacks.error) {
+                    callbacks.error(err);
                 }
             }
         );
