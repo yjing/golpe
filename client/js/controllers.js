@@ -217,17 +217,12 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     }
     $scope.cancelEdit = function(){
         if($scope.projects[$scope.p_index].mode == 'new') {
+            console.log($scope.projects);
             $scope.projects.splice($scope.projects.length, 1);
+            console.log($scope.projects);
             $scope.showProject(0);
         } else {
             $scope.projects[$scope.p_index] = $scope.projects[$scope.p_index].old;
-
-//            $scope.projects[$scope.p_index].Project.description = $scope.projects[$scope.p_index].description;
-//            $scope.projects[$scope.p_index].Project.name = $scope.projects[$scope.p_index].name;
-//            $scope.projects[$scope.p_index].mode = $scope.projects[$scope.p_index].modeBeforeEdit;
-//            $scope.projects[$scope.p_index].description = null;
-//            $scope.projects[$scope.p_index].name = null;
-//            $scope.projects[$scope.p_index].modeBeforeEdit = null;
         }
     }
     $scope.saveProject = function(){
