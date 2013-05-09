@@ -223,6 +223,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
             $scope.projects.splice($scope.projects.length, 1);
             $scope.showProject(0);
         } else {
+            console.log($scope.projects[$scope.p_index].undoEdit.Project);
             $scope.projects[$scope.p_index].mode = $scope.projects[$scope.p_index].undoEdit.mode;
             $scope.projects[$scope.p_index].Project = $scope.projects[$scope.p_index].undoEdit.Project;
             $scope.projects[$scope.p_index].undoEdit = null;
