@@ -240,8 +240,8 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     $scope.newProject = function(){
         $scope.projects.push({
             "Project": {
-                "name": "",
-                "description": ""
+                "name": "Project Name",
+                "description": "Project Description"
             },
             "new":true
         });
