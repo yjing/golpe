@@ -532,7 +532,7 @@ function GenericResource(resource, uri, def, config) {
             if(passed.payload) { payload = passed.data; }
             if(passed.callbacks) { callbacks = passed.callbacks; }
         }
-//        console.log(this.res[method]);return;
+
         return this.res[method](
             params,
             payload,
