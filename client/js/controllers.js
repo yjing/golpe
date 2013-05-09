@@ -192,7 +192,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     $scope.p_index = null;
     $scope.showProject = function(index){
         // CHANGE ACTIVE PROJECT
-        if($scope.p_index != null) {
+        if($scope.p_index != null && $scope.projects[$scope.p_index] !=null) {
             $scope.projects[$scope.p_index].active = '';
         }
         $scope.projects[index].active = 'active';
