@@ -246,12 +246,11 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
                 }
             );
         } else {
-            var proj = $scope.projects[$scope.p_index].$save(
+            $scope.projects[$scope.p_index].$save(
 //                {id:$scope.projects[$scope.p_index].Project.id},
                 $scope.projects[$scope.p_index],
                 function() {
-                    proj.mode = 'complete';
-                    $scope.projects[$scope.p_index] = proj;
+                    $scope.projects[$scope.p_index].mode = 'complete';
                     $rootScope.busy(false);
                 },
                 function() {
