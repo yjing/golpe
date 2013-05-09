@@ -168,9 +168,10 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, Projects2) 
             },
             success: function(data){
                 $rootScope.busy(false);
-                if($scope.projects.length > 0) {
-                    $scope.showProject(0);
-                }
+                console.log($scope.projects);
+//                if($scope.projects.length > 0) {
+//                    $scope.showProject(0);
+//                }
             }
         });
 //        $scope.projects.$then(function(){
