@@ -216,6 +216,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
         $scope.projects[$scope.p_index].mode = 'edit';
     }
     $scope.cancelEdit = function(){
+        console.log($scope.projects[$scope.p_index]);
         if($scope.projects[$scope.p_index].mode == 'new') {
             console.log($scope.projects);
             $scope.projects.splice($scope.projects.length, 1);
