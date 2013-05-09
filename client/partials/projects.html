@@ -31,8 +31,8 @@
                         <input autofocus="true" type="text" class="input-xlarge" ng-model="projects[p_index].Project.name">
                         <span class="error">{{projects[p_index].errors.Project.name}}</span>
                         <textarea ng-model="projects[p_index].Project.description"></textarea>
-                        <input type="submit" class="btn btn-small" value="Save" ng-click="saveProject();">
-                        <input type="button" class="btn btn-small" value="Cancel" ng-click="cancelEdit();">
+                        <input ng-disabled="busy_monitor > 0 type="submit" class="btn btn-small" value="Save" ng-click="saveProject();">
+                        <input ng-disabled="busy_monitor > 0 type="button" class="btn btn-small" value="Cancel" ng-click="cancelEdit();">
                     </p>
                 </div>
                 <div class="tab-pane {{teams_active}} tab2">
