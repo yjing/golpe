@@ -206,13 +206,16 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
             var proj = Projects.get({
                 params: {id:$scope.projects[index].Project.id},
                 callbacks: {
+                    each: function(data) {
+                        data.mode = 'ok';
+                        data.active = 'active';
+                    },
                     success: function(data, headers){
                         $rootScope.busy(false);
                         $scope.projects[index] = proj;
-                        // SETUP THE CURRENT PROJECT
-                        $scope.projects[index].mode = 'ok';
-                        $scope.projects[index].active = 'active';
                         $scope.p_index = index;
+
+                        console.log(data);
                     }
                 }
             });
