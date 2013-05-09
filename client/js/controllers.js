@@ -203,9 +203,9 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
                 // SETUP THE CURRENT PROJECT
                 $scope.projects[index].active = 'active';
                 $scope.projects[index].full = true;
-                $scope.p_index = index;
             });
         }
+        $scope.p_index = index;
     }
 
     $scope.edit = false;
