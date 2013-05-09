@@ -191,6 +191,12 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
         $scope.project = $scope.projects[index].Project;
         $scope.projects[index].active = 'active';
         $scope.shownProject = index;
+
+        $rootScope.busy(false);
+        $scope.project = Projects.get({id:$routeParams['id']});
+        $scope.project.$then(function(){
+            $rootScope.busy(false);
+        });
     }
 }
 
