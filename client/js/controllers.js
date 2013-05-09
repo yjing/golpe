@@ -189,10 +189,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     }
 
     $scope.p_index = null;
-
     $scope.showProject = function(index){
-        $scope.teams_disabled = false;
-        $scope.edit = false;
         // CHANGE ACTIVE PROJECT
         if($scope.p_index != null) {
             $scope.projects[$scope.p_index].active = '';
@@ -201,16 +198,18 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
         $scope.p_index = index;
 
         // IF PROJECT IS NOT IN FULLPROJECTS FETCH IT
-        if($scope.projects[index].full != true && !$scope.projects[index].new) {
+        if($scope.projects[index].mode == 'partial' && $scope.projects[index].mode != 'new') {
             $rootScope.busy(true);
-            var proj = Projects.get({id:$scope.projects[index].Project.id}, function(){
-                $rootScope.busy(false);
-                $scope.projects[index] = proj;
-                // SETUP THE CURRENT PROJECT
-                $scope.projects[index].full = true;
-                $scope.projects[index].active = 'active';
-                $scope.p_index = index;
-            });
+            var proj = Projects.get({id:$scope.projects[index].Project.id},
+                function(){
+                    $rootScope.busy(false);
+                    $scope.projects[index] = proj;
+                    // SETUP THE CURRENT PROJECT
+                    $scope.projects[index].mode = 'ok';
+                    $scope.projects[index].active = 'active';
+                    $scope.p_index = index;
+                }
+            );
         }
     }
 
