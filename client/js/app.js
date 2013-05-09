@@ -599,7 +599,7 @@ function GenericResource(resource, uri, def, config) {
                 error
             );
         } else {
-            return this.res[method](
+            return this.res.$save(
                 payload,
                 success,
                 error
