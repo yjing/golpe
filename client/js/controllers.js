@@ -279,7 +279,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, Users) {
         $scope.students = Users.all(
             function(data){
                 $rootScope.busy(false);
-                console.log($scope.users);
+                console.log($scope.students);
             },
             function(err_data){
                 $rootScope.handleError(err_data);
