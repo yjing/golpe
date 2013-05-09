@@ -158,7 +158,8 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
             function(){
                 $rootScope.busy(false);
                 for(var i=0; i<$scope.projects.length; i++) {
-                    $scope.projects[i].mode = 'partial';
+                    $scope.projects[i].mode = 'normal';
+                    $scope.projects[i].status = 'partial';
                 }
                 if($scope.projects.length > 0) {
                     $scope.showProject(0);
@@ -204,7 +205,8 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
                 {id:$scope.projects[index].Project.id},
                 function(data, headers){
                     $rootScope.busy(false);
-                    proj.mode = 'complete';
+                    proj.mode = 'normal';
+                    proj.status = 'complete';
                     $scope.projects[index] = proj;
                 }
             );
@@ -217,7 +219,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     }
     $scope.cancelEdit = function(){
         console.log($scope.projects[$scope.p_index]);
-        if($scope.projects[$scope.p_index].mode == 'new') {
+        if($scope.projects[$scope.p_index].status == 'new') {
             console.log($scope.projects);
             $scope.projects.splice($scope.projects.length, 1);
             console.log($scope.projects);
@@ -253,7 +255,8 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
                 "name": "Project Name",
                 "description": "Project Description"
             },
-            "mode":'edit'
+            "mode":'edit',
+            "status": 'new'
         });
         $scope.showProject($scope.projects.length - 1);
         $scope.teams_disabled = true;
