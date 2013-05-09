@@ -130,6 +130,16 @@ ul.nav.nav-tabs.nav-stacked > li.active a {
     right: -5px;
     top: 3px;
 }
+.team_box ul.students_list {
+    list-style-type: none;
+    padding: 0;
+    margin: 1%;
+}
+.team_box ul.students_list li {
+    padding: 1%;
+    margin: 1%;
+    width: 94%;
+}
 @media screen and (max-width: 768px) {
     .team_box {
         width: 96%;
