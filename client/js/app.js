@@ -561,8 +561,8 @@ function GenericResource(resource, uri, def, config) {
                         }
                     }
                     console.log(typeof data);
-                    console.log(callbacks.each);
-                    if(callbacks.each != null) {
+                    console.log(callbacks.foreach);
+                    if(callbacks.foreach != null) {
                         if(data.length) {
                             for(var i=0; i<data.length; i++) {
                                 var ret = callbacks.each(data[i], headers);
