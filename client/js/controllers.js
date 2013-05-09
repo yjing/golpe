@@ -213,21 +213,21 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     $scope.edit = false;
     $scope.editProject = function(){
         $scope.edit = true;
-        $scope.project.description = $scope.project.Project.description;
-        $scope.project.name = $scope.project.Project.name;
+        $scope.projects[index].description = $scope.projects[index].Project.description;
+        $scope.projects[index].name = $scope.projects[index].Project.name;
     }
     $scope.cancelEdit = function(){
         $scope.edit = false;
-        $scope.project.Project.description = $scope.project.description;
-        $scope.project.Project.name = $scope.project.name;
-        $scope.project.description = null;
-        $scope.project.name = null;
+        $scope.projects[index].Project.description = $scope.projects[index].description;
+        $scope.projects[index].Project.name = $scope.projects[index].name;
+        $scope.projects[index].description = null;
+        $scope.projects[index].name = null;
     }
     $scope.saveProject = function(){
         $scope.edit = false;
         $rootScope.busy(true);
         if($scope.project != null) {
-            $scope.project.$save({id:$scope.project['Project']['id']},
+            $scope.projects[index].$save({id:$scope.project['Project']['id']},
                 function() {
                     $rootScope.busy(false);
                 }
