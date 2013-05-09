@@ -532,7 +532,7 @@ function GenericResource(resource, uri, def, config) {
             if(passed.payload) { payload = passed.data; }
             if(passed.callbacks) { callbacks = passed.callbacks; }
         }
-
+//        console.log(this.res[method]);return;
         return this.res[method](
             params,
             payload,
@@ -554,7 +554,10 @@ function GenericResource(resource, uri, def, config) {
                     }
                     if(callbacks.odd) {
                         for(var i=1; i<data.length; i+=2) {
-                            callbacks.odd(data[i], headers);
+                            var ret = callbacks.odd(data[i], headers);
+                            if(ret) {
+                                data[i] = ret;
+                            }
                         }
                     }
                     if(callbacks.each) {
@@ -572,10 +575,7 @@ function GenericResource(resource, uri, def, config) {
                         }
                     }
                     if(callbacks.success) {
-                        var ret = callbacks.success(data, headers);
-                        if(ret) {
-                            data = ret;
-                        }
+                        callbacks.success(data, headers);
                     }
                 }
             },
