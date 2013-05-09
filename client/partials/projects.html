@@ -12,7 +12,7 @@
         <div class="tabbable">
             <ul class="nav nav-tabs">
                 <li class="{{description_active}}">
-                    <a href="#" ng-click="showDescription();">Description</a>
+                    <a href="#" ng-click="showDescription();">Info</a>
                 </li>
                 <li class="{{teams_active}}">
                     <a href="#" ng-click="showTeams();">Teams</a>
@@ -20,10 +20,12 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane {{description_active}} tab1">
+                    <h3 ng-hide="edit" ng-click="editProject();" >{{project.Project.title}}</h3>
                     <p ng-hide="edit" ng-click="editProject();" >{{project.Project.description}}</p>
                     <p ng-hide="edit" ng-click="editProject();" ><small>Click to edit</small></p>
                     <p ng-show="edit">
-                        <textarea autofocus="true" ng-model="project.Project.description"></textarea>
+                        <input type="text" class="input-medium" ng-model="project.Project.title">
+                        <textarea ng-model="project.Project.description"></textarea>
                         <input type="button" class="btn btn-small" value="Save" ng-click="saveProject();">
                         <input type="button" class="btn btn-small" value="Cancel" ng-click="cancelEdit();">
                     </p>
