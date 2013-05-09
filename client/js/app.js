@@ -190,6 +190,9 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     });
 
     this.all = function(params, payload, callbacks) {
+        console.log(typeof params);
+        console.log(typeof payload);
+        console.log(typeof callbacks);
         return this.call('all', params, payload, callbacks);
     }
     this.get = function(params, payload, callbacks) {
