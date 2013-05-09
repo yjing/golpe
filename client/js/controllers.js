@@ -232,34 +232,36 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     }
     $scope.saveProject = function(){
         $rootScope.busy(true);
-        if($scope.projects[$scope.p_index].mode == 'new') {
-            var proj = Projects.$save(
-                {},
-                $scope.projects[$scope.p_index],
-                function() {
-                    $rootScope.busy(false);
-                    $scope.projects[$scope.p_index] = proj;
-                    $scope.projects[$scope.p_index].mode = 'complete';
-                },
-                function() {
-                    $rootScope.busy(false);
-                    console.log(proj);
-                }
-            );
-        } else {
-            $scope.projects[$scope.p_index] = Projects.save(
-                {id:$scope.projects[$scope.p_index].Project.id},
-                $scope.projects[$scope.p_index],
-                function() {
-                    $rootScope.busy(false);
-                    $scope.projects[$scope.p_index].mode = 'complete';
-                },
-                function() {
-                    $rootScope.busy(false);
-                    console.log(proj);
-                }
-            );
+        var params = {};
+        if($scope.projects[$scope.p_index].mode != 'new') {
+            params = {id:$scope.projects[$scope.p_index].Project.id};
         }
+        var proj = Projects.$save(
+            params,
+            $scope.projects[$scope.p_index],
+            function() {
+                $rootScope.busy(false);
+                $scope.projects[$scope.p_index] = proj;
+                $scope.projects[$scope.p_index].mode = 'complete';
+            },
+            function() {
+                $rootScope.busy(false);
+                console.log(proj);
+            }
+        );
+
+//            $scope.projects[$scope.p_index] = Projects.save(
+//                {id:$scope.projects[$scope.p_index].Project.id},
+//                $scope.projects[$scope.p_index],
+//                function() {
+//                    $rootScope.busy(false);
+//                    $scope.projects[$scope.p_index].mode = 'complete';
+//                },
+//                function() {
+//                    $rootScope.busy(false);
+//                    console.log(proj);
+//                }
+//            );
 
     }
     $scope.newProject = function(){
