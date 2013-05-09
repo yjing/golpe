@@ -604,5 +604,6 @@ function GenericResource(resource, uri, def, config) {
                 error
             );
         }
-    }
+
+
 }
