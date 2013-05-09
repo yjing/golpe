@@ -206,7 +206,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
         $scope.formerDescription = $scope.project.Project.description;
     }
     $scope.cancelUpdate = function(){
-        $scope.project.Project.description = $scope.formerDescription;
+        $scope.project['Project']['description'] = $scope.formerDescription;
         $scope.formerDescription = '';
     }
     $scope.saveProject = function(){
