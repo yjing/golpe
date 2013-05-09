@@ -194,14 +194,14 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             function(p1, p2){
                 console.log(p1)
                 console.log(p2)
-                f1(p1, p2);
+                if(f1) {
+                    f1(p1, p2);
+                }
             },
-            function(p1, p2, p3, p4) {
-                console.log(p1)
-                console.log(p2)
-                console.log(p3)
-                console.log(p4)
-                f2();
+            function(err) {
+                if(f2) {
+                    f2(err);
+                }
             }
         );
     }
