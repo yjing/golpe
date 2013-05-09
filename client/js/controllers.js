@@ -208,14 +208,17 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
             Projects.get({
                 params: {id:$scope.projects[index].Project.id},
                 callbacks: {
-                    each: function(data) {
-                        data.mode = 'ok';
-                        data.active = 'active';
-                        console.log("UFFA!!!");
-                        return data;
-                    },
+//                    each: function(data) {
+//                        data.mode = 'ok';
+//                        data.active = 'active';
+//                        console.log("UFFA!!!");
+//                        return data;
+//                    },
                     success: function(data, headers){
                         $rootScope.busy(false);
+                        data.mode = 'ok';
+                        data.active = 'active';
+
                         $scope.projects[index] = data;
                         $scope.p_index = index;
                         console.log($scope.projects[index]);
