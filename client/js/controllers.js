@@ -182,6 +182,12 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     $scope.goProject = function(item){
         $location.url('/client/project/' + item.Project.id);
     }
+
+
+    $scope.showProject = function(p){
+        console.log(p);
+        $scope.project = p.Project;
+    }
 }
 
 
@@ -241,11 +247,5 @@ function ProjectCtrl($scope, $rootScope, $location, auth, Projects, $routeParams
         });
     } else {
         $scope.main();
-    }
-
-
-    $scope.showProject = function(p){
-        console.log(p);
-        $scope.project = p.Project;
     }
 }
