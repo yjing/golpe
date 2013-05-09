@@ -251,7 +251,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
                 $scope.projects[$scope.p_index],
                 function() {
                     $scope.projects[$scope.p_index].mode = 'complete';
-                    consloe.log($scope.projects[$scope.p_index]);
+                    console.log($scope.projects[$scope.p_index]);
                     $rootScope.busy(false);
                 },
                 function() {
