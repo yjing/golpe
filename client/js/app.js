@@ -195,12 +195,12 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                 if(each) {
                     each(data, headers);
                 }
-                if(callbacks.success) {
-                    callbacks.error(data, headers);
+                if(callbacks && callbacks.success) {
+                    callbacks.success(data, headers);
                 }
             },
             function(err) {
-                if(callbacks.error) {
+                if(callbacks && callbacks.error) {
                     callbacks.error(err);
                 }
             }
