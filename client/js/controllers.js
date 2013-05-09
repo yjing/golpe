@@ -272,6 +272,11 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
         $scope.teams_disabled = true;
     }
 
+    $scope.addStudent = function(p_id, t_id){
+        console.log(p_id);
+        console.log(t_id);
+    }
+
     $scope.isActive = function(index) {
         if(index == $scope.p_index) {
             return 'active';
