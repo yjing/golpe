@@ -210,9 +210,12 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     $scope.formerDescription = '';
     $scope.editProject = function(){
         $scope.edit = true;
+        $scope.project.description = $scope.project.Project.description;
     }
     $scope.cancelEdit = function(){
         $scope.edit = false;
+        $scope.project.Project.description = $scope.project.description;
+        $scope.project.description = null;
     }
     $scope.saveProject = function(){
         $scope.edit = false;
