@@ -65,9 +65,21 @@ ul.nav.nav-tabs.nav-stacked li > a {
 }
 
 /* SIDE MENUS */
-.tabbable.nav.nav-tabs > li.active {
+.nav.nav-tabs.nav-stacked > li.active {
     font-weight: bolder;
     background-color: aliceblue;
+}
+/* TABS */
+.tabbable {
+    margin-bottom: 0.5em;
+}
+.tabbable .tab-content .tab-pane {
+    border-left-color: rgb(221, 221, 221);
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-right-color: rgb(221, 221, 221);
+    border-right-style: solid;
+    border-right-width: 1px;
 }
 
 /* TOPBAR */
