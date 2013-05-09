@@ -153,7 +153,8 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, Projects2) 
 
     $rootScope.busy(false);
     $scope.main = function() {
-        Projects2.all().$then(function(){console.log('third then')});
+        var t = Projects2.all();
+        t.$then(function(){console.log('third then')});
         $scope.edit = false;
         $rootScope.busy(true);
         $scope.projects = Projects.all();
