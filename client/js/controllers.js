@@ -182,6 +182,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
 
     $scope.shownProject = null;
     $scope.fullProjects = [];
+    $scope.editDescription = false;
     $scope.showProject = function(index){
         if($scope.shownProject != null) {
             $scope.projects[$scope.shownProject].active = '';
