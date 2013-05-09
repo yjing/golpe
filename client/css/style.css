@@ -119,18 +119,6 @@ ul.nav.nav-tabs.nav-stacked > li.active a {
     -webkit-border-radius: 3px;
     border-radius: 3px;
 }
-@media screen and (max-width: 768px) {
-    .team_box {
-        width: 96%;
-    }
-    .team_list {
-        list-style-type: none;
-        padding: 0;
-        padding-left: 0;
-        margin: 0;
-    }
-}
-
 .team_box span.name {
     display: block;
     margin: 0;
@@ -141,6 +129,22 @@ ul.nav.nav-tabs.nav-stacked > li.active a {
     position: absolute;
     right: -5px;
     top: 3px;
+}
+@media screen and (max-width: 768px) {
+    .team_box {
+        width: 96%;
+    }
+    .team_list {
+        list-style-type: none;
+        padding: 0;
+        padding-left: 0;
+        margin: 0;
+    }
+    .list-item-remove {
+        position: absolute;
+        right: -5px;
+        top: 0px;
+    }
 }
 
 /* TOPBAR */
