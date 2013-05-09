@@ -223,7 +223,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
             console.log($scope.projects);
             $scope.projects.splice($scope.projects.length, 1);
             console.log($scope.projects);
-            $scope.showProject(0);
+//            $scope.showProject(0);
         } else {
             $scope.projects[$scope.p_index] = $scope.projects[$scope.p_index].old;
         }
