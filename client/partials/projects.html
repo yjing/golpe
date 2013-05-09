@@ -17,7 +17,7 @@
                 <div class="tab-pane active tab1">
                     <p ng-hide="editDescription" ng-click="editDescription = true">{{project.Project.description}}</p>
                     <p ng-show="editDescription">
-                        <textarea>{{project.Project.description}}</textarea>
+                        <textarea ng-model="project.Project.description"></textarea>
                         <input type="button" class="btn btn-small" value="Save" ng-click="editDescription = false">
                     </p>
                 </div>
