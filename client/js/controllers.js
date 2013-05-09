@@ -201,9 +201,9 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
         if($scope.projects[index].full == null) {
             $rootScope.busy(true);
             console.log($scope.projects);
-            $scope.projects[index] = Projects.get({id:$scope.projects[index].Project.id});
-            $scope.projects[index].$then(function(){
+            var proj = Projects.get({id:$scope.projects[index].Project.id}, function(){
                 $rootScope.busy(false);
+                $scope.projects[index] = proj;
                 console.log($scope.projects);
             });
         }
