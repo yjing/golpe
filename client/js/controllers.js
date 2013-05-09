@@ -153,6 +153,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
 
     $rootScope.busy(false);
     $scope.main = function() {
+        $scope.edit = false;
         $rootScope.busy(true);
         $scope.projects = Projects.all();
         $scope.projects.$then(function(){
@@ -179,6 +180,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     }
 
     $scope.goUsers = function(){
+        $scope.edit = false;
         $location.url('/client/users');
         $rootScope.toggleTitleMenu();
     }
@@ -187,6 +189,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     $scope.shownProject = null;     // INT: INDEX OF THE CURRENT SHOWN PROJECT
 
     $scope.showProject = function(index){
+        $scope.edit = false;
         // CHANGE ACTIVE PROJECT
         if($scope.shownProject != null) {
             $scope.projects[$scope.shownProject].active = '';
@@ -235,10 +238,12 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     $scope.description_active = 'active';
     $scope.teams_active = '';
     $scope.showTeams = function() {
+        $scope.edit = false;
         $scope.description_active = '';
         $scope.teams_active = 'active';
     }
     $scope.showDescription = function() {
+        $scope.edit = false;
         $scope.description_active = 'active';
         $scope.teams_active = '';
     }
