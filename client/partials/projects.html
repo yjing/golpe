@@ -41,12 +41,13 @@
                             <span class="name">{{t.name}} <button class="btn btn-link list-item-remove"><i class="icon-remove"></i></button></span>
                             <ul class="students_list">
                                 <li ng-repeat="u in t.Student">{{u.username}}</li>
-                                <li ng-click="addStudent(projects[p_index].Project.id, t.id);" class="text-right" style="cursor: pointer; background-color: #efefef">
+                                <li ng-click="addStudent(t.id);" class="text-right" style="cursor: pointer; background-color: #efefef">
                                     Add Student <i style="margin-left: 1em" class="icon-plus"></i>
                                 </li>
                                 <li ng-show="t_id == t.id"><input type="text" ng-model="search" class="search-query input-small" placeholder="Search"></li>
-                                <li ng-show="t_id == t.id" ng-repeat="s in students | filter:s.User.role='STUDENT' && search">
-                                    <input type="checkbox" ng-model="s.selected"> {{s.User.username}}
+                                <li ng-show="t_id == t.id" ng-repeat="s in students | filter:s.User.role='STUDENT' && search"
+                                        ng-click="test(t.id, s.id);">
+                                    {{s.User.username}}
                                 </li>
                             </ul>
                         </li>

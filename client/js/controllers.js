@@ -121,7 +121,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth) {
     }
 }
 
-function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, Users) {
+function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, Users) {
     // TOP BAR
     $rootScope.top_bar = {
 //        back_button: {
@@ -274,7 +274,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, Users) {
 
     $scope.t_id = null;
     $scope.students = null;
-    $scope.addStudent = function(p_id, t_id){
+    $scope.addStudent = function(t_id){
         $scope.t_id = t_id;
         $rootScope.busy(true);
         $scope.students = Users.all(
@@ -287,6 +287,10 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, Users) {
                 $rootScope.busy(false);
             }
         );
+    }
+    $scope.test = function(t_id, s_id){
+        var Test = $resource('/teams/addMember/:tid/:sid');
+        Test.post({tid:t_id, sid:s_id});
     }
 
     $scope.isActive = function(index) {
