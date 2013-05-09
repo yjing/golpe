@@ -188,6 +188,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     $scope.p_index = null;
 
     $scope.showProject = function(index){
+        $scope.teams_disabled = false;
         $scope.edit = false;
         // CHANGE ACTIVE PROJECT
         if($scope.p_index != null) {
@@ -267,6 +268,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
         });
         $scope.showProject($scope.projects.length - 1);
         $scope.edit = true;
+        $scope.teams_disabled = true;
     }
 
     $scope.description_active = 'active';
