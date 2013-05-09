@@ -215,7 +215,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
 //        $scope.projects[$scope.p_index].description = $scope.projects[$scope.p_index].Project.description;
 //        $scope.projects[$scope.p_index].name = $scope.projects[$scope.p_index].Project.name;
 //        $scope.projects[$scope.p_index].modeBeforeEdit = $scope.projects[$scope.p_index].mode;
-        $scope.projects[$scope.p_index].undo = $scope.projects[$scope.p_index];
+        $scope.projects[$scope.p_index].undo = $scope.projects[$scope.p_index].Project;
         $scope.projects[$scope.p_index].mode = 'edit';
     }
     $scope.cancelEdit = function(){
