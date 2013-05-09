@@ -119,6 +119,12 @@ ul.nav.nav-tabs.nav-stacked > li.active a {
     -webkit-border-radius: 3px;
     border-radius: 3px;
 }
+@media screen and (max-width: 768px) {
+    .team_box {
+        width: 45%;
+    }
+}
+
 .team_box span.name {
     display: block;
     margin: 0;
