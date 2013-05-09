@@ -190,7 +190,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
     $scope.showProject = function(index){
         $scope.edit = false;
         // CHANGE ACTIVE PROJECT
-        if($scope.p_index != null) {
+        if($scope.p_index != true) {
             $scope.projects[$scope.p_index].active = '';
         }
 
@@ -202,6 +202,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
                 $scope.projects[index] = proj;
                 // SETUP THE CURRENT PROJECT
                 $scope.projects[index].active = 'active';
+                $scope.projects[index].full = true;
                 $scope.p_index = index;
             });
         }

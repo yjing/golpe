@@ -36,7 +36,6 @@
                             <span class="name">{{t.name}} <button class="btn btn-link list-item-remove"><i class="icon-remove"></i></button></span>
                             <ul class="students_list">
                                 <li ng-repeat="u in t.Student">{{u.username}}</li>
-                                <li ng-repeat="u in t.Student" ng-show="$index%3 = 0"></li>
                                 <li ng-click="alert();" class="text-right" style="cursor: pointer; background-color: #efefef">Add Student <i style="margin-left: 1em" class="icon-plus"></i></li>
                             </ul>
                         </li>
