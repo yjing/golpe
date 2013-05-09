@@ -201,10 +201,11 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
                 $rootScope.busy(false);
                 $scope.projects[index] = proj;
                 // SETUP THE CURRENT PROJECT
-                $scope.projects[index].active = 'active';
                 $scope.projects[index].full = true;
             });
         }
+
+        $scope.projects[index].active = 'active';
         $scope.p_index = index;
     }
 
