@@ -183,11 +183,13 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects) {
         $location.url('/client/project/' + item.Project.id);
     }
 
-
-    $scope.showProject = function(p){
-        p.active = 'active';
-        $scope.project.active = '';
-        $scope.project = p;
+    $scope.shownProject = null;
+    $scope.showProject = function(index){
+        if($scope.shownProject != null) {
+            $scope.projects[$scope.shownProject].active = '';
+        }
+        $scope.project = $scope.projects[index].Project;
+        $scope.projects[index].active = 'active';
     }
 }
 
