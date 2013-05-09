@@ -33,7 +33,7 @@ class ProjectsController extends RESTController {
             $data = Set::remove($this->request->data, 'Project.id');
             
             if ($this->Project->save($data)) {
-                $this->_setResponseJSON( $this->getDafaultFormattedProject($this->Project->id, false) );
+                $this->_setResponseJSON( $this->getDafaultFormattedProject($this->Project->id) );
             } else {
                 $this->_ReportDataValidationErrors( array( 'Project' => $this->Project->validationErrors ) );
             }
@@ -55,7 +55,7 @@ class ProjectsController extends RESTController {
             }
             
             if ($this->Project->save($data)) {
-                $this->_setResponseJSON( $this->getDafaultFormattedProject($this->Project->id, false) );
+                $this->_setResponseJSON( $this->getDafaultFormattedProject($this->Project->id) );
             } else {
                 $this->_ReportDataValidationErrors( array( 'Project' => $this->Project->validationErrors ) );
             }
