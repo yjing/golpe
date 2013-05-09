@@ -153,7 +153,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, Projects2) 
 
     $rootScope.busy(false);
     $scope.main = function() {
-        var t = Projects2.all({},  {}, {
+        var t = Projects.all({},  {}, {
             each: function(data){
                 data.mode = 'partial';
             }
