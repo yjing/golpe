@@ -215,6 +215,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 
         if(reload || this.projects == null) {
             BusyService.busy(true);
+            this.newProject = false;
 
             var proj = this.Projects.all(
                 function(d, h) {
