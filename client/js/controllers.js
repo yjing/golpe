@@ -212,7 +212,6 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     }
 
     $scope.showProject = function(index){
-        ProjectsService.deactivateTeam();
         ProjectsService.load(index,
             function(d, h){
                 ProjectsService.activate(index);

@@ -346,6 +346,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         if(index == undefined || typeof index != "number") {
             throw "'index' has to be a number";
         }
+        this.deactivateTeam();
         this.active_project_id = index;
     }
     this.deactivate = function() {
