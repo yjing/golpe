@@ -152,7 +152,6 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     };
 
     // MAIN METHOD
-    $scope.menu = [];
     $scope.main = function() {
         ProjectsService.loadAll(
             // SUCCESS
