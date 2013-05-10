@@ -170,9 +170,21 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         }
     }
 })
-.service('ProjectsService', function(Projects, BusyService){
+.service('ProjectsService', function($rootScope, Projects, BusyService, $q){
 
     this.projects = null;
+
+    this.test = function(data){
+        var deferred = $q.defer();
+
+        setTimeout(function(){
+            $rootScope.$apply(function(){
+                deferred.resolve("A", "B", data);
+            })
+        }, 1000);
+
+        return deferred.promise;
+    }
 
     this.all = function(reload, success, error){
         if(arguments.length > 0 && typeof arguments[0] == "function") {
