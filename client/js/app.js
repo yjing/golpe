@@ -298,7 +298,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         BusyService.busy(true);
         var proj = this.Projects.save(
             params,
-            $scope.projects[index],
+            this.projects[index],
             function(d, h) {
                 BusyService.busy(false);
                 proj.status = STATUS_COMPLETE;
