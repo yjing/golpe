@@ -191,6 +191,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     this.projects = null;
     this.active_project_id = null;
     this.active_team_id = null;
+    this.newProject = false;
 
     this.Projects = $resource('/projects/:id', { id:'@id' }, {
         all: {
@@ -303,6 +304,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             this.projects[index],
             function(d, h) {
                 BusyService.busy(false);
+                this.newProject = false;
                 proj.status = STATUS_COMPLETE;
                 proj.mode = MODE_NORMAL;
                 _THIS.projects[index] = proj;
@@ -324,7 +326,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         );
     }
     this.new = function(){
-        this.cancelEditProject();
+        this.newProject = true;
         this.projects.push({
             "Project": {
                 "name": "Project Name",
@@ -345,6 +347,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         this.projects[index].mode = MODE_EDIT;
     }
     this.cancelEditProject = function(index) {
+        this.newProject = false;
         if(this.projects[index].status == STATUS_NEW) {
             this.projects.splice(index, 1);
             this.deactivate();
