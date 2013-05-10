@@ -208,6 +208,8 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     $rootScope.BS = this;
     var _THIS = this;
 
+    this.menu = [];
+
     this.Projects = $resource('/projects/:id', { id:'@id' }, {
         all: {
             method: 'GET',
@@ -233,7 +235,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             function(d, h) {
                 BusyService.busy(false);
                 _THIS.insertProjects(d);
-                _THIS.generateMenu(d);
+                this.menu = _THIS.generateMenu(d);
 
                 // CALLBACKS
                 if(success) {
@@ -255,10 +257,8 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         var result = [];
         if(angular.isArray(data)) {
             for(var i=0; i<data.length; i++) {
-                console.log(data);
                 result.push({id:data[i]['Project']['id']});
             }
-            console.log(result);
         }
         return result;
     }
