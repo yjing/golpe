@@ -1,4 +1,4 @@
-function LoginCtrl($scope, $rootScope, $location, auth) {
+function LoginCtrl($scope, $rootScope, $location, auth, BusyService) {
     // TMP CREDENTIALS
     $scope.username = "y.jing";
     $scope.password = "30071980";
@@ -65,7 +65,7 @@ function LoginCtrl($scope, $rootScope, $location, auth) {
 
 }
 
-function UsersCtrl($scope, $rootScope, $location, Users, auth) {
+function UsersCtrl($scope, $rootScope, $location, Users, auth, BusyService) {
     // TOP BAR
     $rootScope.top_bar = {
 //        back_button: {
