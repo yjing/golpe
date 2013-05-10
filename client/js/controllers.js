@@ -157,7 +157,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         ProjectsService.loadAll(
             // SUCCESS
             function(data, handlers){
-                for(var i=0; i< ddata.length; i++) {
+                for(var i=0; i< data.length; i++) {
                     $scope.menu.push({
                         name: data[i].Project.name
                     });
