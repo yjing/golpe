@@ -205,7 +205,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 
 })
 .service('ProjectsService', function($rootScope, $resource, BusyService, DBService){
-    $rootScope.BS = this;
+    $rootScope.PS = this;
     var _THIS = this;
 
     this.menu = [];
