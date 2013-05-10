@@ -251,7 +251,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         );
     }
 
-    this.generateMenu = function(d) {
+    this.generateMenu = function(data) {
         var result = [];
         if(angular.isArray(data)) {
             for(var i=0; i<data.length; i++) {
