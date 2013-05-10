@@ -373,6 +373,9 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         }
         this.active_team_id = index;
     }
+    this.deactivateTeam = function() {
+        this.active_team_id = null;
+    }
     this.iaActiveTeam = function(index){
         return index == this.active_team_id;
     }
