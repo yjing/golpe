@@ -18,7 +18,7 @@
 
     <div class="span9">
         <div class="row-fluid" ng-show="BS.activeProject() != null">
-            <div class="span9">
+            <div class="span11">
                 <div class="shadowed" style="padding: 1em 2em; border: 1px rgb(221, 221, 221) solid;-webkit-border-radius: 4px;border-radius: 4px;">
                     <div ng-hide="BS.activeProject('mode') == 'edit'">
                         <h3 ng-click="BS.editProject(BS.active_project_id);" style="cursor: pointer">
@@ -40,7 +40,7 @@
                 </div>
             </div>
             <div class="span1">
-                <button>Delete <i class="icon-remove"></i></button>
+                <button class="btn btn-danger">Delete <i class="icon-remove"></i></button>
             </div>
         </div>
         <div class="row-fluid">
