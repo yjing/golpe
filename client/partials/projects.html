@@ -28,6 +28,7 @@
                             {{BS.activeProject('Project').description}}
                         </p>
                     </div>
+                    [ {{BS.activeProject('mode')}}/{{BS.active_project_id}}/{{BS.activeProject()}} ]
                     <p ng-show="BS.activeProject('mode') == 'edit'">
                         <input autofocus="true" onload="this.focus()" type="text" class="input-xlarge" ng-model="BS.activeProject('Project').name">
                         <span class="error" onload="this.focus()">{{BS.activeProject().errors.Project.name}}</span>
