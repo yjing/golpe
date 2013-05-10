@@ -3,7 +3,7 @@
     <div class="span2 offset1">
         <ul class="nav nav-tabs nav-stacked">
             <li class="text-right">
-                <a href="#" ng-click="reload();"><h4>Projects <i class="icon-refresh"></i></h4></a>
+                <a href="#" ng-click="reload();">Projects <i class="icon-refresh"></i></a>
             </li>
             <li ng-repeat="p in BS.projects" ng-class="BS.activeClass($index)" ng-hide="p.new">
                 <a href="#" ng-click="showProject($index);">{{p.Project.name}} <i class="icon-edit" ng-show="p.mode == 'edit'"></i></a>
@@ -27,9 +27,11 @@
             <div class="tab-content">
                 <div class="tab-pane {{description_active}} tab1">
                     <div ng-hide="BS.activeProject('mode') == 'edit'">
-                        <h3 ng-click="BS.editProject(BS.active_project_id);" >{{BS.activeProject('Project').name}}</h3>
+                        <h3 ng-click="BS.editProject(BS.active_project_id);" >
+                            {{BS.activeProject('Project').name}}
+                            <button class="btn btn-link" ng-click="BS.editProject(BS.active_project_id);"><i class="icon-edit"></i></button>
+                        </h3>
                         <p ng-click="BS.editProject(BS.active_project_id);" >{{BS.activeProject('Project').description}}</p>
-                        <input type="button" class="btn btn-small" value="Edit" ng-click="BS.editProject(BS.active_project_id);">
                     </div>
                     <p ng-show="BS.activeProject('mode') == 'edit'">
                         <input autofocus="true" onload="this.focus()" type="text" class="input-xlarge" ng-model="BS.activeProject('Project').name">
