@@ -161,6 +161,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
                     ProjectsService.projects[i].mode = 'normal';
                     ProjectsService.projects[i].status = 'partial';
                 }
+                $scope.projects = ProjectsService.projects;
 //                if(ProjectsService.projects.length > 0) {
 //                    ProjectsService.showProject(0);
 //                }
