@@ -185,8 +185,8 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     });
 })
 .service('BusyService', function(){
-    var BUSY_CLASS_BUSY = "busy";
-    var BUSY_CLASS_NOT_BUSY = "";
+    this.BUSY_CLASS_BUSY = "busy";
+    this.BUSY_CLASS_NOT_BUSY = "";
 
     this.busy_monitor = 0;
 
