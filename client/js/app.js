@@ -415,7 +415,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 
 })
 .factory('Users', function($resource) {
-    return $resource('/users/', {}, {
+    return $resource('/users/:id', {}, {
         all: {
             method: 'GET',
             isArray: true
