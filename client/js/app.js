@@ -204,12 +204,11 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     // DATA OPERATIONS
     this.loadAll = function(reload, success, error){
         if(arguments.length > 0 && typeof arguments[0] == "function") {
-            if(arguments.length == 1) {
-                success = arguments[0];
-            } else {
+            if(arguments.length > 1) {
                 error = arguments[1];
-                success = arguments[0];
             }
+            success = arguments[0];
+            reload = false;
         }
         if(reload || this.projects == null) {
             BusyService.busy(true);
