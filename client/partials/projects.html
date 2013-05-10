@@ -24,8 +24,8 @@
             <div class="tab-content">
                 <div class="tab-pane {{description_active}} tab1">
                     <div ng-hide="BS.activeProject('mode') == 'edit'">
-                        <h3 ng-click="BS.cancelEditProject(BS.active_project_id);" >{{BS.activeProject('Project').name}}</h3>
-                        <p ng-click="BS.cancelEditProject(BS.active_project_id);" >{{BS.activeProject('Project').description}}</p>
+                        <h3 ng-click="BS.editProject(BS.active_project_id);" >{{BS.activeProject('Project').name}}</h3>
+                        <p ng-click="BS.editProject(BS.active_project_id);" >{{BS.activeProject('Project').description}}</p>
                         <input type="button" class="btn btn-small" value="Edit" ng-click="BS.editProject(BS.active_project_id);">
                     </div>
                     <p ng-show="BS.activeProject('mode') == 'edit'">
