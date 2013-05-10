@@ -26,7 +26,7 @@
                     <div ng-hide="BS.activeProject('mode') == 'edit'">
                         <h3 ng-click="editProject();" >{{BS.activeProject('Project').name}}</h3>
                         <p ng-click="editProject();" >{{BS.activeProject('Project').description}}</p>
-                        <input type="button" class="btn btn-small" value="Edit" ng-click="editProject();">
+                        <input type="button" class="btn btn-small" value="Edit" ng-click="BS.editProject(BS.active_project_id);">
                     </div>
                     <p ng-show="BS.activeProject('mode') == 'edit'">
                         <input autofocus="true" type="text" class="input-xlarge" ng-model="BS.activeProject('Project').name">
@@ -38,7 +38,7 @@
                 </div>
                 <div class="tab-pane {{teams_active}} tab2">
                     <ul class="team_list">
-                        <li class="team_box" ng-repeat="t in BS.projects[p_index].Project.Team">
+                        <li class="team_box" ng-repeat="t in BS.activeProject('Project').Team">
                             <span class="name">{{t.name}} <button class="btn btn-link list-item-remove"><i class="icon-remove"></i></button></span>
                             <ul class="students_list">
                                 <li ng-repeat="u in t.Student">{{u.username}}</li>

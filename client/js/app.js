@@ -194,6 +194,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         }
     });
 
+    // DATA OPERATIONS
     this.loadAll = function(reload, success, error){
         if(arguments.length > 0 && typeof arguments[0] == "function") {
             if(arguments.length == 1) {
@@ -278,7 +279,15 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         }
     }
 
-    // PROJECT ACTIVATION OPERATIONS
+    // MODES OPERATION
+    this.editProject = function(index){
+        if(index == undefined || typeof index != "number") {
+            throw "'index' has to be a number";
+        }
+        this.projects[index].mode = 'edit';
+    }
+
+    // ACTIVATION OPERATIONS
     this.activate = function(index) {
         if(index == undefined || typeof index != "number") {
             throw "'index' has to be a number";
