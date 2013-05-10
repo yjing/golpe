@@ -157,6 +157,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         ProjectsService.all(
             // SUCCESS
             function(data, handlers){
+                console.log("EXTERNAL 1");
                 console.log(ProjectsService.projects);
             },
             // ERROR
@@ -164,7 +165,18 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
                 $rootScope.handleError(error);
             }
         );
-        ProjectsService.all(true);
+        ProjectsService.all(
+            true,
+            // SUCCESS
+            function(data, handlers){
+                console.log("EXTERNAL 2");
+                console.log(ProjectsService.projects);
+            },
+            // ERROR
+            function(error){
+                $rootScope.handleError(error);
+            }
+        );
 
     }
 
