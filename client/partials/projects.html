@@ -7,12 +7,6 @@
             </li>
             <li ng-repeat="p in BS.projects" ng-class="BS.activeClass($index)" ng-hide="p.new">
                 <a href="#" ng-click="showProject($index);">{{p.Project.name}} <i class="icon-edit" ng-show="p.mode == 'edit'"></i></a>
-
-                <ul class="students_list" ng-view="BS.isActive($index)">
-                    <li class="" ng-repeat="t in BS.activeProject('Project').Team">
-                        <span class="name">{{t.name}} <button class="btn btn-link list-item-remove"><i class="icon-remove"></i></button></span>
-                    </li>
-                </ul>
             </li>
             <li class="text-right">
                 <a href="#" ng-click="newProject();">New Project <i class="icon-plus"></i></a>
@@ -36,7 +30,9 @@
                         <h3 ng-click="BS.editProject(BS.active_project_id);" style="cursor: pointer">
                             {{BS.activeProject('Project').name}} <i class="icon-edit"></i>
                         </h3>
-                        <p>{{BS.activeProject('Project').description}}</p>
+                        <p>
+                            {{BS.activeProject('Project').description}}
+                        </p>
                     </div>
                     <p ng-show="BS.activeProject('mode') == 'edit'">
                         <input autofocus="true" onload="this.focus()" type="text" class="input-xlarge" ng-model="BS.activeProject('Project').name">
@@ -46,9 +42,6 @@
                         <input ng-disabled="busy_monitor > 0" type="button" class="btn btn-small" value="Cancel" ng-click="BS.cancelEditProject(BS.active_project_id);">
                     </p>
                 </div>
-
-
-
                 <div class="tab-pane {{teams_active}} tab2">
                     <ul class="team_list">
                         <li class="team_box" ng-repeat="t in BS.activeProject('Project').Team">
