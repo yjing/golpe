@@ -50,7 +50,7 @@
                         <a href="#" ng-click="" style="background: #fafafa;">Teams  <i class="icon-briefcase"></i></a>
                     </li>
                     <li ng-repeat="t in BS.activeProject('Project').Team" ng-class="BS.activeTeamClass($index)">
-                        <a href="#" ng-click="BS.activateTeam($index);userinfo = null;">{{t.name}}</a>
+                        <a href="#" ng-click="function() {BS.activateTeam($index); userinfo = null;}">{{t.name}}</a>
                     </li>
                     <li class="text-right">
                         <a ng-click="" style="background: #fafafa;">
