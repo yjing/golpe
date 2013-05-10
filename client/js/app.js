@@ -208,8 +208,6 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     $rootScope.PS = this;
     var _THIS = this;
 
-    this.menu = [];
-
     this.Projects = $resource('/projects/:id', { id:'@id' }, {
         all: {
             method: 'GET',
