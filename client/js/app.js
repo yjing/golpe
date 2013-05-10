@@ -173,19 +173,19 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 .service('ProjectsService', function($rootScope, Projects, BusyService, $q){
 
     $rootScope.BS = this;
-
     this.projects = null;
-    this.test = function(data){
-        var deferred = $q.defer();
 
-        setTimeout(function(){
-            $rootScope.$apply(function(){
-                deferred.resolve(data);
-            })
-        }, 1000);
-
-        return deferred.promise;
-    }
+//    this.test = function(data){
+//        var deferred = $q.defer();
+//
+//        setTimeout(function(){
+//            $rootScope.$apply(function(){
+//                deferred.resolve(data);
+//            })
+//        }, 1000);
+//
+//        return deferred.promise;
+//    }
 
     this.all = function(reload, success, error){
         if(arguments.length > 0 && typeof arguments[0] == "function") {
@@ -203,12 +203,22 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             this.projects = Projects.all(
                 function(d, h) {
                     BusyService.busy(false);
+
+                    // ADD METADATA
+                    for(var i=0; i < this.projects.length; i++) {
+                        this.projects[i].mode = 'normal';
+                        this.projects[i].status = 'partial';
+                    }
+
+                    // CALLBACKS
                     if(success) {
                         success(d, h);
                     }
                 },
                 function(e) {
                     BusyService.busy(false);
+
+                    // CALLBACKS
                     if(error) {
                         error(e);
                     }

@@ -154,22 +154,11 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     BusyService.busy(false);
     $scope.main = function() {
 
-        $scope.test = ProjectsService.test('AQUA');
-        $scope.test.then(function(a){
-            console.log(a);
-        });
-
         ProjectsService.all(
             // SUCCESS
             function(data, handlers){
-                for(var i=0; i < ProjectsService.projects.length; i++) {
-                    ProjectsService.projects[i].mode = 'normal';
-                    ProjectsService.projects[i].status = 'partial';
-                }
-                $scope.projects = ProjectsService.projects;
-//                if(ProjectsService.projects.length > 0) {
-//                    ProjectsService.showProject(0);
-//                }
+                console.log(data);
+                console.log(handlers('Content-Type'));
             },
             // ERROR
             function(error){
