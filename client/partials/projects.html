@@ -8,8 +8,8 @@
             <li ng-repeat="p in BS.projects" ng-class="BS.activeClass($index)" ng-hide="p.new">
                 <a href="#" ng-click="showProject($index);">{{p.Project.name}} <i class="icon-edit" ng-show="p.mode == 'edit'"></i></a>
 
-                <ul class="team_list">
-                    <li class="team_box" ng-repeat="t in BS.activeProject('Project').Team">
+                <ul class="students_list">
+                    <li class="" ng-repeat="t in BS.activeProject('Project').Team">
                         <span class="name">{{t.name}} <button class="btn btn-link list-item-remove"><i class="icon-remove"></i></button></span>
                     </li>
                 </ul>
