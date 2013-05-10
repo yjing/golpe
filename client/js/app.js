@@ -428,7 +428,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 
     this.addTeam = function(p_id, name, success, error){
         BusyService.busy(true);
-        var newTeam = this.Teams.get({},
+        var newTeam = this.Teams.add({},
             {
                 "Team": {
                     "project_id": p_id,
