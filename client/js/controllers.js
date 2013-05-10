@@ -155,6 +155,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     $scope.main = function() {
 
         $scope.projects = ProjectsService.all(
+            true,
             // SUCCESS
             function(data, handlers){
                 for(var i=0; i < $scope.projects.length; i++) {
