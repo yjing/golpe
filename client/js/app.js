@@ -178,24 +178,25 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     this.d = {};
     this.m = {};
 
-    this.createTable = function(name){
-        if(this.t_names.indexOf(name) < 0) {
-            this.d[name] = {};
-            this.m[name] = {};
+    this.createTable = function(table_name){
+        if(this.t_names.indexOf(table_name) < 0) {
+            this.d[table_name] = {};
+            this.m[table_name] = {};
 
-            this.t_names.push(name);
+            this.t_names.push(table_name);
         } else {
             throw "Table name already in use.";
         }
     }
     this.insertData = function(table_name, key, data) {
-       if(this.t_names.indexOf(table_name) > 0) {
+        console.log(this.t_names);
+        if(this.t_names.indexOf(table_name) > 0) {
            var old = this.d[table_name][key];
            this.d[table_name][key] = data;
            return old;
-       } else {
+        } else {
            throw "Unknown table " + table_name + ".";
-       }
+        }
     }
 
 })
