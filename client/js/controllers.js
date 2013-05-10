@@ -235,6 +235,17 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
 
     $scope.showUser = function(user){
         $scope.userinfo = user;
+        BusyService.busy(true);
+        var u = Users.get({id:user.id},
+            function(d){
+                BusyService.busy(true);
+                console.log(d);
+            },
+            function(s){
+                BusyService.busy(true);
+                $rootScope.handleError(e);
+            }
+        );
     }
 
     $scope.newProject = function(){
