@@ -176,7 +176,8 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     this.d = {};
     this.m = {};
 
-}.service('ProjectsService', function($rootScope, $resource, BusyService, DBService){
+})
+.service('ProjectsService', function($rootScope, $resource, BusyService, DBService){
     $rootScope.BS = this;
 
     this.Projects = $resource('/projects/:id', { id:'@id' }, {
@@ -234,7 +235,8 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         DBService.d['Project'][ data['Project']['id'] ] = data['Project'];
     }
 
-}.service('ProjectsServiceOLD', function($rootScope, BusyService, $resource){
+})
+.service('ProjectsServiceOLD', function($rootScope, BusyService, $resource){
     // PUT SERVICE IN ROOTE SCOPE
     $rootScope.BS = this;
 
