@@ -23,16 +23,15 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane {{description_active}} tab1">
-                    <div ng-hide="BS.activeProject(mode) == 'edit'">
-                        <h3 ng-click="editProject();" >{{BS.projects[p_index].Project.name}}</h3>
-                        <p ng-click="editProject();" >{{BS.projects[p_index].Project.description}}</p>
+                    <div ng-hide="BS.activeProject('mode') == 'edit'">
+                        <h3 ng-click="editProject();" >{{BS.activeProject('Project').name}}</h3>
+                        <p ng-click="editProject();" >{{BS.activeProject('Project').description}}</p>
                         <input type="button" class="btn btn-small" value="Edit" ng-click="editProject();">
                     </div>
-                    {{BS.activeProject('mode')}}
-                    <p ng-show="BS.activeProject(mode) == 'edit'">
-                        <input autofocus="true" type="text" class="input-xlarge" ng-model="BS.projects[p_index].Project.name">
-                        <span class="error">{{BS.projects[p_index].errors.Project.name}}</span>
-                        <textarea ng-model="BS.projects[p_index].Project.description"></textarea>
+                    <p ng-show="BS.activeProject('mode') == 'edit'">
+                        <input autofocus="true" type="text" class="input-xlarge" ng-model="BS.activeProject('Project').name">
+                        <span class="error">{{BS.activeProject().errors.Project.name}}</span>
+                        <textarea ng-model="BS.activeProject('Project').description"></textarea>
                         <input ng-disabled="busy_monitor > 0" type="submit" class="btn btn-small" value="Save" ng-click="saveProject();">
                         <input ng-disabled="busy_monitor > 0" type="button" class="btn btn-small" value="Cancel" ng-click="cancelEdit();">
                     </p>
