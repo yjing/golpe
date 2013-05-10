@@ -164,6 +164,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
                 $rootScope.handleError(error);
             }
         );
+        ProjectsService.all();
 
     }
 
