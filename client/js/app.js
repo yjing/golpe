@@ -220,7 +220,6 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         }
     });
 
-    $rootScope.modello = null;
     this.loadAll = function(reload, success, error) {
         // PARAM MANAGEMENT
         if(arguments.length > 0 && typeof arguments[0] == "function") {
@@ -237,6 +236,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                 BusyService.busy(false);
                 _THIS.insertProjects(d);
                 $rootScope.modello = _THIS.generateMenu(d);
+                console.log($rootScope.modello);
 
                 // CALLBACKS
                 if(success) {
