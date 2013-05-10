@@ -3,7 +3,7 @@
     <div class="span2 offset1">
         <ul class="nav nav-tabs nav-stacked">
             <li class="text-right">
-                <a href="#" ng-click="reload();">Projects <i class="icon-refresh"></i></a>
+                <a href="#" ng-click="reload();"><h4>Projects <i class="icon-refresh"></i></h4></a>
             </li>
             <li ng-repeat="p in BS.projects" ng-class="BS.activeClass($index)" ng-hide="p.new">
                 <a href="#" ng-click="showProject($index);">{{p.Project.name}} <i class="icon-edit" ng-show="p.mode == 'edit'"></i></a>
