@@ -299,14 +299,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             this.projects.splice(index, 1);
         } else {
             this.projects[index] = this.projects[index].old;
-        }
-        if($scope.projects[$scope.p_index].status == STATUS_NEW) {
-            $scope.projects.splice($scope.p_index, 1);
-            if($scope.projects.length > 0) {
-                $scope.showProject(0);
-            }
-        } else {
-            $scope.projects[$scope.p_index] = $scope.projects[$scope.p_index].old;
+            this.projects[index].mode = MODE_NORMAL;
         }
     }
 
