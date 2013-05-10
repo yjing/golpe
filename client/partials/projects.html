@@ -65,10 +65,12 @@
                     <li ng-repeat="s in BS.activeTeam().Student" ng-class="">
                         <a href="#" ng-click="showUser(s)">{{s.username}}</a>
                     </li>
-                    <li class="text-right">
+                    <li class="text-center">
                         <a href="#" ng-click="" style="background: #fafafa;">
-                            <button class="btn btn-link">Remove Team <i class="icon-minus"></i></button>
-                            <button class="btn btn-link">Add Member <i class="icon-plus"></i></button>
+                            <div class="btn-group"ng-show="BS.activeProject('mode') == 'edit'">
+                                <button class="btn">Remove Team <i class="icon-minus"></i></button>
+                                <button class="btn">Add Member <i class="icon-plus"></i></button>
+                            </div>
                         </a>
                     </li>
                 </ul>
