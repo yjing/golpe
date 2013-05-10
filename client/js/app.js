@@ -261,8 +261,8 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     this.insertProject = function(data) {
         console.log(angular.isDefined(DBService.d['Project']));
         if(angular.isDefined(data) &&
-           andular.isDefined(data['Project']) &&
-           andular.isDefined(data['Project'])) {
+           angular.isDefined(data['Project']) &&
+           angular.isDefined(data['Project'])) {
             DBService.insertData ("projects", data['Project']['id'], data['Project']);
             if(andular.isDefined(data['Project']['Team'])) {
                 this.insertTeams(data['Project']['Team']);
