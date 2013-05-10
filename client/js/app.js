@@ -173,21 +173,23 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 .service('DBService', function($rootScope){
     $rootScope.DB = this;
 
-    this.t_names = {};
+    this.t_names = [];
 
     this.d = {};
     this.m = {};
 
     this.createTable = function(name){
-        if(Array.indexOf(name, this.t_names) < 0) {
+        if(this.t_names.indexOf(name) < 0) {
             this.d[name] = {};
             this.m[name] = {};
+
+            this.t_names.push(name);
         } else {
             throw "Table name already in use.";
         }
     }
     this.insertData = function(table_name, key, data) {
-       if(Array.indexOf(name, this.t_names) > 0) {
+       if(thie.t_names.indexOf(table_name) > 0) {
            var old = this.d[table_name][key];
            this.d[table_name][key] = data;
            return old;
