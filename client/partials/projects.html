@@ -28,6 +28,7 @@
                         <p ng-click="editProject();" >{{BS.projects[p_index].Project.description}}</p>
                         <input type="button" class="btn btn-small" value="Edit" ng-click="editProject();">
                     </div>
+                    {{BS.activeProject(mode)}}
                     <p ng-show="BS.activeProject(mode) == 'edit'">
                         <input autofocus="true" type="text" class="input-xlarge" ng-model="BS.projects[p_index].Project.name">
                         <span class="error">{{BS.projects[p_index].errors.Project.name}}</span>
