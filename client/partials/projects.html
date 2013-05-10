@@ -18,7 +18,7 @@
 
     <div class="span9">
         <div class="row-fluid">
-            <div class="span12">
+            <div class="span12" ng-show="BS.activeProject() != null">
                 <div class="shadowed" style="padding: 1em 2em; border: 1px rgb(221, 221, 221) solid;-webkit-border-radius: 4px;border-radius: 4px;">
                     <div ng-hide="BS.activeProject('mode') == 'edit'">
                         <h3 ng-click="BS.editProject(BS.active_project_id);" style="cursor: pointer">
@@ -28,7 +28,7 @@
                             {{BS.activeProject('Project').description}}
                         </p>
                     </div>
-                    <p ng-show="BS.activeProject() != null && BS.activeProject('mode') == 'edit'">
+                    <p ng-show="BS.activeProject('mode') == 'edit'">
                         <input autofocus="true" onload="this.focus()" type="text" class="input-xlarge" ng-model="BS.activeProject('Project').name">
                         <span class="error" onload="this.focus()">{{BS.activeProject().errors.Project.name}}</span>
                         <textarea ng-model="BS.activeProject('Project').description"></textarea>
