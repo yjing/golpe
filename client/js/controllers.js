@@ -157,15 +157,15 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
             // SUCCESS
             function(data, handlers){
                 if(ProjectsService.projects.length > 0) {
-                    ProjectsService.load(
-                        0,
-                        function(d, h){
-                            ProjectsService.activate(0);
-                        },
-                        function(e) {
-                            $rootScope.handleError(e);
-                        }
-                    );
+//                    ProjectsService.load(
+//                        0,
+//                        function(d, h){
+//                            ProjectsService.activate(0);
+//                        },
+//                        function(e) {
+//                            $rootScope.handleError(e);
+//                        }
+//                    );
                 }
             },
             // ERROR
