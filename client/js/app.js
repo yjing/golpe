@@ -332,6 +332,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             "mode":'edit',
             "status": 'new'
         });
+        this.activate(this.projects.length - 1);
     }
     // MODES OPERATION
     this.editProject = function(index){
