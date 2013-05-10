@@ -166,9 +166,9 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
                 }
             },
             // ERROR
-            function(error){
-                $rootScope.handleError(data);
-            }
+//            function(error){
+//                $rootScope.handleError(error);
+//            }
         );
         return;
 
