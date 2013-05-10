@@ -155,10 +155,8 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     $scope.main = function() {
 
         var prom = ProjectsService.test('AQUA');
-        prom.then(function(a, b, c){
+        $scope.test = prom.then(function(a){
             console.log(a);
-            console.log(b);
-            console.log(c);
         });
 
         ProjectsService.all(

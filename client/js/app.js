@@ -179,7 +179,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 
         setTimeout(function(){
             $rootScope.$apply(function(){
-                deferred.resolve("A", "B", data);
+                deferred.resolve(data);
             })
         }, 1000);
 
