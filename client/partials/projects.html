@@ -50,14 +50,14 @@
                         <a href="#" ng-click="BS.activateTeam($index);">{{t.name}}</a>
                     </li>
                     <li class="text-right">
-                        <a href="#" ng-click="newProject();" style="background: #fafafa;">Teams</a>
+                        <a href="#" ng-click="newProject();" style="background: #fafafa;">Add Team <i class="icon-briefcase"></i></a>
                     </li>
                 </ul>
             </div>
             <div class="span4" style="margin-top: 2em;"  ng-show="BS.activeProject('Project').Team != null && BS.activeTeam() != null">
                 <ul class="nav nav-tabs nav-stacked shadowed">
                     <li class="text-right">
-                        <a href="#" ng-click="" style="background: #fafafa;">Teams Members <i class="icon-list"></i></a>
+                        <a href="#" ng-click="" style="background: #fafafa;">Teams Members <i class="icon-user"></i></a>
                     </li>
                     <li ng-repeat="s in BS.activeTeam().Student">
                         <a href="#" ng-click="showUser">{{s.username}}</a>
