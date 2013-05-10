@@ -60,7 +60,7 @@
                         <a href="#" ng-click="" style="background: #fafafa;">Teams Members <i class="icon-user"></i></a>
                     </li>
                     <li ng-repeat="s in BS.activeTeam().Student">
-                        <a href="#" ng-click="userinfo = s">{{s.username}}</a>
+                        <a href="#" ng-click="showUser(s)">{{s.username}}</a>
                     </li>
                     <li class="text-right">
                         <a href="#" ng-click="newProject();" style="background: #fafafa;">Add Member <i class="icon-plus"></i></a>

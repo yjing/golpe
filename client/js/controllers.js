@@ -233,6 +233,10 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         );
     }
 
+    $scope.showUser = function(user){
+        $scope.userinfo = user;
+    }
+
     $scope.newProject = function(){
         $scope.projects.push({
             "Project": {
