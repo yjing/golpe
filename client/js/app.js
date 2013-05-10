@@ -190,6 +190,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     }
     this.insertData = function(table_name, key, data) {
         console.log(this.t_names);
+        console.log(this.t_names.indexOf(table_name));
         if(this.t_names.indexOf(table_name) > 0) {
            var old = this.d[table_name][key];
            this.d[table_name][key] = data;
@@ -205,8 +206,8 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     var _THIS = this;
 
     DBService.createTable("projects");
-    DBService.insertData("projects", "1", "data 1");
-    DBService.insertData("projects", 2, "data 2");
+    DBService.insertData ("projects", "1", "data 1");
+    DBService.insertData ("projects", 2, "data 2");
     console.log(DBService.d);
 
     this.Projects = $resource('/projects/:id', { id:'@id' }, {
