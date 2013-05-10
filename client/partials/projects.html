@@ -44,7 +44,7 @@
             <div class="span4" style="margin-top: 2em;" ng-show="BS.activeProject('Project').Team != null">
                 <ul class="nav nav-tabs nav-stacked shadowed">
                     <li class="text-right">
-                        <a href="#" ng-click="" style="background: #fafafa;">Refresh Teams <i class="icon-refresh"></i></a>
+                        <a href="#" ng-click="" style="background: #fafafa;">Teams  <i class="icon-list"></i></a>
                     </li>
                     <li ng-repeat="t in BS.activeProject('Project').Team" ng-class="BS.activeTeamClass($index)">
                         <a href="#" ng-click="BS.activateTeam($index);">{{t.name}}</a>
@@ -57,13 +57,13 @@
             <div class="span4" style="margin-top: 2em;"  ng-show="BS.activeProject('Project').Team != null && BS.activeTeam() != null">
                 <ul class="nav nav-tabs nav-stacked shadowed">
                     <li class="text-right">
-                        <a href="#" ng-click="" style="background: #fafafa;">Teams Members</i></a>
+                        <a href="#" ng-click="" style="background: #fafafa;">Teams Members <i class="icon-list"></i></a>
                     </li>
                     <li ng-repeat="s in BS.activeTeam().Student">
                         <a href="#" ng-click="showUser">{{s.username}}</a>
                     </li>
                     <li class="text-right">
-                        <a href="#" ng-click="newProject();" style="background: #fafafa;">Add Member<i class="icon-plus"></i></a>
+                        <a href="#" ng-click="newProject();" style="background: #fafafa;">Add Member <i class="icon-plus"></i></a>
                     </li>
                 </ul>
             </div>
