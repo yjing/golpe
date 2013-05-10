@@ -270,11 +270,8 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         }
     }
     this.insertTeams = function(data){
-        console.log(angular.isObject([]));
-        console.log(angular.isObject({}));
-        console.log(angular.isObject("S"));
-        console.log(angular.isObject(1));
-        console.log(angular.isObject(function(){}));
+        console.log(angular.isArray([]));
+        console.log(angular.isArray({}));
     }
 
 })
