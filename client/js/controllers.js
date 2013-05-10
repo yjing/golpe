@@ -151,9 +151,8 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         ]
     };
 
-    BusyService.busy(false);
+    // MAIN METHOD
     $scope.main = function() {
-
         ProjectsService.loadAll(
             // SUCCESS
             function(data, handlers){
@@ -174,9 +173,9 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
                 $rootScope.handleError(error);
             }
         );
-
     }
 
+    // BEFORE MAIN: CHECK USER LOGIN
     if($rootScope.user == null || !$rootScope.user['logged']) {
         BusyService.busy(true);
         $rootScope.user = auth.user();
@@ -197,46 +196,24 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         $rootScope.toggleTitleMenu();
     }
 
-    $scope.p_index = null;
     $scope.showProject = function(index){
-        // CHANGE ACTIVE PROJECT
-
         ProjectsService.load(index,
             function(d, h){
                 ProjectsService.activate(index);
+            },
+            function(e) {
+                $rootScope.handleError(e);
             }
         );
     }
 
-    $scope.cancelEdit = function(){
-        if($scope.projects[$scope.p_index].status == 'new') {
-            $scope.projects.splice($scope.p_index, 1);
-            if($scope.projects.length > 0) {
-                $scope.showProject(0);
-            }
-        } else {
-            $scope.projects[$scope.p_index] = $scope.projects[$scope.p_index].old;
-        }
-    }
-    $scope.saveProject = function(){
-        BusyService.busy(true);
-        var params = {};
-        if($scope.projects[$scope.p_index].mode != 'new') {
-            params = {id:$scope.projects[$scope.p_index].Project.id};
-        }
-        var proj = Projects.save(
-            params,
-            $scope.projects[$scope.p_index],
-            function() {
-                BusyService.busy(false);
-                $scope.projects[$scope.p_index] = proj;
-                $scope.projects[$scope.p_index].mode = 'complete';
+    $scope.saveProject = function(index){
+        ProjectsService.save(index,
+            function(d, h){
+
             },
-            function(data) {
-                BusyService.busy(false);
-                $rootScope.handleError(data);
-                $scope.projects[$scope.p_index].errors = data.data.data_validation_errors;
-                console.log($scope.projects[$scope.p_index]);
+            function (e) {
+                $rootScope.handleError(e);
             }
         );
     }

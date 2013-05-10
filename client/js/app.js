@@ -285,6 +285,42 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             }
         }
     }
+    this.save = function(index, success, error) {
+        if(index == undefined || typeof index != "number") {
+            throw "'index' has to be a number";
+        }
+
+        var params = {};
+        if(this.projects[index].mode != STATUS_NEW) {
+            params = {id:this.projects[index].Project.id};
+        }
+
+        BusyService.busy(true);
+        var proj = Projects.save(
+            params,
+            $scope.projects[index],
+            function(d, h) {
+                BusyService.busy(false);
+                proj.status = STATUS_COMPLETE;
+                proj.mode = MODE_NORMAL;
+                _THIS.projects[index] = proj;
+
+                // CALLBACKS
+                if(success) {
+                    success(d, h);
+                }
+            },
+            function(data) {
+                BusyService.busy(false);
+                _THIS.projects[index].errors = data.data.data_validation_errors;
+
+                // CALLBACKS
+                if(error) {
+                    error(e);
+                }
+            }
+        );
+    }
 
     // MODES OPERATION
     this.editProject = function(index){
