@@ -1,4 +1,3 @@
-console.log([2, 'd', 5].indexOf('d'));
 if (!Array.prototype.indexOf) {
     Array.prototype.indexOf = function (searchElement /*, fromIndex */ ) {
         "use strict";
