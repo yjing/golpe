@@ -224,7 +224,6 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                         proj.status = STATUS_PARTIAL;
                     }
                     _THIS.projects = proj;
-                    console.log(_THIS.projects);
 
                     // CALLBACKS
                     if(success) {
