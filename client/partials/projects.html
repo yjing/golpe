@@ -56,36 +56,36 @@
             </div>
         </div>
     </div>
-        <div class="tabbable">
-            <ul class="nav nav-tabs">
-                <li class="{{description_active}}">
-                    <a href="#" ng-click="showDescription();">Info</a>
-                </li>
-                <li class="{{teams_active}} {{teams_desabled}}">
-                    <a href="#" ng-click="showTeams();">Teams</a>
-                </li>
-            </ul>
-            <div class="tab-content">
-                <div class="tab-pane {{teams_active}} tab2">
-                    <ul class="team_list">
-                        <li class="team_box" ng-repeat="t in BS.activeProject('Project').Team">
-                            <span class="name">{{t.name}} <button class="btn btn-link list-item-remove"><i class="icon-remove"></i></button></span>
-                            <ul class="students_list">
-                                <li ng-repeat="u in t.Student">{{u.username}}</li>
-                                <li ng-click="addStudent(t.id);" class="text-right" style="cursor: pointer; background-color: #efefef">
-                                    Add Student <i style="margin-left: 1em" class="icon-plus"></i>
-                                </li>
-                                <li ng-show="t_id == t.id"><input type="text" ng-model="search" class="search-query input-small" placeholder="Search"></li>
-                                <li ng-show="t_id == t.id" ng-repeat="s in students | filter:s.User.role='STUDENT' && search"
-                                        ng-click="add(t.id, s.User.id);">
-                                    {{s.User.username}}
-                                </li>
-                            </ul>
-                        </li>
-                        <li style="clear: both;"></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        <!--<div class="tabbable">-->
+            <!--<ul class="nav nav-tabs">-->
+                <!--<li class="{{description_active}}">-->
+                    <!--<a href="#" ng-click="showDescription();">Info</a>-->
+                <!--</li>-->
+                <!--<li class="{{teams_active}} {{teams_desabled}}">-->
+                    <!--<a href="#" ng-click="showTeams();">Teams</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+            <!--<div class="tab-content">-->
+                <!--<div class="tab-pane {{teams_active}} tab2">-->
+                    <!--<ul class="team_list">-->
+                        <!--<li class="team_box" ng-repeat="t in BS.activeProject('Project').Team">-->
+                            <!--<span class="name">{{t.name}} <button class="btn btn-link list-item-remove"><i class="icon-remove"></i></button></span>-->
+                            <!--<ul class="students_list">-->
+                                <!--<li ng-repeat="u in t.Student">{{u.username}}</li>-->
+                                <!--<li ng-click="addStudent(t.id);" class="text-right" style="cursor: pointer; background-color: #efefef">-->
+                                    <!--Add Student <i style="margin-left: 1em" class="icon-plus"></i>-->
+                                <!--</li>-->
+                                <!--<li ng-show="t_id == t.id"><input type="text" ng-model="search" class="search-query input-small" placeholder="Search"></li>-->
+                                <!--<li ng-show="t_id == t.id" ng-repeat="s in students | filter:s.User.role='STUDENT' && search"-->
+                                        <!--ng-click="add(t.id, s.User.id);">-->
+                                    <!--{{s.User.username}}-->
+                                <!--</li>-->
+                            <!--</ul>-->
+                        <!--</li>-->
+                        <!--<li style="clear: both;"></li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
 
 </div>
