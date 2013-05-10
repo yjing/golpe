@@ -1,5 +1,4 @@
-if (!Array.prototype.indexOf) {
-    console.log("DEFINE INDEXOF");
+//if (!Array.prototype.indexOf) {
     Array.prototype.indexOf = function (searchElement /*, fromIndex */ ) {
         "use strict";
         if (this == null) {
@@ -30,4 +29,4 @@ if (!Array.prototype.indexOf) {
         }
         return -1;
     }
-}
+//}
