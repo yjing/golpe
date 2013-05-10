@@ -172,9 +172,18 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 })
 .service('ProjectsService', function(Projects, BusyService){
     this.all = function(reload, success, error){
-        console.log(typeof reload);
-        console.log(typeof success);
-        console.log(typeof error);
+        if(arguments.length > 0 && typeof arguments[0] == "function") {
+            if(arguments.length == 1) {
+                success = arguments[0];
+            } else {
+                error = arguments[1];
+                success = arguments[0];
+            }
+        }
+        console.log(reload);
+        console.log(success);
+        console.log(error);
+
         BusyService.busy(true);
         return Projects.all(
             function(d, h) {
