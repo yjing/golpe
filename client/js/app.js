@@ -345,7 +345,10 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     this.cancelEditProject = function(index) {
         if(this.projects[index].status == STATUS_NEW) {
             this.projects.splice(index, 1);
-            this.activate(100);
+            this.deactivate();
+            if(this.projects.length > 0) {
+                this.activate(0);
+            }
         } else {
             this.projects[index] = this.projects[index].old;
             this.projects[index].mode = MODE_NORMAL;
