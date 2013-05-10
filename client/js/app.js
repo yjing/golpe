@@ -296,7 +296,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         }
 
         BusyService.busy(true);
-        var proj = Projects.save(
+        var proj = this.Projects.save(
             params,
             $scope.projects[index],
             function(d, h) {
