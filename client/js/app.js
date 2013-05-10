@@ -233,6 +233,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             function(d, h) {
                 BusyService.busy(false);
                 _THIS.insertProjects(d);
+                _THIS.generateMenu(d);
 
                 // CALLBACKS
                 if(success) {
@@ -250,13 +251,23 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         );
     }
 
+    this.generateMenu = function(d) {
+        var result = [];
+        if(angular.isArray(data)) {
+            for(var i=0; i<data.length; i++) {
+                result.push({id:data.Project.id});
+            }
+            console.log(result);
+        }
+        return result;
+    }
+
     // DB ACCESS FUNCS
     this.insertProjects = function(data) {
         if(angular.isArray(data)) {
             for(var i=0; i<data.length; i++) {
                 this.insertProject(data[i]);
             }
-            console.log(DBService.d);
         }
     }
     this.insertProject = function(data) {
@@ -264,19 +275,14 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
            angular.isDefined(data['Project']) &&
            angular.isDefined(data['Project']['id'])) {
 
-            var id = data['Project']['id'];
-            var value = data['Project'];
-            delete value['Team'];
-
-            DBService.insertData ("projects", id, value);
-            if(angular.isDefined(data['Project']['Team'])) {
-                this.insertTeams(data['Project']['Team']);
-            }
+            DBService.insertData ("projects", data['Project']['id'], data['Project']);
         }
     }
-    this.insertTeams = function(data){
-        console.log(angular.isArray([]));
-        console.log(angular.isArray({}));
+    this.insertTeam = function(data){
+        if(angular.isDefined(data) &&
+            angular.isDefined(data['Team'])){
+            DBService.insertData ("teams", data['Team']['id'], data['Team']);
+        }
     }
 
 })
