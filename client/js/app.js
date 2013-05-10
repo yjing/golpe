@@ -173,13 +173,38 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 .service('DBService', function($rootScope){
     $rootScope.DB = this;
 
+    this.t_names = {};
+
     this.d = {};
     this.m = {};
+
+    this.createTable = function(name){
+        if(this.t_names.indexOf(name) < 0) {
+            this.d[name] = {};
+            this.m[name] = {};
+        } else {
+            throw "Table name already in use.";
+        }
+    }
+    this.insertData = function(table_name, key, data) {
+       if(thie.t_names.indexOf(table_name) > 0) {
+           var old = this.d[table_name][key];
+           this.d[table_name][key] = data;
+           return old;
+       } else {
+           throw "Unknown table " + table_name + ".";
+       }
+    }
 
 })
 .service('ProjectsService', function($rootScope, $resource, BusyService, DBService){
     $rootScope.BS = this;
     var _THIS = this;
+
+    DBService.createTable("projects");
+    DBService.insertData("projects", "1", "data 1");
+    DBService.insertData("projects", 2, "data 2");
+    console.log(DBService.d);
 
     this.Projects = $resource('/projects/:id', { id:'@id' }, {
         all: {
