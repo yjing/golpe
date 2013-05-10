@@ -59,7 +59,7 @@
                     <li class="text-right">
                         <a href="#" ng-click="" style="background: #fafafa;">Refresh Teams <i class="icon-refresh"></i></a>
                     </li>
-                    <li ng-repeat="s in BS.activeTeam('Team').Student" ng-class="BS.activeTeamClass($index)">
+                    <li ng-repeat="s in BS.activeTeam().Student" ng-class="BS.activeTeamClass($index)">
                         <a href="#">{{s.name}}</a>
                     </li>
                     <li class="text-right">
