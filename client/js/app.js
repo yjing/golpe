@@ -252,7 +252,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                     BusyService.busy(false);
 
                     // ADD METADATA
-                    proj.mode = 'normal';
+                    proj.mode = 'edit';
                     proj.status = 'complete';
                     _THIS.projects[index] = proj;
 
