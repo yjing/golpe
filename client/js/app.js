@@ -265,7 +265,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                     proj.mode = MODE_NORMAL;
                     proj.status = STATUS_COMPLETE;
                     _THIS.projects[index] = proj;
-                    console.log(proj);
+
                     // CALLBACKS
                     if(success) {
                         success(d, h);
@@ -383,9 +383,9 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         if(this.projects!=null && this.active_project_id!=null
             && this.active_team_id!=null) {
             if(key) {
-                return this.projects[this.active_project_id].Team[this.active_team_id][key];
+                return this.activeProject('Project').Team[this.active_team_id][key];
             } else {
-                return this.projects[this.active_project_id].Team[this.active_team_id];
+                return this.activeProject('Project').Team[this.active_team_id];
             }
         }
     }
