@@ -278,11 +278,28 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         }
     }
 
+    // PROJECT ACTIVATION OPERATIONS
     this.activate = function(index) {
+        if(index == undefined || typeof index != "number") {
+            throw "'index' has to be a number";
+        }
         this.active_project_id = index;
     }
+    this.deactivate = function() {
+        this.active_project_id = null;
+    }
     this.isActive = function(index) {
-        return (index == this.active_project_id ? ACTIVE : NOT_ACTIVE) ;
+        return index == this.active_project_id;
+    }
+    this.activeClass = function(index) {
+        return ( this.isActive(index) ? ACTIVE : NOT_ACTIVE );
+    }
+    this.activeProject = function(key){
+        if(key) {
+            return this.projects[this.active_project_id][key];
+        } else {
+            return this.projects[this.active_project_id];
+        }
     }
 })
 .service('auth', function(Users){

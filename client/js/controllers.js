@@ -157,7 +157,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         ProjectsService.loadAll(
             // SUCCESS
             function(data, handlers){
-                console.log(ProjectsService.projects);
+
             },
             // ERROR
             function(error){
@@ -194,8 +194,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
 
         ProjectsService.load(index,
             function(d, h){
-                console.log(d);
-                console.log(h('Content-Type'));
+                ProjectsService.activate(index);
             }
         );
 
