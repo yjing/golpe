@@ -215,8 +215,6 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                     BusyService.busy(false);
 
                     // ADD METADATA
-                    console.log(d);
-                    console.log(this.projects);
                     console.log(this.projects);
 //                    for(var i=0; i < this.projects.length; i++) {
 //                        this.projects[i].mode = 'normal';

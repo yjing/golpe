@@ -157,8 +157,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         ProjectsService.all(
             // SUCCESS
             function(data, handlers){
-                console.log(data);
-                console.log(handlers('Content-Type'));
+                console.log(ProjectsService.projects);
             },
             // ERROR
             function(error){
