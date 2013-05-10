@@ -172,8 +172,9 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 })
 .service('ProjectsService', function($rootScope, Projects, BusyService, $q){
 
-    this.projects = null;
+    $rootScope.BS = this;
 
+    this.projects = null;
     this.test = function(data){
         var deferred = $q.defer();
 
