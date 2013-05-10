@@ -334,6 +334,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         });
         this.activate(this.projects.length - 1);
     }
+
     // MODES OPERATION
     this.editProject = function(index){
         if(index == undefined || typeof index != "number") {
@@ -381,6 +382,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             }
         }
     }
+
     // TEAM ACTIVATION
     this.activateTeam = function(index){
         if(index == undefined || typeof index != "number") {

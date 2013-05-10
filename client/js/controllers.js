@@ -249,14 +249,6 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         );
     }
 
-    $scope.newProject = function(){
-
-        ProjectsService.new();
-
-        $scope.showProject($scope.projects.length - 1);
-        $scope.teams_disabled = true;
-    }
-
     $scope.t_id = null;
     $scope.students = null;
     $scope.addStudent = function(t_id){
