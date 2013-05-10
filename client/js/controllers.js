@@ -250,14 +250,9 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     }
 
     $scope.newProject = function(){
-        $scope.projects.push({
-            "Project": {
-                "name": "Project Name",
-                "description": "Project Description"
-            },
-            "mode":'edit',
-            "status": 'new'
-        });
+
+        ProjectsService.new();
+
         $scope.showProject($scope.projects.length - 1);
         $scope.teams_disabled = true;
     }

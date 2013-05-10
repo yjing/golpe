@@ -323,7 +323,16 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             }
         );
     }
-
+    this.new = function(){
+        this.projects.push({
+            "Project": {
+                "name": "Project Name",
+                "description": "Project Description"
+            },
+            "mode":'edit',
+            "status": 'new'
+        });
+    }
     // MODES OPERATION
     this.editProject = function(index){
         if(index == undefined || typeof index != "number") {
