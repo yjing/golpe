@@ -154,11 +154,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     $rootScope.busy(false);
     $scope.main = function() {
 
-        $scope.bs = BusyService;
-        console.log(BusyService.busy());
-        console.log(BusyService.busy(true));
-        console.log(BusyService.busy(false));
-        console.log(BusyService.busy(true));
+        BusyService.busy(true);
 
         $rootScope.busy(true);
         $scope.projects = Projects.all(
@@ -202,7 +198,6 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
 
     $scope.p_index = null;
     $scope.showProject = function(index){
-        BusyService.busy(false);
         // CHANGE ACTIVE PROJECT
         if($scope.p_index != null && $scope.projects[$scope.p_index] !=null) {
             $scope.projects[$scope.p_index].active = '';

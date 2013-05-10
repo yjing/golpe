@@ -32,7 +32,9 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     // configure html5 to get links working
     // If you don't do this, you URLs will be base.com/#/home rather than base.com/home
     $locationProvider.html5Mode(true).hashPrefix('!');
-}).run(function($rootScope, $location, auth) {
+}).run(function($rootScope, $location, auth, BusyService) {
+
+    $rootScope.bs = BusyService;
 
     $rootScope.top_bar_url = '/client/partials/topbar.html';
 
