@@ -154,8 +154,8 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     BusyService.busy(false);
     $scope.main = function() {
 
-        var prom = ProjectsService.test('AQUA');
-        $scope.test = prom.then(function(a){
+        $scope.test = ProjectsService.test('AQUA');
+        $scope.test.then(function(a){
             console.log(a);
         });
 
