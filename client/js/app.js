@@ -220,8 +220,8 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 
                     // ADD METADATA
                     for(var i=0; i < proj.length; i++) {
-                        proj.mode = MODE_NORMAL;
-                        proj.status = STATUS_PARTIAL;
+                        proj[i].mode = MODE_NORMAL;
+                        proj[i].status = STATUS_PARTIAL;
                     }
                     _THIS.projects = proj;
 
