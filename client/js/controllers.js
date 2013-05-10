@@ -152,6 +152,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     };
 
     // MAIN METHOD
+    $scope.menu = [];
     $scope.main = function() {
         ProjectsService.loadAll(
             // SUCCESS
@@ -160,6 +161,11 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
                     ProjectsService.load(
                         0,
                         function(d, h){
+                            for(var i=0; i< d.length; i++) {
+                                $scope.menu.push({
+                                    name: d[i].Project.name
+                                });
+                            }
                             ProjectsService.activate(0);
                         },
                         function(e) {
