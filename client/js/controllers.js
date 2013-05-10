@@ -164,7 +164,8 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
                 if($scope.projects.length > 0) {
                     $scope.showProject(0);
                 }
-            },
+            }
+//            ,
             // ERROR
 //            function(error){
 //                $rootScope.handleError(error);
