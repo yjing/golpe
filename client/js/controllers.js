@@ -154,6 +154,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     $rootScope.busy(false);
     $scope.main = function() {
 
+        $scope.bs = BusyService;
         console.log(BusyService.busy());
         console.log(BusyService.busy(true));
         console.log(BusyService.busy(false));
