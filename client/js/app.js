@@ -195,9 +195,8 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             this.busy_monitor++;
         } else if (busy == false) {
             this.busy_monitor = Math.max(0, this.busy_monitor - 1);
-        } else {
-            return this.busyClass();
         }
+        return this.busyClass();
     };
 
     this.busyClass = function(){
