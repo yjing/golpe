@@ -53,6 +53,11 @@ ul {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', endColorstr='#2973ce',GradientType=0 ); /* IE6-8 */
 }
 
+.menu {
+    -webkit-box-shadow:  0px 0px 10px 1px rgba(0, 0, 0, 0.1);
+    box-shadow:  0px 0px 10px 1px rgba(0, 0, 0, 0.1);
+}
+
 .ss-dialog{
     width: 50%;
     margin: 2em;
