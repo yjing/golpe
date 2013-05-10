@@ -215,7 +215,6 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 
         if(reload || this.projects == null) {
             BusyService.busy(true);
-            this.newProject = false;
 
             var proj = this.Projects.all(
                 function(d, h) {
@@ -305,7 +304,6 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             this.projects[index],
             function(d, h) {
                 BusyService.busy(false);
-                this.newProject = false;
                 proj.status = STATUS_COMPLETE;
                 proj.mode = MODE_NORMAL;
                 _THIS.projects[index] = proj;
@@ -413,6 +411,19 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                 return this.activeProject('Project').Team[this.active_team_id];
             }
         }
+    }
+
+    this.addTeam = function(){
+        var team = {
+            "Team": {
+                "project_id": this.activeProject('Project').id,
+                "name": "New Team"
+            }
+        };
+        if(this.activeProject('Project')['Team'] == null) {
+            this.activeProject('Project')['Team'] = [];
+        }
+        this.activeProject('Project')['Team'].push(team);
     }
 })
 .service('auth', function(Users){
