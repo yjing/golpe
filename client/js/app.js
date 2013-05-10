@@ -256,7 +256,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         if(angular.isArray(data)) {
             for(var i=0; i<data.length; i++) {
                 console.log(data);
-                result.push({id:data['Project']['id']});
+                result.push({id:data[i]['Project']['id']});
             }
             console.log(result);
         }
