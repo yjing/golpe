@@ -164,32 +164,13 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
                 if($scope.projects.length > 0) {
                     $scope.showProject(0);
                 }
-            }
-//            ,
-            // ERROR
-//            function(error){
-//                $rootScope.handleError(error);
-//            }
-        );
-        return;
-
-        BusyService.busy(true);
-        $scope.projects = Projects.all(
-            function(){
-                BusyService.busy(false);
-                for(var i=0; i<$scope.projects.length; i++) {
-                    $scope.projects[i].mode = 'normal';
-                    $scope.projects[i].status = 'partial';
-                }
-                if($scope.projects.length > 0) {
-                    $scope.showProject(0);
-                }
             },
-            function(data) {
-                BusyService.busy(false);
-                $rootScope.handleError(data);
+            // ERROR
+            function(error){
+                $rootScope.handleError(error);
             }
         );
+
     }
 
     if($rootScope.user == null || !$rootScope.user['logged']) {
