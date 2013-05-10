@@ -34,9 +34,6 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     $locationProvider.html5Mode(true).hashPrefix('!');
 }).run(function($rootScope, $location, auth, BusyService) {
 
-    // BUSY SERVICE HAS TO BE AVAILABLE ON THE ROOT SCOPE
-    $rootScope.BUSY = BusyService;
-
     // TOPBAR TEMPLATE URL
     $rootScope.top_bar_url = '/client/partials/topbar.html';
 
@@ -144,7 +141,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     }
 
 })
-.service('BusyService', function(){
+.service('BusyService', function($rootScope){
     // PUT SERVICE IN ROOTE SCOPE
     $rootScope.BUSY = this;
 
