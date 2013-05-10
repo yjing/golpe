@@ -11,7 +11,9 @@
                 </a>
             </li>
             <li class="text-right">
-                <a href="#" ng-click="newProject();" style="background: #fafafa;">New Project <i class="icon-plus"></i></a>
+                <a style="background: #fafafa;">
+                    <button ng-click="newProject();" class="btn btn-danger">New Project</button>
+                </a>
             </li>
         </ul>
     </div>
@@ -66,7 +68,7 @@
                         <a href="#" ng-click="showUser(s)">{{s.username}}</a>
                     </li>
                     <li class="text-center">
-                        <a href="#" ng-click="" style="background: #fafafa;">
+                        <a style="background: #fafafa;">
                             <button class="btn btn-danger">Delete Team</button>
                             <button class="btn btn-success">Add Member</button>
                         </a>
