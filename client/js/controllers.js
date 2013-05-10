@@ -175,6 +175,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
             }
         );
     }
+    return;
 
     // BEFORE MAIN: CHECK USER LOGIN
     if($rootScope.user == null || !$rootScope.user['logged']) {
