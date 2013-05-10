@@ -32,7 +32,7 @@
                         <input autofocus="true" onload="this.focus()" type="text" class="input-xlarge" ng-model="BS.activeProject('Project').name">
                         <span class="error" onload="this.focus()">{{BS.activeProject().errors.Project.name}}</span>
                         <textarea ng-model="BS.activeProject('Project').description"></textarea>
-                        <div class="btn-group">
+                        <div class="btn-group"ng-show="BS.activeProject('mode') == 'edit'">
                             <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="BS.save(BS.active_project_id);">Save</button>
                             <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="BS.cancelEditProject(BS.active_project_id);">Cancel</button>
                         </div>
