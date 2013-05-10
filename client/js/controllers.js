@@ -208,21 +208,16 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         );
     }
 
-//    $scope.editProject = function(){
-//        $scope.projects[$scope.p_index].old = angular.copy($scope.projects[$scope.p_index]);
-//        $scope.projects[$scope.p_index].mode = 'edit';
-//    }
-//    $scope.cancelEdit = function(){
-//        console.log($scope.projects[$scope.p_index]);
-//        if($scope.projects[$scope.p_index].status == 'new') {
-//            $scope.projects.splice($scope.p_index, 1);
-//            if($scope.projects.length > 0) {
-//                $scope.showProject(0);
-//            }
-//        } else {
-//            $scope.projects[$scope.p_index] = $scope.projects[$scope.p_index].old;
-//        }
-//    }
+    $scope.cancelEdit = function(){
+        if($scope.projects[$scope.p_index].status == 'new') {
+            $scope.projects.splice($scope.p_index, 1);
+            if($scope.projects.length > 0) {
+                $scope.showProject(0);
+            }
+        } else {
+            $scope.projects[$scope.p_index] = $scope.projects[$scope.p_index].old;
+        }
+    }
     $scope.saveProject = function(){
         BusyService.busy(true);
         var params = {};

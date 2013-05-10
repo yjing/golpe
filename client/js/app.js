@@ -177,9 +177,16 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     // this HAS TO BE AVAILABLE ON CALLBACKS
     // ALIAS: $THIS
     var _THIS = this;
-    // OTHER CONSTANTS
+    // ACTIVATION CONSTANT
     var ACTIVE = 'active';
     var NOT_ACTIVE = '';
+    // MODE CONSTANT
+    var MODE_EDIT = 'edit'
+    var MODE_NORMAL = 'normal'
+    // STATUS CONSTANTS
+    var STATUS_PARTIAL = 'partial';
+    var STATUS_COMPLETE = 'complete';
+    var STATUS_NEW = 'new';
 
     this.projects = null;
     this.active_project_id = null;
@@ -213,8 +220,8 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 
                     // ADD METADATA
                     for(var i=0; i < _THIS.projects.length; i++) {
-                        _THIS.projects[i].mode = 'normal';
-                        _THIS.projects[i].status = 'partial';
+                        _THIS.projects[i].mode = MODE_NORMAL;
+                        _THIS.projects[i].status = STATUS_PARTIAL;
                     }
 
                     // CALLBACKS
@@ -243,7 +250,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             throw "'index' has to be a number";
         }
 
-        if(this.projects[index].status == 'partial') {
+        if(this.projects[index].status == STATUS_PARTIAL) {
             BusyService.busy(true);
             var proj = this.Projects.get(
                 {
@@ -253,8 +260,8 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                     BusyService.busy(false);
 
                     // ADD METADATA
-                    proj.mode = 'normal';
-                    proj.status = 'complete';
+                    proj.mode = MODE_NORMAL;
+                    proj.status = STATUS_COMPLETE;
                     _THIS.projects[index] = proj;
 
                     // CALLBACKS
@@ -284,7 +291,23 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         if(index == undefined || typeof index != "number") {
             throw "'index' has to be a number";
         }
-        this.projects[index].mode = 'edit';
+        this.projects[index].old = angular.copy(this.projects[index]);
+        this.projects[index].mode = MODE_EDIT;
+    }
+    this.cancelEditProject = function(index) {
+        if(this.projects[index].status == STATUS_NEW) {
+            this.projects.splice(index, 1);
+        } else {
+            this.projects[index] = this.projects[index].old;
+        }
+        if($scope.projects[$scope.p_index].status == STATUS_NEW) {
+            $scope.projects.splice($scope.p_index, 1);
+            if($scope.projects.length > 0) {
+                $scope.showProject(0);
+            }
+        } else {
+            $scope.projects[$scope.p_index] = $scope.projects[$scope.p_index].old;
+        }
     }
 
     // ACTIVATION OPERATIONS
