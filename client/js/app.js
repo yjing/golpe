@@ -179,6 +179,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 })
 .service('ProjectsService', function($rootScope, $resource, BusyService, DBService){
     $rootScope.BS = this;
+    var _THIS = this;
 
     this.Projects = $resource('/projects/:id', { id:'@id' }, {
         all: {
@@ -204,7 +205,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         var result = this.Projects.all(
             function(d, h) {
                 BusyService.busy(false);
-                this.insertProjects(d);
+                _THIS.insertProjects(d);
 
                 // CALLBACKS
                 if(success) {
