@@ -265,7 +265,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                     proj.mode = MODE_NORMAL;
                     proj.status = STATUS_COMPLETE;
                     _THIS.projects[index] = proj;
-
+                    console.log(_THIS.projects[index]);
                     // CALLBACKS
                     if(success) {
                         success(d, h);
