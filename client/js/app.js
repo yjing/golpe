@@ -205,7 +205,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 
 })
 .service('ProjectsService', function($rootScope, $resource, BusyService, DBService){
-    $rootScope.PS = this;
+    $rootScope.caccola = this;
     var _THIS = this;
 
     this.Projects = $resource('/projects/:id', { id:'@id' }, {
