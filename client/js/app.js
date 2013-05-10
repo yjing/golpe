@@ -413,18 +413,6 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         }
     }
 
-    this.addTeam = function(){
-        var team = {
-            "Team": {
-                "project_id": this.activeProject('Project').id,
-                "name": "New Team"
-            }
-        };
-        if(this.activeProject('Project')['Team'] == null) {
-            this.activeProject('Project')['Team'] = [];
-        }
-        this.activeProject('Project')['Team'].push(team);
-    }
 })
 .service('auth', function(Users){
 

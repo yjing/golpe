@@ -249,6 +249,13 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         );
     }
 
+    $scope.newTeamName = null;
+    $scope.newTeam = false;
+    $scope.newTeam = function(p_id){
+        $scope.newTeamName = 'New Team';
+        $scope.newTeam = true;
+    }
+
     $scope.t_id = null;
     $scope.students = null;
     $scope.addStudent = function(t_id){

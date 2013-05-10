@@ -50,11 +50,18 @@
                         <a href="#" ng-click="" style="background: #fafafa;">Teams  <i class="icon-briefcase"></i></a>
                     </li>
                     <li ng-repeat="t in BS.activeProject('Project').Team" ng-class="BS.activeTeamClass($index)">
-                        <a href="#" ng-click="BS.activateTeam($index);">{{t.name}}</a>
+                        <a href="#" ng-click="BS.activateTeam($index);">
+                            <span>{{t.name}}</span>
+                        </a>
+                    </li>
+                    <li ng-show="newTeam">
+                        <a href="#">
+                            <input ng-model="newTeamName"> <button class="btn btn-link"><i class="icon-plus"></i></button>
+                        </a>
                     </li>
                     <li class="text-right">
                         <a ng-click="" style="background: #fafafa;">
-                            <button class="btn btn-success" ng-click="BS.addTeam();">Add Team</button>
+                            <button class="btn btn-success" ng-click="addTeam(BS.activeProject('Project').id);">Add Team</button>
                         </a>
                     </li>
                 </ul>
