@@ -5,10 +5,7 @@
             <li class="text-right">
                 <a ng-click="reload();" style="background: #fafafa;">Refresh Projects <i class="icon-refresh"></i></a>
             </li>
-            <li class="text-center">
-                <a><input class="form-search" placeholder="filter" ng-model="filter" style="width: 80%;"></a>
-            </li>
-            <li ng-repeat="p in BS.projects | filter:filter | orderBy:p.Project.name" ng-class="BS.activeClass($index)" ng-hide="BS.projects[BS.active_project_id].new">
+            <li ng-repeat="p in BS.projects | orderBy:p.Project.name" ng-class="BS.activeClass($index)" ng-hide="BS.projects[BS.active_project_id].new">
                 <a href="#" ng-click="showProject($index);">{{p.Project.name}}
                     <i class="icon-edit" ng-show="BS.projects[$index].mode == 'edit'"></i>
                 </a>
