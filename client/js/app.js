@@ -145,6 +145,9 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 
 })
 .service('BusyService', function(){
+    // PUT SERVICE IN ROOTE SCOPE
+    $rootScope.BUSY = this;
+
     var BUSY_CLASS_BUSY = "busy";
     var BUSY_CLASS_NOT_BUSY = "";
 
@@ -171,10 +174,18 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     }
 })
 .service('ProjectsService', function($rootScope, BusyService, $resource){
-
+    // PUT SERVICE IN ROOTE SCOPE
     $rootScope.BS = this;
+
+    // this HAS TO BE AVAILABLE ON CALLBACKS
+    // ALIAS: $THIS
+    var _THIS = this;
+    // OTHER CONSTANTS
+    var ACTIVE = 'active';
+    var NOT_ACTIVE = '';
+
     this.projects = null;
-    var THIS = this;
+    this.active_project_id = null;
 
     this.Projects = $resource('/projects/:id', { id:'@id' }, {
         all: {
@@ -186,19 +197,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         }
     });
 
-//    this.test = function(data){
-//        var deferred = $q.defer();
-//
-//        setTimeout(function(){
-//            $rootScope.$apply(function(){
-//                deferred.resolve(data);
-//            })
-//        }, 1000);
-//
-//        return deferred.promise;
-//    }
-
-    this.all = function(reload, success, error){
+    this.loadAll = function(reload, success, error){
         if(arguments.length > 0 && typeof arguments[0] == "function") {
             if(arguments.length == 1) {
                 success = arguments[0];
@@ -208,7 +207,6 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             }
         }
         if(reload || this.projects == null) {
-
             BusyService.busy(true);
 
             this.projects = this.Projects.all(
@@ -216,9 +214,9 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                     BusyService.busy(false);
 
                     // ADD METADATA
-                    for(var i=0; i < THIS.projects.length; i++) {
-                        THIS.projects[i].mode = 'normal';
-                        THIS.projects[i].status = 'partial';
+                    for(var i=0; i < _THIS.projects.length; i++) {
+                        _THIS.projects[i].mode = 'normal';
+                        _THIS.projects[i].status = 'partial';
                     }
 
                     // CALLBACKS
@@ -235,8 +233,59 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                     }
                 }
             );
-
+        } else {
+            // CALLBACK
+            if(success) {
+                success(this.projects);
+            }
         }
+    }
+    this.load = function(index, success, error) {
+        if(index == undefined || typeof index != "number") {
+            throw "'index' has to be a number";
+        }
+
+        if(this.projects[index].status == 'partial') {
+            BusyService.busy(true);
+            var proj = this.Projects.get(
+                {
+                    id: this.projects[index].Project.id
+                },
+                function(d, h){
+                    BusyService.busy(false);
+
+                    // ADD METADATA
+                    proj.mode = 'normal';
+                    proj.status = 'complete';
+                    _THIS.projects[index] = proj;
+
+                    // CALLBACKS
+                    if(success) {
+                        success(d, h);
+                    }
+                },
+                function(e) {
+                    BusyService.busy(false);
+
+                    // CALLBACKS
+                    if(error) {
+                        error(e);
+                    }
+                }
+            );
+        } else {
+            // CALLBACK
+            if(success) {
+                success(this.projects[index]);
+            }
+        }
+    }
+
+    this.activate = function(index) {
+        this.active_project_id = index;
+    }
+    this.isActive = function(index) {
+        return (index == this.active_project_id ? ACTIVE : NOT_ACTIVE) ;
     }
 })
 .service('auth', function(Users){

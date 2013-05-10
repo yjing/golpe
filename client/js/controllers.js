@@ -154,7 +154,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     BusyService.busy(false);
     $scope.main = function() {
 
-        ProjectsService.all(
+        ProjectsService.loadAll(
             // SUCCESS
             function(data, handlers){
                 console.log(ProjectsService.projects);
@@ -191,29 +191,37 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     $scope.p_index = null;
     $scope.showProject = function(index){
         // CHANGE ACTIVE PROJECT
-        if($scope.p_index != null && $scope.projects[$scope.p_index] !=null) {
-            $scope.projects[$scope.p_index].active = '';
-        }
-        $scope.projects[index].active = 'active';
-        $scope.p_index = index;
 
-        // IF PROJECT IS NOT IN FULLPROJECTS FETCH IT
-        if($scope.projects[index].status == 'partial') {
-            BusyService.busy(true);
-            var proj = Projects.get(
-                {id:$scope.projects[index].Project.id},
-                function(data, headers){
-                    BusyService.busy(false);
-                    proj.mode = 'normal';
-                    proj.status = 'complete';
-                    $scope.projects[index] = proj;
-                },
-                function(data) {
-                    BusyService.busy(false);
-                    $rootScope.handleError(data);
-                }
-            );
-        }
+        ProjectsService.load(index,
+            function(d, h){
+                console.log(d);
+                console.log(h('Content-Type'));
+            }
+        );
+
+//        if($scope.p_index != null && $scope.projects[$scope.p_index] !=null) {
+//            $scope.projects[$scope.p_index].active = '';
+//        }
+//        $scope.projects[index].active = 'active';
+//        $scope.p_index = index;
+//
+//        // IF PROJECT IS NOT IN FULLPROJECTS FETCH IT
+//        if($scope.projects[index].status == 'partial') {
+//            BusyService.busy(true);
+//            var proj = Projects.get(
+//                {id:$scope.projects[index].Project.id},
+//                function(data, headers){
+//                    BusyService.busy(false);
+//                    proj.mode = 'normal';
+//                    proj.status = 'complete';
+//                    $scope.projects[index] = proj;
+//                },
+//                function(data) {
+//                    BusyService.busy(false);
+//                    $rootScope.handleError(data);
+//                }
+//            );
+//        }
     }
 
     $scope.editProject = function(){
