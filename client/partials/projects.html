@@ -8,11 +8,11 @@
             <li ng-repeat="p in BS.projects" ng-class="BS.activeClass($index)" ng-hide="p.new">
                 <a href="#" ng-click="showProject($index);">{{p.Project.name}} <i class="icon-edit" ng-show="p.mode == 'edit'"></i></a>
 
-                <!--<ul class="students_list" ng-view="BS.isActive($index)">-->
-                    <!--<li class="" ng-repeat="t in BS.projects[$index].Team">-->
-                        <!--<span class="name">{{t.name}}</span>-->
-                    <!--</li>-->
-                <!--</ul>-->
+                <ul class="students_list" ng-view="BS.isActive($index)">
+                    <li class="" ng-repeat="t in BS.activeProject('Project').Team">
+                        <span class="name">{{t.name}} <button class="btn btn-link list-item-remove"><i class="icon-remove"></i></button></span>
+                    </li>
+                </ul>
             </li>
             <li class="text-right">
                 <a href="#" ng-click="newProject();">New Project <i class="icon-plus"></i></a>
