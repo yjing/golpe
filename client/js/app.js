@@ -295,10 +295,12 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         return ( this.isActive(index) ? ACTIVE : NOT_ACTIVE );
     }
     this.activeProject = function(key){
-        if(key) {
-            return this.projects[this.active_project_id][key];
-        } else {
-            return this.projects[this.active_project_id];
+        if(this.projects!=null && this.active_project_id!=null) {
+            if(key) {
+                return this.projects[this.active_project_id][key];
+            } else {
+                return this.projects[this.active_project_id];
+            }
         }
     }
 })
