@@ -210,18 +210,20 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             success = arguments[0];
             reload = false;
         }
+
         if(reload || this.projects == null) {
             BusyService.busy(true);
 
-            this.projects = this.Projects.all(
+            var proj = this.Projects.all(
                 function(d, h) {
                     BusyService.busy(false);
 
                     // ADD METADATA
-                    for(var i=0; i < _THIS.projects.length; i++) {
-                        _THIS.projects[i].mode = MODE_NORMAL;
-                        _THIS.projects[i].status = STATUS_PARTIAL;
+                    for(var i=0; i < proj.length; i++) {
+                        proj.mode = MODE_NORMAL;
+                        proj.status = STATUS_PARTIAL;
                     }
+                    _THIS.projects = proj;
 
                     // CALLBACKS
                     if(success) {
