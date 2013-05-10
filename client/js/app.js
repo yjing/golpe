@@ -34,26 +34,13 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     $locationProvider.html5Mode(true).hashPrefix('!');
 }).run(function($rootScope, $location, auth, BusyService) {
 
+    // BUSY SERVICE HAS TO BE AVAILABLE ON THE ROOT SCOPE
     $rootScope.BUSY = BusyService;
 
+    // TOPBAR TEMPLATE URL
     $rootScope.top_bar_url = '/client/partials/topbar.html';
 
-    // MENUS and ACTIVITY BAR
-//    $rootScope.busy_class = "";
-//    $rootScope.busy_monitor = 0;
-//    $rootScope.busy = function(busy) {
-//        if(busy) {
-//            $rootScope.busy_monitor++;
-//            $rootScope.busy_class = "busy";
-//        } else {
-//            $rootScope.busy_monitor--;
-//            if($rootScope.busy_monitor <= 0) {
-//                $rootScope.busy_monitor = 0;
-//                $rootScope.busy_class = "";
-//            }
-//        }
-//    }
-
+    // MENUS
     $rootScope.mainmenu_open = "";
     $rootScope.toggleMenu = function() {
         if($rootScope.mainmenu_open.length == 0) {
@@ -80,9 +67,11 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         }
     }
 
+    // GENERAL FUNCTIONS
     $rootScope.info = function() {
         $rootScope.toggleMenu();
     }
+
     $rootScope.help = function() {
         $rootScope.toggleMenu();
     }
@@ -111,6 +100,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         }
     }
 
+    // THUMBS HELPER
     $rootScope.getThumbUrl = function(media){
         if(media['has_thumb']) {
             return "/media/download/" + media['id'] + "?thumb=BIG";
@@ -153,38 +143,6 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         }
     }
 
-})
-.factory('Users', function($resource) {
-    return $resource('/users/', {}, {
-        all: {
-            method: 'GET',
-            isArray: true
-        },
-        user : {
-            method: 'GET',
-            url : '/users/user'
-        },
-        login : {
-            method : 'POST',
-            url : '/users/login',
-            headers : {'Content-Type': 'application/x-www-form-urlencoded'}
-        },
-        logout : {
-            method: 'GET',
-            url : '/users/logout'
-        }
-    });
-})
-.factory('Projects', function($resource) {
-    return $resource('/projects/:id', { id:'@id' }, {
-        all: {
-            method: 'GET',
-            isArray: true
-        },
-        get: {
-            method: 'GET'
-        }
-    });
 })
 .service('BusyService', function(){
     var BUSY_CLASS_BUSY = "busy";
@@ -236,6 +194,38 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         return Users.user();
     }
 
+})
+.factory('Users', function($resource) {
+    return $resource('/users/', {}, {
+        all: {
+            method: 'GET',
+            isArray: true
+        },
+        user : {
+            method: 'GET',
+            url : '/users/user'
+        },
+        login : {
+            method : 'POST',
+            url : '/users/login',
+            headers : {'Content-Type': 'application/x-www-form-urlencoded'}
+        },
+        logout : {
+            method: 'GET',
+            url : '/users/logout'
+        }
+    });
+})
+.factory('Projects', function($resource) {
+    return $resource('/projects/:id', { id:'@id' }, {
+        all: {
+            method: 'GET',
+            isArray: true
+        },
+        get: {
+            method: 'GET'
+        }
+    });
 });
 
 function OLDAlCtrl($scope, $rootScope, $location, $routeParams, $resource, $filter, auth, DialogService, WindDims) {
