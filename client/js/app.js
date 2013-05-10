@@ -174,7 +174,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 
     $rootScope.BS = this;
     this.projects = null;
-    this.incr = 1;
+    var THIS = this;
 
     this.Projects = $resource('/projects/:id', { id:'@id' }, {
         all: {
@@ -216,12 +216,10 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                     BusyService.busy(false);
 
                     // ADD METADATA
-                    console.log('INTERNAL ' + (this.incr++));
-                    console.log(this.projects);
-//                    for(var i=0; i < this.projects.length; i++) {
-//                        this.projects[i].mode = 'normal';
-//                        this.projects[i].status = 'partial';
-//                    }
+                    for(var i=0; i < THIS.projects.length; i++) {
+                        THIS.projects[i].mode = 'normal';
+                        THIS.projects[i].status = 'partial';
+                    }
 
                     // CALLBACKS
                     if(success) {
