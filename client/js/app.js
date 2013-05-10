@@ -170,10 +170,20 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         }
     }
 })
-.service('ProjectsService', function($rootScope, Projects, BusyService, $q){
+.service('ProjectsService', function($rootScope, BusyService, $q){
 
     $rootScope.BS = this;
     this.projects = null;
+
+    this.Projects = $resource('/projects/:id', { id:'@id' }, {
+        all: {
+            method: 'GET',
+            isArray: true
+        },
+        get: {
+            method: 'GET'
+        }
+    });
 
 //    this.test = function(data){
 //        var deferred = $q.defer();
@@ -200,12 +210,13 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 
             BusyService.busy(true);
 
-            this.projects = Projects.all(
+            this.projects = this.Projects.all(
                 function(d, h) {
                     BusyService.busy(false);
 
                     // ADD METADATA
                     console.log(d);
+                    console.log(this.projects);
                     console.log(this.projects);
 //                    for(var i=0; i < this.projects.length; i++) {
 //                        this.projects[i].mode = 'normal';
