@@ -249,11 +249,22 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         );
     }
 
+    $scope.newTeamLabel = "Add team";
     $scope.newTeamName = null;
     $scope.newTeamB = false;
-    $scope.newTeam = function(p_id){
-        $scope.newTeamName = 'New Team';
-        $scope.newTeamB = true;
+    $scope.newTeamPID = null;
+    $scope.addTeam = function(p_id){
+        if($scope.newTeamB) {
+            $scope.newTeamLabel = "Add team";
+            $scope.newTeamName = null;
+            $scope.newTeamB = false;
+            $scope.newTeamPID = null;
+        } else {
+            $scope.newTeamLabel = "Add";
+            $scope.newTeamName = 'New Team';
+            $scope.newTeamB = true;
+            $scope.newTeamPID = p_id;
+        }
     }
 
     $scope.t_id = null;
