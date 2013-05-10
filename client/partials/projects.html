@@ -23,12 +23,12 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane {{description_active}} tab1">
-                    <div ng-hide="BS.projects[p_index].mode == 'edit'">
+                    <div ng-hide="BS.activeProject(mode) == 'edit'">
                         <h3 ng-click="editProject();" >{{BS.projects[p_index].Project.name}}</h3>
                         <p ng-click="editProject();" >{{BS.projects[p_index].Project.description}}</p>
                         <input type="button" class="btn btn-small" value="Edit" ng-click="editProject();">
                     </div>
-                    <p ng-show="BS.projects[p_index].mode == 'edit'">
+                    <p ng-show="BS.activeProject(mode) == 'edit'">
                         <input autofocus="true" type="text" class="input-xlarge" ng-model="BS.projects[p_index].Project.name">
                         <span class="error">{{BS.projects[p_index].errors.Project.name}}</span>
                         <textarea ng-model="BS.projects[p_index].Project.description"></textarea>
