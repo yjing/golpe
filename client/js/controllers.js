@@ -234,6 +234,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     }
 
     $scope.showUser = function(user){
+        console.log(user);
         $scope.userinfo = user;
         BusyService.busy(true);
         var u = Users.get({id:user.id},
