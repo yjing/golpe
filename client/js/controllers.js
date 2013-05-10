@@ -157,16 +157,16 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         ProjectsService.loadAll(
             // SUCCESS
             function(data, handlers){
+                for(var i=0; i< d.length; i++) {
+                    $scope.menu.push({
+                        name: d[i].Project.name
+                    });
+                }
+//                console.log($scope.menu);
                 if(ProjectsService.projects.length > 0) {
                     ProjectsService.load(
                         0,
                         function(d, h){
-                            for(var i=0; i< d.length; i++) {
-                                $scope.menu.push({
-                                    name: d[i].Project.name
-                                });
-                            }
-                            console.log($scope.menu);
                             ProjectsService.activate(0);
                         },
                         function(e) {
