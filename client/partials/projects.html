@@ -3,9 +3,12 @@
     <div class="span3">
         <ul class="nav nav-tabs nav-stacked shadowed">
             <li class="text-right">
-                <a href="#" ng-click="reload();" style="background: #fafafa;">Refresh Projects <i class="icon-refresh"></i></a>
+                <a ng-click="reload();" style="background: #fafafa;">Refresh Projects <i class="icon-refresh"></i></a>
             </li>
-            <li ng-repeat="p in BS.projects | orderBy:p.Project.name" ng-class="BS.activeClass($index)" ng-hide="BS.projects[BS.active_project_id].new">
+            <li>
+                <a>Filter: <input ng-model="filter"></a>
+            </li>
+            <li ng-repeat="p in BS.projects | filter:filter | orderBy:p.Project.name" ng-class="BS.activeClass($index)" ng-hide="BS.projects[BS.active_project_id].new">
                 <a href="#" ng-click="showProject($index);">{{p.Project.name}}
                     <i class="icon-edit" ng-show="BS.projects[$index].mode == 'edit'"></i>
                 </a>
