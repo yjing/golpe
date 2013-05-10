@@ -159,7 +159,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
             function(data, handlers){
                 for(var i=0; i< d.length; i++) {
                     $scope.menu.push({
-                        name: d[i].Project.name
+                        name: data[i].Project.name
                     });
                 }
 //                console.log($scope.menu);
