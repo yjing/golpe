@@ -171,6 +171,9 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     }
 })
 .service('ProjectsService', function(Projects, BusyService){
+
+    this.projects = null;
+
     this.all = function(reload, success, error){
         if(arguments.length > 0 && typeof arguments[0] == "function") {
             if(arguments.length == 1) {
@@ -180,25 +183,26 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                 success = arguments[0];
             }
         }
-        console.log(reload);
-        console.log(success);
-        console.log(error);
+        if(reload || this.projects == null) {
 
-        BusyService.busy(true);
-        return Projects.all(
-            function(d, h) {
-                BusyService.busy(false);
-                if(success) {
-                    success(d, h);
+            BusyService.busy(true);
+
+            this.projects = Projects.all(
+                function(d, h) {
+                    BusyService.busy(false);
+                    if(success) {
+                        success(d, h);
+                    }
+                },
+                function(e) {
+                    BusyService.busy(false);
+                    if(error) {
+                        error(e);
+                    }
                 }
-            },
-            function(e) {
-                BusyService.busy(false);
-                if(error) {
-                    error(e);
-                }
-            }
-        )
+            );
+
+        }
     }
 })
 .service('auth', function(Users){
