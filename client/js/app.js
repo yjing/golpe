@@ -190,6 +190,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 
     this.projects = null;
     this.active_project_id = null;
+    this.active_team_id = null;
 
     this.Projects = $resource('/projects/:id', { id:'@id' }, {
         all: {
@@ -363,6 +364,29 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                 return this.projects[this.active_project_id][key];
             } else {
                 return this.projects[this.active_project_id];
+            }
+        }
+    }
+    // TEAM ACTIVATION
+    this.activateTeam = function(index){
+        if(index == undefined || typeof index != "number") {
+            throw "'index' has to be a number";
+        }
+        this.active_team_id = index;
+    }
+    this.iaActiveTeam = function(index){
+        return index == this.active_team_id;
+    }
+    this.activeTeamClass = function(index) {
+        return ( this.isActiveTeam(index) ? ACTIVE : NOT_ACTIVE );
+    }
+    this.activeTeam = function(key){
+        if(this.projects!=null && this.active_project_id!=null
+            && this.active_team_id!=null) {
+            if(key) {
+                return this.projects[this.active_project_id].Team.[this.active_team_id][key];
+            } else {
+                return this.projects[this.active_project_id].Team.[this.active_team_id];
             }
         }
     }
