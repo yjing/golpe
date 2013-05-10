@@ -203,6 +203,19 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         }
     });
 
+    this.Teams = $resource('/teams/:id', { id:'@id' }, {
+        all: {
+            method: 'GET',
+            isArray: true
+        },
+        get: {
+            method: 'GET'
+        },
+        add: {
+            method: 'POST'
+        }
+    });
+
     // DATA OPERATIONS
     this.loadAll = function(reload, success, error){
         if(arguments.length > 0 && typeof arguments[0] == "function") {
@@ -413,6 +426,34 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         }
     }
 
+    this.addTeam = function(p_id, name, success, error){
+        BusyService.busy(true);
+        var newTeam = this.Teams.get({},
+            {
+                "Team": {
+                    "project_id": p_id,
+                    "name": name
+                }
+            },
+            function(d, h){
+                BusyService.busy(false);
+
+                // CALLBACKS
+                if(success) {
+                    success(d, h);
+                }
+
+            },
+            function(e){
+                BusyService.busy(false);
+
+                // CALLBACKS
+                if(error) {
+                    error(e);
+                }
+            }
+        );
+    }
 })
 .service('auth', function(Users){
 

@@ -249,12 +249,27 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         );
     }
 
+    $scope.disableNewTeamButton = false;
     $scope.newTeamLabel = "Add team";
     $scope.newTeamName = null;
     $scope.newTeamB = false;
     $scope.newTeamPID = null;
     $scope.addTeam = function(p_id){
         if($scope.newTeamB) {
+            $scope.disableNewTeamButton = true;
+            ProjectsService.addTeam(
+                p_id, $scope.newTeamName,
+                function(d, h){
+                    ProjectsService.load(ProjectsService.active_project_id,
+                        function(d, h){
+                            $scope.disableNewTeamButton = false;
+                        }
+                    );
+                },
+                function(e) {
+                    $rootScope.handleError(e);
+                }
+            );
             $scope.newTeamLabel = "Add team";
             $scope.newTeamName = null;
             $scope.newTeamB = false;
