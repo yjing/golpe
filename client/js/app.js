@@ -225,7 +225,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                         proj[i].status = STATUS_PARTIAL;
                     }
                     _THIS.projects = proj;
-
+console.log(proj);
                     // CALLBACKS
                     if(success) {
                         success(d, h);
@@ -252,7 +252,6 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             throw "'index' has to be a number";
         }
 
-        console.log(_THIS.projects[index]);
         if(this.projects[index].status == STATUS_PARTIAL) {
             BusyService.busy(true);
             var proj = this.Projects.get(
