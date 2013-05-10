@@ -151,22 +151,19 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         ]
     };
 
-    // PROJECTS
-    $scope.projects = ProjectsService.projects;
-
     BusyService.busy(false);
     $scope.main = function() {
 
         ProjectsService.all(
             // SUCCESS
             function(data, handlers){
-                for(var i=0; i < $scope.projects.length; i++) {
-                    $scope.projects[i].mode = 'normal';
-                    $scope.projects[i].status = 'partial';
+                for(var i=0; i < ProjectsService.projects.length; i++) {
+                    ProjectsService.projects[i].mode = 'normal';
+                    ProjectsService.projects[i].status = 'partial';
                 }
-                if($scope.projects.length > 0) {
-                    $scope.showProject(0);
-                }
+//                if(ProjectsService.projects.length > 0) {
+//                    ProjectsService.showProject(0);
+//                }
             },
             // ERROR
             function(error){
