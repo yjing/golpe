@@ -250,10 +250,10 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     }
 
     $scope.newTeamName = null;
-    $scope.newTeam = false;
+    $scope.newTeamB = false;
     $scope.newTeam = function(p_id){
         $scope.newTeamName = 'New Team';
-        $scope.newTeam = true;
+        $scope.newTeamB = true;
     }
 
     $scope.t_id = null;
