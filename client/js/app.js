@@ -324,7 +324,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         );
     }
     this.new = function(){
-        this.cancelEditProject()
+        this.cancelEditProject();
         this.projects.push({
             "Project": {
                 "name": "Project Name",
