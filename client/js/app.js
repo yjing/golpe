@@ -231,7 +231,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     });
 })
 .factory('Projects', function($resource) {
-    return $resource('/projects/:id', { id:'@id' }, {
+    return $resource('/projectsDDD/:id', { id:'@id' }, {
         all: {
             method: 'GET',
             isArray: true
