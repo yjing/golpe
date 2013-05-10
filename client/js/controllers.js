@@ -157,7 +157,17 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         ProjectsService.loadAll(
             // SUCCESS
             function(data, handlers){
-
+                if(ProjectsService.projects.length > 0) {
+                    ProjectsService.load(
+                        0,
+                        function(d, h){
+                            ProjectsService.activate(0);
+                        },
+                        function(e) {
+                            $rootScope.handleError(e);
+                        }
+                    );
+                }
             },
             // ERROR
             function(error){
@@ -183,7 +193,6 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     }
 
     $scope.goUsers = function(){
-        $scope.edit = false;
         $location.url('/client/users');
         $rootScope.toggleTitleMenu();
     }
@@ -197,47 +206,23 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
                 ProjectsService.activate(index);
             }
         );
-
-//        if($scope.p_index != null && $scope.projects[$scope.p_index] !=null) {
-//            $scope.projects[$scope.p_index].active = '';
-//        }
-//        $scope.projects[index].active = 'active';
-//        $scope.p_index = index;
-//
-//        // IF PROJECT IS NOT IN FULLPROJECTS FETCH IT
-//        if($scope.projects[index].status == 'partial') {
-//            BusyService.busy(true);
-//            var proj = Projects.get(
-//                {id:$scope.projects[index].Project.id},
-//                function(data, headers){
-//                    BusyService.busy(false);
-//                    proj.mode = 'normal';
-//                    proj.status = 'complete';
-//                    $scope.projects[index] = proj;
-//                },
-//                function(data) {
-//                    BusyService.busy(false);
-//                    $rootScope.handleError(data);
-//                }
-//            );
-//        }
     }
 
-    $scope.editProject = function(){
-        $scope.projects[$scope.p_index].old = angular.copy($scope.projects[$scope.p_index]);
-        $scope.projects[$scope.p_index].mode = 'edit';
-    }
-    $scope.cancelEdit = function(){
-        console.log($scope.projects[$scope.p_index]);
-        if($scope.projects[$scope.p_index].status == 'new') {
-            $scope.projects.splice($scope.p_index, 1);
-            if($scope.projects.length > 0) {
-                $scope.showProject(0);
-            }
-        } else {
-            $scope.projects[$scope.p_index] = $scope.projects[$scope.p_index].old;
-        }
-    }
+//    $scope.editProject = function(){
+//        $scope.projects[$scope.p_index].old = angular.copy($scope.projects[$scope.p_index]);
+//        $scope.projects[$scope.p_index].mode = 'edit';
+//    }
+//    $scope.cancelEdit = function(){
+//        console.log($scope.projects[$scope.p_index]);
+//        if($scope.projects[$scope.p_index].status == 'new') {
+//            $scope.projects.splice($scope.p_index, 1);
+//            if($scope.projects.length > 0) {
+//                $scope.showProject(0);
+//            }
+//        } else {
+//            $scope.projects[$scope.p_index] = $scope.projects[$scope.p_index].old;
+//        }
+//    }
     $scope.saveProject = function(){
         BusyService.busy(true);
         var params = {};
