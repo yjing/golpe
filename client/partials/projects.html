@@ -8,7 +8,7 @@
             <li ng-repeat="p in menu" ng-class="BS.activeClass($index)" ng-hide="BS.projects[BS.active_project_id].new">
                 <a href="#" ng-click="showProject($index);" style="position: relative;">{{p.name}}
                     <i class="icon-edit" ng-show="BS.projects[$index].mode == 'edit'"></i>
-                    <button class="btn btn-link" style="position: absolute; height: 100%; right: 5px;"><i class="icon-chevron-right"></i></button>
+                    <button class="btn btn-link" style="position: absolute; height: 100%; margin: 0; right: 5px;"><i class="icon-chevron-right"></i></button>
                 </a>
             </li>
             <li class="text-right">
