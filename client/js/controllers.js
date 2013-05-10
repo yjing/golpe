@@ -166,6 +166,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
                                     name: d[i].Project.name
                                 });
                             }
+                            console.log($scope.menu);
                             ProjectsService.activate(0);
                         },
                         function(e) {
