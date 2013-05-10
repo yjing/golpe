@@ -5,8 +5,8 @@
             <li class="text-right">
                 <a href="#" ng-click="reload();" style="background: #fafafa;">Refresh Projects <i class="icon-refresh"></i></a>
             </li>
-            <li ng-repeat="p_id in DB.d.projects" ng-class="BS.activeClass($index)" ng-hide="BS.projects[BS.active_project_id].new">
-                <a href="#" ng-click="showProject($index);">{{DB.d.projects[p_id].name}}
+            <li ng-repeat="p_id in DB.d.projects"> <!--ng-class="BS.activeClass($index)" ng-hide="BS.projects[BS.active_project_id].new">-->
+                <a href="#" ng-clicks="showProject($index);">{{DB.d.projects[p_id].name}}
                     <i class="icon-edit" ng-show="BS.projects[$index].mode == 'edit'"></i>
                 </a>
             </li>
@@ -18,80 +18,80 @@
         </ul>
     </div>
 
-    <div class="span9">
-        <div class="row-fluid" ng-show="BS.activeProject() != null">
-            <div class="span12">
-                <div class="shadowed" style="padding: 1em 2em; border: 1px rgb(221, 221, 221) solid;-webkit-border-radius: 4px;border-radius: 4px;">
-                    <div ng-hide="BS.activeProject('mode') == 'edit'">
-                        <h3 ng-click="BS.editProject(BS.active_project_id);" style="cursor: pointer">
-                            {{BS.activeProject('Project').name}} <i class="icon-edit"></i>
-                        </h3>
-                        <p>
-                            {{BS.activeProject('Project').description}}
-                        </p>
-                        <p><button class="btn btn-danger">Delete Project</button></p>
-                    </div>
-                    <p ng-show="BS.activeProject('mode') == 'edit'">
-                        <input autofocus="true" onload="this.focus()" type="text" class="input-xlarge" ng-model="BS.activeProject('Project').name">
-                        <span class="error" onload="this.focus()">{{BS.activeProject().errors.Project.name}}</span>
-                        <textarea ng-model="BS.activeProject('Project').description"></textarea>
-                        <div class="btn-group"ng-show="BS.activeProject('mode') == 'edit'">
-                            <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="BS.save(BS.active_project_id);">Save</button>
-                            <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="BS.cancelEditProject(BS.active_project_id);">Cancel</button>
-                        </div>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="row-fluid">
-            <div class="span4" style="margin-top: 2em;" ng-show="BS.activeProject('Project').Team != null">
-                <ul class="nav nav-tabs nav-stacked shadowed">
-                    <li class="text-right">
-                        <a href="#" ng-click="" style="background: #fafafa;">Teams  <i class="icon-briefcase"></i></a>
-                    </li>
-                    <li ng-repeat="t in BS.activeProject('Project').Team" ng-class="BS.activeTeamClass($index)">
-                        <a href="#" ng-click="BS.activateTeam($index);">
-                            <span>{{t.name}}</span>
-                        </a>
-                    </li>
-                    <li ng-show="newTeamB">
-                        <a>
-                            <input ng-model="newTeamName" style="width: 100%;">
-                        </a>
-                    </li>
-                    <li class="text-right">
-                        <a ng-click="" style="background: #fafafa;">
-                            <button class="btn btn-success" ng-click="addTeam(BS.activeProject('Project').id);">{{newTeamLabel}}</button>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="span4" style="margin-top: 2em;"  ng-show="BS.activeProject('Project').Team != null && BS.activeTeam() != null">
-                <ul class="nav nav-tabs nav-stacked shadowed">
-                    <li class="text-right">
-                        <a href="#" ng-click="" style="background: #fafafa;">Teams Members <i class="icon-user"></i></a>
-                    </li>
-                    <li ng-repeat="s in BS.activeTeam().Student" ng-class="">
-                        <a href="#" ng-click="showUser(s)">{{s.username}}</a>
-                    </li>
-                    <li class="text-right">
-                        <a style="background: #fafafa;">
-                            <button class="btn btn-danger">Delete Team</button>
-                            <button class="btn btn-success">Add Member</button>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="span4" style="margin-top: 2em;margin-bottom: 3em;" ng-show="BS.activeProject('Project').Team != null && BS.activeTeam() != null && userinfo != null">
-                <div class="shadowed" style="background: #fafafa;padding: 0.5em 1em; border: 1px rgb(221, 221, 221) solid;-webkit-border-radius: 4px;border-radius: 4px;">
-                    <h4>{{userinfo.username}}</h4>
-                    <p ng-show="userinfo.Profile != null">
-                        <strong>{{userinfo.Profile.name}}</strong> <em>[ {{userinfo.role}} ]</em><br>
-                        <strong>Supervisor:</strong> {{userinfo.Supervisor.username}}
-                    </p>
-                </div>
-            </div>
-        </div>
+    <!--<div class="span9">-->
+        <!--<div class="row-fluid" ng-show="BS.activeProject() != null">-->
+            <!--<div class="span12">-->
+                <!--<div class="shadowed" style="padding: 1em 2em; border: 1px rgb(221, 221, 221) solid;-webkit-border-radius: 4px;border-radius: 4px;">-->
+                    <!--<div ng-hide="BS.activeProject('mode') == 'edit'">-->
+                        <!--<h3 ng-click="BS.editProject(BS.active_project_id);" style="cursor: pointer">-->
+                            <!--{{BS.activeProject('Project').name}} <i class="icon-edit"></i>-->
+                        <!--</h3>-->
+                        <!--<p>-->
+                            <!--{{BS.activeProject('Project').description}}-->
+                        <!--</p>-->
+                        <!--<p><button class="btn btn-danger">Delete Project</button></p>-->
+                    <!--</div>-->
+                    <!--<p ng-show="BS.activeProject('mode') == 'edit'">-->
+                        <!--<input autofocus="true" onload="this.focus()" type="text" class="input-xlarge" ng-model="BS.activeProject('Project').name">-->
+                        <!--<span class="error" onload="this.focus()">{{BS.activeProject().errors.Project.name}}</span>-->
+                        <!--<textarea ng-model="BS.activeProject('Project').description"></textarea>-->
+                        <!--<div class="btn-group"ng-show="BS.activeProject('mode') == 'edit'">-->
+                            <!--<button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="BS.save(BS.active_project_id);">Save</button>-->
+                            <!--<button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="BS.cancelEditProject(BS.active_project_id);">Cancel</button>-->
+                        <!--</div>-->
+                    <!--</p>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="row-fluid">-->
+            <!--<div class="span4" style="margin-top: 2em;" ng-show="BS.activeProject('Project').Team != null">-->
+                <!--<ul class="nav nav-tabs nav-stacked shadowed">-->
+                    <!--<li class="text-right">-->
+                        <!--<a href="#" ng-click="" style="background: #fafafa;">Teams  <i class="icon-briefcase"></i></a>-->
+                    <!--</li>-->
+                    <!--<li ng-repeat="t in BS.activeProject('Project').Team" ng-class="BS.activeTeamClass($index)">-->
+                        <!--<a href="#" ng-click="BS.activateTeam($index);">-->
+                            <!--<span>{{t.name}}</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li ng-show="newTeamB">-->
+                        <!--<a>-->
+                            <!--<input ng-model="newTeamName" style="width: 100%;">-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li class="text-right">-->
+                        <!--<a ng-click="" style="background: #fafafa;">-->
+                            <!--<button class="btn btn-success" ng-click="addTeam(BS.activeProject('Project').id);">{{newTeamLabel}}</button>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <!--<div class="span4" style="margin-top: 2em;"  ng-show="BS.activeProject('Project').Team != null && BS.activeTeam() != null">-->
+                <!--<ul class="nav nav-tabs nav-stacked shadowed">-->
+                    <!--<li class="text-right">-->
+                        <!--<a href="#" ng-click="" style="background: #fafafa;">Teams Members <i class="icon-user"></i></a>-->
+                    <!--</li>-->
+                    <!--<li ng-repeat="s in BS.activeTeam().Student" ng-class="">-->
+                        <!--<a href="#" ng-click="showUser(s)">{{s.username}}</a>-->
+                    <!--</li>-->
+                    <!--<li class="text-right">-->
+                        <!--<a style="background: #fafafa;">-->
+                            <!--<button class="btn btn-danger">Delete Team</button>-->
+                            <!--<button class="btn btn-success">Add Member</button>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <!--<div class="span4" style="margin-top: 2em;margin-bottom: 3em;" ng-show="BS.activeProject('Project').Team != null && BS.activeTeam() != null && userinfo != null">-->
+                <!--<div class="shadowed" style="background: #fafafa;padding: 0.5em 1em; border: 1px rgb(221, 221, 221) solid;-webkit-border-radius: 4px;border-radius: 4px;">-->
+                    <!--<h4>{{userinfo.username}}</h4>-->
+                    <!--<p ng-show="userinfo.Profile != null">-->
+                        <!--<strong>{{userinfo.Profile.name}}</strong> <em>[ {{userinfo.role}} ]</em><br>-->
+                        <!--<strong>Supervisor:</strong> {{userinfo.Supervisor.username}}-->
+                    <!--</p>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
         <!--<div class="row-fluid">-->
             <!--<div class="span4" style="margin-top: 2em;">-->
                 <!--<ul class="nav nav-tabs nav-stacked shadowed">-->
@@ -107,7 +107,7 @@
                 <!--</ul>-->
             <!--</div>-->
         <!--</div>-->
-    </div>
+    <!--</div>-->
         <!--<div class="tabbable">-->
             <!--<ul class="nav nav-tabs">-->
                 <!--<li class="{{description_active}}">-->
