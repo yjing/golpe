@@ -121,7 +121,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth) {
     }
 }
 
-function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, Users) {
+function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, Users, BusyService) {
     // TOP BAR
     $rootScope.top_bar = {
 //        back_button: {
@@ -153,6 +153,11 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
 
     $rootScope.busy(false);
     $scope.main = function() {
+
+        console.log(BusyService.busy());
+        console.log(BusyService.busy(true));
+        console.log(BusyService.busy(false));
+
         $rootScope.busy(true);
         $scope.projects = Projects.all(
             function(){
@@ -289,6 +294,9 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         );
     }
     $scope.add = function(t_id, s_id){
+
+        $scope.projects[$scope.p_index].Team.
+
         $rootScope.busy(true);
         var Test = $resource('/teams/addMember/:tid/:sid',{},{
             add: {

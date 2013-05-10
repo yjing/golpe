@@ -184,6 +184,34 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         }
     });
 })
+.service('BusyService', function(){
+    var BUSY_CLASS_BUSY = "busy";
+    var BUSY_CLASS_NOT_BUSY = "";
+
+    this.busy_monitor = 0;
+
+    this.busy = function(busy){
+        if(busy == true) {
+            this.busy_monitor++;
+        } else if (busy == false) {
+            this.busy_monitor = Math.max(0, this.busy_monitor - 1);
+        }
+        return this.busyClass();
+    };
+
+    this.busyClass = function(){
+        if(this.busy_monitor > 0) {
+            return BUSY_CLASS_BUSY;
+        } else {
+            return BUSY_CLASS_NOT_BUSY;
+        }
+    }
+})
+.service('ProjectsService', function(Projects, BusyService){
+    this.all = function(){
+
+    }
+})
 .service('auth', function(Users){
 
     this.auth = function(username, password){
