@@ -75,7 +75,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="span4" style="margin-top: 2em;margin-bottom: 3em;" ng-show="userinfo != null">
+            <div class="span4" style="margin-top: 2em;margin-bottom: 3em;" ng-show="BS.activeProject('Project').Team != null && BS.activeTeam() != null && userinfo != null">
                 <div class="shadowed" style="background: #fafafa;padding: 0.5em 1em; border: 1px rgb(221, 221, 221) solid;-webkit-border-radius: 4px;border-radius: 4px;">
                     <h4>{{userinfo.username}}</h4>
                     <p ng-show="userinfo.Profile != null">
