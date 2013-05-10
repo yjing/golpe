@@ -59,7 +59,7 @@
                     <li class="text-right">
                         <a href="#" ng-click="" style="background: #fafafa;">Teams Members <i class="icon-user"></i></a>
                     </li>
-                    <li ng-repeat="s in BS.activeTeam().Student" class="{{ (userinfo.id == s.id?'active':''); }}">
+                    <li ng-repeat="s in BS.activeTeam().Student" ng-class="">
                         <a href="#" ng-click="showUser(s)">{{s.username}}</a>
                     </li>
                     <li class="text-right">
