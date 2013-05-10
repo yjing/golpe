@@ -171,8 +171,22 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     }
 })
 .service('ProjectsService', function(Projects, BusyService){
-    this.all = function(){
-
+    this.all = function(success, error){
+        BusyService.busy(true);
+        return Projects.all(
+            function(d, h) {
+                BusyService.busy(false);
+                if(success) {
+                    success(d, h);
+                }
+            },
+            function(e) {
+                BusyService.busy(false);
+                if(error) {
+                    error(e);
+                }
+            }
+        )
     }
 })
 .service('auth', function(Users){

@@ -121,7 +121,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, BusyService) {
     }
 }
 
-function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, Users, BusyService) {
+function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, ProjectsService, Users, BusyService) {
     // TOP BAR
     $rootScope.top_bar = {
 //        back_button: {
@@ -153,6 +153,24 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
 
     BusyService.busy(false);
     $scope.main = function() {
+
+        $scope.projects = ProjectsService.all(
+            // SUCCESS
+            function(data, handlers){
+                for(var i=0; i < $scope.projects.length; i++) {
+                    $scope.projects[i].mode = 'normal';
+                    $scope.projects[i].status = 'partial';
+                }
+                if($scope.projects.length > 0) {
+                    $scope.showProject(0);
+                }
+            },
+            // ERROR
+            function(error){
+                $rootScope.handleError(data);
+            }
+        );
+        return;
 
         BusyService.busy(true);
         $scope.projects = Projects.all(
