@@ -201,17 +201,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
             true,
             // SUCCESS
             function(data, handlers){
-                if(ProjectsService.projects.length > 0) {
-                    ProjectsService.load(
-                        ProjectsService.active_project_id,
-                        function(d, h){
-                            ProjectsService.activate(ProjectsService.active_project_id);
-                        },
-                        function(e) {
-                            $rootScope.handleError(e);
-                        }
-                    );
-                }
+
             },
             // ERROR
             function(error){
