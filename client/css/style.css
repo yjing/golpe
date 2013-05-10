@@ -54,8 +54,8 @@ ul {
 }
 
 .menu {
-    -webkit-box-shadow:  0px 0px 10px 1px rgba(0, 0, 0, 0.1);
-    box-shadow:  0px 0px 10px 1px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow:  0px 0px 10px 1px rgba(0, 0, 0, 0.05);
+    box-shadow:  0px 0px 10px 1px rgba(0, 0, 0, 0.05);
 }
 
 .ss-dialog{
