@@ -189,7 +189,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         }
     }
     this.insertData = function(table_name, key, data) {
-       if(thie.t_names.indexOf(table_name) > 0) {
+       if(this.t_names.indexOf(table_name) > 0) {
            var old = this.d[table_name][key];
            this.d[table_name][key] = data;
            return old;
