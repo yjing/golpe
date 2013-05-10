@@ -32,7 +32,12 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     // configure html5 to get links working
     // If you don't do this, you URLs will be base.com/#/home rather than base.com/home
     $locationProvider.html5Mode(true).hashPrefix('!');
-}).run(function($rootScope, $location, auth, BusyService) {
+}).run(function($rootScope, $location, auth, BusyService, DBService) {
+
+    // DB SCHEMA CREATION
+    DBService.createTable("projects");
+    DBService.createTable("teams");
+    DBService.createTable("users");
 
     // TOPBAR TEMPLATE URL
     $rootScope.top_bar_url = '/client/partials/topbar.html';
@@ -203,11 +208,6 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     $rootScope.BS = this;
     var _THIS = this;
 
-    DBService.createTable("projects");
-    DBService.insertData ("projects", "1", "data 1");
-    DBService.insertData ("projects", 2, "data 2");
-    console.log(DBService.d);
-
     this.Projects = $resource('/projects/:id', { id:'@id' }, {
         all: {
             method: 'GET',
@@ -256,17 +256,25 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             for(var i=0; i<data.length; i++) {
                 this.insertProject(data[i]);
             }
-            console.log(DBService.d);
         }
     }
     this.insertProject = function(data) {
         console.log(angular.isDefined(DBService.d['Project']));
-        if(angular.isDefined(data)) {
-            if(angular.isDefined(DBService.d['Project'])) {
-
+        if(angular.isDefined(data) &&
+           andular.isDefined(data['Project']) &&
+           andular.isDefined(data['Project'])) {
+            DBService.insertData ("projects", data['Project']['id'], data['Project']);
+            if(andular.isDefined(data['Project']['Team'])) {
+                this.insertTeams(data['Project']['Team']);
             }
         }
-        DBService.d['Project'][ data['Project']['id'] ] = data['Project'];
+    }
+    this.insertTeams = function(data){
+        console.log(angular.isObject([]));
+        console.log(angular.isObject({}));
+        console.log(angular.isObject("S"));
+        console.log(angular.isObject(1));
+        console.log(angular.isObject(function(){}));
     }
 
 })
