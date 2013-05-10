@@ -170,7 +170,71 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         }
     }
 })
-.service('ProjectsService', function($rootScope, BusyService, $resource){
+.service('DBService', function($rootScope){
+    $rootScope.DB = this;
+
+    this.d = {};
+    this.m = {};
+
+}.service('ProjectsService', function($rootScope, $resource, BusyService, DBService){
+    $rootScope.BS = this;
+
+    this.Projects = $resource('/projects/:id', { id:'@id' }, {
+        all: {
+            method: 'GET',
+            isArray: true
+        },
+        get: {
+            method: 'GET'
+        }
+    });
+
+    this.loadAll = function(reload, success, error) {
+        // PARAM MANAGEMENT
+        if(arguments.length > 0 && typeof arguments[0] == "function") {
+            if(arguments.length > 1) {
+                error = arguments[1];
+            }
+            success = arguments[0];
+            reload = false;
+        }
+
+        BusyService.busy(true);
+        var result = this.Projects.all(
+            function(d, h) {
+                BusyService.busy(false);
+                this.insertProjects(d);
+
+                // CALLBACKS
+                if(success) {
+                    success(d, h);
+                }
+            },
+            function(e) {
+                BusyService.busy(false);
+
+                // CALLBACKS
+                if(error) {
+                    error(e);
+                }
+            }
+        );
+    }
+
+    // DB ACCESS FUNCS
+    this.insertProjects = function(data) {
+        if(angular.isArray(data)) {
+            for(var i=0; i<data.length; i++) {
+                this.insertProject(data[i]);
+            }
+            console.log(DBService.d);
+        }
+    }
+    this.insertProject = function(data) {
+        DBService.d['Project'][ data['Project']['id'] ] = data['Project'];
+    }
+
+}.service('ProjectsServiceOLD', function($rootScope, BusyService, $resource){
     // PUT SERVICE IN ROOTE SCOPE
     $rootScope.BS = this;
 
