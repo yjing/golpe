@@ -197,17 +197,17 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     }
 
     $scope.reload = function(){
-//        ProjectsService.loadAll(
-//            true,
-//            // SUCCESS
-//            function(data, handlers){
-//
-//            },
-//            // ERROR
-//            function(error){
-//                $rootScope.handleError(error);
-//            }
-//        );
+        ProjectsService.loadAll(
+            true,
+            // SUCCESS
+            function(data, handlers){
+
+            },
+            // ERROR
+            function(error){
+                $rootScope.handleError(error);
+            }
+        );
     }
 
     $scope.showProject = function(index){
