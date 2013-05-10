@@ -202,9 +202,9 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 
     this.busyClass = function(){
         if(this.busy_monitor > 0) {
-            return BUSY_CLASS_BUSY;
+            return this.BUSY_CLASS_BUSY;
         } else {
-            return BUSY_CLASS_NOT_BUSY;
+            return this.BUSY_CLASS_NOT_BUSY;
         }
     }
 })
