@@ -170,7 +170,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         }
     }
 })
-.service('ProjectsService', function($rootScope, BusyService, $q){
+.service('ProjectsService', function($rootScope, BusyService, $resource){
 
     $rootScope.BS = this;
     this.projects = null;
