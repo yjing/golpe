@@ -21,12 +21,12 @@ function LoginCtrl($scope, $rootScope, $location, auth) {
     };
 
     $scope.login = function() {
-        $rootScope.busy(true);
+        BusyService.busy(true);
         $rootScope.user = auth.auth($scope.username, $scope.password);
         $rootScope.user.$then(
             function(){
                 console.log($rootScope.user);
-                $rootScope.busy(false);
+                BusyService.busy(false);
                 if( $rootScope.user['logged'] ) {
                     $scope.redirectUser();
                 } else {
@@ -34,7 +34,7 @@ function LoginCtrl($scope, $rootScope, $location, auth) {
                 }
             },
             function(){
-                $rootScope.busy(false);
+                BusyService.busy(false);
                 $scope.login_message = "Login failed";
             }
         )
@@ -56,10 +56,10 @@ function LoginCtrl($scope, $rootScope, $location, auth) {
         }
     }
 
-    $rootScope.busy(true);
+    BusyService.busy(true);
     $rootScope.user = auth.user();
     $rootScope.user.$then(function(){
-        $rootScope.busy(false);
+        BusyService.busy(false);
         $scope.redirectUser();
     });
 
@@ -96,20 +96,20 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth) {
     };
 
 
-    $rootScope.busy(false);
+    BusyService.busy(false);
     $scope.main = function() {
-        $rootScope.busy(true);
+        BusyService.busy(true);
         $scope.users = Users.all();
         $scope.users.$then(function(){
-            $rootScope.busy(false);
+            BusyService.busy(false);
         });
     }
 
     if($rootScope.user == null || !$rootScope.user['logged']) {
-        $rootScope.busy(true);
+        BusyService.busy(true);
         $rootScope.user = auth.user();
         $rootScope.user.$then(function(){
-            $rootScope.busy(false);
+            BusyService.busy(false);
             if(!$rootScope.user['logged']) {
                 $location.url('/client/login');
             } else {
@@ -151,15 +151,13 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         ]
     };
 
-    $rootScope.busy(false);
+    BusyService.busy(false);
     $scope.main = function() {
 
         BusyService.busy(true);
-
-        $rootScope.busy(true);
         $scope.projects = Projects.all(
             function(){
-                $rootScope.busy(false);
+                BusyService.busy(false);
                 for(var i=0; i<$scope.projects.length; i++) {
                     $scope.projects[i].mode = 'normal';
                     $scope.projects[i].status = 'partial';
@@ -169,17 +167,17 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
                 }
             },
             function(data) {
-                $rootScope.busy(false);
+                BusyService.busy(false);
                 $rootScope.handleError(data);
             }
         );
     }
 
     if($rootScope.user == null || !$rootScope.user['logged']) {
-        $rootScope.busy(true);
+        BusyService.busy(true);
         $rootScope.user = auth.user();
         $rootScope.user.$then(function(){
-            $rootScope.busy(false);
+            BusyService.busy(false);
             if(!$rootScope.user['logged']) {
                 $location.url('/client/login');
             } else {
@@ -207,17 +205,17 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
 
         // IF PROJECT IS NOT IN FULLPROJECTS FETCH IT
         if($scope.projects[index].status == 'partial') {
-            $rootScope.busy(true);
+            BusyService.busy(true);
             var proj = Projects.get(
                 {id:$scope.projects[index].Project.id},
                 function(data, headers){
-                    $rootScope.busy(false);
+                    BusyService.busy(false);
                     proj.mode = 'normal';
                     proj.status = 'complete';
                     $scope.projects[index] = proj;
                 },
                 function(data) {
-                    $rootScope.busy(false);
+                    BusyService.busy(false);
                     $rootScope.handleError(data);
                 }
             );
@@ -240,7 +238,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         }
     }
     $scope.saveProject = function(){
-        $rootScope.busy(true);
+        BusyService.busy(true);
         var params = {};
         if($scope.projects[$scope.p_index].mode != 'new') {
             params = {id:$scope.projects[$scope.p_index].Project.id};
@@ -249,12 +247,12 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
             params,
             $scope.projects[$scope.p_index],
             function() {
-                $rootScope.busy(false);
+                BusyService.busy(false);
                 $scope.projects[$scope.p_index] = proj;
                 $scope.projects[$scope.p_index].mode = 'complete';
             },
             function(data) {
-                $rootScope.busy(false);
+                BusyService.busy(false);
                 $rootScope.handleError(data);
                 $scope.projects[$scope.p_index].errors = data.data.data_validation_errors;
                 console.log($scope.projects[$scope.p_index]);
@@ -279,15 +277,15 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     $scope.students = null;
     $scope.addStudent = function(t_id){
         $scope.t_id = t_id;
-        $rootScope.busy(true);
+        BusyService.busy(true);
         $scope.students = Users.all(
             function(data){
-                $rootScope.busy(false);
+                BusyService.busy(false);
                 console.log($scope.students);
             },
             function(err_data){
                 $rootScope.handleError(err_data);
-                $rootScope.busy(false);
+                BusyService.busy(false);
             }
         );
     }
@@ -295,7 +293,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
 
         $scope.projects[$scope.p_index].Team.
 
-        $rootScope.busy(true);
+        BusyService.busy(true);
         var Test = $resource('/teams/addMember/:tid/:sid',{},{
             add: {
                 method: 'POST'
@@ -303,11 +301,11 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         });
         Test.add({tid:t_id, sid:s_id},{},
             function(data){
-                $rootScope.busy(false);
+                BusyService.busy(false);
                 console.log(data);
             },
             function(err){
-                $rootScope.busy(false);
+                BusyService.busy(false);
                 console.log(err);
             }
         );

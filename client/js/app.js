@@ -34,25 +34,25 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     $locationProvider.html5Mode(true).hashPrefix('!');
 }).run(function($rootScope, $location, auth, BusyService) {
 
-    $rootScope.bs = BusyService;
+    $rootScope.BUSY = BusyService;
 
     $rootScope.top_bar_url = '/client/partials/topbar.html';
 
     // MENUS and ACTIVITY BAR
-    $rootScope.busy_class = "";
-    $rootScope.busy_monitor = 0;
-    $rootScope.busy = function(busy) {
-        if(busy) {
-            $rootScope.busy_monitor++;
-            $rootScope.busy_class = "busy";
-        } else {
-            $rootScope.busy_monitor--;
-            if($rootScope.busy_monitor <= 0) {
-                $rootScope.busy_monitor = 0;
-                $rootScope.busy_class = "";
-            }
-        }
-    }
+//    $rootScope.busy_class = "";
+//    $rootScope.busy_monitor = 0;
+//    $rootScope.busy = function(busy) {
+//        if(busy) {
+//            $rootScope.busy_monitor++;
+//            $rootScope.busy_class = "busy";
+//        } else {
+//            $rootScope.busy_monitor--;
+//            if($rootScope.busy_monitor <= 0) {
+//                $rootScope.busy_monitor = 0;
+//                $rootScope.busy_class = "";
+//            }
+//        }
+//    }
 
     $rootScope.mainmenu_open = "";
     $rootScope.toggleMenu = function() {
