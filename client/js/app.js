@@ -295,7 +295,11 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             } else {
                 DBService.insertMeta("projects", data['Project']['id'], 'status', 'partial');
                 DBService.insertMeta("projects", data['Project']['id'], 'mode', 'normal');
-                DBService.insertMeta("projects", data['Project']['id'], 'active', false);
+                if(data['Project']['id']==1) {
+                    DBService.insertMeta("projects", data['Project']['id'], 'active', 'active');
+                } else {
+                    DBService.insertMeta("projects", data['Project']['id'], 'active', '');
+                }
             }
         }
     }
