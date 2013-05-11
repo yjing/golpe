@@ -217,6 +217,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
                 function(d, h){
                     $scope.selected_project = id;
 
+                    console.log(d);
                     var newProjectTree = getIdTree(d, "Project.Team.Student", "teams.users");
                     var index = $scope.findIndexById(id);
                     $scope.menu[index] = newProjectTree;
@@ -405,7 +406,7 @@ function getIdTree(data, path, tPath) {
                     result.push(elem);
                 }
             }
-        } else if(angular.isObject(obj)) {
+        } else {//if(angular.isObject(obj)) {
             result = {};
             if(angular.isDefined(obj.id)) {
                 result.id = obj.id;
