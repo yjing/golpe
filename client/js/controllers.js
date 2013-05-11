@@ -218,6 +218,15 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
                     $scope.selected_project = id;
 
                     var index = $scope.findIndexById(id);
+                    if(angular.isUndefined(index)) {
+                        $scope.menu.push({"id":id});
+                        index = $scope.menu.length - 1;
+                    }
+                    if(angular.isArray(data['Project']['Team'])) {
+                        for(var i=0; i<data['Project']['Team'].length; i++) {
+                            console.log(data['Project']['Team'][i].name);
+                        }
+                    }
                     console.log(d);
                 },
                 function(e) {
