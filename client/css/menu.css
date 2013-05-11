@@ -62,7 +62,7 @@ div.menu > ul {
 div.menu > div > a,
 div.menu > div > span,
 div.menu > ul > li > a
-div.menu .selector {
+div.menu > .selector {
     display: block;
     padding: 6px 10px;
 }
