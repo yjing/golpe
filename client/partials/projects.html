@@ -9,6 +9,9 @@
                 </a>
             </div>
             <ul>
+                <li>
+                    <input type="text">
+                </li>
                 <li ng-repeat="p in menu" ng-class="isSelectedProject(p.id)">
                     <a href="#" ng-click="selectProject(p.id);">{{DB.d.projects[p.id].name}}</a>
                     <div class="functions">
