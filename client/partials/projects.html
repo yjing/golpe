@@ -43,8 +43,11 @@
                     <p class="selector">{{DB.d.projects[selected_project].description}}</p>
                 </li>
             </ul>
-            <div ng-show="DB.m.projects[selected_project].mode == 'edit'">
-                <span>operations</span>
+            <div ng-show="DB.m.projects[selected_project].mode != 'edit'">
+                <div class="btn-group">
+                    <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="BS.save(BS.active_project_id);">Save</button>
+                    <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="BS.cancelEditProject(BS.active_project_id);">Cancel</button>
+                </div>
             </div>
         </div>
 
