@@ -89,7 +89,7 @@ ul.menu > li:last-child > a {
         background-color: #fefefe;
     }
 }
-ul.menu > li > a > span.button {
+ul.menu > li > a > span.selector {
     display: block;
     cursor:pointer;
     height: 100%;
