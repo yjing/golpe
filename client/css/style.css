@@ -68,7 +68,7 @@ ul {
 }
 
 ul.nav.nav-tabs.nav-stacked > li > a {
-    background-color: #ffffff;
+    background-color: #fffff0;
 }
 ul.nav.nav-tabs.nav-stacked > li.active > a {
     font-weight: bolder;
