@@ -204,11 +204,11 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     }
     this.insertMeta = function(table_name, id, key, value) {
         if(this.t_names.indexOf(table_name) >= 0) {
-            if(angular.isUndefined(this.d[table_name][id])){
-                this.d[table_name][id] = {};
+            if(angular.isUndefined(this.m[table_name][id])){
+                this.m[table_name][id] = {};
             }
-           var old = this.d[table_name][id][key];
-           this.d[table_name][id][key] = value;
+           var old = this.m[table_name][id][key];
+           this.m[table_name][id][key] = value;
            return old;
         } else {
            throw "Unknown table " + table_name + ".";
