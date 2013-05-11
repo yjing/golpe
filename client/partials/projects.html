@@ -14,7 +14,7 @@
                 </li>
                 <li ng-repeat="p in menu | dbFilter:searchText:'projects':'name'" ng-class="isSelectedProject(p.id)">
                     <a href="#" ng-click="selectProject(p.id);">{{DB.d.projects[p.id].name}}
-                        <i ng-show="DB.m.projects[p.id].mode == 'edit'" class="icon-edit"></i>
+                        <i ng-show="DB.m.projects[p.id].mode == 'edit'" class="icon-pencil"></i>
                     </a>
                     <div class="functions">
                         <button class="btn-link function" ng-click="deleteProject(false, p.id)" ng-hide="isDeleting(p.id)"><i class="icon-remove"></i></button>
@@ -23,8 +23,8 @@
                         <button class="btn btn-danger confirm" ng-click="deleteProject(true, p.id)" ng-show="isDeleting(p.id)">Are you sure?</button>
                     </div>
                 </li>
-                <li ng-show="newProject == null">
-                    <span>{{newProject.name}}</span>
+                <li ng-show="newProject != null">
+                    <span>New Project{{newProject.name}} <i class="icon-edit"></i></span>
                 </li>
             </ul>
             <div>
@@ -40,7 +40,7 @@
             <div>
                 <span>
                     <h4 class="clickable" ng-hide="DB.m.projects[selected_project].mode == 'edit'" ng-click="editProject(selected_project);">
-                        {{DB.d.projects[selected_project].name}} <i class="icon-edit"></i>
+                        {{DB.d.projects[selected_project].name}} <i class="icon-pencil"></i>
                     </h4>
                     <!-- EDIT MODE -->
                     <span ng-show="DB.m.projects[selected_project].mode == 'edit'">
