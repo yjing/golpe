@@ -101,18 +101,16 @@ div.menu > ul > li.selector {
 
 /*div.menu > div input.edit-field,*/
 div.menu > ul > li > input.edit-field {
+    font-size: 1.2em;
     position: relative;
     border: none;
     outline: none;
     margin: 0;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    width: 98%;
-    height: 98%;
-    padding: 1%;
-    font-size: 1.2em;
+    width: 96%;
+    height: 96%;
+    padding: 2%;
 
     -webkit-appearance: none;
     appearance: none;
