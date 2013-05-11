@@ -307,6 +307,8 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                     // ADD METADATA
                     _THIS.insertProject(proj);
 
+                    console.log(DBService.m);
+
                     // CALLBACKS
                     if(success) {
                         success(d, h);
@@ -390,7 +392,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             DBService.insertData("users", data['id'], user);
             DBService.insertMeta("users", data['id'], STATUS_KEY, STATUS_PARTIAL);
             DBService.insertMeta("users", data['id'], MODE_KEY, MODE_NORMAL);
-            console.log(user);
+//            console.log(user);
         }
     }
 
