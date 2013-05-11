@@ -227,8 +227,9 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
                         for(var i=0; i<d['Project']['Team'].length; i++) {
                             $scope.menu[index].teams.push({"id" : d['Project']['Team'][i].id});
                             if (angular.isArray(d['Project']['Team'][i]['Student'])) {
-                                for(var j=0; j<d['Project']['Team'].length; j++) {
-
+                                $scope.menu[index].teams[i].users = [];
+                                for(var j=0; j<d['Project']['Team'][i]['Student'].length; j++) {
+                                    $scope.menu[index].teams[i].users.push({ "id": d['Project']['Team'][i]['Student'][j].id });
                                 }
                             }
                         }
