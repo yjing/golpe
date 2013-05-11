@@ -1,0 +1,20 @@
+div.menu {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+div.menu div {
+    /* DIVIDER */
+    border-left: 1px solid rgb(240, 248, 255);
+    border-right: 1px solid rgb(240, 248, 255);
+    border-bottom: 1px solid rgb(240, 248, 255);
+}
+
+div.menu div:first-child {
+    /* HEADER */
+}
+
+div.menu div:last-child {
+    /* FOOTER */
+}
