@@ -417,6 +417,12 @@ function getIdTree(data, path, tPath) {
             console.log("ARRAY:" + pathInfo[0]);
         } else {
             console.log("OBJECT:" + pathInfo[0]);
+            if(angular.isDefined(obj.id)) {
+                result.push({'id':obj.id});
+            }
+            if(pathInfo[1].length > 0) {
+                var sub = getIdTree(obj, pathInfo[1], tPathInfo[1]);
+            }
         }
 
         console.log(data);
