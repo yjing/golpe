@@ -217,7 +217,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
                 function(d, h){
                     $scope.selected_project = id;
 
-                    var test = ".Project.Team.Student";
+                    var test = "Project.Team.Student";
                     var testa = test.split('.');
                     testa.splice(0, 1);
                     test = testa.join('.');
