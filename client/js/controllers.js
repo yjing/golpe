@@ -178,12 +178,9 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
             }
         );
     }
-    return;
 
     // BEFORE MAIN: CHECK USER LOGIN
-    console.log("HELLOZERO");
     if($rootScope.user == null || !$rootScope.user['logged']) {
-        console.log("HELLO1");
         BusyService.busy(true);
         $rootScope.user = auth.user();
         $rootScope.user.$then(function(){
@@ -195,7 +192,6 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
             }
         });
     } else {
-        console.log("HELLO2");
         $scope.main();
     }
 
