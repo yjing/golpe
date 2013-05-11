@@ -310,8 +310,9 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
                 console.log(DBService.d.projects[id]);
             } else {
                 DBService.m.projects[id].mode = 'deleting';
+                console.log(DBService.d.projects[id]);
             }
-        }console.log(DBService.d.projects[id]);
+        }
     }
 
     // UTIL FUNCTIONS
