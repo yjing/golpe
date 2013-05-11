@@ -72,6 +72,7 @@ div.menu > ul > li > div.right-buttons {
     padding: 0;
     height: 100%;
     right: 0;
+    top: 0;
 
     background-color: rgba(200,200,200,0.2);
 }
