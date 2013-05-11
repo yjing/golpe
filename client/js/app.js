@@ -241,6 +241,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     var MODE_KEY = 'mode';
     var MODE_EDIT = 'edit'
     var MODE_NORMAL = 'normal'
+    var MODE_DELETING = 'deleting';
     // STATUS CONSTANTS
     var STATUS_KEY = 'status';
     var STATUS_PARTIAL = 'partial';
