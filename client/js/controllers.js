@@ -219,28 +219,8 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
 
                     var newProjectTree = getIdTree(d, "Project.Team.Student", "teams.users");
                     var index = $scope.findIndexById(id);
-                    console.log(newProjectTree);
                     $scope.menu[index] = newProjectTree;
 
-//                    var newMenu = [];
-//                    var index = $scope.findIndexById(id);
-//                    if(angular.isUndefined(index)) {
-//                        $scope.menu.push({"id":id});
-//                        index = $scope.menu.length - 1;
-//                    }
-//                    if(angular.isDefined(d['Project']['Team']) && angular.isArray(d['Project']['Team'])) {
-//                        $scope.menu[index].teams = [];
-//                        for(var i=0; i<d['Project']['Team'].length; i++) {
-//                            $scope.menu[index].teams.push({"id" : d['Project']['Team'][i].id});
-//                            if (angular.isArray(d['Project']['Team'][i]['Student'])) {
-//                                $scope.menu[index].teams[i].users = [];
-//                                for(var j=0; j<d['Project']['Team'][i]['Student'].length; j++) {
-//                                    $scope.menu[index].teams[i].users.push({ "id": d['Project']['Team'][i]['Student'][j].id });
-//                                }
-//                            }
-//                        }
-//                        console.log($scope.menu);
-//                    }
                 },
                 function(e) {
                     $rootScope.handleError(e);
@@ -435,10 +415,6 @@ function getIdTree(data, path, tPath) {
                 result[tPathInfo[0]] = sub;
             }
         }
-
-        console.log(data);
-        console.log(pathInfo);
-        console.log(tPathInfo);
     }
     return result;
 }
