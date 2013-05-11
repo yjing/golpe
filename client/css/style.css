@@ -61,20 +61,28 @@ ul {
 .content {
     margin-top: -1px;
 }
-
 @media screen and (min-width: 768px) {
     .content {
         margin-top: 60px;
     }
 }
 
+ul.nav.nav-tabs.nav-stacked li > a {
+    background-color: #ffffff;
+}
+@media screen and (max-width: 768px) {
+    ul.nav.nav-tabs.nav-stacked li > a:hover {
+        background-color: #ffffff;
+    }
+}
+
 /* SIDE MENUS */
-ul.nav.nav-tabs.nav-stacked > li.active a {
+ul.nav.nav-tabs.nav-stacked > li.active > a {
     font-weight: bolder;
     background-color: aliceblue;
 }
-ul.nav.nav-tabs.nav-stacked > li:first-child.active a,
-ul.nav.nav-tabs.nav-stacked > li:last-child.active a {
+ul.nav.nav-tabs.nav-stacked > li:first-child.active > a,
+ul.nav.nav-tabs.nav-stacked > li:last-child.active > a {
     background-color: #fafafa;
 }
 /* TOPBAR */
