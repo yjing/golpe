@@ -38,10 +38,10 @@
                     <h4 class="clickable" ng-hide="DB.m.projects[selected_project].mode == 'edit'" ng-click="editProject(selected_project);">
                         {{DB.d.projects[selected_project].name}} <i class="icon-edit"></i>
                     </h4>
-                    <!-- EDIT MODE -->
-                    <span ng-show="DB.m.projects[selected_project].mode == 'edit'">
-                        <input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge" ng-model="DB.d.projects[selected_project].name">
-                    </span>
+                </span>
+                <!-- EDIT MODE -->
+                <span ng-show="DB.m.projects[selected_project].mode == 'edit'">
+                    <input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge" ng-model="DB.d.projects[selected_project].name">
                 </span>
             </div>
             <ul>
