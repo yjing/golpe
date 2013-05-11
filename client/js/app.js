@@ -339,10 +339,9 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         if(angular.isDefined(data) &&
            angular.isDefined(data['Project']) &&
            angular.isDefined(data['Project']['id'])) {
-
+            console.log(data['Project']);
             DBService.insertData ("projects", data['Project']['id'], data['Project']);
             if(angular.isDefined(data['Project']['Team'])) {
-                console.log(data['Project']['Team']);
                 delete data['Project']['Team'];
                 DBService.insertMeta("projects", data['Project']['id'], STATUS_KEY, STATUS_COMPLETE);
                 DBService.insertMeta("projects", data['Project']['id'], MODE_KEY, MODE_NORMAL);
