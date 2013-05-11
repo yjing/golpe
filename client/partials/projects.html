@@ -10,10 +10,10 @@
             </div>
             <ul>
                 <li ng-repeat="p in menu" ng-class="isSelectedProject(p.id)">
-                    <a href="#" ng-click="selectProject(p.id);">{{DB.d.projects[p.id].name}}</a>
+                    <a href="#" ng-click="selectProject(p.id);">{{DB.d.projects[p.id].name}}<br>ciao</a>
                     <div class="functions">
-                        <button ng-hide="isSelectedProject(p.id) == 'active'"class="btn btn-danger confirm">Sure?</button>
-                        <button ng-show="isSelectedProject(p.id) == 'active'" class="btn-link function"><i class="icon-remove"></i></button>
+                        <button ng-show="isSelectedProject(p.id) == 'active'"class="btn btn-danger confirm">Sure?</button>
+                        <button class="btn-link function"><i class="icon-remove"></i></button>
                     </div>
                 </li>
             </ul>
