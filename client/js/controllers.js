@@ -218,7 +218,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
                     $scope.selected_project = id;
 
                     var test = "Project.Team.Student";
-                    console.log(removeTokenFromHead(test));
+                    console.log(removeTokenFromHead(test, '.'));
 
                     var newMenu = [];
                     var index = $scope.findIndexById(id);
