@@ -11,6 +11,9 @@
             <ul>
                 <li>
                     <input type="text" class="edit-field" style="height: 2em">
+                    <div class="functions">
+                        <button class="btn-link function"><i class="icon-ok"></i></button>
+                    </div>
                 </li>
                 <li ng-repeat="p in menu" ng-class="isSelectedProject(p.id)">
                     <a href="#" ng-click="selectProject(p.id);">{{DB.d.projects[p.id].name}}</a>
