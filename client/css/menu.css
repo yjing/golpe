@@ -80,7 +80,6 @@ div.menu > ul > li > div.functions {
 div.menu > div > div.functions > .function,
 div.menu > ul > li > div.functions > .function {
     float: right;
-    position: absolute;
     height: 100%;
     top: 0;
     margin-right: 5px;
