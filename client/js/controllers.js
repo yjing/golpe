@@ -154,7 +154,6 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
 
     // MAIN METHOD
     $scope.main = function() {
-        console.log("HELLO");
         ProjectsService.loadAll(
             // SUCCESS
             function(data, handlers){
@@ -183,6 +182,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
 
     // BEFORE MAIN: CHECK USER LOGIN
     if($rootScope.user == null || !$rootScope.user['logged']) {
+        console.log("HELLO1");
         BusyService.busy(true);
         $rootScope.user = auth.user();
         $rootScope.user.$then(function(){
@@ -194,6 +194,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
             }
         });
     } else {
+        console.log("HELLO2");
         $scope.main();
     }
 
