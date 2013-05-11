@@ -409,9 +409,15 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
 function getIdTree(data, path, tPath) {
     var result = null;
     if(angular.isDefined(data)) {
+        result = [];
         var pathInfo = separateFirstToken(path, '.');
         var tPathInfo = separateFirstToken(tPath, '.');
-        result = [];
+        var obj = data[pathInfo[0]];
+        if(angular.isArray(obj)) {
+            console.log("ARRAY:" + pathInfo[0]);
+        } else {
+            console.log("OBJECT:" + pathInfo[0]);
+        }
 
         console.log(data);
         console.log(pathInfo);
