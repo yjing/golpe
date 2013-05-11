@@ -5,7 +5,8 @@ div.menu {
     margin-bottom: 2em;
 }
 
-div.menu div {
+div.menu > div,
+div.menu > ul > li {
     /* DIVIDER */
     margin: 0;
     padding: 0;
@@ -22,13 +23,8 @@ div.menu div:last-child {
     /* FOOTER */
 }
 
-div.menu ul {
+div.menu > ul {
     margin: 0;
     padding: 0;
     list-style-type: none;
-}
-
-div.menu ul li {
-    margin: 0;
-    padding: 0;
 }
