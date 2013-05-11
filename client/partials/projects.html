@@ -46,7 +46,7 @@
                     <span ng-show="DB.m.projects[selected_project].mode == 'edit'">
                         <input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge" ng-model="DB.d.projects[selected_project].name">
                     </span>
-                    <span ng-show="selected_project = -1">
+                    <span ng-show="selected_project = -1;">
                         <input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge" ng-model="new_project.name">
                     </span>
                 </span>
@@ -58,7 +58,7 @@
                     </p>
                     <!-- EDIT MODE -->
                     <textarea class="edit-field" ng-model="DB.d.projects[selected_project].description" ng-show="DB.m.projects[selected_project].mode == 'edit'"></textarea>
-                    <textarea class="edit-field" ng-model="new_project.description" ng-show="selected_project = -1"></textarea>
+                    <textarea class="edit-field" ng-model="new_project.description" ng-show="selected_project = -1;"></textarea>
                 </li>
             </ul>
             <div ng-show="DB.m.projects[selected_project].mode == 'edit'">
