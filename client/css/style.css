@@ -96,7 +96,7 @@ ul.menu > li > a > span.selector {
     width: 100%;
     margin: 0;
 }
-ul.menu button.function {
+ul.menu > li > a > button.function {
     height: 100%;
     margin: 0 3px;
     top: 0;
