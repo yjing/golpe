@@ -68,19 +68,19 @@ ul {
 }
 
 ul.nav.nav-tabs.nav-stacked > li > a {
-    background-color: #fffff0;
+    background-color: #ffffff;
 }
 ul.nav.nav-tabs.nav-stacked > li.active > a {
     font-weight: bolder;
     background-color: aliceblue;
 }
-ul.nav.nav-tabs.nav-stacked > li:first-child.active > a,
-ul.nav.nav-tabs.nav-stacked > li:last-child.active > a {
+ul.nav.nav-tabs.nav-stacked > li:first-child > a,
+ul.nav.nav-tabs.nav-stacked > li:last-child > a {
     background-color: #fafafa;
 }
 @media screen and (max-width: 768px) {
     ul.nav.nav-tabs.nav-stacked li > a:hover {
-        background-color: #ffffff;
+        background-color: #fefefe;
     }
 }
 
