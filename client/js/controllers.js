@@ -154,23 +154,13 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
 
     // PAGE MENU
     $scope.menu = [];
+    // CONSTANTS
+    var ACTIVE = "active";
+    var NOT_ACTIVE = "";
     // PROJECT SELECTION
     $scope.selected_project = null;
     $scope.isSelectedProject = function(id){
-        return ( id == $scope.selected_project ? 'active' : '' );
-    }
-    $scope.selectProject = function(id) {
-        if(angular.isDefined(DBService.d.projects[id])) {
-            ProjectsService.load(id,
-                function(d, h){
-                    $scope.selected_project = id;
-                    console.log(DBService.d.projects);
-                },
-                function(e) {
-                    $rootScope.handleError(e);
-                }
-            );
-        }
+        return ( id == $scope.selected_project ? ACTIVE : NOT_ACTIVE );
     }
 
     // MAIN METHOD
@@ -206,6 +196,19 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         $scope.main();
     }
 
+    $scope.selectProject = function(id) {
+        if(angular.isDefined(DBService.d.projects[id])) {
+            ProjectsService.load(id,
+                function(d, h){
+                    $scope.selected_project = id;
+                },
+                function(e) {
+                    $rootScope.handleError(e);
+                }
+            );
+        }
+    }
+
 
     $scope.generateMenu = function(data) {
         var result = [];
@@ -232,17 +235,6 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
             // ERROR
             function(error){
                 $rootScope.handleError(error);
-            }
-        );
-    }
-
-    $scope.showProject = function(index){
-        ProjectsService.load(index,
-            function(d, h){
-                ProjectsService.activate(index);
-            },
-            function(e) {
-                $rootScope.handleError(e);
             }
         );
     }
