@@ -281,7 +281,9 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         if(angular.isDefined(project_id) && angular.isDefined(id)) {
             var pIndex = $scope.findProjectIndexById(project_id);
             for(var i=0; i<$scope.menu[pIndex].teams.length; i++) {
-                if (id == $scope.menu[pIndex].teams[i].id) return i;
+                try {
+                    if (id == $scope.menu[pIndex].teams[i].id) return i;
+                } catch (e) {}
             }
         }
         return null;
