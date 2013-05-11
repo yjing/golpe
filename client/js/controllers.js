@@ -162,6 +162,10 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     $scope.isSelectedProject = function(id){
         return ( id == $scope.selected_project ? ACTIVE : NOT_ACTIVE );
     }
+    $scope.selected_team = null;
+    $scope.isSelectedTeam = function(id){
+        return ( id == $scope.selected_team ? ACTIVE : NOT_ACTIVE );
+    }
 
     // MAIN METHOD
     $scope.main = function() {
@@ -226,6 +230,12 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
                     $rootScope.handleError(e);
                 }
             );
+        }
+    }
+
+    $scope.selectTeam = function(t_id){
+        if(angular.isDefined(DBService.d.teams[id])) {
+            $scope.selected_team = id;
         }
     }
 

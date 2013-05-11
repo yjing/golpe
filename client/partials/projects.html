@@ -73,7 +73,7 @@
                         <span><strong>Teams <i class="icon-briefcase"></i></strong></span>
                     </div>
                     <ul>
-                        <li ng-repeat="t in menu[findIndexById(selected_project)].teams">
+                        <li ng-repeat="t in menu[findIndexById(selected_project)].teams" ng-class="isSelectedProject(p.id)">
                             <a href="#" ng-click="selectTeam(t.id);">{{DB.d.teams[t.id].name}}</a>
                         </li>
                     </ul>
