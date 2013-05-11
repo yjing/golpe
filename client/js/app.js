@@ -236,7 +236,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 
                 this.modello = _THIS.generateMenu(d);
                 console.log("HELLO1");
-                console.log(this.modello);
+                console.log(_THIS.generateMenu(d));
 
                 // CALLBACKS
                 if(success) {
