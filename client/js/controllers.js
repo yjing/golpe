@@ -157,18 +157,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         ProjectsService.loadAll(
             // SUCCESS
             function(data, handlers){
-                console.log(ProjectsService.menu);
-//                if(ProjectsService.projects.length > 0) {
-//                    ProjectsService.load(
-//                        0,
-//                        function(d, h){
-//                            ProjectsService.activate(0);
-//                        },
-//                        function(e) {
-//                            $rootScope.handleError(e);
-//                        }
-//                    );
-//                }
+                $scope.menu = $scope.generateMenu(data);
             },
             // ERROR
             function(error){
@@ -191,6 +180,17 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         });
     } else {
         $scope.main();
+    }
+
+
+    $scope.generateMenu = function(data) {
+        var result = [];
+        if(angular.isArray(data)) {
+            for(var i=0; i<data.length; i++) {
+                result.push({id:data[i]['Project']['id']});
+            }
+        }
+        return result;
     }
 
     $scope.goUsers = function(){

@@ -245,8 +245,6 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             function(d, h) {
                 BusyService.busy(false);
                 _THIS.insertProjects(d);
-                _THIS.menu = _THIS.generateMenu(d);
-                console.log(DBService.d);
 
                 // CALLBACKS
                 if(success) {
@@ -262,16 +260,6 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                 }
             }
         );
-    }
-
-    this.generateMenu = function(data) {
-        var result = [];
-        if(angular.isArray(data)) {
-            for(var i=0; i<data.length; i++) {
-                result.push({id:data[i]['Project']['id']});
-            }
-        }
-        return result;
     }
 
     // DB ACCESS FUNCS
@@ -295,11 +283,6 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             } else {
                 DBService.insertMeta("projects", data['Project']['id'], 'status', 'partial');
                 DBService.insertMeta("projects", data['Project']['id'], 'mode', 'normal');
-                if(data['Project']['id']==1) {
-                    DBService.insertMeta("projects", data['Project']['id'], 'active', 'active');
-                } else {
-                    DBService.insertMeta("projects", data['Project']['id'], 'active', '');
-                }
             }
         }
     }
