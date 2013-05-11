@@ -148,6 +148,9 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 })
 .filter('menu', function(DBService){
     return function(value, param){
+        if(angular.isUndefined(param)) {
+            return value;
+        }
         var result = [];
         for(var i=0; i<value.length; i++) {
             var val = DBService.d.projects[value[i].id].name;
