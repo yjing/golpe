@@ -73,7 +73,7 @@
                     </div>
                     <ul>
                         <li ng-repeat="t in menu[findIndexById(selected_project)].teams">
-                            {{t.name}}
+                            {{DB.d.teams[t].name}}
                         </li>
                     </ul>
                     <div class="text-right">
