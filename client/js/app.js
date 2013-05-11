@@ -252,7 +252,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             method: 'GET',
             isArray: true
         },
-        get: {
+        load: {
             method: 'GET'
         }
     });
@@ -296,14 +296,13 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 
         if(DBService.m.projects[id].status == STATUS_PARTIAL) {
             BusyService.busy(true);
-            var proj = this.Projects.get(
+            var proj = this.Projects.load(
                 {
                     id: id
                 },
                 function(d, h){
                     BusyService.busy(false);
 
-                    console.log(d);
                     // ADD METADATA
                     _THIS.insertProject(proj);
                     // CALLBACKS
