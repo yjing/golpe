@@ -218,7 +218,8 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
                     $scope.selected_project = id;
 
                     var test = ".Project.Team.Student";
-                    console.log(test.split('.').splice(0, 1).join('.'));
+                    var testa = test.split('.').splice(0, 1);
+                    test = testa.join('.');
                     console.log(test);
 
                     var newMenu = [];
