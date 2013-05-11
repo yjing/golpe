@@ -81,10 +81,8 @@ ul.nav.nav-tabs.nav-stacked > li.active a {
     font-weight: bolder;
     background-color: aliceblue;
 }
-.menuFirst {
-    background-color: #fafafa;
-}
-.menuLast {
+ul.nav.nav-tabs.nav-stacked > li:first-child.active a,
+ul.nav.nav-tabs.nav-stacked > li:last-child.active a {
     background-color: #fafafa;
 }
 /* TOPBAR */
