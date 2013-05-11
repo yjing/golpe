@@ -162,6 +162,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     $scope.isSelectedProject = function(id){
         return ( id == $scope.selected_project ? ACTIVE : NOT_ACTIVE );
     }
+    $scope.new_project = null;
     $scope.selected_team = null;
     $scope.isSelectedTeam = function(id){
         return ( id == $scope.selected_team ? ACTIVE : NOT_ACTIVE );
@@ -259,6 +260,32 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         }
     }
 
+    $scope.saveProject = function(id){
+        console.log(id);
+        ProjectsService.save(id,
+            function(d, h){
+                $scope.selected_project = id;
+                if(angular.isObject(d)) {
+                    var newProjectTree = getIdTree(d, "Project.Team.Student", "teams.users");
+                    var index = $scope.findProjectIndexById(id);
+                    $scope.menu[index] = newProjectTree;
+                }
+
+            },
+            function (e) {
+                $rootScope.handleError(e);
+            }
+        );
+    }
+
+    $scope.newProject = function(){
+        $scope.selected_project = -1;
+        $scope.new_project = {
+            "name": null,
+            "description": null
+        }
+    }
+
     // UTIL FUNCTIONS
     $scope.setupMenu = function(data) {
         var menu = [];
@@ -288,28 +315,6 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
             }
         }
         return null;
-    }
-
-    $scope.saveProject = function(id){
-        console.log(id);
-        ProjectsService.save(id,
-            function(d, h){
-                $scope.selected_project = id;
-                if(angular.isObject(d)) {
-                    var newProjectTree = getIdTree(d, "Project.Team.Student", "teams.users");
-                    var index = $scope.findProjectIndexById(id);
-                    $scope.menu[index] = newProjectTree;
-                }
-
-            },
-            function (e) {
-                $rootScope.handleError(e);
-            }
-        );
-    }
-
-    $scope.createProject = function(){
-
     }
 
     $scope.goUsers = function(){
