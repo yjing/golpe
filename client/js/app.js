@@ -305,9 +305,9 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                     BusyService.busy(false);
 
                     // ADD METADATA
-                    console.log(proj);
+                    console.log(proj.Project.Team);
                     _THIS.insertProject(proj);
-                    console.log(proj);
+                    console.log(proj.Project.Team);
 
 
                     // CALLBACKS
