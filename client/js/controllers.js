@@ -294,9 +294,15 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         $rootScope.toggleTitleMenu();
     }
 
-    $scope.saveProject = function(index){
-        ProjectsService.save(index,
+    $scope.saveProject = function(id){
+        ProjectsService.save(id,
             function(d, h){
+                $scope.selected_project = id;
+                if(angular.isObject(d)) {
+                    var newProjectTree = getIdTree(d, "Project.Team.Student", "teams.users");
+                    var index = $scope.findProjectIndexById(id);
+                    $scope.menu[index] = newProjectTree;
+                }
 
             },
             function (e) {

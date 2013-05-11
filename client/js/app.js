@@ -328,6 +328,41 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             }
         }
     }
+
+    this.save = function(id, success, error) {
+        if(id == undefined || typeof id != "number") {
+            throw "Missing project ID";
+        }
+
+        var params = {};
+        if(DBService.m.projects[id].status != STATUS_NEW) {
+            params = {'id':id};
+        }
+
+        BusyService.busy(true);
+        var proj = this.Projects.save(
+            params,
+            DBService.d.projects[id],
+            function(d, h) {
+                BusyService.busy(false);
+                _THIS.insertProject(proj);
+
+                // CALLBACKS
+                if(success) {
+                    success(d, h);
+                }
+            },
+            function(data) {
+                BusyService.busy(false);
+
+                // CALLBACKS
+                if(error) {
+                    error(e);
+                }
+            }
+        );
+    }
+
     // DB ACCESS FUNCS
     this.insertProjects = function(data) {
         if(angular.isArray(data)) {
