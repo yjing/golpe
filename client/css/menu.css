@@ -60,7 +60,7 @@ div.menu > ul {
 /* OTHER */
 
 div.menu > div > a,
-div.menu > div > span, {
+div.menu > div > span {
     display: block;
     padding: 4px 8px;
 }
