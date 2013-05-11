@@ -164,7 +164,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
             ProjectsService.load(id,
                 function(d, h){
                     $scope.selected_project = id;
-
+                    console.log(DBService.d.projects);
                 },
                 function(e) {
                     $rootScope.handleError(e);
