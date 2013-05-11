@@ -2,7 +2,6 @@
 <div class="row-fluid content">
 
     <div class="span3">
-
         <div class="menu shadow">
             <div>
                 <a href="#" class="text-right" ng-click="reloadProjects();">
@@ -13,7 +12,7 @@
                 <li ng-repeat="p in menu" ng-class="isSelectedProject(p.id)">
                     <a href="#" ng-click="selectProject(p.id);">{{DB.d.projects[p.id].name}}</a>
                     <div class="functions">
-                        <button class="btn-link function"><i class="icon-remove"></i></button>
+                        <button class="btn function"><i class="icon-remove"></i></button>
                     </div>
                 </li>
             </ul>
@@ -23,23 +22,6 @@
                 </a>
             </div>
         </div>
-
-        <ul class="menu nav nav-tabs nav-stacked shadowed">
-            <li class="text-right">
-                <a href="#" ng-click="reloadProjects();">Refresh Projects <i class="icon-refresh"></i></a>
-            </li>
-            <li ng-repeat="p in menu" ng-class="isSelectedProject(p.id)">
-                <a>
-                    <span href="#" class="selector" ng-click="selectProject(p.id);">
-                        {{DB.d.projects[p.id].name}}
-                    </span>
-                    <button class="btn-link function first-rightside"><i class="icon-remove"></i></button>
-                </a>
-            </li>
-            <li class="text-right">
-                <a href="#"><button ng-click="BS.new();" ng-disabled="BS.newProject" class="btn btn-success">New Project</button></a>
-            </li>
-        </ul>
     </div>
 
     <div class="span9">
