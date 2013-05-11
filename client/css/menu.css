@@ -134,7 +134,7 @@ div.menu > ul > li.active:focus {
 }
 
 textarea.edit-field {
-    position: absolute;
+    position: relative;
     margin: 0;
     top: 0;
     left: 0;
