@@ -305,7 +305,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 
                     // ADD METADATA
                     _THIS.insertProject(proj);
-                    cosole.log(proj);
+                    console.log(proj);
                     // CALLBACKS
                     if(success) {
                         success(d, h);
