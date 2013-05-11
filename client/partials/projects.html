@@ -15,11 +15,11 @@
                 <li ng-repeat="p in menu | dbFilter:searchText:'projects':'name'" ng-class="isSelectedProject(p.id)">
                     <a href="#" ng-click="selectProject(p.id);">{{DB.d.projects[p.id].name}}</a>
                     <div class="functions">
-                        <button class="btn-link function" ng-click="deleteProjevt(false, p.id)" ng-hide="isDeleting(p.id)"><i class="icon-remove"></i></button>
+                        <button class="btn-link function" ng-click="deleteProject(false, p.id)" ng-hide="isDeleting(p.id)"><i class="icon-remove"></i></button>
                         <button class="btn-link function"><i class="icon-edit"></i></button>
                     </div>
                     <div class="confirms">
-                        <button class="btn btn-danger confirm" ng-click="deleteProjevt(true, p.id)" ng-show="isDeleting(p.id)">Are you sure?</button>
+                        <button class="btn btn-danger confirm" ng-click="deleteProject(true, p.id)" ng-show="isDeleting(p.id)">Are you sure?</button>
                     </div>
                 </li>
             </ul>
@@ -73,7 +73,7 @@
                     </div>
                     <ul>
                         <li ng-repeat="t in menu[findIndexById(selected_project)].teams">
-                            {{DB.d.teams[t.id].name}}
+                            <a href="#" ng-click="selectTeam(t.id);">{{DB.d.teams[t.id].name}}</a>
                         </li>
                     </ul>
                     <div class="text-right">
