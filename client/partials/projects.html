@@ -10,7 +10,7 @@
             </div>
             <ul>
                 <li>
-                    <input type="text" class="edit-field" style="height: 1.5em">
+                    <input type="text" class="edit-field" style="height: 2em">
                 </li>
                 <li ng-repeat="p in menu" ng-class="isSelectedProject(p.id)">
                     <a href="#" ng-click="selectProject(p.id);">{{DB.d.projects[p.id].name}}</a>
