@@ -10,38 +10,12 @@
                 </a>
             </div>
             <ul>
-                <li>
-                    <a href="#">list11</a>
-                </li>
-                <li class="selector">
-                    list12
-                </li>
-                <li>
-                    list13
-                </li>
-                <li>
-                    list14
+                <li ng-repeat="p in menu" ng-class="isSelectedProject(p.id)">
+                    <a href="#">{{DB.d.projects[p.id].name}}</a>
                 </li>
             </ul>
             <div>
-                <span>middle</span>
-            </div>
-            <div class="selector">
-                middle
-            </div>
-            <ul>
-                <li>
-                    list 21
-                </li>
-                <li>
-                    list 22
-                </li>
-                <li>
-                    list 23
-                </li>
-            </ul>
-            <div>
-                footer
+                <a href="#"><button ng-click="BS.new();" ng-disabled="BS.newProject" class="btn btn-success">New Project</button></a>
             </div>
         </div>
 
