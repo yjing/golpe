@@ -65,8 +65,8 @@ div.menu .selector {
     padding: 6px 10px;
 }
 
-div.menu > div > div.right-buttons,
-div.menu > ul > li > div.right-buttons {
+div.menu > div > div.functions,
+div.menu > ul > li > div.functions {
     position: absolute;
     margin: 0;
     padding: 0;
@@ -75,6 +75,15 @@ div.menu > ul > li > div.right-buttons {
     top: 0;
 
     background-color: rgba(200,200,200,0.2);
+}
+
+div.menu > div > div.functions > .function,
+div.menu > ul > li > div.functions > .function {
+    float: right;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    margin-right: 5px;
 }
 
 div.menu > div.selector,
