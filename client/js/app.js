@@ -193,10 +193,22 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             throw "Table name already in use.";
         }
     }
-    this.insertData = function(table_name, key, data) {
+    this.insertData = function(table_name, id, data) {
         if(this.t_names.indexOf(table_name) >= 0) {
-           var old = this.d[table_name][key];
-           this.d[table_name][key] = data;
+           var old = this.d[table_name][id];
+           this.d[table_name][id] = data;
+           return old;
+        } else {
+           throw "Unknown table " + table_name + ".";
+        }
+    }
+    this.insertMeta = function(table_name, id, key, value) {
+        if(this.t_names.indexOf(table_name) >= 0) {
+            if(angular.isUndefined(this.d[table_name][id])){
+                this.d[table_name][id] = {};
+            }
+           var old = this.d[table_name][id][key];
+           this.d[table_name][id][key] = value;
            return old;
         } else {
            throw "Unknown table " + table_name + ".";
@@ -268,7 +280,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             for(var i=0; i<data.length; i++) {
                 this.insertProject(data[i]);
             }
-            console.log
+            console.log(DBService.m.projects);
         }
     }
     this.insertProject = function(data) {
@@ -277,6 +289,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
            angular.isDefined(data['Project']['id'])) {
 
             DBService.insertData ("projects", data['Project']['id'], data['Project']);
+            DBService.insertMeta("projects", data['Project']['id'], 'status', 'partial');
         }
     }
     this.insertTeam = function(data){
