@@ -57,12 +57,6 @@ ul {
     -webkit-box-shadow:  0px 0px 10px 1px rgba(0, 0, 0, 0.05);
     box-shadow:  0px 0px 10px 1px rgba(0, 0, 0, 0.05);
 }
-.menuFirst {
-    background-color: #fafafa;
-}
-.menuLast {
-    background-color: #fafafa;
-}
 
 .content {
     margin-top: -1px;
@@ -87,7 +81,12 @@ ul.nav.nav-tabs.nav-stacked > li.active a {
     font-weight: bolder;
     background-color: aliceblue;
 }
-
+.menuFirst {
+    background-color: #fafafa;
+}
+.menuLast {
+    background-color: #fafafa;
+}
 /* TOPBAR */
 div.topbar { margin: 0; }
 div.topbar > div:first-child { padding-left: 0px; padding-right: 0px; }
