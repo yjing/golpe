@@ -226,7 +226,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
 
     $scope.editProject = function(id) {
         if(angular.isDefined(DBService.d.projects[id])) {
-            DBService.m.projects[id].old = DBService.d.projects[id];
+            DBService.m.projects[id].old = angular.copy(DBService.d.projects[id]);
             DBService.m.projects[id].mode = 'edit';
         }
     }
@@ -237,6 +237,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
                 DBService.m.projects[id].mode = 'normal';
                 if(angular.isDefined(DBService.m.projects[id].old)) {
                     DBService.d.projects[id] = DBService.m.projects[id].old;
+                    delete DBService.m.projects[id].old;
                 }
             }
         }
