@@ -15,8 +15,12 @@ div.menu > ul > li {
     border-bottom: 1px solid rgb(221, 221, 221);
 }
 
-div.menu > div {
+div.menu > ul > li.active {
     background-color: aliceblue;
+}
+
+div.menu > div {
+    background-color: #fafafa;
 }
 
 div.menu > div:first-child {
