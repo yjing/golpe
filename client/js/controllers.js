@@ -218,7 +218,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
                     $scope.selected_project = id;
 
                     var test = "Project.Team.Student";
-                    console.log(removeTokenFromHead(test, '.'));
+                    getIdTree(d, "Project.Team.Student", ".teams.users");
 
                     var newMenu = [];
                     var index = $scope.findIndexById(id);
@@ -406,14 +406,18 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     }
 }
 
-function removeTokenFromHead(arrayStr, separator) {
+function getIdTree(data, path, tPath) {
+    var pathInfo = separateFirstToken(path, '.');
+    var tPathInfo = separateFirstToken(tPath, '.');
+    console.log(pathInfo);
+    console.log(tPathInfo);
+}
+
+function separateFirstToken(arrayStr, separator) {
     if(!angular.isString(arrayStr)) {
         throw new TypeError();
     }
     var array = arrayStr.split(separator);
-    console.log(arrayStr);
-    console.log(array);
-    array.splice(0, 1);
-    console.log(array);
-    return array.join(separator);
+    var token = array.splice(0, 1);
+    return [token, array.join(separator)];
 }
