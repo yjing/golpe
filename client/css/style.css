@@ -104,23 +104,23 @@ ul.menu > li > a > button.function {
 }
 ul.menu > li > a > button.function.first-rightside,
 ul.menu > li > a > button.function.rightside {
-    right: 5px;
+    right: 0px;
 }
 ul.menu > li > a > button.function.first-leftside,
 ul.menu > li > a > button.function.leftside {
-    left: 5px;
+    left: 0px;
 }
 ul.menu > li > a > button.function.second-leftside  {
-    left: 30px;
+    left: 35px;
 }
 ul.menu > li > a > button.function.second-rightside  {
-    right: 30px;
+    right: 35px;
 }
 ul.menu > li > a > button.function.third-rightside  {
-    right: 60px;
+    right: 70px;
 }
 ul.menu > li > a > button.function.third-leftside  {
-    left: 60px;
+    left: 70px;
 }
 
 /*ul.nav.nav-tabs.nav-stacked > li > a {*/
