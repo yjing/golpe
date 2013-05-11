@@ -96,32 +96,36 @@ ul.menu > li > a > span.selector {
     width: 100%;
     margin: 0;
 }
-ul.menu > li > a > button.function {
-    height: 100%;
-    margin: 0 3px;
-    top: 0;
+ul.menu div.functions {
     position: absolute;
+    height: 100%;
+    width: 100%;
 }
-ul.menu > li > a > button.function.first-rightside,
-ul.menu > li > a > button.function.rightside {
-    right: 0px;
+ul.menu button.function {
+    float: right;
+    height: 100%;
+    top: 0;
 }
-ul.menu > li > a > button.function.first-leftside,
-ul.menu > li > a > button.function.leftside {
-    left: 0px;
-}
-ul.menu > li > a > button.function.second-leftside  {
-    left: 35px;
-}
-ul.menu > li > a > button.function.second-rightside  {
-    right: 35px;
-}
-ul.menu > li > a > button.function.third-rightside  {
-    right: 70px;
-}
-ul.menu > li > a > button.function.third-leftside  {
-    left: 70px;
-}
+/*ul.menu > li > a > button.function.first-rightside,*/
+/*ul.menu > li > a > button.function.rightside {*/
+    /*right: 0px;*/
+/*}*/
+/*ul.menu > li > a > button.function.first-leftside,*/
+/*ul.menu > li > a > button.function.leftside {*/
+    /*left: 0px;*/
+/*}*/
+/*ul.menu > li > a > button.function.second-leftside  {*/
+    /*left: 35px;*/
+/*}*/
+/*ul.menu > li > a > button.function.second-rightside  {*/
+    /*right: 35px;*/
+/*}*/
+/*ul.menu > li > a > button.function.third-rightside  {*/
+    /*right: 70px;*/
+/*}*/
+/*ul.menu > li > a > button.function.third-leftside  {*/
+    /*left: 70px;*/
+/*}*/
 
 /*ul.nav.nav-tabs.nav-stacked > li > a {*/
     /*background-color: #ffffff;*/

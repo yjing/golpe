@@ -9,8 +9,10 @@
             <li ng-repeat="p in menu" ng-class="isSelectedProject(p.id)">
                 <a>
                     <span href="#" class="selector" ng-click="selectProject(p.id);">{{DB.d.projects[p.id].name}}</span>
-                    <button class="btn-link function second-rightside"><i class="icon-edit"></i></button>
-                    <button class="btn-link function first-rightside"><i class="icon-remove"></i></button>
+                    <div class="functions">
+                        <button class="btn-link function second-rightside"><i class="icon-edit"></i></button>
+                        <button class="btn-link function first-rightside"><i class="icon-remove"></i></button>
+                    </div>
                 </a>
             </li>
             <li class="text-right">
