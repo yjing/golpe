@@ -295,6 +295,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     }
 
     $scope.saveProject = function(id){
+        console.log(id);
         ProjectsService.save(id,
             function(d, h){
                 $scope.selected_project = id;
