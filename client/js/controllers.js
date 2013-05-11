@@ -196,19 +196,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         $scope.main();
     }
 
-    $scope.selectProject = function(id) {
-        if(angular.isDefined(DBService.d.projects[id])) {
-            ProjectsService.load(id,
-                function(d, h){
-                    $scope.selected_project = id;
-                },
-                function(e) {
-                    $rootScope.handleError(e);
-                }
-            );
-        }
-    }
-
+    // SCOPE FUNCTIONS
     $scope.reloadProjects = function(){
         ProjectsService.loadAll(
             true,
@@ -223,7 +211,20 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         );
     }
 
+    $scope.selectProject = function(id) {
+        if(angular.isDefined(DBService.d.projects[id])) {
+            ProjectsService.load(id,
+                function(d, h){
+                    $scope.selected_project = id;
+                },
+                function(e) {
+                    $rootScope.handleError(e);
+                }
+            );
+        }
+    }
 
+    // UTIL FUNCTIONS
     $scope.setupMenu = function(data) {
         var menu = [];
         if(angular.isArray(data)) {

@@ -15,11 +15,11 @@
                 <li ng-repeat="p in menu | dbFilter:searchText:'projects':'name'" ng-class="isSelectedProject(p.id)">
                     <a href="#" ng-click="selectProject(p.id);">{{DB.d.projects[p.id].name}}</a>
                     <div class="functions">
-                        <button class="btn-link function"><i class="icon-remove"></i></button>
+                        <button class="btn-link function" ng-click="deleteProjevt(false, p.id)" ng-hide="isDeleting(p.id)"><i class="icon-remove"></i></button>
                         <button class="btn-link function"><i class="icon-edit"></i></button>
                     </div>
                     <div class="confirms">
-                        <button ng-show="isDeleting(p.id) == 'active'"class="btn btn-danger confirm">Are you sure?</button>
+                        <button class="btn btn-danger confirm" ng-click="deleteProjevt(true, p.id)" ng-show="isDeleting(p.id)">Are you sure?</button>
                     </div>
                 </li>
             </ul>
@@ -32,6 +32,22 @@
     </div>
 
     <div class="span9">
+        <div class="menu shadow">
+            <div>
+                <span>{{DB.d.projects[selected_project].name}}</span>
+            </div>
+            <ul>
+                <li>
+                    {{DB.d.projects[selected_project].description}}
+                </li>
+            </ul>
+            <div>
+                <span>operations</span>
+            </div>
+        </div>
+
+
+
         <div class="row-fluid" ng-show="BS.activeProject() != null">
             <div class="span12">
                 <div class="shadowed" style="padding: 1em 2em; border: 1px rgb(221, 221, 221) solid;-webkit-border-radius: 4px;border-radius: 4px;">
