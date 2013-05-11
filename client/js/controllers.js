@@ -218,7 +218,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
                     $scope.selected_project = id;
 
                     var test = "Project.Team.Student";
-                    getIdTree(d, "Project.Team.Student", ".teams.users");
+                    console.log(getIdTree(d, "Project.Team.Student", "teams.users"));
 
                     var newMenu = [];
                     var index = $scope.findIndexById(id);
@@ -409,19 +409,19 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
 function getIdTree(data, path, tPath) {
     var result = null;
     if(angular.isDefined(data)) {
-        result = [];
         var pathInfo = separateFirstToken(path, '.');
         var tPathInfo = separateFirstToken(tPath, '.');
         var obj = data[pathInfo[0]];
         if(angular.isArray(obj)) {
-            console.log("ARRAY:" + pathInfo[0]);
+            result = [];
         } else {
-            console.log("OBJECT:" + pathInfo[0]);
+            result = {};
             if(angular.isDefined(obj.id)) {
-                result.push({'id':obj.id});
+                result.id = obj.id;
             }
             if(pathInfo[1].length > 0) {
                 var sub = getIdTree(obj, pathInfo[1], tPathInfo[1]);
+                result[tPathInfo[1]] = sub;
             }
         }
 
