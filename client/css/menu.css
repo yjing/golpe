@@ -59,8 +59,8 @@ div.menu > ul {
 
 /* OTHER */
 
-div.menu > div > a {
+div.menu > div > a,
+div.menu > div > span, {
     display: block;
-    /*width: 100%;*/
     padding: 4px 8px;
 }
