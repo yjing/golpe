@@ -109,6 +109,9 @@ div.menu > ul > li > input.edit-field {
     width: 96%;
     height: 96%;
     padding: 2%;
+
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 /* OTHER */
