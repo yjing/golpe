@@ -6,7 +6,7 @@
             <li class="text-right">
                 <a href="#" ng-click="reload();" style="background: #fafafa;">Refresh Projects <i class="icon-refresh"></i></a>
             </li>
-            <li ng-repeat="p in menu" ng-class=""> <!-- ng-hide="BS.projects[BS.active_project_id].new">-->
+            <li ng-repeat="p in menu" ng-class="selected(p.id)"> <!-- ng-hide="BS.projects[BS.active_project_id].new">-->
                 <a href="#" ng-clicks="showProject($index);">{{DB.d.projects[p.id].name}}
                     <i class="icon-edit" ng-show="BS.projects[$index].mode == 'edit'"></i>
                 </a>
