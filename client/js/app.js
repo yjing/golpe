@@ -351,7 +351,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             var proj = angular.copy(data['Project']);
             delete proj['Team'];
             DBService.insertData ("projects", data['Project']['id'], proj);
-            console.log(proj);
+//            console.log(proj);
         }
     }
 
@@ -371,7 +371,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             DBService.insertData("teams", data['id'], team);
             DBService.insertMeta("teams", data['id'], STATUS_KEY, STATUS_COMPLETE);
             DBService.insertMeta("teams", data['id'], MODE_KEY, MODE_NORMAL);
-            console.log(team);
+//            console.log(team);
         }
     }
 
