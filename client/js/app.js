@@ -305,7 +305,11 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                     BusyService.busy(false);
 
                     // ADD METADATA
+                    console.log(proj);
                     _THIS.insertProject(proj);
+                    console.log(proj);
+
+
                     // CALLBACKS
                     if(success) {
                         success(d, h);
@@ -342,7 +346,6 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 
             if(angular.isDefined(data['Project']['Team'])) {
 
-                console.log("-----");
                 DBService.insertMeta("projects", data['Project']['id'], STATUS_KEY, STATUS_COMPLETE);
                 DBService.insertMeta("projects", data['Project']['id'], MODE_KEY, MODE_NORMAL);
                 delete data['Project']['Team'];
