@@ -312,8 +312,8 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     $scope.findProjectIndexById = function(id){
         for(var i=0; i<$scope.menu.length; i++) {
             if (id == $scope.menu[i].id) return i;
-            return null;
         }
+        return null;
     }
 
     $scope.findTeamIndexById = function(project_id, id){
