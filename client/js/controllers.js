@@ -414,6 +414,11 @@ function getIdTree(data, path, tPath) {
         var obj = data[pathInfo[0]];
         if(angular.isArray(obj)) {
             result = [];
+            for(var i=0; i<obj.length; i++) {
+                if(angular.isDefined(obj[i].id)) {
+                    result.push({'id':obj[i].id});
+                }
+            }
         } else {
             result = {};
             if(angular.isDefined(obj.id)) {
@@ -421,7 +426,7 @@ function getIdTree(data, path, tPath) {
             }
             if(pathInfo[1].length > 0) {
                 var sub = getIdTree(obj, pathInfo[1], tPathInfo[1]);
-                result[tPathInfo[1]] = sub;
+                result[tPathInfo[0]] = sub;
             }
         }
 
