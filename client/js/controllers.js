@@ -168,7 +168,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         ProjectsService.loadAll(
             // SUCCESS
             function(data, handlers){
-                $scope.menu = $scope.generateMenu(data);
+                $scope.setupMenu(data);
                 if($scope.menu.length > 0) {
                     $scope.selectProject($scope.menu[0].id);
                 }
@@ -210,14 +210,15 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     }
 
 
-    $scope.generateMenu = function(data) {
-        var result = [];
+    $scope.setupMenu = function(data) {
+        var menu = [];
         if(angular.isArray(data)) {
             for(var i=0; i<data.length; i++) {
-                result.push({id:data[i]['Project']['id']});
+                menu.push({id:data[i]['Project']['id']});
             }
         }
-        return result;
+        $scope.menu = menu;
+        return menu;
     }
 
     $scope.goUsers = function(){
@@ -230,7 +231,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
             true,
             // SUCCESS
             function(data, handlers){
-                ProjectsService.load(ProjectsService.active_project_id);
+                $scope.setupMenu(data);
             },
             // ERROR
             function(error){
