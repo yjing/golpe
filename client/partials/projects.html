@@ -33,14 +33,26 @@
 
     <div class="span9">
         <div class="menu shadow">
-            <div>
+            <!-- NORMAL MODE -->
+            <div ng-hide="DB.m.projects[selected_project].mode == 'edit'">
                 <span>
                     <h4>{{DB.d.projects[selected_project].name}}</h4>
                 </span>
             </div>
-            <ul>
+            <ul ng-hide="DB.m.projects[selected_project].mode == 'edit'">
                 <li>
                     <p class="selector">{{DB.d.projects[selected_project].description}}</p>
+                </li>
+            </ul>
+            <!-- EDIT MODE -->
+            <div ng-show="DB.m.projects[selected_project].mode == 'edit'">
+                <span>
+                    <input autofocus="true" onload="this.focus()" type="text" class="input-xlarge" ng-model="DB.d.projects[selected_project].name">
+                </span>
+            </div>
+            <ul ng-show="DB.m.projects[selected_project].mode == 'edit'">
+                <li>
+                    <textarea ng-model="DB.d.projects[selected_project].description"></textarea>
                 </li>
             </ul>
             <div ng-show="DB.m.projects[selected_project].mode == 'edit'">
