@@ -269,12 +269,12 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         }
         ProjectsService.save(id_data,
             function(d, h){
-                $scope.selected_project = d.Project.id;
                 if(angular.isObject(d)) {
+                    $scope.selected_project = d.Project.id;
                     var newProjectTree = getIdTree(d, "Project.Team.Student", "teams.users");
                     var index = $scope.findProjectIndexById(id);
-                    console.log(index);
-                    if(angular.isDefined(index)) {
+
+                    if(index != null) {
                         $scope.menu[index] = newProjectTree;
                     } else {
                         $scope.menu.push(newProjectTree);
