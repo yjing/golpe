@@ -219,6 +219,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
 
                     var newProjectTree = getIdTree(d, "Project.Team.Student", "teams.users");
                     var index = $scope.findIndexById(id);
+                    console.log(newProjectTree);
                     $scope.menu[index] = newProjectTree;
 
 //                    var newMenu = [];
