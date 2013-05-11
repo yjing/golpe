@@ -146,11 +146,16 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     }
 
 })
-.filter('menu', function(){
+.filter('menu', function(DBService){
     return function(value, param){
-        console.log(value);
-        console.log(param);
-        return value;
+        var result = [];
+        for(var i=0; i<value.length; i++) {
+            var val = DBService.d.projects[value[i].id];
+            if(val.indexOf(param) > 0) {
+                result.push(value[i])
+            }
+        }
+        return result;
     };
 })
 .service('BusyService', function($rootScope){
