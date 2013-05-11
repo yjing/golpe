@@ -278,11 +278,13 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     }
 
     $scope.findTeamIndexById = function(project_id, id){
-        var pIndex = $scope.findProjectIndexById(project_id);
-        for(var i=0; i<$scope.menu[pIndex].teams.length; i++) {
-            if (id == $scope.menu[pIndex].teams[i].id) return i;
-            return null;
+        if(angular.isDefined(project_id) && angular.isDefined(id)) {
+            var pIndex = $scope.findProjectIndexById(project_id);
+            for(var i=0; i<$scope.menu[pIndex].teams.length; i++) {
+                if (id == $scope.menu[pIndex].teams[i].id) return i;
+            }
         }
+        return null;
     }
 
     $scope.goUsers = function(){
