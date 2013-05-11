@@ -220,6 +220,12 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     $rootScope.PS = this;
     var _THIS = this;
 
+    // STATUS CONSTANTS
+    var STATUS_KEY = 'status';
+    var STATUS_PARTIAL = 'partial';
+    var STATUS_COMPLETE = 'complete';
+    var STATUS_NEW = 'new';
+
     this.Projects = $resource('/projects/:id', { id:'@id' }, {
         all: {
             method: 'GET',
@@ -262,6 +268,45 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         );
     }
 
+    this.load = function(id, success, error) {
+        if(!angular.isNumber(id)) {
+            throw "Missing project ID";
+        }
+
+        if(DBService.m.projects[id].status == STATUS_PARTIAL) {
+            BusyService.busy(true);
+            var proj = this.Projects.get(
+                {
+                    id: id
+                },
+                function(d, h){
+                    BusyService.busy(false);
+
+                    // ADD METADATA
+                    DBService.insertData("projects", id, proj);
+                    DBService.insertMeta("projects", id, STATUS_KEY, STATUS_COMPLETE)
+
+                    // CALLBACKS
+                    if(success) {
+                        success(d, h);
+                    }
+                },
+                function(e) {
+                    BusyService.busy(false);
+
+                    // CALLBACKS
+                    if(error) {
+                        error(e);
+                    }
+                }
+            );
+        } else {
+            // CALLBACK
+            if(success) {
+                success(DBService.d.projects[id]);
+            }
+        }
+    }
     // DB ACCESS FUNCS
     this.insertProjects = function(data) {
         if(angular.isArray(data)) {
@@ -281,8 +326,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             if(angular.isDefined(data['Project']['Team'])) {
 
             } else {
-                DBService.insertMeta("projects", data['Project']['id'], 'status', 'partial');
-                DBService.insertMeta("projects", data['Project']['id'], 'mode', 'normal');
+                DBService.insertMeta("projects", data['Project']['id'], STATUS_KEY, STATUS_PARTIAL);
             }
         }
     }
