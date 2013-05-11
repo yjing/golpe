@@ -96,7 +96,8 @@ ul.menu > li > a > span.selector {
     width: 100%;
     margin: 0;
 }
-ul.menu div.functions {
+ul.menu span.functions {
+    display: block;
     position: absolute;
     height: 100%;
     width: 100%;
