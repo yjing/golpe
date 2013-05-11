@@ -418,6 +418,6 @@ function separateFirstToken(arrayStr, separator) {
         throw new TypeError();
     }
     var array = arrayStr.split(separator);
-    var token = array.splice(0, 1);
+    var token = array.splice(0, 1).toString();
     return [token, array.join(separator)];
 }
