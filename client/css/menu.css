@@ -20,3 +20,14 @@ div.menu div:first-child {
 div.menu div:last-child {
     /* FOOTER */
 }
+
+div.menu ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+div.menu ul li {
+    margin: 0;
+    padding: 0;
+}
