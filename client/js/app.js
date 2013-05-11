@@ -330,7 +330,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     }
 
     this.save = function(id, success, error) {
-        if(id == undefined || typeof id != "number") {
+        if(!angular.isDefined(id)) {
             throw "Missing project ID";
         }
 
