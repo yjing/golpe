@@ -233,7 +233,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         }
     }
 
-    $scope.selectTeam = function(t_id){
+    $scope.selectTeam = function(id){
         if(angular.isDefined(DBService.d.teams[id])) {
             $scope.selected_team = id;
         }
