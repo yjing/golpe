@@ -218,7 +218,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
                     $scope.selected_project = id;
 
                     var index = $scope.findIndexById(id);
-                    console.log($scope.menu[index]);
+                    console.log(d);
                 },
                 function(e) {
                     $rootScope.handleError(e);
