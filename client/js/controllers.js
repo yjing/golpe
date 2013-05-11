@@ -407,7 +407,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
 }
 
 function removeTokenFromHead(arrayStr, separator) {
-    if(!angular.isArray(arrayStr)) {
+    if(!angular.isString(arrayStr)) {
         throw new TypeError();
     }
     var array = arrayStr.split(separator);
