@@ -295,7 +295,6 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             throw "Missing project ID";
         }
 
-        console.log(DBService.m);
         if(DBService.m.projects[id].status == STATUS_PARTIAL) {
             BusyService.busy(true);
             var proj = this.Projects.load(
@@ -307,6 +306,8 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 
                     // ADD METADATA
                     _THIS.insertProject(proj);
+
+                    console.log(d);
 
                     // CALLBACKS
                     if(success) {

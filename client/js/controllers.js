@@ -405,7 +405,7 @@ function getIdTree(data, path, tPath) {
                     result.push(elem);
                 }
             }
-        } else {
+        } else if(angular.isObject(obj)) {
             result = {};
             if(angular.isDefined(obj.id)) {
                 result.id = obj.id;
