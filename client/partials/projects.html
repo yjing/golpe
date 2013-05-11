@@ -43,9 +43,9 @@
                     <p class="selector">{{DB.d.projects[selected_project].description}}</p>
                 </li>
             </ul>
-            <!--<div>-->
-                <!--<span>operations</span>-->
-            <!--</div>-->
+            <div ng-show="DB.m.projects[selected_project].mode == 'edit'">
+                <span>operations</span>
+            </div>
         </div>
 
 
