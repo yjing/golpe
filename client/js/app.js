@@ -148,7 +148,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 })
 .filter('menu', function(DBService){
     return function(value, param){
-        if(angular.isUndefined(param)) {
+        if(angular.isString(param) && param.trim().length > 0) {
             return value;
         }
         param = angular.lowercase(param);
