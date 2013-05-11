@@ -216,6 +216,9 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
             ProjectsService.load(id,
                 function(d, h){
                     $scope.selected_project = id;
+
+                    var index = $scope.findIndexById(id);
+                    console.log($scope.menu[index]);
                 },
                 function(e) {
                     $rootScope.handleError(e);
@@ -253,6 +256,13 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         }
         $scope.menu = menu;
         return menu;
+    }
+
+    $scope.findIndexById = function(id){
+        for(var i=0; i<$scope.menu.length; i++) {
+            if (id == $scope.menu[i].id) return i;
+            return null;
+        }
     }
 
     $scope.goUsers = function(){
