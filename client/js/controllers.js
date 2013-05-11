@@ -416,7 +416,11 @@ function getIdTree(data, path, tPath) {
             result = [];
             for(var i=0; i<obj.length; i++) {
                 if(angular.isDefined(obj[i].id)) {
-                    result.push({'id':obj[i].id});
+                    var elem = {'id':obj[i].id};
+                    if(pathInfo[1].length > 0) {
+                        elem[tPathInfo[0]] = getIdTree(obj[i], pathInfo[1], tPathInfo[1]);
+                    }
+                    result.push(elem);
                 }
             }
         } else {
