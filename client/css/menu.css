@@ -6,9 +6,9 @@ div.menu {
 
 div.menu div {
     /* DIVIDER */
-    border-left: 1px solid rgb(240, 248, 255);
-    border-right: 1px solid rgb(240, 248, 255);
-    border-bottom: 1px solid rgb(240, 248, 255);
+    border-left: 1px solid rgb(221, 221, 221);
+    border-right: 1px solid rgb(221, 221, 221);
+    border-bottom: 1px solid rgb(221, 221, 221);
 }
 
 div.menu div:first-child {
