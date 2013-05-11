@@ -226,7 +226,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
 
     $scope.editProject = function(id) {
         if(angular.isDefined(DBService.d.projects[id])) {
-            DBService.m.projects[id].old = DBService.m.projects[id];
+            DBService.m.projects[id].old = DBService.d.projects[id];
             DBService.m.projects[id].mode = 'edit';
         }
     }
