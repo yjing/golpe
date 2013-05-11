@@ -263,10 +263,13 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     }
 
     $scope.saveProject = function(id){
-        console.log(id);
-        ProjectsService.save(id,
+        var id_data = $scope.new_project;
+        if(id > 0) {
+            id_data = id;
+        }
+        ProjectsService.save(id_data,
             function(d, h){
-                $scope.selected_project = id;
+                $scope.selected_project = data.Project.id;
                 if(angular.isObject(d)) {
                     var newProjectTree = getIdTree(d, "Project.Team.Student", "teams.users");
                     var index = $scope.findProjectIndexById(id);

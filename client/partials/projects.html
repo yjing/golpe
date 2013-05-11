@@ -79,7 +79,7 @@
                     <textarea class="edit-field" ng-model="new_project.description"></textarea>
                 </li>
             </ul>
-            <div ng-show="DB.m.projects[selected_project].mode == 'edit'">
+            <div>
                 <span>
                     <div class="btn-group">
                         <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveProject(selected_project);">Save</button>
