@@ -209,6 +209,20 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         }
     }
 
+    $scope.reloadProjects = function(){
+        ProjectsService.loadAll(
+            true,
+            // SUCCESS
+            function(data, handlers){
+                $scope.setupMenu(data);
+            },
+            // ERROR
+            function(error){
+                $rootScope.handleError(error);
+            }
+        );
+    }
+
 
     $scope.setupMenu = function(data) {
         var menu = [];
@@ -224,20 +238,6 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     $scope.goUsers = function(){
         $location.url('/client/users');
         $rootScope.toggleTitleMenu();
-    }
-
-    $scope.reload = function(){
-        ProjectsService.loadAll(
-            true,
-            // SUCCESS
-            function(data, handlers){
-                $scope.setupMenu(data);
-            },
-            // ERROR
-            function(error){
-                $rootScope.handleError(error);
-            }
-        );
     }
 
     $scope.saveProject = function(index){
