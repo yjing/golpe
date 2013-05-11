@@ -8,14 +8,9 @@
             </li>
             <li ng-repeat="p in menu" ng-class="isSelectedProject(p.id)">
                 <a style="position: relative;">
-                    <span href="#" ng-click="selectProject(p.id);" style="display: block; cursor:pointer; height: 100%; width: 100%; margin: 0;">{{DB.d.projects[p.id].name}}</span>
-                    <!--<i class="icon-edit" ng-show="DB.m.projects[p.id].mode == 'edit'"></i>-->
-                    <button class="btn-link" style="height: 100%; margin: 0 3px; top: 0; right: 30px; position: absolute;">
-                        <i class="icon-edit"></i>
-                    </button>
-                    <button class="btn-link" style="height: 100%; margin: 0 3px; top: 0; right: 0; position: absolute;">
-                        <i class="icon-remove"></i>
-                    </button>
+                    <span href="#" class="selector" ng-click="selectProject(p.id);">{{DB.d.projects[p.id].name}}</span>
+                    <button class="btn-link" class="function second-rightside"><i class="icon-edit"></i></button>
+                    <button class="btn-link" class="function first-leftside"><i class="icon-remove"></i></button>
                 </a>
             </li>
             <li class="text-right">

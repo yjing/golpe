@@ -87,6 +87,39 @@ ul.menu > li:last-child > a {
         background-color: #fefefe;
     }
 }
+ul.menu > li > a > span.button {
+    display: block;
+    cursor:pointer;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+ul.menu > li > a > button.function {
+    height: 100%;
+    margin: 0 3px;
+    top: 0;
+    position: absolute;
+}
+ul.menu > li > a > button.function.first-rightside,
+ul.menu > li > a > button.function.rightside {
+    right: 5px;
+}
+ul.menu > li > a > button.function.first-leftside,
+ul.menu > li > a > button.function.leftside {
+    left: 5px;
+}
+ul.menu > li > a > button.function.second-leftside  {
+    left: 30px;
+}
+ul.menu > li > a > button.function.second-rightside  {
+    right: 30px;
+}
+ul.menu > li > a > button.function.third-rightside  {
+    right: 60px;
+}
+ul.menu > li > a > button.function.third-leftside  {
+    left: 60px;
+}
 
 /*ul.nav.nav-tabs.nav-stacked > li > a {*/
     /*background-color: #ffffff;*/
