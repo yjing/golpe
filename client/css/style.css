@@ -67,9 +67,9 @@ ul {
     }
 }
 
-ul.nav.nav-tabs.nav-stacked li > a {
-    background-color: #ffffff;
-}
+/*ul.nav.nav-tabs.nav-stacked li > a {*/
+    /*background-color: #ffffff;*/
+/*}*/
 @media screen and (max-width: 768px) {
     ul.nav.nav-tabs.nav-stacked li > a:hover {
         background-color: #ffffff;
