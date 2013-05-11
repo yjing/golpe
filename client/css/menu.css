@@ -99,6 +99,7 @@ div.menu > ul > li.selector {
     padding: 10px 14px;
 }
 
+div.menu > div input.edit-field,
 div.menu > ul > li > input.edit-field {
     font-size: 1.2em;
     position: relative;
