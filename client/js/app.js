@@ -150,7 +150,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     return function(value, param){
         console.log(value);
         console.log(param);
-        return data;
+        return value;
     };
 })
 .service('BusyService', function($rootScope){
