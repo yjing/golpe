@@ -290,7 +290,13 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
            angular.isDefined(data['Project']['id'])) {
 
             DBService.insertData ("projects", data['Project']['id'], data['Project']);
-            DBService.insertMeta("projects", data['Project']['id'], 'status', 'partial');
+            if(angular.isDefined(data['Project']['Team'])) {
+
+            } else {
+                DBService.insertMeta("projects", data['Project']['id'], 'status', 'partial');
+                DBService.insertMeta("projects", data['Project']['id'], 'mode', 'normal');
+                DBService.insertMeta("projects", data['Project']['id'], 'active', false);
+            }
         }
     }
     this.insertTeam = function(data){
