@@ -207,6 +207,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
             // SUCCESS
             function(data, handlers){
                 $scope.setupMenu(data);
+                $scope.selectProject($scope.selected_project);
             },
             // ERROR
             function(error){
