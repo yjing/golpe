@@ -269,7 +269,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     }
 
     this.load = function(id, success, error) {
-        if(!angular.isNumber(id)) {
+        if(!angular.isDefined(id)) {
             throw "Missing project ID";
         }
 
