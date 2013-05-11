@@ -63,7 +63,7 @@ div.menu > div > span,
 div.menu > ul > li > a,
 div.menu .selector {
     display: block;
-    padding: 6px 10px;
+    padding: 8px 12px;
 }
 
 div.menu > div > div.functions,
@@ -96,7 +96,7 @@ div.menu > ul > li > div.confirms > .confirm {
 
 div.menu > div.selector,
 div.menu > ul > li.selector {
-    padding: 8px 12px;
+    padding: 10px 114px;
 }
 
 /* OTHER */
