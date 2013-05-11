@@ -14,9 +14,8 @@
                     <div class="functions">
                         <button class="btn-link function"><i class="icon-remove"></i></button>
                     </div>
-                    <div class="confirms">
-                        <button ng-show="isSelectedProject(p.id) == 'active'"class="btn btn-danger confirm">Sure?</button>
-                    </div>
+                    <button ng-show="isSelectedProject(p.id) == 'active'"class="btn btn-danger confirm">Sure?</button>
+                    <button ng-hide="isSelectedProject(p.id) == 'active'"class="btn btn-danger confirm">Sure?</button>
                 </li>
             </ul>
             <div>
