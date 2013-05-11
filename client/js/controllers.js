@@ -156,6 +156,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         ProjectsService.loadAll(
             // SUCCESS
             function(data, handlers){
+                console.log("HELLO");
                 console.log(ProjectsService.modello);
 //                if(ProjectsService.projects.length > 0) {
 //                    ProjectsService.load(
