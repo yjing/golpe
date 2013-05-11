@@ -9,14 +9,10 @@ div.menu > div,
 div.menu > ul > li {
     /* DIVIDER */
     margin: 0;
-    padding: 0;
+    padding: 4px;
     border-left: 1px solid rgb(221, 221, 221);
     border-right: 1px solid rgb(221, 221, 221);
     border-bottom: 1px solid rgb(221, 221, 221);
-}
-
-div.menu > ul > li.active {
-    background-color: aliceblue;
 }
 
 div.menu > div {
