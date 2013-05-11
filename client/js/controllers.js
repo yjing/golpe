@@ -225,10 +225,15 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
                     if(angular.isArray(d['Project']['Team'])) {
                         $scope.menu[index].teams = [];
                         for(var i=0; i<d['Project']['Team'].length; i++) {
-                            $scope.menu[index].teams.push(d['Project']['Team'][i].id);
+                            $scope.menu[index].teams.push({"id" : d['Project']['Team'][i].id});
+                            if (angular.isArray(d['Project']['Team'][i]['Student'])) {
+                                for(var j=0; j<d['Project']['Team'].length; j++) {
+
+                                }
+                            }
                         }
+                        console.log($scope.menu);
                     }
-                    console.log($scope.menu);
                 },
                 function(e) {
                     $rootScope.handleError(e);
