@@ -100,6 +100,7 @@ div.menu > ul > li.selector {
 }
 
 div.menu > ul > li > input.edit-field {
+    font-size: 1.5em;
     position: relative;
     border: none;
     outline: none;
