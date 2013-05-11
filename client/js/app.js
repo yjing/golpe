@@ -343,7 +343,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 
             if(angular.isDefined(data['Project']['Team'])) {
                 for (var i=0; i<data['Project']['Team'].length; i++) {
-                    console.log(data['Project']['Team']['id']);
+                    console.log(data['Project']['Team'][i].id);
                 }
                 DBService.insertMeta("projects", data['Project']['id'], STATUS_KEY, STATUS_COMPLETE);
                 DBService.insertMeta("projects", data['Project']['id'], MODE_KEY, MODE_NORMAL);
