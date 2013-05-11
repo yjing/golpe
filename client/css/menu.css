@@ -132,3 +132,13 @@ div.menu > ul > li.active:focus {
 .clickable {
     cursor: pointer;
 }
+
+textarea.edit-field {
+    position: absolute;
+    margin: 0;
+    top: 0;
+    left: 0;
+    border: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
