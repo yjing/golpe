@@ -57,8 +57,6 @@ div.menu > ul {
     list-style-type: none;
 }
 
-/* OTHER */
-
 div.menu > div > a,
 div.menu > div > span,
 div.menu > ul > li > a,
@@ -70,4 +68,13 @@ div.menu .selector {
 div.menu > div.selector,
 div.menu > ul > li.selector {
     padding: 8px 12px;
+}
+
+/* OTHER */
+
+div.menu > ul > li.active,
+div.menu > ul > li.active:hover,
+div.menu > ul > li.active:focus {
+    font-weight: bolder;
+    background-color: aliceblue;
 }

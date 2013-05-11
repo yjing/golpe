@@ -75,9 +75,9 @@ ul.menu > li > a:focus {
     color: rgb(0, 136, 204);;
 }
 
-div.menu > ul > li.active > a,
-div.menu > ul > li.active > a:hover,
-div.menu > ul > li.active > a:focus {
+ul.menu > li.active > a,
+ul.menu > li.active > a:hover,
+ul.menu > li.active > a:focus {
     font-weight: bolder;
     background-color: aliceblue;
 }
