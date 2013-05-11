@@ -216,6 +216,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
             ProjectsService.load(id,
                 function(d, h){
                     $scope.selected_project = id;
+                    DBService.m.projects[id].mode = 'edit';
                 },
                 function(e) {
                     $rootScope.handleError(e);
