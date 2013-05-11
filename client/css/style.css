@@ -67,23 +67,44 @@ ul {
     }
 }
 
-ul.nav.nav-tabs.nav-stacked > li > a {
+ul.menu > li > a,
+ul.menu > li > a:hover,
+ul.menu > li > a:focus {
     background-color: #ffffff;
+    color: rgb(0, 136, 204);;
 }
-ul.nav.nav-tabs.nav-stacked > li.active > a,
-ul.nav.nav-tabs.nav-stacked > li.active > a:focus {
+ul.menu > li.active > a,
+ul.menu > li.active > a:focus {
     font-weight: bolder;
     background-color: aliceblue;
 }
-ul.nav.nav-tabs.nav-stacked > li:first-child > a,
-ul.nav.nav-tabs.nav-stacked > li:last-child > a {
+ul.menu > li:first-child > a,
+ul.menu > li:last-child > a {
     background-color: #fafafa;
 }
 @media screen and (max-width: 768px) {
-    ul.nav.nav-tabs.nav-stacked li > a:hover {
+    ul.menu li > a:hover {
         background-color: #fefefe;
     }
 }
+
+/*ul.nav.nav-tabs.nav-stacked > li > a {*/
+    /*background-color: #ffffff;*/
+/*}*/
+/*ul.nav.nav-tabs.nav-stacked > li.active > a,*/
+/*ul.nav.nav-tabs.nav-stacked > li.active > a:focus {*/
+    /*font-weight: bolder;*/
+    /*background-color: aliceblue;*/
+/*}*/
+/*ul.nav.nav-tabs.nav-stacked > li:first-child > a,*/
+/*ul.nav.nav-tabs.nav-stacked > li:last-child > a {*/
+    /*background-color: #fafafa;*/
+/*}*/
+/*@media screen and (max-width: 768px) {*/
+    /*ul.nav.nav-tabs.nav-stacked li > a:hover {*/
+        /*background-color: #fefefe;*/
+    /*}*/
+/*}*/
 
 /* TOPBAR */
 div.topbar { margin: 0; }
