@@ -3,18 +3,16 @@
 
     <div class="span3">
         <ul class="nav nav-tabs nav-stacked shadowed">
-            <li class="text-right">
-                <a href="#" ng-click="reloadProjects();" style="background: #fafafa;">Refresh Projects <i class="icon-refresh"></i></a>
+            <li class="text-right menuFirst">
+                <a href="#" ng-click="reloadProjects();">Refresh Projects <i class="icon-refresh"></i></a>
             </li>
             <li ng-repeat="p in menu" ng-class="isSelectedProject(p.id)">
                 <a href="#" ng-click="selectProject(p.id);">{{DB.d.projects[p.id].name}}
                     <i class="icon-edit" ng-show="DB.m.projects[p.id].mode == 'edit'"></i>
                 </a>
             </li>
-            <li class="text-right">
-                <a style="background: #fafafa;">
-                    <button ng-click="BS.new();" ng-disabled="BS.newProject" class="btn btn-success">New Project</button>
-                </a>
+            <li class="text-right menuLast">
+                <a><button ng-click="BS.new();" ng-disabled="BS.newProject" class="btn btn-success">New Project</button></a>
             </li>
         </ul>
     </div>
