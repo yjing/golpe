@@ -155,7 +155,8 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     $scope.menu = [];
     $scope.selected_project = null;
     $scope.selected = function(id){
-        return ( id == $scope.selected_project ? 'active' : '' );
+//        return ( id == $scope.selected_project ? 'active' : '' );
+        return 'active';
     }
 
     // MAIN METHOD
