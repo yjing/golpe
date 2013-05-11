@@ -181,6 +181,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     return;
 
     // BEFORE MAIN: CHECK USER LOGIN
+    console.log("HELLOZERO");
     if($rootScope.user == null || !$rootScope.user['logged']) {
         console.log("HELLO1");
         BusyService.busy(true);
