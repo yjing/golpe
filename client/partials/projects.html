@@ -10,13 +10,9 @@
             </div>
             <ul>
                 <li>
-                    <input type="text" class="edit-field function" style="height: 2em;">
-                    <div class="functions">
-                        <button class="btn-link function"><i class="icon-remove"></i></button>
-                        <button class="btn-link function" style="margin-right: -5px;"><i class="icon-ok"></i></button>
-                    </div>
+                    <input type="text" class="edit-field" style="height: 2em;" ng-value="filter_input">
                 </li>
-                <li ng-repeat="p in menu" ng-class="isSelectedProject(p.id)">
+                <li ng-repeat="p in menu | filter:filter_input" ng-class="isSelectedProject(p.id)">
                     <a href="#" ng-click="selectProject(p.id);">{{DB.d.projects[p.id].name}}</a>
                     <div class="functions">
                         <button class="btn-link function"><i class="icon-remove"></i></button>
