@@ -121,7 +121,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, BusyService) {
     }
 }
 
-function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, ProjectsService, Users, BusyService) {
+function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, ProjectsService, Users, BusyService, DBService) {
 
     // TOP BAR
     $rootScope.top_bar = {
@@ -152,10 +152,18 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         ]
     };
 
+    // PAGE MENU
     $scope.menu = [];
+    // PROJECT SELECTION
     $scope.selected_project = null;
     $scope.isSelectedProject = function(id){
         return ( id == $scope.selected_project ? 'active' : '' );
+    }
+    $scope.selectProject = function(id) {
+        if(angular.isDefined(DBService.d.projects[id])) {
+            $scope.selected_project = id;
+            //load project
+        }
     }
 
     // MAIN METHOD
@@ -165,7 +173,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
             function(data, handlers){
                 $scope.menu = $scope.generateMenu(data);
                 if($scope.menu.length > 0) {
-                    $scope.selected_project = $scope.menu[0].id;
+                    $scope.selectProject($scope.menu[0].id);
                 }
             },
             // ERROR
