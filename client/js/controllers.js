@@ -253,8 +253,8 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     $scope.cancelEditProject = function(id) {
         if (id < 0) {
             $scope.new_project = null;
-            if(menu.length > 0) {
-                $scope.selectProject(menu[0].id)
+            if($scope.menu.length > 0) {
+                $scope.selectProject($scope.menu[0].id)
             }
         }else if(angular.isDefined(DBService.d.projects[id])) {
             if(DBService.m.projects[id].mode == 'edit') {
