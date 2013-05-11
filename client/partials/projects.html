@@ -72,7 +72,9 @@
                         <span><strong>Teams <i class="icon-briefcase"></i></strong></span>
                     </div>
                     <ul>
-                        <li></li>
+                        <li ng-repeat="t in menu[findIndexById(selected_project)].teams">
+                            {{t.name}}
+                        </li>
                     </ul>
                     <div class="text-right">
                         <span><button ng-click="BS.new();" ng-disabled="BS.newProject" class="btn btn-success">New Team</button></span>
