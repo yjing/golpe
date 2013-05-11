@@ -146,6 +146,13 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     }
 
 })
+.filter('menu', function(){
+    return function(value, param){
+        console.log(value);
+        console.log(param);
+        return data;
+    };
+})
 .service('BusyService', function($rootScope){
     // PUT SERVICE IN ROOTE SCOPE
     $rootScope.BUSY = this;
