@@ -28,7 +28,7 @@ div.menu > ul > li {
     /* DIVIDER */
     position: relative;
     margin: 0;
-    padding: 4px;
+    padding: 2px;
     border-left: 1px solid rgb(221, 221, 221);
     border-right: 1px solid rgb(221, 221, 221);
     border-bottom: 1px solid rgb(221, 221, 221);
@@ -63,5 +63,5 @@ div.menu > div > a,
 div.menu > div > span,
 div.menu > ul > li > a {
     display: block;
-    padding: 4px 8px;
+    padding: 6px 10px;
 }
