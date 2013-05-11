@@ -153,6 +153,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
 
     // MAIN METHOD
     $scope.main = function() {
+        console.log("FFFFF");
         ProjectsService.loadAll(
             // SUCCESS
             function(data, handlers){
