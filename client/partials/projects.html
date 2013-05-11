@@ -43,11 +43,9 @@
                         {{DB.d.projects[selected_project].name}} <i class="icon-pencil"></i>
                     </h4>
                     <!-- EDIT MODE -->
-                    <span ng-show="DB.m.projects[selected_project].mode == 'edit'">
-                        <input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge" ng-model="DB.d.projects[selected_project].name">
-                    </span>
-                    <span ng-show="(selected_project < 0);">
-                        <input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge" ng-model="new_project.name">
+                    <span>
+                        <input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge" ng-model="DB.d.projects[selected_project].name" ng-show="DB.m.projects[selected_project].mode == 'edit'">
+                        <input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge" ng-model="new_project.name" ng-show="(selected_project < 0);">
                     </span>
                 </span>
             </div>
