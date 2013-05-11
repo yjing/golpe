@@ -33,26 +33,24 @@
 
     <div class="span9">
         <div class="menu shadow">
-            <!-- NORMAL MODE -->
-            <div ng-hide="DB.m.projects[selected_project].mode == 'edit'">
+            <div>
                 <span>
-                    <h4>{{DB.d.projects[selected_project].name}}</h4>
+                    <h4 ng-hide="DB.m.projects[selected_project].mode == 'edit'">
+                        {{DB.d.projects[selected_project].name}}
+                    </h4>
+                    <!-- EDIT MODE -->
+                    <span ng-show="DB.m.projects[selected_project].mode == 'edit'">
+                        <input autofocus="true" onload="this.focus()" type="text" class="input-xlarge" ng-model="DB.d.projects[selected_project].name">
+                    </span>
                 </span>
             </div>
-            <ul ng-hide="DB.m.projects[selected_project].mode == 'edit'">
+            <ul>
                 <li>
-                    <p class="selector">{{DB.d.projects[selected_project].description}}</p>
-                </li>
-            </ul>
-            <!-- EDIT MODE -->
-            <div ng-show="DB.m.projects[selected_project].mode == 'edit'">
-                <span>
-                    <input autofocus="true" onload="this.focus()" type="text" class="input-xlarge" ng-model="DB.d.projects[selected_project].name">
-                </span>
-            </div>
-            <ul ng-show="DB.m.projects[selected_project].mode == 'edit'">
-                <li>
-                    <textarea ng-model="DB.d.projects[selected_project].description"></textarea>
+                    <p class="selector" ng-hide="DB.m.projects[selected_project].mode == 'edit'">
+                        {{DB.d.projects[selected_project].description}}
+                    </p>
+                    <!-- EDIT MODE -->
+                    <textarea ng-model="DB.d.projects[selected_project].description" ng-show="DB.m.projects[selected_project].mode == 'edit'"></textarea>
                 </li>
             </ul>
             <div ng-show="DB.m.projects[selected_project].mode == 'edit'">
