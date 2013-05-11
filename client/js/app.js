@@ -335,12 +335,9 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         }
 
         var data = id;
+        var params = {};
         if(angular.isDefined(DBService.d.projects[id])) {
             data = DBService.d.projects[id];
-        }
-
-        var params = {};
-        if(DBService.m.projects[id].status != STATUS_NEW) {
             params = {'id':id};
         }
 
