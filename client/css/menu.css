@@ -102,6 +102,7 @@ div.menu > ul > li.selector {
 div.menu > ul > li > input.edit-field {
     position: relative;
     border: none;
+    outline: none;
     margin: 0;
     top: 0;
     left: 0;
