@@ -218,10 +218,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
                     $scope.selected_project = id;
 
                     var test = "Project.Team.Student";
-                    var testa = test.split('.');
-                    testa.splice(0, 1);
-                    test = testa.join('.');
-                    console.log(test);
+                    console.log(removeTokenFromHead(test));
 
                     var newMenu = [];
                     var index = $scope.findIndexById(id);
@@ -407,4 +404,13 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         $scope.description_active = 'active';
         $scope.teams_active = '';
     }
+}
+
+function removeTokenFromHead(arrayStr, separator) {
+    if(!angular.isArray(arrayStr)) {
+        throw new TypeError();
+    }
+    var array = arrayStr.split(separator);
+    array.splice(0, 1);
+    return array.join(separator);
 }
