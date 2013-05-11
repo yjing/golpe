@@ -61,6 +61,6 @@ div.menu > ul {
 
 div.menu > div > a {
     display: block;
-    width: 100%;
+    /*width: 100%;*/
     padding: 4px 8px;
 }
