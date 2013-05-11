@@ -83,6 +83,23 @@
                 </div>
             </div>
 
+            <div class="span4">
+                <div class="menu shadow">
+                    <div class="text-right">
+                        <span><strong>Team Members <i class="icon-user"></i></strong></span>
+                    </div>
+                    <ul>
+                        <li ng-repeat="t in menu[findIndexById(selected_project)].teams" ng-class="isSelectedTeam(t.id)">
+                            <a href="#" ng-click="selectTeam(t.id);">{{DB.d.teams[t.id].name}}</a>
+                        </li>
+                    </ul>
+                    <div class="text-right">
+                        <span><button ng-click="BS.new();" ng-disabled="BS.newProject" class="btn btn-success">Add Member</button></span>
+                    </div>
+                </div>
+            </div>
+
+
             <div class="span4" style="margin-top: 2em;" ng-show="BS.activeProject('Project').Team != null">
                 <ul class="nav nav-tabs nav-stacked shadowed">
                     <li class="text-right">
@@ -105,28 +122,6 @@
                     </li>
                 </ul>
             </div>
-            <!--<div class="span4" style="margin-top: 2em;" ng-show="BS.activeProject('Project').Team != null">-->
-                <!--<ul class="nav nav-tabs nav-stacked shadowed">-->
-                    <!--<li class="text-right">-->
-                        <!--<a href="#" ng-click="" style="background: #fafafa;">Teams  <i class="icon-briefcase"></i></a>-->
-                    <!--</li>-->
-                    <!--<li ng-repeat="t in BS.activeProject('Project').Team" ng-class="BS.activeTeamClass($index)">-->
-                        <!--<a href="#" ng-click="BS.activateTeam($index);">-->
-                            <!--<span>{{t.name}}</span>-->
-                        <!--</a>-->
-                    <!--</li>-->
-                    <!--<li ng-show="newTeamB">-->
-                        <!--<a>-->
-                            <!--<input ng-model="newTeamName" style="width: 100%;">-->
-                        <!--</a>-->
-                    <!--</li>-->
-                    <!--<li class="text-right">-->
-                        <!--<a ng-click="" style="background: #fafafa;">-->
-                            <!--<button class="btn btn-success" ng-click="addTeam(BS.activeProject('Project').id);">{{newTeamLabel}}</button>-->
-                        <!--</a>-->
-                    <!--</li>-->
-                <!--</ul>-->
-            <!--</div>-->
             <!--<div class="span4" style="margin-top: 2em;"  ng-show="BS.activeProject('Project').Team != null && BS.activeTeam() != null">-->
                 <!--<ul class="nav nav-tabs nav-stacked shadowed">-->
                     <!--<li class="text-right">-->
