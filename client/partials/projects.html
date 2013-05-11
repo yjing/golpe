@@ -3,23 +3,23 @@
 
     <ul><li ng-repeat="e in PS.menu">{{e}} >> {{DB.d.projects[e.id].name}}</li></ul>
 
-    <!--<div class="span3">-->
-        <!--<ul class="nav nav-tabs nav-stacked shadowed">-->
-            <!--<li class="text-right">-->
-                <!--<a href="#" ng-click="reload();" style="background: #fafafa;">Refresh Projects <i class="icon-refresh"></i></a>-->
-            <!--</li>-->
-            <!--<li ng-repeat="p_id in BS.menu"> &lt;!&ndash;ng-class="BS.activeClass($index)" ng-hide="BS.projects[BS.active_project_id].new">&ndash;&gt;-->
-                <!--<a href="#" ng-clicks="showProject($index);">{{DB.d.projects[p_id].name}}-->
-                    <!--<i class="icon-edit" ng-show="BS.projects[$index].mode == 'edit'"></i>-->
-                <!--</a>-->
-            <!--</li>-->
-            <!--<li class="text-right">-->
-                <!--<a style="background: #fafafa;">-->
-                    <!--<button ng-click="BS.new();" ng-disabled="BS.newProject" class="btn btn-success">New Project</button>-->
-                <!--</a>-->
-            <!--</li>-->
-        <!--</ul>-->
-    <!--</div>-->
+    <div class="span3">
+        <ul class="nav nav-tabs nav-stacked shadowed">
+            <li class="text-right">
+                <a href="#" ng-click="reload();" style="background: #fafafa;">Refresh Projects <i class="icon-refresh"></i></a>
+            </li>
+            <li ng-repeat="p in PS.menu"> <!--ng-class="BS.activeClass($index)" ng-hide="BS.projects[BS.active_project_id].new">-->
+                <a href="#" ng-clicks="showProject($index);">{{DB.d.projects[p.id].name}}
+                    <i class="icon-edit" ng-show="BS.projects[$index].mode == 'edit'"></i>
+                </a>
+            </li>
+            <li class="text-right">
+                <a style="background: #fafafa;">
+                    <button ng-click="BS.new();" ng-disabled="BS.newProject" class="btn btn-success">New Project</button>
+                </a>
+            </li>
+        </ul>
+    </div>
 
     <!--<div class="span9">-->
         <!--<div class="row-fluid" ng-show="BS.activeProject() != null">-->
