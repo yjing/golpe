@@ -234,9 +234,9 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                 BusyService.busy(false);
                 _THIS.insertProjects(d);
 
+                console.log(d);
+                console.log(result);
                 this.modello = _THIS.generateMenu(d);
-                console.log("HELLO1");
-                console.log(_THIS.generateMenu(d));
 
                 // CALLBACKS
                 if(success) {
