@@ -165,7 +165,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
             function(data, handlers){
                 $scope.menu = $scope.generateMenu(data);
                 if($scope.menu.length > 0) {
-                    $scope.selected = $scope.menu[0].id;
+                    $scope.selected_project = $scope.menu[0].id;
                 }
             },
             // ERROR
