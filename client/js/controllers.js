@@ -289,11 +289,6 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         return null;
     }
 
-    $scope.goUsers = function(){
-        $location.url('/client/users');
-        $rootScope.toggleTitleMenu();
-    }
-
     $scope.saveProject = function(id){
         console.log(id);
         ProjectsService.save(id,
@@ -312,109 +307,15 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         );
     }
 
-    $scope.showUser = function(user){
+    $scope.createProject = function(){
 
-        $scope.userinfo = user;
-        BusyService.busy(true);
-        var u = Users.get({id:user.id},
-            function(d){
-                BusyService.busy(false);
-                $scope.userinfo = u.User;
-            },
-            function(s){
-                BusyService.busy(false);
-                $rootScope.handleError(e);
-            }
-        );
     }
 
-    $scope.disableNewTeamButton = false;
-    $scope.newTeamLabel = "Add team";
-    $scope.newTeamName = null;
-    $scope.newTeamB = false;
-    $scope.newTeamPID = null;
-    $scope.addTeam = function(p_id){
-        if($scope.newTeamB) {
-            $scope.disableNewTeamButton = true;
-            ProjectsService.addTeam(
-                p_id, $scope.newTeamName,
-                function(d, h){
-                    ProjectsService.load(ProjectsService.active_project_id,
-                        function(d, h){
-                            $scope.disableNewTeamButton = false;
-                        }
-                    );
-                },
-                function(e) {
-                    $rootScope.handleError(e);
-                }
-            );
-            $scope.newTeamLabel = "Add team";
-            $scope.newTeamName = null;
-            $scope.newTeamB = false;
-            $scope.newTeamPID = null;
-        } else {
-            $scope.newTeamLabel = "Add";
-            $scope.newTeamName = 'New Team';
-            $scope.newTeamB = true;
-            $scope.newTeamPID = p_id;
-        }
+    $scope.goUsers = function(){
+        $location.url('/client/users');
+        $rootScope.toggleTitleMenu();
     }
 
-    $scope.t_id = null;
-    $scope.students = null;
-    $scope.addStudent = function(t_id){
-        $scope.t_id = t_id;
-        BusyService.busy(true);
-        $scope.students = Users.all(
-            function(data){
-                BusyService.busy(false);
-                console.log($scope.students);
-            },
-            function(err_data){
-                $rootScope.handleError(err_data);
-                BusyService.busy(false);
-            }
-        );
-    }
-    $scope.add = function(t_id, s_id){
-
-        $scope.projects[$scope.p_index].Team.
-
-        BusyService.busy(true);
-        var Test = $resource('/teams/addMember/:tid/:sid',{},{
-            add: {
-                method: 'POST'
-            }
-        });
-        Test.add({tid:t_id, sid:s_id},{},
-            function(data){
-                BusyService.busy(false);
-                console.log(data);
-            },
-            function(err){
-                BusyService.busy(false);
-                console.log(err);
-            }
-        );
-    }
-
-    $scope.isActive = function(index) {
-        if(index == $scope.p_index) {
-            return 'active';
-        }
-    }
-
-    $scope.description_active = 'active';
-    $scope.teams_active = '';
-    $scope.showTeams = function() {
-        $scope.description_active = '';
-        $scope.teams_active = 'active';
-    }
-    $scope.showDescription = function() {
-        $scope.description_active = 'active';
-        $scope.teams_active = '';
-    }
 }
 
 function getIdTree(data, path, tPath) {

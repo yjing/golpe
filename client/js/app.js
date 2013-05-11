@@ -334,6 +334,11 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             throw "Missing project ID";
         }
 
+        var data = id;
+        if(angular.isDefined(DBService.d.projects[id])) {
+            data = DBService.d.projects[id];
+        }
+
         var params = {};
         if(DBService.m.projects[id].status != STATUS_NEW) {
             params = {'id':id};
@@ -342,7 +347,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         BusyService.busy(true);
         var proj = this.Projects.save(
             params,
-            DBService.d.projects[id],
+            data,
             function(d, h) {
                 BusyService.busy(false);
                 _THIS.insertProject(proj);

@@ -23,6 +23,9 @@
                         <button class="btn btn-danger confirm" ng-click="deleteProject(true, p.id)" ng-show="isDeleting(p.id)">Are you sure?</button>
                     </div>
                 </li>
+                <li ng-show="newProject == null">
+                    <span>{{newProject.name}}</span>
+                </li>
             </ul>
             <div>
                 <a href="#" class="text-right">
