@@ -217,7 +217,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
                 function(d, h){
                     $scope.selected_project = id;
 
-                    console.log(".Project.Team.Student".split('.'));
+                    console.log(".Project.Team.Student".split('.').pop());
 
                     var newMenu = [];
                     var index = $scope.findIndexById(id);
