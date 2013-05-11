@@ -128,3 +128,7 @@ div.menu > ul > li.active:focus {
     font-weight: bolder;
     background-color: aliceblue;
 }
+
+.clickable {
+    cursor: pointer;
+}

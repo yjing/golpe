@@ -35,7 +35,7 @@
         <div class="menu shadow">
             <div>
                 <span>
-                    <h4 ng-hide="DB.m.projects[selected_project].mode == 'edit'" ng-click="editProject(selected_project);">
+                    <h4 class="clickable" ng-hide="DB.m.projects[selected_project].mode == 'edit'" ng-click="editProject(selected_project);">
                         {{DB.d.projects[selected_project].name}} <i class="icon-edit"></i>
                     </h4>
                     <!-- EDIT MODE -->
