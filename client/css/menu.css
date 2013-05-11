@@ -99,6 +99,14 @@ div.menu > ul > li.selector {
     padding: 10px 14px;
 }
 
+div.menu > ul > li > input.edit-field {
+    position: absolute;
+    border: none;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
 /* OTHER */
 
 div.menu > ul > li.active,
