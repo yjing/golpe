@@ -8,7 +8,7 @@
             </li>
             <li ng-repeat="p in menu" ng-class="isSelectedProject(p.id)"> <!-- ng-hide="BS.projects[BS.active_project_id].new">-->
                 <a href="#" ng-click="selectProject(p.id);">{{DB.d.projects[p.id].name}}
-                    <i class="icon-edit" ng-show="DB.m.projects[p.id].mode == 'edit"></i>
+                    <i class="icon-edit" ng-show="DB.m.projects[p.id].mode == 'edit'"></i>
                 </a>
             </li>
             <li class="text-right">
