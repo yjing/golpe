@@ -253,7 +253,8 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             isArray: true
         },
         load: {
-            method: 'GET'
+            method: 'GET',
+            isArray: false
         }
     });
 
@@ -303,7 +304,6 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                 function(d, h){
                     BusyService.busy(false);
 
-                    proj.$get();
                     // ADD METADATA
                     _THIS.insertProject(proj);
                     // CALLBACKS
