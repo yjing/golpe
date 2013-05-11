@@ -113,6 +113,10 @@ div.menu > ul > li > input.edit-field {
     -webkit-appearance: none;
     appearance: none;
 }
+div.menu > ul > li > input.edit-field.function {
+    width: 76%;
+    padding: 2% 22% 2% 2%;
+}
 
 /* OTHER */
 
