@@ -218,7 +218,9 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     }
 
     $scope.selectProject = function(id) {
-        if(angular.isDefined(DBService.d.projects[id])) {
+        if(id == -1){
+            $scope.selected_project = id;
+        } else if(angular.isDefined(DBService.d.projects[id])) {
             ProjectsService.load(id,
                 function(d, h){
                     $scope.selected_project = id;
