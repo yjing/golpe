@@ -122,6 +122,9 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, BusyService) {
 }
 
 function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, ProjectsService, Users, BusyService) {
+    // MAIN METHOD
+    console.log("FFFFF");
+
     // TOP BAR
     $rootScope.top_bar = {
 //        back_button: {
@@ -150,10 +153,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
             { type: 'item', label: 'Info', func: $rootScope.info }
         ]
     };
-
-    // MAIN METHOD
     $scope.main = function() {
-        console.log("FFFFF");
         ProjectsService.loadAll(
             // SUCCESS
             function(data, handlers){
