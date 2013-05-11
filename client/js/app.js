@@ -151,9 +151,10 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         if(angular.isUndefined(param)) {
             return value;
         }
+        param = angular.toLowerCase(param);
         var result = [];
         for(var i=0; i<value.length; i++) {
-            var val = DBService.d.projects[value[i].id].name;
+            var val = angular.toLowerCase(DBService.d.projects[value[i].id].name);
             if(val.indexOf(param) > 0) {
                 result.push(value[i])
             }
