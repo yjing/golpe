@@ -273,6 +273,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
                 if(angular.isObject(d)) {
                     var newProjectTree = getIdTree(d, "Project.Team.Student", "teams.users");
                     var index = $scope.findProjectIndexById(id);
+                    console.log(index);
                     if(angular.isDefined(index)) {
                         $scope.menu[index] = newProjectTree;
                     } else {
