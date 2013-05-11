@@ -157,8 +157,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         ProjectsService.loadAll(
             // SUCCESS
             function(data, handlers){
-                console.log("HELLO");
-                console.log(ProjectsService.modello);
+                console.log(ProjectsService.menu);
 //                if(ProjectsService.projects.length > 0) {
 //                    ProjectsService.load(
 //                        0,
@@ -174,7 +173,6 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
             // ERROR
             function(error){
                 $rootScope.handleError(error);
-                console.log("HELLO");
             }
         );
     }
