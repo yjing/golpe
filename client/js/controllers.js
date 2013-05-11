@@ -407,10 +407,17 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
 }
 
 function getIdTree(data, path, tPath) {
-    var pathInfo = separateFirstToken(path, '.');
-    var tPathInfo = separateFirstToken(tPath, '.');
-    console.log(pathInfo);
-    console.log(tPathInfo);
+    var result = null;
+    if(angular.isDefined(data)) {
+        var pathInfo = separateFirstToken(path, '.');
+        var tPathInfo = separateFirstToken(tPath, '.');
+        result = [];
+
+        console.log(data);
+        console.log(pathInfo);
+        console.log(tPathInfo);
+    }
+    return result;
 }
 
 function separateFirstToken(arrayStr, separator) {
