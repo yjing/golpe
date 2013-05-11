@@ -229,6 +229,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         }
 
         BusyService.busy(true);
+        console.log("HERE!!!");
         var result = this.Projects.all(
             function(d, h) {
                 BusyService.busy(false);
