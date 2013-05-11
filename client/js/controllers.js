@@ -411,6 +411,9 @@ function removeTokenFromHead(arrayStr, separator) {
         throw new TypeError();
     }
     var array = arrayStr.split(separator);
+    console.log(arrayStr);
+    console.log(array);
     array.splice(0, 1);
+    console.log(array);
     return array.join(separator);
 }
