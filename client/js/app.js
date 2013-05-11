@@ -324,7 +324,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         } else {
             // CALLBACK
             if(success) {
-                success(DBService.d.projects[id]);
+                success(true);
             }
         }
     }

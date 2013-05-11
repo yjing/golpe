@@ -216,12 +216,11 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
             ProjectsService.load(id,
                 function(d, h){
                     $scope.selected_project = id;
-
-                    console.log(d);
-                    var newProjectTree = getIdTree(d, "Project.Team.Student", "teams.users");
-                    var index = $scope.findIndexById(id);
-                    $scope.menu[index] = newProjectTree;
-
+                    if(angular.isObject(d)) {
+                        var newProjectTree = getIdTree(d, "Project.Team.Student", "teams.users");
+                        var index = $scope.findIndexById(id);
+                        $scope.menu[index] = newProjectTree;
+                    }
                 },
                 function(e) {
                     $rootScope.handleError(e);
@@ -406,7 +405,7 @@ function getIdTree(data, path, tPath) {
                     result.push(elem);
                 }
             }
-        } else {//if(angular.isObject(obj)) {
+        } else if(angular.isObject(obj)) {
             result = {};
             if(angular.isDefined(obj.id)) {
                 result.id = obj.id;
@@ -415,6 +414,8 @@ function getIdTree(data, path, tPath) {
                 var sub = getIdTree(obj, pathInfo[1], tPathInfo[1]);
                 result[tPathInfo[0]] = sub;
             }
+        } else {
+            throw new Error();
         }
     }
     return result;
