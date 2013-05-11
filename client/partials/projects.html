@@ -10,9 +10,9 @@
             </div>
             <ul>
                 <li>
-                    <input type="text" placeholder="filter" class="edit-field" style="height: 2em;" ng-model="searcharea">
+                    <input type="text" placeholder="filter" class="edit-field" style="height: 2em;" ng-model="searchText">
                 </li>
-                <li ng-repeat="p in menu | filter:searcharea" ng-class="isSelectedProject(p.id)">
+                <li ng-repeat="p in menu | filter:searchText" ng-class="isSelectedProject(p.id)">
                     <a href="#" ng-click="selectProject(p.id);">{{DB.d.projects[p.id].name}}</a>
                     <div class="functions">
                         <button class="btn-link function"><i class="icon-remove"></i></button>
