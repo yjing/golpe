@@ -223,11 +223,12 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
                         index = $scope.menu.length - 1;
                     }
                     if(angular.isArray(d['Project']['Team'])) {
+                        $scope.menu[index].teams = [];
                         for(var i=0; i<d['Project']['Team'].length; i++) {
-                            console.log(d['Project']['Team'][i].name);
+                            $scope.menu[index].teams.push(d['Project']['Team'][i].id);
                         }
                     }
-                    console.log(d);
+                    console.log($scope.menu);
                 },
                 function(e) {
                     $rootScope.handleError(e);
