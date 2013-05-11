@@ -66,7 +66,6 @@ div.menu .selector {
 }
 
 div.menu > div > div.right-buttons,
-div.menu > div > div.right-buttons,
 div.menu > ul > li > div.right-buttons {
     position: absolute;
     margin: 0;
