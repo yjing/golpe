@@ -67,7 +67,9 @@ div.menu .selector {
 }
 
 div.menu > div > div.functions,
-div.menu > ul > li > div.functions {
+div.menu > ul > li > div.functions,
+div.menu > div > div.confirms,
+div.menu > ul > li > div.confirms {
     position: absolute;
     margin: 0;
     padding: 0;
@@ -84,8 +86,8 @@ div.menu > ul > li > div.functions > .function {
     margin-right: 5px;
 }
 
-div.menu > div > div.functions > .confirm,
-div.menu > ul > li > div.functions > .confirm {
+div.menu > div > div.confirms > .confirm,
+div.menu > ul > li > div.confirms > .confirm {
     height: 80%;
     top: 10%;
     position: relative;
