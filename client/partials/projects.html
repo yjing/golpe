@@ -8,8 +8,9 @@
             </li>
             <li ng-repeat="p in menu" ng-class="isSelectedProject(p.id)">
                 <a>
-                    <span href="#" class="selector" ng-click="selectProject(p.id);">{{DB.d.projects[p.id].name}}</span>
-                    <button class="btn-link function second-rightside"><i class="icon-edit"></i></button>
+                    <span href="#" class="selector" ng-click="selectProject(p.id);">
+                        {{DB.d.projects[p.id].name}}
+                    </span>
                     <button class="btn-link function first-rightside"><i class="icon-remove"></i></button>
                 </a>
             </li>
@@ -19,31 +20,31 @@
         </ul>
     </div>
 
-    <!--<div class="span9">-->
-        <!--<div class="row-fluid" ng-show="BS.activeProject() != null">-->
-            <!--<div class="span12">-->
-                <!--<div class="shadowed" style="padding: 1em 2em; border: 1px rgb(221, 221, 221) solid;-webkit-border-radius: 4px;border-radius: 4px;">-->
-                    <!--<div ng-hide="BS.activeProject('mode') == 'edit'">-->
-                        <!--<h3 ng-click="BS.editProject(BS.active_project_id);" style="cursor: pointer">-->
-                            <!--{{BS.activeProject('Project').name}} <i class="icon-edit"></i>-->
-                        <!--</h3>-->
-                        <!--<p>-->
-                            <!--{{BS.activeProject('Project').description}}-->
-                        <!--</p>-->
-                        <!--<p><button class="btn btn-danger">Delete Project</button></p>-->
-                    <!--</div>-->
-                    <!--<p ng-show="BS.activeProject('mode') == 'edit'">-->
-                        <!--<input autofocus="true" onload="this.focus()" type="text" class="input-xlarge" ng-model="BS.activeProject('Project').name">-->
-                        <!--<span class="error" onload="this.focus()">{{BS.activeProject().errors.Project.name}}</span>-->
-                        <!--<textarea ng-model="BS.activeProject('Project').description"></textarea>-->
-                        <!--<div class="btn-group"ng-show="BS.activeProject('mode') == 'edit'">-->
-                            <!--<button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="BS.save(BS.active_project_id);">Save</button>-->
-                            <!--<button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="BS.cancelEditProject(BS.active_project_id);">Cancel</button>-->
-                        <!--</div>-->
-                    <!--</p>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
+    <div class="span9">
+        <div class="row-fluid" ng-show="BS.activeProject() != null">
+            <div class="span12">
+                <div class="shadowed" style="padding: 1em 2em; border: 1px rgb(221, 221, 221) solid;-webkit-border-radius: 4px;border-radius: 4px;">
+                    <div ng-hide="BS.activeProject('mode') == 'edit'">
+                        <h3 ng-click="BS.editProject(BS.active_project_id);" style="cursor: pointer">
+                            {{BS.activeProject('Project').name}} <i class="icon-edit"></i>
+                        </h3>
+                        <p>
+                            {{BS.activeProject('Project').description}}
+                        </p>
+                        <p><button class="btn btn-danger">Delete Project</button></p>
+                    </div>
+                    <p ng-show="BS.activeProject('mode') == 'edit'">
+                        <input autofocus="true" onload="this.focus()" type="text" class="input-xlarge" ng-model="BS.activeProject('Project').name">
+                        <span class="error" onload="this.focus()">{{BS.activeProject().errors.Project.name}}</span>
+                        <textarea ng-model="BS.activeProject('Project').description"></textarea>
+                        <div class="btn-group"ng-show="BS.activeProject('mode') == 'edit'">
+                            <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="BS.save(BS.active_project_id);">Save</button>
+                            <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="BS.cancelEditProject(BS.active_project_id);">Cancel</button>
+                        </div>
+                    </p>
+                </div>
+            </div>
+        </div>
         <!--<div class="row-fluid">-->
             <!--<div class="span4" style="margin-top: 2em;" ng-show="BS.activeProject('Project').Team != null">-->
                 <!--<ul class="nav nav-tabs nav-stacked shadowed">-->
@@ -108,37 +109,6 @@
                 <!--</ul>-->
             <!--</div>-->
         <!--</div>-->
-    <!--</div>-->
-        <!--<div class="tabbable">-->
-            <!--<ul class="nav nav-tabs">-->
-                <!--<li class="{{description_active}}">-->
-                    <!--<a href="#" ng-click="showDescription();">Info</a>-->
-                <!--</li>-->
-                <!--<li class="{{teams_active}} {{teams_desabled}}">-->
-                    <!--<a href="#" ng-click="showTeams();">Teams</a>-->
-                <!--</li>-->
-            <!--</ul>-->
-            <!--<div class="tab-content">-->
-                <!--<div class="tab-pane {{teams_active}} tab2">-->
-                    <!--<ul class="team_list">-->
-                        <!--<li class="team_box" ng-repeat="t in BS.activeProject('Project').Team">-->
-                            <!--<span class="name">{{t.name}} <button class="btn btn-link list-item-remove"><i class="icon-remove"></i></button></span>-->
-                            <!--<ul class="students_list">-->
-                                <!--<li ng-repeat="u in t.Student">{{u.username}}</li>-->
-                                <!--<li ng-click="addStudent(t.id);" class="text-right" style="cursor: pointer; background-color: #efefef">-->
-                                    <!--Add Student <i style="margin-left: 1em" class="icon-plus"></i>-->
-                                <!--</li>-->
-                                <!--<li ng-show="t_id == t.id"><input type="text" ng-model="search" class="search-query input-small" placeholder="Search"></li>-->
-                                <!--<li ng-show="t_id == t.id" ng-repeat="s in students | filter:s.User.role='STUDENT' && search"-->
-                                        <!--ng-click="add(t.id, s.User.id);">-->
-                                    <!--{{s.User.username}}-->
-                                <!--</li>-->
-                            <!--</ul>-->
-                        <!--</li>-->
-                        <!--<li style="clear: both;"></li>-->
-                    <!--</ul>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
+    </div>
 
 </div>
