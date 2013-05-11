@@ -10,7 +10,7 @@
             </div>
             <ul>
                 <li>
-                    <input type="text" placeholder="filter" class="edit-field" style="height: 2em;" ng-model="searchText">
+                    <input type="text" placeholder="filter" class="edit-field" ng-model="searchText">
                 </li>
                 <li ng-repeat="p in menu | menu:searchText" ng-class="isSelectedProject(p.id)">
                     <a href="#" ng-click="selectProject(p.id);">{{DB.d.projects[p.id].name}}</a>
