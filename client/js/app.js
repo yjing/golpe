@@ -351,11 +351,11 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             var proj = angular.copy(data['Project']);
             delete proj['Team'];
             DBService.insertData ("projects", data['Project']['id'], proj);
+            console.log(proj);
         }
     }
 
     this.insertTeams = function(data){
-        console.log(data);return;
         if(angular.isArray(data)) {
             for(var i=0; i<data.length; i++) {
                 this.insertTeam(data[i]);
@@ -364,9 +364,14 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     }
 
     this.insertTeam = function(data){
-        if(angular.isDefined(data) &&
-            angular.isDefined(data['Team'])){
-            DBService.insertData ("teams", data['Team']['id'], data['Team']);
+        if(angular.isDefined(data)){
+//            this.insertUsers(data['Student']);
+            var team = angular.copy(data);
+            delete team['Student'];
+            DBService.insertData("teams", data['id'], team);
+            DBService.insertMeta("teams", data['id'], STATUS_KEY, STATUS_COMPLETE);
+            DBService.insertMeta("teams", data['id'], MODE_KEY, MODE_NORMAL);
+            console.log(team);
         }
     }
 
