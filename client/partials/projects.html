@@ -12,7 +12,7 @@
                 <li>
                     <input type="text" placeholder="filter" class="edit-field" ng-model="searchText">
                 </li>
-                <li ng-repeat="p in menu | menu:searchText" ng-class="isSelectedProject(p.id)">
+                <li ng-repeat="p in menu | menu:searchText:pippo" ng-class="isSelectedProject(p.id)">
                     <a href="#" ng-click="selectProject(p.id);">{{DB.d.projects[p.id].name}}</a>
                     <div class="functions">
                         <button class="btn-link function"><i class="icon-remove"></i></button>

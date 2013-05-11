@@ -147,7 +147,8 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 
 })
 .filter('menu', function(DBService){
-    return function(value, param){
+    return function(value, param, pippo){
+        console.log(pippo);
         if(!angular.isString(param) || !param.trim().length > 0) {
             return value;
         }
