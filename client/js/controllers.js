@@ -173,6 +173,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
             // ERROR
             function(error){
                 $rootScope.handleError(error);
+                console.log("HELLO");
             }
         );
     }
