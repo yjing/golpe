@@ -280,10 +280,10 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     $scope.findTeamIndexById = function(project_id, id){
         if(angular.isDefined(project_id) && angular.isDefined(id)) {
             var pIndex = $scope.findProjectIndexById(project_id);
-            for(var i=0; i<$scope.menu[pIndex].teams.length; i++) {
-                try {
+            if(angular.isDefined($scope.menu[pIndex]) && angular.isDefined($scope.menu[pIndex].teams)) {
+                for(var i=0; i<$scope.menu[pIndex].teams.length; i++) {
                     if (id == $scope.menu[pIndex].teams[i].id) return i;
-                } catch (e) {}
+                }
             }
         }
         return null;
