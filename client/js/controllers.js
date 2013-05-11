@@ -222,7 +222,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
                     $scope.selected_project = id;
                     if(angular.isObject(d)) {
                         var newProjectTree = getIdTree(d, "Project.Team.Student", "teams.users");
-                        var index = $scope.findIndexById(id);
+                        var index = $scope.findProjectIndexById(id);
                         $scope.menu[index] = newProjectTree;
                     }
                 },
@@ -270,9 +270,17 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         return menu;
     }
 
-    $scope.findIndexById = function(id){
+    $scope.findProjectIndexById = function(id){
         for(var i=0; i<$scope.menu.length; i++) {
             if (id == $scope.menu[i].id) return i;
+            return null;
+        }
+    }
+
+    $scope.findTeamIndexById = function(project_id, id){
+        var pIndex = $scope.findProjectIndexById(project_id);
+        for(var i=0; i<$scope.menu[pIndex].teams.length; i++) {
+            if (id == $scope.menu[pIndex].teams[i].id) return i;
             return null;
         }
     }
