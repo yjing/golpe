@@ -40,7 +40,7 @@
                     </h4>
                     <!-- EDIT MODE -->
                     <span ng-show="DB.m.projects[selected_project].mode == 'edit'">
-                        <input autofocus="true" onload="this.focus()" type="text" class="edit-field" ng-model="DB.d.projects[selected_project].name">
+                        <input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge" ng-model="DB.d.projects[selected_project].name">
                     </span>
                 </span>
             </div>
@@ -50,7 +50,7 @@
                         {{DB.d.projects[selected_project].description}}
                     </p>
                     <!-- EDIT MODE -->
-                    <textarea ng-model="DB.d.projects[selected_project].description" ng-show="DB.m.projects[selected_project].mode == 'edit'"></textarea>
+                    <textarea class="edit-field" ng-model="DB.d.projects[selected_project].description" ng-show="DB.m.projects[selected_project].mode == 'edit'"></textarea>
                 </li>
             </ul>
             <div ng-show="DB.m.projects[selected_project].mode == 'edit'">
