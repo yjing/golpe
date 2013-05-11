@@ -70,7 +70,8 @@ ul {
 ul.nav.nav-tabs.nav-stacked > li > a {
     background-color: #ffffff;
 }
-ul.nav.nav-tabs.nav-stacked > li.active > a {
+ul.nav.nav-tabs.nav-stacked > li.active > a,
+ul.nav.nav-tabs.nav-stacked > li.active > a:hover {
     font-weight: bolder;
     background-color: aliceblue;
 }
