@@ -153,7 +153,10 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     };
 
     $scope.menu = [];
-    $scope.selected = null;
+    $scope.selected_project = null;
+    $scope.selected = function(id){
+        return ( id == $scope.selected_project ? 'active' : '' );
+    }
 
     // MAIN METHOD
     $scope.main = function() {
