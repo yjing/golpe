@@ -8,6 +8,7 @@ div.menu {
 div.menu > div,
 div.menu > ul > li {
     /* DIVIDER */
+    position: relative;
     margin: 0;
     padding: 4px;
     border-left: 1px solid rgb(221, 221, 221);
