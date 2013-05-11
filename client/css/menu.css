@@ -135,7 +135,6 @@ div.menu > ul > li.active:focus {
     cursor: pointer;
 }
 
-input.edit-field,
 textarea.edit-field {
     position: relative;
     margin: 0;
