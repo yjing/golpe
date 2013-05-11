@@ -222,7 +222,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
                         $scope.menu.push({"id":id});
                         index = $scope.menu.length - 1;
                     }
-                    if(angular.isArray(d['Project']['Team'])) {
+                    if(angular.isDefined(d['Project']['Team']) && angular.isArray(d['Project']['Team'])) {
                         $scope.menu[index].teams = [];
                         for(var i=0; i<d['Project']['Team'].length; i++) {
                             $scope.menu[index].teams.push({"id" : d['Project']['Team'][i].id});
