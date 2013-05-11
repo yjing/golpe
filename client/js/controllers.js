@@ -160,9 +160,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         return ( id == $scope.selected_project ? 'active' : '' );
     }
     $scope.selectProject = function(id) {
-        console.log("MMM");
         if(angular.isDefined(DBService.d.projects[id])) {
-            console.log("MMM2");
             ProjectsService.load(id,
                 function(d, h){
                     $scope.selected_project = id;

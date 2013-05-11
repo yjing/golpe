@@ -220,6 +220,10 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     $rootScope.PS = this;
     var _THIS = this;
 
+    // MODE CONSTANTS
+    var MODE_KEY = 'mode';
+    var MODE_EDIT = 'edit'
+    var MODE_NORMAL = 'normal'
     // STATUS CONSTANTS
     var STATUS_KEY = 'status';
     var STATUS_PARTIAL = 'partial';
@@ -323,6 +327,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             if(angular.isDefined(data['Project']['Team'])) {
                 delete data['Project']['Team'];
                 DBService.insertMeta("projects", data['Project']['id'], STATUS_KEY, STATUS_COMPLETE);
+                DBService.insertMeta("projects", data['Project']['id'], MODE_KEY, MODE_EDIT);
             } else {
                 DBService.insertMeta("projects", data['Project']['id'], STATUS_KEY, STATUS_PARTIAL);
             }
