@@ -365,13 +365,32 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 
     this.insertTeam = function(data){
         if(angular.isDefined(data)){
-//            this.insertUsers(data['Student']);
+            this.insertUsers(data['Student']);
             var team = angular.copy(data);
             delete team['Student'];
             DBService.insertData("teams", data['id'], team);
             DBService.insertMeta("teams", data['id'], STATUS_KEY, STATUS_COMPLETE);
             DBService.insertMeta("teams", data['id'], MODE_KEY, MODE_NORMAL);
             console.log(team);
+        }
+    }
+
+    this.insertUsers = function(data){
+        if(angular.isArray(data)) {
+            for(var i=0; i<data.length; i++) {
+                this.insertUser(data[i]);
+            }
+        }
+    }
+
+    this.insertUser = function(data){
+        if(angular.isDefined(data)){
+
+            var user = angular.copy(data);
+            DBService.insertData("users", data['id'], user);
+            DBService.insertMeta("users", data['id'], STATUS_KEY, STATUS_PARTIAL);
+            DBService.insertMeta("users", data['id'], MODE_KEY, MODE_NORMAL);
+            console.log(user);
         }
     }
 
