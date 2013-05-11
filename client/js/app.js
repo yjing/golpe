@@ -342,18 +342,27 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
            angular.isDefined(data['Project']['id'])) {
 
             if(angular.isDefined(data['Project']['Team'])) {
-                for (var i=0; i<data['Project']['Team'].length; i++) {
-                    console.log(data['Project']['Team'][i].id);
-                }
+                this.insertTeams(data['Project']['Team']);
                 DBService.insertMeta("projects", data['Project']['id'], STATUS_KEY, STATUS_COMPLETE);
                 DBService.insertMeta("projects", data['Project']['id'], MODE_KEY, MODE_NORMAL);
-                delete data['Project']['Team'];
             } else {
                 DBService.insertMeta("projects", data['Project']['id'], STATUS_KEY, STATUS_PARTIAL);
             }
-            DBService.insertData ("projects", data['Project']['id'], data['Project']);
+            var proj = angular.copy(data['Project']);
+            delete proj['Team'];
+            DBService.insertData ("projects", data['Project']['id'], proj);
         }
     }
+
+    this.insertTeams = function(data){
+        console.log(data);return;
+        if(angular.isArray(data)) {
+            for(var i=0; i<data.length; i++) {
+                this.insertTeam(data[i]);
+            }
+        }
+    }
+
     this.insertTeam = function(data){
         if(angular.isDefined(data) &&
             angular.isDefined(data['Team'])){
