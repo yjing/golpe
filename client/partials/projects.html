@@ -4,7 +4,7 @@
     <div class="span3">
         <ul class="nav nav-tabs nav-stacked shadowed">
             <li class="text-right">
-                <a href="#" class="menuFirst" ng-click="reloadProjects();">Refresh Projects <i class="icon-refresh"></i></a>
+                <a href="#" class="menuFirst" style="background: #fafafa" ng-click="reloadProjects();">Refresh Projects <i class="icon-refresh"></i></a>
             </li>
             <li ng-repeat="p in menu" ng-class="isSelectedProject(p.id)">
                 <a href="#" ng-click="selectProject(p.id);">{{DB.d.projects[p.id].name}}
