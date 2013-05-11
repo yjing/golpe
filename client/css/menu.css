@@ -69,6 +69,8 @@ div.menu > div > a > div.right-buttons,
 div.menu > div > span > right-div.buttons,
 div.menu > ul > li > a > right-div.buttons {
     position: absolute;
+    margin: 0;
+    padding: 0;
     height: 100%;
     right: 0;
 
