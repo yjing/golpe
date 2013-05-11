@@ -268,6 +268,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             for(var i=0; i<data.length; i++) {
                 this.insertProject(data[i]);
             }
+            console.log
         }
     }
     this.insertProject = function(data) {
