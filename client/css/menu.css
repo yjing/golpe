@@ -17,10 +17,15 @@ div.menu > ul > li {
 
 div.menu div:first-child {
     /* HEADER */
+    border-top: 1px solid rgb(221, 221, 221);
+    -webkit-border-radius: 4px 4px 0px 0px;
+    border-radius: 4px 4px 0px 0px;
 }
 
 div.menu div:last-child {
     /* FOOTER */
+    -webkit-border-radius: 0px 0px 4px 4px;
+    border-radius: 0px 0px 4px 4px;
 }
 
 div.menu > ul {
