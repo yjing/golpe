@@ -216,12 +216,29 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
             ProjectsService.load(id,
                 function(d, h){
                     $scope.selected_project = id;
-                    DBService.m.projects[id].mode = 'edit';
                 },
                 function(e) {
                     $rootScope.handleError(e);
                 }
             );
+        }
+    }
+
+    $scope.editProject = function(id) {
+        if(angular.isDefined(DBService.d.projects[id])) {
+            DBService.m.projects[id].old = DBService.m.projects[id];
+            DBService.m.projects[id].mode = 'edit';
+        }
+    }
+
+    $scope.cancelEditProject = function(id) {
+        if(angular.isDefined(DBService.d.projects[id])) {
+            if(DBService.m.projects[id].mode == 'edit') {
+                DBService.m.projects[id].mode = 'normal';
+                if(angular.isDefined(DBService.m.projects[id].old)) {
+                    DBService.m.projects[id] = DBService.m.projects[id].old;
+                }
+            }
         }
     }
 

@@ -35,8 +35,8 @@
         <div class="menu shadow">
             <div>
                 <span>
-                    <h4 ng-hide="DB.m.projects[selected_project].mode == 'edit'">
-                        {{DB.d.projects[selected_project].name}}
+                    <h4 ng-hide="DB.m.projects[selected_project].mode == 'edit'" ng-click="editProject(selected_project);">
+                        {{DB.d.projects[selected_project].name}} <i class="icon-edit"></i>
                     </h4>
                     <!-- EDIT MODE -->
                     <span ng-show="DB.m.projects[selected_project].mode == 'edit'">
@@ -57,7 +57,7 @@
                 <span>
                     <div class="btn-group">
                         <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="BS.save(BS.active_project_id);">Save</button>
-                        <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="BS.cancelEditProject(BS.active_project_id);">Cancel</button>
+                        <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="cancelEditProject(selected_project);">Cancel</button>
                     </div>
                 </span>
             </div>
