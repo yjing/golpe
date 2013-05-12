@@ -377,7 +377,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             {},
             function(d, h) {
                 BusyService.busy(false);
-                _THIS.dropProject(id);
+                _THIS.deleteProject(id);
 
                 // CALLBACKS
                 if(success) {
@@ -419,6 +419,13 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             delete proj['Team'];
             DBService.insertData ("projects", data['Project']['id'], proj);
 //            console.log(proj);
+        }
+    }
+
+    this.deleteProject = function(id) {
+        if(angular.isDefined(id) && angular.isDefined(DBService.d.projects[id])) {
+            delete DBService.d.projects[id];
+            delete DBService.m.projects[id];
         }
     }
 
