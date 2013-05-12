@@ -533,6 +533,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
     }
 
     $scope.selectAl = function(id) {
+        console.log(id);
         if(id < 0){
             $scope.selected_al = -1;
         } else if(angular.isDefined(DBService.d.als[id])) {
