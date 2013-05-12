@@ -471,7 +471,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             {},
             function(d, h) {
                 BusyService.busy(false);
-                _THIS.inserTeam(d['Team']);
+                _THIS.insertTeam(d['Team']);
 
                 // CALLBACKS
                 if(success) {
