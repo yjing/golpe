@@ -168,7 +168,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     $scope.isSelectedTeam = function(id){
         return ( id == $scope.selected_team ? ACTIVE : NOT_ACTIVE );
     }
-    $scope.add_memeber = false;
+    $scope.add_member = false;
     $scope.add_memeber_to = null;
 
     // MAIN METHOD
@@ -382,7 +382,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
 
     $scope.addMember = function(confirm, t_id, u_id) {
         if(confirm == false) {
-            $scope.add_memeber = true;
+            $scope.add_member = true;
             $scope.add_memeber_to = t_id;
         } else {
             ProjectsService.addMember(t_id, u_id,
@@ -400,7 +400,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     }
 
     $scope.cancelAddMember = function() {
-        $scope.add_memeber = false;
+        $scope.add_member = false;
         $scope.add_memeber_to = null;
     }
 
