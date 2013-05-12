@@ -10,7 +10,7 @@
             </div>
             <ul>
                 <li ng-repeat="al in menu" ng-class="isSelectedAl(al.id)">
-                    <a href="#" ng-click="$electAL(al.id);">
+                    <a href="#" ng-click="selectAL(al.id);">
                         {{al.title}}
                         <i ng-show="DB.m.als[al.id].mode == 'edit'" class="icon-pencil"></i>
                     </a>
