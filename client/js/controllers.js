@@ -385,7 +385,6 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         } else {
             ProjectsService.addMember(t_id, u_id,
                 function(d,h) {
-                    $scope.cancelAddMember();
                     var p_id = d['Team'].project_id;
                     DBService.m.projects[p_id].status = 'partial';
                     $scope.selectProject(p_id);
