@@ -131,6 +131,13 @@
                     <ul>
                         <li ng-repeat="u in menu[findProjectIndexById(selected_project)].teams[findTeamIndexById(selected_project, selected_team)].users">
                             <a>{{DB.d.users[u.id].username}}</a>
+                            <div class="functions">
+                                <button class="btn-link function" ng-click="deleteMember(false, u.id);" ng-hide="DB.m.users[u.id].mode == 'deleting' || DB.m.users[u.id].mode == 'edit'"><i class="icon-remove"></i></button>
+                            </div>
+                            <div class="confirms">
+                                <button class="btn btn-danger confirm" ng-click="deleteMember(true, u.id, selected_team);" ng-show="DB.m.users[u.id].mode == 'deleting';">Delete</button>
+                                <button class="btn btn-success confirm" ng-click="DB.m.users[u.id].mode = 'normal';" ng-show="DB.m.users[u.id].mode == 'deleting';">Keep</button>
+                            </div>
                         </li>
                     </ul>
                     <div class="text-right">
