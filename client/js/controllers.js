@@ -509,7 +509,9 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
         }
     }
     $scope.toggleShowMedia = function(id){
-        DBService.m.als[id].show_media = ! DBService.m.als[id].show_media;
+        if(angular.isDefined(id) && angular.isDefined(DBService.m.als[id]) && angular.isDefined(DBService.m.als[id].show_media)) {
+            DBService.m.als[id].show_media = ! DBService.m.als[id].show_media;
+        }
     }
     $scope.showComments = function(id){
         if(angular.isUndefined(id) || id == null) {
@@ -519,7 +521,9 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
         }
     }
     $scope.toggleShowComments = function(id){
-        DBService.m.als[id].show_comments = ! DBService.m.als[id].show_comments;
+        if(angular.isDefined(id) && angular.isDefined(DBService.m.als[id]) && angular.isDefined(DBService.m.als[id].show_comments)) {
+            DBService.m.als[id].show_comments = ! DBService.m.als[id].show_comments;
+        }
     }
 
     // MAIN METHOD
