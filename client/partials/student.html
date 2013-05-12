@@ -73,7 +73,7 @@
             </div>
             <ul ng-show="showMedia(selected_al);">
                 <li ng-repeat="m in DB.m.als[selected_al].media">
-                    {{DB.d.media[m].filename}}
+                    <a href="#" >{{DB.d.media[m].filename}}</a>
                 </li>
             </ul>
             <div ng-show="isSelectedAl();">
