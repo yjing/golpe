@@ -760,7 +760,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         if(angular.isDefined(com['Media'])) {
             var status = 'complete';
             _THIS.insertMedia(com['Media']);
-            media = _THIS.getIds(al['Media']);
+            media = _THIS.getIds(com['Media']);
             delete com['Media'];
         }
         var user;
