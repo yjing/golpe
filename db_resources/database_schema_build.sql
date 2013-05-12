@@ -72,8 +72,8 @@ CREATE  TABLE IF NOT EXISTS `teams` (
   CONSTRAINT `fk_teams_projects1`
     FOREIGN KEY (`project_id` )
     REFERENCES `projects` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 CREATE INDEX `fk_teams_projects1_idx` ON `teams` (`project_id` ASC) ;
