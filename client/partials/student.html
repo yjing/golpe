@@ -35,7 +35,7 @@
     </div>
 
     <div class="span8">
-        <div class="menu shadow" ng-show="selected_al != null;">
+        <div class="menu shadow" ng-show="selected_al != null;">{{selected_al == null}}
             <div>
                 <span>
                     <h4 class="clickable" ng-hide="DB.m.als[selected_al].mode == 'edit'" ng-click="editAl(selected_al);">
