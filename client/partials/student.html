@@ -87,7 +87,7 @@
                 </a>
             </div>
             <ul>
-                <li ng-show="showMedia(selected_al) && (DB.m.als[selected_al].comments == null || DB.m.als[selected_al].comments.length == 0);">
+                <li ng-show="showComments(selected_al) && (DB.m.als[selected_al].comments == null || DB.m.als[selected_al].comments.length == 0);">
                     <div class="selector"><em>No Comments yet...</em></div>
                 </li>
                 <li ng-repeat="m in DB.m.als[selected_al].comments" ng-show="showComments(selected_al);">
