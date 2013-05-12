@@ -134,35 +134,27 @@
                         </li>
                     </ul>
                     <div class="text-right">
-                        <span><button ng-click="BS.new();" ng-disabled="BS.newProject" class="btn btn-success">Add Member</button></span>
+                        <span><button ng-click="addMember(selected_team);" class="btn btn-success">Add Member</button></span>
                     </div>
                 </div>
             </div>
 
-
-            <div class="span4" style="margin-top: 2em;" ng-show="BS.activeProject('Project').Team != null">
-                <ul class="nav nav-tabs nav-stacked shadowed">
-                    <li class="text-right">
-                        <a href="#" ng-click="" style="background: #fafafa;">Teams  <i class="icon-briefcase"></i></a>
-                    </li>
-                    <li ng-repeat="t in BS.activeProject('Project').Team" ng-class="BS.activeTeamClass($index)">
-                        <a href="#" ng-click="BS.activateTeam($index);">
-                            {{t.name}} {{DB.m.teams[t.id]}}
-                            <i ng-show="DB.m.teams[t.id].mode == 'edit'" class="icon-pencil"></i>
-                        </a>
-                    </li>
-                    <li ng-show="new_team != null">
-                        <a>
-                            <input ng-model="newTeamName" style="width: 100%;">
-                        </a>
-                    </li>
-                    <li class="text-right">
-                        <a ng-click="" style="background: #fafafa;">
-                            <button class="btn btn-success" ng-click="addTeam();">{{newTeamLabel}}</button>
-                        </a>
-                    </li>
-                </ul>
+            <div class="span4" ng-show="add_memeber;">
+                <div class="menu shadow">
+                    <div class="text-right">
+                        <span><strong>Add Memeber <i class="icon-plus"></i></strong></span>
+                    </div>
+                    <ul style="height: 300px; overflow: auto">
+                        <li ng-repeat="u in DB.d.users | orderBy:unsername">
+                            <a>{{u.username}}</a>
+                        </li>
+                    </ul>
+                    <div class="text-right">
+                        <span><button ng-click="addMember(selected_team);" class="btn btn-success">Add Member</button></span>
+                    </div>
+                </div>
             </div>
+
             <!--<div class="span4" style="margin-top: 2em;"  ng-show="BS.activeProject('Project').Team != null && BS.activeTeam() != null">-->
                 <!--<ul class="nav nav-tabs nav-stacked shadowed">-->
                     <!--<li class="text-right">-->

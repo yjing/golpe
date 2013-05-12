@@ -168,6 +168,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     $scope.isSelectedTeam = function(id){
         return ( id == $scope.selected_team ? ACTIVE : NOT_ACTIVE );
     }
+    $scope.add_memeber = false;
 
     // MAIN METHOD
     $scope.main = function() {
@@ -375,6 +376,18 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
                 DBService.m.teams[id].mode = 'deleting';
             }
         }
+    }
+
+    $scope.addMemeber = function(confirm, t_id, u_id) {
+        if(angular.isDefined(confirm) && !(confirm == false)) {
+
+        } else {
+            $scope.add_memeber = true;
+        }
+    }
+
+    $scope.cancelAddMemeber = function(t_id) {
+        $scope.add_memeber = false;
     }
 
     // UTIL FUNCTIONS
