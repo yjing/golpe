@@ -498,6 +498,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
 
     $scope.selected_al = null;
     $scope.isSelectedAl = function(id){
+        if(angular.isUndefined(id)) return $scope.selected_al != null;
         return ( id == $scope.selected_al ? ACTIVE : NOT_ACTIVE );
     }
     $scope.showMedia = function(id){
