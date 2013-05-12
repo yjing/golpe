@@ -642,6 +642,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             { "mode": config.mode },
             function(d, h) {
                 BusyService.busy(false);
+                console.log(d);
                 _THIS.insertALs(d);
 
                 // CALLBACKS
@@ -662,7 +663,6 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     }
 
     this.insertALs = function(d) {
-        console.log(d);
         if(angular.isArray(d)) {
             for(var i=0; i< d.length; i++) {
                 this.insertAL(d[i]['ActivityLog']);
