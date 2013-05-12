@@ -146,15 +146,12 @@
                 </div>
             </div>
 
-            <div class="span4" ng-show="add_member;">
+            <div class="span4" ng-show="add_member && selected_team > 0;">
                 <div class="menu shadow">
                     <div class="text-right">
                         <span><strong>Add Memeber <i class="icon-plus"></i></strong></span>
                     </div>
                     <ul>
-                        <!--<li>-->
-                            <!--<input type="text" placeholder="Filter Users..." class="edit-field" ng-model="search">-->
-                        <!--</li>-->
                         <li ng-repeat="u in DB.d.users | filter:'s.'">
                             <a href="#" ng-click="addMember(true, add_member_to, u.id)">
                                 {{u.username}}
@@ -162,7 +159,7 @@
                         </li>
                     </ul>
                     <div class="text-right">
-                        <span><button ng-click="cancelAddMember();" class="btn btn-warning">Cancel</button></span>
+                        <span><button ng-click="cancelAddMember();" class="btn btn-warning">Close</button></span>
                     </div>
                 </div>
             </div>
