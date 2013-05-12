@@ -1,3 +1,7 @@
+// CONSTANTS
+var ACTIVE = "active";
+var NOT_ACTIVE = "";
+
 function LoginCtrl($scope, $rootScope, $location, auth, BusyService) {
     // TMP CREDENTIALS
     $scope.username = "s.susini";
@@ -154,10 +158,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
 
     // PAGE MENU
     $scope.menu = [];
-    // CONSTANTS
-    var ACTIVE = "active";
-    var NOT_ACTIVE = "";
-    // PROJECT SELECTION
+
     $scope.selected_project = null;
     $scope.isSelectedProject = function(id){
         return ( id == $scope.selected_project ? ACTIVE : NOT_ACTIVE );
@@ -495,6 +496,11 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
     };
 
 
+    $scope.selected_al = null;
+    $scope.isSelectedAl = function(id){
+        return ( id == $scope.selected_al ? ACTIVE : NOT_ACTIVE );
+    }
+
     // MAIN METHOD
     $scope.main = function() {
         ALService.loadAll(
@@ -524,6 +530,28 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
         });
     } else {
         $scope.main();
+    }
+
+    $scope.selectAl = function(id) {
+        if(id < 0){
+            $scope.selected_al = -1;
+        } else if(angular.isDefined(DBService.d.als[id])) {
+
+            $scope.selected_al = id;
+//            ProjectsService.load(id,
+//                function(d, h){
+//                    $scope.selected_project = id;
+//                    if(angular.isObject(d)) {
+//                        var newProjectTree = getIdTree(d, "Project.Team.Student", "teams.users");
+//                        var index = $scope.findProjectIndexById(id);
+//                        $scope.menu[index] = newProjectTree;
+//                    }
+//                },
+//                function(e) {
+//                    $rootScope.handleError(e);
+//                }
+//            );
+        }
     }
 
 }

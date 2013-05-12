@@ -9,8 +9,8 @@
                 </a>
             </div>
             <ul>
-                <li ng-repeat="al in menu" ng-class="selected_al == al.it;">
-                    <a href="#" ng-click="selected_al = al.id;">{{al.title}} - {{selected_al}} - {{al.id}}
+                <li ng-repeat="al in menu" ng-class="isSelectedAl(al.id)">
+                    <a href="#" ng-click="selectedAl(al.id);">
                         <i ng-show="DB.m.als[al.id].mode == 'edit'" class="icon-pencil"></i>
                     </a>
                     <div class="functions">
