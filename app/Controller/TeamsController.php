@@ -81,7 +81,7 @@ class TeamsController extends RESTController {
             throw new NotFoundException();
         }
         $query = "delete from teams where id = '$id';";
-        $deleted = $this->Device->query($query);
+        $deleted = $this->Team->query($query);
 
         $this->_setResponseJSON(array('deleted'=>is_array($deleted)));
         //$this->_setResponseJSON(array('deleted' => $deleted));
