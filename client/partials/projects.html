@@ -105,9 +105,11 @@
                             <input class="edit_field" placeholder="New Team..." onfocus="this.focus()" autofocus="true" ng-model="new_team.name">
                         </li>
                     </ul>
-                    <div class="text-right">
-                        <span ng-show="new_team != null"><button ng-click="newTeam(selected_project);" class="btn btn-success">New Team</button></span>
-                        <span ng-hide="new_team != null;">
+                    <div class="text-right" ng-show="new_team != null">
+                        <span><button ng-click="newTeam(selected_project);" class="btn btn-success">New Team</button></span>
+                    </div>
+                    <div class="text-right" ng-hide="new_team != null;">
+                        <span>
                             <button ng-click="cancelNewTeam();" class="btn btn-success">Add Team</button>
                             <button ng-click="newTeam(true);" class="btn btn-success">Cancel</button>
                         </span>
