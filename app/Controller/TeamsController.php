@@ -77,14 +77,14 @@ class TeamsController extends RESTController {
         parent::delete($id);
 
         $this->Team->id = $id;
-        $this->Team->recursive = -1;
-        if ($this->Team->exists()) {
-            $deleted = $this->Team->delete($id);
-        } else {
+        if (!$this->Team->exists()) {
             throw new NotFoundException();
         }
+        $query = "delete from teams where id = '$id';";
+        $deleted = $this->Device->query($query);
 
-        $this->_setResponseJSON(array('deleted' => $deleted));
+        $this->_setResponseJSON(array('deleted'=>is_array($deleted)));
+        //$this->_setResponseJSON(array('deleted' => $deleted));
     }
     
     public function addMember($team_id, $user_id) {
