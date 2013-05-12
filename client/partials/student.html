@@ -64,7 +64,7 @@
                     </div>
                 </span>
             </div>
-            <div ng-show="selected_al != null">
+            <div ng-show="selected_al != null;">
                 <a href="#" ng-click="toggleShowMedia(selected_al);">
                     Media
                     <i class="icon-circle-arrow-right" ng-hide="showMedia(selected_al);"></i>
@@ -78,7 +78,7 @@
                     {{DB.d.media[m].filename}}
                 </li>
             </ul>
-            <div ng-show="selected_al != null">
+            <div ng-show="selected_al != null;">
                 <a href="#" ng-click="toggleShowComments(selected_al);">
                     Comments
                     <i class="icon-circle-arrow-right" ng-hide="showComments(selected_al);"></i>
