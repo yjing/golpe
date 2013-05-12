@@ -664,22 +664,23 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     this.insertALs = function(d) {
         if(angular.isArray(d)) {
             for(var i=0; i< d.length; i++) {
+                console.log(d[i]['ActivityLog']);
                 this.insertAL(d[i]['ActivityLog']);
             }
         }
     }
 
     this.insertALs = function(d) {
-        if(angular.isDefined(d) && angular.isDefined(d)) {
+        if(angular.isDefined(d)) {
             var al = angular.copy(d);
-            console.log(al);
+//            console.log(al);
             delete al.Comment;
             delete al.Media;
             delete al.User;
             DBService.insertData('als', al['id'], al);
             DBService.insertMeta('als', al['id'], 'mode', 'partial');
-            console.log(DBService.d.als);
-            console.log(DBService.m.als);
+//            console.log(DBService.d.als);
+//            console.log(DBService.m.als);
         }
     }
 
