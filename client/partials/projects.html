@@ -144,12 +144,12 @@
                     <div class="text-right">
                         <span><strong>Add Memeber <i class="icon-plus"></i></strong></span>
                     </div>
-                    <ul style="height: 100px; overflow: auto">
-                        <li>
-                            <input type="text" placeholder="Filter Users..." class="edit-field" ng-model="search">
-                        </li>
+                    <ul>
+                        <!--<li>-->
+                            <!--<input type="text" placeholder="Filter Users..." class="edit-field" ng-model="search">-->
+                        <!--</li>-->
                         <li ng-repeat="u in DB.d.users | filter:'s.'">
-                            <a href="addMember(true, add_memeber_to, u.id)">{{u.username}}</a>
+                            <a href="#" ng-click="addMember(true, add_memeber_to, u.id)">{{u.username}}</a>
                         </li>
                     </ul>
                     <div class="text-right">
