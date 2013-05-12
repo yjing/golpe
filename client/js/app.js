@@ -753,8 +753,28 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     }
 
     this.insertComment = function(d) {
-        DBService.insertData('comments', d['id'], angular.copy(d));
-        DBService.insertMeta('comments', d['id'], 'status', 'partial');
+        var com = angular.copy(d);
+
+        var status = 'partial';
+        var media;
+        if(angular.isDefined(com['Media'])) {
+            var status = 'complete';
+            DBService.insertMedia(com['Media']);
+            media = _THIS.getIds(al['Media']);
+            delete com['Media'];
+        }
+        var user;
+        if(angular.isDefined(com['User'])) {
+            var status = 'complete';
+            DBService.insertUser(com['User']);
+            user = [ com['User'].id ];
+            delete com['User'];
+        }
+
+        DBService.insertData('comments', d['id'], com);
+        DBService.insertMeta('comments', d['id'], 'media', media);
+        DBService.insertMeta('comments', d['id'], 'user', user);
+        DBService.insertMeta('comments', d['id'], 'status', status);
     }
 
     this.insertMedia  = function(d){
