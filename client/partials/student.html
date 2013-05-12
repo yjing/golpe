@@ -1,0 +1,170 @@
+<div ng-include src="top_bar_url"></div>
+<div class="row-fluid content">
+
+    <!--<div class="span3">-->
+        <!--<div class="menu shadow">-->
+            <!--<div>-->
+                <!--<a href="#" class="text-right" ng-click="reloadProjects();">-->
+                    <!--Refresh Projects <i class="icon-refresh"></i>-->
+                <!--</a>-->
+            <!--</div>-->
+            <!--<ul>-->
+                <!--<li>-->
+                    <!--<input type="text" placeholder="Filter Projects..." class="edit-field" ng-model="searchText">-->
+                <!--</li>-->
+                <!--<li ng-repeat="p in menu | dbFilter:searchText:'projects':'name'" ng-class="isSelectedProject(p.id)">-->
+                    <!--<a href="#" ng-click="selectProject(p.id);">{{DB.d.projects[p.id].name}}-->
+                        <!--<i ng-show="DB.m.projects[p.id].mode == 'edit'" class="icon-pencil"></i>-->
+                    <!--</a>-->
+                    <!--<div class="functions">-->
+                        <!--<button class="btn-link function" ng-click="deleteProject(false, p.id);" ng-hide="DB.m.projects[p.id].mode == 'deleting' || DB.m.projects[p.id].mode == 'edit'"><i class="icon-remove"></i></button>-->
+                    <!--</div>-->
+                    <!--<div class="confirms">-->
+                        <!--<button class="btn btn-danger confirm" ng-click="deleteProject(true, p.id);" ng-show="DB.m.projects[p.id].mode == 'deleting';">Delete</button>-->
+                        <!--<button class="btn btn-success confirm" ng-click="DB.m.projects[p.id].mode = 'normal';" ng-show="DB.m.projects[p.id].mode == 'deleting';">Keep</button>-->
+                    <!--</div>-->
+                <!--</li>-->
+                <!--<li ng-show="new_project != null" ng-class="isSelectedProject(-1)">-->
+                    <!--<a href="#" ng-click="selectProject(-1);">{{new_project.name}} <i class="icon-edit"></i></a>-->
+                <!--</li>-->
+            <!--</ul>-->
+            <!--<div>-->
+                <!--<a href="#" class="text-right">-->
+                    <!--<button ng-click="newProject();" ng-disabled="new_project != null" class="btn btn-success">New Project</button>-->
+                <!--</a>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="span9">-->
+        <!--<div class="menu shadow" ng-hide="selected_project<0;">-->
+            <!--<div>-->
+                <!--<span>-->
+                    <!--<h4 class="clickable" ng-hide="DB.m.projects[selected_project].mode == 'edit'" ng-click="editProject(selected_project);">-->
+                        <!--{{DB.d.projects[selected_project].name}} <i class="icon-pencil"></i>-->
+                    <!--</h4>-->
+                    <!--&lt;!&ndash; EDIT MODE &ndash;&gt;-->
+                    <!--<span ng-show="DB.m.projects[selected_project].mode == 'edit'">-->
+                        <!--<input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge" ng-model="DB.d.projects[selected_project].name">-->
+                    <!--</span>-->
+                <!--</span>-->
+            <!--</div>-->
+            <!--<ul>-->
+                <!--<li>-->
+                    <!--<p class="selector" ng-hide="DB.m.projects[selected_project].mode == 'edit'">-->
+                        <!--{{DB.d.projects[selected_project].description}}-->
+                    <!--</p>-->
+                    <!--&lt;!&ndash; EDIT MODE &ndash;&gt;-->
+                    <!--<textarea class="edit-field" ng-model="DB.d.projects[selected_project].description" ng-show="DB.m.projects[selected_project].mode == 'edit'"></textarea>-->
+                <!--</li>-->
+            <!--</ul>-->
+            <!--<div ng-show="DB.m.projects[selected_project].mode == 'edit'">-->
+                <!--<span>-->
+                    <!--<div class="btn-group">-->
+                        <!--<button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveProject(selected_project);">Save</button>-->
+                        <!--<button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="cancelEditProject(selected_project);">Cancel</button>-->
+                    <!--</div>-->
+                <!--</span>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="menu shadow" ng-show="selected_project<0;">-->
+            <!--<div>-->
+                <!--<span>-->
+                    <!--&lt;!&ndash; EDIT MODE &ndash;&gt;-->
+                    <!--<span><input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge" ng-model="new_project.name"></span>-->
+                <!--</span>-->
+            <!--</div>-->
+            <!--<ul>-->
+                <!--<li>-->
+                    <!--&lt;!&ndash; EDIT MODE &ndash;&gt;-->
+                    <!--<textarea class="edit-field" ng-model="new_project.description"></textarea>-->
+                <!--</li>-->
+            <!--</ul>-->
+            <!--<div>-->
+                <!--<span>-->
+                    <!--<div class="btn-group">-->
+                        <!--<button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveProject(selected_project);">Save</button>-->
+                        <!--<button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="cancelEditProject(selected_project);">Cancel</button>-->
+                    <!--</div>-->
+                <!--</span>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="row-fluid">-->
+
+            <!--<div class="span4">-->
+                <!--<div class="menu shadow">-->
+                    <!--<div class="text-right">-->
+                        <!--<span><strong>Teams <i class="icon-briefcase"></i></strong></span>-->
+                    <!--</div>-->
+                    <!--<ul>-->
+                        <!--<li ng-repeat="t in menu[findProjectIndexById(selected_project)].teams" ng-class="isSelectedTeam(t.id)">-->
+                            <!--<a href="#" ng-click="selectTeam(t.id);">{{DB.d.teams[t.id].name}}</a>-->
+                            <!--<div class="functions">-->
+                                <!--<button class="btn-link function" ng-click="deleteTeam(false, t.id);" ng-hide="DB.m.teams[t.id].mode == 'deleting' || DB.m.teams[t.id].mode == 'edit'"><i class="icon-remove"></i></button>-->
+                            <!--</div>-->
+                            <!--<div class="confirms">-->
+                                <!--<button class="btn btn-danger confirm" ng-click="deleteTeam(true, t.id, selected_project);" ng-show="DB.m.teams[t.id].mode == 'deleting';">Delete</button>-->
+                                <!--<button class="btn btn-success confirm" ng-click="DB.m.teams[t.id].mode = 'normal';" ng-show="DB.m.teams[t.id].mode == 'deleting';">Keep</button>-->
+                            <!--</div>-->
+                        <!--</li>-->
+                        <!--<li ng-show="new_team != null" ng-class="isSelectedTeam(-1);" ng-click="selectTeam(-1);">-->
+                            <!--<input class="edit_field" placeholder="New Team..." onfocus="this.focus()" autofocus="true" ng-model="new_team.name">-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                    <!--<div class="text-right">-->
+                        <!--<a href="#" class="text-right">-->
+                            <!--&lt;!&ndash;<button ng-click="newProject();" ng-disabled="new_project != null" class="btn btn-success">New Project</button>&ndash;&gt;-->
+                            <!--<button ng-click="newTeam(selected_project);" class="btn btn-success" ng-show="new_team == null;">New Team</button>-->
+                            <!--<button ng-click="newTeam(true);" class="btn btn-warning" ng-show="new_team != null;">Create</button>-->
+                            <!--<button ng-click="cancelNewTeam();" class="btn btn-success" ng-show="new_team != null;">Cancel</button>-->
+                        <!--</a>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="span4" ng-show="selected_team != null && selected_team > 0;">-->
+                <!--<div class="menu shadow">-->
+                    <!--<div class="text-right">-->
+                        <!--<span><strong>Team Members <i class="icon-user"></i></strong></span>-->
+                    <!--</div>-->
+                    <!--<ul>-->
+                        <!--<li ng-repeat="u in menu[findProjectIndexById(selected_project)].teams[findTeamIndexById(selected_project, selected_team)].users">-->
+                            <!--<a>{{DB.d.users[u.id].username}}</a>-->
+                            <!--<div class="functions">-->
+                                <!--<button class="btn-link function" ng-click="removeMember(false, u.id, selected_team);" ng-hide="DB.m.users[u.id].mode == 'deleting' || DB.m.users[u.id].mode == 'edit'"><i class="icon-remove"></i></button>-->
+                            <!--</div>-->
+                            <!--<div class="confirms">-->
+                                <!--<button class="btn btn-danger confirm" ng-click="removeMember(true, u.id, selected_team);" ng-show="DB.m.users[u.id].mode == 'deleting';">Remove Member</button>-->
+                                <!--<button class="btn btn-success confirm" ng-click="DB.m.users[u.id].mode = 'normal';" ng-show="DB.m.users[u.id].mode == 'deleting';">Keep</button>-->
+                            <!--</div>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                    <!--<div class="text-right">-->
+                        <!--<span><button ng-click="addMember(false, selected_team);" ng-disabled="add_member" class="btn btn-success">Add Member</button></span>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="span4" ng-show="add_member && selected_team > 0;">-->
+                <!--<div class="menu shadow">-->
+                    <!--<div class="text-right">-->
+                        <!--<span><strong>Add Memeber <i class="icon-plus"></i></strong></span>-->
+                    <!--</div>-->
+                    <!--<ul>-->
+                        <!--<li ng-repeat="u in DB.d.users | filter:'s.'">-->
+                            <!--<a href="#" ng-click="addMember(true, add_member_to, u.id)">-->
+                                <!--{{u.username}}-->
+                            <!--</a>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                    <!--<div class="text-right">-->
+                        <!--<span><button ng-click="cancelAddMember();" class="btn btn-warning">Close</button></span>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!---->
+        <!--</div>-->
+    <!--</div>-->
+
+</div>
