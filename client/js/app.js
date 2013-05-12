@@ -696,7 +696,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             DBService.insertMeta('als', al['id'], 'status', 'partial');
             DBService.insertMeta('als', al['id'], 'media', media);
             DBService.insertMeta('als', al['id'], 'comments', comments);
-            DBService.insertMeta('als', al['id'], 'user', [ al[user_id] ]);
+            DBService.insertMeta('als', al['id'], 'user', [ al['user_id'] ]);
 
         }
     }
