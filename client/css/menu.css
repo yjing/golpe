@@ -39,9 +39,9 @@ div.menu > div {
     background-color: #fafafa;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 768px) {
     div.menu > div:first-child {
-        background-color: #808080;
+        background-color: #7ab5d3;
     }
 }
 
