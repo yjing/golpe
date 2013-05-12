@@ -642,7 +642,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             { "mode": config.mode },
             function(d, h) {
                 BusyService.busy(false);
-                _THIS.insertALS(d);
+                _THIS.insertALs(d);
 
                 // CALLBACKS
                 if(success) {
@@ -661,8 +661,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 
     }
 
-    this.insertALS = function(d) {
-        console.log("jjj");
+    this.insertALs = function(d) {
         if(angular.isArray(d)) {
             for(var i=0; i< d.length; i++) {
                 this.insertAL(d[i]['ActivityLog']);
@@ -670,7 +669,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         }
     }
 
-    this.insertALs = function(d) {
+    this.insertAL = function(d) {
         if(angular.isDefined(d)) {
             var al = angular.copy(d);
 //            console.log(al);
@@ -679,8 +678,8 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             delete al.User;
             DBService.insertData('als', al['id'], al);
             DBService.insertMeta('als', al['id'], 'mode', 'partial');
-//            console.log(DBService.d.als);
-//            console.log(DBService.m.als);
+            console.log(DBService.d.als);
+            console.log(DBService.m.als);
         }
     }
 
