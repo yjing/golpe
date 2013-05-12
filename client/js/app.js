@@ -759,14 +759,14 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         var media;
         if(angular.isDefined(com['Media'])) {
             var status = 'complete';
-            DBService.insertMedia(com['Media']);
+            _THIS.insertMedia(com['Media']);
             media = _THIS.getIds(al['Media']);
             delete com['Media'];
         }
         var user;
         if(angular.isDefined(com['User'])) {
             var status = 'complete';
-            DBService.insertUser(com['User']);
+            _THIS .insertUser(com['User']);
             user = [ com['User'].id ];
             delete com['User'];
         }
