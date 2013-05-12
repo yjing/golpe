@@ -108,9 +108,9 @@
                     <div class="text-right" ng-show="">
                         <a href="#" class="text-right">
                             <!--<button ng-click="newProject();" ng-disabled="new_project != null" class="btn btn-success">New Project</button>-->
-                            <button ng-click="newTeam(selected_project);" class="btn btn-success" ng-show="selected_team < 0;">New Team</button>
-                            <button ng-click="cancelNewTeam();" class="btn btn-success" ng-hide="selected_team < 0;">Add Team</button>
-                            <button ng-click="newTeam(true);" class="btn btn-success" ng-hide="selected_team < 0;">Cancel</button>
+                            <button ng-click="newTeam(selected_project);" class="btn btn-success" ng-show="new_team != null;">New Team</button>
+                            <button ng-click="cancelNewTeam();" class="btn btn-success" ng-show="new_team == null;">Add Team</button>
+                            <button ng-click="newTeam(true);" class="btn btn-success" ng-show="new_team == null;">Cancel</button>
                         </a>
                     </div>
                 </div>
