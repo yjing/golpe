@@ -508,8 +508,9 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
             // SUCCESS
             function(data, handlers){
                 $scope.menu = DBService.d.als;
+                deb(DBService.d.als);
+                deb(DBService.d.als[0]);
                 if(DBService.d.als.length > 0) {
-                    deb(DBService.d.als[0].id);
                     $scope.selectAL(DBService.d.als[0].id);
                 }
             },
