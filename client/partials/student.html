@@ -5,12 +5,12 @@
         <div class="menu shadow" ng-init="selected_al = null">
             <div>
                 <a href="#" class="text-right">
-                    <button ng-click="newAl();" class="btn btn-success">New Activity Log {{selected_al}}</button>
+                    <button ng-click="newAl();" class="btn btn-success">New Activity Log</button>
                 </a>
             </div>
             <ul>
                 <li ng-repeat="al in menu" ng-class="selected_al == al.it;">
-                    <a href="#" ng-click="selected_al = al.id;">{{al.title}}
+                    <a href="#" ng-click="selected_al = al.id;">{{al.title}} - {{selected_al}} - {{al.id}}
                         <i ng-show="DB.m.als[al.id].mode == 'edit'" class="icon-pencil"></i>
                     </a>
                     <div class="functions">
