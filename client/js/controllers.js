@@ -1,6 +1,6 @@
 function LoginCtrl($scope, $rootScope, $location, auth, BusyService) {
     // TMP CREDENTIALS
-    $scope.username = "y.jing";
+    $scope.username = "s.susini";
     $scope.password = "30071980";
 
     // TOP BAR
@@ -121,7 +121,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, BusyService) {
     }
 }
 
-function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, ProjectsService, Users, BusyService, DBService) {
+function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsService, Users, BusyService, DBService) {
 
     // TOP BAR
     $rootScope.top_bar = {
@@ -463,6 +463,39 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
 
 }
 
+function StudentCtrl($scope, $rootScope, $location, auth, BysuService, DBService){
+
+    // TOP BAR
+    $rootScope.top_bar = {
+//        back_button: {
+//            icon: 'icon-chevron-left'
+//        },
+        page_title: 'Activity Logs',
+        title_icon: 'icon-th-list',
+//        title_menu: [
+//            {
+//                label: 'Users',
+//                func: function() {
+//                    $rootScope.toggleTitleMenu();
+//                    $location.url('/client/users');
+//                }
+//            }
+//        ],
+        buttons: [
+            { type: 'item', label: '', func: $scope.login, icon: 'icon-plus' }
+//            ,{ type: 'divider-vertical' },
+//            { type: 'item', label: 'Users', func: $scope.login, icon: 'icon-chevron-left' }
+        ],
+        main_menu_items: [
+            { type: 'item', label: 'Log Out', func: $rootScope.logout, icon: 'icon-lock' },
+            { type: 'divider' },
+            { type: 'item', label: 'Help', func: $rootScope.help },
+            { type: 'item', label: 'Info', func: $rootScope.info }
+        ]
+    };
+}
+
+// UTIL FUNCTIONS
 function getIdTree(data, path, tPath) {
     var result = null;
     if(angular.isDefined(data)) {
@@ -495,7 +528,6 @@ function getIdTree(data, path, tPath) {
     }
     return result;
 }
-
 function separateFirstToken(arrayStr, separator) {
     if(!angular.isString(arrayStr)) {
         throw new TypeError();
