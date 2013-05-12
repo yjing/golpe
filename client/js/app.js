@@ -418,7 +418,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             var proj = angular.copy(data['Project']);
             delete proj['Team'];
             DBService.insertData ("projects", data['Project']['id'], proj);
-//            console.log(proj);
+
         }
     }
 
@@ -440,12 +440,17 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     this.insertTeam = function(data){
         if(angular.isDefined(data)){
             this.insertUsers(data['Student']);
+
+            if(angular.isDefined(data['Project']['Team']['User'])) {
+                this.insertUsers(data['Project']['Team']['User']);
+            }
+
             var team = angular.copy(data);
             delete team['Student'];
             DBService.insertData("teams", data['id'], team);
             DBService.insertMeta("teams", data['id'], STATUS_KEY, STATUS_COMPLETE);
             DBService.insertMeta("teams", data['id'], MODE_KEY, MODE_NORMAL);
-//            console.log(team);
+
         }
     }
 
@@ -464,7 +469,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             DBService.insertData("users", data['id'], user);
             DBService.insertMeta("users", data['id'], STATUS_KEY, STATUS_PARTIAL);
             DBService.insertMeta("users", data['id'], MODE_KEY, MODE_NORMAL);
-//            console.log(user);
+            console.log(user);
         }
     }
 

@@ -114,8 +114,8 @@
                         <span><strong>Team Members <i class="icon-user"></i></strong></span>
                     </div>
                     <ul>
-                        <li ng-repeat="u in menu[findProjectIndexById(selected_project)].teams[findTeamIndexById(selected_project, selected_team)]">
-                            <a href="#" ng-click="selectTeam(t.id);">{{DB.d.users[u.id].username}}</a>
+                        <li ng-repeat="u in menu[findProjectIndexById(selected_project)].teams[findTeamIndexById(selected_project, selected_team)].users">
+                            <a>{{DB.d.users[u.id].username}}</a>
                         </li>
                     </ul>
                     <div class="text-right">
