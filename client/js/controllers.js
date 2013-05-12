@@ -500,6 +500,12 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
     $scope.isSelectedAl = function(id){
         return ( id == $scope.selected_al ? ACTIVE : NOT_ACTIVE );
     }
+    $scope.showMedia = function(id){
+        return DBService.m.als[id].show_media;
+    }
+    $scope.showComments = function(id){
+        return DBService.m.als[id].show_comments;
+    }
 
     // MAIN METHOD
     $scope.main = function() {
@@ -538,6 +544,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
         } else if(angular.isDefined(DBService.d.als[id])) {
 
             $scope.selected_al = id;
+//            DBService.m.als[$scope.selected_al]['show_media'] = true;
 //            ProjectsService.load(id,
 //                function(d, h){
 //                    $scope.selected_project = id;
