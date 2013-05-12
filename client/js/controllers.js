@@ -379,10 +379,10 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     }
 
     $scope.addMemeber = function(confirm, t_id, u_id) {
-        if(angular.isDefined(confirm) && !(confirm == false)) {
-
-        } else {
+        if(confirm == false) {
             $scope.add_memeber = true;
+        } else {
+
         }
     }
 
