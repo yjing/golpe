@@ -73,7 +73,7 @@
             </div>
             <ul>
                 <li ng-show="DB.m.als[selected_al].media == null || DB.m.als[selected_al].media.length == 0;">
-                    <a><em>No Media present...</em></a>
+                    <div><em>No Media present...</em></div>
                 </li>
                 <li ng-repeat="m in DB.m.als[selected_al].media" ng-show="showMedia(selected_al);">
                     <a href="#" >{{DB.d.media[m].filename}}</a>
