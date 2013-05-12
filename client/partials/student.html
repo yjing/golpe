@@ -46,24 +46,24 @@
                     </span>
                 </span>
             </div>
-            <!--<ul>-->
-                <!--<li>-->
-                    <!--<p class="selector" ng-hide="DB.m.projects[selected_project].mode == 'edit'">-->
-                        <!--{{DB.d.projects[selected_project].description}}-->
-                    <!--</p>-->
-                    <!--&lt;!&ndash; EDIT MODE &ndash;&gt;-->
-                    <!--<textarea class="edit-field" ng-model="DB.d.projects[selected_project].description" ng-show="DB.m.projects[selected_project].mode == 'edit'"></textarea>-->
-                <!--</li>-->
-            <!--</ul>-->
-            <!--<div ng-show="DB.m.projects[selected_project].mode == 'edit'">-->
-                <!--<span>-->
-                    <!--<div class="btn-group">-->
-                        <!--<button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveProject(selected_project);">Save</button>-->
-                        <!--<button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="cancelEditProject(selected_project);">Cancel</button>-->
-                    <!--</div>-->
-                <!--</span>-->
-            <!--</div>-->
-        <!--</div>-->
+            <ul>
+                <li>
+                    <p class="selector" ng-hide="DB.m.projects[selected_project].mode == 'edit'">
+                        {{DB.d.projects[selected_project].description}}
+                    </p>
+                    <!-- EDIT MODE -->
+                    <textarea class="edit-field" ng-model="DB.d.projects[selected_project].description" ng-show="DB.m.projects[selected_project].mode == 'edit'"></textarea>
+                </li>
+            </ul>
+            <div ng-show="DB.m.projects[selected_project].mode == 'edit'">
+                <span>
+                    <div class="btn-group">
+                        <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveProject(selected_project);">Save</button>
+                        <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="cancelEditProject(selected_project);">Cancel</button>
+                    </div>
+                </span>
+            </div>
+        </div>
         <!--<div class="menu shadow" ng-show="selected_project<0;">-->
             <!--<div>-->
                 <!--<span>-->
