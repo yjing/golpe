@@ -519,13 +519,11 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
             {reload: false, mode:'mine'},
             // SUCCESS
             function(data, handlers){
-                var menu = [];
-                for(var i=0; i<data.length; i++) {
-                    menu.push(data[i]['ActivityLog']['id']);
-                }
-                console.log(DBService.d.als['1']);
-                console.log(DBService.d.als['2']);
-                $scope.menu = menu;
+//                var menu = [];
+//                for(var i=0; i<data.length; i++) {
+//                    menu.push(data[i]['ActivityLog']['id']);
+//                }
+//                $scope.menu = menu;
             },
             // ERROR
             function(error){
