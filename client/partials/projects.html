@@ -148,7 +148,7 @@
                         <li>
                             <input type="text" placeholder="Filter Users..." class="edit-field" ng-model="searchUsers.username">
                         </li>
-                        <li ng-repeat="u in DB.d.users | orderBy:unsername | filter:searchUsers">
+                        <li ng-repeat="u in DB.d.users | filter:searchUsers">
                             <a href="addMember(true, add_memeber_to, u.id)">{{u.username}}</a>
                         </li>
                     </ul>
