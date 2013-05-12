@@ -502,20 +502,20 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
         return ( id == $scope.selected_al ? ACTIVE : NOT_ACTIVE );
     }
     $scope.showMedia = function(id){
-        if(angular.isDefined(id)) {
-            return DBService.m.als[id].show_media;
-        } else {
+        if(angular.isUndefined(id)) {
             return false;
+        } else {
+            return DBService.m.als[id].show_media;
         }
     }
     $scope.toggleShowMedia = function(id){
         DBService.m.als[id].show_media = ! DBService.m.als[id].show_media;
     }
     $scope.showComments = function(id){
-        if(angular.isDefined(id)) {
-            return DBService.m.als[id].show_comments;
-        } else {
+        if(angular.isUndefined(id)) {
             return false;
+        } else {
+            return DBService.m.als[id].show_comments;
         }
     }
     $scope.toggleShowComments = function(id){
