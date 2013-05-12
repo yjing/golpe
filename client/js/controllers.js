@@ -522,7 +522,8 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
                 $scope.menu = [];
                 angular.forEach(DBService.d.als, function(key, val){
                     if(angular.isDefined(val)) {
-                        $scope.menu.push(val);
+                        deb(val);
+//                        $scope.menu.push(val);
                     }
                 });
             },
