@@ -39,6 +39,8 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     DBService.createTable("teams");
     DBService.createTable("users");
     DBService.createTable("als");
+    DBService.createTable("media");
+    DBService.createTable("comments");
 
     // TOPBAR TEMPLATE URL
     $rootScope.top_bar_url = '/client/partials/topbar.html';
@@ -672,15 +674,59 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     this.insertAL = function(d) {
         if(angular.isDefined(d)) {
             var al = angular.copy(d);
-//            console.log(al);
+            var mediaCount = 0;
+            var commentsCount = 0;
+
+            if(angular.isDefined(al['Comment'])) {
+                if(!angular.isDefined(al['Comment'][0]['count'])) {
+                    _THIS.insertComments(al['Comment']);
+                } else {
+                    commentsCount = al['Comment'][0]['count'];
+                }
+            }
+            if(angular.isDefined(al['Media'])) {
+                if(!angular.isDefined(al['Media'][0]['count'])) {
+                    _THIS.insertMedia(al['Media']);
+                } else {
+                    mediaCount = al['Media'][0]['count'];
+                }
+            }
+//            if(angular.isDefined(al['User'])) {
+//                _THIS.insertUser(al['User']);
+//            }
+
             delete al.Comment;
             delete al.Media;
             delete al.User;
             DBService.insertData('als', al['id'], al);
             DBService.insertMeta('als', al['id'], 'mode', 'partial');
-            console.log(DBService.d.als);
-            console.log(DBService.m.als);
+            DBService.insertMeta('als', al['id'], 'comments_count', commentsCount);
+            DBService.insertMeta('als', al['id'], 'media_count', mediaCount);
         }
+    }
+
+    this.insertComments  = function(d){
+        if(angular.isArray(d)) {
+            for(var i=0; i< d.length; i++) {
+                this.insertComment(d[i]);
+            }
+        }
+    }
+
+    this.insertComment = function(d) {
+        TODO
+    }
+
+    this.insertMedia  = function(d){
+        if(angular.isArray(d)) {
+            for(var i=0; i< d.length; i++) {
+                this.insertMedium(d[i]);
+            }
+        }
+    }
+
+    this.insertMedium = function(d) {
+        TODO
     }
 
 })
