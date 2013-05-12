@@ -570,7 +570,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
                 function(d, h){
                     $scope.selected_al = id;
                     DBService.m.als[$scope.selected_al]['show_media'] = true;
-//                    console.log(d);
+
                 },
                 function(e) {
                     $rootScope.handleError(e);
