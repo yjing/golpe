@@ -566,10 +566,10 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
             $scope.selected_al = -1;
         } else if(angular.isDefined(DBService.d.als[id])) {
 
-            DBService.m.als[$scope.selected_al]['show_media'] = true;
             ALService.load(id,
                 function(d, h){
                     $scope.selected_al = id;
+                    DBService.m.als[$scope.selected_al]['show_media'] = true;
 //                    console.log(d);
                 },
                 function(e) {
