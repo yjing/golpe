@@ -146,9 +146,12 @@
                     </div>
                     <ul style="height: 300px; overflow: auto">
                         <li ng-repeat="u in DB.d.users | orderBy:unsername">
-                            <a>{{u.username}}</a>
+                            <a href="addMember(true, add_memeber_to, u.id)">{{u.username}}</a>
                         </li>
                     </ul>
+                    <div class="text-right">
+                        <span><button ng-click="cancelAddMember();" class="btn btn-warning">Cancel</button></span>
+                    </div>
                 </div>
             </div>
 
