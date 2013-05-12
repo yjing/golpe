@@ -56,23 +56,6 @@
                     <textarea class="edit-field" ng-model="DB.d.als[selected_al].description" ng-show="DB.m.als[selected_al].mode == 'edit'"></textarea>
                 </li>
             </ul>
-            <div>
-                <a href="#">
-                    Media
-                    <i class="icon-circle-arrow-right"></i>
-                </a>
-            </div>
-            <ul ng-show="show_sal_media">
-                <li>
-                </li>
-            </ul>
-            <div>
-                <a href="#">Comments</a>
-            </div>
-            <ul ng-show="show_sal_media">
-                <li>
-                </li>
-            </ul>
             <div ng-show="DB.m.als[selected_al].mode == 'edit'">
                 <span>
                     <div class="btn-group">
@@ -81,6 +64,29 @@
                     </div>
                 </span>
             </div>
+            <div>
+                <a href="#" ng-click="toggleShowMedia(selected_al);">
+                    Media
+                    <i class="icon-circle-arrow-right" ng-hide="showMedia(selected_al);"></i>
+                    <i class="icon-circle-arrow-down" ng-show="showMedia(selected_al);"></i>
+                </a>
+            </div>
+            <ul ng-show="show_sal_media">
+                <li ng-repeat="m in menu[selected_al].media">
+                    {{DB.d.media[m].filename}}
+                </li>
+            </ul>
+            <div>
+                <a href="#" ng-click="toggleShowComments(selected_al);">
+                    Comments
+                    <i class="icon-circle-arrow-right" ng-hide="showComments(selected_al);"></i>
+                    <i class="icon-circle-arrow-down" ng-show="showComments(selected_al);"></i>
+                </a>
+            </div>
+            <ul ng-show="show_sal_media">
+                <li>
+                </li>
+            </ul>
         </div>
         <!--<div class="menu shadow" ng-show="selected_project<0;">-->
             <!--<div>-->
