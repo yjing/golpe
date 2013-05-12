@@ -146,9 +146,9 @@
                     </div>
                     <ul style="height: 100px; overflow: auto">
                         <li>
-                            <input type="text" placeholder="Filter Users..." class="edit-field" ng-model="search.$">
+                            <input type="text" placeholder="Filter Users..." class="edit-field" ng-model="search">
                         </li>
-                        <li ng-repeat="u in DB.d.users | filter:search">
+                        <li ng-repeat="u in DB.d.users | filter:search">{{search}}
                             <a href="addMember(true, add_memeber_to, u.id)">{{u.username}}</a>
                         </li>
                     </ul>
