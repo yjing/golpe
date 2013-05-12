@@ -77,6 +77,7 @@ class TeamsController extends RESTController {
         parent::delete($id);
 
         $this->Team->id = $id;
+        $this->Team->recursive = -1;
         if ($this->Team->exists()) {
             $deleted = $this->Team->delete($id);
         } else {
