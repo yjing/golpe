@@ -100,6 +100,13 @@
                     <ul>
                         <li ng-repeat="t in menu[findProjectIndexById(selected_project)].teams" ng-class="isSelectedTeam(t.id)">
                             <a href="#" ng-click="selectTeam(t.id);">{{DB.d.teams[t.id].name}}</a>
+                            <div class="functions">
+                                <button class="btn-link function" ng-click="deleteTeam(false, t.id);" ng-hide="DB.m.teams[t.id].mode == 'deleting' || DB.m.teams[t.id].mode == 'edit'"><i class="icon-remove"></i></button>
+                            </div>
+                            <div class="confirms">
+                                <button class="btn btn-danger confirm" ng-click="deleteTeam(true, p.id, selected_project);" ng-show="DB.m.teams[t.id].mode == 'deleting';">Delete</button>
+                                <button class="btn btn-success confirm" ng-click="DB.m.teams[t.id].mode = 'normal';" ng-show="DB.m.teams[t.id].mode == 'deleting';">Keep</button>
+                            </div>
                         </li>
                         <li ng-show="new_team != null" ng-class="isSelectedTeam(-1);" ng-click="selectTeam(-1);">
                             <input class="edit_field" placeholder="New Team..." onfocus="this.focus()" autofocus="true" ng-model="new_team.name">
@@ -143,14 +150,6 @@
                             {{t.name}} {{DB.m.teams[t.id]}}
                             <i ng-show="DB.m.teams[t.id].mode == 'edit'" class="icon-pencil"></i>
                         </a>
-                        <div class="functions">
-                            <button class="btn-link function" ng-click="deleteTeam(false, t.id);"><i class="icon-remove"></i></button>
-                            <!--<button class="btn-link function" ng-click="deleteTeam(false, t.id);" ng-hide="DB.m.teams[t.id].mode == 'deleting' || DB.m.teams[t.id].mode == 'edit'"><i class="icon-remove"></i></button>-->
-                        </div>
-                        <!--<div class="confirms">-->
-                            <!--<button class="btn btn-danger confirm" ng-click="deleteTeam(true, p.id, selected_project);" ng-show="DB.m.teams[t.id].mode == 'deleting';">Delete</button>-->
-                            <!--<button class="btn btn-success confirm" ng-click="DB.m.teams[t.id].mode = 'normal';" ng-show="DB.m.teams[t.id].mode == 'deleting';">Keep</button>-->
-                        <!--</div>-->
                     </li>
                     <li ng-show="new_team != null">
                         <a>
