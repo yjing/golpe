@@ -501,6 +501,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
         return ( id == $scope.selected_al ? ACTIVE : NOT_ACTIVE );
     }
     $scope.showMedia = function(id){
+        deb(id);
         deb(DBService.m.als);
         return DBService.m.als[id].show_media;
     }
