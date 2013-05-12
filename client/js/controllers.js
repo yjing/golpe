@@ -310,6 +310,9 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
                 ProjectsService.delete(id,
                     function(d, h) {
                         $scope.menu.splice(index, 1);
+                        if($scope.menu.length > 0) {
+                            $scope.selectProject(0);
+                        }
                     },
                     function(e) {
                         $rootScope.handleError(e);
