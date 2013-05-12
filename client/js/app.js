@@ -265,6 +265,10 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         addMember: {
             url: '/teams/addMember/:tid/:uid',
             method: 'POST'
+        },
+        removeMember: {
+            url: '/teams/removeMember/:tid/:uid',
+            method: 'DELETE'
         }
     });
 
@@ -472,6 +476,38 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             function(d, h) {
                 BusyService.busy(false);
                 _THIS.insertTeam(d['Team']);
+
+                // CALLBACKS
+                if(success) {
+                    success(d, h);
+                }
+            },
+            function(data) {
+                BusyService.busy(false);
+
+                // CALLBACKS
+                if(error) {
+                    error(e);
+                }
+            }
+        )
+
+    }
+
+    this.removeMember = function(t_id, u_id, success, error) {
+        if(!angular.isDefined(t_id)) {
+            throw "Missing team ID";
+        }
+        if(!angular.isDefined(u_id)) {
+            throw "Missing user ID";
+        }
+
+        this.Teams.removeMember(
+            { "tid" : t_id, "uid" : u_id },
+            {},
+            function(d, h) {
+                BusyService.busy(false);
+                _THIS.removeTeam(d['Team']);
 
                 // CALLBACKS
                 if(success) {
