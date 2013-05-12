@@ -561,7 +561,6 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
         if(id < 0){
             $scope.selected_al = -1;
         } else if(angular.isDefined(DBService.d.als[id])) {
-
             ALService.load(id,
                 function(d, h){
                     $scope.selected_al = id;
@@ -570,8 +569,16 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
                     $rootScope.handleError(e);
                 }
             );
+
         }
     }
+
+    $scope.editAl = function (id) {
+        if(angular.isDefined(DBService.m.als[id])) {
+            DBService.m.als[id].mode = 'edit';
+        }
+    };
+
 
 }
 
