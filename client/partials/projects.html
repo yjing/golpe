@@ -101,14 +101,14 @@
                         <li ng-repeat="t in menu[findProjectIndexById(selected_project)].teams" ng-class="isSelectedTeam(t.id)">
                             <a href="#" ng-click="selectTeam(t.id);">{{DB.d.teams[t.id].name}}</a>
                         </li>
-                        <li ng-show="new_team != null" ng-class="isSelectedTeam(-1);" ng-click="selected_team = -1;">
+                        <li ng-show="new_team != null" ng-class="isSelectedTeam(-1);" ng-click="selectTeam(-1);">
                             <a>
-                                <input ng-model="new_team.name" style="width: 100%;">
+                                <input class="edit_field" ng-model="new_team.name" style="width: 100%;">
                             </a>
                         </li>
                     </ul>
                     <div class="text-right">
-                        <span><button ng-click="new_team = {'name':'Test'}; selected_team = -1;" ng-disabled="BS.newProject" class="btn btn-success">New Team</button></span>
+                        <span><button ng-click="new_team = {'name':''}; selected_team = -1;" ng-disabled="BS.newProject" class="btn btn-success">New Team</button></span>
                     </div>
                 </div>
             </div>
