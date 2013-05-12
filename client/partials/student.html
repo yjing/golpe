@@ -33,19 +33,19 @@
         </div>
     </div>
 
-    <!--<div class="span9">-->
-        <!--<div class="menu shadow" ng-hide="selected_project<0;">-->
-            <!--<div>-->
-                <!--<span>-->
-                    <!--<h4 class="clickable" ng-hide="DB.m.projects[selected_project].mode == 'edit'" ng-click="editProject(selected_project);">-->
-                        <!--{{DB.d.projects[selected_project].name}} <i class="icon-pencil"></i>-->
-                    <!--</h4>-->
-                    <!--&lt;!&ndash; EDIT MODE &ndash;&gt;-->
-                    <!--<span ng-show="DB.m.projects[selected_project].mode == 'edit'">-->
-                        <!--<input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge" ng-model="DB.d.projects[selected_project].name">-->
-                    <!--</span>-->
-                <!--</span>-->
-            <!--</div>-->
+    <div class="span8">
+        <div class="menu shadow" ng-hide="selected_project<0;">
+            <div>
+                <span>
+                    <h4 class="clickable" ng-hide="DB.m.projects[selected_project].mode == 'edit'" ng-click="editProject(selected_project);">
+                        {{DB.d.projects[selected_project].name}} <i class="icon-pencil"></i>
+                    </h4>
+                    <!-- EDIT MODE -->
+                    <span ng-show="DB.m.projects[selected_project].mode == 'edit'">
+                        <input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge" ng-model="DB.d.projects[selected_project].name">
+                    </span>
+                </span>
+            </div>
             <!--<ul>-->
                 <!--<li>-->
                     <!--<p class="selector" ng-hide="DB.m.projects[selected_project].mode == 'edit'">-->
@@ -161,7 +161,7 @@
                 <!--</div>-->
             <!--</div>-->
             <!---->
-        <!--</div>-->
-    <!--</div>-->
+        </div>
+    </div>
 
 </div>
