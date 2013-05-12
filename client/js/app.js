@@ -666,7 +666,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         if(!angular.isDefined(id)) {
             throw "Missing active log ID";
         }
-        if (angular.isDefined(DBService.d.als[id]) && DBService.d.als[id].status == 'partial') {
+        if (angular.isDefined(DBService.d.als[id]) && DBService.m.als[id].status == 'partial') {
             BusyService.busy(true);
             var als = this.ALs.load(
                 { "id" : id },
