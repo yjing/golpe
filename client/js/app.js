@@ -458,7 +458,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         );
     }
 
-    this.addMember = function(t_id, u_id) {
+    this.addMember = function(t_id, u_id, success, error) {
         if(!angular.isDefined(t_id)) {
             throw "Missing team ID";
         }
