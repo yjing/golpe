@@ -326,7 +326,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     }
 
     $scope.newTeam = function(save) {
-        if(angular.isNumber(save)) {
+        if(angular.isDefined(save)) {
             $scope.new_team = {
                 'project_id': save,
                 'name':''
