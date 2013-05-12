@@ -149,7 +149,9 @@
                             <!--<input type="text" placeholder="Filter Users..." class="edit-field" ng-model="search">-->
                         <!--</li>-->
                         <li ng-repeat="u in DB.d.users | filter:'s.'">
-                            <a href="#" ng-click="addMember(true, add_memeber_to, u.id)">{{u.username}}</a>
+                            <a href="#" ng-click="addMember(true, add_memeber_to, u.id)">
+                                {{u.username}}
+                            </a>
                         </li>
                     </ul>
                     <div class="text-right">
