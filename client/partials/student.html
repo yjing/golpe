@@ -67,6 +67,7 @@
             <div ng-show="isSelectedAl();">
                 <a href="#" ng-click="toggleShowMedia(selected_al);">
                     Media
+                    {{DB.m.als[selected_al]}}
                     <i class="icon-circle-arrow-right" ng-hide="showMedia(selected_al);"></i>
                     <i class="icon-circle-arrow-down" ng-show="showMedia(selected_al);"></i>
                 </a>
