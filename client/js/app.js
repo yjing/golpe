@@ -672,6 +672,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     this.insertALs = function(d) {
         if(angular.isDefined(d) && angular.isDefined(d)) {
             var al = angular.copy(d);
+            console.log(al);
             delete al.Comment;
             delete al.Media;
             delete al.User;
