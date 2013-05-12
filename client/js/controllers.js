@@ -350,7 +350,27 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     }
     $scope.cancelNewTeam = function() {
         $scope.new_team = null;
-        $scope.selected_team = null;
+        if($scope.selected_team == -1) {
+            $scope.selected_team = null;
+        }
+    }
+
+    $scope.deleteTeam = function(confirm, id, p_id) {
+        if(angular.isDefined(DBService.d.teams[id])){
+            if(confirm == true) {
+                var index = $scope.findTeamIndexById(p_id, id);
+                ProjectsService.deleteTeam(id,
+                    function(d, h) {
+                        $scope.menu[p_id].splice(index, 1);
+                    },
+                    function(e) {
+                        $rootScope.handleError(e);
+                    }
+                );
+            } else {
+                DBService.m.teams[id].mode = 'deleting';
+            }
+        }
     }
 
     // UTIL FUNCTIONS
