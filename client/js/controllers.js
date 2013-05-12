@@ -501,8 +501,6 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
         return ( id == $scope.selected_al ? ACTIVE : NOT_ACTIVE );
     }
     $scope.showMedia = function(id){
-        deb(id);
-        deb(DBService.m.als);
         return DBService.m.als[id].show_media;
     }
     $scope.toggleShowMedia = function(id){
@@ -521,8 +519,12 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
             {reload: false, mode:'mine'},
             // SUCCESS
             function(data, handlers){
-                $scope.menu = DBService.d.als;
-                deb($scope.menu);
+                $scope.menu = [];
+                angular.forEach(DBService.d.als, function(key, val){
+                    if(angular.isDefined(val)) {
+                        $scope.menu.push(val);
+                    }
+                });
             },
             // ERROR
             function(error){
