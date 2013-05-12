@@ -536,7 +536,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
 //                for(var i=0; i<data.length; i++) {
 //                    menu.push(data[i]['ActivityLog']['id']);
 //                }
-                console.log(data[i]['ActivityLog']['id']);
+                console.log(data[0]['ActivityLog']['id']);
 
                 $scope.menu = DBService.d.als;
             },
