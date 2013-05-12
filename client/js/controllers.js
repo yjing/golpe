@@ -326,15 +326,14 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     }
 
     $scope.newTeam = function(save) {
-        if(angular.isDefined(save)) {
+        if(save == true) {
+
+        } else {
             $scope.new_team = {
                 'project_id': save,
                 'name':''
             };
             $scope.selected_team = -1;
-            console.log($scope.new_project);
-        } else {
-
         }
     }
     $scope.cancelNewTeam = function() {
