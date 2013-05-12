@@ -73,8 +73,8 @@
                 </a>
             </div>
             <ul ng-show="showMedia(selected_al);">
-                <li ng-repeat="DB.m.als[selected_al].media">
-                    {{m}}
+                <li ng-repeat="m in DB.m.als[selected_al].media">
+                    {{DB.d.media[m].id}}
                 </li>
             </ul>
             <div ng-show="isSelectedAl();">
