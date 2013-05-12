@@ -37,7 +37,7 @@
     <div class="span8">
         <div class="menu shadow" ng-hide="selected_al<0;">
             <div>
-                <span>
+                <span>{{selected_al}}
                     <h4 class="clickable" ng-hide="DB.m.als[selected_al].mode == 'edit'" ng-click="editAl(selected_al);">
                         {{DB.d.als[selected_al].title}} <i class="icon-pencil"></i>
                     </h4>
