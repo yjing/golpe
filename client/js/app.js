@@ -731,12 +731,15 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             delete al.Media;
             delete al.User;
             DBService.insertData('als', al['id'], al);
-            DBService.insertMeta('als', al['id'], 'status', status);
-            DBService.insertMeta('als', al['id'], 'show_comments', false);
-            DBService.insertMeta('als', al['id'], 'show_media', true);
             DBService.insertMeta('als', al['id'], 'media', media);
             DBService.insertMeta('als', al['id'], 'comments', comments);
             DBService.insertMeta('als', al['id'], 'user', [ al['user_id'] ]);
+
+            DBService.insertMeta('als', al['id'], 'status', status);
+            if(status == 'partial') {
+                DBService.insertMeta('als', al['id'], 'show_comments', false);
+                DBService.insertMeta('als', al['id'], 'show_media', true);
+            }
 
         }
     }
