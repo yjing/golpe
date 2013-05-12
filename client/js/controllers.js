@@ -566,21 +566,16 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
             $scope.selected_al = -1;
         } else if(angular.isDefined(DBService.d.als[id])) {
 
-            $scope.selected_al = id;
-//            DBService.m.als[$scope.selected_al]['show_media'] = true;
-//            ProjectsService.load(id,
-//                function(d, h){
-//                    $scope.selected_project = id;
-//                    if(angular.isObject(d)) {
-//                        var newProjectTree = getIdTree(d, "Project.Team.Student", "teams.users");
-//                        var index = $scope.findProjectIndexById(id);
-//                        $scope.menu[index] = newProjectTree;
-//                    }
-//                },
-//                function(e) {
-//                    $rootScope.handleError(e);
-//                }
-//            );
+            DBService.m.als[$scope.selected_al]['show_media'] = true;
+            ALService.load(id,
+                function(d, h){
+                    $scope.selected_al = id;
+//                    console.log(d);
+                },
+                function(e) {
+                    $rootScope.handleError(e);
+                }
+            );
         }
     }
 

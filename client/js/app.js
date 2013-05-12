@@ -662,6 +662,33 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 
     }
 
+    this.load = function(id, success, error) {
+
+        BusyService.busy(true);
+        var als = this.ALs.load(
+            { "id" : id },
+            function(d, h) {
+                BusyService.busy(false);
+//                _THIS.insertALs(d);
+                console.log(d);
+
+                // CALLBACKS
+                if(success) {
+                    success(d, h);
+                }
+            },
+            function(e) {
+                BusyService.busy(false);
+
+                // CALLBACKS
+                if(error) {
+                    error(e);
+                }
+            }
+        );
+
+    }
+
     this.insertALs = function(d) {
         if(angular.isArray(d)) {
             for(var i=0; i< d.length; i++) {
