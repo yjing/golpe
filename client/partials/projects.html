@@ -142,6 +142,7 @@
                         <a href="#" ng-click="BS.activateTeam($index);">
                             {{t.name}}
                             <i ng-show="DB.m.teams[t.id].mode == 'edit'" class="icon-pencil"></i>
+                            {{DB.m.teams[t.id].mode}}
                         </a>
                         <div class="functions">
                             <button class="btn-link function" ng-click="deleteTeam(false, t.id);" ng-hide="DB.m.teams[t.id].mode == 'deleting' || DB.m.teams[t.id].mode == 'edit'"><i class="icon-remove"></i></button>
