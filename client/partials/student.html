@@ -98,7 +98,7 @@
                     <div class="selector"><em>No Comments yet...</em></div>
                 </li>
                 <li ng-repeat="c in DB.m.als[selected_al].comments" ng-show="showComments(selected_al);">
-                    {{c.id}} /
+                    {{c}} /
                     {{DB.m.comments[c.id]}}
                     <p class="selector">{{DB.d.comments[c].content}}</p>
                     <ul class="thumbnails">
