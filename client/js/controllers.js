@@ -519,7 +519,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
             {reload: false, mode:'mine'},
             // SUCCESS
             function(data, handlers){
-                $scope.menu = [];
+                var menu = [];
                 console.log(data);
                 console.log(data.length);
                 angular.forEach(DBService.d.als, function(val, key){
@@ -529,6 +529,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
                         $scope.menu.push(val);
                     }
                 });
+                $scope.menu = menu;
             },
             // ERROR
             function(error){
