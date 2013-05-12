@@ -398,7 +398,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     }
 
     $scope.removeMember = function(confirm, u_id, t_id){
-        console.log(DBService.m.users[u.id]);
+        console.log(DBService.m.users[u_id]);
         if(angular.isDefined(DBService.d.teams[t_id]) && angular.isDefined(DBService.d.users[u_id])){
             if(confirm == true) {
                 ProjectsService.removeMember(id,
