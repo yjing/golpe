@@ -496,7 +496,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
     };
 
 
-    $scope.selected_al = null;
+    $scope.selected_al = 6;
     $scope.isSelectedAl = function(id){
         return ( id == $scope.selected_al ? ACTIVE : NOT_ACTIVE );
     }
@@ -508,6 +508,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
             // SUCCESS
             function(data, handlers){
                 $scope.menu = DBService.d.als;
+                $scope.selectAl(4);
             },
             // ERROR
             function(error){
