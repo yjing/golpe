@@ -258,6 +258,11 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             isArray: false
         }
     });
+    this.Teams = $resource('/teams/:id', { id:'@id' }, {
+        save: {
+            method: 'POST'
+        }
+    });
 
     this.loadAll = function(reload, success, error) {
         // PARAM MANAGEMENT
@@ -378,6 +383,29 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             function(d, h) {
                 BusyService.busy(false);
                 _THIS.deleteProject(id);
+
+                // CALLBACKS
+                if(success) {
+                    success(d, h);
+                }
+            },
+            function(data) {
+                BusyService.busy(false);
+
+                // CALLBACKS
+                if(error) {
+                    error(e);
+                }
+            }
+        );
+    }
+
+    this.saveTeam = function(data, success, error) {
+        this.Teams.save(
+            {},
+            data,
+            function(d, h) {
+                BusyService.busy(false);
 
                 // CALLBACKS
                 if(success) {

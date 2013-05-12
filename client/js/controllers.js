@@ -328,10 +328,15 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     $scope.newTeam = function(save) {
         if(typeof save == "boolean") {
             if(save) {
-
-            } else {
-                $scope.new_team = null;
-                $scope.selected_team = null;
+                ProjectsService.saveTeam($scope.new_team,
+                    function(d,h) {
+                        $scope.cancelNewTeam();
+                        $scope.selectProject(d['Team']['project_id']);
+                    },
+                    function(e) {
+                        $rootScope.handleError(e);
+                    }
+                );
             }
         } else {
             $scope.new_team = {
@@ -343,6 +348,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     }
     $scope.cancelNewTeam = function() {
         $scope.new_team = null;
+        $scope.selected_team = null;
     }
 
     // UTIL FUNCTIONS
