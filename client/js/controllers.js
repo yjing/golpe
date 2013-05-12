@@ -508,7 +508,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
             // SUCCESS
             function(data, handlers){
                 $scope.menu = DBService.d.als;
-                $scope.selectAlX(4);
+                $scope.PIPPO(4);
             },
             // ERROR
             function(error){
@@ -533,7 +533,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
         $scope.main();
     }
 
-    $scope.selectAlX = function(id) {
+    $scope.PIPPO = function(id) {
         console.log(id);
         if(id < 0){
             $scope.selected_al = -1;
