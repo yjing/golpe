@@ -569,7 +569,8 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
                     $rootScope.handleError(e);
                 }
             );
-            console.log(DBService.d.comments);
+            console.log(DBService.m.comments);
+            console.log(DBService.d.media);
         }
     }
 
