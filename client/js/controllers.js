@@ -502,6 +502,11 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
             // SUCCESS
             function(data, handlers){
                 console.log(data);
+                console.log("--------");
+                console.log(DBService.d);
+                console.log("--------");
+                console.log(DBService.m);
+                console.log("--------");
 //                $scope.setupMenu(data);
 //                if($scope.menu.length > 0) {
 //                    $scope.selectProject($scope.menu[0].id);
