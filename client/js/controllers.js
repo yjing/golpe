@@ -358,6 +358,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     $scope.deleteTeam = function(confirm, id, p_id) {
         if(angular.isDefined(DBService.d.teams[id])){
             if(confirm == true) {
+                console.log("$scope.deleteTeam = function(" + confirm + ", " + id + ", " + p_id + ")");
                 var index = $scope.findTeamIndexById(p_id, id);
                 ProjectsService.deleteTeam(id,
                     function(d, h) {
