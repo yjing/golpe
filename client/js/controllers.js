@@ -347,7 +347,6 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
             };
             $scope.selected_team = -1;
         }
-        console.log(DBService.m.teams);
     }
     $scope.cancelNewTeam = function() {
         $scope.new_team = null;
@@ -363,6 +362,8 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
                 ProjectsService.deleteTeam(id,
                     function(d, h) {
                         $scope.menu[p_id].splice(index, 1);
+                        DBService.m.projects[p_id].status = 'partial';
+                        $scope.selectProject(p_id);
                     },
                     function(e) {
                         $rootScope.handleError(e);

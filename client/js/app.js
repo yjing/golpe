@@ -401,9 +401,39 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     }
 
     this.saveTeam = function(data, success, error) {
+        if(!angular.isDefined(data)) {
+            throw "Missing team DATA";
+        }
         this.Teams.save(
             {},
             data,
+            function(d, h) {
+                BusyService.busy(false);
+
+                // CALLBACKS
+                if(success) {
+                    success(d, h);
+                }
+            },
+            function(data) {
+                BusyService.busy(false);
+
+                // CALLBACKS
+                if(error) {
+                    error(e);
+                }
+            }
+        );
+    }
+
+    this.saveTeam = function(data, success, error) {
+        if(!angular.isDefined(id)) {
+            throw "Missing team ID";
+        }
+
+        this.Teams.delete(
+            {"id" : id},
+            {},
             function(d, h) {
                 BusyService.busy(false);
 
@@ -454,6 +484,13 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         if(angular.isDefined(id) && angular.isDefined(DBService.d.projects[id])) {
             delete DBService.d.projects[id];
             delete DBService.m.projects[id];
+        }
+    }
+
+    this.deleteTeam = function(id) {
+        if(angular.isDefined(id) && angular.isDefined(DBService.d.teams[id])) {
+            delete DBService.d.teams[id];
+            delete DBService.m.teams[id];
         }
     }
 
