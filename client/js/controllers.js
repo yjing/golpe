@@ -521,11 +521,11 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
             function(data, handlers){
                 $scope.menu = [];
                 console.log(data);
-                angular.forEach(DBService.d.als, function(key, val){
+                angular.forEach(DBService.d.als, function(val, key){
                     console.log(key);
                     console.log(val);
                     if(angular.isDefined(val)) {
-//                        $scope.menu.push(val);
+                        $scope.menu.push(val);
                     }
                 });
             },
