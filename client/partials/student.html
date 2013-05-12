@@ -10,7 +10,7 @@
             </div>
             <ul>
                 <li ng-repeat="al in menu" ng-class="isSelectedProject(p.id)">
-                    <a href="#" ng-click="selectProject(p.id);">{{al.title}}
+                    <a href="#" ng-click="selected_al = al.id;">{{al.title}}
                         <i ng-show="DB.m.projects[p.id].mode == 'edit'" class="icon-pencil"></i>
                     </a>
                     <div class="functions">
@@ -38,7 +38,7 @@
             <div>
                 <span>
                     <h4 class="clickable" ng-hide="DB.m.projects[selected_project].mode == 'edit'" ng-click="editProject(selected_project);">
-                        {{DB.d.projects[selected_project].name}} <i class="icon-pencil"></i>
+                        {{DB.d.als[selected_al].title}} <i class="icon-pencil"></i>
                     </h4>
                     <!-- EDIT MODE -->
                     <span ng-show="DB.m.projects[selected_project].mode == 'edit'">
@@ -49,7 +49,7 @@
             <ul>
                 <li>
                     <p class="selector" ng-hide="DB.m.projects[selected_project].mode == 'edit'">
-                        {{DB.d.projects[selected_project].description}}
+                        {{DB.d.als[selected_al].description}}
                     </p>
                     <!-- EDIT MODE -->
                     <textarea class="edit-field" ng-model="DB.d.projects[selected_project].description" ng-show="DB.m.projects[selected_project].mode == 'edit'"></textarea>
