@@ -71,8 +71,9 @@
                     <i class="icon-circle-arrow-down" ng-show="showMedia(selected_al);"></i>
                 </a>
             </div>
-            <ul ng-show="showMedia(selected_al);">
-                <li ng-repeat="m in DB.m.als[selected_al].media">
+            <!--<ul ng-show="showMedia(selected_al);">-->
+            <ul ng-show="">
+                <li ng-repeat="m in DB.m.als[selected_al].media" ng-show="showMedia(selected_al);">
                     <a href="#" >{{DB.d.media[m].filename}}</a>
                 </li>
             </ul>
