@@ -149,23 +149,22 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     }
 
 })
-//.filter('dbFilter', function(DBService){
-//    return function(value, param, table, key){
-//        if(!angular.isString(param) || !param.trim().length > 0) {
-//            return value;
-//        }
-//        param = angular.lowercase(param);
-//        var result = [];
-//        for(var i=0; i<value.length; i++) {
-////            var val = angular.lowercase(DBService.d.projects[value[i].id].name);
-//            var val = angular.lowercase(DBService.d[table][value[i].id][key]);
-//            if(val.indexOf(param) >= 0) {
-//                result.push(value[i])
-//            }
-//        }
-//        return result;
-//    };
-//})
+.filter('dbFilter', function(DBService){
+    return function(value, param, table, key){
+        if(!angular.isString(param) || !param.trim().length > 0) {
+            return value;
+        }
+        param = angular.lowercase(param);
+        var result = [];
+        for(var i=0; i<value.length; i++) {
+            var val = angular.lowercase(DBService.d[table][value[i].id][key]);
+            if(val.indexOf(param) >= 0) {
+                result.push(value[i])
+            }
+        }
+        return result;
+    };
+})
 .service('BusyService', function($rootScope){
     // PUT SERVICE IN ROOTE SCOPE
     $rootScope.BUSY = this;
