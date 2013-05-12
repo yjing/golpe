@@ -532,12 +532,6 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
             {reload: false, mode:'mine'},
             // SUCCESS
             function(data, handlers){
-//                var menu = [];
-//                for(var i=0; i<data.length; i++) {
-//                    menu.push(data[i]['ActivityLog']['id']);
-//                }
-                console.log(data[0]['ActivityLog']['id']);
-
                 $scope.menu = DBService.d.als;
             },
             // ERROR
@@ -571,8 +565,6 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
             ALService.load(id,
                 function(d, h){
                     $scope.selected_al = id;
-                    DBService.m.als[$scope.selected_al]['show_media'] = true;
-
                 },
                 function(e) {
                     $rootScope.handleError(e);
