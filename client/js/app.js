@@ -366,6 +366,35 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         );
     }
 
+    this.delete = function(id, success, error) {
+        if(!angular.isDefined(id)) {
+            throw "Missing project ID";
+        }
+
+        BusyService.busy(true);
+        var proj = this.Projects.delete(
+            {'id':id},
+            {},
+            function(d, h) {
+                BusyService.busy(false);
+                _THIS.dropProject(id);
+
+                // CALLBACKS
+                if(success) {
+                    success(d, h);
+                }
+            },
+            function(data) {
+                BusyService.busy(false);
+
+                // CALLBACKS
+                if(error) {
+                    error(e);
+                }
+            }
+        );
+    }
+
     // DB ACCESS FUNCS
     this.insertProjects = function(data) {
         if(angular.isArray(data)) {

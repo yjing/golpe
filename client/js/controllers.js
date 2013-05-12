@@ -307,15 +307,14 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         if(angular.isDefined(DBService.d.projects[id])){
             if(confirm == true) {
                 var index = $scope.findProjectIndexById(id);
-                $scope.menu.splice(index, 1);
-//                ProjectsService.delete(id,
-//                    function(d, h) {
-//                        $scope.menu.splice(index, i);
-//                    },
-//                    function(e) {
-//                        $rootScope.handleError(e);
-//                    }
-//                );
+                ProjectsService.delete(id,
+                    function(d, h) {
+                        $scope.menu.splice(index, 1);
+                    },
+                    function(e) {
+                        $rootScope.handleError(e);
+                    }
+                );
             } else {
                 DBService.m.projects[id].mode = 'deleting';
             }
