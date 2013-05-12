@@ -576,6 +576,14 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
     $scope.editAl = function (id) {
         if(angular.isDefined(DBService.m.als[id])) {
             DBService.m.als[id].mode = 'edit';
+            DBService.m.als[id].old = angular.copy(DBService.d.als[id]);
+        }
+    };
+
+    $scope.cancelEditAl = function (id) {
+        if(angular.isDefined(DBService.m.als[id])) {
+            DBService.d.als[id] = DBService.m.als[id].old;
+            DBService.m.als[id].mode = 'normal';
         }
     };
 
