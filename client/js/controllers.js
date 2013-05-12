@@ -502,7 +502,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
         return ( id == $scope.selected_al ? ACTIVE : NOT_ACTIVE );
     }
     $scope.showMedia = function(id){
-        if(angular.isUndefined(id)) {
+        if(angular.isUndefined(id) || id == null) {
             return false;
         } else {
             return DBService.m.als[id].show_media;
@@ -512,7 +512,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
         DBService.m.als[id].show_media = ! DBService.m.als[id].show_media;
     }
     $scope.showComments = function(id){
-        if(angular.isUndefined(id)) {
+        if(angular.isUndefined(id) || id == null) {
             return false;
         } else {
             return DBService.m.als[id].show_comments;
