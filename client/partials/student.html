@@ -77,19 +77,19 @@
                 </li>
                 <li ng-show="showMedia(selected_al);">
                     <ul class="thumbnails">
-                        <li ng-repeat="m in DB.m.als[selected_al].media" class="span3">
+                        <li ng-repeat="m in DB.m.als[selected_al].media" class="span3" style="margin: 3px">
                             <div class="thumbnail">
                                 <img src="{{getThumbUrl(DB.d.media[m]['content-type']);}}" alt="{{DB.d.media[m].filename}}">
                                 <p>{{DB.d.media[m].filename}}</p>
                             </div>
                         </li>
-                        <li ng-repeat="m in DB.m.als[selected_al].media" class="span3">
+                        <li ng-repeat="m in DB.m.als[selected_al].media" class="span3" style="margin: 3px">
                             <div class="thumbnail">
                                 <img src="{{getThumbUrl(DB.d.media[m]['content-type']);}}" alt="{{DB.d.media[m].filename}}">
                                 <p>{{DB.d.media[m].filename}}</p>
                             </div>
                         </li>
-                        <li ng-repeat="m in DB.m.als[selected_al].media" class="span3">
+                        <li ng-repeat="m in DB.m.als[selected_al].media" class="span3" style="margin: 3px">
                             <div class="thumbnail">
                                 <img src="{{getThumbUrl(DB.d.media[m]['content-type']);}}" alt="{{DB.d.media[m].filename}}">
                                 <p>{{DB.d.media[m].filename}}</p>
