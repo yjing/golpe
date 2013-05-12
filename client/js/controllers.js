@@ -463,7 +463,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
 
 }
 
-function StudentCtrl($scope, $rootScope, $location, auth, BysuService, DBService){
+function StudentCtrl($scope, $rootScope, $location, auth, BusyService, DBService){
 
     // TOP BAR
     $rootScope.top_bar = {
