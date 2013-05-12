@@ -678,28 +678,20 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             var commentsCount = 0;
 
             if(angular.isDefined(al['Comment'])) {
-                if(!angular.isDefined(al['Comment'][0]['count'])) {
-                    _THIS.insertComments(al['Comment']);
-                } else {
-                    commentsCount = al['Comment'][0]['count'];
-                }
+                _THIS.insertComments(al['Comment']);
             }
             if(angular.isDefined(al['Media'])) {
-                if(!angular.isDefined(al['Media'][0]['count'])) {
-                    _THIS.insertMedia(al['Media']);
-                } else {
-                    mediaCount = al['Media'][0]['count'];
-                }
+                _THIS.insertMedia(al['Media']);
             }
-//            if(angular.isDefined(al['User'])) {
-//                _THIS.insertUser(al['User']);
-//            }
+            if(angular.isDefined(al['User'])) {
+                _THIS.insertUser(al['User']);
+            }
 
             delete al.Comment;
             delete al.Media;
             delete al.User;
             DBService.insertData('als', al['id'], al);
-            DBService.insertMeta('als', al['id'], 'mode', 'partial');
+            DBService.insertMeta('als', al['id'], 'status', 'partial');
             DBService.insertMeta('als', al['id'], 'comments_count', commentsCount);
             DBService.insertMeta('als', al['id'], 'media_count', mediaCount);
 
@@ -717,7 +709,8 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     }
 
     this.insertComment = function(d) {
-        TODO
+        DBService.insertData('comments', d['id'], angular.copy(d));
+        DBService.insertMeta('comments', d['id'], 'status', 'partial');
     }
 
     this.insertMedia  = function(d){
@@ -729,7 +722,13 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     }
 
     this.insertMedium = function(d) {
-        TODO
+        DBService.insertData('media', d['id'], angular.copy(d));
+        DBService.insertMeta('media', d['id'], 'status', 'partial');
+    }
+
+    this.insertUser = function(d) {
+        DBService.insertData('users', d['id'], angular.copy(d));
+        DBService.insertMeta('users', d['id'], 'status', 'partial');
     }
 
 })
