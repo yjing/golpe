@@ -732,7 +732,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         DBService.insertMeta('users', d['id'], 'status', 'partial');
     }
 
-    this.getIds(a) {
+    this.getIds = function(a) {
         var res = [];
         if(angular.isArray(a)) {
             for(var i=0; i< a.length; i++) {
