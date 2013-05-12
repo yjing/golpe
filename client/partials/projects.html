@@ -92,15 +92,13 @@
 
         <div class="row-fluid">
 
-{{menu[findIndexById(selected_project)]}}
-{{findIndexById(selected_project)}}
             <div class="span4">
                 <div class="menu shadow">
                     <div class="text-right">
                         <span><strong>Teams <i class="icon-briefcase"></i></strong></span>
                     </div>
                     <ul>
-                        <li ng-repeat="t in menu[findIndexById(selected_project)].teams" ng-class="isSelectedTeam(t.id)">
+                        <li ng-repeat="t in menu[findProjectIndexById(selected_project)].teams" ng-class="isSelectedTeam(t.id)">
                             <a href="#" ng-click="selectTeam(t.id);">{{DB.d.teams[t.id].name}}</a>
                         </li>
                     </ul>
