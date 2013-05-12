@@ -41,7 +41,7 @@ div.menu > div {
 
 @media screen and (min-width: 768px) {
     div.menu > div:first-child {
-        background-color: #efefef;
+        background-color: #808080;
     }
 }
 
