@@ -426,7 +426,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         );
     }
 
-    this.saveTeam = function(data, success, error) {
+    this.deleteTeam = function(id, success, error) {
         if(!angular.isDefined(id)) {
             throw "Missing team ID";
         }
@@ -436,6 +436,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             {},
             function(d, h) {
                 BusyService.busy(false);
+                _THIS.removeTeam(id);
 
                 // CALLBACKS
                 if(success) {
@@ -487,7 +488,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         }
     }
 
-    this.deleteTeam = function(id) {
+    this.removeTeam = function(id) {
         if(angular.isDefined(id) && angular.isDefined(DBService.d.teams[id])) {
             delete DBService.d.teams[id];
             delete DBService.m.teams[id];
