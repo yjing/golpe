@@ -76,7 +76,19 @@
                     <div class="selector"><em>No Media present...</em></div>
                 </li>
                 <li ng-repeat="m in DB.m.als[selected_al].media" ng-show="showMedia(selected_al);">
-                    <a href="#" >{{DB.d.media[m].filename}}</a>
+                    <a href="#" >
+
+                        {{DB.d.media[m].filename}}
+                        <ul class="thumbnails">
+                            <li class="span4">
+                                <div class="thumbnail">
+                                    <img src="/media/download/518fb43a-6370-425a-8ded-13086d4ac239?thumb=BIG" alt="">
+                                    <h3>Thumbnail label</h3>
+                                    <p>Thumbnail caption...</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </a>
                 </li>
             </ul>
             <div ng-show="isSelectedAl();">
