@@ -75,20 +75,8 @@
                 <li ng-show="showMedia(selected_al) && (DB.m.als[selected_al].media == null || DB.m.als[selected_al].media.length == 0);">
                     <div class="selector"><em>No Media present...</em></div>
                 </li>
-                <li ng-show="showMedia(selected_al);">
+                <li ng-show="showMedia(selected_al) && (DB.m.als[selected_al].media != null || DB.m.als[selected_al].media.length > 0);">
                     <ul class="thumbnails">
-                        <li ng-repeat="m in DB.m.als[selected_al].media" class="span3" style="margin: 3px">
-                            <div class="thumbnail">
-                                <img src="{{getThumbUrl(DB.d.media[m]['content-type']);}}" alt="{{DB.d.media[m].filename}}">
-                                <p>{{DB.d.media[m].filename}}</p>
-                            </div>
-                        </li>
-                        <li ng-repeat="m in DB.m.als[selected_al].media" class="span3" style="margin: 3px">
-                            <div class="thumbnail">
-                                <img src="{{getThumbUrl(DB.d.media[m]['content-type']);}}" alt="{{DB.d.media[m].filename}}">
-                                <p>{{DB.d.media[m].filename}}</p>
-                            </div>
-                        </li>
                         <li ng-repeat="m in DB.m.als[selected_al].media" class="span3" style="margin: 3px">
                             <div class="thumbnail">
                                 <img src="{{getThumbUrl(DB.d.media[m]['content-type']);}}" alt="{{DB.d.media[m].filename}}">
@@ -111,6 +99,14 @@
                 </li>
                 <li ng-repeat="m in DB.m.als[selected_al].comments" ng-show="showComments(selected_al);">
                     <p class="selector">{{DB.d.comments[m].content}}</p>
+                    <ul class="thumbnails">
+                        <li ng-repeat="m in DB.m.als[selected_al].media" class="span3" style="margin: 3px">
+                            <div class="thumbnail">
+                                <img src="{{getThumbUrl(DB.d.media[m]['content-type']);}}" alt="{{DB.d.media[m].filename}}">
+                                <p>{{DB.d.media[m].filename}}</p>
+                            </div>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </div>
