@@ -503,8 +503,14 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
     $scope.showMedia = function(id){
         return DBService.m.als[id].show_media;
     }
+    $scope.toggleShowMedia = function(id){
+        DBService.m.als[id].show_media = ! DBService.m.als[id].show_media;
+    }
     $scope.showComments = function(id){
         return DBService.m.als[id].show_comments;
+    }
+    $scope.toggleShowComments = function(id){
+        DBService.m.als[id].show_comments = ! DBService.m.als[id].show_comments;
     }
 
     // MAIN METHOD
