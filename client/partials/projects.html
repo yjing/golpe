@@ -140,17 +140,17 @@
                     </li>
                     <li ng-repeat="t in BS.activeProject('Project').Team" ng-class="BS.activeTeamClass($index)">
                         <a href="#" ng-click="BS.activateTeam($index);">
-                            {{t.name}}
+                            {{t.name}} {{DB.m.teams[t.id]}}
                             <i ng-show="DB.m.teams[t.id].mode == 'edit'" class="icon-pencil"></i>
-                            {{DB.m.teams[t.id]}}
                         </a>
                         <div class="functions">
-                            <button class="btn-link function" ng-click="deleteTeam(false, t.id);" ng-hide="DB.m.teams[t.id].mode == 'deleting' || DB.m.teams[t.id].mode == 'edit'"><i class="icon-remove"></i></button>
+                            <button class="btn-link function" ng-click="deleteTeam(false, t.id);"><i class="icon-remove"></i></button>
+                            <!--<button class="btn-link function" ng-click="deleteTeam(false, t.id);" ng-hide="DB.m.teams[t.id].mode == 'deleting' || DB.m.teams[t.id].mode == 'edit'"><i class="icon-remove"></i></button>-->
                         </div>
-                        <div class="confirms">
-                            <button class="btn btn-danger confirm" ng-click="deleteTeam(true, p.id, selected_project);" ng-show="DB.m.teams[t.id].mode == 'deleting';">Delete</button>
-                            <button class="btn btn-success confirm" ng-click="DB.m.teams[t.id].mode = 'normal';" ng-show="DB.m.teams[t.id].mode == 'deleting';">Keep</button>
-                        </div>
+                        <!--<div class="confirms">-->
+                            <!--<button class="btn btn-danger confirm" ng-click="deleteTeam(true, p.id, selected_project);" ng-show="DB.m.teams[t.id].mode == 'deleting';">Delete</button>-->
+                            <!--<button class="btn btn-success confirm" ng-click="DB.m.teams[t.id].mode = 'normal';" ng-show="DB.m.teams[t.id].mode == 'deleting';">Keep</button>-->
+                        <!--</div>-->
                     </li>
                     <li ng-show="new_team != null">
                         <a>
