@@ -363,6 +363,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
                 var index = $scope.findTeamIndexById(p_id, id);
                 ProjectsService.deleteTeam(id,
                     function(d, h) {
+                        $scope.selected_team = null;
                         $scope.menu[p_id].splice(index, 1);
                         DBService.m.projects[p_id].status = 'partial';
                         $scope.selectProject(p_id);
