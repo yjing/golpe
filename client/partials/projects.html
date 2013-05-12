@@ -102,11 +102,15 @@
                             <a href="#" ng-click="selectTeam(t.id);">{{DB.d.teams[t.id].name}}</a>
                         </li>
                         <li ng-show="new_team != null" ng-class="isSelectedTeam(-1);" ng-click="selectTeam(-1);">
-                            <input class="edit_field" placeholder="New Team..." ng-model="new_team.name">
+                            <input class="edit_field" placeholder="New Team..." onfocus="this.focus()" autofocus="true" ng-model="new_team.name">
                         </li>
                     </ul>
                     <div class="text-right">
-                        <span><button ng-click="new_team = {'name':''}; selected_team = -1;" ng-disabled="BS.newProject" class="btn btn-success">New Team</button></span>
+                        <span><button ng-click="newTeam(selected_project);" ng-show="new_team != null" class="btn btn-success">New Team</button></span>
+                        <span>
+                            <button ng-click="cancelNewTeam();" ng-hide="new_team != null" class="btn btn-success">Add Team</button>
+                            <button ng-click="newTeam(true);" ng-hide="new_team != null" class="btn btn-success">Cancel</button>
+                        </span>
                     </div>
                 </div>
             </div>
