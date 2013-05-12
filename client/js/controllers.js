@@ -164,6 +164,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     }
     $scope.new_project = null;
     $scope.selected_team = null;
+    $scope.newTeam = null;
     $scope.isSelectedTeam = function(id){
         return ( id == $scope.selected_team ? ACTIVE : NOT_ACTIVE );
     }
