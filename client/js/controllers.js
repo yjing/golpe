@@ -385,7 +385,17 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
             $scope.add_memeber = true;
             $scope.add_memeber_to = t_id;
         } else {
-            console.log("ADD MEMBER: "+u_id+" -> "+t_id)
+            ProjectsService.addMember(t_id, u_id,
+                function(d,h) {
+                    $scope.cancelAddMember();
+                    var p_id = DBService.m.teams[t_id].project_id;
+                    DBService.m.projects[p_id].status = 'partial';
+                    $scope.selectProject(p_id);
+                },
+                function(e) {
+                    $rootScope.handleError(e);
+                }
+            )
         }
     }
 

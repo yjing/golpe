@@ -261,6 +261,10 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     this.Teams = $resource('/teams/:id', { id:'@id' }, {
         save: {
             method: 'POST'
+        },
+        addMember: {
+            url: '/teams/addMember/:tid/:uid',
+            method: 'POST'
         }
     });
 
@@ -452,6 +456,38 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                 }
             }
         );
+    }
+
+    this.addMember = function(t_id, u_id) {
+        if(!angular.isDefined(t_id)) {
+            throw "Missing team ID";
+        }
+        if(!angular.isDefined(u_id)) {
+            throw "Missing user ID";
+        }
+
+        this.Teams.addMemeber(
+            { "tid" : t_id, "uid" : u_id },
+            {},
+            function(d, h) {
+                BusyService.busy(false);
+                _THIS.inserTeam(d['Team']);
+
+                // CALLBACKS
+                if(success) {
+                    success(d, h);
+                }
+            },
+            function(data) {
+                BusyService.busy(false);
+
+                // CALLBACKS
+                if(error) {
+                    error(e);
+                }
+            }
+        )
+
     }
 
     // DB ACCESS FUNCS
