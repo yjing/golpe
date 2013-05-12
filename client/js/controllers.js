@@ -463,7 +463,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
 
 }
 
-function StudentCtrl($scope, $rootScope, $location, auth, BusyService, DBService){
+function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService, DBService){
 
     // TOP BAR
     $rootScope.top_bar = {
@@ -493,6 +493,42 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, DBService
             { type: 'item', label: 'Info', func: $rootScope.info }
         ]
     };
+
+
+    // MAIN METHOD
+    $scope.main = function() {
+        ALService.loadAll(
+            // SUCCESS
+            function(data, handlers){
+                console.log(data);
+//                $scope.setupMenu(data);
+//                if($scope.menu.length > 0) {
+//                    $scope.selectProject($scope.menu[0].id);
+//                }
+            },
+            // ERROR
+            function(error){
+                $rootScope.handleError(error);
+            }
+        );
+    }
+
+    // BEFORE MAIN: CHECK USER LOGIN
+    if($rootScope.user == null || !$rootScope.user['logged']) {
+        BusyService.busy(true);
+        $rootScope.user = auth.user();
+        $rootScope.user.$then(function(){
+            BusyService.busy(false);
+            if(!$rootScope.user['logged']) {
+                $location.url('/client/login');
+            } else {
+                $scope.main();
+            }
+        });
+    } else {
+        $scope.main();
+    }
+
 }
 
 // UTIL FUNCTIONS

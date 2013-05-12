@@ -38,6 +38,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     DBService.createTable("projects");
     DBService.createTable("teams");
     DBService.createTable("users");
+    DBService.createTable("al");
 
     // TOPBAR TEMPLATE URL
     $rootScope.top_bar_url = '/client/partials/topbar.html';
@@ -607,281 +608,47 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     }
 
 })
-.service('ProjectsServiceOLD', function($rootScope, BusyService, $resource){
-    // PUT SERVICE IN ROOTE SCOPE
-    $rootScope.BS = this;
-
-    // this HAS TO BE AVAILABLE ON CALLBACKS
-    // ALIAS: $THIS
+.service('ALService', function($rootScope, $resource, BusyService, DBService){
+    $rootScope.PS = this;
     var _THIS = this;
-    // ACTIVATION CONSTANT
-    var ACTIVE = 'active';
-    var NOT_ACTIVE = '';
-    // MODE CONSTANT
-    var MODE_EDIT = 'edit'
-    var MODE_NORMAL = 'normal'
-    // STATUS CONSTANTS
-    var STATUS_PARTIAL = 'partial';
-    var STATUS_COMPLETE = 'complete';
-    var STATUS_NEW = 'new';
 
-    this.projects = null;
-    this.active_project_id = null;
-    this.active_team_id = null;
-    this.newProject = false;
 
-    this.Projects = $resource('/projects/:id', { id:'@id' }, {
+    this.ALs = $resource('/activity_logs/:id', { id:'@id' }, {
         all: {
             method: 'GET',
             isArray: true
         },
-        get: {
-            method: 'GET'
-        }
-    });
-
-    this.Teams = $resource('/teams/:id', { id:'@id' }, {
-        all: {
+        load: {
             method: 'GET',
-            isArray: true
-        },
-        get: {
-            method: 'GET'
-        },
-        add: {
-            method: 'POST'
+            isArray: false
         }
     });
 
-    // DATA OPERATIONS
-    this.loadAll = function(reload, success, error){
+    this.loadAll = function(config, success, error) {
+        // PARAM MANAGEMENT
         if(arguments.length > 0 && typeof arguments[0] == "function") {
             if(arguments.length > 1) {
                 error = arguments[1];
             }
             success = arguments[0];
-            reload = false;
-        }
-
-        if(reload || this.projects == null) {
-            BusyService.busy(true);
-
-            var proj = this.Projects.all(
-                function(d, h) {
-                    BusyService.busy(false);
-
-                    // ADD METADATA
-                    for(var i=0; i < proj.length; i++) {
-                        proj[i].mode = MODE_NORMAL;
-                        proj[i].status = STATUS_PARTIAL;
-                    }
-                    _THIS.projects = proj;
-
-                    // CALLBACKS
-                    if(success) {
-                        success(d, h);
-                    }
-                },
-                function(e) {
-                    BusyService.busy(false);
-
-                    // CALLBACKS
-                    if(error) {
-                        error(e);
-                    }
-                }
-            );
-        } else {
-            // CALLBACK
-            if(success) {
-                success(this.projects);
-            }
-        }
-    }
-    this.load = function(index, success, error) {
-        if(index == undefined || typeof index != "number") {
-            throw "'index' has to be a number";
-        }
-
-        if(this.projects[index].status == STATUS_PARTIAL) {
-            BusyService.busy(true);
-            var proj = this.Projects.get(
-                {
-                    id: this.projects[index].Project.id
-                },
-                function(d, h){
-                    BusyService.busy(false);
-
-                    // ADD METADATA
-                    proj.mode = MODE_NORMAL;
-                    proj.status = STATUS_COMPLETE;
-                    _THIS.projects[index] = proj;
-
-                    // CALLBACKS
-                    if(success) {
-                        success(d, h);
-                    }
-                },
-                function(e) {
-                    BusyService.busy(false);
-
-                    // CALLBACKS
-                    if(error) {
-                        error(e);
-                    }
-                }
-            );
-        } else {
-            // CALLBACK
-            if(success) {
-                success(this.projects[index]);
-            }
-        }
-    }
-    this.save = function(index, success, error) {
-        if(index == undefined || typeof index != "number") {
-            throw "'index' has to be a number";
-        }
-
-        var params = {};
-        if(this.projects[index].mode != STATUS_NEW) {
-            params = {id:this.projects[index].Project.id};
+            config = {
+                reload: false,
+                mode: ""
+            };
         }
 
         BusyService.busy(true);
-        var proj = this.Projects.save(
-            params,
-            this.projects[index],
+        var als = this.ALs.all(
+            { "mode": config.mode },
             function(d, h) {
                 BusyService.busy(false);
-                proj.status = STATUS_COMPLETE;
-                proj.mode = MODE_NORMAL;
-                _THIS.projects[index] = proj;
 
                 // CALLBACKS
                 if(success) {
                     success(d, h);
                 }
             },
-            function(data) {
-                BusyService.busy(false);
-                _THIS.projects[index].errors = data.data.data_validation_errors;
-
-                // CALLBACKS
-                if(error) {
-                    error(e);
-                }
-            }
-        );
-    }
-    this.new = function(){
-        this.newProject = true;
-        this.projects.push({
-            "Project": {
-                "name": "Project Name",
-                "description": "Project Description"
-            },
-            "mode":'edit',
-            "status": 'new'
-        });
-        this.activate(this.projects.length - 1);
-    }
-
-    // MODES OPERATION
-    this.editProject = function(index){
-        if(index == undefined || typeof index != "number") {
-            throw "'index' has to be a number";
-        }
-        this.projects[index].old = angular.copy(this.projects[index]);
-        this.projects[index].mode = MODE_EDIT;
-    }
-    this.cancelEditProject = function(index) {
-        this.newProject = false;
-        if(this.projects[index].status == STATUS_NEW) {
-            this.projects.splice(index, 1);
-            this.deactivate();
-            if(this.projects.length > 0) {
-                this.activate(0);
-            }
-        } else {
-            this.projects[index] = this.projects[index].old;
-            this.projects[index].mode = MODE_NORMAL;
-        }
-    }
-
-    // ACTIVATION OPERATIONS
-    this.activate = function(index) {
-        if(index == undefined || typeof index != "number") {
-            throw "'index' has to be a number";
-        }
-        this.deactivateTeam();
-        this.active_project_id = index;
-    }
-    this.deactivate = function() {
-        this.active_project_id = null;
-    }
-    this.isActive = function(index) {
-        return index == this.active_project_id;
-    }
-    this.activeClass = function(index) {
-        return ( this.isActive(index) ? ACTIVE : NOT_ACTIVE );
-    }
-    this.activeProject = function(key){
-        if(this.projects!=null && this.active_project_id!=null) {
-            if(key) {
-                return this.projects[this.active_project_id][key];
-            } else {
-                return this.projects[this.active_project_id];
-            }
-        }
-    }
-
-    // TEAM ACTIVATION
-    this.activateTeam = function(index){
-        if(index == undefined || typeof index != "number") {
-            throw "'index' has to be a number";
-        }
-        this.active_team_id = index;
-    }
-    this.deactivateTeam = function() {
-        this.active_team_id = null;
-    }
-    this.iaActiveTeam = function(index){
-        return index == this.active_team_id;
-    }
-    this.activeTeamClass = function(index) {
-        return ( this.iaActiveTeam(index) ? ACTIVE : NOT_ACTIVE );
-    }
-    this.activeTeam = function(key){
-        if(this.projects!=null && this.active_project_id!=null
-            && this.active_team_id!=null) {
-            if(key) {
-                return this.activeProject('Project').Team[this.active_team_id][key];
-            } else {
-                return this.activeProject('Project').Team[this.active_team_id];
-            }
-        }
-    }
-
-    this.addTeam = function(p_id, name, success, error){
-        BusyService.busy(true);
-        var newTeam = this.Teams.add({},
-            {
-                "Team": {
-                    "project_id": p_id,
-                    "name": name
-                }
-            },
-            function(d, h){
-                BusyService.busy(false);
-
-                // CALLBACKS
-                if(success) {
-                    success(d, h);
-                }
-
-            },
-            function(e){
+            function(e) {
                 BusyService.busy(false);
 
                 // CALLBACKS
@@ -890,7 +657,9 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                 }
             }
         );
+
     }
+
 })
 .service('auth', function(Users){
 
@@ -1194,7 +963,6 @@ function OLDAlCtrl($scope, $rootScope, $location, $routeParams, $resource, $filt
     }
 
 }
-
 function OLDLoginCtrl($scope, $location, $http, auth) {
 
     $scope.mainmenu_open = "";
