@@ -441,10 +441,6 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         if(angular.isDefined(data)){
             this.insertUsers(data['Student']);
 
-            if(angular.isDefined(data['Project']['Team']['User'])) {
-                this.insertUsers(data['Project']['Team']['User']);
-            }
-
             var team = angular.copy(data);
             delete team['Student'];
             DBService.insertData("teams", data['id'], team);
