@@ -466,7 +466,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             throw "Missing user ID";
         }
 
-        this.Teams.addMemeber(
+        this.Teams.addMember(
             { "tid" : t_id, "uid" : u_id },
             {},
             function(d, h) {
