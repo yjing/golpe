@@ -404,8 +404,8 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
                 ProjectsService.removeMember(t_id, u_id,
                     function(d, h) {
                         DBService.m.users[u_id].mode = 'normal';
-                        console.log(d);
-                        var p_id = DBService.t.teams[t_id].project_id;
+
+                        var p_id = d['Team'].project_id;
                         DBService.m.projects[p_id].status = 'partial';
                         $scope.selectProject(p_id);
                     },

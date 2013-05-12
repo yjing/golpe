@@ -135,7 +135,7 @@
                                 <button class="btn-link function" ng-click="removeMember(false, u.id, selected_team);" ng-hide="DB.m.users[u.id].mode == 'deleting' || DB.m.users[u.id].mode == 'edit'"><i class="icon-remove"></i></button>
                             </div>
                             <div class="confirms">
-                                <button class="btn btn-danger confirm" ng-click="removeMember(true, u.id, selected_team);" ng-show="DB.m.users[u.id].mode == 'deleting';">Delete</button>
+                                <button class="btn btn-danger confirm" ng-click="removeMember(true, u.id, selected_team);" ng-show="DB.m.users[u.id].mode == 'deleting';">Remove Member</button>
                                 <button class="btn btn-success confirm" ng-click="DB.m.users[u.id].mode = 'normal';" ng-show="DB.m.users[u.id].mode == 'deleting';">Keep</button>
                             </div>
                         </li>
