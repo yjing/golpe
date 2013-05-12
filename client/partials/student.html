@@ -92,6 +92,7 @@
                 </li>
                 <li ng-repeat="m in DB.m.als[selected_al].comments" ng-show="showComments(selected_al);">
                     <p class="selector">{{DB.d.comment[m].content}}</p>
+                    <p class="selector">{{m}}</p>
                 </li>
             </ul>
         </div>
