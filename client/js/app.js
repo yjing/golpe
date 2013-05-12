@@ -675,12 +675,12 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         if(angular.isDefined(d)) {
             var al = angular.copy(d);
 
-            var comments = [];
+            var comments;
             if(angular.isDefined(al['Comment'])) {
                 _THIS.insertComments(al['Comment']);
                 comments = _THIS.getIds(al['Comment']);
             }
-            var media = [];
+            var media;
             if(angular.isDefined(al['Media'])) {
                 _THIS.insertMedia(al['Media']);
                 media = _THIS.getIds(al['Media']);
@@ -696,7 +696,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             DBService.insertMeta('als', al['id'], 'status', 'partial');
             DBService.insertMeta('als', al['id'], 'media', media);
             DBService.insertMeta('als', al['id'], 'comments', comments);
-            DBService.insertMeta('als', al['id'], 'user', [al[user_id]]);
+            DBService.insertMeta('als', al['id'], 'user', [ al[user_id] ]);
 
         }
     }
@@ -730,6 +730,18 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     this.insertUser = function(d) {
         DBService.insertData('users', d['id'], angular.copy(d));
         DBService.insertMeta('users', d['id'], 'status', 'partial');
+    }
+
+    this.getIds(a) {
+        var res = [];
+        if(angular.isArray(a)) {
+            for(var i=0; i< a.length; i++) {
+                if(angular.isDefined(a.id)) {
+                    res.push(a.id);
+                }
+            }
+        }
+        return res;
     }
 
 })
