@@ -663,28 +663,38 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     }
 
     this.load = function(id, success, error) {
+        if(!angular.isDefined(id)) {
+            throw "Missing active log ID";
+        }
+        if (angular.isDefined(DBService.d.als[id]) && DBService.d.als[id].status == 'partial') {
+            BusyService.busy(true);
+            var als = this.ALs.load(
+                { "id" : id },
+                function(d, h) {
+                    BusyService.busy(false);
+                    _THIS.insertAL(d['ActivityLog'], 'complete');
 
-        BusyService.busy(true);
-        var als = this.ALs.load(
-            { "id" : id },
-            function(d, h) {
-                BusyService.busy(false);
-                _THIS.insertAL(d['ActivityLog']);
+                    // CALLBACKS
+                    if(success) {
+                        success(d, h);
+                    }
+                },
+                function(e) {
+                    BusyService.busy(false);
 
-                // CALLBACKS
-                if(success) {
-                    success(d, h);
+                    // CALLBACKS
+                    if(error) {
+                        error(e);
+                    }
                 }
-            },
-            function(e) {
-                BusyService.busy(false);
-
-                // CALLBACKS
-                if(error) {
-                    error(e);
-                }
+            );
+        } else {
+            // CALLBACK
+            if(success) {
+                success(DBService.d.als[id]);
             }
-        );
+        }
+
 
     }
 
@@ -696,7 +706,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         }
     }
 
-    this.insertAL = function(d) {
+    this.insertAL = function(d, status) {
         if(angular.isDefined(d)) {
             var al = angular.copy(d);
 
@@ -713,12 +723,15 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             if(angular.isDefined(al['User'])) {
                 _THIS.insertUser(al['User']);
             }
+            if(angular.isUndefined(status)) {
+                status = 'partial';
+            }
 
             delete al.Comment;
             delete al.Media;
             delete al.User;
             DBService.insertData('als', al['id'], al);
-            DBService.insertMeta('als', al['id'], 'status', 'partial');
+            DBService.insertMeta('als', al['id'], 'status', status);
             DBService.insertMeta('als', al['id'], 'show_comments', false);
             DBService.insertMeta('als', al['id'], 'show_media', true);
             DBService.insertMeta('als', al['id'], 'media', media);
