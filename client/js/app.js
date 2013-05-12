@@ -662,7 +662,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     }
 
     this.insertALs = function(d) {
-        console.log(d[0]['ActivityLog']['id']);
+        console.log("jjj");
         if(angular.isArray(d)) {
             for(var i=0; i< d.length; i++) {
                 this.insertAL(d[i]['ActivityLog']);
