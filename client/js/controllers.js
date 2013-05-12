@@ -328,7 +328,8 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     $scope.newTeam = function(save) {
         if(typeof save == "boolean") {
             if(save) {
-                ProjectsService.saveTeam($scope.new_team,
+                ProjectsService.saveTeam(
+                    { "Team": $scope.new_team },
                     function(d,h) {
                         $scope.cancelNewTeam();
                         DBService.m.projects[d['Team']['project_id']].status = 'partial';
