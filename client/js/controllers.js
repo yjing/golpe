@@ -326,8 +326,13 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     }
 
     $scope.newTeam = function(save) {
-        if(save == true) {
+        if(typeof save == "boolean") {
+            if(save) {
 
+            } else {
+                $scope.new_team = null;
+                $scope.selected_team = null;
+            }
         } else {
             $scope.new_team = {
                 'project_id': save,
