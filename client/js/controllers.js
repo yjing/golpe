@@ -359,8 +359,6 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     }
 
     $scope.deleteTeam = function(confirm, id, p_id) {
-        console.log("$scope.deleteTeam = function(" + confirm + ", " + id + ", " + p_id + ")");
-        console.log(DBService.d.teams[id]);
         if(angular.isDefined(DBService.d.teams[id])){
             if(confirm == true) {
                 var index = $scope.findTeamIndexById(p_id, id);
@@ -397,6 +395,29 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
                 }
             )
         }
+    }
+
+    $scope.removeMember = function(confirm, u_id, t_id){
+        if(angular.isDefined(DBService.d.teams[t_id]) && angular.isDefined(DBService.d.users[u_id])){
+            if(confirm == true) {
+                ProjectsService.removeMember(id,
+                    function(d, h) {
+                        DBService.m.users[u_id].mode = 'normal';
+                        console.log(d);
+                        var p_id = DBService.t.teams[t_id].project_id;
+                        DBService.m.projects[p_id].status = 'partial';
+                        $scope.selectProject(p_id);
+                    },
+                    function(e) {
+                        DBService.m.users[u_id].mode = 'normal';
+                        $rootScope.handleError(e);
+                    }
+                );
+            } else {
+                DBService.m.users[u_id].mode = 'deleting';
+            }
+        }
+
     }
 
     $scope.cancelAddMember = function() {
