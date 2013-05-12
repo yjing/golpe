@@ -501,12 +501,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
             {reload: false, mode:'mine'},
             // SUCCESS
             function(data, handlers){
-                console.log(data);
-                console.log("--------");
-                console.log(DBService.d);
-                console.log("--------");
-                console.log(DBService.m);
-                console.log("--------");
+                scope.menu = DBService.d.als;
             },
             // ERROR
             function(error){
