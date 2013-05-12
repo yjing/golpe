@@ -142,7 +142,7 @@
                         <a href="#" ng-click="BS.activateTeam($index);">
                             <span>{{t.name}}</span>
                             <div class="functions">
-                                <button class="btn-link function" ng-click="deleteTeam(false, t.id);" ng-hide="DB.m.teams[t.id].mode == 'deleting' || DB.m.teams[t.id].mode == 'edit'"><i class="icon-remove"></i></button>
+                                <button class="btn-link function" ng-click="deleteTeam(false, t.id);" ><i class="icon-remove"></i></button>
                             </div>
                             <div class="confirms">
                                 <button class="btn btn-danger confirm" ng-click="deleteTeam(true, p.id, selected_project);" ng-show="DB.m.teams[t.id].mode == 'deleting';">Delete</button>
