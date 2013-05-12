@@ -306,8 +306,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
     $scope.deleteProject = function(confirm, id) {
         if(angular.isDefined(DBService.d.projects[id])){
             if(confirm == true) {
-                console.log('delete:');
-                console.log(DBService.d.projects[id]);
+
             } else {
                 DBService.m.projects[id].mode = 'deleting';
                 console.log(DBService.m.projects[id]);
