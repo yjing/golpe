@@ -520,6 +520,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
             // SUCCESS
             function(data, handlers){
                 $scope.menu = DBService.d.als;
+                deb($scope.menu);
             },
             // ERROR
             function(error){
