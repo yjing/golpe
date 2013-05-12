@@ -67,13 +67,14 @@
             <div ng-show="isSelectedAl();">
                 <a href="#" ng-click="toggleShowMedia(selected_al);">
                     Media
+                    {{DB.m.als[selected_al].media}}
                     <i class="icon-circle-arrow-right" ng-hide="showMedia(selected_al);"></i>
                     <i class="icon-circle-arrow-down" ng-show="showMedia(selected_al);"></i>
                 </a>
             </div>
             <ul ng-show="showMedia(selected_al);">
                 <li ng-repeat="DB.m.als[selected_al].media">
-                    {{DB.d.media[m].id}}
+                    {{m}}
                 </li>
             </ul>
             <div ng-show="isSelectedAl();">
