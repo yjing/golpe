@@ -38,7 +38,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     DBService.createTable("projects");
     DBService.createTable("teams");
     DBService.createTable("users");
-    DBService.createTable("al");
+    DBService.createTable("als");
 
     // TOPBAR TEMPLATE URL
     $rootScope.top_bar_url = '/client/partials/topbar.html';
