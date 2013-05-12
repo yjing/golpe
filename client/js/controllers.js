@@ -521,6 +521,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
             function(data, handlers){
                 $scope.menu = [];
                 console.log(data);
+                console.log(data.length);
                 angular.forEach(DBService.d.als, function(val, key){
                     console.log(key);
                     console.log(val);
