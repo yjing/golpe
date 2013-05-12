@@ -75,7 +75,7 @@
                 <li ng-hide="DB.m.als[selected_al].media.length == 0">
                 </li>
                 <li ng-repeat="m in DB.m.als[selected_al].media">
-                    {{DB.d.media[m].filename}}
+                    {{DB.d.media[m].id}}
                 </li>
             </ul>
             <div ng-show="isSelectedAl();">
