@@ -733,6 +733,9 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     }
 
     this.getIds = function(a) {
+        console.log(a);
+        console.log(a[0].id);
+        console.log(a[0]['id']);
         var res = [];
         if(angular.isArray(a)) {
             for(var i=0; i< a.length; i++) {
