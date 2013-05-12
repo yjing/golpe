@@ -642,7 +642,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             { "mode": config.mode },
             function(d, h) {
                 BusyService.busy(false);
-                console.log(d[0]['ActivityLog']);
+                console.log(d[0]['ActivityLog']['id']);
                 _THIS.insertALs(d);
 
                 // CALLBACKS
