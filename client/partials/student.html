@@ -2,28 +2,28 @@
 <div class="row-fluid content">
 
     <div class="span4">
-        <div class="menu shadow">
+        <div class="menu shadow" ng-init="selected_al = null">
             <div>
                 <a href="#" class="text-right">
                     <button ng-click="newAl();" class="btn btn-success">New Activity Log</button>
                 </a>
             </div>
             <ul>
-                <li ng-repeat="al in menu" ng-class="isSelectedProject(p.id)">
+                <li ng-repeat="al in menu" ng-class="selected_al == al.it;">
                     <a href="#" ng-click="selected_al = al.id;">{{al.title}}
-                        <i ng-show="DB.m.projects[p.id].mode == 'edit'" class="icon-pencil"></i>
+                        <i ng-show="DB.m.als[al.id].mode == 'edit'" class="icon-pencil"></i>
                     </a>
                     <div class="functions">
-                        <button class="btn-link function" ng-click="deleteProject(false, p.id);" ng-hide="DB.m.projects[p.id].mode == 'deleting' || DB.m.projects[p.id].mode == 'edit'"><i class="icon-remove"></i></button>
+                        <button class="btn-link function" ng-click="deleteAl(false, al.id);" ng-hide="DB.m.als[al.id].mode == 'deleting' || DB.m.als[al.id].mode == 'edit'"><i class="icon-remove"></i></button>
                     </div>
                     <div class="confirms">
-                        <button class="btn btn-danger confirm" ng-click="deleteProject(true, p.id);" ng-show="DB.m.projects[p.id].mode == 'deleting';">Delete</button>
-                        <button class="btn btn-success confirm" ng-click="DB.m.projects[p.id].mode = 'normal';" ng-show="DB.m.projects[p.id].mode == 'deleting';">Keep</button>
+                        <button class="btn btn-danger confirm" ng-click="deleteAl(true, al.id);" ng-show="DB.m.als[al.id].mode == 'deleting';">Delete</button>
+                        <button class="btn btn-success confirm" ng-click="DB.m.als[al.id].mode = 'normal';" ng-show="DB.m.als[al.id].mode == 'deleting';">Keep</button>
                     </div>
                 </li>
-                <li ng-show="new_project != null" ng-class="isSelectedProject(-1)">
-                    <a href="#" ng-click="selectProject(-1);">{{new_project.name}} <i class="icon-edit"></i></a>
-                </li>
+                <!--<li ng-show="new_project != null" ng-class="isSelectedProject(-1)">-->
+                    <!--<a href="#" ng-click="selectProject(-1);">{{new_project.name}} <i class="icon-edit"></i></a>-->
+                <!--</li>-->
             </ul>
             <div>
                 <a href="#" class="text-right">
@@ -34,32 +34,32 @@
     </div>
 
     <div class="span8">
-        <div class="menu shadow" ng-hide="selected_project<0;">
+        <div class="menu shadow" ng-hide="selected_al<0;">
             <div>
                 <span>
-                    <h4 class="clickable" ng-hide="DB.m.projects[selected_project].mode == 'edit'" ng-click="editProject(selected_project);">
+                    <h4 class="clickable" ng-hide="DB.m.als[selected_al].mode == 'edit'" ng-click="editAl(selected_al);">
                         {{DB.d.als[selected_al].title}} <i class="icon-pencil"></i>
                     </h4>
                     <!-- EDIT MODE -->
-                    <span ng-show="DB.m.projects[selected_project].mode == 'edit'">
-                        <input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge" ng-model="DB.d.projects[selected_project].name">
+                    <span ng-show="DB.m.als[selected_al].mode == 'edit'">
+                        <input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge" ng-model="DB.d.als[selected_al].name">
                     </span>
                 </span>
             </div>
             <ul>
                 <li>
-                    <p class="selector" ng-hide="DB.m.projects[selected_project].mode == 'edit'">
+                    <p class="selector" ng-hide="DB.m.als[selected_al].mode == 'edit'">
                         {{DB.d.als[selected_al].description}}
                     </p>
                     <!-- EDIT MODE -->
-                    <textarea class="edit-field" ng-model="DB.d.projects[selected_project].description" ng-show="DB.m.projects[selected_project].mode == 'edit'"></textarea>
+                    <textarea class="edit-field" ng-model="DB.d.als[selected_al].description" ng-show="DB.m.als[selected_al].mode == 'edit'"></textarea>
                 </li>
             </ul>
-            <div ng-show="DB.m.projects[selected_project].mode == 'edit'">
+            <div ng-show="DB.m.als[selected_al].mode == 'edit'">
                 <span>
                     <div class="btn-group">
-                        <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveProject(selected_project);">Save</button>
-                        <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="cancelEditProject(selected_project);">Cancel</button>
+                        <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveAl(selected_al);">Save</button>
+                        <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="cancelEditAl(selected_al);">Cancel</button>
                     </div>
                 </span>
             </div>
