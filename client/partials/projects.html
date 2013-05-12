@@ -106,10 +106,10 @@
                         </li>
                     </ul>
                     <div class="text-right">
-                        <span><button ng-click="newTeam(selected_project);" ng-show="new_team != null" class="btn btn-success">New Team</button></span>
-                        <span>
-                            <button ng-click="cancelNewTeam();" ng-hide="new_team != null;" class="btn btn-success">Add Team</button>
-                            <button ng-click="newTeam(true);" ng-hide="new_team != null;" class="btn btn-success">Cancel</button>
+                        <span ng-show="new_team != null"><button ng-click="newTeam(selected_project);" class="btn btn-success">New Team</button></span>
+                        <span ng-hide="new_team != null;">
+                            <button ng-click="cancelNewTeam();" class="btn btn-success">Add Team</button>
+                            <button ng-click="newTeam(true);" class="btn btn-success">Cancel</button>
                         </span>
                     </div>
                 </div>
