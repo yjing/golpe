@@ -642,7 +642,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             { "mode": config.mode },
             function(d, h) {
                 BusyService.busy(false);
-                _THIS.insertALs(d);
+                _THIS.insertALS(d);
 
                 // CALLBACKS
                 if(success) {
@@ -661,7 +661,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 
     }
 
-    this.insertALs = function(d) {
+    this.insertALS = function(d) {
         console.log("jjj");
         if(angular.isArray(d)) {
             for(var i=0; i< d.length; i++) {
