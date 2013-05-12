@@ -72,7 +72,9 @@
                 </a>
             </div>
             <ul ng-show="show_sal_media">
-                <li ng-hide="DB.m.als[selected_al].media.length == 0">
+                <!--<li ng-hide="DB.m.als[selected_al].media.length == 0">-->
+                <li>
+                    {{DB.m.als[selected_al]}}
                 </li>
                 <li ng-repeat="m in DB.m.als[selected_al].media">
                     {{DB.d.media[m].id}}
