@@ -674,14 +674,16 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     this.insertAL = function(d) {
         if(angular.isDefined(d)) {
             var al = angular.copy(d);
-            var mediaCount = 0;
-            var commentsCount = 0;
 
+            var comments = [];
             if(angular.isDefined(al['Comment'])) {
                 _THIS.insertComments(al['Comment']);
+                comments = _THIS.getIds(al['Comment']);
             }
+            var media = [];
             if(angular.isDefined(al['Media'])) {
                 _THIS.insertMedia(al['Media']);
+                media = _THIS.getIds(al['Media']);
             }
             if(angular.isDefined(al['User'])) {
                 _THIS.insertUser(al['User']);
@@ -692,8 +694,9 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             delete al.User;
             DBService.insertData('als', al['id'], al);
             DBService.insertMeta('als', al['id'], 'status', 'partial');
-            DBService.insertMeta('als', al['id'], 'comments_count', commentsCount);
-            DBService.insertMeta('als', al['id'], 'media_count', mediaCount);
+            DBService.insertMeta('als', al['id'], 'media', media);
+            DBService.insertMeta('als', al['id'], 'comments', comments);
+            DBService.insertMeta('als', al['id'], 'user', [al[user_id]]);
 
         }
     }
