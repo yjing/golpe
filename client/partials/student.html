@@ -64,20 +64,20 @@
                     </div>
                 </span>
             </div>
-            <!--<div>-->
-                <!--<a href="#" ng-click="toggleShowMedia(selected_al);">-->
-                    <!--Media-->
-                    <!--<i class="icon-circle-arrow-right" ng-hide="showMedia(selected_al);"></i>-->
-                    <!--<i class="icon-circle-arrow-down" ng-show="showMedia(selected_al);"></i>-->
-                <!--</a>-->
-            <!--</div>-->
-            <!--<ul ng-show="show_sal_media">-->
-                <!--<li ng-hide="DB.m.als[selected_al].media.length == 0">-->
-                <!--</li>-->
-                <!--<li ng-repeat="m in DB.m.als[selected_al].media">-->
-                    <!--{{DB.d.media[m].filename}}-->
-                <!--</li>-->
-            <!--</ul>-->
+            <div>
+                <a href="#" ng-click="toggleShowMedia(selected_al);">
+                    Media
+                    <i class="icon-circle-arrow-right" ng-hide="showMedia(selected_al);"></i>
+                    <i class="icon-circle-arrow-down" ng-show="showMedia(selected_al);"></i>
+                </a>
+            </div>
+            <ul ng-show="show_sal_media">
+                <li ng-hide="DB.m.als[selected_al].media.length == 0">
+                </li>
+                <li ng-repeat="m in DB.m.als[selected_al].media">
+                    {{DB.d.media[m].filename}}
+                </li>
+            </ul>
             <!--<div>-->
                 <!--<a href="#" ng-click="toggleShowComments(selected_al);">-->
                     <!--Comments-->
