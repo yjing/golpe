@@ -401,7 +401,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
         console.log(DBService.m.users[u_id]);
         if(angular.isDefined(DBService.d.teams[t_id]) && angular.isDefined(DBService.d.users[u_id])){
             if(confirm == true) {
-                ProjectsService.removeMember(id,
+                ProjectsService.removeMember(t_id, u_id,
                     function(d, h) {
                         DBService.m.users[u_id].mode = 'normal';
                         console.log(d);
