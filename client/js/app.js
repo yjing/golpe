@@ -603,7 +603,6 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             DBService.insertData("users", data['id'], user);
             DBService.insertMeta("users", data['id'], STATUS_KEY, STATUS_PARTIAL);
             DBService.insertMeta("users", data['id'], MODE_KEY, MODE_NORMAL);
-            console.log(user);
         }
     }
 
