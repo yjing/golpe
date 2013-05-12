@@ -509,6 +509,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
             function(data, handlers){
                 $scope.menu = DBService.d.als;
                 if(DBService.d.als.length > 0) {
+                    deb(DBService.d.als[0].id);
                     $scope.selectAL(DBService.d.als[0].id);
                 }
             },
@@ -599,4 +600,8 @@ function separateFirstToken(arrayStr, separator) {
     var array = arrayStr.split(separator);
     var token = array.splice(0, 1).toString();
     return [token, array.join(separator)];
+}
+
+function deb(elem) {
+    console.log(elem);
 }
