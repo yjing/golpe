@@ -347,6 +347,7 @@ function ProjectsCtrl($scope, $rootScope, $location, $resource, auth, Projects, 
             };
             $scope.selected_team = -1;
         }
+        console.log(DBService.m.teams[t.id]);
     }
     $scope.cancelNewTeam = function() {
         $scope.new_team = null;
