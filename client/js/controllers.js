@@ -609,7 +609,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
                 $scope.mode = d.default;
 
                 ALService.loadAll(
-                    {reload: false, 'mode':$scope.mode},
+                    {reload: false, 'mode':'mine'},
                     // SUCCESS
                     function(data, handlers){
                         $scope.menu = DBService.d.als;
@@ -642,7 +642,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
     $scope.reload = function(id) {
         DBService.d.als = {};
         var als = ALService.loadAll(
-            {reload: true, 'mode':'mine'},
+            {reload: true, 'mode':$scope.mode},
             // SUCCESS
             function(data, handlers){
                 $scope.menu = DBService.d.als;
