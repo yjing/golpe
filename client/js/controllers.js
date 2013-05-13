@@ -759,7 +759,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
     $scope.startWatching = function () {
         console.log("START W");
         var id = window.setInterval(function(){
-            iframe = $('iframe');
+            var iframe = document.getElementById('iframe');
 
             var content;
             // Message from server...
