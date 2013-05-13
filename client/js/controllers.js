@@ -495,42 +495,44 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
         ]
     };
 
-    var iframe = document.getElementById('iframe');
-    iframe.addEventListener("load", function(){
-
-        // Message from server...
-        if (iframe.contentDocument) {
-            content = iframe.contentDocument.body.innerHTML;
-        } else if (iframe.contentWindow) {
-            content = iframe.contentWindow.document.body.innerHTML;
-        } else if (iframe.document) {
-            content = iframe.document.body.innerHTML;
-        }
-
-        // Check Result
-        var result = $(content).text();
-        try {
-            result = JSON.parse(result);
-        } catch (e) {
-            //ERROR
-        }
-
-        // Refresh DATA
-        ALService.loadAll(
-            {reload: true, mode:mode},
-            // SUCCESS
-            function(data, handlers){
-                BusyService.busy(false);
-                $scope.reload();
-                document.getElementById('alform').reset();
-            },
-            // ERROR
-            function(error){
-                $rootScope.handleError(error);
+    if(!$scope.isMobile) {
+        var iframe = document.getElementById('iframe');
+        iframe.addEventListener("load", function(){
+    
+            // Message from server...
+            if (iframe.contentDocument) {
+                content = iframe.contentDocument.body.innerHTML;
+            } else if (iframe.contentWindow) {
+                content = iframe.contentWindow.document.body.innerHTML;
+            } else if (iframe.document) {
+                content = iframe.document.body.innerHTML;
             }
-        );
-
-    }, true);
+    
+            // Check Result
+            var result = $(content).text();
+            try {
+                result = JSON.parse(result);
+            } catch (e) {
+                //ERROR
+            }
+    
+            // Refresh DATA
+            ALService.loadAll(
+                {reload: true, mode:mode},
+                // SUCCESS
+                function(data, handlers){
+                    BusyService.busy(false);
+                    $scope.reload();
+                    document.getElementById('alform').reset();
+                },
+                // ERROR
+                function(error){
+                    $rootScope.handleError(error);
+                }
+            );
+    
+        }, true);
+    }
 
     $scope.al = null;
     $scope.files = [];
@@ -751,6 +753,53 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
             } else {
                 window.location.href = '/media/download/' + id + '?download=true';
             }
+        }
+    };
+
+    $scope.startWatching = function () {
+        if($scope.isMobile) {
+            var id = window.setInterval(function(){
+                iframe = $('iframe');
+    
+                var content;
+                // Message from server...
+                if (iframe.contentDocument) {
+                    content = iframe.contentDocument.body.innerHTML;
+                } else if (iframe.contentWindow) {
+                    content = iframe.contentWindow.document.body.innerHTML;
+                } else if (iframe.document) {
+                    content = iframe.document.body.innerHTML;
+                }
+                
+                var unBusy = false;
+                // Check Result
+                var result = null;
+                try {
+                    result = JSON.parse($(content).text());
+                } catch (e) {
+                    
+                }
+                console.log("TEST CONTENT");
+                if(angular.isObject(result)) {
+                    window.clearInterval(id);
+                    console.log("ESCO!");
+                    // Refresh DATA
+                    ALService.loadAll(
+                        {reload: true, mode:mode},
+                        // SUCCESS
+                        function(data, handlers){
+                            BusyService.busy(false);
+                            $scope.reload();
+                            document.getElementById('alform').reset();
+                        },
+                        // ERROR
+                        function(error){
+                            $rootScope.handleError(error);
+                        }
+                    );
+                }
+                
+            }, 1000);
         }
     };
 
