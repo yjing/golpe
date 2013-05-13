@@ -780,7 +780,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
 //
 //            }
             console.log("TEST CONTENT");
-            console.log(conetent);
+            console.log(content);
             if(angular.isObject(content)) {
                 window.clearInterval(id);
                 console.log("ESCO!");
