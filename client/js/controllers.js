@@ -495,6 +495,42 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
         ]
     };
 
+    var iframe = document.getElementById('iframeNewAl');
+    iframe.addEventListener("load", function(){
+
+        // Message from server...
+        if (iframe.contentDocument) {
+            content = iframe.contentDocument.body.innerHTML;
+        } else if (iframe.contentWindow) {
+            content = iframe.contentWindow.document.body.innerHTML;
+        } else if (iframe.document) {
+            content = iframe.document.body.innerHTML;
+        }
+
+        // Check Result
+        var result = $(content).text();
+        try {
+            result = JSON.parse(result);
+        } catch (e) {
+            //ERROR
+        }
+
+        // Refresh DATA
+//        $scope.activityLogs = ALs.query({mode:$rootScope.alMode}, function(){});
+        ALService.loadAll(
+            {reload: true, mode:'mine'},
+            // SUCCESS
+            function(data, handlers){
+                $scope.menu = DBService.d.als;
+            },
+            // ERROR
+            function(error){
+                $rootScope.handleError(error);
+            }
+        );
+
+    }, true);
+
     $scope.al = null;
     $scope.files = [];
 
