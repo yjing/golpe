@@ -483,7 +483,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
 //            }
 //        ],
         buttons: [
-            { type: 'item', label: 'New Activity Log', func: function(){ $scope.al = {}; }, icon: 'icon-plus', show: "{{$scope.al == null}}" }
+            { type: 'item', label: 'New Activity Log', func: function(){ $scope.al = {}; }, icon: 'icon-plus', show: $scope.al }
 //            ,{ type: 'divider-vertical' },
 //            { type: 'item', label: 'Users', func: $scope.login, icon: 'icon-chevron-left' }
         ],
