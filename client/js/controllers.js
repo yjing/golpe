@@ -495,7 +495,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
         ]
     };
 
-    var iframe = document.getElementById('iframeNewAl');
+    var iframe = document.getElementById('iframe');
     iframe.addEventListener("load", function(){
 
         // Message from server...
