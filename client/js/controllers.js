@@ -731,6 +731,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
                         if($scope.selected_al == id) {
                             $scope.selected_al = null;
                         }
+                        $scope.reload();
                     },
                     function(e) {
                         $rootScope.handleError(e);
