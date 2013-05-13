@@ -731,13 +731,12 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             var params = { 'id' : id };
 
             BusyService.busy(true);
-            var al
-                = this.ALs.save(
+            var al = this.ALs.save(
                 params,
                 data,
                 function(d, h) {
                     BusyService.busy(false);
-                    _THIS.insertAL(al);
+//                    _THIS.insertAL(al);
 
                     // CALLBACKS
                     if(angular.isDefined(success)) {
