@@ -773,9 +773,9 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
 
             var unBusy = false;
             // Check Result
-            var result = null;
+            var result = $(content).text();
             try {
-                result = JSON.parse($(content).text());
+                result = JSON.parse(content);
             } catch (e) {
 
             }
