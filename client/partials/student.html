@@ -1,4 +1,4 @@
-<iframe style="position: fixed; display: block; width: 0px; height: 0px; visibility: hidden; right: 0;" id="iframeNewAl" name="iframeNewAl">
+<iframe style="position: fixed; display: block; width: 0px; height: 0px; visibility: hidden; right: 0;" id="iframe" name="iframe">
 </iframe>
 
 <div ng-include src="top_bar_url"></div>
@@ -37,7 +37,65 @@
         </div>
     </div>
 
-    <div class="span8">
+    <div class="span8" ng-hide="new_activity_log != null">
+        <div class="menu shadow">
+            <div>
+                <span>
+                    <input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge" name="data[ActivityLog][title]">
+                </span>
+            </div>
+            <ul>
+                <li>
+                    <!--<textarea class="edit-field" ng-model="new_activity_log.content" name="data[ActivityLog][title]"></textarea>-->
+                    <div class="control-group">
+                        <label class="control-label" for="data[ActivityLog][content]">Content</label>
+                        <div class="controls">
+                            <textarea name='data[ActivityLog][content]'></textarea>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="data[ActivityLog][visibility_level]">Visibility level</label>
+                        <div class="controls">
+                            <select name='data[ActivityLog][visibility_level]'>
+                                <option selected>PRIVATE</option>
+                                <option>SUPERVISOR</option>
+                                <option>TEAM</option>
+                                <option>PUBLIC</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls">
+                            <label class="checkbox">
+                                <input name='data[ActivityLog][question]' type="checkbox"> Question
+                            </label>
+                        </div>
+                    </div>
+                    <div class="control-group" ng-repeat="file in files">
+                        <div class="controls">
+                            <input type='file' name='data[Media][{{$index}}]' >
+                            <span class="btn btn-link" ng-click='removeFile($index);'><i class="icon-remove"></i> remove</span>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls">
+                            <span class="btn" ng-click='addFile();'><i class="icon-file"></i> add file</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div ng-show="DB.m.als[selected_al].mode == 'edit'">
+                    <span>
+                        <div class="btn-group">
+                            <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveAl(selected_al);">Save</button>
+                            <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="cancelEditAl(selected_al);">Cancel</button>
+                        </div>
+                    </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="span8" ng-hide="new_activity_log == null">
         <div class="menu shadow" ng-show="isSelectedAl();">
             <div>
                 <span>
