@@ -139,13 +139,6 @@ div.menu > ul > li.active:focus {
     background-color: aliceblue;
 }
 
-div.menu > ul > li.active.question,
-div.menu > ul > li.active.question:hover,
-div.menu > ul > li.active.question:focus {
-    color: #000000;
-    background-color: #fbb450;
-}
-
 .clickable {
     cursor: pointer;
 }
@@ -159,4 +152,11 @@ textarea.edit-field {
     font-size: 1.2em;
     -webkit-appearance: none;
     appearance: none;
+}
+
+div.menu > ul > li.active.question,
+div.menu > ul > li.active.question:hover,
+div.menu > ul > li.active.question:focus {
+    color: #000000;
+    background-color: #fbb450;
 }
