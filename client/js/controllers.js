@@ -495,7 +495,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
         ]
     };
 
-    if(!$scope.isMobile) {
+    if(false) {
         var iframe = document.getElementById('iframe');
         iframe.addEventListener("load", function(){
     
@@ -518,7 +518,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
     
             // Refresh DATA
             ALService.loadAll(
-                {reload: true, mode:mode},
+                {reload: true, mode:$scope.mode},
                 // SUCCESS
                 function(data, handlers){
                     BusyService.busy(false);
