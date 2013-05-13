@@ -742,10 +742,10 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
         }
     }
 
-    $scope.download = function (id) {
+    $scope.download = function (id, dw) {
         if(angular.isDefined(DBService.d.media[id])) {
             var m = DBService.d.media[id];
-            if(m['content-type'].ondexOf('imag/') == 0) {
+            if(m['content-type'].indexOf('image/') == 0 && dw != true) {
                 window.location.href = '/media/download/' + id;
             } else {
                 window.location.href = '/media/download/' + id + '?download=true';
