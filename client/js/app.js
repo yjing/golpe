@@ -148,14 +148,16 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         }
     }
 
-//        $scope.$apply(function(){
-//            document.forms[0].reset();
-//            $scope.files = [];
-//            DialogService.destroyDialog("newAl");
-//        });
+        $scope.$apply(function(){
+            document.forms[0].reset();
+            $scope.files = [];
+            DialogService.destroyDialog("newAl");
+        });
 
     $(window).resize(function() {
-        $rootScope.windowWidth = $(window).width();
+        $rootScope.$apply(function(){
+            $rootScope.windowWidth = $(window).width();
+        });
     });
 
 })
