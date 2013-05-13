@@ -17,7 +17,7 @@
                 </li>
                 <li ng-repeat="al in menu" ng-class="isSelectedAl(al.id)">
                     <a href="#" ng-click="selectAL(al.id);">
-                        {{DB.d.users[DB.m.als[al.id].user[0]].username}} - {{al.title}}
+                        {{al.title}}
                         <i ng-show="DB.m.als[al.id].mode == 'edit'" class="icon-pencil"></i>
                     </a>
                     <div class="functions">
@@ -149,8 +149,9 @@
             <ul ng-show="showInfo(selected_al);">
                 <li>
                     <span class="selector">
-                        <p ng-show="DB.d.users[DB.d.als[selected_al].id].id == user.User.id"><strong>user:</strong> You</p>
-                        <p ng-hide="DB.d.users[DB.d.als[selected_al].id].id == user.User.id"><strong>user:</strong> {{DB.d.users[DB.d.als[selected_al].id].username}}</p>
+                        <!--DB.d.users[DB.m.als[al.id].user[0]].username-->
+                        <p ng-show="DB.d.users[DB.m.als[selected_al].id].id == user.User.id"><strong>user:</strong> You</p>
+                        <p ng-hide="DB.d.users[DB.m.als[selected_al].id].id == user.User.id"><strong>user:</strong> {{DB.m.users[DB.d.als[selected_al].id].username}}</p>
                         <p><strong>created:</strong> {{DB.d.als[selected_al].created}}<br></p>
                         <p><strong>modified:</strong> {{DB.d.als[selected_al].modified}}</p>
                     </span>
