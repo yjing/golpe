@@ -772,6 +772,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
                 content = iframe.document.body.innerHTML;
             }
 
+            console.log(content);
             if(content.length > 0) {
                 window.clearInterval(id);
 
@@ -790,6 +791,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
                     function(data, handlers){
                         BusyService.busy(false);
                         $scope.reload();
+                        $scope.files = [];
                         document.getElementById('alform').reset();
                     },
                     // ERROR
