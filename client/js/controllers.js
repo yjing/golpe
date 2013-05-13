@@ -773,6 +773,15 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
 
             if(content.length > 0) {
                 window.clearInterval(id);
+
+                if (iframe.contentDocument) {
+                    iframe.contentDocument.body.innerHTML = "";
+                } else if (iframe.contentWindow) {
+                    iframe.contentWindow.document.body.innerHTML = "";
+                } else if (iframe.document) {
+                    iframe.document.body.innerHTML = "";
+                }
+
                 // Refresh DATA
                 ALService.loadAll(
                     {reload: true, mode:$scope.mode},
