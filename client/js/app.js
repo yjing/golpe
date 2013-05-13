@@ -701,12 +701,11 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     }
 
     this.save = function(id, success, error) {
-        console.log("SAVE");
         if(!angular.isDefined(id)) {
             throw "Missing activity log ID";
         }
 
-        if(angular.isDefined(DBService.d.projects[id])) {
+        if(angular.isDefined(DBService.d.als[id])) {
             var data = DBService.d.als[id];
             var params = {'id':id};
 
