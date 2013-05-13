@@ -603,21 +603,22 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
 
     // MAIN METHOD
     $scope.main = function() {
-        ALService.loadAll(
-            {reload: false, 'mode':$rootScope.mode},
-            // SUCCESS
-            function(data, handlers){
-                $scope.menu = DBService.d.als;
-                var modes = ALService.modes(
-                    function(d, h) {
-                        $rootScope.modes = d;
-                        $rootScope.mode = d.default;
+        var modes = ALService.modes(
+            function(d, h) {
+                $rootScope.modes = d;
+                $rootScope.mode = d.default;
+
+                ALService.loadAll(
+                    {reload: false, 'mode':$rootScope.mode},
+                    // SUCCESS
+                    function(data, handlers){
+                        $scope.menu = DBService.d.als;
+                    },
+                    // ERROR
+                    function(error){
+                        $rootScope.handleError(error);
                     }
                 );
-            },
-            // ERROR
-            function(error){
-                $rootScope.handleError(error);
             }
         );
     }
