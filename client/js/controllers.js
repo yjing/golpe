@@ -757,50 +757,49 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
     };
 
     $scope.startWatching = function () {
-        if($scope.isMobile) {
-            var id = window.setInterval(function(){
-                iframe = $('iframe');
-    
-                var content;
-                // Message from server...
-                if (iframe.contentDocument) {
-                    content = iframe.contentDocument.body.innerHTML;
-                } else if (iframe.contentWindow) {
-                    content = iframe.contentWindow.document.body.innerHTML;
-                } else if (iframe.document) {
-                    content = iframe.document.body.innerHTML;
-                }
-                
-                var unBusy = false;
-                // Check Result
-                var result = null;
-                try {
-                    result = JSON.parse($(content).text());
-                } catch (e) {
-                    
-                }
-                console.log("TEST CONTENT");
-                if(angular.isObject(result)) {
-                    window.clearInterval(id);
-                    console.log("ESCO!");
-                    // Refresh DATA
-                    ALService.loadAll(
-                        {reload: true, mode:mode},
-                        // SUCCESS
-                        function(data, handlers){
-                            BusyService.busy(false);
-                            $scope.reload();
-                            document.getElementById('alform').reset();
-                        },
-                        // ERROR
-                        function(error){
-                            $rootScope.handleError(error);
-                        }
-                    );
-                }
-                
-            }, 1000);
-        }
+        console.log("START W");
+        var id = window.setInterval(function(){
+            iframe = $('iframe');
+
+            var content;
+            // Message from server...
+            if (iframe.contentDocument) {
+                content = iframe.contentDocument.body.innerHTML;
+            } else if (iframe.contentWindow) {
+                content = iframe.contentWindow.document.body.innerHTML;
+            } else if (iframe.document) {
+                content = iframe.document.body.innerHTML;
+            }
+
+            var unBusy = false;
+            // Check Result
+            var result = null;
+            try {
+                result = JSON.parse($(content).text());
+            } catch (e) {
+
+            }
+            console.log("TEST CONTENT");
+            if(angular.isObject(result)) {
+                window.clearInterval(id);
+                console.log("ESCO!");
+                // Refresh DATA
+                ALService.loadAll(
+                    {reload: true, mode:mode},
+                    // SUCCESS
+                    function(data, handlers){
+                        BusyService.busy(false);
+                        $scope.reload();
+                        document.getElementById('alform').reset();
+                    },
+                    // ERROR
+                    function(error){
+                        $rootScope.handleError(error);
+                    }
+                );
+            }
+
+        }, 1000);
     };
 
     $scope.findAlIndexById = function(id){
