@@ -149,7 +149,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     }
 
     $(window).resize(function() {
-        $('body').append('<div>Handler for .resize() called.</div>');
+        $('body').prepend('<div>' + $(window).width() + '</div>');
     });
 
 })
