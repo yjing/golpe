@@ -622,12 +622,9 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
                     // SUCCESS
                     function(data, handlers){
                         var menu = [];
-                        for(var i=0; i<DBService.d.als.length; i++) {
-                            menu.push(DBService.d.als[i]);
-                        }
-                        console.log("-----");
-                        console.log(DBService.d.als);
-                        $scope.reload();
+                        angular.forEach(DBService.d.als, function(k, v){
+                            menu.push(k);
+                        });
                         $scope.menu = menu;
                     },
                     // ERROR
@@ -667,9 +664,6 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
                 });
                 $scope.menu = menu;
 
-                console.log(DBService.d.als);
-                console.log("-----");
-
                 if(angular.isDefined(DBService.d.als[$scope.selected_al])) {
                     $scope.selectAL($scope.selected_al);
                 } else {
@@ -695,8 +689,6 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
                     $rootScope.handleError(e);
                 }
             );
-            console.log(DBService.m.comments);
-            console.log(DBService.d.media);
         }
     }
 
