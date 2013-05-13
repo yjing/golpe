@@ -114,7 +114,7 @@
                 <span ng-show="DB.d.users[ DB.d.als[selected_al].user_id ].id == user.User.id;">
 
                     <h4 class="clickable" ng-hide="DB.m.als[selected_al].mode == 'edit'" ng-click="editAl(selected_al);">
-                        <button ng-show="isMobile"><i class="icon-backward"></i> </button>
+                        <button ng-show="isMobile" class="btn btn-link" ng-click="selected_al = null;"><i class="icon-backward"></i> </button>
                         {{DB.d.als[selected_al].title}} <i class="icon-pencil"></i>
                         <!--{{DB.d.als[selected_al].modified}} / {{DB.d.als[selected_al].created}}-->
                     </h4>
@@ -125,7 +125,7 @@
                 </span>
                 <span ng-hide="DB.d.users[ DB.d.als[selected_al].user_id ].id == user.User.id;">
                     <h4>
-                        <button ng-show="isMobile"><i class="icon-backward"></i> </button>
+                        <button ng-show="isMobile" class="btn btn-link" ng-click="selected_al = null;"><i class="icon-backward"></i> </button>
                         {{DB.d.als[selected_al].title}}
                     </h4>
                 </span>
