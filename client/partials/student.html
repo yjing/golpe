@@ -146,8 +146,8 @@
             <ul ng-show="showInfo(selected_al);">
                 <li>
                     <span class="selector">
-                        <p ng-show="DB.d.users[DB.d.als[selected_al].id].id == user.id"><strong>user:</strong> You</p>
-                        <p ng-hide="DB.d.users[DB.d.als[selected_al].id].id == user.id"><strong>user:</strong> {{DB.d.users[DB.d.als[selected_al].id].username}}</p>
+                        <p ng-show="DB.d.users[DB.d.als[selected_al].id].id == user.User.id"><strong>user:</strong> You</p>
+                        <p ng-hide="DB.d.users[DB.d.als[selected_al].id].id == user.User.id"><strong>user:</strong> {{DB.d.users[DB.d.als[selected_al].id].username}}</p>
                         <p><strong>created:</strong> {{DB.d.als[selected_al].created}}<br></p>
                         <p><strong>modified:</strong> {{DB.d.als[selected_al].modified}}</p>
                     </span>
