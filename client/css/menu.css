@@ -139,6 +139,13 @@ div.menu > ul > li.active:focus {
     background-color: aliceblue;
 }
 
+div.menu > ul > li.active.question,
+div.menu > ul > li.active.question:hover,
+div.menu > ul > li.active.question:focus {
+    font-weight: bolder;
+    background-color: #ff8c00;
+}
+
 .clickable {
     cursor: pointer;
 }
