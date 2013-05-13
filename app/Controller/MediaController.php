@@ -118,6 +118,14 @@ class MediaController extends RESTController {
             } else {
                 try {
                     $filename = '/uploads/'.$result['Media']['id'];
+                    if($thumb != false) {
+                        if ($thumb == "BIG") {
+                            $filename = $filename . ".200.thumb";
+                        } else {
+                            $filename = $filename . ".75.thumb";
+                        }
+                    }
+                    
                     $handle = fopen($filename, 'r');
                     if(flock($handle, LOCK_SH+LOCK_NB)) {
                         $this->response->type($result['Media']['content-type']);
