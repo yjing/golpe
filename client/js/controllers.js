@@ -559,6 +559,10 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
         BusyService.busy(true);
     };
 
+    $scope.question = function (id) {
+        return DBService.d.als[id].question ? 'question' : '';
+    };
+
     $scope.selected_al = null;
     $scope.isSelectedAl = function(id){
         if(angular.isUndefined(id)) return $scope.selected_al != null;

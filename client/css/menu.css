@@ -35,6 +35,10 @@ div.menu > ul > li {
     border-bottom: 1px solid rgb(221, 221, 221);
 }
 
+div.menu > ul > li.question {
+    background-color: #E6B800;
+}
+
 div.menu > div {
     background-color: #fafafa;
 }
