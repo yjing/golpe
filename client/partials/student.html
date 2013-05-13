@@ -19,8 +19,9 @@
                     <a href="#" ng-click="selectAL(al.id);">
                         {{al.title}}<br>
                         <small class="author">
-                            by: {{DB.d.users[ DB.d.als[al.id].user_id ].username}}
-                            <span class="badge badge-info" ng-show="DB.m.als[al.id].media.length > 0">M</span>
+                            by: {{DB.d.users[ DB.d.als[al.id].user_id ].username}}<br>
+                            <span class="badge badge-info" ng-show="DB.m.als[al.id].media.length > 0">HAS MEDIA</span>
+                            <span class="badge badge-info" ng-show="DB.m.als[al.id].comments.length > 0">HAS COMMENTS</span>
                         </small>
                         <i ng-show="DB.m.als[al.id].mode == 'edit'" class="icon-pencil"></i>
                     </a>
