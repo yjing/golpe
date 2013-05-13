@@ -142,7 +142,7 @@ div.menu > ul > li.active:focus {
 div.menu > ul > li.active.question,
 div.menu > ul > li.active.question:hover,
 div.menu > ul > li.active.question:focus {
-    font-weight: bolder;
+    color: #000000;
     background-color: #fbb450;
 }
 
