@@ -700,6 +700,41 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 
     }
 
+    this.save = function(id, success, error) {
+        if(!angular.isDefined(id)) {
+            throw "Missing activity log ID";
+        }
+
+        if(angular.isDefined(DBService.d.projects[id])) {
+            var data = DBService.d.projects[id];
+            var params = {'id':id};
+
+            BusyService.busy(true);
+            var proj = this.ALs.save(
+                params,
+                data,
+                function(d, h) {
+                    BusyService.busy(false);
+                    _THIS.insertProject(proj);
+
+                    // CALLBACKS
+                    if(success) {
+                        success(d, h);
+                    }
+                },
+                function(data) {
+                    BusyService.busy(false);
+
+                    // CALLBACKS
+                    if(error) {
+                        error(e);
+                    }
+                }
+            );
+        }
+
+    }
+
 
     this.delete = function(id, success, error) {
         if(!angular.isDefined(id)) {
