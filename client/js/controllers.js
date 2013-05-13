@@ -608,12 +608,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
             // SUCCESS
             function(data, handlers){
                 $scope.menu = DBService.d.als;
-                var modes = ALService.modes(
-                    function(d, h) {
-                        console.log(d);
-                        $scope.modes = d.modes;
-                    }
-                );
+                $scope.modes = ALService.modes();
             },
             // ERROR
             function(error){
