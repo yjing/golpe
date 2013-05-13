@@ -149,10 +149,10 @@
             <ul ng-show="showInfo(selected_al);">
                 <li>
                     <span class="selector">
-                        <p ng-show="DB.d.users[ DB.d.als[selected_al].user_id ].id == user.User.id;"><strong>user:</strong> You</p>
-                        <p ng-hide="DB.d.users[ DB.d.als[selected_al].user_id ].id == user.User.id;"><strong>user:</strong> {{DB.d.users[DB.m.als[selected_al].user_id[0]].username}}</p>
-                        <p><strong>created:</strong> {{DB.d.als[selected_al].created}}<br></p>
-                        <p><strong>modified:</strong> {{DB.d.als[selected_al].modified}}</p>
+                        <p ng-show="DB.d.users[ DB.d.als[selected_al].user_id ].id == user.User.id;"><strong>Author:</strong> You</p>
+                        <p ng-hide="DB.d.users[ DB.d.als[selected_al].user_id ].id == user.User.id;"><strong>Author:</strong> {{DB.d.users[DB.m.als[selected_al].user_id[0]].username}}</p>
+                        <p><strong>Created:</strong> {{DB.d.als[selected_al].created}}<br></p>
+                        <p><strong>Modified:</strong> {{DB.d.als[selected_al].modified}}</p>
                     </span>
                 </li>
             </ul>
@@ -197,6 +197,7 @@
                     <div class="selector"><em>No Comments yet...</em></div>
                 </li>
                 <li ng-repeat="c in DB.m.als[selected_al].comments" ng-show="showComments(selected_al);">
+                    <p><strong>{{DB.users[DB.d.comments[c].user_id].username}}</strong></p>
                     <p class="selector">{{DB.d.comments[c].content}}</p>
                     <ul class="thumbnails">
                         <li ng-repeat="m in DB.m.comments[c].media" class="span3" style="margin: 3px">
