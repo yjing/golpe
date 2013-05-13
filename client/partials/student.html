@@ -144,7 +144,7 @@
                 <span>
                     <div class="btn-group">
                         <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveAl(selected_al);">Save</button>
-                        <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="cancelEditAl(selected_al);">Cancel</button>
+                        <button ng-disabled="" type="button" class="btn" ng-click="cancelEditAl(selected_al);">Cancel</button>
                     </div>
                 </span>
             </div>
@@ -159,7 +159,7 @@
                 <li>
                     <span class="selector">
                         <p ng-show="DB.d.users[ DB.d.als[selected_al].user_id ].id == user.User.id;"><strong>Author:</strong> You</p>
-                        <p ng-hide="DB.d.users[ DB.d.als[selected_al].user_id ].id == user.User.id;"><strong>Author:</strong> {{DB.d.users[DB.m.als[selected_al].user_id[0]].username}}</p>
+                        <p ng-show="DB.d.users[ DB.d.als[selected_al].user_id ].id != user.User.id;"><strong>Author:</strong> {{DB.d.users[DB.m.als[selected_al].user_id[0]].username}}</p>
                         <p><strong>Created:</strong> {{DB.d.als[selected_al].created}}<br></p>
                         <p><strong>Modified:</strong> {{DB.d.als[selected_al].modified}}</p>
                     </span>
