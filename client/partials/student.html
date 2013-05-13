@@ -118,12 +118,6 @@
                     </span>
                 </span>
             </div>
-            <div>
-                <span>
-                    created: {{DB.d.als[selected_al].created}}<br>
-                    modified: {{DB.d.als[selected_al].modified}}
-                </span>
-            </div>
             <ul>
                 <li>
                     <p class="selector" ng-hide="DB.m.als[selected_al].mode == 'edit'">
@@ -141,6 +135,14 @@
                     </div>
                 </span>
             </div>
+            <ul>
+                <li>
+                    <span class="selector">
+                        created: {{DB.d.als[selected_al].created}}<br>
+                        modified: {{DB.d.als[selected_al].modified}}
+                    </span>
+                </li>
+            </ul>
             <div ng-show="isSelectedAl();">
                 <a href="#" ng-click="toggleShowMedia(selected_al);">
                     <strong>Media</strong>
