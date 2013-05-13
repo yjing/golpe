@@ -658,7 +658,17 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
             {reload: true, 'mode':$scope.mode},
             // SUCCESS
             function(data, handlers){
-                $scope.menu = DBService.d.als;
+                var menu = [];
+                for(var i=0; i<DBService.d.als.length; i++) {
+                    menu.push(DBService.d.als[i]);
+                }
+                console.log("-------------");
+                console.log(DBService.d.als);
+                $scope.menu = menu;
+                console.log($scope.menu);
+                console.log("-------------");
+
+
                 if(angular.isDefined(DBService.d.als[$scope.selected_al])) {
                     $scope.selectAL($scope.selected_al);
                 } else {
