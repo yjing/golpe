@@ -182,6 +182,9 @@
             <div ng-show="isSelectedAl();">
                 <a href="#" ng-click="toggleShowComments(selected_al);">
                     <strong>Comments</strong>
+                    <span class="badge" ng-show="DB.m.als[selected_al].comments != null && DB.m.als[selected_al].comments.length" style="float: right">
+                        {{DB.m.als[selected_al].comments.length}}
+                    </span>
                     <i class="icon-circle-arrow-right" ng-hide="showComments(selected_al);"></i>
                     <i class="icon-circle-arrow-down" ng-show="showComments(selected_al);"></i>
                 </a>
