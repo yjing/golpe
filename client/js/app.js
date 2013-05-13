@@ -701,6 +701,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     }
 
     this.save = function(id, success, error) {
+        console.log("SAVE");
         if(!angular.isDefined(id)) {
             throw "Missing activity log ID";
         }
