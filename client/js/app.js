@@ -821,7 +821,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 
             console.log(al);
             console.log(al['id']);
-            console.log(this.d.als[al['id']]);
+            console.log(DBService.d.als[al['id']]);
 
             DBService.insertData('als', al['id'], al);
 
