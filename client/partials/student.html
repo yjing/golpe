@@ -145,6 +145,7 @@
             <ul ng-show="showInfo(selected_al);">
                 <li>
                     <span class="selector">
+                        user: {{DB.d.users[DB.d.als[selected_al].id].username}}
                         created: {{DB.d.als[selected_al].created}}<br>
                         modified: {{DB.d.als[selected_al].modified}}
                     </span>
