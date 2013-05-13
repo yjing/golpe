@@ -622,6 +622,9 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         load: {
             method: 'GET',
             isArray: false
+        },
+        load: {
+            method: 'POST'
         }
     });
 
