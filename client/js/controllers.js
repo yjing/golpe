@@ -609,7 +609,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
                 $scope.mode = d.default;
 
                 ALService.loadAll(
-                    {reload: false, 'mode':'mine'},
+                    {reload: false, 'mode':$scope.mode},
                     // SUCCESS
                     function(data, handlers){
                         $scope.menu = DBService.d.als;
