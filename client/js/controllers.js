@@ -655,7 +655,9 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
                 var index = $scope.findAlIndexById(id);
                 ALService.delete(id,
                     function(d, h) {
-                        $scope.menu.splice(index, 1);
+                        if($scope.selected_al == id) {
+                            $scope.selected_al = null;
+                        }
                     },
                     function(e) {
                         $rootScope.handleError(e);
