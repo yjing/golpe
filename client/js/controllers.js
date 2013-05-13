@@ -516,7 +516,6 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
         }
 
         // Refresh DATA
-//        $scope.activityLogs = ALs.query({mode:$rootScope.alMode}, function(){});
         ALService.loadAll(
             {reload: true, mode:'mine'},
             // SUCCESS
@@ -544,6 +543,9 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
     }
     $scope.isNewAl = function () {
         return $scope.al != null;
+    };
+    $scope.hideNewAl = function () {
+        $scope.al = null;
     };
 
     $scope.selected_al = null;
