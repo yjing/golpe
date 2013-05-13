@@ -652,13 +652,10 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
     $scope.deleteAl = function(confirm, id) {
         if(angular.isDefined(DBService.d.als[id])){
             if(confirm == true) {
-                var index = $scope.findProjectIndexById(id);
-                ProjectsService.delete(id,
+                var index = $scope.findAlIndexById(id);
+                ALService.delete(id,
                     function(d, h) {
                         $scope.menu.splice(index, 1);
-                        if($scope.menu.length > 0) {
-                            $scope.selectProject(0);
-                        }
                     },
                     function(e) {
                         $rootScope.handleError(e);
@@ -670,6 +667,13 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
         }
     }
 
+
+    $scope.findAlIndexById = function(id){
+        for(var i=0; i<$scope.menu.length; i++) {
+            if (id == $scope.menu[i].id) return i;
+        }
+        return null;
+    }
 
 }
 

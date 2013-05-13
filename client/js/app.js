@@ -695,7 +695,36 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             }
         }
 
+    }
 
+
+    this.delete = function(id, success, error) {
+        if(!angular.isDefined(id)) {
+            throw "Missing activity log ID";
+        }
+
+        BusyService.busy(true);
+        var al = this.ALs.delete(
+            {'id':id},
+            {},
+            function(d, h) {
+                BusyService.busy(false);
+                _THIS.deleteAl(id);
+
+                // CALLBACKS
+                if(success) {
+                    success(d, h);
+                }
+            },
+            function(data) {
+                BusyService.busy(false);
+
+                // CALLBACKS
+                if(error) {
+                    error(e);
+                }
+            }
+        );
     }
 
     this.insertALs = function(d) {
@@ -741,6 +770,13 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                 DBService.insertMeta('als', al['id'], 'show_media', true);
             }
 
+        }
+    }
+
+    this.deleteAl = function(id) {
+        if(angular.isDefined(id) && angular.isDefined(DBService.d.als[id])) {
+            delete DBService.d.als[id];
+            delete DBService.m.als[id];
         }
     }
 
