@@ -636,6 +636,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
             // SUCCESS
             function(data, handlers){
                 $scope.menu = DBService.d.als;
+                $scope.selectAL($scope.selected_al);
             },
             // ERROR
             function(error){
