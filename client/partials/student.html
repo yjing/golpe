@@ -7,8 +7,11 @@
     <div class="span4">
         <div class="menu shadow">
             <div>
-                <a href="#" class="text-right" ng-click="reload();">
-                    Refresh Activity Logs <i class="icon-refresh"></i>
+                <a>
+                    <select ng-model="mode">
+                        <option>TEST</option>
+                    </select>
+                    <a href="#" ng-click="reload();" style="float: right">Refresh Activity Logs <i class="icon-refresh"></i></a>
                 </a>
             </div>
             <ul>
