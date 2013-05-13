@@ -547,6 +547,10 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
     $scope.hideNewAl = function () {
         $scope.al = null;
     };
+    $scope.removeNewAl = function () {
+        document.getElementById('alform').reset();
+        $scope.hideNewAl();
+    };
 
     $scope.selected_al = null;
     $scope.isSelectedAl = function(id){
