@@ -7,14 +7,17 @@
     <div class="span4">
         <div class="menu shadow">
             <div>
-                <a>
-                    <select ng-model="mode">
+                <a href="#" ng-click="reload();" class="text-right">Refresh Activity Logs <i class="icon-refresh"></i></a>
+            </div>
+            <select ng-model="mode">
+                <option>TEST</option>
+            </select>
+            <ul>
+                <li>
+                    <select ng-model="mode" class="edit-field">
                         <option>TEST</option>
                     </select>
-                    <a href="#" ng-click="reload();" style="float: right">Refresh Activity Logs <i class="icon-refresh"></i></a>
-                </a>
-            </div>
-            <ul>
+                </li>
                 <li ng-repeat="al in menu" ng-class="isSelectedAl(al.id)">
                     <a href="#" ng-click="selectAL(al.id);">
                         {{DB.d.als[al.id].title}}
