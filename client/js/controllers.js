@@ -663,12 +663,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
                     console.log(k);
                     menu.push(k);
                 });
-                console.log("-------------");
-                console.log(DBService.d.als);
                 $scope.menu = menu;
-                console.log($scope.menu);
-                console.log("-------------");
-
 
                 if(angular.isDefined(DBService.d.als[$scope.selected_al])) {
                     $scope.selectAL($scope.selected_al);
