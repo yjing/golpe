@@ -111,7 +111,8 @@
     <div class="span8" ng-hide="isNewAl();">
         <div class="menu shadow" ng-show="isSelectedAl();">
             <div>
-                <span>
+                <span ng-show="DB.d.users[ DB.d.als[selected_al].user_id ].id == user.User.id;">
+
                     <h4 class="clickable" ng-hide="DB.m.als[selected_al].mode == 'edit'" ng-click="editAl(selected_al);">
                         {{DB.d.als[selected_al].title}} <i class="icon-pencil"></i>
                         <!--{{DB.d.als[selected_al].modified}} / {{DB.d.als[selected_al].created}}-->
@@ -120,6 +121,11 @@
                     <span ng-show="DB.m.als[selected_al].mode == 'edit'">
                         <input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge" ng-model="DB.d.als[selected_al].title">
                     </span>
+                </span>
+                <span ng-hide="DB.d.users[ DB.d.als[selected_al].user_id ].id == user.User.id;">
+                    <h4>
+                        {{DB.d.als[selected_al].title}}
+                    </h4>
                 </span>
             </div>
             <ul>
