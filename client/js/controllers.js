@@ -701,7 +701,11 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
                     if(angular.isObject(d)) {
                         DBService.m.als[id].mode = 'normal';
                     }
-                    $scope.menu = $scope.menu;
+                    var menu = [];
+                    angular.forEach(DBService.d.als, function(k, v){
+                        menu.push(k);
+                    });
+                    $scope.menu = menu;
                 },
                 function (e) {
                     $rootScope.handleError(e);
