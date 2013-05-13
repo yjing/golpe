@@ -199,6 +199,7 @@
                 <li ng-repeat="c in DB.m.als[selected_al].comments" ng-show="showComments(selected_al);">
                     <p class="selector"><strong>{{DB.d.users[DB.d.comments[c].user_id].username}} says:</strong></p>
                     <p class="selector">{{DB.d.comments[c].content}}</p>
+                    <p class="selector"><strong>on:</strong> {{DB.d.comments[c].modified}}</p>
                     <ul class="thumbnails">
                         <li ng-repeat="m in DB.m.comments[c].media" class="span3" style="margin: 3px">
                             <div class="thumbnail">
