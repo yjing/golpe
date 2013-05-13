@@ -291,7 +291,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                 _THIS.insertProjects(d);
 
                 // CALLBACKS
-                if(success) {
+                if(angular.isDefined(success)) {
                     success(d, h);
                 }
             },
@@ -299,7 +299,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                 BusyService.busy(false);
 
                 // CALLBACKS
-                if(error) {
+                if(angular.isDefined(error)) {
                     error(e);
                 }
             }
@@ -324,7 +324,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                     _THIS.insertProject(proj);
 
                     // CALLBACKS
-                    if(success) {
+                    if(angular.isDefined(success)) {
                         success(d, h);
                     }
                 },
@@ -332,14 +332,14 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                     BusyService.busy(false);
 
                     // CALLBACKS
-                    if(error) {
+                    if(angular.isDefined(error)) {
                         error(e);
                     }
                 }
             );
         } else {
             // CALLBACK
-            if(success) {
+            if(angular.isDefined(success)) {
                 success(true);
             }
         }
@@ -366,7 +366,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                 _THIS.insertProject(proj);
 
                 // CALLBACKS
-                if(success) {
+                if(angular.isDefined(success)) {
                     success(d, h);
                 }
             },
@@ -374,7 +374,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                 BusyService.busy(false);
 
                 // CALLBACKS
-                if(error) {
+                if(angular.isDefined(error)) {
                     error(e);
                 }
             }
@@ -395,7 +395,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                 _THIS.deleteProject(id);
 
                 // CALLBACKS
-                if(success) {
+                if(angular.isDefined(success)) {
                     success(d, h);
                 }
             },
@@ -403,7 +403,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                 BusyService.busy(false);
 
                 // CALLBACKS
-                if(error) {
+                if(angular.isDefined(error)) {
                     error(e);
                 }
             }
@@ -421,7 +421,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                 BusyService.busy(false);
 
                 // CALLBACKS
-                if(success) {
+                if(angular.isDefined(success)) {
                     success(d, h);
                 }
             },
@@ -429,7 +429,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                 BusyService.busy(false);
 
                 // CALLBACKS
-                if(error) {
+                if(angular.isDefined(error)) {
                     error(e);
                 }
             }
@@ -449,7 +449,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                 _THIS.removeTeam(id);
 
                 // CALLBACKS
-                if(success) {
+                if(angular.isDefined(success)) {
                     success(d, h);
                 }
             },
@@ -457,7 +457,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                 BusyService.busy(false);
 
                 // CALLBACKS
-                if(error) {
+                if(angular.isDefined(error)) {
                     error(e);
                 }
             }
@@ -480,7 +480,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                 _THIS.insertTeam(d['Team']);
 
                 // CALLBACKS
-                if(success) {
+                if(angular.isDefined(success)) {
                     success(d, h);
                 }
             },
@@ -488,7 +488,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                 BusyService.busy(false);
 
                 // CALLBACKS
-                if(error) {
+                if(angular.isDefined(error)) {
                     error(e);
                 }
             }
@@ -512,7 +512,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                 _THIS.removeTeam(d['Team']);
 
                 // CALLBACKS
-                if(success) {
+                if(angular.isDefined(success)) {
                     success(d, h);
                 }
             },
@@ -520,7 +520,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                 BusyService.busy(false);
 
                 // CALLBACKS
-                if(error) {
+                if(angular.isDefined(error)) {
                     error(e);
                 }
             }
@@ -650,7 +650,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                 _THIS.insertALs(d);
 
                 // CALLBACKS
-                if(success) {
+                if(angular.isDefined(success)) {
                     success(d, h);
                 }
             },
@@ -658,7 +658,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                 BusyService.busy(false);
 
                 // CALLBACKS
-                if(error) {
+                if(angular.isDefined(error)) {
                     error(e);
                 }
             }
@@ -673,13 +673,13 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                 BusyService.busy(false);
 
                 // CALLBACKS
-                if(success) {
+                if(angular.isDefined(success)) {
                     success(d, h);
                 }
             },
             function(e) {
                 // CALLBACK
-                if(success) {
+                if(angular.isDefined(success)) {
                     success(DBService.d.als[id]);
                 }
             }
@@ -699,7 +699,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                     _THIS.insertAL(d['ActivityLog'], 'complete');
 
                     // CALLBACKS
-                    if(success) {
+                    if(angular.isDefined(success)) {
                         success(d, h);
                     }
                 },
@@ -707,14 +707,14 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                     BusyService.busy(false);
 
                     // CALLBACKS
-                    if(error) {
+                    if(angular.isDefined(error)) {
                         error(e);
                     }
                 }
             );
         } else {
             // CALLBACK
-            if(success) {
+            if(angular.isDefined(success)) {
                 success(DBService.d.als[id]);
             }
         }
@@ -740,7 +740,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                     _THIS.insertAL(al);
 
                     // CALLBACKS
-                    if(success) {
+                    if(angular.isDefined(success)) {
                         success(d, h);
                     }
                 },
@@ -748,7 +748,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                     BusyService.busy(false);
 
                     // CALLBACKS
-                    if(error) {
+                    if(angular.isDefined(error)) {
                         error(e);
                     }
                 }
@@ -772,7 +772,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                 _THIS.deleteAl(id);
 
                 // CALLBACKS
-                if(success) {
+                if(angular.isDefined(success)) {
                     success(d, h);
                 }
             },
@@ -780,7 +780,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                 BusyService.busy(false);
 
                 // CALLBACKS
-                if(error) {
+                if(angular.isDefined(error)) {
                     error(e);
                 }
             }
