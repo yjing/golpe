@@ -357,6 +357,9 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             params = {'id':id};
         }
 
+        delete data.created;
+        delete data.modified;
+
         BusyService.busy(true);
         var proj = this.Projects.save(
             params,
@@ -414,6 +417,10 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         if(!angular.isDefined(data)) {
             throw "Missing team DATA";
         }
+
+        delete data.created;
+        delete data.modified;
+
         this.Teams.save(
             {},
             data,
