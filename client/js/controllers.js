@@ -773,14 +773,14 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
 
             var unBusy = false;
             // Check Result
-//            var result = $(content).text();
+            var result = $(content).text();
 //            try {
 //                result = JSON.parse(content);
 //            } catch (e) {
 //
 //            }
             console.log("TEST CONTENT");
-            console.log(content);
+            console.log(result);
             if(angular.isObject(content)) {
                 window.clearInterval(id);
                 console.log("ESCO!");
