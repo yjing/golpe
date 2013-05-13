@@ -639,7 +639,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
         if(angular.isDefined(DBService.d.als[id])) {
             var data = DBService.d.als[id];
 
-            ALService.save(id_data,
+            ALService.save(data,
                 function(d, h){
                     if(angular.isObject(d)) {
 
