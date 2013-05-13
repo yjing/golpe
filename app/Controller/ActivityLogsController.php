@@ -202,7 +202,7 @@ class ActivityLogsController extends RESTController {
         return $this->ActivityLog->find('all',
             array(
                 'conditions' => $conditions,
-                'orderby' => array( 'modified' => 'DESC', 'question' => 'DESC' ),
+                'order' => array( 'modified' => 'DESC', 'question' => 'DESC' ),
                 'recursive' => -1,
                 'associations' => array(
                     'User' => array(
