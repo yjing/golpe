@@ -560,6 +560,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
     };
 
     $scope.question = function (id) {
+        console.log(DBService.d.als[id].question == true);
         return DBService.d.als[id].question ? 'question' : '';
     };
 
