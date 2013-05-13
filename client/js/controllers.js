@@ -660,7 +660,6 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
             function(data, handlers){
                 var menu = [];
                 angular.forEach(DBService.d.als, function(k, v){
-                    console.log(k);
                     menu.push(k);
                 });
                 $scope.menu = menu;
@@ -702,7 +701,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
                     if(angular.isObject(d)) {
                         DBService.m.als[id].mode = 'normal';
                     }
-
+                    $scope.menu = $scope.menu;
                 },
                 function (e) {
                     $rootScope.handleError(e);
