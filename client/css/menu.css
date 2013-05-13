@@ -56,6 +56,11 @@ div.menu > div:first-child {
     border-radius: 4px 4px 0px 0px;
 }
 
+div.menu > div.question:first-child {
+    color: #000000;
+    background-color: #fbb450;
+}
+
 div.menu > div:last-child {
     /* FOOTER */
     -webkit-border-radius: 0px 0px 4px 4px;
@@ -139,6 +144,13 @@ div.menu > ul > li.active:focus {
     background-color: aliceblue;
 }
 
+div.menu > ul > li.active.question,
+div.menu > ul > li.active.question:hover,
+div.menu > ul > li.active.question:focus {
+    color: #000000;
+    background-color: #fbb450;
+}
+
 .clickable {
     cursor: pointer;
 }
@@ -152,11 +164,4 @@ textarea.edit-field {
     font-size: 1.2em;
     -webkit-appearance: none;
     appearance: none;
-}
-
-div.menu > ul > li.active.question,
-div.menu > ul > li.active.question:hover,
-div.menu > ul > li.active.question:focus {
-    color: #000000;
-    background-color: #fbb450;
 }
