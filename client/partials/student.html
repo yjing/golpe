@@ -4,10 +4,10 @@
 <div ng-include src="top_bar_url"></div>
 <div class="row-fluid content">
 
-    <div class="span4">
+    <div class="span4" ng-hide="isMobile && isSelectedAl()">
         <div class="menu shadow">
             <div>
-                <a href="#" ng-click="reload();" class="text-right">Refresh Activity Logs {{isMobile}} <i class="icon-refresh"></i></a>
+                <a href="#" ng-click="reload();" class="text-right">Refresh Activity Logs <i class="icon-refresh"></i></a>
             </div>
             <ul>
                 <li>
