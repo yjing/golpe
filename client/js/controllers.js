@@ -635,6 +635,24 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
         }
     }
 
+    $scope.saveAl = function(id){
+        if(angular.isDefined(DBService.d.als[id])) {
+            var data = DBService.d.als[id];
+
+            ALService.save(id_data,
+                function(d, h){
+                    if(angular.isObject(d)) {
+
+                    }
+
+                },
+                function (e) {
+                    $rootScope.handleError(e);
+                }
+            );
+        }
+    }
+
     $scope.editAl = function (id) {
         if(angular.isDefined(DBService.m.als[id])) {
             DBService.m.als[id].mode = 'edit';
