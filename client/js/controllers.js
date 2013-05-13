@@ -562,6 +562,18 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
         if(angular.isUndefined(id)) return $scope.selected_al != null;
         return ( id == $scope.selected_al ? ACTIVE : NOT_ACTIVE );
     }
+    $scope.showInfo = function(id){
+        if(angular.isUndefined(id) || id == null) {
+            return false;
+        } else {
+            return DBService.m.als[id].show_info;
+        }
+    }
+    $scope.toggleShowInfo = function(id){
+        if(angular.isDefined(id) && angular.isDefined(DBService.m.als[id]) && angular.isDefined(DBService.m.als[id].show_info)) {
+            DBService.m.als[id].show_info = ! DBService.m.als[id].show_info;
+        }
+    }
     $scope.showMedia = function(id){
         if(angular.isUndefined(id) || id == null) {
             return false;

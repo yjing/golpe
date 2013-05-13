@@ -135,7 +135,14 @@
                     </div>
                 </span>
             </div>
-            <ul>
+            <div ng-show="isSelectedAl();">
+                <a href="#" ng-click="toggleShowInfo(selected_al);">
+                    <strong>Info</strong>
+                    <i class="icon-circle-arrow-right" ng-hide="showInfo(selected_al);"></i>
+                    <i class="icon-circle-arrow-down" ng-show="showInfo(selected_al);"></i>
+                </a>
+            </div>
+            <ul ng-show="showInfo(selected_al);">
                 <li>
                     <span class="selector">
                         created: {{DB.d.als[selected_al].created}}<br>
