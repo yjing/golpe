@@ -148,6 +148,10 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         }
     }
 
+    $(window).resize(function() {
+        $('body').append('<div>Handler for .resize() called.</div>');
+    });
+
 })
 .filter('dbFilter', function(DBService){
     return function(value, param, table, key){
