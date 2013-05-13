@@ -617,7 +617,11 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
                     {reload: false, 'mode':$scope.mode},
                     // SUCCESS
                     function(data, handlers){
-                        $scope.menu = DBService.d.als;
+                        var menu = [];
+                        for(var i=0; i<DBService.d.als.length; i++) {
+                            menu.push(DBService.d.als[i]);
+                        }
+                        $scope.menu = menu;
                     },
                     // ERROR
                     function(error){
