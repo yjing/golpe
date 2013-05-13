@@ -506,6 +506,9 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
             $scope.files.splice(index, 1);
         }
     }
+    $scope.isNewAl = function () {
+        return al != null;
+    };
 
     $scope.selected_al = null;
     $scope.isSelectedAl = function(id){

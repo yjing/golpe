@@ -37,8 +37,8 @@
         </div>
     </div>
 
-    <form id="alform" ng-submit="hideNewAl();" class="" target="iframeNewAl" action='/activity_logs' method='POST' enctype='multipart/form-data'>
-    <div class="span8" ng-hide="al != null;">
+    <form id="alform" ng-submit="hideNewAl();" class="" target="iframe" action='/activity_logs' method='POST' enctype='multipart/form-data'>
+    <div class="span8" ng-show="isNewAl();">
         <div class="menu shadow">
             <div>
                 <span>
@@ -105,7 +105,7 @@
     </div>
     </form>
 
-    <div class="span8" ng-hide="new_activity_log == null">
+    <div class="span8" ng-hide="isNewAl();">
         <div class="menu shadow" ng-show="isSelectedAl();">
             <div>
                 <span>
