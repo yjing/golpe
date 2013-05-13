@@ -666,7 +666,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 
     }
 
-    this.modes = function(){
+    this.modes = function(success, error){
         BusyService.busy(true);
         this.ALs.modes(
             function(d, h){

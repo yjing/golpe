@@ -602,7 +602,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
     }
 
     // MAIN METHOD
-    $scope.main = function(success, error) {
+    $scope.main = function() {
         ALService.loadAll(
             {reload: false, mode:'mine'},
             // SUCCESS
