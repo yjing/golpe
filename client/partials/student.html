@@ -156,7 +156,9 @@
             <div ng-show="isSelectedAl();">
                 <a href="#" ng-click="toggleShowMedia(selected_al);">
                     <strong>Media</strong>
-                    <span class="badge" ng-show="DB.m.als[selected_al].media != null && DB.m.als[selected_al].media.length > 0;">{{DB.m.als[selected_al].media.length}}</span>
+                    <span class="badge" ng-show="DB.m.als[selected_al].media != null && DB.m.als[selected_al].media.length > 0;" style="float: right">
+                        {{DB.m.als[selected_al].media.length}}
+                    </span>
                     <i class="icon-circle-arrow-right" ng-hide="showMedia(selected_al);"></i>
                     <i class="icon-circle-arrow-down" ng-show="showMedia(selected_al);"></i>
                 </a>
