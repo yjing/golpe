@@ -20,7 +20,7 @@
                         {{al.title}}<br>
                         <small class="author">
                             by: {{DB.d.users[ DB.d.als[al.id].user_id ].username}}
-                            <span class="badge-info" ng-show="DB.m.als[al.id].media.length > 0">M</span>
+                            <span class="badge badge-info" ng-show="DB.m.als[al.id].media.length > 0">M</span>
                         </small>
                         <i ng-show="DB.m.als[al.id].mode == 'edit'" class="icon-pencil"></i>
                     </a>
