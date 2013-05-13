@@ -86,13 +86,13 @@
                     </div>
                 </li>
             </ul>
-            <div ng-show="DB.m.als[selected_al].mode == 'edit'">
-                    <span>
-                        <div class="btn-group">
-                            <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveAl(selected_al);">Save</button>
-                            <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="cancelEditAl(selected_al);">Cancel</button>
-                        </div>
-                    </span>
+            <div>
+                <span>
+                    <div class="btn-group">
+                        <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveAl(selected_al);">Save</button>
+                        <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="cancelEditAl(selected_al);">Cancel</button>
+                    </div>
+                </span>
             </div>
         </div>
     </div>
