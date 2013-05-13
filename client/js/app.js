@@ -859,7 +859,6 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
 
         var status = 'partial';
         var media;
-        console.log(com);
         if(angular.isDefined(com['Media'])) {
             var status = 'complete';
             _THIS.insertMedia(com['Media']);
