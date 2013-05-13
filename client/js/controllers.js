@@ -533,8 +533,8 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
 
     $scope.al = null;
     $scope.files = [];
-    $scope.mode = null;
-    $scope.modes = null;
+    $rootScope.modes = null;
+    $rootScope.mode = null;
 
     $scope.addFile = function() {
         $scope.files.push({});
