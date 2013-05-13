@@ -30,9 +30,9 @@
                 <!--</li>-->
             </ul>
             <div>
-                <a href="#" class="text-right">
-                    {{selected_al == null}}
-                </a>
+                <!--<a href="#" class="text-right">-->
+                    <!--{{selected_al == null}}-->
+                <!--</a>-->
             </div>
         </div>
     </div>
@@ -81,7 +81,7 @@
                         <div class="control-group" ng-repeat="file in files">
                             <div class="controls">
                                 <input type='file' name='data[Media][{{$index}}]' >
-                                <span class="btn btn-link" ng-click='removeFile($index);'><i class="icon-remove"></i> remove</span>
+                                <span class="btn btn-link" ng-click='removeFile($index);'><button class="btn btn-mini btn-warning"><i class="icon-remove"></i></button></span>
                             </div>
                         </div>
                         <div class="control-group">
