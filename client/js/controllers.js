@@ -640,7 +640,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
             ALService.save(id,
                 function(d, h){
                     if(angular.isObject(d)) {
-                        console.log("HERE");
+                        DBService.m.als[id].mode = 'normal';
                     }
 
                 },

@@ -709,9 +709,6 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             var data = DBService.d.als[id];
             var params = { 'id' : id };
 
-            console.log(data);
-            console.log(params);
-
             BusyService.busy(true);
             var al
                 = this.ALs.save(
