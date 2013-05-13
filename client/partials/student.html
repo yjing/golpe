@@ -22,7 +22,7 @@
                     </a>
                     <div class="functions">
                         <button class="btn-link function" ng-click="deleteAl(false, al.id);"
-                                ng-show="DB.d.users[ DB.d.als[selected_al].user_id ].id == user.User.id"
+                                ng-show="DB.d.users[ DB.d.als[al.id].user_id ].id == user.User.id"
                                 ng-hide="DB.m.als[al.id].mode == 'deleting' || DB.m.als[al.id].mode == 'edit'"><i class="icon-remove"></i></button>
                     </div>
                     <div class="confirms">
