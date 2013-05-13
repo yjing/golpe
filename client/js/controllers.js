@@ -507,7 +507,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
         }
     }
     $scope.isNewAl = function () {
-        return al != null;
+        return $scope.al != null;
     };
 
     $scope.selected_al = null;
