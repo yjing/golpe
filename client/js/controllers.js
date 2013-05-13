@@ -612,6 +612,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
 
     // MAIN METHOD
     $scope.main = function() {
+        console.log(window);
         var modes = ALService.modes(
             function(d, h) {
                 $scope.modes = d;
