@@ -533,8 +533,8 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
 
     $scope.al = null;
     $scope.files = [];
-    $rootScope.modes = null;
-    $rootScope.mode = null;
+    $scope.modes = null;
+    $scope.mode = null;
 
     $scope.addFile = function() {
         $scope.files.push({});
@@ -605,11 +605,11 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
     $scope.main = function() {
         var modes = ALService.modes(
             function(d, h) {
-                $rootScope.modes = d;
-                $rootScope.mode = d.default;
+                $scope.modes = d;
+                $scope.mode = d.default;
 
                 ALService.loadAll(
-                    {reload: false, 'mode':$rootScope.mode},
+                    {reload: false, 'mode':$scope.mode},
                     // SUCCESS
                     function(data, handlers){
                         $scope.menu = DBService.d.als;
@@ -640,9 +640,8 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
     }
 
     $scope.reload = function(id) {
-        console.log("DDDD");
         ALService.loadAll(
-            {reload: true, 'mode':$rootScope.mode},
+            {reload: true, 'mode':$scope.mode},
             // SUCCESS
             function(data, handlers){
                 $scope.menu = DBService.d.als;
