@@ -521,6 +521,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
             // SUCCESS
             function(data, handlers){
                 $scope.menu = DBService.d.als;
+                angular.element('#alform').reset();
             },
             // ERROR
             function(error){
