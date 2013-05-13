@@ -125,6 +125,7 @@
                 </span>
                 <span ng-hide="DB.d.users[ DB.d.als[selected_al].user_id ].id == user.User.id;">
                     <h4>
+                        <button ng-show="isMobile"><i class="icon-backward"></i> </button>
                         {{DB.d.als[selected_al].title}}
                     </h4>
                 </span>
