@@ -624,11 +624,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
                         for(var i=0; i<DBService.d.als.length; i++) {
                             menu.push(DBService.d.als[i]);
                         }
-                        console.log("-------------");
-                        console.log(DBService.d.als);
                         $scope.menu = menu;
-                        console.log($scope.menu);
-                        console.log("-------------");
                     },
                     // ERROR
                     function(error){
@@ -704,11 +700,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
                     if(angular.isObject(d)) {
                         DBService.m.als[id].mode = 'normal';
                     }
-                    var menu = [];
-                    angular.forEach(DBService.d.als, function(k, v){
-                        menu.push(k);
-                    });
-                    $scope.menu = menu;
+                    $scope.reload()
                 },
                 function (e) {
                     $rootScope.handleError(e);
