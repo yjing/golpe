@@ -646,7 +646,11 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
             // SUCCESS
             function(data, handlers){
                 $scope.menu = DBService.d.als;
-                $scope.selectAL($scope.selected_al);
+                if(angular.isDefined(DBService.d.als[$scope.selected_al])) {
+                    $scope.selectAL($scope.selected_al);
+                } else {
+                    $scope.selected_al = null;
+                }
             },
             // ERROR
             function(error){
