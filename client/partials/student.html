@@ -195,7 +195,7 @@
                 </li>
                 <li ng-repeat="c in DB.m.als[selected_al].comments" ng-show="showComments(selected_al);">
                     <p class="selector">{{DB.d.comments[c].content}}</p>
-                    <p class="selector">{{DB.m.comments[c].media}}</p>
+                    <p class="selector">{{DB.m.comments[c]}}</p>
                     <ul class="thumbnails">
                         <li ng-repeat="m in DB.m.comments[c].media" class="span3" style="margin: 3px">
                             <div class="thumbnail">
