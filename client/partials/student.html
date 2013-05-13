@@ -12,7 +12,7 @@
             <ul>
                 <li>
                     <select ng-model="mode" class="edit-field" style="width: 96%; margin: 2%;">
-                        <option ng-repeat="m in modes.modes" selected="{{m == modes.default;}}" selected>{{m}}</option>
+                        <option ng-repeat="m in modes.modes">{{m}}</option>
                     </select>
                 </li>
                 <li ng-repeat="al in menu" ng-class="isSelectedAl(al.id)">

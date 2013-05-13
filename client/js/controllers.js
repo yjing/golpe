@@ -610,7 +610,8 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
                 $scope.menu = DBService.d.als;
                 var modes = ALService.modes(
                     function(d, h) {
-                        $scope.modes = d;
+                        $rootScope.modes = d;
+                        $rootScope.mode = d.default;
                     }
                 );
             },
