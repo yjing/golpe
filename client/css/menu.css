@@ -43,11 +43,11 @@ div.menu > div {
     background-color: #fafafa;
 }
 
-@media screen and (max-width: 768px) {
-    div.menu > div:first-child {
-        background-color: #7ab5d3;
-    }
-}
+/*@media screen and (max-width: 768px) {*/
+    /*div.menu > div:first-child {*/
+        /*background-color: #7ab5d3;*/
+    /*}*/
+/*}*/
 
 div.menu > div:first-child {
     /* HEADER */
