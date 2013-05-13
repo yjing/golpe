@@ -706,7 +706,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         }
 
         if(angular.isDefined(DBService.d.projects[id])) {
-            var data = DBService.d.projects[id];
+            var data = DBService.d.als[id];
             var params = {'id':id};
 
             BusyService.busy(true);
