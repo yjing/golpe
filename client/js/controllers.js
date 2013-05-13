@@ -521,6 +521,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
             // SUCCESS
             function(data, handlers){
                 BusyService.busy(false);
+                $scope.reload();
                 document.getElementById('alform').reset();
             },
             // ERROR
