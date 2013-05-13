@@ -640,6 +640,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
     }
 
     $scope.reload = function(id) {
+        console.log("DDDD");
         ALService.loadAll(
             {reload: true, 'mode':$rootScope.mode},
             // SUCCESS
