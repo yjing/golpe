@@ -773,10 +773,9 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
 
             if(content.length > 0) {
                 window.clearInterval(id);
-                console.log("ESCO!");
                 // Refresh DATA
                 ALService.loadAll(
-                    {reload: true, mode:mode},
+                    {reload: true, mode:$scope.mode},
                     // SUCCESS
                     function(data, handlers){
                         BusyService.busy(false);
