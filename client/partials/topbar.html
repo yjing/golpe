@@ -36,7 +36,7 @@ APP TOP BAR: configurable from the Controller
         <ul class="nav" style="float: right;margin-right: 0px;">
             <!-- BUTTONS -->
             <!-- I.CLASS CAN BE item or divider-vertical -->
-            <li ng-repeat="i in top_bar.buttons" class="{{i.type}}" ng-click="i.func(this);" ng-hide="i.show">
+            <li ng-repeat="i in top_bar.buttons" class="{{i.type}}" ng-click="i.func(this);">
                 <a href="#" ng-hide="i.type == 'divider-vertical'">
                     <span>{{i.label}} </span><i ng-class="i.icon"></i>
                 </a>

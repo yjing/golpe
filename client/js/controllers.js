@@ -483,7 +483,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
 //            }
 //        ],
         buttons: [
-            { type: 'item', label: 'New Activity Log', func: function(){ $scope.al = {}; }, icon: 'icon-plus', show: $scope.al }
+            { type: 'item', label: 'New Activity Log', func: function(){ $scope.al = {}; }, icon: 'icon-plus' }
 //            ,{ type: 'divider-vertical' },
 //            { type: 'item', label: 'Users', func: $scope.login, icon: 'icon-chevron-left' }
         ],
@@ -628,6 +628,20 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
         });
     } else {
         $scope.main();
+    }
+
+    $scope.reload = function(id) {
+        ALService.loadAll(
+            {reload: true, mode:'mine'},
+            // SUCCESS
+            function(data, handlers){
+                $scope.menu = DBService.d.als;
+            },
+            // ERROR
+            function(error){
+                $rootScope.handleError(error);
+            }
+        );
     }
 
     $scope.selectAL = function(id) {
