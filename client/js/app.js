@@ -148,6 +148,8 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
         }
     }
 
+    $rootScope.windowWidth = $(window).width();
+    $rootScope.isMobile = $rootScope.windowWidth < 767;
     $(window).resize(function() {
         $rootScope.$apply(function(){
             $rootScope.windowWidth = $(window).width();
