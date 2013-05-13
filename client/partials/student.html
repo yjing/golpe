@@ -15,7 +15,6 @@
                         <option ng-repeat="m in modes.modes">{{m}}</option>
                     </select>
                 </li>
-                {{menu}}
                 <li ng-repeat="al in menu | orderBy:'title':true" ng-class="isSelectedAl(al.id)" class="{{question(al.id)}}">
                     <a href="#" ng-click="selectAL(al.id);">
                         {{al.title}}
