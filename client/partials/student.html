@@ -110,7 +110,8 @@
             <div>
                 <span>
                     <h4 class="clickable" ng-hide="DB.m.als[selected_al].mode == 'edit'" ng-click="editAl(selected_al);">
-                        {{DB.d.als[selected_al].title}} <i class="icon-pencil"></i> {{DB.d.als[selected_al].modified}} / {{DB.d.als[selected_al].created}}
+                        {{DB.d.als[selected_al].title}} <i class="icon-pencil"></i>
+                        <!--{{DB.d.als[selected_al].modified}} / {{DB.d.als[selected_al].created}}-->
                     </h4>
                     <!-- EDIT MODE -->
                     <span ng-show="DB.m.als[selected_al].mode == 'edit'">
@@ -145,9 +146,9 @@
             <ul ng-show="showInfo(selected_al);">
                 <li>
                     <span class="selector">
-                        user: {{DB.d.users[DB.d.als[selected_al].id].username}}
-                        created: {{DB.d.als[selected_al].created}}<br>
-                        modified: {{DB.d.als[selected_al].modified}}
+                        <p><strong>user:</strong> {{DB.d.users[DB.d.als[selected_al].id].username}}</p>
+                        <p><strong>created:</strong> {{DB.d.als[selected_al].created}}<br></p>
+                        <p><strong>modified:</strong> {{DB.d.als[selected_al].modified}}</p>
                     </span>
                 </li>
             </ul>
