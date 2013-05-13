@@ -195,12 +195,12 @@
                 </li>
                 <li ng-repeat="c in DB.m.als[selected_al].comments" ng-show="showComments(selected_al);">
                     <p class="selector">{{DB.d.comments[c].content}}</p>
-                    <p class="selector">{{DB.m.comments[c]}}</p>
                     <ul class="thumbnails">
                         <li ng-repeat="m in DB.m.comments[c].media" class="span3" style="margin: 3px">
                             <div class="thumbnail">
-                                <img src="/media/download/{{DB.d.media[m].id}}?thumb=BIG" alt="{{DB.d.media[m].filename}}" ng-show="DB.d.media[m]['content-type'].ondexOf('image/') == 0">
-                                <img src="{{getThumbUrl(DB.d.media[m]['content-type']);}}" alt="{{DB.d.media[m].filename}}" ng-hide="DB.d.media[m]['content-type'].ondexOf('image/') == 0">
+                                <img src="/media/download/{{DB.d.media[m].id}}?thumb=BIG" alt="{{DB.d.media[m].filename}}">
+                                <!--<img src="/media/download/{{DB.d.media[m].id}}?thumb=BIG" alt="{{DB.d.media[m].filename}}" ng-show="DB.d.media[m]['content-type'].ondexOf('image/') == 0">-->
+                                <!--<img src="{{getThumbUrl(DB.d.media[m]['content-type']);}}" alt="{{DB.d.media[m].filename}}" ng-hide="DB.d.media[m]['content-type'].ondexOf('image/') == 0">-->
                                 <p>{{DB.d.media[m].filename}}</p>
                             </div>
                         </li>
