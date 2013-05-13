@@ -771,17 +771,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
                 content = iframe.document.body.innerHTML;
             }
 
-            var unBusy = false;
-            // Check Result
-            var result = $(content).children().eq(0).text();
-//            try {
-//                result = JSON.parse(content);
-//            } catch (e) {
-//
-//            }
-            console.log("TEST CONTENT");
-            console.log(result);
-            if(angular.isObject(content)) {
+            if(content.length > 0) {
                 window.clearInterval(id);
                 console.log("ESCO!");
                 // Refresh DATA
