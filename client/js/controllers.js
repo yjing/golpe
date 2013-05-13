@@ -495,6 +495,17 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
         ]
     };
 
+    $scope.al = null;
+    $scope.files = [];
+
+    $scope.addFile = function() {
+        $scope.files.push({});
+    }
+    $scope.removeFile = function(index) {
+        if (index < $scope.files.length) {
+            $scope.files.splice(index, 1);
+        }
+    }
 
     $scope.selected_al = null;
     $scope.isSelectedAl = function(id){
