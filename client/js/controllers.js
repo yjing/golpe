@@ -649,6 +649,27 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
         }
     };
 
+    $scope.deleteAl = function(confirm, id) {
+        if(angular.isDefined(DBService.d.als[id])){
+            if(confirm == true) {
+                var index = $scope.findProjectIndexById(id);
+                ProjectsService.delete(id,
+                    function(d, h) {
+                        $scope.menu.splice(index, 1);
+                        if($scope.menu.length > 0) {
+                            $scope.selectProject(0);
+                        }
+                    },
+                    function(e) {
+                        $rootScope.handleError(e);
+                    }
+                );
+            } else {
+                DBService.m.als[id].mode = 'deleting';
+            }
+        }
+    }
+
 
 }
 
