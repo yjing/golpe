@@ -150,7 +150,8 @@
                 <li>
                     <span class="selector">
                         <!--DB.d.users[DB.m.als[al.id].user[0]].username-->
-                        <p ng-show="DB.d.users[DB.m.als[selected_al].user_id[0]].id == user.User.id;"><strong>user:</strong> You</p>{{user.User.id}}
+                        {{user.User.id}} / DB.d.users[DB.m.als[selected_al].user_id[0]].id
+                        <p ng-show="DB.d.users[DB.m.als[selected_al].user_id[0]].id == user.User.id;"><strong>user:</strong> You</p>
                         <p ng-hide="DB.d.users[DB.m.als[selected_al].user_id[0]].id == user.User.id;"><strong>user:</strong> {{DB.d.users[DB.m.als[selected_al].user_id[0]].username}}</p>
                         <p><strong>created:</strong> {{DB.d.als[selected_al].created}}<br></p>
                         <p><strong>modified:</strong> {{DB.d.als[selected_al].modified}}</p>
