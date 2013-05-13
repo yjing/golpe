@@ -736,7 +736,7 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
                 data,
                 function(d, h) {
                     BusyService.busy(false);
-//                    _THIS.insertAL(al);
+                    _THIS.insertAL(al);
 
                     // CALLBACKS
                     if(angular.isDefined(success)) {
@@ -818,7 +818,13 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             delete al.Comment;
             delete al.Media;
             delete al.User;
+
+            console.log(al);
+            console.log(al['id']);
+            console.log(this.d.als[al['id']]);
+
             DBService.insertData('als', al['id'], al);
+
             DBService.insertMeta('als', al['id'], 'media', media);
             DBService.insertMeta('als', al['id'], 'comments', comments);
             DBService.insertMeta('als', al['id'], 'user', [ al['user_id'] ]);
