@@ -660,8 +660,8 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
             function(data, handlers){
                 var menu = [];
                 angular.forEach(DBService.d.als, function(k, v){
-                    console.log(v);
-                    menu.push(v);
+                    console.log(k);
+                    menu.push(k);
                 });
                 console.log("-------------");
                 console.log(DBService.d.als);
