@@ -520,6 +520,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
             {reload: true, mode:'mine'},
             // SUCCESS
             function(data, handlers){
+                BusyService.busy(false);
                 document.getElementById('alform').reset();
             },
             // ERROR
