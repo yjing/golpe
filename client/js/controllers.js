@@ -637,9 +637,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
 
     $scope.saveAl = function(id){
         if(angular.isDefined(DBService.d.als[id])) {
-            var data = DBService.d.als[id];
-            console.log("HEREUP");
-            ALService.saveAL(data,
+            ALService.save(id,
                 function(d, h){
                     if(angular.isObject(d)) {
                         console.log("HERE");
