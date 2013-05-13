@@ -11,8 +11,8 @@
             </div>
             <ul>
                 <li>
-                    <select ng-model="mode" class="edit-field" style="width: 96%; margin: 2%;">
-                        <option>TEST</option>
+                    <select ng-model="mode" ng-repeat="m in modes" class="edit-field" style="width: 96%; margin: 2%;">
+                        <option>m</option>
                     </select>
                 </li>
                 <li ng-repeat="al in menu" ng-class="isSelectedAl(al.id)">

@@ -623,8 +623,9 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             method: 'GET',
             isArray: false
         },
-        load: {
-            method: 'POST'
+        modes: {
+            method: 'GET',
+            url: '/activity_logs/modes'
         }
     });
 
@@ -663,6 +664,26 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
             }
         );
 
+    }
+
+    this.modes = function(){
+        BusyService.busy(true);
+        this.ALs.modes(
+            function(d, h){
+                BusyService.busy(false);
+
+                // CALLBACKS
+                if(success) {
+                    success(d, h);
+                }
+            },
+            function(e) {
+                // CALLBACK
+                if(success) {
+                    success(DBService.d.als[id]);
+                }
+            }
+        );
     }
 
     this.load = function(id, success, error) {
