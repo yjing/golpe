@@ -560,8 +560,11 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
     };
 
     $scope.question = function (id) {
-        console.log(DBService.d.als[id].question == true);
-        return DBService.d.als[id].question ? 'question' : '';
+        if(angular.isDefined(DBService.d.als[id])) {
+            return DBService.d.als[id].question ? 'question' : '';
+        } else {
+            return '';
+        }
     };
 
     $scope.selected_al = null;
