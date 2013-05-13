@@ -742,6 +742,16 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
         }
     }
 
+    $scope.download = function (id) {
+        if(angular.isDefined(DBService.d.media[id])) {
+            var m = DBService.d.media[id];
+            if(m['content-type'].ondexOf('imag/') == 0) {
+                window.location.href = '/media/download/' + id;
+            } else {
+                window.location.href = '/media/download/' + id + '?download=true';
+            }
+        }
+    };
 
     $scope.findAlIndexById = function(id){
         for(var i=0; i<$scope.menu.length; i++) {
