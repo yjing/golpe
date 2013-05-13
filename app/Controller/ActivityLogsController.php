@@ -240,7 +240,7 @@ class ActivityLogsController extends RESTController {
                         )
                     ),
                     'Media' => array(
-                        'fields' => array('id', 'filename', 'content-type', 'content-size', 'meta', 'has_thumb', 'status', 'user_id'),
+                        'fields' => array('id', 'filename', 'content-type', 'content-size', 'meta', 'has_thumb', 'status', 'user_id', 'created', 'modified'),
                         'associations' => array(
                             'User' => array('fields' => array('username'))
                         )
@@ -273,13 +273,13 @@ class ActivityLogsController extends RESTController {
                     )
                 ),
                 'Media' => array(
-                    'fields' => array('id', 'filename', 'content-type', 'content-size', 'meta', 'has_thumb', 'status', 'user_id'),
+                    'fields' => array('id', 'filename', 'content-type', 'content-size', 'meta', 'has_thumb', 'status', 'user_id', 'created', 'modified'),
                     'associations' => array(
                         'User' => array('fields' => array('username'))
                     )
                 ),
                 'Comment' => array(
-                    'fields' => array('id', 'content', 'user_id'),
+                    'fields' => array('id', 'content', 'user_id', 'created', 'modified'),
                     'associations' => array(
                         'User' => array('fields' => array('username'))
                     )
