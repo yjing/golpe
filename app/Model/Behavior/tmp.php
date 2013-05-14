@@ -67,3 +67,36 @@ array(
 )
 
 
+
+
+function afterSave( $saved_model ) {
+  if ( $saved_model->data CONTAINS $media ) {
+    $database->transactionBegin();
+    
+    foreach ( $m IN $media ) {
+      $thumbs <- generateImageThumbs ( $m->tmpLocation );
+      IF ERROR $database->transactionRollback();
+      
+      $database->save ( $m );
+      IF ERROR $database->transactionRollback();
+      
+      $database->save ( $m JOIN $saved_model );
+      IF ERROR $database->transactionRollback();
+      
+      $filesystem-> move ( [ $m, $thumbs ] -> $uploads_folder );
+      IF ERROR $database->transactionRollback();
+      
+      $database->transactionCommit();
+    }    
+  }
+}
+
+
+
+
+
+
+
+
+
+
