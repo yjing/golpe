@@ -23,34 +23,34 @@ function beforeFind ( $query )
 }
 
 
-function startup( $controller ) { 
-  $user <- getLoggedUser();  
-  $basic_log = {
-    'user_id' : $user->id,
-    'session_id' => USER_SESSION_ID,
-    'method' => $request->method,
-    'controller' => $controller->name,
-    'action' => $controller->action,
-    'resource' => $controller->default_resource_name,
-    'resource_id' => NULL,
-    'importance' => 0,
-    'result' => FAIL
-  }
-  $log_db_id <- $database->save( $basic_log );  
-}
-
-// CONTROLLER ACTION HAPPENS HERE,
-// CONTROLLER CAN:
-//    - setResourceId(MODEL_ID_TYPE);
-//    - setResourceName(STRING);
-//    - setImportance(NUM);
-//    - setActionResult(BOOLEAN)
-
-function beforeRender( $controller ) {
-  $final_log = $database->read( $log_db_id );
-  $final_log += CONTROLLER_DEFINED_PARAMETERS;
-  $database->save( $final_log );
-}
+            function startup( $controller ) { 
+              $user <- getLoggedUser();  
+              $basic_log = {
+                'user_id' : $user->id,
+                'session_id' => USER_SESSION_ID,
+                'method' => $request->method,
+                'controller' => $controller->name,
+                'action' => $controller->action,
+                'resource' => $controller->default_resource_name,
+                'resource_id' => NULL,
+                'importance' => 0,
+                'result' => FAIL
+              }
+              $log_db_id <- $database->save( $basic_log );  
+            }
+            
+            // CONTROLLER ACTION HAPPENS HERE,
+            // CONTROLLER CAN:
+            //    - setResourceId(MODEL_ID_TYPE);
+            //    - setResourceName(STRING);
+            //    - setImportance(NUM);
+            //    - setActionResult(BOOLEAN)
+            
+            function beforeRender( $controller ) {
+              $final_log = $database->read( $log_db_id );
+              $final_log += CONTROLLER_DEFINED_PARAMETERS;
+              $database->save( $final_log );
+            }
 
 
 
