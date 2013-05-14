@@ -75,6 +75,7 @@ function afterSave( $saved_model ) {
     
     foreach ( $m IN $media ) {
       $thumbs <- generateImageThumbs ( $m->tmpLocation );
+      $filesystem-> save ( $thumbs );
       IF ERROR $database->transactionRollback();
       
       $database->save ( $m );
