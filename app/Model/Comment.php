@@ -54,8 +54,9 @@ class Comment extends AssociativeModel {
                 // And the TARGET object
                 $this->targetModel->recursive = -1;
                 $this->targetObject = $this->targetModel->find('first', array(
-                    'conditions' => array(
-                        $this->targetModel->alias . '.' . $this->targetModel->primaryKey => $this->data['Target']['id']
+                        'conditions' => array(
+                            $this->targetModel->alias . '.' . $this->targetModel->primaryKey => $this->data['Target']['id']
+                        )
                     )
                 );
                 debug($this->targetObject);die();
