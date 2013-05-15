@@ -58,6 +58,7 @@ class Comment extends AssociativeModel {
                         $this->targetModel->alias . '.' . $this->targetModel->primaryKey => $this->data['Target']['id']
                     )
                 );
+                debug($this->targetObject);die();
                 // If the object is NULL the comment won't be saved
                 // TODO: Other checks have to be implemented here (e.g. AUTHORIZATION)
                 if(!$this->targetObject) {
