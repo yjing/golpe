@@ -59,18 +59,14 @@ class Comment extends AssociativeModel {
                         )
                     )
                 );
-                debug($this->targetObject);
-                debug($this->targetObject == null);
-                debug(count($this->targetObject));
-                die();
+                
                 // If the object is NULL the comment won't be saved
-                // TODO: Other checks have to be implemented here (e.g. AUTHORIZATION)
                 if($this->targetObject == null || count($this->targetObject) == 0) {
                     return false;
                 }
                 
                 // Generate JOIN MODEL name
-                $joinModel_a = array($this->data['Target']['alias'], $this->alias);
+                $joinModel_a = array($this->targetObject->alias, $this->alias);
                 sort($joinModel_a);
                 $joinModel_name = implode($joinModel_a);
                 
