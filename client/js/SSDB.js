@@ -129,7 +129,11 @@ function Table(name, pkey) {
         }
         return ret;
     };
-    this.select = function (where, fields) {
+    this.select = function(fields){
+        return new Query(this).select(fields);
+    }
+
+    this.select2 = function (where, fields) {
         if(angular.isUndefined(where) || where == null) {
             where = [];
         }
