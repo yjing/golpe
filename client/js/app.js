@@ -249,7 +249,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ], function($route
         SSDBService.createTable("table2");
 
 
-        SSDBService.addFKey ('test', {field:'t2_id', on:'table2', refers:'id'});
+        SSDBService.addFKey ('test', {field:'t2_id', refers:'table2'});
 
         console.log(SSDBService.data);
         console.log(SSDBService.meta);

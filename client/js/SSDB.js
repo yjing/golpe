@@ -54,14 +54,6 @@ angular.module('SSDB', [])
                     throw "Add FKey: fkey.field is empty.";
                 }
 
-                if(angular.isUndefined(fkey.on) || fkey.on == null) {
-                    throw "Add FKey: fkey.on required.";
-                } else if(!angular.isString(fkey.on)) {
-                    throw "Add FKey: fkey.on has to be a string.";
-                } else if(fkey.on.trim().length == 0) {
-                    throw "Add FKey: fkey.on is empty.";
-                }
-
                 if(angular.isUndefined(fkey.refers) || fkey.refers == null) {
                     throw "Add FKey: fkey.refers required.";
                 } else if(!angular.isString(fkey.refers)) {
@@ -77,14 +69,15 @@ angular.module('SSDB', [])
             if(angular.isUndefined(this.meta[table_name])) {
                 throw "Add FKey: table '" + table_name + "' doesn't exists.";
             }
-            if(angular.isUndefined(this.meta[fkey.on])) {
-                throw "Add FKey: referenced table '" + fkey.on + "' doesn't exists.";
+            if(angular.isUndefined(this.meta[fkey.refers])) {
+                throw "Add FKey: referenced table '" + fkey.refers + "' doesn't exists.";
             }
 
             if(angular.isUndefined(this.meta[table_name].fkeys)) {
-                this.meta[table_name].fkeys = [];
+                this.meta[table_name].fkeys = {};
             }
-            this.meta[table_name].fkeys.push(fkey);
+
+            this.meta[table_name].fkeys[fkey.field] = fkey.referrer;
 
         }
 
