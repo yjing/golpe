@@ -100,29 +100,32 @@ function Table(name, pkey) {
         Table.names.push(name);
     }
 
-    this.data = {};
-    this.name = name;
-    this.primary = pkey;
+    var data = {};
+    var name = name;
+    var primary = pkey;
 
     this.getName = function(){
-        return this.name;
+        return name;
     }
     this.getPrimary = function(){
-        return this.primary;
+        return primary;
+    }
+    this.getData = function(){
+        return angular.copy(data);
     }
 
 
     this.insert = function(id, obj) {
-        this.data[id] = obj;
+        data[id] = obj;
     }
     this.get = function (id) {
         var ret = [];
         if(angular.isArray(id)) {
             for (var i = 0; i < id.length; i++) {
-                ret.push(this.data[id[i]]);
+                ret.push(data[id[i]]);
             }
         } else {
-            ret = this.data[id];
+            ret = data[id];
         }
         return ret;
     };
@@ -135,7 +138,7 @@ function Table(name, pkey) {
         }
 
         var res = [];
-        angular.forEach(this.data, function(v, k){
+        angular.forEach(data, function(v, k){
             var put = true;
             for (var i = 0; i < where.length; i++) {
                 var cond = where[i];
@@ -154,11 +157,41 @@ function Table(name, pkey) {
     this.delete = function(id) {
         if(angular.isArray(id)) {
             for (var i = 0; i < id.length; i++) {
-                delete this.data[id[i]];
+                delete data[id[i]];
             }
         } else {
-            delete this.data[id];
+            delete data[id];
         }
     }
 
+}
+
+function Query(table){
+    if(angular.isUndefined(table) || table == null) {
+        throw "Query: table required";
+    }
+    if(!(table instanceof Table)) {
+        throw "Query: table type error";
+    }
+
+    var data = [];
+    var fields;
+    var conditions;
+
+    this.select = function(flds) {
+        if(angular.isUndefined(flds) || flds == null) {
+            flds = [];
+        }
+        fields = flds;
+        return this;
+    }
+
+    this.where = function(conds) {
+        conditions = conds;
+        return this;
+    }
+
+    this.execute = function() {
+        return table.getData();
+    }
 }

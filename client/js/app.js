@@ -251,13 +251,8 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ], function($route
         users.insert(2, {name:'y.jing'});
         users.insert(3, {name:'q.dang'});
 
-        console.log("YES: ");
-        console.log(users.select([{field:'name', value:'s.susini'}]));
-        console.log("NO: ");
-        console.log(users.select([
-            {field:'name', value:'s.susini'},
-            {field:'name', value:'y.jing'}
-        ]));
+        var q = new Query(users).select().where();
+        console.log(q.execute());
 
 //    $rootScope.US = this;
 //    var _THIS = this;
