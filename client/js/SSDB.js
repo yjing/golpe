@@ -25,7 +25,11 @@ angular.module('SSDB', [])
             }
 
             this.data[table_name] = {};
-            this.meta[table_name] = { "pkey": pkey };
+            this.meta[table_name] = {
+                primary: pkey,
+                fkeys: {},
+                referred: {}
+            };
 
 //            { field: 'test_id', on: { table: 'test', field: 'id' } }
             if(angular.isDefined(options.fkeys) && angular.isArray(options.fkeys)) {
@@ -73,11 +77,8 @@ angular.module('SSDB', [])
                 throw "Add FKey: referenced table '" + fkey.refers + "' doesn't exists.";
             }
 
-            if(angular.isUndefined(this.meta[table_name].fkeys)) {
-                this.meta[table_name].fkeys = {};
-            }
-
-            this.meta[table_name].fkeys[fkey.field] = fkey.referrer;
+            this.meta[table_name].fkeys[fkey.field] = fkey.refers;
+            this.meta[fkey.refers].referred[table_name] = fkey.field;
 
         }
 
