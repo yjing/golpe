@@ -133,6 +133,7 @@ function Table(name, pkey) {
                 var cond = where[i];
                 console.log(v);
                 console.log(cond);
+                console.log(v[cond.field]);
                 if(v[cond.field] == cond.value) {
                     res.push(v);
                 }
