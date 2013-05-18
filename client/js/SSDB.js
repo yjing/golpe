@@ -45,6 +45,7 @@ angular.module('SSDB', [])
             }
 
             if(fkey != null) {
+
                 if(angular.isUndefined(fkey.field) || fkey.field == null) {
                     throw "Add FKey: fkey.field required.";
                 } else if(!angular.isString(fkey.field)) {
@@ -55,23 +56,20 @@ angular.module('SSDB', [])
 
                 if(angular.isUndefined(fkey.on) || fkey.on == null) {
                     throw "Add FKey: fkey.on required.";
-                } else {
-                    if(angular.isUndefined(fkey.on.table) || fkey.on.table == null) {
-                        throw "Add FKey: fkey.on.table required.";
-                    } else if(!angular.isString(fkey.on.table)) {
-                        throw "Add FKey: fkey.on.table has to be a string.";
-                    } else if(fkey.on.table.trim().length == 0) {
-                        throw "Add FKey: fkey.on.table is empty.";
-                    }
-
-                    if(angular.isUndefined(fkey.on.field) || fkey.on.field == null) {
-                        throw "Add FKey: fkey.on.field required.";
-                    } else if(!angular.isString(fkey.on.field)) {
-                        throw "Add FKey: fkey.on.field has to be a string.";
-                    } else if(fkey.on.field.trim().length == 0) {
-                        throw "Add FKey: fkey.on.field is empty.";
-                    }
+                } else if(!angular.isString(fkey.on)) {
+                    throw "Add FKey: fkey.on has to be a string.";
+                } else if(fkey.on.trim().length == 0) {
+                    throw "Add FKey: fkey.on is empty.";
                 }
+
+                if(angular.isUndefined(fkey.refers) || fkey.refers == null) {
+                    throw "Add FKey: fkey.refers required.";
+                } else if(!angular.isString(fkey.refers)) {
+                    throw "Add FKey: fkey.refers has to be a string.";
+                } else if(fkey.refers.trim().length == 0) {
+                    throw "Add FKey: fkey.refers is empty.";
+                }
+
             } else {
                 throw "Add FKey: fkey required.";
             }
@@ -84,9 +82,9 @@ angular.module('SSDB', [])
             }
 
             if(angular.isUndefined(this.meta[table_name].fkeys)) {
-                this.meta[table_name].fkeys = [];
+                this.meta[table_name].fkeys = {};
             }
-            this.meta[table_name].fkeys.push(fkey);
+            this.meta[table_name].fkeys.push();
 
         }
 
