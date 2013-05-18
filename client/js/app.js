@@ -246,12 +246,12 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ], function($route
 })
 .service('UsersService', function($rootScope, $resource, BusyService, DBService, SSDBService){
 
-        var users = new Table('users');
-        users.insert(1, {name:'s.susini'});
-        users.insert(2, {name:'y.jing'});
-        users.insert(3, {name:'q.dang'});
+        var Users = new Table('Users');
+        Users.insert(1, {name:'s.susini'});
+        Users.insert(2, {name:'y.jing'});
+        Users.insert(3, {name:'q.dang'});
 
-        var q = users.select().where();
+        var q = Users.select().where();
         console.log(q.execute());
 
 //    $rootScope.US = this;

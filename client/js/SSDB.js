@@ -184,18 +184,32 @@ function Query(table){
 
     this.select = function(flds) {
         if(angular.isUndefined(flds) || flds == null) {
-            flds = [];
+            flds = false;
         }
         fields = flds;
         return this;
     }
 
     this.where = function(conds) {
+        if(angular.isUndefined(conds) || conds == null) {
+            conds = false;
+        }
         conditions = conds;
         return this;
     }
 
     this.execute = function() {
+        doWhere();
+        doSelect();
         return table.getData();
+    }
+
+    var doWhere = function(){
+        console.log("doWhere");
+        console.log(data);
+    }
+    var doSelect = function(){
+        console.log("doSelect");
+        console.log(data);
     }
 }
