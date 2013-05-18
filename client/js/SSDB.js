@@ -47,17 +47,17 @@ angular.module('SSDB', [])
                 throw "Add FKey: table_name and fkey required.";
             }
 
-            if(angular.isDefined(fkey)) {
-                if(angular.isUndefined(fkey.field)) {
+            if(angular.isDefined(fkey) && fkey != null) {
+                if(angular.isUndefined(fkey.field) || fkey.field == null) {
                     throw "Add FKey: fkey.field required.";
                 }
-                if(angular.isUndefined(fkey.on)) {
+                if(angular.isUndefined(fkey.on) || fkey.on == null) {
                     throw "Add FKey: fkey.on required.";
                 } else {
-                    if(angular.isUndefined(fkey.on.table)) {
+                    if(angular.isUndefined(fkey.on.table) || fkey.on.table == null) {
                         throw "Add FKey: fkey.on.table required.";
                     }
-                    if(angular.isUndefined(fkey.on.field)) {
+                    if(angular.isUndefined(fkey.on.field) || fkey.on.field == null) {
                         throw "Add FKey: fkey.on.field required.";
                     }
                 }
