@@ -244,6 +244,89 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     }
 
 })
+.service('UsersService', function($rootScope, $resource, BusyService, DBService){
+    $rootScope.US = this;
+    var _THIS = this;
+
+    var USER_TABLE = 'users';
+    var USER_DATAKEY = 'User';
+    var USER_PKEY = 'id';
+
+    // MODE CONSTANTS
+    var MODE_KEY = 'mode';
+    var MODE_EDIT = 'edit'
+    var MODE_NORMAL = 'normal'
+    var MODE_DELETING = 'deleting';
+    // STATUS CONSTANTS
+    var STATUS_KEY = 'status';
+    var STATUS_PARTIAL = 'partial';
+    var STATUS_COMPLETE = 'complete';
+    var STATUS_NEW = 'new';
+
+    this.Users = $resource('/users/:id', { id:'@id' }, {
+        all: {
+            method: 'GET',
+            isArray: true
+        },
+        load: {
+            method: 'GET',
+            isArray: false
+        }
+    });
+
+    this.loadAll = function(reload, success, error) {
+        // PARAM MANAGEMENT
+        if(arguments.length > 0 && typeof arguments[0] == "function") {
+            if(arguments.length > 1) {
+                error = arguments[1];
+            }
+            success = arguments[0];
+            reload = false;
+        }
+
+        BusyService.busy(true);
+        var result = this.Users.all(
+            function(d, h) {
+                BusyService.busy(false);
+                _THIS.insertUsers(d);
+
+                // CALLBACKS
+                if(angular.isDefined(success)) {
+                    success(d, h);
+                }
+            },
+            function(e) {
+                BusyService.busy(false);
+
+                // CALLBACKS
+                if(angular.isDefined(error)) {
+                    error(e);
+                }
+            }
+        );
+    }
+
+    // DB ACCESS FUNCS
+    this.insertUsers = function(data) {
+        if(angular.isArray(data)) {
+            for(var i=0; i<data.length; i++) {
+                if(angular.isDefined(data[i][USER_DATAKEY]) &&
+                   angular.isDefined(data[i][USER_DATAKEY][USER_PKEY])) {
+
+                    this.insertUser(data[i][USER_DATAKEY]);
+                }
+            }
+        }
+    }
+    this.insertUser = function(data) {
+        if(angular.isDefined(data)) {
+            DBService.insertMeta(USER_TABLE, data[USER_PKEY], MODE_KEY, MODE_NORMAL);
+            DBService.insertData (USER_TABLE, data[USER_PKEY], angular.copy(data));
+            console.log(DBService.d.users);
+            console.log(DBService.m.users);
+        }
+    }
+})
 .service('ProjectsService', function($rootScope, $resource, BusyService, DBService){
     $rootScope.PS = this;
     var _THIS = this;

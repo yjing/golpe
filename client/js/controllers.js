@@ -69,7 +69,7 @@ function LoginCtrl($scope, $rootScope, $location, auth, BusyService) {
 
 }
 
-function UsersCtrl($scope, $rootScope, $location, Users, auth, BusyService) {
+function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, BusyService) {
     // TOP BAR
     $rootScope.top_bar = {
 //        back_button: {
@@ -99,14 +99,16 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, BusyService) {
         ]
     };
 
-
-    BusyService.busy(false);
     $scope.main = function() {
-        BusyService.busy(true);
-        $scope.users = Users.all();
-        $scope.users.$then(function(){
-            BusyService.busy(false);
-        });
+        UsersService.loadAll(
+            // SUCCESS
+            function(data, handlers){
+            },
+            // ERROR
+            function(error){
+                $rootScope.handleError(error);
+            }
+        );
     }
 
     if($rootScope.user == null || !$rootScope.user['logged']) {
