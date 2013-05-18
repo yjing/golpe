@@ -245,16 +245,10 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ], function($route
 
 })
 .service('UsersService', function($rootScope, $resource, BusyService, DBService, SSDBService){
-
-        SSDBService.addFKey ('test', {field:'', on:{table:'table2', field:ball}});
-
         SSDBService.createTable("test");
-        SSDBService.createTable("test2", "id_t2");
-        SSDBService.createTable("test3", {
-            fkeys: [
-                { field: 'test_id', on: { table: 'test', field: 'id' } }
-            ]
-        });
+
+
+        SSDBService.addFKey ('test', {field:'', on:{table:'table2', field:''}});
 
         console.log(SSDBService.data);
         console.log(SSDBService.meta);
