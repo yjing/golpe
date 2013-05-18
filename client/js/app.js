@@ -2,7 +2,7 @@
 mscproject module
 it defines the client side application.
 */
-var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider, $locationProvider) {
+var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ], function($routeProvider, $locationProvider) {
     $routeProvider.when('/client/login', {
         templateUrl: '/client/partials/login.html',
         controller: "LoginCtrl"
