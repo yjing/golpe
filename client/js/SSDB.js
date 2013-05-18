@@ -47,29 +47,52 @@ angular.module('SSDB', [])
             if(fkey != null) {
                 if(angular.isUndefined(fkey.field) || fkey.field == null) {
                     throw "Add FKey: fkey.field required.";
+                } else if(!angular.isString(fkey.field)) {
+                    throw "Add FKey: fkey.field has to be a string.";
+                } else if(fkey.field.trim().length == 0) {
+                    throw "Add FKey: fkey.field is empty.";
                 }
+
                 if(angular.isUndefined(fkey.on) || fkey.on == null) {
                     throw "Add FKey: fkey.on required.";
                 } else {
                     if(angular.isUndefined(fkey.on.table) || fkey.on.table == null) {
                         throw "Add FKey: fkey.on.table required.";
+                    } else if(!angular.isString(fkey.on.table)) {
+                        throw "Add FKey: fkey.on.table has to be a string.";
+                    } else if(fkey.on.table.trim().length == 0) {
+                        throw "Add FKey: fkey.on.table is empty.";
                     }
+
                     if(angular.isUndefined(fkey.on.field) || fkey.on.field == null) {
                         throw "Add FKey: fkey.on.field required.";
+                    } else if(!angular.isString(fkey.on.field)) {
+                        throw "Add FKey: fkey.on.field has to be a string.";
+                    } else if(fkey.on.field.trim().length == 0) {
+                        throw "Add FKey: fkey.on.field is empty.";
                     }
                 }
             } else {
                 throw "Add FKey: fkey required.";
             }
 
-            var table = this.meta[table_name];
-            if(angular.isUndefined(table)) {
+            if(angular.isUndefined(this.meta[table_name])) {
                 throw "Add FKey: table '" + table_name + "' doesn't exists.";
             }
-            var ref_table = this.meta[fkey.on.table];
-            if(angular.isUndefined(ref_table)) {
+            if(angular.isUndefined(this.meta[fkey.on.table])) {
                 throw "Add FKey: referenced table '" + fkey.on.table + "' doesn't exists.";
             }
+
+            if(angular.isUndefined(this.meta[table_name].fkeys)) {
+                this.meta[table_name].fkeys = {};
+            }
+            if(angular.isUndefined(this.meta[table_name].fkeys[fkey.on.table])) {
+                this.meta[table_name].fkeys[fkey.on.table] = [];
+            }
+            this.meta[table_name].fkeys[fkey.on.table].push(
+                {field: fkey.field, referes: fkey.on.field}
+            );
+
         }
 
     });
