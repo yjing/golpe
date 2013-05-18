@@ -84,6 +84,7 @@ angular.module('SSDB', [])
 
     });
 
+Table.names = [];
 function Table(name, pkey) {
     this.name;
     this.primary;
