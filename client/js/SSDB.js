@@ -127,10 +127,17 @@ function Table(name, pkey) {
         return ret;
     };
     this.select = function (fields, where) {
+        var res = [];
         angular.forEach(this.data, function(v, k){
-            console.log('key: ' + k);
-            console.log('value: ' + v);
-        })
+            for (var i = 0; i < where.length; i++) {
+                var cond = where[i];
+                if(v[cond.field] == cond.value) {
+                    res.push(v);
+                }
+
+            }
+        });
+        return res;
     };
     this.delete = function(id) {
         if(angular.isArray(id)) {

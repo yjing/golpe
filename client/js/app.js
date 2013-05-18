@@ -251,7 +251,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ], function($route
         users.insert(2, {name:'y.jing'});
         users.insert(3, {name:'q.dang'});
 
-        console.log(users.get(2));
+        console.log(users.select({}, [{field:'name', cond:'s.susini'}]));
         console.log(users.select());
 
 //    $rootScope.US = this;
