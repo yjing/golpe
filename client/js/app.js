@@ -244,10 +244,10 @@ var app = angular.module('mscproject', [ 'ngResource' ], function($routeProvider
     }
 
 })
-.service('UsersService', function($rootScope, $resource, BusyService, DBService, SSDB){
+.service('UsersService', function($rootScope, $resource, BusyService, DBService, SSDBService){
 
-        SSDB.createTable("test");
-        SSDB.createTable("test");
+        SSDBService.createTable("test");
+        SSDBService.createTable("test");
 
 //    $rootScope.US = this;
 //    var _THIS = this;
