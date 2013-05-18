@@ -86,26 +86,60 @@ angular.module('SSDB', [])
 
 Table.names = [];
 function Table(name, pkey) {
-    this.name;
-    this.primary;
-
     // ARGUMENT MANAGEMENT
     if(arguments.length == 0) {
         throw "Table: table name required";
     } else if(arguments.length == 1) {
         pkey = 'id';
     }
+    var _THIS = this;
 
+    if(Table.names.indexOf(name) >= 0) {
+        throw "Table: name '" + name + "' already in use.";
+    } else {
+        Table.names.push(name);
+    }
+
+    this.data = {};
     this.name = name;
     this.primary = pkey;
-    Table.names.push(name);
 
     this.getName = function(){
         return this.name;
     }
-
     this.getPrimary = function(){
         return this.primary;
+    }
+
+
+    this.insert = function(id, obj) {
+        this.data[id] = obj;
+    }
+    this.get = function (id) {
+        var ret = [];
+        if(angular.isArray(id)) {
+            for (var i = 0; i < id.length; i++) {
+                ret.push(this.data[id[i]]);
+            }
+        } else {
+            ret = this.data[id];
+        }
+        return ret;
+    };
+    this.select = function (fields, where) {
+        angular.forEach(this.data, function(k, v){
+            console.log('key: ' + k);
+            console.log('value: ' + v);
+        })
+    };
+    this.delete = function(id) {
+        if(angular.isArray(id)) {
+            for (var i = 0; i < id.length; i++) {
+                delete this.data[id[i]];
+            }
+        } else {
+            delete this.data[id];
+        }
     }
 
 }
