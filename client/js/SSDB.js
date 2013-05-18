@@ -83,3 +83,25 @@ angular.module('SSDB', [])
         }
 
     });
+
+function Table(name, pkey) {
+    this.name;
+    this.primary;
+
+    // ARGUMENT MANAGEMENT
+    if(arguments.length == 0) {
+        throw "Table: table name required";
+    } else if(arguments.length == 1) {
+        this.name = name;
+        this.primary = 'id';
+    }
+
+    this.getName = function(){
+        return this.name;
+    }
+
+    this.getPrimary = function(){
+        return this.primary;
+    }
+
+}
