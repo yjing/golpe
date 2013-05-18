@@ -44,6 +44,8 @@ angular.module('SSDB', [])
                 throw "Add FKey: table_name and fkey required.";
             }
 
+
+
             var table = this.meta[table_name];
             if(angular.isUndefined(table)) {
                 throw "Add FKey: table '" + table_name + "' doesn't exists.";
