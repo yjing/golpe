@@ -86,12 +86,7 @@ angular.module('SSDB', [])
             if(angular.isUndefined(this.meta[table_name].fkeys)) {
                 this.meta[table_name].fkeys = {};
             }
-            if(angular.isUndefined(this.meta[table_name].fkeys[fkey.on.table])) {
-                this.meta[table_name].fkeys[fkey.on.table] = [];
-            }
-            this.meta[table_name].fkeys[fkey.on.table].push(
-                {field: fkey.field, referes: fkey.on.field}
-            );
+            this.meta[table_name].fkeys.push(fkey);
 
         }
 
