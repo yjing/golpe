@@ -247,7 +247,17 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ], function($route
 .service('UsersService', function($rootScope, $resource, BusyService, DBService, SSDBService){
 
         SSDBService.createTable("test");
-        SSDBService.createTable("test");
+        SSDBService.createTable("test2", "id_t2");
+        SSDBService.createTable("test3", {
+            fkeys: [
+                {
+                    field: 'test_id', on: {table: 'test', field: 'id'}
+                }
+            ]
+        });
+
+        console.log(SSDBService.data);
+        console.log(SSDBService.meta);
 
 //    $rootScope.US = this;
 //    var _THIS = this;
