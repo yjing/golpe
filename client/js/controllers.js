@@ -125,6 +125,18 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
     } else {
         $scope.main();
     }
+
+
+    $scope.setupMenu = function(data) {
+        var menu = [];
+        if(angular.isArray(data)) {
+            for(var i=0; i<data.length; i++) {
+                menu.push({id:data[i]['Project']['id']});
+            }
+        }
+        $scope.menu = menu;
+        return menu;
+    }
 }
 
 function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsService, Users, BusyService, DBService) {
