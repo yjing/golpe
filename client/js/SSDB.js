@@ -132,6 +132,8 @@ function Table(name, pkey) {
             for (var i = 0; i < where.length; i++) {
                 var cond = where[i];
 
+                console.log(cond.value);
+                console.log(v[cond.field]);
                 console.log(angular.equals(cond.value, v[cond.field]));
 
                 if(angular.equals(v[cond.field], cond.value)) {
