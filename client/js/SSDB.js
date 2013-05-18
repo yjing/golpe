@@ -127,7 +127,7 @@ function Table(name, pkey) {
         return ret;
     };
     this.select = function (fields, where) {
-        angular.forEach(this.data, function(k, v){
+        angular.forEach(this.data, function(v, k){
             console.log('key: ' + k);
             console.log('value: ' + v);
         })
