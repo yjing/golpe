@@ -246,10 +246,10 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ], function($route
 })
 .service('UsersService', function($rootScope, $resource, BusyService, DBService, SSDBService){
 
-        var table = new Table('test', 'id');
+        var tablec = new Table('test', 'id');
         var table2 = new Table('test');
 
-        console.log(table.getName());
+        console.log(tablec.getName());
         console.log(table2);
 
 //    $rootScope.US = this;

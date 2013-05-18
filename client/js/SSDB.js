@@ -92,9 +92,12 @@ function Table(name, pkey) {
     if(arguments.length == 0) {
         throw "Table: table name required";
     } else if(arguments.length == 1) {
-        this.name = name;
-        this.primary = 'id';
+        pkey = 'id';
     }
+
+    this.name = name;
+    this.primary = pkey;
+    Table.names.push(name);
 
     this.getName = function(){
         return this.name;
@@ -105,3 +108,4 @@ function Table(name, pkey) {
     }
 
 }
+Table.names = [];
