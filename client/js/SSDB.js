@@ -36,9 +36,6 @@ angular.module('SSDB', [])
         }
 
         this.addFKey = function(table_name, fkey){
-            console.log(arguments.length);
-            console.log(arguments.length);
-            console.log(arguments.length);
             if(arguments.length < 2) {
                 throw "Add FKey: table_name and fkey required.";
             }
@@ -47,7 +44,7 @@ angular.module('SSDB', [])
                 throw "Add FKey: table_name and fkey required.";
             }
 
-            if(angular.isDefined(fkey) && fkey != null) {
+            if(fkey != null) {
                 if(angular.isUndefined(fkey.field) || fkey.field == null) {
                     throw "Add FKey: fkey.field required.";
                 }
