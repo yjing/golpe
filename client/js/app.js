@@ -249,7 +249,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ], function($route
         var table = new Table('test', 'id');
         var table2 = new Table('test');
 
-        console.log(table);
+        console.log(table.getName());
         console.log(table2);
 
 //    $rootScope.US = this;
