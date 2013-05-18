@@ -134,7 +134,8 @@ function Table(name, pkey) {
                 console.log(v);
                 console.log(cond);
                 console.log(v[cond.field]);
-                if(v[cond.field] == cond.value) {
+
+                if(angular.equals([cond.field], cond.value)) {
                     res.push(v);
                 }
 
