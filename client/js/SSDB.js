@@ -77,8 +77,8 @@ angular.module('SSDB', [])
             if(angular.isUndefined(this.meta[table_name])) {
                 throw "Add FKey: table '" + table_name + "' doesn't exists.";
             }
-            if(angular.isUndefined(this.meta[fkey.on.table])) {
-                throw "Add FKey: referenced table '" + fkey.on.table + "' doesn't exists.";
+            if(angular.isUndefined(this.meta[fkey.on])) {
+                throw "Add FKey: referenced table '" + fkey.on + "' doesn't exists.";
             }
 
             if(angular.isUndefined(this.meta[table_name].fkeys)) {
