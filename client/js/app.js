@@ -246,7 +246,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ], function($route
 })
 .service('UsersService', function($rootScope, $resource, BusyService, DBService, SSDBService){
 
-        var c = {};
+        var c = null;
         console.log(angular.isDefined(c.ciao));
 
         SSDBService.createTable("test");
