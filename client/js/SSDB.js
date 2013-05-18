@@ -205,11 +205,9 @@ function Query(table){
     }
 
     var doWhere = function(){
-        console.log("doWhere");
-        console.log(data);
+        console.log(table);
     }
     var doSelect = function(){
-        console.log("doSelect");
-        console.log(data);
+        console.log(table);
     }
 }
