@@ -131,6 +131,8 @@ function Table(name, pkey) {
         angular.forEach(this.data, function(v, k){
             for (var i = 0; i < where.length; i++) {
                 var cond = where[i];
+                console.log(v);
+                console.log(cond);
                 if(v[cond.field] == cond.value) {
                     res.push(v);
                 }
