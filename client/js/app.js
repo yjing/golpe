@@ -246,9 +246,8 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ], function($route
 })
 .service('UsersService', function($rootScope, $resource, BusyService, DBService, SSDBService){
 
-        console.log(angular.isObject({}));
-        console.log(angular.isObject([]));
-        console.log(angular.isObject(''));
+        console.log(angular.isArray({}));
+        console.log(angular.isArray([]));
 
         SSDBService.createTable("test");
         SSDBService.createTable("test2", "id_t2");
