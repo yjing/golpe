@@ -25,9 +25,29 @@ angular.module('SSDB', [])
             }
 
             this.data[table_name] = {};
-            this.meta[table_name] = {
-                "pkey": pkey
-            };
+            this.meta[table_name] = { "pkey": pkey };
+
+//            { field: 'test_id', on: { table: 'test', field: 'id' } }
+            if(angular.isDefined(options.fkeys) && angular.isArray(options.fkeys)) {
+                for (var i=0; i< options.fkeys.length; i++) {
+                    this.addFKey(table_name, options.fkeys[i]);
+                }
+            }
+        }
+
+        this.addFKey = function(table_name, fkey){
+            if(arguments.length < 2) {
+                throw "Add FKey: table_name and fkey required.";
+            }
+
+            if(!angular.isString(table_name)) {
+                throw "Add FKey: table_name and fkey required.";
+            }
+
+            var table = this.meta[table_name];
+            if(angular.isUndefined(table)) {
+                throw "Add FKey: table '" + table_name + "' doesn't exists.";
+            }
         }
 
     });

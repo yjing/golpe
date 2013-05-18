@@ -246,13 +246,15 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ], function($route
 })
 .service('UsersService', function($rootScope, $resource, BusyService, DBService, SSDBService){
 
+        console.log(angular.isObject({}));
+        console.log(angular.isObject([]));
+        console.log(angular.isObject(''));
+
         SSDBService.createTable("test");
         SSDBService.createTable("test2", "id_t2");
         SSDBService.createTable("test3", {
             fkeys: [
-                {
-                    field: 'test_id', on: {table: 'test', field: 'id'}
-                }
+                { field: 'test_id', on: { table: 'test', field: 'id' } }
             ]
         });
 
@@ -288,7 +290,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ], function($route
 //        }
 //    });
 //
-//    this.loadAll = function(reload, success, error) {
+    this.loadAll = function(reload, success, error) {
 //        // PARAM MANAGEMENT
 //        if(arguments.length > 0 && typeof arguments[0] == "function") {
 //            if(arguments.length > 1) {
@@ -296,7 +298,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ], function($route
 //            }
 //            success = arguments[0];
 //            reload = false;
-//        }
+        }
 //
 //        BusyService.busy(true);
 //        var result = this.Users.all(
