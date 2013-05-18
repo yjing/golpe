@@ -126,20 +126,26 @@ function Table(name, pkey) {
         }
         return ret;
     };
-    this.select = function (fields, where) {
+    this.select = function (where, fields) {
+        if(angular.isUndefined(where) || where == null) {
+            where = [];
+        }
+        if(angular.isUndefined(fields) || fields == null) {
+            fields = false;
+        }
+
         var res = [];
         angular.forEach(this.data, function(v, k){
+            var put = true;
             for (var i = 0; i < where.length; i++) {
                 var cond = where[i];
-
-                console.log(cond.value);
-                console.log(v[cond.field]);
-                console.log(angular.equals(cond.value, v[cond.field]));
-
-                if(angular.equals(v[cond.field], cond.value)) {
-                    res.push(v);
+                if(!angular.equals(v[cond.field], cond.value)) {
+                    put = false;
                 }
 
+            }
+            if(put) {
+                res.push(v);
             }
         });
         return res;
