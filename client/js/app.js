@@ -355,33 +355,33 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
             }
         }
         this.insertUser = function (data) {
-//            if (angular.isDefined(data)) {
-//                var supervisor = angular.copy(data[this.SUPERVISOR_KEY]);
-//                if (supervisor != null) {
-//                    var supervisor_id = supervisor[this.PKEY];
-//                    data[this.SUPERVISOR_FKEY] = supervisor_id;
-//
-//                    var existing = database.get(this.TABLE, supervisor_id, 0);
-//                    if (angular.isUndefined(existing)) {
-//                        supervisor[MODE_KEY] = MODE_NORMAL;
-//                        supervisor[STATUS_KEY] = STATUS_PARTIAL;
-//                        this.insertUser(supervisor);
-//                    }
-//                }
-//                delete data[this.SUPERVISOR_KEY];
-//
-//                var teams = data[TeamsService.DATA_KEY];
-//                if (angular.isDefined(teams) && teams.length > 0) {
-//                    TeamsService.insertTeam(teams[0]);
-//                }
-//                delete data[TeamsService.DATA_KEY];
-//
-//                // META
-//                data[MODE_KEY] = MODE_NORMAL;
-//                data[STATUS_KEY] = STATUS_PARTIAL;
-//
-//                database.insert(this.TABLE, data[this.PKEY], data);
-//            }
+            if (angular.isDefined(data)) {
+                var supervisor = angular.copy(data[this.SUPERVISOR_KEY]);
+                if (supervisor != null) {
+                    var supervisor_id = supervisor[this.PKEY];
+                    data[this.SUPERVISOR_FKEY] = supervisor_id;
+
+                    var existing = database.get(this.TABLE, supervisor_id, 0);
+                    if (angular.isUndefined(existing)) {
+                        supervisor[MODE_KEY] = MODE_NORMAL;
+                        supervisor[STATUS_KEY] = STATUS_PARTIAL;
+                        this.insertUser(supervisor);
+                    }
+                }
+                delete data[this.SUPERVISOR_KEY];
+
+                var teams = data[TeamsService.DATA_KEY];
+                if (angular.isDefined(teams) && teams.length > 0) {
+                    TeamsService.insertTeam(teams[0]);
+                }
+                delete data[TeamsService.DATA_KEY];
+
+                // META
+                data[MODE_KEY] = MODE_NORMAL;
+                data[STATUS_KEY] = STATUS_PARTIAL;
+
+                database.insert(this.TABLE, data[this.PKEY], data);
+            }
         }
     })
     .service('ProjectsService', function ($rootScope, $resource, BusyService, DBService) {
