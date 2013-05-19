@@ -142,8 +142,9 @@ function Table(name, pkey, blgTo, hsMany) {
                 for (var i = 0; i < res.length; i++) {
                     console.log('local val: ' + res[i][fkey]);
                     var cond = {pk:res[i][fkey]};
-                    var associated = table.select([cond]);
-                    console.log(associated);
+                    console.log(cond);
+//                    var associated = table.select([cond]);
+//                    console.log(associated);
                 }
             },this);
         }
