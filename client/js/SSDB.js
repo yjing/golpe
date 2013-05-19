@@ -198,6 +198,7 @@ function Table(name, pkey, blgTo, hsMany) {
         return new Query(this).select(fields);
     }
     this.select = function (where, recursive) {
+        console.log(recursive);
         if(angular.isUndefined(where) || where == null) {
             where = [];
         }
