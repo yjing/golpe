@@ -194,11 +194,7 @@ function Table(name, pkey, blgTo, hsMany) {
         }
         return ret;
     };
-    this.selectQ = function(fields){
-        return new Query(this).select(fields);
-    }
     this.select = function (where, recursive) {
-        console.log(recursive);
         if(angular.isUndefined(where) || where == null) {
             where = [];
         }
@@ -218,10 +214,11 @@ function Table(name, pkey, blgTo, hsMany) {
 
             }
             if(put) {
-                res.push(v);
+                res.push(angular.copy(v));
             }
         });
 
+        // SELECT ASSOCIATIONS
         if(recursive > 0) {
             res = addBelongsTo(res, recursive);
             res = addHasMany(res, recursive);
@@ -239,46 +236,4 @@ function Table(name, pkey, blgTo, hsMany) {
         }
     }
 
-}
-
-function Query(table){
-    if(angular.isUndefined(table) || table == null) {
-        throw "Query: table required";
-    }
-    if(!(table instanceof Table)) {
-        throw "Query: table type error";
-    }
-
-    var data = [];
-    var fields;
-    var conditions;
-
-    this.select = function(flds) {
-        if(angular.isUndefined(flds) || flds == null) {
-            flds = false;
-        }
-        fields = flds;
-        return this;
-    }
-
-    this.where = function(conds) {
-        if(angular.isUndefined(conds) || conds == null) {
-            conds = false;
-        }
-        conditions = conds;
-        return this;
-    }
-
-    this.execute = function() {
-        doWhere();
-        doSelect();
-        return table.getData();
-    }
-
-    var doWhere = function(){
-        console.log(table);
-    }
-    var doSelect = function(){
-        console.log(table);
-    }
 }
