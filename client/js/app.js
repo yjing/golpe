@@ -327,7 +327,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                     _THIS.insertUsers(d);
 
                     console.log(database.select(this.TABLE, [], 1));
-                    console.log(database.select(TeamService.TABLE, [], 1));
+                    console.log(database.select(TeamsService.TABLE, [], 1));
 
                     // CALLBACKS
                     if (angular.isDefined(success)) {
@@ -365,7 +365,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                     if (angular.isUndefined(existing)) {
                         supervisor[MODE_KEY] = MODE_NORMAL;
                         supervisor[STATUS_KEY] = STATUS_PARTIAL;
-//                        this.insertUser(supervisor);
+                        this.insertUser(supervisor);
                     }
                 }
                 delete data[this.SUPERVISOR_KEY];
