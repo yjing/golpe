@@ -365,14 +365,14 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                     if (angular.isUndefined(existing)) {
                         supervisor[MODE_KEY] = MODE_NORMAL;
                         supervisor[STATUS_KEY] = STATUS_PARTIAL;
-                        this.insertUser(supervisor);
+//                        this.insertUser(supervisor);
                     }
                 }
                 delete data[this.SUPERVISOR_KEY];
 
                 var teams = data[TeamsService.DATA_KEY];
                 if (angular.isDefined(teams) && teams.length > 0) {
-//                    TeamsService.insertTeam(teams[0]);
+                    TeamsService.insertTeam(teams[0]);
                 }
                 delete data[TeamsService.DATA_KEY];
 
