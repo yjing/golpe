@@ -144,7 +144,7 @@ function Table(name, pkey, blgTo, hsMany) {
                 };
                 var associated = table.select([cond], recursive - 1);
                 if (associated.length > 0) {
-                    res[i][aName] = angular.copy(associated[0]);
+                    res[i][aName] = associated[0];
                 }
             }
         },this);
@@ -164,7 +164,7 @@ function Table(name, pkey, blgTo, hsMany) {
                 }
                 var associated = table.select([cond], recursive - 1);
                 if(associated.length > 0) {
-                    res[i][aName] = angular.copy(associated);
+                    res[i][aName] = associated;
                 }
             }
         },this);
