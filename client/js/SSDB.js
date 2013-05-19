@@ -149,6 +149,20 @@ function Table(name, pkey, blgTo, hsMany) {
                     }
                 }
             },this);
+            angular.forEach(hasMany, function(v,k){
+                var table = Table.tables[ v.table ];
+                var fkey = v.fkey;
+                var pk = primary;
+                var aName = k;
+
+                for (var i = 0; i < res.length; i++) {
+                    var cond = {
+                        field: fkey,
+                        value: res[i][pk]
+                    }
+                    console.log(cond);
+                }
+            },this)
         }
         return res;
     }
