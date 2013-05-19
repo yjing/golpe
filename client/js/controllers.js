@@ -112,6 +112,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
                 }
                 console.log(meta);
                 meta[1] = {};
+                console.log(meta);
                 console.log($scope.usersData);
             },
             // ERROR
