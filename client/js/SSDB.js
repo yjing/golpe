@@ -115,7 +115,7 @@ function Table(name, pkey, fkeys, refs) {
         return primary;
     }
     this.getData = function(recursive){
-        console.log(this.fkeys);
+        console.log(foreign);
         return angular.copy(data);
     }
 
