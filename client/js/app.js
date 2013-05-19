@@ -384,387 +384,387 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
             }
         }
     })
-    .service('ProjectsService', function ($rootScope, $resource, BusyService, DBService) {
-        $rootScope.PS = this;
-        var _THIS = this;
-
-        // MODE CONSTANTS
-        var MODE_KEY = 'mode';
-        var MODE_EDIT = 'edit'
-        var MODE_NORMAL = 'normal'
-        var MODE_DELETING = 'deleting';
-        // STATUS CONSTANTS
-        var STATUS_KEY = 'status';
-        var STATUS_PARTIAL = 'partial';
-        var STATUS_COMPLETE = 'complete';
-        var STATUS_NEW = 'new';
-
-        this.Projects = $resource('/projects/:id', { id:'@id' }, {
-            all:{
-                method:'GET',
-                isArray:true
-            },
-            load:{
-                method:'GET',
-                isArray:false
-            }
-        });
-        this.Teams = $resource('/teams/:id', { id:'@id' }, {
-            save:{
-                method:'POST'
-            },
-            addMember:{
-                url:'/teams/addMember/:tid/:uid',
-                method:'POST'
-            },
-            removeMember:{
-                url:'/teams/removeMember/:tid/:uid',
-                method:'DELETE'
-            }
-        });
-
-        this.loadAll = function (reload, success, error) {
-            // PARAM MANAGEMENT
-            if (arguments.length > 0 && typeof arguments[0] == "function") {
-                if (arguments.length > 1) {
-                    error = arguments[1];
-                }
-                success = arguments[0];
-                reload = false;
-            }
-
-            BusyService.busy(true);
-            var result = this.Projects.all(
-                function (d, h) {
-                    BusyService.busy(false);
-                    _THIS.insertProjects(d);
-
-                    // CALLBACKS
-                    if (angular.isDefined(success)) {
-                        success(d, h);
-                    }
-                },
-                function (e) {
-                    BusyService.busy(false);
-
-                    // CALLBACKS
-                    if (angular.isDefined(error)) {
-                        error(e);
-                    }
-                }
-            );
-        }
-
-        this.load = function (id, success, error) {
-            if (!angular.isDefined(id)) {
-                throw "Missing project ID";
-            }
-
-            if (DBService.m.projects[id].status == STATUS_PARTIAL) {
-                BusyService.busy(true);
-                var proj = this.Projects.load(
-                    {
-                        id:id
-                    },
-                    function (d, h) {
-                        BusyService.busy(false);
-
-                        // ADD METADATA
-                        _THIS.insertProject(proj);
-
-                        // CALLBACKS
-                        if (angular.isDefined(success)) {
-                            success(d, h);
-                        }
-                    },
-                    function (e) {
-                        BusyService.busy(false);
-
-                        // CALLBACKS
-                        if (angular.isDefined(error)) {
-                            error(e);
-                        }
-                    }
-                );
-            } else {
-                // CALLBACK
-                if (angular.isDefined(success)) {
-                    success(true);
-                }
-            }
-        }
-
-        this.save = function (id, success, error) {
-            if (!angular.isDefined(id)) {
-                throw "Missing project ID";
-            }
-
-            var data = id;
-            var params = {};
-            if (angular.isDefined(DBService.d.projects[id])) {
-                data = DBService.d.projects[id];
-                params = {'id':id};
-            }
-
-            delete data.created;
-            delete data.modified;
-
-            BusyService.busy(true);
-            var proj = this.Projects.save(
-                params,
-                data,
-                function (d, h) {
-                    BusyService.busy(false);
-                    _THIS.insertProject(proj);
-
-                    // CALLBACKS
-                    if (angular.isDefined(success)) {
-                        success(d, h);
-                    }
-                },
-                function (data) {
-                    BusyService.busy(false);
-
-                    // CALLBACKS
-                    if (angular.isDefined(error)) {
-                        error(e);
-                    }
-                }
-            );
-        }
-
-        this.delete = function (id, success, error) {
-            if (!angular.isDefined(id)) {
-                throw "Missing project ID";
-            }
-
-            BusyService.busy(true);
-            var proj = this.Projects.delete(
-                {'id':id},
-                {},
-                function (d, h) {
-                    BusyService.busy(false);
-                    _THIS.deleteProject(id);
-
-                    // CALLBACKS
-                    if (angular.isDefined(success)) {
-                        success(d, h);
-                    }
-                },
-                function (data) {
-                    BusyService.busy(false);
-
-                    // CALLBACKS
-                    if (angular.isDefined(error)) {
-                        error(e);
-                    }
-                }
-            );
-        }
-
-        this.saveTeam = function (data, success, error) {
-            if (!angular.isDefined(data)) {
-                throw "Missing team DATA";
-            }
-
-            delete data.created;
-            delete data.modified;
-
-            this.Teams.save(
-                {},
-                data,
-                function (d, h) {
-                    BusyService.busy(false);
-
-                    // CALLBACKS
-                    if (angular.isDefined(success)) {
-                        success(d, h);
-                    }
-                },
-                function (data) {
-                    BusyService.busy(false);
-
-                    // CALLBACKS
-                    if (angular.isDefined(error)) {
-                        error(e);
-                    }
-                }
-            );
-        }
-
-        this.deleteTeam = function (id, success, error) {
-            if (!angular.isDefined(id)) {
-                throw "Missing team ID";
-            }
-
-            this.Teams.delete(
-                {"id":id},
-                {},
-                function (d, h) {
-                    BusyService.busy(false);
-                    _THIS.removeTeam(id);
-
-                    // CALLBACKS
-                    if (angular.isDefined(success)) {
-                        success(d, h);
-                    }
-                },
-                function (data) {
-                    BusyService.busy(false);
-
-                    // CALLBACKS
-                    if (angular.isDefined(error)) {
-                        error(e);
-                    }
-                }
-            );
-        }
-
-        this.addMember = function (t_id, u_id, success, error) {
-            if (!angular.isDefined(t_id)) {
-                throw "Missing team ID";
-            }
-            if (!angular.isDefined(u_id)) {
-                throw "Missing user ID";
-            }
-
-            this.Teams.addMember(
-                { "tid":t_id, "uid":u_id },
-                {},
-                function (d, h) {
-                    BusyService.busy(false);
-                    _THIS.insertTeam(d['Team']);
-
-                    // CALLBACKS
-                    if (angular.isDefined(success)) {
-                        success(d, h);
-                    }
-                },
-                function (data) {
-                    BusyService.busy(false);
-
-                    // CALLBACKS
-                    if (angular.isDefined(error)) {
-                        error(e);
-                    }
-                }
-            )
-
-        }
-
-        this.removeMember = function (t_id, u_id, success, error) {
-            if (!angular.isDefined(t_id)) {
-                throw "Missing team ID";
-            }
-            if (!angular.isDefined(u_id)) {
-                throw "Missing user ID";
-            }
-
-            this.Teams.removeMember(
-                { "tid":t_id, "uid":u_id },
-                {},
-                function (d, h) {
-                    BusyService.busy(false);
-                    _THIS.removeTeam(d['Team']);
-
-                    // CALLBACKS
-                    if (angular.isDefined(success)) {
-                        success(d, h);
-                    }
-                },
-                function (data) {
-                    BusyService.busy(false);
-
-                    // CALLBACKS
-                    if (angular.isDefined(error)) {
-                        error(e);
-                    }
-                }
-            )
-
-        }
-
-        // DB ACCESS FUNCS
-        this.insertProjects = function (data) {
-            if (angular.isArray(data)) {
-                for (var i = 0; i < data.length; i++) {
-                    this.insertProject(data[i]);
-                }
-            }
-        }
-        this.insertProject = function (data) {
-            if (angular.isDefined(data) &&
-                angular.isDefined(data['Project']) &&
-                angular.isDefined(data['Project']['id'])) {
-
-                if (angular.isDefined(data['Project']['Team'])) {
-                    this.insertTeams(data['Project']['Team']);
-                    DBService.insertMeta("projects", data['Project']['id'], STATUS_KEY, STATUS_COMPLETE);
-                } else {
-                    DBService.insertMeta("projects", data['Project']['id'], STATUS_KEY, STATUS_PARTIAL);
-                }
-                DBService.insertMeta("projects", data['Project']['id'], MODE_KEY, MODE_NORMAL);
-                var proj = angular.copy(data['Project']);
-                delete proj['Team'];
-                DBService.insertData("projects", data['Project']['id'], proj);
-
-            }
-        }
-
-        this.deleteProject = function (id) {
-            if (angular.isDefined(id) && angular.isDefined(DBService.d.projects[id])) {
-                delete DBService.d.projects[id];
-                delete DBService.m.projects[id];
-            }
-        }
-
-        this.removeTeam = function (id) {
-            if (angular.isDefined(id) && angular.isDefined(DBService.d.teams[id])) {
-                delete DBService.d.teams[id];
-                delete DBService.m.teams[id];
-            }
-        }
-
-        this.insertTeams = function (data) {
-            if (angular.isArray(data)) {
-                for (var i = 0; i < data.length; i++) {
-                    this.insertTeam(data[i]);
-                }
-            }
-        }
-
-        this.insertTeam = function (data) {
-            if (angular.isDefined(data)) {
-                this.insertUsers(data['Student']);
-
-                var team = angular.copy(data);
-                delete team['Student'];
-                DBService.insertData("teams", data['id'], team);
-                DBService.insertMeta("teams", data['id'], STATUS_KEY, STATUS_COMPLETE);
-                DBService.insertMeta("teams", data['id'], MODE_KEY, MODE_NORMAL);
-
-            }
-        }
-
-        this.insertUsers = function (data) {
-            if (angular.isArray(data)) {
-                for (var i = 0; i < data.length; i++) {
-                    this.insertUser(data[i]);
-                }
-            }
-        }
-
-        this.insertUser = function (data) {
-            if (angular.isDefined(data)) {
-
-                var user = angular.copy(data);
-                DBService.insertData("users", data['id'], user);
-                DBService.insertMeta("users", data['id'], STATUS_KEY, STATUS_PARTIAL);
-                DBService.insertMeta("users", data['id'], MODE_KEY, MODE_NORMAL);
-            }
-        }
-
-    })
+//    .service('ProjectsService', function ($rootScope, $resource, BusyService, DBService) {
+//        $rootScope.PS = this;
+//        var _THIS = this;
+//
+//        // MODE CONSTANTS
+//        var MODE_KEY = 'mode';
+//        var MODE_EDIT = 'edit'
+//        var MODE_NORMAL = 'normal'
+//        var MODE_DELETING = 'deleting';
+//        // STATUS CONSTANTS
+//        var STATUS_KEY = 'status';
+//        var STATUS_PARTIAL = 'partial';
+//        var STATUS_COMPLETE = 'complete';
+//        var STATUS_NEW = 'new';
+//
+//        this.Projects = $resource('/projects/:id', { id:'@id' }, {
+//            all:{
+//                method:'GET',
+//                isArray:true
+//            },
+//            load:{
+//                method:'GET',
+//                isArray:false
+//            }
+//        });
+//        this.Teams = $resource('/teams/:id', { id:'@id' }, {
+//            save:{
+//                method:'POST'
+//            },
+//            addMember:{
+//                url:'/teams/addMember/:tid/:uid',
+//                method:'POST'
+//            },
+//            removeMember:{
+//                url:'/teams/removeMember/:tid/:uid',
+//                method:'DELETE'
+//            }
+//        });
+//
+//        this.loadAll = function (reload, success, error) {
+//            // PARAM MANAGEMENT
+//            if (arguments.length > 0 && typeof arguments[0] == "function") {
+//                if (arguments.length > 1) {
+//                    error = arguments[1];
+//                }
+//                success = arguments[0];
+//                reload = false;
+//            }
+//
+//            BusyService.busy(true);
+//            var result = this.Projects.all(
+//                function (d, h) {
+//                    BusyService.busy(false);
+//                    _THIS.insertProjects(d);
+//
+//                    // CALLBACKS
+//                    if (angular.isDefined(success)) {
+//                        success(d, h);
+//                    }
+//                },
+//                function (e) {
+//                    BusyService.busy(false);
+//
+//                    // CALLBACKS
+//                    if (angular.isDefined(error)) {
+//                        error(e);
+//                    }
+//                }
+//            );
+//        }
+//
+//        this.load = function (id, success, error) {
+//            if (!angular.isDefined(id)) {
+//                throw "Missing project ID";
+//            }
+//
+//            if (DBService.m.projects[id].status == STATUS_PARTIAL) {
+//                BusyService.busy(true);
+//                var proj = this.Projects.load(
+//                    {
+//                        id:id
+//                    },
+//                    function (d, h) {
+//                        BusyService.busy(false);
+//
+//                        // ADD METADATA
+//                        _THIS.insertProject(proj);
+//
+//                        // CALLBACKS
+//                        if (angular.isDefined(success)) {
+//                            success(d, h);
+//                        }
+//                    },
+//                    function (e) {
+//                        BusyService.busy(false);
+//
+//                        // CALLBACKS
+//                        if (angular.isDefined(error)) {
+//                            error(e);
+//                        }
+//                    }
+//                );
+//            } else {
+//                // CALLBACK
+//                if (angular.isDefined(success)) {
+//                    success(true);
+//                }
+//            }
+//        }
+//
+//        this.save = function (id, success, error) {
+//            if (!angular.isDefined(id)) {
+//                throw "Missing project ID";
+//            }
+//
+//            var data = id;
+//            var params = {};
+//            if (angular.isDefined(DBService.d.projects[id])) {
+//                data = DBService.d.projects[id];
+//                params = {'id':id};
+//            }
+//
+//            delete data.created;
+//            delete data.modified;
+//
+//            BusyService.busy(true);
+//            var proj = this.Projects.save(
+//                params,
+//                data,
+//                function (d, h) {
+//                    BusyService.busy(false);
+//                    _THIS.insertProject(proj);
+//
+//                    // CALLBACKS
+//                    if (angular.isDefined(success)) {
+//                        success(d, h);
+//                    }
+//                },
+//                function (data) {
+//                    BusyService.busy(false);
+//
+//                    // CALLBACKS
+//                    if (angular.isDefined(error)) {
+//                        error(e);
+//                    }
+//                }
+//            );
+//        }
+//
+//        this.delete = function (id, success, error) {
+//            if (!angular.isDefined(id)) {
+//                throw "Missing project ID";
+//            }
+//
+//            BusyService.busy(true);
+//            var proj = this.Projects.delete(
+//                {'id':id},
+//                {},
+//                function (d, h) {
+//                    BusyService.busy(false);
+//                    _THIS.deleteProject(id);
+//
+//                    // CALLBACKS
+//                    if (angular.isDefined(success)) {
+//                        success(d, h);
+//                    }
+//                },
+//                function (data) {
+//                    BusyService.busy(false);
+//
+//                    // CALLBACKS
+//                    if (angular.isDefined(error)) {
+//                        error(e);
+//                    }
+//                }
+//            );
+//        }
+//
+//        this.saveTeam = function (data, success, error) {
+//            if (!angular.isDefined(data)) {
+//                throw "Missing team DATA";
+//            }
+//
+//            delete data.created;
+//            delete data.modified;
+//
+//            this.Teams.save(
+//                {},
+//                data,
+//                function (d, h) {
+//                    BusyService.busy(false);
+//
+//                    // CALLBACKS
+//                    if (angular.isDefined(success)) {
+//                        success(d, h);
+//                    }
+//                },
+//                function (data) {
+//                    BusyService.busy(false);
+//
+//                    // CALLBACKS
+//                    if (angular.isDefined(error)) {
+//                        error(e);
+//                    }
+//                }
+//            );
+//        }
+//
+//        this.deleteTeam = function (id, success, error) {
+//            if (!angular.isDefined(id)) {
+//                throw "Missing team ID";
+//            }
+//
+//            this.Teams.delete(
+//                {"id":id},
+//                {},
+//                function (d, h) {
+//                    BusyService.busy(false);
+//                    _THIS.removeTeam(id);
+//
+//                    // CALLBACKS
+//                    if (angular.isDefined(success)) {
+//                        success(d, h);
+//                    }
+//                },
+//                function (data) {
+//                    BusyService.busy(false);
+//
+//                    // CALLBACKS
+//                    if (angular.isDefined(error)) {
+//                        error(e);
+//                    }
+//                }
+//            );
+//        }
+//
+//        this.addMember = function (t_id, u_id, success, error) {
+//            if (!angular.isDefined(t_id)) {
+//                throw "Missing team ID";
+//            }
+//            if (!angular.isDefined(u_id)) {
+//                throw "Missing user ID";
+//            }
+//
+//            this.Teams.addMember(
+//                { "tid":t_id, "uid":u_id },
+//                {},
+//                function (d, h) {
+//                    BusyService.busy(false);
+//                    _THIS.insertTeam(d['Team']);
+//
+//                    // CALLBACKS
+//                    if (angular.isDefined(success)) {
+//                        success(d, h);
+//                    }
+//                },
+//                function (data) {
+//                    BusyService.busy(false);
+//
+//                    // CALLBACKS
+//                    if (angular.isDefined(error)) {
+//                        error(e);
+//                    }
+//                }
+//            )
+//
+//        }
+//
+//        this.removeMember = function (t_id, u_id, success, error) {
+//            if (!angular.isDefined(t_id)) {
+//                throw "Missing team ID";
+//            }
+//            if (!angular.isDefined(u_id)) {
+//                throw "Missing user ID";
+//            }
+//
+//            this.Teams.removeMember(
+//                { "tid":t_id, "uid":u_id },
+//                {},
+//                function (d, h) {
+//                    BusyService.busy(false);
+//                    _THIS.removeTeam(d['Team']);
+//
+//                    // CALLBACKS
+//                    if (angular.isDefined(success)) {
+//                        success(d, h);
+//                    }
+//                },
+//                function (data) {
+//                    BusyService.busy(false);
+//
+//                    // CALLBACKS
+//                    if (angular.isDefined(error)) {
+//                        error(e);
+//                    }
+//                }
+//            )
+//
+//        }
+//
+//        // DB ACCESS FUNCS
+//        this.insertProjects = function (data) {
+//            if (angular.isArray(data)) {
+//                for (var i = 0; i < data.length; i++) {
+//                    this.insertProject(data[i]);
+//                }
+//            }
+//        }
+//        this.insertProject = function (data) {
+//            if (angular.isDefined(data) &&
+//                angular.isDefined(data['Project']) &&
+//                angular.isDefined(data['Project']['id'])) {
+//
+//                if (angular.isDefined(data['Project']['Team'])) {
+//                    this.insertTeams(data['Project']['Team']);
+//                    DBService.insertMeta("projects", data['Project']['id'], STATUS_KEY, STATUS_COMPLETE);
+//                } else {
+//                    DBService.insertMeta("projects", data['Project']['id'], STATUS_KEY, STATUS_PARTIAL);
+//                }
+//                DBService.insertMeta("projects", data['Project']['id'], MODE_KEY, MODE_NORMAL);
+//                var proj = angular.copy(data['Project']);
+//                delete proj['Team'];
+//                DBService.insertData("projects", data['Project']['id'], proj);
+//
+//            }
+//        }
+//
+//        this.deleteProject = function (id) {
+//            if (angular.isDefined(id) && angular.isDefined(DBService.d.projects[id])) {
+//                delete DBService.d.projects[id];
+//                delete DBService.m.projects[id];
+//            }
+//        }
+//
+//        this.removeTeam = function (id) {
+//            if (angular.isDefined(id) && angular.isDefined(DBService.d.teams[id])) {
+//                delete DBService.d.teams[id];
+//                delete DBService.m.teams[id];
+//            }
+//        }
+//
+//        this.insertTeams = function (data) {
+//            if (angular.isArray(data)) {
+//                for (var i = 0; i < data.length; i++) {
+//                    this.insertTeam(data[i]);
+//                }
+//            }
+//        }
+//
+//        this.insertTeam = function (data) {
+//            if (angular.isDefined(data)) {
+//                this.insertUsers(data['Student']);
+//
+//                var team = angular.copy(data);
+//                delete team['Student'];
+//                DBService.insertData("teams", data['id'], team);
+//                DBService.insertMeta("teams", data['id'], STATUS_KEY, STATUS_COMPLETE);
+//                DBService.insertMeta("teams", data['id'], MODE_KEY, MODE_NORMAL);
+//
+//            }
+//        }
+//
+//        this.insertUsers = function (data) {
+//            if (angular.isArray(data)) {
+//                for (var i = 0; i < data.length; i++) {
+//                    this.insertUser(data[i]);
+//                }
+//            }
+//        }
+//
+//        this.insertUser = function (data) {
+//            if (angular.isDefined(data)) {
+//
+//                var user = angular.copy(data);
+//                DBService.insertData("users", data['id'], user);
+//                DBService.insertMeta("users", data['id'], STATUS_KEY, STATUS_PARTIAL);
+//                DBService.insertMeta("users", data['id'], MODE_KEY, MODE_NORMAL);
+//            }
+//        }
+//
+//    })
     .service('ALService', function ($rootScope, $resource, BusyService, DBService) {
         $rootScope.PS = this;
         var _THIS = this;
