@@ -103,12 +103,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
         UsersService.loadAll(
             // SUCCESS
             function(d, h){
-                var test = database.select(UsersService.TABLE, [], 2);
-                console.log(test);
-                test[0].status = STATUS_COMPLETE;
-
-                test = database.select(UsersService.TABLE, [], 2);
-                console.log(test);
+                $scope.usersData = database.select(UsersService.TABLE, [], 2);
             },
             // ERROR
             function(error){
