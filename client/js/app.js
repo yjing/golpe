@@ -279,7 +279,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
             if(angular.isDefined(data)) {
                 var project = data[ProjectsService.DATA_KEY];
                 if(angular.isDefined(project) && project!=null) {
-                    // ADD PROJECT
+                    ProjectsService.insert(project[ProjectsService.PKEY], project);
                 }
                 delete data[ProjectsService.DATA_KEY];
                 database.insert(this.TABLE, data[this.PKEY], data);
