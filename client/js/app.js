@@ -342,6 +342,18 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
             );
         }
 
+        this.updateUser = function(data) {
+            if(angular.isDefined(data) && data != null) {
+                var id = data[this.PKEY];
+                var existing = database.get(this.TABLE, id, 0);
+                if(angular.isDefined(existing)) {
+                    this.insertUser(data);
+                } else {
+                    throw "User doesn't exists.";
+                }
+            }
+        }
+
         this.insertUsers = function (data) {
             if (angular.isArray(data)) {
                 for (var i = 0; i < data.length; i++) {

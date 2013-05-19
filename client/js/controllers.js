@@ -99,6 +99,8 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
         ]
     };
 
+    $scope.selected_user = 1;
+
     $scope.main = function() {
         UsersService.loadAll(
             // SUCCESS
@@ -111,6 +113,12 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
             }
         );
     }
+
+    $scope.isSelectedUser = function (id) {
+        if(angular.isDefined(id)) {
+            return (id == $scope.selected_user ? 'active' : '');
+        }
+    };
 
     if($rootScope.user == null || !$rootScope.user['logged']) {
         BusyService.busy(true);
