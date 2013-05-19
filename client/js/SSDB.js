@@ -102,6 +102,18 @@ function Table(name, pkey, fkeys, refs) {
         Table.tables[name] = this;
     }
 
+    var prepareForeign = function(keys) {
+        if(angular.isArray(keys)) {
+            var res = {};
+            for (var i = 0; i < keys.length; i++) {
+                if(angular.isUndefined(res[keys[i].field])) {
+                    res[keys[i].field] = [];
+                }
+                res[keys[i].field].push(keys[i].refers);
+            }
+            return res;
+        }
+    }
     if(angular.isDefined(fkeys) && fkeys != null) {
         fkeys = prepareForeign(fkeys);
     } else {
@@ -175,20 +187,6 @@ function Table(name, pkey, fkeys, refs) {
             }
         } else {
             delete data[id];
-        }
-    }
-
-
-    var prepareForeign = function(keys) {
-        if(angular.isArray(keys)) {
-            var res = {};
-            for (var i = 0; i < keys.length; i++) {
-                if(angular.isUndefined(res[keys[i].field])) {
-                    res[keys[i].field] = [];
-                }
-                res[keys[i].field].push(keys[i].refers);
-            }
-            return res;
         }
     }
 
