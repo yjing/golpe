@@ -102,11 +102,11 @@ function Table(name, pkey, blgTo, hsMany) {
         Table.tables[name] = this;
     }
 
-    if(angular.isDefined(blgTo) && blgTo != null) {
+    if(angular.isUndefined(blgTo) || blgTo == null) {
         blgTo = {};
     }
 
-    if(angular.isDefined(hsMany) && hsMany != null) {
+    if(angular.isUndefined(hsMany) || hsMany == null) {
         hsMany = {};
     }
 
