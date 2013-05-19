@@ -133,10 +133,12 @@ function Table(name, pkey, blgTo, hsMany) {
         var res = toList(data);
         if(recursive) {
             angular.forEach(belongsTo, function(v,k){
-                for (var i = 0; i < res.length; i++) {
-                    var d = res[i];
-
-                }
+                console.log('belongsTo: ' + k);
+                console.log('table: ' + v.table + ', field: ' + v.field);
+//                for (var i = 0; i < res.length; i++) {
+//                    var d = res[i];
+//
+//                }
             },this);
         }
         return res;
@@ -170,7 +172,6 @@ function Table(name, pkey, blgTo, hsMany) {
             var put = true;
             for (var i = 0; i < where.length; i++) {
                 var cond = where[i];
-                console.log(v[cond.field] + " =? " + cond.value);
                 if(!angular.equals(v[cond.field], cond.value)) {
                     put = false;
                 }
