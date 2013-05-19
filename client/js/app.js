@@ -347,9 +347,11 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ], function($route
     this.insertUser = function(data) {
         if(angular.isDefined(data)) {
             var supervisor = data[SUPERVISOR_KEY];
-            var supervisor_id = supervisor[PKEY];
-            data[SUPERVISOR_FKEY] = supervisor_id;
-            this.insertUser(supervisor);
+            if(supervisor != null) {
+                var supervisor_id = supervisor[PKEY];
+                data[SUPERVISOR_FKEY] = supervisor_id;
+                this.insertUser(supervisor);
+            }
             delete data[SUPERVISOR_KEY];
 
             if(data[TEAM_KEY].length > 0) {
