@@ -327,7 +327,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                     _THIS.insertUsers(d);
 
                     console.log(database.select(this.TABLE, [], 1));
-                    console.log(database.select(TeamsService.TABLE, [], 1));
+//                    console.log(database.select(TeamsService.TABLE, [], 1));
 
                     // CALLBACKS
                     if (angular.isDefined(success)) {
