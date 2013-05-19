@@ -45,8 +45,8 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ], function($route
     database.createTable('Teams', 'id');
     database.createTable('Users', 'id',
         {
-            supervisor:{table:'Users', fkey:'supervisor_id'},
-            team:{table:'Teams', fkey:'team_id'}
+            Supervisor:{table:'Users', fkey:'supervisor_id'},
+            Team:{table:'Teams', fkey:'team_id'}
         }, // BELONGS TO
         {students:{table:'Users', fkey:'supervisor_id'}}  // HAS MANY);
     );
