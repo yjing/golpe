@@ -238,7 +238,6 @@ class UsersController extends RESTController {
             'associations' => array(
                 'Profile',
                 'Team' => array(
-                    "unArray_if_single_value",
                     'fields' => array('id', 'name', 'project_id'),
                     'associations' => array(
                         'Project' => array(
