@@ -130,7 +130,11 @@ function Table(name, pkey, blgTo, hsMany) {
         return res;
     }
     this.getData = function(recursive){
+        console.log(data);
         var res = toList(data);
+        console.log(res);
+        data[1].id = 5;
+        console.log(data);
         console.log(res);
         if(recursive) {
 
