@@ -156,8 +156,12 @@ abstract class AssociativeModel extends AppModel {
         $res = Set::merge($alias_data, $res_without_alias);
         
         $unArray_if_single_value = $this->getConfigElement($queryData, 'unArray_if_single_value');
-        if (isset($unArray_if_single_value) && $unArray_if_single_value !== false && count($res) == 1) {
-            $res = $res[0];
+        if (isset($unArray_if_single_value) && $unArray_if_single_value !== false && count($res) < 2) {
+            if (count($res) == 1) {
+                $res = $res[0];
+            } else {
+                $res = null;
+            }
         }
         
         return $res;
@@ -214,8 +218,12 @@ abstract class AssociativeModel extends AppModel {
         $res = Set::merge($alias_data, $res_without_alias);
         
         $unArray_if_single_value = $this->getConfigElement($queryData, 'unArray_if_single_value');
-        if (isset($unArray_if_single_value) && $unArray_if_single_value !== false && count($res) == 1) {
-            $res = $res[0];
+        if (isset($unArray_if_single_value) && $unArray_if_single_value !== false && count($res) < 2) {
+            if (count($res) == 1) {
+                $res = $res[0];
+            } else {
+                $res = null;
+            }
         }
         
         return $res;
