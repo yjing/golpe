@@ -137,7 +137,7 @@ function Table(name, pkey, blgTo, hsMany) {
                 var table = Table.tables[ v.table ];
                 for (var i = 0; i < res.length; i++) {
                     var pk = table.primary;
-                    var val = res[i][v.value];
+                    var val = res[i][v.field];
                     console.log([{pk:val}]);
 //                    var associated = table.select([{pk:val}]);
 //                    console.log(associated);
