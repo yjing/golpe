@@ -171,19 +171,10 @@ function Table(name, pkey, blgTo, hsMany) {
         return res;
     }
 
-    this.getData = function(recursive){
-        var res = toList(data);
-        if(recursive > 0) {
-            res = addHasMany(addBelongsTo(res));
-        }
-        return res;
-    }
-
-
     this.insert = function(id, obj) {
         data[id] = obj;
     }
-    this.get = function (id) {
+    this.get = function (id, recursive) {
         var ret = [];
         if(angular.isArray(id)) {
             for (var i = 0; i < id.length; i++) {
@@ -191,6 +182,10 @@ function Table(name, pkey, blgTo, hsMany) {
             }
         } else {
             ret = data[id];
+        }
+        if(recursive > 0) {
+            ret = addBelongsTo(ret, recursive);
+            ret = addHasMany(ret, recursive);
         }
         return ret;
     };
