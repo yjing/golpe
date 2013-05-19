@@ -133,7 +133,7 @@ function Table(name, pkey, blgTo, hsMany) {
         console.log(data);
         var res = toList(data);
         console.log(res);
-        data[1].id = 5;
+        res[1].id = 5;
         console.log(data);
         console.log(res);
         if(recursive) {
