@@ -113,7 +113,7 @@ function Table(name, pkey, blgTo, hsMany) {
     var data = {};
     var name = name;
     var primary = pkey;
-    var belongsTo = belongsTo;
+    var belongsTo = blgTo;
     var hasMany = hsMany;
 
     this.getName = function(){
@@ -131,12 +131,10 @@ function Table(name, pkey, blgTo, hsMany) {
     }
     this.getData = function(recursive){
         var res = toList(data);
-        console.log(res);
-        console.log(belongsTo);
         if(recursive) {
             angular.forEach(belongsTo, function(v,k){
                 console.log('belongsTo: ' + k);
-                console.log('table: ' + v.table + ', field: ' + v.field);
+                console.log('table: ' + Table.tables[ v.table ] + ', field: ' + v.field);
 //                for (var i = 0; i < res.length; i++) {
 //                    var d = res[i];
 //
