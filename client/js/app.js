@@ -255,7 +255,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ], function($route
         Users.insert(3, {id: 3, name:'q.dang'});
         Users.insert(4, {id: 4, name:'student1', supervisor_id:3});
 
-        console.log(Users.get([1,4], 1));
+        console.log(Users.get([1,4], 2));
 //        console.log(Users.select([{field: 'name', value:'s.susini'}], 2));
 //        console.log(Users.getData(3));
 
