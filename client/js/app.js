@@ -278,16 +278,16 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ], function($route
     var TEAM_KEY = 'Team';
     var TEAM_FKEY = 'team_id';
 
-//    // MODE CONSTANTS
-//    var MODE_KEY = 'mode';
-//    var MODE_EDIT = 'edit'
-//    var MODE_NORMAL = 'normal'
-//    var MODE_DELETING = 'deleting';
-//    // STATUS CONSTANTS
-//    var STATUS_KEY = 'status';
-//    var STATUS_PARTIAL = 'partial';
-//    var STATUS_COMPLETE = 'complete';
-//    var STATUS_NEW = 'new';
+    // MODE CONSTANTS
+    var MODE_KEY = 'mode';
+    var MODE_EDIT = 'edit'
+    var MODE_NORMAL = 'normal'
+    var MODE_DELETING = 'deleting';
+    // STATUS CONSTANTS
+    var STATUS_KEY = 'status';
+    var STATUS_PARTIAL = 'partial';
+    var STATUS_COMPLETE = 'complete';
+    var STATUS_NEW = 'new';
 
     this.Users = $resource('/users/:id', { id:'@id' }, {
         all: {
@@ -346,15 +346,29 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ], function($route
     }
     this.insertUser = function(data) {
         if(angular.isDefined(data)) {
-            var supervisor = data[SUPERVISOR_KEY];
+            var supervisor = angular.copy(data[SUPERVISOR_KEY]);
             if(supervisor != null) {
                 var supervisor_id = supervisor[PKEY];
                 data[SUPERVISOR_FKEY] = supervisor_id;
-                this.insertUser(supervisor);
+
+                var existing = database.get(USER_TABLE, supervisor_id, 0);
+                if(angular.isUndefined(existing)) {
+                    supervisor[MODE_KEY] = MODE_NORMAL;
+                    supervisor[STATUS_KEY] = STATUS_PARTIAL;
+                    this.insertUser(supervisor);
+                }
             }
             delete data[SUPERVISOR_KEY];
 
+            var teams = data[TEAM_KEY];
+            if(teams.length > 0) {
+                // ADD TEAM
+            }
             delete data[TEAM_KEY];
+
+            // META
+            data[MODE_KEY] = MODE_NORMAL;
+            data[STATUS_KEY] = STATUS_PARTIAL;
 
             database.insert(USER_TABLE, data[PKEY], data);
         }
