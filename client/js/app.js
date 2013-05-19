@@ -351,8 +351,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ], function($route
             data[SUPERVISOR_FKEY] = supervisor_id;
             delete data[SUPERVISOR_KEY];
 
-            var team = data[TEAM_KEY];
-            console.log(team);
+            var team = data[TEAM_KEY][0];
             var team_id = team[PKEY];
             data[TEAM_FKEY] = team_id;
             delete data[TEAM_KEY];
