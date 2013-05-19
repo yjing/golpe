@@ -122,6 +122,7 @@ function Table(name, pkey, blgTo, hsMany) {
     this.getPrimary = function(){
         return primary;
     }
+
     var toList = function(map) {
         var res = [];
         angular.forEach(map, function(v, k){
@@ -129,7 +130,6 @@ function Table(name, pkey, blgTo, hsMany) {
         },this);
         return res;
     }
-
     var addBelongsTo = function(res, recursive){
         angular.forEach(belongsTo, function(v,k){
             var table = Table.tables[ v.table ];
@@ -176,6 +176,7 @@ function Table(name, pkey, blgTo, hsMany) {
     }
     this.get = function (id, recursive) {
         var ret = [];
+        // GET TABLE DATA
         if(angular.isArray(id)) {
             for (var i = 0; i < id.length; i++) {
                 ret.push(data[id[i]]);
@@ -183,6 +184,8 @@ function Table(name, pkey, blgTo, hsMany) {
         } else {
             ret = data[id];
         }
+
+        // GET ASSOCIATIONS
         if(recursive > 0) {
             ret = addBelongsTo(ret, recursive);
             ret = addHasMany(ret, recursive);
