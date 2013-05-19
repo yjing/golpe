@@ -42,7 +42,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ], function($route
     DBService.createTable("media");
     DBService.createTable("comments");
 
-    database.create('Users', 'id',
+    database.createTable('Users', 'id',
         {supervisor:{table:'Users', fkey:'supervisor_id'}}, // BELONGS TO
         {students:{table:'Users', fkey:'supervisor_id'}}  // HAS MANY);
     );
