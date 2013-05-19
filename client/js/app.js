@@ -244,18 +244,18 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ], function($route
     }
 
 })
-.service('UsersService', function($rootScope, $resource, BusyService, DBService, SSDBService){
+.service('UsersService', function($rootScope, $resource, BusyService, DBService, database){
 
-        var Users = new Table('Users', 'id',
+        database.createTable('Users', 'id',
             {supervisor:{table:'Users', fkey:'supervisor_id'}}, // BELONGS TO
-            {students:{table:'Users', fkey:'supervisor_id'}}  // HAS MANY
+            {students:{table:'Users', fkey:'supervisor_id'}}  // HAS MANY);
         );
-        Users.insert(1, {id: 1, name:'s.susini', supervisor_id:2});
-        Users.insert(2, {id: 2, name:'y.jing', supervisor_id:3});
-        Users.insert(3, {id: 3, name:'q.dang'});
-        Users.insert(4, {id: 4, name:'student1', supervisor_id:3});
+        database.insert('Users', 1, {id: 1, name:'s.susini', supervisor_id:2});
+        database.insert('Users', 2, {id: 2, name:'y.jing', supervisor_id:3});
+        database.insert('Users', 3, {id: 3, name:'q.dang'});
+        database.insert('Users', 4, {id: 4, name:'student1', supervisor_id:3});
 
-        console.log(Users.get([1,4], 3));
+        console.log(database.get('Users', [1,4], 3));
 //        console.log(Users.select([{field: 'name', value:'s.susini'}], 2));
 //        console.log(Users.getData(3));
 
