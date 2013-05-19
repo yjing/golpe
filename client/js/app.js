@@ -263,12 +263,15 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ], function($route
 //        console.log(database.get('Users', [1,4], 3));
 
 //    $rootScope.US = this;
-//    var _THIS = this;
-//
-//    var USER_TABLE = 'users';
-//    var USER_DATAKEY = 'User';
-//    var USER_PKEY = 'id';
-//
+    var _THIS = this;
+
+    // DB ACCESS FUNCS
+    var USER_TABLE = 'Users';
+    var USER_KEY = 'User';
+    var PKEY = 'id';
+    var SUPERVISOR_KEY = 'Supervisor';
+    var TEAM_KEY = 'Team';
+
 //    // MODE CONSTANTS
 //    var MODE_KEY = 'mode';
 //    var MODE_EDIT = 'edit'
@@ -306,7 +309,9 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ], function($route
             function(d, h) {
                 BusyService.busy(false);
 
-                console.log(d);
+                _THIS.insertUsers(d);
+
+                console.log(database.select(USER_TABLE, [], 0));
 
                 // CALLBACKS
                 if(angular.isDefined(success)) {
@@ -323,25 +328,27 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ], function($route
             }
         );
     }
-//
-//    // DB ACCESS FUNCS
-//    this.insertUsers = function(data) {
-//        if(angular.isArray(data)) {
-//            for(var i=0; i<data.length; i++) {
-//                if(angular.isDefined(data[i][USER_DATAKEY]) &&
-//                   angular.isDefined(data[i][USER_DATAKEY][USER_PKEY])) {
-//
-//                    this.insertUser(data[i][USER_DATAKEY]);
-//                }
-//            }
-//        }
-//    }
-//    this.insertUser = function(data) {
-//        if(angular.isDefined(data)) {
-//            DBService.insertMeta(USER_TABLE, data[USER_PKEY], MODE_KEY, MODE_NORMAL);
-//            DBService.insertData (USER_TABLE, data[USER_PKEY], angular.copy(data));
-//        }
-//    }
+
+    this.insertUsers = function(data) {
+        if(angular.isArray(data)) {
+            for(var i=0; i<data.length; i++) {
+                if( angular.isDefined(data[i][USER_KEY]) ) {
+                    this.insertUser(data[i][USER_KEY]);
+                }
+            }
+        }
+    }
+    this.insertUser = function(data) {
+        if(angular.isDefined(data)) {
+            var supervisor = data[SUPERVISOR_KEY];
+            delete data[SUPERVISOR_KEY];
+
+            var team = data[TEAM_KEY];
+            delete data[TEAM_KEY];
+
+            database.insert(USER_TABLE, data[PKEY], data);
+        }
+    }
 })
 .service('ProjectsService', function($rootScope, $resource, BusyService, DBService){
     $rootScope.PS = this;
