@@ -363,8 +363,6 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
 
                     var existing = database.get(this.TABLE, supervisor_id, 0);
                     if (angular.isUndefined(existing)) {
-//                        supervisor[MODE_KEY] = MODE_NORMAL;
-//                        supervisor[STATUS_KEY] = STATUS_PARTIAL;
                         this.insertUser(supervisor);
                     }
                 }
@@ -372,7 +370,13 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
 
                 var teams = data[TeamsService.DATA_KEY];
                 if (angular.isDefined(teams) && teams.length > 0) {
-                    TeamsService.insertTeam(teams[0]);
+                    var team_id = teams[0][TeamsService.PKEY];
+                    data[this.TEAM_FKEY] = team_id;
+
+                    var existing = database.get(TeamsService.TABLE, team_id, 0);
+                    if (angular.isUndefined(existing)) {
+                        TeamsService.insertTeam(teams[0]);
+                    }
                 }
                 delete data[TeamsService.DATA_KEY];
 
