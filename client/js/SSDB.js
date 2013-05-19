@@ -133,12 +133,13 @@ function Table(name, pkey, blgTo, hsMany) {
         var res = toList(data);
         if(recursive) {
             angular.forEach(belongsTo, function(v,k){
-//                console.log('belongsTo: ' + k);
                 var table = Table.tables[ v.table ];
+                var pk = table.primary;
+                var aName = k;
+                var fkey = v.fkeys;
+
                 for (var i = 0; i < res.length; i++) {
-                    var pk = table.primary;
-                    var val = res[i][v.field];
-                    console.log([{pk:val}]);
+                    console.log('local val: ' + res[i][fkey]);
 //                    var associated = table.select([{pk:val}]);
 //                    console.log(associated);
                 }
