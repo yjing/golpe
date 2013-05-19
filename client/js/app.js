@@ -32,7 +32,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ], function($route
     // configure html5 to get links working
     // If you don't do this, you URLs will be base.com/#/home rather than base.com/home
     $locationProvider.html5Mode(true).hashPrefix('!');
-}).run(function($rootScope, $location, auth, BusyService, DBService) {
+}).run(function($rootScope, $location, auth, BusyService, DBService, database) {
 
     // DB SCHEMA CREATION
     DBService.createTable("projects");
@@ -41,6 +41,11 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ], function($route
     DBService.createTable("als");
     DBService.createTable("media");
     DBService.createTable("comments");
+
+    database.create('Users', 'id',
+        {supervisor:{table:'Users', fkey:'supervisor_id'}}, // BELONGS TO
+        {students:{table:'Users', fkey:'supervisor_id'}}  // HAS MANY);
+    );
 
     // TOPBAR TEMPLATE URL
     $rootScope.top_bar_url = '/client/partials/topbar.html';
@@ -246,18 +251,16 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ], function($route
 })
 .service('UsersService', function($rootScope, $resource, BusyService, DBService, database){
 
-        database.createTable('Users', 'id',
-            {supervisor:{table:'Users', fkey:'supervisor_id'}}, // BELONGS TO
-            {students:{table:'Users', fkey:'supervisor_id'}}  // HAS MANY);
-        );
-        database.insert('Users', 1, {id: 1, name:'s.susini', supervisor_id:2});
-        database.insert('Users', 2, {id: 2, name:'y.jing', supervisor_id:3});
-        database.insert('Users', 3, {id: 3, name:'q.dang'});
-        database.insert('Users', 4, {id: 4, name:'student1', supervisor_id:3});
-
-        console.log(database.get('Users', [1,4], 3));
-//        console.log(Users.select([{field: 'name', value:'s.susini'}], 2));
-//        console.log(Users.getData(3));
+//        database.createTable('Users', 'id',
+//            {supervisor:{table:'Users', fkey:'supervisor_id'}}, // BELONGS TO
+//            {students:{table:'Users', fkey:'supervisor_id'}}  // HAS MANY);
+//        );
+//        database.insert('Users', 1, {id: 1, name:'s.susini', supervisor_id:2});
+//        database.insert('Users', 2, {id: 2, name:'y.jing', supervisor_id:3});
+//        database.insert('Users', 3, {id: 3, name:'q.dang'});
+//        database.insert('Users', 4, {id: 4, name:'student1', supervisor_id:3});
+//
+//        console.log(database.get('Users', [1,4], 3));
 
 //    $rootScope.US = this;
 //    var _THIS = this;
@@ -276,49 +279,50 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ], function($route
 //    var STATUS_PARTIAL = 'partial';
 //    var STATUS_COMPLETE = 'complete';
 //    var STATUS_NEW = 'new';
-//
-//    this.Users = $resource('/users/:id', { id:'@id' }, {
-//        all: {
-//            method: 'GET',
-//            isArray: true
-//        },
-//        load: {
-//            method: 'GET',
-//            isArray: false
-//        }
-//    });
+
+    this.Users = $resource('/users/:id', { id:'@id' }, {
+        all: {
+            method: 'GET',
+            isArray: true
+        },
+        load: {
+            method: 'GET',
+            isArray: false
+        }
+    });
 //
     this.loadAll = function(reload, success, error) {
-//        // PARAM MANAGEMENT
-//        if(arguments.length > 0 && typeof arguments[0] == "function") {
-//            if(arguments.length > 1) {
-//                error = arguments[1];
-//            }
-//            success = arguments[0];
-//            reload = false;
+        // PARAM MANAGEMENT
+        if(arguments.length > 0 && typeof arguments[0] == "function") {
+            if(arguments.length > 1) {
+                error = arguments[1];
+            }
+            success = arguments[0];
+            reload = false;
         }
-//
-//        BusyService.busy(true);
-//        var result = this.Users.all(
-//            function(d, h) {
-//                BusyService.busy(false);
-//                _THIS.insertUsers(d);
-//
-//                // CALLBACKS
-//                if(angular.isDefined(success)) {
-//                    success(d, h);
-//                }
-//            },
-//            function(e) {
-//                BusyService.busy(false);
-//
-//                // CALLBACKS
-//                if(angular.isDefined(error)) {
-//                    error(e);
-//                }
-//            }
-//        );
-//    }
+
+        BusyService.busy(true);
+        var result = this.Users.all(
+            function(d, h) {
+                BusyService.busy(false);
+
+                console.log(d);
+
+                // CALLBACKS
+                if(angular.isDefined(success)) {
+                    success(d, h);
+                }
+            },
+            function(e) {
+                BusyService.busy(false);
+
+                // CALLBACKS
+                if(angular.isDefined(error)) {
+                    error(e);
+                }
+            }
+        );
+    }
 //
 //    // DB ACCESS FUNCS
 //    this.insertUsers = function(data) {

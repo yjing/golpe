@@ -1,7 +1,5 @@
 angular.module('SSDB', [])
     .service('database', function() {
-        this.data = {};
-        this.meta = {};
 
         var getTable = function(table_name){
             var table = Table.tables[table_name];
@@ -23,6 +21,9 @@ angular.module('SSDB', [])
             } else {
                 return false;
             }
+        }
+        this.table = function(table_name) {
+            return getTable(table_name);
         }
         this.select = function(table_name, where, recursive){
             var table = getTable(table_name);
