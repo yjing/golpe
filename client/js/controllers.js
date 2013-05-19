@@ -105,7 +105,14 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
         UsersService.loadAll(
             // SUCCESS
             function(d, h){
-                $scope.usersData = database.select(UsersService.TABLE, [], 2);
+                $scope.usersData  = database.select(UsersService.TABLE, [], 2);
+                var meta = {};
+                for (var i = 0; i < $scope.usersData.length; i++) {
+                    meta[$scope.usersData[i]['id']] = $scope.usersData[i];
+                }
+                console.log(meta);
+                meta[1] = {};
+                console.log($scope.usersData);
             },
             // ERROR
             function(error){
@@ -114,8 +121,10 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
         );
     }
 
+    $scope.selectUser = function (id) {
+
+    };
     $scope.isSelectedUser = function (id) {
-        console.log(id);
         if(angular.isDefined(id)) {
             return (id == $scope.selected_user ? 'active' : '');
         }
