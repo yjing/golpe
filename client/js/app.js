@@ -42,8 +42,12 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ], function($route
     DBService.createTable("media");
     DBService.createTable("comments");
 
+    database.createTable('Teams', 'id');
     database.createTable('Users', 'id',
-        {supervisor:{table:'Users', fkey:'supervisor_id'}}, // BELONGS TO
+        {
+            supervisor:{table:'Users', fkey:'supervisor_id'},
+            team:{table:'Teams', fkey:'team_id'}
+        }, // BELONGS TO
         {students:{table:'Users', fkey:'supervisor_id'}}  // HAS MANY);
     );
 
@@ -270,7 +274,9 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ], function($route
     var USER_KEY = 'User';
     var PKEY = 'id';
     var SUPERVISOR_KEY = 'Supervisor';
+    var SUPERVISOR_FKEY = 'supervisor_id';
     var TEAM_KEY = 'Team';
+    var TEAM_FKEY = 'team_id';
 
 //    // MODE CONSTANTS
 //    var MODE_KEY = 'mode';
@@ -341,9 +347,13 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ], function($route
     this.insertUser = function(data) {
         if(angular.isDefined(data)) {
             var supervisor = data[SUPERVISOR_KEY];
+            var supervisor_id = supervisor[PKEY];
+            data[SUPERVISOR_FKEY] = supervisor_id;
             delete data[SUPERVISOR_KEY];
 
             var team = data[TEAM_KEY];
+            var team_id = team[PKEY];
+            data[TEAM_FKEY] = team_id;
             delete data[TEAM_KEY];
 
             database.insert(USER_TABLE, data[PKEY], data);
