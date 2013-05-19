@@ -69,7 +69,7 @@ function LoginCtrl($scope, $rootScope, $location, auth, BusyService) {
 
 }
 
-function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, BusyService) {
+function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, BusyService, database) {
     // TOP BAR
     $rootScope.top_bar = {
 //        back_button: {
@@ -102,7 +102,13 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
     $scope.main = function() {
         UsersService.loadAll(
             // SUCCESS
-            function(data, handlers){
+            function(d, h){
+                var test = database.select(UsersService.TABLE, [], 2);
+                console.log(test);
+                test[0].status = STATUS_COMPLETE;
+
+                test = database.select(UsersService.TABLE, [], 2);
+                console.log(test);
             },
             // ERROR
             function(error){

@@ -288,18 +288,6 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
     })
     .service('UsersService', function ($rootScope, $resource, BusyService, DBService, TeamsService, database) {
 
-//        database.createTable('Users', 'id',
-//            {supervisor:{table:'Users', fkey:'supervisor_id'}}, // BELONGS TO
-//            {students:{table:'Users', fkey:'supervisor_id'}}  // HAS MANY);
-//        );
-//        database.insert('Users', 1, {id: 1, name:'s.susini', supervisor_id:2});
-//        database.insert('Users', 2, {id: 2, name:'y.jing', supervisor_id:3});
-//        database.insert('Users', 3, {id: 3, name:'q.dang'});
-//        database.insert('Users', 4, {id: 4, name:'student1', supervisor_id:3});
-//
-//        console.log(database.get('Users', [1,4], 3));
-
-//    $rootScope.US = this;
         var _THIS = this;
 
         // DB ACCESS
@@ -337,10 +325,6 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                     BusyService.busy(false);
 
                     _THIS.insertUsers(d);
-
-                    console.log(database.select('Users', [], 1));
-                    console.log(database.select('Teams', [], 1));
-                    console.log(database.select('Projects', [], 2));
 
                     // CALLBACKS
                     if (angular.isDefined(success)) {
