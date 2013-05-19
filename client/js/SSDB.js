@@ -129,26 +129,32 @@ function Table(name, pkey, blgTo, hsMany) {
         },this);
         return res;
     }
+
+    var addBelongsTo = function(res){
+        angular.forEach(belongsTo, function(v,k){
+            var table = Table.tables[ v.table ];
+            var pk = table.getPrimary();
+            var aName = k;
+            var fkey = v.fkey;
+
+            for (var i = 0; i < res.length; i++) {
+                var cond = {
+                    field: pk,
+                    value: res[i][fkey]
+                };
+                var associated = table.select([cond]);
+                if (associated.length > 0) {
+                    res[i][aName] = associated[0];
+                }
+            }
+        },this);
+        return res;
+    }
+
     this.getData = function(recursive){
         var res = toList(data);
         if(recursive) {
-            angular.forEach(belongsTo, function(v,k){
-                var table = Table.tables[ v.table ];
-                var pk = table.getPrimary();
-                var aName = k;
-                var fkey = v.fkey;
-
-                for (var i = 0; i < res.length; i++) {
-                    var cond = {
-                        field: pk,
-                        value: res[i][fkey]
-                    };
-                    var associated = table.select([cond]);
-                    if (associated.length > 0) {
-                        res[i][aName] = associated[0];
-                    }
-                }
-            },this);
+            res = addBelongsTo(res);
             angular.forEach(hasMany, function(v,k){
                 var table = Table.tables[ v.table ];
                 var fkey = v.fkey;

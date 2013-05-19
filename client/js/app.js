@@ -248,7 +248,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ], function($route
 
         var Users = new Table('Users', 'id',
             {supervisor:{table:'Users', fkey:'supervisor_id'}}, // BELONGS TO
-            {student:{table:'Users', fkey:'supervisor_id'}}  // HAS MANY
+            {students:{table:'Users', fkey:'supervisor_id'}}  // HAS MANY
         );
         Users.insert(1, {id: 1, name:'s.susini', supervisor_id:2});
         Users.insert(2, {id: 2, name:'y.jing'});
