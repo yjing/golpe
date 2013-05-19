@@ -372,7 +372,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
 
                 var teams = data[TeamsService.DATA_KEY];
                 if (angular.isDefined(teams) && teams.length > 0) {
-                    TeamService.insertTeam(teams[0]);
+                    TeamsService.insertTeam(teams[0]);
                 }
                 delete data[TeamsService.DATA_KEY];
 
