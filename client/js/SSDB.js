@@ -143,6 +143,7 @@ function Table(name, pkey, blgTo, hsMany) {
                         field: pk,
                         value: res[i][fkey]
                     };
+                    console.log(cond);
 
                     var associated = table.select([cond]);
                     console.log(associated);
