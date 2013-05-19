@@ -361,7 +361,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ], function($route
             delete data[SUPERVISOR_KEY];
 
             var teams = data[TEAM_KEY];
-            console.log(teams);
+            console.log(data);
             if(teams.length > 0) {
                 // ADD TEAM
             }
