@@ -150,28 +150,31 @@ function Table(name, pkey, blgTo, hsMany) {
         },this);
         return res;
     }
+    var addHasMany = function(res){
+        angular.forEach(hasMany, function(v,k){
+            var table = Table.tables[ v.table ];
+            var fkey = v.fkey;
+            var pk = primary;
+            var aName = k;
+
+            for (var i = 0; i < res.length; i++) {
+                var cond = {
+                    field: fkey,
+                    value: res[i][pk]
+                }
+                var associated = table.select([cond]);
+                if(associated.length > 0) {
+                    res[i][aName] = associated;
+                }
+            }
+        },this);
+        return res;
+    }
 
     this.getData = function(recursive){
         var res = toList(data);
         if(recursive) {
-            res = addBelongsTo(res);
-            angular.forEach(hasMany, function(v,k){
-                var table = Table.tables[ v.table ];
-                var fkey = v.fkey;
-                var pk = primary;
-                var aName = k;
-
-                for (var i = 0; i < res.length; i++) {
-                    var cond = {
-                        field: fkey,
-                        value: res[i][pk]
-                    }
-                    var associated = table.select([cond]);
-                    if(associated.length > 0) {
-                        res[i][aName] = associated;
-                    }
-                }
-            },this)
+            res = addHasMany(addBelongsTo(res));
         }
         return res;
     }
