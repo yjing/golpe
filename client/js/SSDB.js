@@ -142,7 +142,7 @@ function Table(name, pkey, blgTo, hsMany) {
                     field: pk,
                     value: res[i][fkey]
                 };
-                var associated = table.select([cond], recursive-1);
+                var associated = table.select([cond], recursive - 1);
                 if (associated.length > 0) {
                     res[i][aName] = associated[0];
                 }
@@ -201,7 +201,11 @@ function Table(name, pkey, blgTo, hsMany) {
         if(angular.isUndefined(where) || where == null) {
             where = [];
         }
+        if(angular.isUndefined(recursive) || !angular.isNumber(recursive)) {
+            recursive = 0;
+        }
 
+        // SELECT TABLE DATA
         var res = [];
         angular.forEach(data, function(v, k){
             var put = true;
@@ -218,7 +222,8 @@ function Table(name, pkey, blgTo, hsMany) {
         });
 
         if(recursive > 0) {
-            res = addHasMany(addBelongsTo(res, recursive), recursive);
+            res = addBelongsTo(res, recursive);
+            res = addHasMany(res, recursive);
         }
 
         return res;
