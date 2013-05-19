@@ -160,7 +160,10 @@ function Table(name, pkey, blgTo, hsMany) {
                         field: fkey,
                         value: res[i][pk]
                     }
-                    console.log(cond);
+                    var associated = table.select([cond]);
+                    if(associated.length > 0) {
+                        res[i][aName] = associated;
+                    }
                 }
             },this)
         }
