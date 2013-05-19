@@ -382,7 +382,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
 //
 //                database.insert(this.TABLE, data[this.PKEY], data);
 //            }
-//        }
+        }
     })
     .service('ProjectsService', function ($rootScope, $resource, BusyService, DBService) {
         $rootScope.PS = this;
