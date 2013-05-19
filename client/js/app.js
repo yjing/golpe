@@ -42,7 +42,11 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
         DBService.createTable("media");
         DBService.createTable("comments");
 
-        database.createTable('Teams', 'id');
+        database.createTable('Projects', 'id');
+        database.createTable('Teams', 'id',
+            { Project:{table:'Projects', fkey:'project_id'} },
+            { Users:{table:'Users', fkey:'team_id'} }
+        );
         database.createTable('Users', 'id',
             {
                 Supervisor:{table:'Users', fkey:'supervisor_id'},
@@ -257,6 +261,12 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
         this.DATA_KEY = 'Project';
         this.TABLE = 'Projects';
         this.PKEY = 'id';
+
+        this.insertProject = function(data) {
+            if(angular.isDefined(data)) {
+                database.insert(this.TABLE, data[this.PKEY], data);
+            }
+        }
     })
     .service('TeamsService', function(ProjectsService, database){
         this.DATA_KEY = 'Team';
