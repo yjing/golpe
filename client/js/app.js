@@ -256,6 +256,8 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ], function($route
 
         console.log(Users.select([{field: 'name', value:'s.susini'}]));
 
+        Users.getData(true);
+
 //    $rootScope.US = this;
 //    var _THIS = this;
 //
