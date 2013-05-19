@@ -102,6 +102,12 @@ function Table(name, pkey, fkeys, refs) {
         Table.tables[name] = this;
     }
 
+    if(angular.isDefined(fkeys) && fkeys != null) {
+        fkeys = prepareForeign(fkeys);
+    } else {
+        fkeys = [];
+    }
+
     var data = {};
     var name = name;
     var primary = pkey;
@@ -137,7 +143,6 @@ function Table(name, pkey, fkeys, refs) {
     this.select = function(fields){
         return new Query(this).select(fields);
     }
-
     this.select2 = function (where, fields) {
         if(angular.isUndefined(where) || where == null) {
             where = [];
@@ -170,6 +175,20 @@ function Table(name, pkey, fkeys, refs) {
             }
         } else {
             delete data[id];
+        }
+    }
+
+
+    var prepareFpreign = function(keys) {
+        if(angular.isArray(keys)) {
+            var res = {};
+            for (var i = 0; i < keys.length; i++) {
+                if(angular.isUndefined(res[keys[i].field])) {
+                    res[keys[i].field] = [];
+                }
+                res[keys[i].field].push(keys[i].refers);
+            }
+            return res;
         }
     }
 
