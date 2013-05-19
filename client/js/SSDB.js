@@ -127,6 +127,7 @@ function Table(name, pkey, blgTo, hsMany) {
         angular.forEach(map, function(v, k){
             res.push(v);
         },this);
+        return res;
     }
     this.getData = function(recursive){
         var res = toList(data);
