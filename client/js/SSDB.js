@@ -130,7 +130,7 @@ function Table(name, pkey, blgTo, hsMany) {
         return res;
     }
 
-    var addBelongsTo = function(res){
+    var addBelongsTo = function(res, recursive){
         angular.forEach(belongsTo, function(v,k){
             var table = Table.tables[ v.table ];
             var pk = table.getPrimary();
@@ -142,7 +142,7 @@ function Table(name, pkey, blgTo, hsMany) {
                     field: pk,
                     value: res[i][fkey]
                 };
-                var associated = table.select([cond]);
+                var associated = table.select([cond], recursive-1);
                 if (associated.length > 0) {
                     res[i][aName] = associated[0];
                 }
@@ -150,7 +150,7 @@ function Table(name, pkey, blgTo, hsMany) {
         },this);
         return res;
     }
-    var addHasMany = function(res){
+    var addHasMany = function(res, recursive){
         angular.forEach(hasMany, function(v,k){
             var table = Table.tables[ v.table ];
             var fkey = v.fkey;
@@ -162,7 +162,7 @@ function Table(name, pkey, blgTo, hsMany) {
                     field: fkey,
                     value: res[i][pk]
                 }
-                var associated = table.select([cond]);
+                var associated = table.select([cond], recursive - 1);
                 if(associated.length > 0) {
                     res[i][aName] = associated;
                 }
@@ -173,7 +173,7 @@ function Table(name, pkey, blgTo, hsMany) {
 
     this.getData = function(recursive){
         var res = toList(data);
-        if(recursive) {
+        if(recursive > 0) {
             res = addHasMany(addBelongsTo(res));
         }
         return res;
@@ -197,7 +197,7 @@ function Table(name, pkey, blgTo, hsMany) {
     this.selectQ = function(fields){
         return new Query(this).select(fields);
     }
-    this.select = function (where) {
+    this.select = function (where, recursive) {
         if(angular.isUndefined(where) || where == null) {
             where = [];
         }
@@ -216,6 +216,11 @@ function Table(name, pkey, blgTo, hsMany) {
                 res.push(v);
             }
         });
+
+        if(recursive > 0) {
+            res = addHasMany(addBelongsTo(res, recursive), recursive);
+        }
+
         return res;
     };
     this.delete = function(id) {
