@@ -137,7 +137,7 @@ function Table(name, pkey, blgTo, hsMany) {
                 var table = Table.tables[ v.table ];
                 var pk = table.primary;
                 var aName = k;
-                var fkey = v.fkeys;
+                var fkey = v.fkey;
 
                 for (var i = 0; i < res.length; i++) {
                     console.log('local val: ' + res[i][fkey]);
