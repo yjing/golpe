@@ -125,19 +125,19 @@ function Table(name, pkey, blgTo, hsMany) {
     var toList = function(map) {
         var res = [];
         angular.forEach(map, function(v, k){
-            res.push(v);
+            res.push(angular.copy(v));
         },this);
         return res;
     }
     this.getData = function(recursive){
-        console.log(data);
         var res = toList(data);
-        console.log(res);
-        res[1].id = 5;
-        console.log(data);
-        console.log(res);
         if(recursive) {
+            angular.forEach(belongsTo, function(v,k){
+                for (var i = 0; i < res.length; i++) {
+                    var d = res[i];
 
+                }
+            },this);
         }
         return res;
     }
@@ -157,15 +157,12 @@ function Table(name, pkey, blgTo, hsMany) {
         }
         return ret;
     };
-    this.select = function(fields){
+    this.selectQ = function(fields){
         return new Query(this).select(fields);
     }
-    this.select2 = function (where, fields) {
+    this.select = function (where) {
         if(angular.isUndefined(where) || where == null) {
             where = [];
-        }
-        if(angular.isUndefined(fields) || fields == null) {
-            fields = false;
         }
 
         var res = [];
