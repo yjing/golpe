@@ -115,6 +115,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
     }
 
     $scope.isSelectedUser = function (id) {
+        console.log(id);
         if(angular.isDefined(id)) {
             return (id == $scope.selected_user ? 'active' : '');
         }
