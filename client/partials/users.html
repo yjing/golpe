@@ -12,7 +12,7 @@
                 <li>
                     <input type="text" placeholder="Filter Users..." class="edit-field" ng-model="searchText">
                 </li>
-                <li ng-repeat="u in usersData | filter:searchText" class="{{isSelectedUser(u.id)}}">
+                <li ng-repeat="u in usersData | filter:searchText" ng-class="isSelectedUser(u.id);">
                     <a href="#" ng-click="selectUser(u.id);">{{u.username}}
                         <i ng-show="DB.m.projects[p.id].mode == 'edit'" class="icon-pencil"></i>
                     </a>
