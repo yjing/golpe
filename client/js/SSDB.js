@@ -140,6 +140,7 @@ function Table(name, pkey, blgTo, hsMany) {
                 var fkey = v.fkey;
 
                 for (var i = 0; i < res.length; i++) {
+                    console.log('t.primery: ' + pk);
                     console.log('local val: ' + res[i][fkey]);
                     var cond = {};
                     cond[pk] = res[i][fkey];
