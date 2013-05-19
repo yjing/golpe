@@ -363,8 +363,8 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
 
                     var existing = database.get(this.TABLE, supervisor_id, 0);
                     if (angular.isUndefined(existing)) {
-                        supervisor[MODE_KEY] = MODE_NORMAL;
-                        supervisor[STATUS_KEY] = STATUS_PARTIAL;
+//                        supervisor[MODE_KEY] = MODE_NORMAL;
+//                        supervisor[STATUS_KEY] = STATUS_PARTIAL;
                         this.insertUser(supervisor);
                     }
                 }
