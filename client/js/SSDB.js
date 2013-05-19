@@ -132,6 +132,7 @@ function Table(name, pkey, blgTo, hsMany) {
     this.getData = function(recursive){
         var res = toList(data);
         if(recursive) {
+            console.log(belongsTo);
             angular.forEach(belongsTo, function(v,k){
                 console.log('belongsTo: ' + k);
                 console.log('table: ' + Table.tables[ v.table ] + ', field: ' + v.field);
