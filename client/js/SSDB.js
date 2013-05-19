@@ -86,7 +86,7 @@ angular.module('SSDB', [])
 
 Table.names = [];
 Table.tables = {};
-function Table(name, pkey, fkeys, refs) {
+function Table(name, pkey, blgTo, hsMany) {
     // ARGUMENT MANAGEMENT
     if(arguments.length == 0) {
         throw "Table: table name required";
@@ -102,29 +102,19 @@ function Table(name, pkey, fkeys, refs) {
         Table.tables[name] = this;
     }
 
-    var prepareForeign = function(keys) {
-        if(angular.isArray(keys)) {
-            var res = {};
-            for (var i = 0; i < keys.length; i++) {
-                if(angular.isUndefined(res[keys[i].field])) {
-                    res[keys[i].field] = [];
-                }
-                res[keys[i].field].push(keys[i].refers);
-            }
-            return res;
-        }
+    if(angular.isDefined(blgTo) && blgTo != null) {
+        blgTo = {};
     }
-    if(angular.isDefined(fkeys) && fkeys != null) {
-        fkeys = prepareForeign(fkeys);
-    } else {
-        fkeys = [];
+
+    if(angular.isDefined(hsMany) && hsMany != null) {
+        hsMany = {};
     }
 
     var data = {};
     var name = name;
     var primary = pkey;
-    var foreign = fkeys;
-    var referred = refs;
+    var belongsTo = belongsTo;
+    var hasMany = hsMany;
 
     this.getName = function(){
         return name;
@@ -132,9 +122,19 @@ function Table(name, pkey, fkeys, refs) {
     this.getPrimary = function(){
         return primary;
     }
+    var toList = function(map) {
+        var res = [];
+        angular.forEach(map, function(v, k){
+            res.push(v);
+        },this);
+    }
     this.getData = function(recursive){
-        console.log(foreign);
-        return angular.copy(data);
+        var res = toList(data);
+        console.log(res);
+        if(recursive) {
+
+        }
+        return res;
     }
 
 

@@ -246,7 +246,10 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ], function($route
 })
 .service('UsersService', function($rootScope, $resource, BusyService, DBService, SSDBService){
 
-        var Users = new Table('Users', 'id', [{field: 'supervisor_id', refers:'Users'}]);
+        var Users = new Table('Users', 'id',
+            {supervisor:{table:'Users', fkey:'supervisor_id'}}, // BELONGS TO
+            {student:{table:'Users', fkey:'supervisor_id'}}  // HAS MANY
+        );
         Users.insert(1, {id: 1, name:'s.susini', supervisor_id:2});
         Users.insert(2, {id: 2, name:'y.jing'});
         Users.insert(3, {id: 3, name:'q.dang'});
