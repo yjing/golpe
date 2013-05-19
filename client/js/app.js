@@ -260,7 +260,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
     })
     .service('TeamsService', function(ProjectsService, database){
         this.DATA_KEY = 'Team';
-        this.TABLE = 'Team';
+        this.TABLE = 'Teams';
         this.PKEY = 'id';
 
         this.insertTeam = function(data) {
