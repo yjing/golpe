@@ -144,7 +144,9 @@ function Table(name, pkey, blgTo, hsMany) {
                         value: res[i][fkey]
                     };
                     var associated = table.select([cond]);
-                    res[i][aName] = associated;
+                    if (associated.length > 0) {
+                        res[i][aName] = associated[0];
+                    }
                 }
             },this);
         }
