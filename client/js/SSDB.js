@@ -179,7 +179,7 @@ function Table(name, pkey, fkeys, refs) {
     }
 
 
-    var prepareFpreign = function(keys) {
+    var prepareForeign = function(keys) {
         if(angular.isArray(keys)) {
             var res = {};
             for (var i = 0; i < keys.length; i++) {
