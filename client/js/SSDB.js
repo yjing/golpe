@@ -85,7 +85,8 @@ angular.module('SSDB', [])
     });
 
 Table.names = [];
-function Table(name, pkey) {
+Table.tables = {};
+function Table(name, pkey, fkeys, refs) {
     // ARGUMENT MANAGEMENT
     if(arguments.length == 0) {
         throw "Table: table name required";
@@ -98,11 +99,14 @@ function Table(name, pkey) {
         throw "Table: name '" + name + "' already in use.";
     } else {
         Table.names.push(name);
+        Table.tables[name] = this;
     }
 
     var data = {};
     var name = name;
     var primary = pkey;
+    var foreign = fkeys;
+    var referred = refs;
 
     this.getName = function(){
         return name;
@@ -110,7 +114,8 @@ function Table(name, pkey) {
     this.getPrimary = function(){
         return primary;
     }
-    this.getData = function(){
+    this.getData = function(recursive){
+        console.log(this.fkeys);
         return angular.copy(data);
     }
 
