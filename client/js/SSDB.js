@@ -132,15 +132,15 @@ function Table(name, pkey, blgTo, hsMany) {
     this.getData = function(recursive){
         var res = toList(data);
         if(recursive) {
-            console.log(belongsTo);
             angular.forEach(belongsTo, function(v,k){
-                console.log('belongsTo: ' + k);
+//                console.log('belongsTo: ' + k);
                 var table = Table.tables[ v.table ];
                 for (var i = 0; i < res.length; i++) {
                     var pk = table.primary;
                     var val = res[i][v.value];
-                    var associated = table.select([{pk:val}]);
-                    console.log(associated);
+                    console.log([{pk:val}]);
+//                    var associated = table.select([{pk:val}]);
+//                    console.log(associated);
                 }
             },this);
         }
