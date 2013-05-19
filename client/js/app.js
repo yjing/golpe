@@ -380,7 +380,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                 data[MODE_KEY] = MODE_NORMAL;
                 data[STATUS_KEY] = STATUS_PARTIAL;
 
-                database.insert(TABLE, data[this.PKEY], data);
+                database.insert(this.TABLE, data[this.PKEY], data);
             }
         }
     })
