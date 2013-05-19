@@ -42,10 +42,12 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
         DBService.createTable("media");
         DBService.createTable("comments");
 
-        database.createTable('Projects', 'id');
+        database.createTable('Projects', 'id', {},
+            { Teams:{table:'Teams', fkey:'project_id'} }
+        );
         database.createTable('Teams', 'id',
-            { Project:{table:'Projects', fkey:'project_id'} },
-            { Users:{table:'Users', fkey:'team_id'} }
+            { Project:{table:'Projects', fkey:'project_id'} },  // BELONGS TO
+            { Users:{table:'Users', fkey:'team_id'} }   // HAS MANY
         );
         database.createTable('Users', 'id',
             {
@@ -338,6 +340,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
 
                     console.log(database.select('Users', [], 1));
                     console.log(database.select('Teams', [], 1));
+                    console.log(database.select('Projects', [], 2));
 
                     // CALLBACKS
                     if (angular.isDefined(success)) {
