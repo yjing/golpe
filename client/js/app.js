@@ -251,11 +251,11 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ], function($route
             {students:{table:'Users', fkey:'supervisor_id'}}  // HAS MANY
         );
         Users.insert(1, {id: 1, name:'s.susini', supervisor_id:2});
-        Users.insert(2, {id: 2, name:'y.jing'});
+        Users.insert(2, {id: 2, name:'y.jing', supervisor_id:3});
         Users.insert(3, {id: 3, name:'q.dang'});
 
 //        console.log(Users.select([{field: 'name', value:'s.susini'}]));
-        console.log(Users.getData(true));
+        console.log(Users.getData(3));
 
 //    $rootScope.US = this;
 //    var _THIS = this;
