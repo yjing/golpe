@@ -108,7 +108,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
             function(d, h){
                 $scope.setupMenu();
                 for (var i = 0; i < $scope.usersData.length; i++) {
-                    $scope.meta[$scope.usersData[i]['id']][MODE_KEY] = MODE_DELETING;
+                    $scope.meta[$scope.usersData[i]['id']][MODE_KEY] = MODE_NORMAL;
                 }
             },
             // ERROR
@@ -137,6 +137,13 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
     $scope.isEditUser = function (id) {
         if(angular.isDefined(id)) {
             return $scope.meta[id].mode == MODE_EDIT;
+        }
+    };
+    $scope.deleteUser = function (confirm, id) {
+        if(confirm) {
+
+        } else {
+            $scope.meta[id][MODE_KEY] = MODE_DELETING;
         }
     };
     $scope.isDeleteUser = function (id) {
