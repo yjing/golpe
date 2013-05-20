@@ -380,8 +380,8 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
         if(confirm) {
             ProjectsService.delete(id,
                 function(d, h){
+                    console.log($scope.menu);
                     var index = $scope.meta[id].index;
-                    console.log(index);
                     $scope.projectsData.splice(index, 1);
                 },
                 function(e) {
