@@ -45,10 +45,10 @@
                         {{user(selected_user).username}} <i class="icon-pencil"></i>
                     </h4>
                     <!-- EDIT MODE -->
-                    <!--<span ng-show="isEditUser(selected_user)">-->
-                        <!--<input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge"-->
-                               <!--ng-model="">-->
-                    <!--</span>-->
+                    <span ng-show="isEditUser(selected_user)">
+                        <input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge"
+                               ng-model="user(selected_user).username">
+                    </span>
                 </span>
             </div>
             <ul>

@@ -155,6 +155,11 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
             return (id == this.selected_user ? 'active' : '');
         }
     };
+    $scope.editUser = function (id) {
+        if(angular.isDefined(id)) {
+            $scope.meta[id][MODE_KEY] = MODE_EDIT;
+        }
+    };
     $scope.isEditUser = function (id) {
         if(angular.isDefined(id)) {
             return $scope.meta[id].mode == MODE_EDIT;
