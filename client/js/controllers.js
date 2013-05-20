@@ -419,9 +419,10 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
                     if(angular.isDefined(index)) {
 
                     } else {
+                        console.log(d);
                         id = d['Project']['id'];
                         var new_proj = database.get('Project', id, 3);
-                        console.log(new_proj);
+
                         $scope.meta[id] = { index: $scope.meta.length };
                         $scope.meta[id][MODE_KEY] = MODE_NORMAL;
                         $scope.projectsData.push(new_proj);
