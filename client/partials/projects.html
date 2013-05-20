@@ -38,7 +38,7 @@
     </div>
 
     <div class="span9">
-        <div class="menu shadow" ng-hide="isNewProject(selected_project)">
+        <div class="menu shadow" ng-hide="isNewProject()">
             <div>
                 <span>
                     <h4 class="clickable" ng-hide="isEditProject(selected_project)" ng-click="editProject(selected_project);">
@@ -70,7 +70,7 @@
                 </span>
             </div>
         </div>
-        <div class="menu shadow" ng-show="isNewProject(selected_project)">
+        <div class="menu shadow" ng-show="isNewProject()">
             <div>
                 <span>
                     <span><input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge"
@@ -91,6 +91,8 @@
                 </span>
             </div>
         </div>
+
+        <!-- DOWN LINE -->
 
         <div class="row-fluid">
 

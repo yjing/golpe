@@ -309,7 +309,46 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                 }
             );
         }
+        this.load = function (id, success, error) {
+            if (!angular.isDefined(id)) {
+                throw "Missing project ID";
+            }
 
+            var existing = database.get(this.TABLE, id, 0);
+            console.log(existing);return;
+            if (existing.status == STATUS_PARTIAL) {
+                BusyService.busy(true);
+                var proj = this.Projects.load(
+                    {
+                        id:id
+                    },
+                    function (d, h) {
+                        BusyService.busy(false);
+
+                        // ADD METADATA
+                        _THIS.insertProject(proj);
+
+                        // CALLBACKS
+                        if (angular.isDefined(success)) {
+                            success(d, h);
+                        }
+                    },
+                    function (e) {
+                        BusyService.busy(false);
+
+                        // CALLBACKS
+                        if (angular.isDefined(error)) {
+                            error(e);
+                        }
+                    }
+                );
+            } else {
+                // CALLBACK
+                if (angular.isDefined(success)) {
+                    success(true);
+                }
+            }
+        }
         this.insertProjects = function (data) {
             if (angular.isArray(data)) {
                 for (var i = 0; i < data.length; i++) {
@@ -319,7 +358,6 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                 }
             }
         };
-
         this.insertProject = function(data) {
             if(angular.isDefined(data)) {
                 database.insert(this.TABLE, data[this.PKEY], data);
