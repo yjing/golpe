@@ -315,7 +315,6 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
             }
 
             var existing = database.get(this.TABLE, id, 0);
-            console.log(existing);return;
             if (existing.status == STATUS_PARTIAL) {
                 BusyService.busy(true);
                 var proj = this.Projects.load(
