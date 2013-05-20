@@ -446,6 +446,26 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
             );
         }
     };
+    $scope.reloadProjects = function () {
+        ProjectsService.loadAll(
+            // SUCCESS
+            function(d, h){
+                var data = database.select(ProjectsService.TABLE, [], 2);
+                for (var i = 0; i < data.length; i++) {
+                    if(i==0) {
+                        $scope.selectProject(data[i][ProjectsService.PKEY]);
+                    }
+                    $scope.meta[data[i][ProjectsService.PKEY]] = { index: i };
+                    $scope.meta[data[i][ProjectsService.PKEY]][MODE_KEY] = MODE_NORMAL;
+                }
+                $scope.projectsData = data;
+            },
+            // ERROR
+            function(error){
+                $rootScope.handleError(error);
+            }
+        );
+    };
 
 }
 
