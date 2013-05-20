@@ -324,7 +324,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                     function (d, h) {
                         BusyService.busy(false);
 
-                        console.log(proj);
+                        console.log(d);
                         // ADD METADATA
                         _THIS.insertProject(proj[_THIS.DATA_KEY]);
 
