@@ -99,6 +99,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
         ]
     };
 
+    $scope.new_user = {};
     $scope.selected_user = 1;
     $scope.meta = {};
 
