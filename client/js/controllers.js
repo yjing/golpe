@@ -335,7 +335,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
             ProjectsService.load(id,
                 function(d, h) {
                     $scope.selected_project = id;
-                    var proj = database.get("Projects", id, 3);
+                    var proj = database.select("Projects", [{field:'id', value:id}], 3);
                     var index = $scope.meta[id].index;
                     $scope.projectsData[index] = proj;
 
