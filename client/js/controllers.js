@@ -404,10 +404,11 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
     $scope.saveProject = function (id) {
         if(angular.isDefined(id)) {
             var data;
+            var index;
             if(id == $scope.new_project_id) {
                 data = $scope.new_project;
             } else {
-                var index = $scope.meta[id].index;
+                index = $scope.meta[id].index;
                 data = $scope.projectsData[index];
                 $scope.meta[id][MODE_KEY] = MODE_NORMAL;
             }
@@ -415,7 +416,13 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
             ProjectsService.save(
                 data,
                 function(d, h){
-                    console.log(d);
+                    if(angular.isDefined(index)) {
+
+                    } else {
+                        id = data['Project']['id'];
+                        var new_proj = database.get('Project', id, 3);
+                        console.log(new_proj);
+                    }
                 },
                 function(e){
                     $rootScope.handleError(error);
