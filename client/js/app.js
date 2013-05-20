@@ -364,7 +364,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
             BusyService.busy(true);
             this.Projects.save(
                 params,
-                { 'Project  ' : user },
+                { 'Project  ' : project },
                 function(d, h) {
                     BusyService.busy(false);
 
