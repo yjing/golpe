@@ -5,7 +5,7 @@
         <div class="menu shadow">
             <div>
                 <a href="#" class="text-right" ng-click="reloadUsers();">
-                    Refresh Users' list <i class="icon-refresh"></i>
+                    Refresh Users' List <i class="icon-refresh"></i>
                 </a>
             </div>
             <ul>
@@ -35,6 +35,40 @@
                 </a>
             </div>
         </div>
+    </div>
+
+    <div class="span9">
+        <div class="menu shadow" ng-hide="isNewUser()">
+            <div>
+                <span>
+                    <h4 class="clickable" ng-hide="isEditUser(selected_user)" ng-click="editUser(selected_user);">
+                        {{usersData[selected_user].username}} <i class="icon-pencil"></i>
+                    </h4>
+                    <!-- EDIT MODE -->
+                    <span ng-show="DB.m.projects[selected_project].mode == 'edit'">
+                        <input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge" ng-model="DB.d.projects[selected_project].name">
+                    </span>
+                </span>
+            </div>
+            <ul>
+                <li>
+                    <p class="selector" ng-hide="DB.m.projects[selected_project].mode == 'edit'">
+                        {{DB.d.projects[selected_project].description}}
+                    </p>
+                    <!-- EDIT MODE -->
+                    <textarea class="edit-field" ng-model="DB.d.projects[selected_project].description" ng-show="DB.m.projects[selected_project].mode == 'edit'"></textarea>
+                </li>
+            </ul>
+            <div ng-show="DB.m.projects[selected_project].mode == 'edit'">
+                <span>
+                    <div class="btn-group">
+                        <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveProject(selected_project);">Save</button>
+                        <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="cancelEditProject(selected_project);">Cancel</button>
+                    </div>
+                </span>
+            </div>
+        </div>
+
     </div>
 
 </div>
