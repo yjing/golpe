@@ -108,16 +108,16 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
         UsersService.loadAll(
             // SUCCESS
             function(d, h){
-//                var data = database.select(UsersService.TABLE, [], 1);
-//                for (var i = 0; i < data.length; i++) {
-//                    if(i==0) {
-//                        $scope.selected_user = data[i][UsersService.PKEY];
-//                    }
-//                    $scope.meta[data[i][UsersService.PKEY]].index = i;
-//                    $scope.meta[data[i][UsersService.PKEY]][MODE_KEY] = MODE_NORMAL;
-//                }
-//
-//                $scope.usersData = data;
+                var data = database.select(UsersService.TABLE, [], 1);
+                for (var i = 0; i < data.length; i++) {
+                    if(i==0) {
+                        $scope.selected_user = data[i][UsersService.PKEY];
+                    }
+                    $scope.meta[data[i][UsersService.PKEY]].index = i;
+                    $scope.meta[data[i][UsersService.PKEY]][MODE_KEY] = MODE_NORMAL;
+                }
+
+                $scope.usersData = data;
             },
             // ERROR
             function(error){
@@ -133,8 +133,10 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
     };
 
     $scope.user = function (id) {
-        var index = $scope.meta[id].index;
-        return $scope.usersData[index];
+        if(angular.isDefined(id)) {
+            var index = $scope.meta[id].index;
+            return $scope.usersData[index];
+        }
     };
     $scope.newUser = function () {
         $scope.new_user = {};
