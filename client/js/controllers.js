@@ -340,6 +340,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
                     $scope.projectsData[index] = proj;
 
                     console.log(database.select("Teams", [], 0));
+                    console.log(database.select("Projects", [], 2));
 
                 },
                 function(e) {
