@@ -315,6 +315,11 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
         $scope.main();
     }
 
+    $scope.isSelectedProject = function (id) {
+        if(angular.isDefined(id)) {
+            return (id == this.selected_project ? 'active' : '');
+        }
+    };
 
 }
 
