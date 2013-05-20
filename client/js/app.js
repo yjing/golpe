@@ -259,7 +259,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
         }
 
     })
-    .service('ProjectsService', function(database){
+    .service('ProjectsService', function($resource, database){
         this.DATA_KEY = 'Project';
         this.TABLE = 'Projects';
         this.PKEY = 'id';
