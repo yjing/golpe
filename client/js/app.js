@@ -326,7 +326,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
 
                         // ADD METADATA
                         _THIS.insertProject(proj);
-
+                        console.log(database.get(this.TABLE, id, 3));
                         // CALLBACKS
                         if (angular.isDefined(success)) {
                             success(d, h);
