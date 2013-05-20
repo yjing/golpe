@@ -169,6 +169,14 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
             $scope.usersData[index] = $scope.meta[id].old;
         }
     };
+    $scope.saveUser = function (id) {
+        if(angular.isDefined(id)) {
+            var index = $scope.meta[id].index;
+            $scope.meta[id][MODE_KEY] = MODE_NORMAL;
+            console.log($scope.usersData[index]);
+
+        }
+    };
     $scope.isEditUser = function (id) {
         if(angular.isDefined(id)) {
             return $scope.meta[id].mode == MODE_EDIT;
