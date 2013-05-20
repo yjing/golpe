@@ -21,7 +21,7 @@
                     </div>
                     <div class="confirms">
                         <button class="btn btn-danger confirm" ng-click="deleteProject(true, p.id);" ng-show="isDeleteProject(p.id)">Delete</button>
-                        <button class="btn btn-success confirm" ng-click="DB.m.projects[p.id].mode = 'normal';" ng-show="isDeleteProject(p.id)">Keep</button>
+                        <button class="btn btn-success confirm" ng-click="cancelDeleteProject(p.id)" ng-show="isDeleteProject(p.id)">Keep</button>
                     </div>
                 </li>
                 <li ng-show="isNewProject()" ng-class="isSelectedProject(new_project_id)">
