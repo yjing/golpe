@@ -350,13 +350,10 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
         }
         this.save = function(project, success, error){
             var project_id = project[this.PKEY];
-            if (!angular.isDefined(project_id) || project_id == null) {
-                throw "Missing project ID";
-            }
-
-            var existing = database.get(this.TABLE, project_id, 0);
             var params = {};
-            params[this.PKEY] = project_id;
+            if(angular.isDefined(project_id)) {
+                params[this.PKEY] = project_id;
+            }
 
             delete project.created;
             delete project.modified;
