@@ -332,8 +332,17 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
     };
     $scope.selectProject = function (id) {
         if(angular.isDefined(id)) {
-            ProjectsService.load(id);
-            $scope.selected_project = id;
+            ProjectsService.load(id,
+                function(d, h) {
+                    $scope.selected_project = id;
+                    var proj = database.get(ProjectsService.TABLE, id, 3);
+                    var index = $scope.meta[id].index;
+                    $scope.projectsData[index] = proj;
+                },
+                function(e) {
+                    $rootScope.handleError(e);
+                }
+            );
         }
     };
     $scope.editProject = function (id) {
