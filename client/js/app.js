@@ -259,7 +259,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
         }
 
     })
-    .service('ProjectsService', function($resource, BusyService, database){
+    .service('ProjectsService', function($resource, BusyService, TeamsService, database){
         var _THIS = this;
 
         this.DATA_KEY = 'Project';
@@ -326,7 +326,6 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
 
                         // ADD METADATA
                         _THIS.insertProject(proj);
-                        console.log(d);
 
                         // CALLBACKS
                         if (angular.isDefined(success)) {
@@ -360,6 +359,10 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
         };
         this.insertProject = function(data) {
             if(angular.isDefined(data)) {
+                if(angular.isDefined(data[TeamsService.DATA_KEY]) && data[TeamsService.DATA_KEY] != null) {
+                    console.log(data[TeamsService.DATA_KEY]);
+                    delete data[TeamsService.DATA_KEY];
+                }
                 data[STATUS_KEY] = STATUS_PARTIAL;
                 database.insert(this.TABLE, data[this.PKEY], data);
             }
