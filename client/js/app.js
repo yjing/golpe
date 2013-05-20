@@ -351,8 +351,6 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
             var params = {};
                 params[this.PKEY] = user_id;
 
-//            delete user.Team
-//            delete user.Supervisor
             delete user.created;
             delete user.modified;
 
