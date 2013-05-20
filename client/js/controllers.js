@@ -108,7 +108,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
             function(d, h){
                 $scope.setupMenu();
                 for (var i = 0; i < $scope.usersData.length; i++) {
-                    $scope.meta[$scope.usersData[i]['id']][MODE_KEY] = MODE_EDIT;
+                    $scope.meta[$scope.usersData[i]['id']][MODE_KEY] = MODE_DELETING;
                 }
             },
             // ERROR
