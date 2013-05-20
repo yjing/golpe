@@ -101,7 +101,6 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
 
     $scope.new_user_id = -1;
     $scope.new_user = null;
-    $scope.roles = [ 'STUDENT', 'SUPERVISOR', 'ADMIN' ];
     $scope.selected_user = null;
     $scope.meta = {};
 
