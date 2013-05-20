@@ -24,13 +24,13 @@
                         <button class="btn btn-success confirm" ng-click="cancelDeleteUser(u.id)" ng-show="isDeleteUser(u.id)">Keep</button>
                     </div>
                 </li>
-                <li ng-show="new_user != null" ng-class="isSelectedUser(-1)">
-                    <a href="#" ng-click="selectUser(-1);">{{new_project.name}} <i class="icon-edit"></i></a>
+                <li ng-show="isNewUser()" ng-class="isSelectedUser(new_user_id)">
+                    <a href="#" ng-click="selectUser(new_user_id);">{{new_project.name}} <i class="icon-edit"></i></a>
                 </li>
             </ul>
             <div>
                 <a href="#" class="text-right">
-                    <button ng-click="newProject();" ng-disabled="new_project != null" class="btn btn-success">New Project</button>
+                    <button ng-click="newUser();" ng-disabled="isNewUser()" class="btn btn-success">New Project</button>
                 </a>
             </div>
         </div>

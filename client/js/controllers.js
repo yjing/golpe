@@ -99,8 +99,9 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
         ]
     };
 
-    $scope.new_user = {};
-    $scope.selected_user = -1;
+    $scope.new_user_id = -1;
+    $scope.new_user = null;
+    $scope.selected_user = null;
     $scope.meta = {};
 
     $scope.main = function() {
@@ -109,6 +110,9 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
             function(d, h){
                 $scope.setupMenu();
                 for (var i = 0; i < $scope.usersData.length; i++) {
+                    if(i==0) {
+                        $scope.selected_user = $scope.usersData[i]['id'];
+                    }
                     $scope.meta[$scope.usersData[i]['id']][MODE_KEY] = MODE_NORMAL;
                 }
             },
@@ -125,6 +129,13 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
         }
     };
 
+    $scope.newUser = function () {
+        $scope.new_user = {};
+        $scope.selected_user = $scope.new_user_id;
+    };
+    $scope.isNewUser = function () {
+        return $scope.new_user != null;
+    };
     $scope.selectUser = function (id) {
         if(angular.isDefined(id)) {
             $scope.selected_user = id;
