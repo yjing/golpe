@@ -326,7 +326,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
 
                         // ADD METADATA
                         _THIS.insertProject(proj[_THIS.DATA_KEY]);
-                        console.log(proj[_THIS.DATA_KEY]);
+                        console.log(proj);
 
                         // CALLBACKS
                         if (angular.isDefined(success)) {
@@ -360,7 +360,6 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
         };
         this.insertProject = function(data) {
             if(angular.isDefined(data)) {
-                console.log(data);
                 if(angular.isDefined(data[TeamsService.DATA_KEY]) && data[TeamsService.DATA_KEY] != null) {
                     if(angular.isArray(data[TeamsService.DATA_KEY])) {
                         for (var i = 0; i < data[TeamsService.DATA_KEY].length; i++) {
