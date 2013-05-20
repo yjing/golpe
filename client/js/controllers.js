@@ -106,10 +106,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
         UsersService.loadAll(
             // SUCCESS
             function(d, h){
-                $scope.usersData  = database.select(UsersService.TABLE, [], 2);
-                for (var i = 0; i < $scope.usersData.length; i++) {
-                    $scope.meta[$scope.usersData[i]['id']] = i;
-                }
+                $scope.setupMenu();
             },
             // ERROR
             function(error){
@@ -117,6 +114,12 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
             }
         );
     }
+    $scope.setupMenu = function () {
+        $scope.usersData  = database.select(UsersService.TABLE, [], 2);
+        for (var i = 0; i < $scope.usersData.length; i++) {
+            $scope.meta[$scope.usersData[i]['id']] = i;
+        }
+    };
 
     $scope.selectUser = function (id) {
         $scope.selected_user = id;
@@ -130,10 +133,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
         UsersService.loadAll(
             // SUCCESS
             function(d, h){
-                $scope.usersData  = database.select(UsersService.TABLE, [], 2);
-                for (var i = 0; i < $scope.usersData.length; i++) {
-                    $scope.meta[$scope.usersData[i]['id']] = i;
-                }
+                $scope.setupMenu();
             },
             // ERROR
             function(error){
