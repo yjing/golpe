@@ -133,6 +133,10 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
         $scope.new_user = {};
         $scope.selected_user = $scope.new_user_id;
     };
+    $scope.cancelNewUser = function () {
+        $scope.new_user = null;
+        $scope.selected_user = null;
+    };
     $scope.isNewUser = function () {
         return $scope.new_user != null;
     };
