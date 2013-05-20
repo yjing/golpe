@@ -57,6 +57,8 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
             {students:{table:'Users', fkey:'supervisor_id'}}  // HAS MANY);
         );
 
+        $rootScope.roles = [ 'STUDENT', 'SUPERVISOR', 'ADMIN' ];
+
         // TOPBAR TEMPLATE URL
         $rootScope.top_bar_url = '/client/partials/topbar.html';
 
