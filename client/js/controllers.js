@@ -272,6 +272,10 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
     };
 
 
+    $scope.new_project_id = -1;
+    $scope.new_project = null;
+    $scope.selected_project = null;
+    $scope.meta = {};
 
     // MAIN METHOD
     $scope.main = function() {
