@@ -335,12 +335,11 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
             ProjectsService.load(id,
                 function(d, h) {
                     $scope.selected_project = id;
-                    var proj = database.get(ProjectsService.TABLE, id, 3);
+                    var proj = database.get("Projects", id, 3);
                     var index = $scope.meta[id].index;
                     $scope.projectsData[index] = proj;
 
-                    console.log(database.select("Teams", [], 0));
-                    console.log(database.select("Projects", [], 2));
+                    console.log(proj);
 
                 },
                 function(e) {
