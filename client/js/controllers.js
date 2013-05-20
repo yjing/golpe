@@ -421,7 +421,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
                     } else {
                         console.log(d);
                         id = d['Project']['id'];
-                        var new_proj = database.get('Project', id, 3);
+                        var new_proj = database.get('Projects', id, 3);
 
                         $scope.meta[id] = { index: $scope.meta.length };
                         $scope.meta[id][MODE_KEY] = MODE_NORMAL;
