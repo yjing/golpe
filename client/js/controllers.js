@@ -188,7 +188,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
         }
     };
     $scope.isEditUser = function (id) {
-        if(angular.isDefined(id)) {
+        if(angular.isDefined(id) && id != null) {
             if(id == $scope.new_user_id) {
                 return false;
             } else {
