@@ -473,7 +473,6 @@ ENGINE = InnoDB;
 CREATE INDEX `fk_logs_users1_idx` ON `logs` (`user_id` ASC) ;
 
 
-GRANT ALL ON ``.* TO 'mscproject';
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
