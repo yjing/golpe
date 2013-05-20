@@ -116,7 +116,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
                     $scope.meta[data[i][UsersService.PKEY]].index = i;
                     $scope.meta[data[i][UsersService.PKEY]][MODE_KEY] = MODE_NORMAL;
                 }
-
+                console.log(data);
                 $scope.usersData = data;
             },
             // ERROR
