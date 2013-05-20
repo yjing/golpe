@@ -326,7 +326,8 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
 
                         // ADD METADATA
                         _THIS.insertProject(proj[_THIS.DATA_KEY]);
-                        console.log(database.get(_THIS.TABLE, id, 3));
+                        console.log(database.setect(TeamsService.TABLE, [], 3));
+
                         // CALLBACKS
                         if (angular.isDefined(success)) {
                             success(d, h);
@@ -361,7 +362,12 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
             if(angular.isDefined(data)) {
                 console.log(data);
                 if(angular.isDefined(data[TeamsService.DATA_KEY]) && data[TeamsService.DATA_KEY] != null) {
-                    console.log(data[TeamsService.DATA_KEY]);
+                    if(angular.isArray(data[TeamsService.DATA_KEY])) {
+                        for (var i = 0; i < data[TeamsService.DATA_KEY].length; i++) {
+                            var team = data[TeamsService.DATA_KEY][i];
+                            TeamsService.insertTeam(team);
+                        }
+                    }
                     delete data[TeamsService.DATA_KEY];
                 }
                 data[STATUS_KEY] = STATUS_PARTIAL;
