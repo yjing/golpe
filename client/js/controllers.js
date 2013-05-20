@@ -339,6 +339,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
                     var index = $scope.meta[id].index;
                     $scope.projectsData[index] = proj;
 
+                    console.log(proj);
                     console.log($scope.projectsData);
 
                 },
