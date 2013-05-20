@@ -349,7 +349,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
             }
         }
         this.save = function(project, success, error){
-            var project_id = user[this.PKEY];
+            var project_id = project[this.PKEY];
             if (!angular.isDefined(project_id) || project_id == null) {
                 throw "Missing project ID";
             }
@@ -358,8 +358,8 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
             var params = {};
             params[this.PKEY] = project_id;
 
-            delete user.created;
-            delete user.modified;
+            delete project.created;
+            delete project.modified;
 
             BusyService.busy(true);
             this.Projects.save(
