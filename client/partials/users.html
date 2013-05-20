@@ -47,7 +47,7 @@
                     <!-- EDIT MODE -->
                     <span ng-show="isEditUser(selected_user)">
                         <input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge"
-                               ng-model="DB.d.projects[selected_project].name">
+                               ng-model="">
                     </span>
                 </span>
             </div>
@@ -71,14 +71,15 @@
                         </dd>
                     </dl>
                     <!-- EDIT MODE -->
-                    <textarea class="edit-field" ng-model="DB.d.projects[selected_project].description" ng-show="DB.m.projects[selected_project].mode == 'edit'"></textarea>
+                    <textarea class="edit-field" ng-model=""
+                              ng-show="isEditUser(selected_user)"></textarea>
                 </li>
             </ul>
-            <div ng-show="DB.m.projects[selected_project].mode == 'edit'">
+            <div ng-show="isEditUser(selected_user)">
                 <span>
                     <div class="btn-group">
-                        <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveProject(selected_project);">Save</button>
-                        <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="cancelEditProject(selected_project);">Cancel</button>
+                        <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveUser(selected_user);">Save</button>
+                        <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="cancelEditUser(selected_user);">Cancel</button>
                     </div>
                 </span>
             </div>
