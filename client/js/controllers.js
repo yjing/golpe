@@ -338,6 +338,9 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
                     var proj = database.get(ProjectsService.TABLE, id, 3);
                     var index = $scope.meta[id].index;
                     $scope.projectsData[index] = proj;
+
+                    console.log(database.select("Teams", [], 0));
+
                 },
                 function(e) {
                     $rootScope.handleError(e);
