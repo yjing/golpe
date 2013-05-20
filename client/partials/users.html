@@ -53,7 +53,10 @@
             <ul>
                 <li>
                     <p class="selector" ng-hide="DB.m.projects[selected_project].mode == 'edit'">
-                        {{user(selected_user).email}}
+                        <strong>Name:</strong> {{user(selected_user).Profile.name}}
+                    </p>
+                    <p class="selector" ng-hide="DB.m.projects[selected_project].mode == 'edit'">
+                        <strong>E-Mail:</strong> {{user(selected_user).email}}
                     </p>
                     <p class="selector" ng-hide="DB.m.projects[selected_project].mode == 'edit'">
                         {{DB.d.projects[selected_project].description}}
