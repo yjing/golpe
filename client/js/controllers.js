@@ -136,6 +136,8 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
         if(angular.isDefined(id)) {
             var index = $scope.meta[id].index;
             return $scope.usersData[index];
+        } else {
+            return {};
         }
     };
     $scope.newUser = function () {
