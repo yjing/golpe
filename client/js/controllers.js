@@ -108,13 +108,16 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
         UsersService.loadAll(
             // SUCCESS
             function(d, h){
-                $scope.setupMenu();
-                for (var i = 0; i < $scope.usersData.length; i++) {
+                var data = database.select(UsersService.TABLE, [], 1);
+                for (var i = 0; i < data.length; i++) {
                     if(i==0) {
-                        $scope.selected_user = $scope.usersData[i]['id'];
+                        $scope.selected_user = data[i][UsersService.PKEY];
                     }
-                    $scope.meta[$scope.usersData[i]['id']][MODE_KEY] = MODE_NORMAL;
+                    $scope.meta[data[i][UsersService.PKEY]].index = i;
+                    $scope.meta[data[i][UsersService.PKEY]][MODE_KEY] = MODE_NORMAL;
                 }
+
+                $scope.usersData = data;
             },
             // ERROR
             function(error){
