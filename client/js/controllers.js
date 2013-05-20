@@ -115,7 +115,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
                     if(i==0) {
                         $scope.selected_user = data[i][UsersService.PKEY];
                     }
-                    $scope.meta[data[i][UsersService.PKEY]].index = i;
+                    $scope.meta[data[i][UsersService.PKEY]] = { index: 1 };
                     $scope.meta[data[i][UsersService.PKEY]][MODE_KEY] = MODE_NORMAL;
                 }
                 console.log(data);
