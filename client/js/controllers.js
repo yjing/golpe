@@ -106,7 +106,10 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
         UsersService.loadAll(
             // SUCCESS
             function(d, h){
-                $scope.setupMenu();
+                $scope.usersData  = database.select(UsersService.TABLE, [], 2);
+                for (var i = 0; i < $scope.usersData.length; i++) {
+                    $scope.meta[$scope.usersData[i]['id']] = i;
+                }
             },
             // ERROR
             function(error){
