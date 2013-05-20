@@ -126,6 +126,21 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
             return (id == this.selected_user ? 'active' : '');
         }
     };
+    $scope.reloadUsers = function () {
+        UsersService.loadAll(
+            // SUCCESS
+            function(d, h){
+                $scope.usersData  = database.select(UsersService.TABLE, [], 2);
+                for (var i = 0; i < $scope.usersData.length; i++) {
+                    $scope.meta[$scope.usersData[i]['id']] = i;
+                }
+            },
+            // ERROR
+            function(error){
+                $rootScope.handleError(error);
+            }
+        );
+    };
 
     if($rootScope.user == null || !$rootScope.user['logged']) {
         BusyService.busy(true);
