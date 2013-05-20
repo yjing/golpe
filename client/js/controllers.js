@@ -404,6 +404,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
     $scope.saveProject = function (id) {
         if(angular.isDefined(id)) {
             var index = $scope.meta[id].index;
+            console.log(index);
             $scope.meta[id][MODE_KEY] = MODE_NORMAL;
             ProjectsService.save(
                 $scope.projectsData[index],

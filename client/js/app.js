@@ -358,8 +358,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
             var params = {};
             params[this.PKEY] = project_id;
 
-//            delete project.Teams
-//            delete project.created;
+            delete project.created;
             delete project.modified;
 
             BusyService.busy(true);
