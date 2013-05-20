@@ -308,7 +308,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                 isArray:false
             }
         });
-//
+
         this.loadAll = function (reload, success, error) {
             // PARAM MANAGEMENT
             if (arguments.length > 0 && typeof arguments[0] == "function") {
@@ -341,19 +341,44 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                 }
             );
         }
-
-        this.updateUser = function(data) {
-            if(angular.isDefined(data) && data != null) {
-                var id = data[this.PKEY];
-                var existing = database.get(this.TABLE, id, 0);
-                if(angular.isDefined(existing)) {
-                    this.insertUser(data);
-                } else {
-                    throw "User doesn't exists.";
-                }
+        this.save = function(user, success, error){
+            var user_id = user[this.PKEY];
+            if (!angular.isDefined(user_id) || user_id == null) {
+                throw "Missing user ID";
             }
-        }
 
+            var existing = database.get(this.TABLE, user_id, 0);
+            var params = {};
+                params[this.PKEY] = user_id;
+
+            delete user.created;
+            delete user.modified;
+
+            BusyService.busy(true);
+            this.Users.save(
+                params,
+                user,
+                function(d, h) {
+                    BusyService.busy(false);
+
+                    // CALLBACKS
+                    if (angular.isDefined(success)) {
+                        success(d, h);
+                    }
+                },
+                function(e) {
+                    BusyService.busy(false);
+
+                    // CALLBACKS
+                    if (angular.isDefined(error)) {
+                        error(e);
+                    }
+                }
+            );
+
+        };
+
+        // DATABASE RELATED
         this.insertUsers = function (data) {
             if (angular.isArray(data)) {
                 for (var i = 0; i < data.length; i++) {
