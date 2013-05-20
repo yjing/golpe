@@ -381,6 +381,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
             ProjectsService.delete(id,
                 function(d, h){
                     console.log($scope.meta);
+                    console.log($scope.meta[id]);
                     var index = $scope.meta[id].index;
                     $scope.projectsData.splice(index, 1);
                 },
