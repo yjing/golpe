@@ -111,8 +111,6 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
                 for (var i = 0; i < $scope.usersData.length; i++) {
                     _THIS.meta[$scope.usersData[i]['id']] = i;
                 }
-                console.log(_THIS.meta);
-                console.log($scope.usersData);
             },
             // ERROR
             function(error){
@@ -122,7 +120,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
     }
 
     $scope.selectUser = function (id) {
-
+        this.selected_user = id;
     };
     $scope.isSelectedUser = function (id) {
         if(angular.isDefined(id)) {
