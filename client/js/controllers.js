@@ -332,7 +332,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
     };
     $scope.selectProject = function (id) {
         if(angular.isDefined(id)) {
-            ProjectsService.load();
+            ProjectsService.load(id);
             $scope.selected_project = id;
         }
     };
