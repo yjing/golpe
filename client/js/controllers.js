@@ -335,6 +335,20 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
             $scope.selected_project = id;
         }
     };
+    $scope.editProject = function (id) {
+        if(angular.isDefined(id)) {
+            var index = $scope.meta[id].index;
+            $scope.meta[id][MODE_KEY] = MODE_EDIT;
+            $scope.meta[id].old = angular.copy($scope.usersData[index]);
+        }
+    };
+    $scope.cancelEditProject = function (id) {
+        if(angular.isDefined(id)) {
+            var index = $scope.meta[id].index;
+            $scope.meta[id][MODE_KEY] = MODE_NORMAL;
+            $scope.usersData[index] = $scope.meta[id].old;
+        }
+    };
     $scope.isEditProject = function (id) {
         if(angular.isDefined(id) && id != null) {
             if(id == $scope.new_project_id) {
