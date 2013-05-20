@@ -62,8 +62,8 @@
                         <dd>{{user(selected_user).email}}</dd>
                         <dt><strong>Role:</strong></dt>
                         <dd>{{user(selected_user).role}}</dd>
-                        <dt><strong>Supervisor:</strong></dt>
-                        <dd>{{user(selected_user).Supervisor.username}}</dd>
+                        <dt ng-show="user(selected_user).role == 'STUDENT'"><strong>Supervisor:</strong></dt>
+                        <dd ng-show="user(selected_user).role == 'STUDENT'">{{user(selected_user).Supervisor.username}}</dd>
                     </dl>
                     <!-- EDIT MODE -->
                     <textarea class="edit-field" ng-model="DB.d.projects[selected_project].description" ng-show="DB.m.projects[selected_project].mode == 'edit'"></textarea>
