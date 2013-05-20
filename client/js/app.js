@@ -368,18 +368,18 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
             }
         }
     })
-    .service('TeamsService', function(ProjectsService, database){
+    .service('TeamsService', function(database){
         this.DATA_KEY = 'Team';
         this.TABLE = 'Teams';
         this.PKEY = 'id';
 
         this.insertTeam = function(data) {
             if(angular.isDefined(data)) {
-                var project = data[ProjectsService.DATA_KEY];
-                if(angular.isDefined(project) && project!=null) {
-                    ProjectsService.insertProject(project);
-                }
-                delete data[ProjectsService.DATA_KEY];
+//                var project = data[ProjectsService.DATA_KEY];
+//                if(angular.isDefined(project) && project!=null) {
+//                    ProjectsService.insertProject(project);
+//                }
+//                delete data[ProjectsService.DATA_KEY];
                 database.insert(this.TABLE, data[this.PKEY], data);
             }
         }
