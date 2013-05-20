@@ -378,7 +378,14 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
     };
     $scope.deleteProject = function (confirm, id) {
         if(confirm) {
-
+            ProjectsService.delete(id,
+                function(d, h){
+                    console.log(database.select('Projects', [], 0));
+                },
+                function(e) {
+                    $rootScope.handleError(error);
+                }
+            );
         } else {
             $scope.meta[id][MODE_KEY] = MODE_DELETING;
         }
@@ -436,7 +443,6 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
             );
         }
     };
-
 
 }
 

@@ -382,6 +382,35 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                 }
             );
         }
+        this.delete = function(project_id, success, error){
+            var params = {};
+                params[this.PKEY] = project_id;
+
+
+            BusyService.busy(true);
+            var proj = this.Projects.delete(
+                params,
+                function(d, h) {
+                    BusyService.busy(false);
+
+                    // DELETE FROM db
+                    database.delete(_THIS.TABLE, project_id);
+
+                    // CALLBACKS
+                    if (angular.isDefined(success)) {
+                        success(d, h);
+                    }
+                },
+                function(e) {
+                    BusyService.busy(false);
+
+                    // CALLBACKS
+                    if (angular.isDefined(error)) {
+                        error(e);
+                    }
+                }
+            );
+        }
 
         this.insertProjects = function (data) {
             if (angular.isArray(data)) {
