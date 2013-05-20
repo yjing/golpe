@@ -375,6 +375,10 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
             $scope.meta[id][MODE_KEY] = MODE_NORMAL;
         }
     };
+    $scope.newProject = function () {
+        $scope.new_project = {};
+        $scope.selected_project = $scope.new_project_id;
+    };
     $scope.isNewProject = function () {
         return $scope.new_project != null;
     };
