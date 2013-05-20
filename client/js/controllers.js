@@ -99,6 +99,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
         ]
     };
 
+    var _THIS = this;
     this.selected_user = 1;
     this.meta = {};
 
@@ -108,9 +109,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
             function(d, h){
                 $scope.usersData  = database.select(UsersService.TABLE, [], 2);
                 for (var i = 0; i < $scope.usersData.length; i++) {
-                    this.meta[
-                        $scope.usersData[i]['id']]
-                        = i;
+                    _THIS.meta[$scope.usersData[i]['id']] = i;
                 }
                 console.log(this.meta);
                 console.log($scope.usersData);
