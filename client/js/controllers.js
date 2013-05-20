@@ -275,6 +275,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
     $scope.new_project_id = -1;
     $scope.new_project = null;
     $scope.selected_project = null;
+    $scope.selected_team = null;
     $scope.meta = {};
 
     // MAIN METHOD
@@ -330,6 +331,11 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
             return (id == this.selected_project ? 'active' : '');
         }
     };
+    $scope.isSelectedTeam = function (id) {
+        if(angular.isDefined(id)) {
+            return (id == this.selected_team ? 'active' : '');
+        }
+    };
     $scope.selectProject = function (id) {
         if(angular.isDefined(id)) {
             ProjectsService.load(id,
@@ -348,6 +354,11 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
             );
         }
     };
+    $scope.selectTeam = function (id) {
+        if(angular.isDefined(id) && id != null) {
+            $scope.selected_team = id;
+        }
+    }
     $scope.editProject = function (id) {
         if(angular.isDefined(id)) {
             var index = $scope.meta[id].index;
