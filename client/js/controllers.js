@@ -123,7 +123,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
         );
     }
     $scope.setupMenu = function () {
-        $scope.usersData  = database.select(UsersService.TABLE, [], 2);
+        $scope.usersData  = database.select(UsersService.TABLE, [], 1);
         for (var i = 0; i < $scope.usersData.length; i++) {
             $scope.meta[$scope.usersData[i]['id']] = { index: i };
         }
