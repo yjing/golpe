@@ -264,6 +264,50 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
         this.TABLE = 'Projects';
         this.PKEY = 'id';
 
+        this.Projects = $resource('/projects/:id', { id:'@id' }, {
+            all:{
+                method:'GET',
+                isArray:true
+            },
+            load:{
+                method:'GET',
+                isArray:false
+            }
+        });
+
+        this.loadAll = function (reload, success, error) {
+            // PARAM MANAGEMENT
+            if (arguments.length > 0 && typeof arguments[0] == "function") {
+                if (arguments.length > 1) {
+                    error = arguments[1];
+                }
+                success = arguments[0];
+                reload = false;
+            }
+
+            BusyService.busy(true);
+            var result = this.Project.all(
+                function (d, h) {
+                    BusyService.busy(false);
+
+//                    _THIS.insertUsers(d);
+
+                    // CALLBACKS
+                    if (angular.isDefined(success)) {
+                        success(d, h);
+                    }
+                },
+                function (e) {
+                    BusyService.busy(false);
+
+                    // CALLBACKS
+                    if (angular.isDefined(error)) {
+                        error(e);
+                    }
+                }
+            );
+        }
+
         this.insertProject = function(data) {
             if(angular.isDefined(data)) {
                 database.insert(this.TABLE, data[this.PKEY], data);
