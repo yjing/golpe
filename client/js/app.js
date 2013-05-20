@@ -360,6 +360,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
         };
         this.insertProject = function(data) {
             if(angular.isDefined(data)) {
+                data[STATUS_KEY] = STATUS_PARTIAL;
                 database.insert(this.TABLE, data[this.PKEY], data);
             }
         }
