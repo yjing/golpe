@@ -324,7 +324,6 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                     function (d, h) {
                         BusyService.busy(false);
 
-                        console.log(d);
                         // ADD METADATA
                         _THIS.insertProject(proj[_THIS.DATA_KEY]);
 
@@ -364,6 +363,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                     if(angular.isArray(data[TeamsService.DATA_KEY])) {
                         for (var i = 0; i < data[TeamsService.DATA_KEY].length; i++) {
                             var team = data[TeamsService.DATA_KEY][i];
+                            console.log(team);
                             TeamsService.insertTeam(team);
                         }
                     }
