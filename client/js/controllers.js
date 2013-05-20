@@ -146,6 +146,11 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
             $scope.meta[id][MODE_KEY] = MODE_DELETING;
         }
     };
+    $scope.cancelDeleteUser = function (id) {
+        if(angular.isDefined(id)) {
+            $scope.meta[id][MODE_KEY] = MODE_NORMAL;
+        }
+    };
     $scope.isDeleteUser = function (id) {
         if(angular.isDefined(id)) {
             return $scope.meta[id].mode == MODE_DELETING;
