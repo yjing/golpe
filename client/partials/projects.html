@@ -30,8 +30,8 @@
             </ul>
             <div>
                 <a href="#" class="text-right">
-                    <button ng-click="newProject();" ng-hide="new_project != null" class="btn btn-success">New Project</button>
-                    <button ng-click="cancelNewProject();" ng-hide="new_project != null" class="btn btn-warning">Cancel</button>
+                    <button ng-click="newProject();" ng-hide="isNewProject()" class="btn btn-success">New Project</button>
+                    <button ng-click="cancelNewProject();" ng-show="isNewProject()" class="btn btn-warning">Cancel</button>
                 </a>
             </div>
         </div>

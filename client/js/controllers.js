@@ -346,8 +346,19 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
             $scope.meta[id][MODE_KEY] = MODE_DELETING;
         }
     };
+    $scope.cancelDeleteProject = function (id) {
+        if(angular.isDefined(id)) {
+            $scope.meta[id][MODE_KEY] = MODE_NORMAL;
+        }
+    };
     $scope.isNewProject = function () {
         return $scope.new_project != null;
+    };
+    $scope.cancelNewProject = function () {
+        $scope.new_project = null;
+        if($scope.selected_project == $scope.new_project_id) {
+            $scope.selected_project = null;
+        }
     };
 
 
