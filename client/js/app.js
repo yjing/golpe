@@ -320,13 +320,14 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                 BusyService.busy(true);
                 var proj = this.Projects.load(
                     {
-                        id:id
+                        id : id
                     },
                     function (d, h) {
                         BusyService.busy(false);
 
                         // ADD METADATA
                         _THIS.insertProject(proj);
+                        console.log(d);
 
                         // CALLBACKS
                         if (angular.isDefined(success)) {
