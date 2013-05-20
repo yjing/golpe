@@ -359,6 +359,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
         };
         this.insertProject = function(data) {
             if(angular.isDefined(data)) {
+                console.log(data[TeamsService.DATA_KEY]);
                 if(angular.isDefined(data[TeamsService.DATA_KEY]) && data[TeamsService.DATA_KEY] != null) {
                     console.log(data[TeamsService.DATA_KEY]);
                     delete data[TeamsService.DATA_KEY];
