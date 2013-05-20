@@ -14,7 +14,7 @@
                 </li>
                 <li ng-repeat="u in usersData | filter:searchText" ng-class="isSelectedUser(u.id);">
                     <a href="#" ng-click="selectUser(u.id);">{{u.username}}
-                        <i ng-show="DB.m.projects[p.id].mode == 'edit'" class="icon-pencil"></i>
+                        <i ng-show="isEditUser(u.id)" class="icon-pencil"></i>
                     </a>
                     <div class="functions">
                         <button class="btn-link function" ng-click="deleteProject(false, p.id);" ng-hide="DB.m.projects[p.id].mode == 'deleting' || DB.m.projects[p.id].mode == 'edit'"><i class="icon-remove"></i></button>

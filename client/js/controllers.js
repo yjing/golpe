@@ -107,6 +107,9 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
             // SUCCESS
             function(d, h){
                 $scope.setupMenu();
+                for (var i = 0; i < $scope.usersData.length; i++) {
+                    $scope.meta[$scope.usersData[i]['id']][MODE_KEY] = MODE_EDIT;
+                }
             },
             // ERROR
             function(error){
@@ -116,18 +119,24 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
     }
     $scope.setupMenu = function () {
         $scope.usersData  = database.select(UsersService.TABLE, [], 2);
-        console.log($scope.usersData);
         for (var i = 0; i < $scope.usersData.length; i++) {
-            $scope.meta[$scope.usersData[i]['id']] = i;
+            $scope.meta[$scope.usersData[i]['id']] = { index: i };
         }
     };
 
     $scope.selectUser = function (id) {
-        $scope.selected_user = id;
+        if(angular.isDefined(id)) {
+            $scope.selected_user = id;
+        }
     };
     $scope.isSelectedUser = function (id) {
         if(angular.isDefined(id)) {
             return (id == this.selected_user ? 'active' : '');
+        }
+    };
+    $scope.isEditUser = function (id) {
+        if(angular.isDefined(id)) {
+            return $scope.meta[id].mode == MODE_EDIT;
         }
     };
     $scope.reloadUsers = function () {
