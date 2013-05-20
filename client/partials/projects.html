@@ -14,23 +14,24 @@
                 </li>
                 <li ng-repeat="p in projectsData | filter:searchText" ng-class="isSelectedProject(p.id)">
                     <a href="#" ng-click="selectProject(p.id);">{{p.name}}
-                        <i ng-show="DB.m.projects[p.id].mode == 'edit'" class="icon-pencil"></i>
+                        <i ng-show="isEditProject(p.id)" class="icon-pencil"></i>
                     </a>
                     <div class="functions">
-                        <button class="btn-link function" ng-click="deleteProject(false, p.id);" ng-hide="DB.m.projects[p.id].mode == 'deleting' || DB.m.projects[p.id].mode == 'edit'"><i class="icon-remove"></i></button>
+                        <button class="btn-link function" ng-click="deleteProject(false, p.id);" ng-hide="isDeleteProject(p.id) || isEditProject(p.id)"><i class="icon-remove"></i></button>
                     </div>
                     <div class="confirms">
-                        <button class="btn btn-danger confirm" ng-click="deleteProject(true, p.id);" ng-show="DB.m.projects[p.id].mode == 'deleting';">Delete</button>
-                        <button class="btn btn-success confirm" ng-click="DB.m.projects[p.id].mode = 'normal';" ng-show="DB.m.projects[p.id].mode == 'deleting';">Keep</button>
+                        <button class="btn btn-danger confirm" ng-click="deleteProject(true, p.id);" ng-show="isDeleteProject(p.id)">Delete</button>
+                        <button class="btn btn-success confirm" ng-click="DB.m.projects[p.id].mode = 'normal';" ng-show="isDeleteProject(p.id)">Keep</button>
                     </div>
                 </li>
-                <li ng-show="new_project != null" ng-class="isSelectedProject(-1)">
-                    <a href="#" ng-click="selectProject(-1);">{{new_project.name}} <i class="icon-edit"></i></a>
+                <li ng-show="isNewProject()" ng-class="isSelectedProject(new_project_id)">
+                    <a href="#" ng-click="selectProject(new_project_id);">{{new_project.name}} <i class="icon-edit"></i></a>
                 </li>
             </ul>
             <div>
                 <a href="#" class="text-right">
-                    <button ng-click="newProject();" ng-disabled="new_project != null" class="btn btn-success">New Project</button>
+                    <button ng-click="newProject();" ng-hide="new_project != null" class="btn btn-success">New Project</button>
+                    <button ng-click="cancelNewProject();" ng-hide="new_project != null" class="btn btn-warning">Cancel</button>
                 </a>
             </div>
         </div>

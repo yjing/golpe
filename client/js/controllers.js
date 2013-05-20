@@ -325,6 +325,31 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
             $scope.selected_project = id;
         }
     };
+    $scope.isEditProject = function (id) {
+        if(angular.isDefined(id) && id != null) {
+            if(id == $scope.new_project_id) {
+                return false;
+            } else {
+                return $scope.meta[id].mode == MODE_EDIT;
+            }
+        }
+    };
+    $scope.isDeleteProject = function (id) {
+        if(angular.isDefined(id)) {
+            return $scope.meta[id].mode == MODE_DELETING;
+        }
+    };
+    $scope.deleteProject = function (confirm, id) {
+        if(confirm) {
+
+        } else {
+            $scope.meta[id][MODE_KEY] = MODE_DELETING;
+        }
+    };
+    $scope.isNewProject = function () {
+        return $scope.new_project != null;
+    };
+
 
 }
 
