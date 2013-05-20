@@ -286,7 +286,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
             }
 
             BusyService.busy(true);
-            var result = this.Project.all(
+            var result = this.Projects.all(
                 function (d, h) {
                     BusyService.busy(false);
 
