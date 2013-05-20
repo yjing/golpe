@@ -149,7 +149,6 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
         return $scope.new_user != null;
     };
     $scope.selectUser = function (id) {
-        console.log("selecting: " + id);
         if(angular.isDefined(id)) {
             $scope.selected_user = id;
         }
