@@ -29,6 +29,8 @@ DROP TABLE IF EXISTS `profiles` ;
 
 CREATE  TABLE IF NOT EXISTS `profiles` (
   `user_id` INT UNSIGNED NOT NULL ,
+  `name` TEXT NULL ,
+  `id_number` VARCHAR(8) NULL ,
   `created` DATETIME NULL COMMENT '\n' ,
   `modified` DATETIME NULL ,
   PRIMARY KEY (`user_id`) ,
@@ -380,7 +382,7 @@ CREATE  TABLE IF NOT EXISTS `notifications` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
   `type` TEXT NOT NULL ,
   `resource` TEXT NOT NULL ,
-  `message` TEXT NULL COMMENT '	\n\n' ,
+  `message` TEXT NULL COMMENT '  \n\n' ,
   `priority` TINYINT(1) NULL DEFAULT false ,
   `public` TINYINT(1) NULL DEFAULT false ,
   `to` TEXT NULL ,
@@ -458,7 +460,7 @@ CREATE  TABLE IF NOT EXISTS `logs` (
   `action` TEXT NOT NULL ,
   `resource` TEXT NULL ,
   `resource_id` TEXT NULL ,
-  `importance` INT UNSIGNED NULL DEFAULT 0,
+  `importance` INT UNSIGNED NULL DEFAULT 0 COMMENT '	' ,
   `result` TINYINT(1) NOT NULL ,
   PRIMARY KEY (`id`) ,
   CONSTRAINT `fk_logs_users1`
@@ -471,6 +473,7 @@ ENGINE = InnoDB;
 CREATE INDEX `fk_logs_users1_idx` ON `logs` (`user_id` ASC) ;
 
 
+GRANT ALL ON ``.* TO 'mscproject';
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
