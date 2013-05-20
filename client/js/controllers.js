@@ -401,7 +401,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
             $scope.selected_project = null;
         }
     };
-    $scope.saveUser = function (id) {
+    $scope.saveProject = function (id) {
         if(angular.isDefined(id)) {
             var index = $scope.meta[id].index;
             $scope.meta[id][MODE_KEY] = MODE_NORMAL;
