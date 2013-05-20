@@ -139,6 +139,11 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
             return $scope.meta[id].mode == MODE_EDIT;
         }
     };
+    $scope.isDeleteUser = function (id) {
+        if(angular.isDefined(id)) {
+            return $scope.meta[id].mode == MODE_DELETING;
+        }
+    };
     $scope.reloadUsers = function () {
         UsersService.loadAll(
             // SUCCESS

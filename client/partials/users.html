@@ -17,7 +17,7 @@
                         <i ng-show="isEditUser(u.id)" class="icon-pencil"></i>
                     </a>
                     <div class="functions">
-                        <button class="btn-link function" ng-click="deleteProject(false, p.id);" ng-hide="DB.m.projects[p.id].mode == 'deleting' || DB.m.projects[p.id].mode == 'edit'"><i class="icon-remove"></i></button>
+                        <button class="btn-link function" ng-click="deleteProject(false, p.id);" ng-hide="isDeleteUser(u.id) || isEditUser(u.id)"><i class="icon-remove"></i></button>
                     </div>
                     <div class="confirms">
                         <button class="btn btn-danger confirm" ng-click="deleteProject(true, p.id);" ng-show="DB.m.projects[p.id].mode == 'deleting';">Delete</button>
