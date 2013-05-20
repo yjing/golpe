@@ -426,6 +426,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
                         $scope.meta[id] = { index: $scope.meta.length };
                         $scope.meta[id][MODE_KEY] = MODE_NORMAL;
                         $scope.projectsData.push(new_proj);
+                        $scope.cancelNewProject();
                     }
                 },
                 function(e){
