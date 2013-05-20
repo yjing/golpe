@@ -57,8 +57,8 @@
                         {{project(selected_project).description}}
                     </p>
                     <!-- EDIT MODE -->
-                    <textarea class="edit-field" ng-model="DB.d.projects[selected_project].description"
-                              ng-show="project(selected_project)"></textarea>
+                    <textarea class="edit-field" ng-model="project(selected_project).description"
+                              ng-show="isEditProject(selected_project)"></textarea>
                 </li>
             </ul>
             <div ng-show="isEditProject(selected_project)">
