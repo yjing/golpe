@@ -45,19 +45,20 @@
                         {{user(selected_user).username}} <i class="icon-pencil"></i>
                     </h4>
                     <!-- EDIT MODE -->
-                    <span ng-show="DB.m.projects[selected_project].mode == 'edit'">
-                        <input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge" ng-model="DB.d.projects[selected_project].name">
+                    <span ng-show="isEditUser(selected_user)">
+                        <input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge"
+                               ng-model="DB.d.projects[selected_project].name">
                     </span>
                 </span>
             </div>
             <ul>
                 <li>
-                    <p class="selector" ng-hide="DB.m.projects[selected_project].mode == 'edit'">
-                        <strong>Name:</strong> {{user(selected_user).Profile.name}}
-                    </p>
-                    <p class="selector" ng-hide="DB.m.projects[selected_project].mode == 'edit'">
-                        <strong>E-Mail:</strong> {{user(selected_user).email}}
-                    </p>
+                    <dl class="selector" ng-hide="isEditUser(selected_user)">
+                        <dt><strong>Name:</strong></dt>
+                        <dd>{{user(selected_user).Profile.name}}</dd>
+                        <dt><strong>E-Mail:</strong></dt>
+                        <dd>{{user(selected_user).email}}</dd>
+                    </dl>
                     <p class="selector" ng-hide="DB.m.projects[selected_project].mode == 'edit'">
                         {{DB.d.projects[selected_project].description}}
                     </p>
