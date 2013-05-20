@@ -348,6 +348,42 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                 }
             }
         }
+        this.save = function(project, success, error){
+            var project_id = user[this.PKEY];
+            if (!angular.isDefined(project_id) || project_id == null) {
+                throw "Missing project ID";
+            }
+
+            var existing = database.get(this.TABLE, project_id, 0);
+            var params = {};
+            params[this.PKEY] = project_id;
+
+            delete user.created;
+            delete user.modified;
+
+            BusyService.busy(true);
+            this.Projects.save(
+                params,
+                { 'Project  ' : user },
+                function(d, h) {
+                    BusyService.busy(false);
+
+                    // CALLBACKS
+                    if (angular.isDefined(success)) {
+                        success(d, h);
+                    }
+                },
+                function(e) {
+                    BusyService.busy(false);
+
+                    // CALLBACKS
+                    if (angular.isDefined(error)) {
+                        error(e);
+                    }
+                }
+            );
+        }
+
         this.insertProjects = function (data) {
             if (angular.isArray(data)) {
                 for (var i = 0; i < data.length; i++) {
