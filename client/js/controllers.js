@@ -147,7 +147,9 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
     };
     $scope.cancelNewUser = function () {
         $scope.new_user = null;
-        $scope.selected_user = null;
+        if($scope.selected_user == $scope.new_user_id) {
+            $scope.selected_user = null;
+        }
     };
     $scope.isNewUser = function () {
         return $scope.new_user != null;
