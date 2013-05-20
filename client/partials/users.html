@@ -42,7 +42,7 @@
             <div>
                 <span>
                     <h4 class="clickable" ng-hide="isEditUser(selected_user)" ng-click="editUser(selected_user);">
-                        {{usersData[selected_user].username}} <i class="icon-pencil"></i>
+                        {{user(selected_user).username}} <i class="icon-pencil"></i>
                     </h4>
                     <!-- EDIT MODE -->
                     <span ng-show="DB.m.projects[selected_project].mode == 'edit'">

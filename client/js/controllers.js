@@ -129,6 +129,10 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
         }
     };
 
+    $scope.user = function (id) {
+        var index = $scope.meta[id].index;
+        return $scope.usersData[index];
+    };
     $scope.newUser = function () {
         $scope.new_user = {};
         $scope.selected_user = $scope.new_user_id;
