@@ -325,6 +325,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                         BusyService.busy(false);
 
                         // ADD METADATA
+                        console.log(proj);
                         _THIS.insertProject(proj);
                         console.log(database.get(_THIS.TABLE, id, 3));
                         // CALLBACKS
