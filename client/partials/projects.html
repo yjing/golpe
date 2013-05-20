@@ -38,11 +38,11 @@
     </div>
 
     <div class="span9">
-        <div class="menu shadow" ng-hide="selected_project<0;">
+        <div class="menu shadow" ng-hide="isNewProject(selected_project)">
             <div>
                 <span>
-                    <h4 class="clickable" ng-hide="DB.m.projects[selected_project].mode == 'edit'" ng-click="editProject(selected_project);">
-                        {{DB.d.projects[selected_project].name}} <i class="icon-pencil"></i>
+                    <h4 class="clickable" ng-hide="isEditProjectselected_project)" ng-click="editProject(selected_project);">
+                        {{project(selected_project).name}} <i class="icon-pencil"></i>
                     </h4>
                     <!-- EDIT MODE -->
                     <span ng-show="DB.m.projects[selected_project].mode == 'edit'">
