@@ -38,7 +38,7 @@
     </div>
 
     <div class="span9">
-        <div class="menu shadow" ng-hide="isNewUser()">
+        <div class="menu shadow" ng-hide="isNewUser() || user(selected_user) == null">
             <div>
                 <span>
                     <h4 class="clickable" ng-hide="isEditUser(selected_user)" ng-click="editUser(selected_user);">
