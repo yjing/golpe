@@ -80,7 +80,7 @@
                         <dt><strong>Role:</strong></dt>
                         <dd>
                             <select ng-model="user(selected_user).role">
-                                <option required="r in [ 'STUDENT', 'SUPERVISOR', 'ADMIN' ]">{{r}}</option>
+                                <option ng-repeat="r in [ 'STUDENT', 'SUPERVISOR', 'ADMIN' ]">{{r}}</option>
                             </select>
                         </dd>
                         <dt ng-show="user(selected_user).role == 'STUDENT'"><strong>Supervisor:</strong></dt>
