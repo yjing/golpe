@@ -106,7 +106,6 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
         UsersService.loadAll(
             // SUCCESS
             function(d, h){
-                console.log("llllll");
                 $scope.setupMenu();
             },
             // ERROR
@@ -117,6 +116,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
     }
     $scope.setupMenu = function () {
         $scope.usersData  = database.select(UsersService.TABLE, [], 2);
+        console.log($scope.usersData);
         for (var i = 0; i < $scope.usersData.length; i++) {
             $scope.meta[$scope.usersData[i]['id']] = i;
         }
