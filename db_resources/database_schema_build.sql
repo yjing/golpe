@@ -495,6 +495,16 @@ INSERT INTO `users` (`id`, `username`, `password`, `email`, `role`, `created`, `
 COMMIT;
 
 -- -----------------------------------------------------
+-- Data for table `profiles`
+-- -----------------------------------------------------
+START TRANSACTION;
+INSERT INTO `profiles` (`user_id`, `name`, `id_number`, `created`, `modified`) VALUES (1, 'Stefano Susini', '12003068', '2013-03-23 13:14:51', '2013-03-23 13:14:51');
+INSERT INTO `profiles` (`user_id`, `name`, `id_number`, `created`, `modified`) VALUES (2, 'Yanguo Jing', '12345678', '2013-03-23 13:14:51', '2013-03-23 13:14:51');
+INSERT INTO `profiles` (`user_id`, `name`, `id_number`, `created`, `modified`) VALUES (3, 'Quan Dang', '12345677', '2013-03-23 13:14:51', '2013-03-23 13:14:51');
+
+COMMIT;
+
+-- -----------------------------------------------------
 -- Data for table `projects`
 -- -----------------------------------------------------
 START TRANSACTION;
