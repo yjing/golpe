@@ -429,7 +429,6 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
                     if(angular.isDefined(index)) {
 
                     } else {
-                        console.log(d);
                         id = d['Project']['id'];
                         var new_proj = database.get('Projects', id, 3);
 
@@ -438,6 +437,8 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
                         $scope.projectsData.push(new_proj);
                         $scope.cancelNewProject();
                         $scope.selectProject(id);
+
+                        console.log($scope.meta[id]);
                     }
                 },
                 function(e){
