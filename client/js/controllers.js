@@ -108,7 +108,9 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
         UsersService.loadAll(
             // SUCCESS
             function(d, h){
+                console.log("TEST");
                 var data = database.select(UsersService.TABLE, [], 1);
+                console.log(data);
                 for (var i = 0; i < data.length; i++) {
                     if(i==0) {
                         $scope.selected_user = data[i][UsersService.PKEY];
