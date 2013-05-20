@@ -61,7 +61,10 @@
                         <dt><strong>E-Mail:</strong></dt>
                         <dd>{{user(selected_user).email}}</dd>
                         <dt><strong>Role:</strong></dt>
-                        <dd>{{user(selected_user).role}}</dd>
+                        <dd ng-show="user(selected_user).role != null">{{user(selected_user).role}}</dd>
+                        <dd ng-hide="user(selected_user).role != null">
+                            <a href="#" ng-click="assignSupervisor(selected_user)">Assign Supervisor</a>
+                        </dd>
                         <dt ng-show="user(selected_user).role == 'STUDENT'"><strong>Supervisor:</strong></dt>
                         <dd ng-show="user(selected_user).role == 'STUDENT'">{{user(selected_user).Supervisor.username}}</dd>
                     </dl>
