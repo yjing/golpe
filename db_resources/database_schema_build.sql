@@ -89,7 +89,6 @@ DROP TABLE IF EXISTS `teams_users` ;
 CREATE  TABLE IF NOT EXISTS `teams_users` (
   `team_id` INT UNSIGNED NOT NULL ,
   `user_id` INT UNSIGNED NOT NULL ,
-  `team_leader` TINYINT(1) NULL DEFAULT false ,
   PRIMARY KEY (`team_id`, `user_id`) ,
   CONSTRAINT `fk_teams_has_users_teams1`
     FOREIGN KEY (`team_id` )
@@ -527,13 +526,13 @@ COMMIT;
 -- Data for table `teams_users`
 -- -----------------------------------------------------
 START TRANSACTION;
-INSERT INTO `teams_users` (`team_id`, `user_id`, `team_leader`) VALUES (1, 4, false);
-INSERT INTO `teams_users` (`team_id`, `user_id`, `team_leader`) VALUES (1, 5, false);
-INSERT INTO `teams_users` (`team_id`, `user_id`, `team_leader`) VALUES (2, 6, false);
-INSERT INTO `teams_users` (`team_id`, `user_id`, `team_leader`) VALUES (2, 7, true);
-INSERT INTO `teams_users` (`team_id`, `user_id`, `team_leader`) VALUES (3, 8, true);
-INSERT INTO `teams_users` (`team_id`, `user_id`, `team_leader`) VALUES (3, 9, false);
-INSERT INTO `teams_users` (`team_id`, `user_id`, `team_leader`) VALUES (1, 1, true);
+INSERT INTO `teams_users` (`team_id`, `user_id`) VALUES (1, 4);
+INSERT INTO `teams_users` (`team_id`, `user_id`) VALUES (1, 5);
+INSERT INTO `teams_users` (`team_id`, `user_id`) VALUES (2, 6);
+INSERT INTO `teams_users` (`team_id`, `user_id`) VALUES (2, 7);
+INSERT INTO `teams_users` (`team_id`, `user_id`) VALUES (3, 8);
+INSERT INTO `teams_users` (`team_id`, `user_id`) VALUES (3, 9);
+INSERT INTO `teams_users` (`team_id`, `user_id`) VALUES (1, 1);
 
 COMMIT;
 
