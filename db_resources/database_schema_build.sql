@@ -99,8 +99,8 @@ CREATE  TABLE IF NOT EXISTS `teams_users` (
   CONSTRAINT `fk_teams_has_users_users1`
     FOREIGN KEY (`user_id` )
     REFERENCES `users` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 CREATE INDEX `fk_teams_has_users_users1_idx` ON `teams_users` (`user_id` ASC) ;
