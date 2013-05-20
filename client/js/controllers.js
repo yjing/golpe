@@ -275,11 +275,10 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
 
     // MAIN METHOD
     $scope.main = function() {
-        console.log("HERE");
         ProjectsService.loadAll(
             // SUCCESS
             function(data, handlers){
-                console.log(data);
+                console.log(database.select(ProjectsService.TABLE, [], 1));
             },
             // ERROR
             function(error){

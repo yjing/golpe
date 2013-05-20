@@ -290,7 +290,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                 function (d, h) {
                     BusyService.busy(false);
 
-//                    _THIS.insertUsers(d);
+                    _THIS.insertProjects(d);
 
                     // CALLBACKS
                     if (angular.isDefined(success)) {
@@ -307,6 +307,16 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                 }
             );
         }
+
+        this.insertProjects = function (data) {
+            if (angular.isArray(data)) {
+                for (var i = 0; i < data.length; i++) {
+                    if (angular.isDefined(data[i][this.DATA_KEY])) {
+                        this.insertProject(data[i][this.DATA_KEY]);
+                    }
+                }
+            }
+        };
 
         this.insertProject = function(data) {
             if(angular.isDefined(data)) {
