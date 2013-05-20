@@ -437,6 +437,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
                         $scope.projectsData.push(new_proj);
                         $scope.cancelNewProject();
                         $scope.selectProject(id);
+
                     }
                 },
                 function(e){
