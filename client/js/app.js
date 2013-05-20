@@ -363,11 +363,13 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
             delete project.modified;
 
             BusyService.busy(true);
-            this.Projects.save(
+            var proj = this.Projects.save(
                 params,
                 { 'Project' : project },
                 function(d, h) {
                     BusyService.busy(false);
+
+                    _THIS.insertProject(proj[_THIS.DATA_KEY]);
 
                     // CALLBACKS
                     if (angular.isDefined(success)) {
