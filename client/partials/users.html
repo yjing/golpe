@@ -70,6 +70,23 @@
                             not assigned [ <a href="#" ng-click="assignSupervisor(selected_user)">Assign Supervisor</a> ]
                         </dd>
                     </dl>
+                    <dl class="selector" ng-show="isEditUser(selected_user)">
+                        <dt><strong>Name:</strong></dt>
+                        <dd><input ng-model="user(selected_user).Profile.name"></dd>
+                        <dt><strong>Id number:</strong></dt>
+                        <dd><input ng-model="user(selected_user).Profile.id_number"></dd>
+                        <dt><strong>E-Mail:</strong></dt>
+                        <dd><input ng-model="user(selected_user).email"></dd>
+                        <dt><strong>Role:</strong></dt>
+                        <dd>{{user(selected_user).role}}</dd>
+                        <dt ng-show="user(selected_user).role == 'STUDENT'"><strong>Supervisor:</strong></dt>
+                        <dd ng-show="user(selected_user).role == 'STUDENT' && user(selected_user).Supervisor != null">
+                            {{user(selected_user).Supervisor.username}}
+                        </dd>
+                        <dd ng-hide="user(selected_user).Supervisor != null">
+                            not assigned [ <a href="#" ng-click="assignSupervisor(selected_user)">Assign Supervisor</a> ]
+                        </dd>
+                    </dl>
                     <!-- EDIT MODE -->
                     <!--<textarea class="edit-field" ng-model=""-->
                               <!--ng-show="isEditUser(selected_user)"></textarea>-->
