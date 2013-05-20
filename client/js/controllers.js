@@ -315,7 +315,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
         $scope.main();
     }
 
-    $scope.user = function (id) {
+    $scope.project = function (id) {
         if(angular.isDefined(id) && id != null) {
             if(id > 0) {
                 var index = $scope.meta[id].index;
