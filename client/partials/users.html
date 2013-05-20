@@ -53,6 +53,9 @@
             <ul>
                 <li>
                     <p class="selector" ng-hide="DB.m.projects[selected_project].mode == 'edit'">
+                        {{user(selected_user).email}}
+                    </p>
+                    <p class="selector" ng-hide="DB.m.projects[selected_project].mode == 'edit'">
                         {{DB.d.projects[selected_project].description}}
                     </p>
                     <!-- EDIT MODE -->
