@@ -257,7 +257,16 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         ProjectsService.loadAll(
             // SUCCESS
             function(data, handlers){
-                console.log(database.select(ProjectsService.TABLE, [], 3));
+                ProjectsService.load("1",
+                    // SUCCESS
+                    function(data, handlers){
+                        console.log(database.select(ProjectsService.TABLE, [], 3));
+                    },
+                    // ERROR
+                    function(error){
+                        $rootScope.handleError(error);
+                    }
+                );
             },
             // ERROR
             function(error){
