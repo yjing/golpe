@@ -14,10 +14,10 @@
                 </li>
                 <li ng-repeat="p in elements | filter:searchText" ng-class="isSelectedElem(p.id)">
                     <a href="#" ng-click="selectElem(p.id);">{{p.name}}
-                        <i ng-show="isEditProject(p.id)" class="icon-pencil"></i>
+                        <i ng-show="isEditElem(p.id)" class="icon-pencil"></i>
                     </a>
                     <div class="functions">
-                        <button class="btn-link function" ng-click="deleteProject(false, p.id);" ng-hide="isDeleteProject(p.id) || isEditProject(p.id)"><i class="icon-remove"></i></button>
+                        <button class="btn-link function" ng-click="deleteElem(false, p.id);" ng-hide="isDeleteElem(p.id) || isEditElem(p.id)"><i class="icon-remove"></i></button>
                     </div>
                     <div class="confirms">
                         <button class="btn btn-danger confirm" ng-click="deleteProject(true, p.id);" ng-show="isDeleteProject(p.id)">Delete</button>
