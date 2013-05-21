@@ -103,7 +103,7 @@
                     </div>
                     <ul>
                         <li ng-repeat="t in project(selected_project).Teams" ng-class="isSelectedTeam(t.id)">
-                            <a href="#" ng-click="selectTeam(t.id);">{{t.name}} - {{isDeleteTeam(t.id, selected_project);}}</a>
+                            <a href="#" ng-click="selectTeam(t.id);">{{t.name}} - {{""+(isDeleteTeam(t.id, selected_project))}}</a>
                             <div class="functions">
                                 <button class="btn-link function" ng-click="deleteTeam(false, t.id, selected_project);" ng-hide="isDeleteTeam(t.id, selected_project) || isEditTeam(t.id, selected_project)"><i class="icon-remove"></i></button>
                             </div>
