@@ -38,11 +38,11 @@
     </div>
 
     <div class="span9">
-        <div class="menu shadow" ng-hide="isNewProject()">
+        <div class="menu shadow" ng-hide="isNewElem()">
             <div>
                 <span>
                     <h4 class="clickable" ng-hide="isEditElem(selected_project)" ng-click="editElem(selected_project);">
-                        {{project(selected_project).name}} <i class="icon-pencil"></i>
+                        {{elem(selected_project).name}} <i class="icon-pencil"></i>
                     </h4>
                     <!-- EDIT MODE -->
                     <span ng-show="isEditElem(selected_project)">
@@ -54,7 +54,7 @@
             <ul>
                 <li>
                     <p class="selector" ng-hide="isEditElem(selected_project)">
-                        {{project(selected_project).description}}
+                        {{elem(selected_project).description}}
                     </p>
                     <!-- EDIT MODE -->
                     <textarea class="edit-field" ng-model="elem(selected_project).description"
