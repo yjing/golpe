@@ -500,7 +500,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
                     $scope.setupData(false);
                 },
                 function(e) {
-                    $rootScope.handleError(error);
+                    $rootScope.handleError(e);
                 }
             );
         } else {
@@ -525,7 +525,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
                     $scope.setupData(false);
                 },
                 function(e){
-                    $rootScope.handleError(error);
+                    $rootScope.handleError(e);
                 }
             );
             $scope.cancelNewTeam();
