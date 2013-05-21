@@ -271,8 +271,9 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
     });
 
     console.log(database.select(METATATBLE, [
-        { field:'type', value:ProjectsService.DATA_KEY },
-        { field:'id', value:'34' }
+        { field:'type', value:ProjectsService.DATA_KEY }
+//        ,
+//        { field:'id', value:'34' }
     ], 0));
 
     return;
