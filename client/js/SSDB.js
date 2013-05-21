@@ -74,6 +74,8 @@ function Table(name, pkey, blgTo, hsMany) {
     var primary = pkey;
     var belongsTo = blgTo;
     var hasMany = hsMany;
+    var lastId = 0;
+    this.prototype.AUTOID = 'DB_TABLE_AUTO_ID';
 
     this.getName = function(){
         return name;
@@ -131,6 +133,9 @@ function Table(name, pkey, blgTo, hsMany) {
     }
 
     this.insert = function(id, obj) {
+        if(id == Table.AUTOID) {
+            id = lastId++;
+        }
         data[id] = obj;
     }
     this.get = function (id, recursive) {

@@ -250,6 +250,33 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
 
 function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsService, TeamsService, Users, BusyService, database) {
 
+    var METATATBLE = 'Meta';
+    database.insert(METATATBLE, Table.AUTOID, {
+        type:ProjectsService.DATA_KEY,
+        elem_id: '34',
+        status: STATUS_PARTIAL,
+        mode: MODE_NORMAL
+    });
+    database.insert(METATATBLE, Table.AUTOID, {
+        type:ProjectsService.DATA_KEY,
+        elem_id: '3',
+        status: STATUS_COMPLETE,
+        mode: MODE_EDIT
+    });
+    database.insert(METATATBLE, Table.AUTOID, {
+        type:TeamsService.DATA_KEY,
+        elem_id: '34',
+        status: STATUS_COMPLETE,
+        mode: MODE_NORMAL
+    });
+
+    console.log(database.select(METATATBLE, [
+        { field:'type', value:ProjectsService.DATA_KEY },
+        { field:'id', value:'34' }
+    ], 0));
+
+    return;
+
     // TOP BAR
     $rootScope.top_bar = {
         page_title: 'Projects',
