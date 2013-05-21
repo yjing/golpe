@@ -251,7 +251,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
 function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, ProjectsService, database){
     var _THIS = this;
     $scope.elements = [];
-    $scope.seleced_elem = null;
+    $scope.seleced_elem = '34';
 
     // MAIN METHOD
     $scope.main = function() {
