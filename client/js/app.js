@@ -439,7 +439,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
             }
         }
     })
-    .service('TeamsService', function(database, $resource, BsyService){
+    .service('TeamsService', function(database, $resource, BusyService){
         var _THIS = this;
         this.DATA_KEY = 'Team';
         this.TABLE = 'Teams';
