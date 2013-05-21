@@ -294,7 +294,6 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         return database.get(ProjectsService.TABLE, id, 0);
     };
     $scope.selectElem = function (id) {
-        console.log(id);
         $scope.seleced_elem = id;
     };
     $scope.isSelectedElem = function (id) {
