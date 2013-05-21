@@ -112,7 +112,7 @@
                                 <button class="btn btn-success confirm" ng-click="cancelDeleteTeam(t.id, selected_project);" ng-show="isDeleteTeam(t.id, selected_project)">Keep</button>
                             </div>
                         </li>
-                        <li ng-show="new_team != null" ng-class="isSelectedTeam(new_team_id);" ng-click="selectTeam(-1);">
+                        <li ng-show="new_team != null" ng-class="isSelectedTeam(new_team_id);" ng-click="selectTeam(new_team_id);">
                             <input class="edit_field" placeholder="New Team..." onfocus="this.focus()" autofocus="true" ng-model="new_team.name">
                         </li>
                     </ul>

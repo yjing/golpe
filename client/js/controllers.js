@@ -518,6 +518,10 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
         $scope.new_team = {};
         $scope.selected_team = $scope.new_team_id;
     };
+    $scope.cancelNewTeam = function () {
+        $scope.new_team = null;
+        $scope.selected_team = null;
+    };
 
 }
 
