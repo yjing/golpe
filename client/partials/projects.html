@@ -132,7 +132,7 @@
                 <div class="menu shadow">
                     <div class="text-right">
                         <span><strong>Team Members <i class="icon-user"></i></strong></span>
-                        {{project(selected_project).Teams}}
+                        {{project(selected_project).Teams[selected_team]}}
                     </div>
                     <ul>
                         <li ng-repeat="u in project(selected_project).Teams[selected_team].Users">
