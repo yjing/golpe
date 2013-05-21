@@ -315,8 +315,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         if(confirm) {
             ProjectsService.delete(id,
                 function(d, h){
-                    var index = $scope.meta[id].index;
-                    $scope.projectsData.splice(index, 1);
+                    $scope.elements = database.select(ProjectsService.TABLE, [], 3);
                 },
                 function(e) {
                     $rootScope.handleError(error);
@@ -336,6 +335,9 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     };
     $scope.cancelDeleteElem = function (id) {
         _THIS.setProjectMeta(id, MODE_NORMAL);
+    };
+    $scope.save = function () {
+        
     };
 
 
