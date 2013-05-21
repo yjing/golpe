@@ -289,6 +289,44 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         $scope.main();
     }
 
+    // PROJECTS RELATED FUNCTIONS
+    $scope.selectElem = function (id) {
+        $scope.seleced_elem = id;
+    };
+    $scope.isSelectedElem = function (id) {
+        return (id == $scope.seleced_elem ? 'active' : '');
+    };
+    $scope.isEditElem = function (id) {
+        var meta = _THIS.getProjectMeta(id);
+        if(angular.isDefined(meta)) {
+            return meta.mode == MODE_EDIT;
+        } else {
+            return false;
+        }
+    };
+    $scope.deleteElem = function (confirm, id) {
+        if(confirm) {
+            ProjectsService.delete(id,
+                function(d, h){
+                    var index = $scope.meta[id].index;
+                    $scope.projectsData.splice(index, 1);
+                },
+                function(e) {
+                    $rootScope.handleError(error);
+                }
+            );
+        } else {
+            _THIS.setProjectMeta(id, MODE_DELETING);
+        }
+    };
+    $scope.isDeleteElem = function (id) {
+        var meta = this.getProjectMeta(id);
+        if(angular.isDefined(meta)) {
+            return meta.mode == MODE_DELETING
+        } else {
+            return false;
+        }
+    };
 
     this.getProjectMeta = function(id) {
         return database.get('ProjectsMeta', id, 0);
@@ -301,47 +339,6 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
             meta[MODE_KEY] = mode;
         }
         database.insert('ProjectsMeta', id, meta);
-    };
-
-    // PROJECTS RELATED FUNCTIONS
-    $scope.selectElem = function (id) {
-        $scope.seleced_elem = id;
-    };
-    $scope.isSelectedElem = function (id) {
-        return (id == $scope.seleced_elem ? 'active' : '');
-    };
-    $scope.isEditElem = function (id) {
-        var meta = this.getProjectMeta(id);
-        if(angular.isDefined(meta)) {
-            return meta.mode == MODE_EDIT;
-        } else {
-            return false;
-        }
-    };
-    $scope.deleteElem = function (confirm, id) {
-        if(confirm) {
-            ProjectsService.delete(id,
-                function(d, h){
-                    console.log($scope.meta);
-                    console.log($scope.meta[id]);
-                    var index = $scope.meta[id].index;
-                    $scope.projectsData.splice(index, 1);
-                },
-                function(e) {
-                    $rootScope.handleError(error);
-                }
-            );
-        } else {
-            this.setProjectMeta(id, MODE_DELETING);
-        }
-    };
-    $scope.isDeleteElem = function (id) {
-        var meta = this.getProjectMeta(id);
-        if(angular.isDefined(meta)) {
-            return meta.mode == MODE_DELETING
-        } else {
-            return false;
-        }
     };
 
     // TOP BAR
