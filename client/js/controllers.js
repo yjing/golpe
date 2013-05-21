@@ -523,6 +523,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
                 $scope.new_team,
                 function(d, h){
                     $scope.setupData(false);
+                    var id = d[TeamsService.DATA_KEY][TeamsService.PKEY];
                     $scope.meta[proj_id].teams[id] = { "mode" : MODE_NORMAL};
                 },
                 function(e){
