@@ -134,7 +134,7 @@
                         <span><strong>Team Members <i class="icon-user"></i></strong></span>
                     </div>
                     <ul>
-                        <li ng-repeat="u in project(selected_project).Teams[selected_team].users">
+                        <li ng-repeat="u in project(selected_project).Teams[selected_team].Users">
                             <a>{{DB.d.users[u.id].username}}</a>
                             <div class="functions">
                                 <button class="btn-link function" ng-click="removeMember(false, u.id, selected_team);" ng-hide="DB.m.users[u.id].mode == 'deleting' || DB.m.users[u.id].mode == 'edit'"><i class="icon-remove"></i></button>
