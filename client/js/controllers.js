@@ -274,6 +274,8 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
 
     $scope.new_project_id = -1;
     $scope.new_project = null;
+    $scope.new_team_id = -1;
+    $scope.new_team = null;
     $scope.selected_project = null;
     $scope.selected_team = null;
     $scope.meta = {};
@@ -345,7 +347,10 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
                     var index = $scope.meta[id].index;
                     $scope.projectsData[index] = proj;
 
-                    console.log(proj);
+                    if(angular.isDefined(proj.Teams)) {
+                        console.log(proj.Teams);
+                        $scope.meta[id].teams = {};
+                    }
 
                 },
                 function(e) {
@@ -463,9 +468,6 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
             function(d, h){
                 var data = database.select(ProjectsService.TABLE, [], 2);
                 for (var i = 0; i < data.length; i++) {
-                    if(i==0) {
-                        $scope.selectProject(data[i][ProjectsService.PKEY]);
-                    }
                     $scope.meta[data[i][ProjectsService.PKEY]] = { index: i };
                     $scope.meta[data[i][ProjectsService.PKEY]][MODE_KEY] = MODE_NORMAL;
                 }
@@ -476,6 +478,28 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
                 $rootScope.handleError(error);
             }
         );
+    };
+    $scope.isDeleteTeam = function (id) {
+        if(angular.isDefined(id)) {
+//            return $scope.meta[id].mode == MODE_DELETING;
+        }
+    };
+    $scope.deleteTeam = function (confirm, id) {
+        if(confirm) {
+            ProjectsService.delete(id,
+                function(d, h){
+                    console.log($scope.meta);
+                    console.log($scope.meta[id]);
+                    var index = $scope.meta[id].index;
+                    $scope.projectsData.splice(index, 1);
+                },
+                function(e) {
+                    $rootScope.handleError(error);
+                }
+            );
+        } else {
+            $scope.meta[id][MODE_KEY] = MODE_DELETING;
+        }
     };
 
 }
