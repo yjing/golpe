@@ -498,7 +498,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
             TeamsService.delete(id,
                 function(d, h){
                     var index = $scope.meta[proj_id].teams[id].index;
-                    $scope.projectsData.splice(index, 1);
+                    $scope.setupData(false);
                 },
                 function(e) {
                     $rootScope.handleError(error);
