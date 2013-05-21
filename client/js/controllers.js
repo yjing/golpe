@@ -250,7 +250,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
 
 function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, ProjectsService, database){
     var _THIS = this;
-    $scope.main_menu = [];
+    $scope.elements = [];
 
     // MAIN METHOD
     $scope.main = function() {
@@ -261,12 +261,9 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
                 for (var i = 0; i < elems.length; i++) {
                     var elem = elems[i];
                     _THIS.setProjectMeta(elem[ProjectsService.PKEY], MODE_NORMAL);
+
                 }
-
-                database.insert('ProjectsMeta', "1", { id: "1", status: STATUS_COMPLETE});
-
-                _THIS.setProjectMeta("1", MODE_EDIT);
-                console.log(database.select('ProjectsMeta', [], 0));
+                $scope.elements = elems;
             },
             // ERROR
             function(error){
