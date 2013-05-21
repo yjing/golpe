@@ -509,6 +509,11 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
             $scope.meta[proj_id].teams[id][MODE_KEY] = MODE_DELETING;
         }
     };
+    $scope.cancelDeleteTeam = function (id, proj_id) {
+        if(angular.isDefined(id)) {
+            $scope.meta[proj_id].teams[id][MODE_KEY] = MODE_NORMAL;
+        }
+    };
 
 }
 

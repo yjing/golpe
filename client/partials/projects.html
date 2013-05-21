@@ -109,10 +109,10 @@
                             </div>
                             <div class="confirms">
                                 <button class="btn btn-danger confirm" ng-click="deleteTeam(true, t.id, selected_project);" ng-show="isDeleteTeam(t.id, selected_project)">Delete</button>
-                                <button class="btn btn-success confirm" ng-click="DB.m.teams[t.id].mode = 'normal';" ng-show="isDeleteTeam(t.id, selected_project)">Keep</button>
+                                <button class="btn btn-success confirm" ng-click="cancelDeleteTeam(t.id, selected_project);" ng-show="isDeleteTeam(t.id, selected_project)">Keep</button>
                             </div>
                         </li>
-                        <li ng-show="new_team != null" ng-class="isSelectedTeam(-1);" ng-click="selectTeam(-1);">
+                        <li ng-show="new_team != null" ng-class="isSelectedTeam(new_team_id);" ng-click="selectTeam(-1);">
                             <input class="edit_field" placeholder="New Team..." onfocus="this.focus()" autofocus="true" ng-model="new_team.name">
                         </li>
                     </ul>
