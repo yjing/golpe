@@ -75,7 +75,7 @@ function Table(name, pkey, blgTo, hsMany) {
     var belongsTo = blgTo;
     var hasMany = hsMany;
     var lastId = 0;
-    this.prototype.AUTOID = 'DB_TABLE_AUTO_ID';
+    Table.prototype.AUTOID = 'DB_TABLE_AUTO_ID';
 
     this.getName = function(){
         return name;
