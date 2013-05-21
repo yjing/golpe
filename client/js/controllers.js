@@ -251,19 +251,19 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
 function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsService, TeamsService, Users, BusyService, database) {
 
     var METATATBLE = 'Meta';
-    database.insert(METATATBLE, Table.AUTOID, {
+    database.insert(METATATBLE, 'DB_TABLE_AUTO_ID', {
         type:ProjectsService.DATA_KEY,
         elem_id: '34',
         status: STATUS_PARTIAL,
         mode: MODE_NORMAL
     });
-    database.insert(METATATBLE, Table.AUTOID, {
+    database.insert(METATATBLE, 'DB_TABLE_AUTO_ID', {
         type:ProjectsService.DATA_KEY,
         elem_id: '3',
         status: STATUS_COMPLETE,
         mode: MODE_EDIT
     });
-    database.insert(METATATBLE, Table.AUTOID, {
+    database.insert(METATATBLE, 'DB_TABLE_AUTO_ID', {
         type:TeamsService.DATA_KEY,
         elem_id: '34',
         status: STATUS_COMPLETE,

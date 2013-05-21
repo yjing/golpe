@@ -133,7 +133,7 @@ function Table(name, pkey, blgTo, hsMany) {
     }
 
     this.insert = function(id, obj) {
-        if(id == Table.AUTOID) {
+        if(id == 'DB_TABLE_AUTO_ID') {
             id = lastId++;
         }
         data[id] = obj;
