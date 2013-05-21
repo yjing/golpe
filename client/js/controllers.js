@@ -487,9 +487,9 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
             }
         );
     };
-    $scope.isDeleteTeam = function (id) {
+    $scope.isDeleteTeam = function (id, proj_id) {
         if(angular.isDefined(id)) {
-//            return $scope.meta[id].mode == MODE_DELETING;
+            $scope.meta[proj_id].teams[id].mode == MODE_DELETING;
         }
     };
     $scope.deleteTeam = function (confirm, id, proj_id) {
