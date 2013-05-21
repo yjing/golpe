@@ -297,12 +297,11 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         return (id == $scope.seleced_elem ? 'active' : '');
     };
     $scope.editElem = function (id) {
-        var meta = _THIS.getProjectMeta(id);
-        if(angular.isDefined(meta)) {
-            var elem = database.get(ProjectsService.TABLE, id, 3);
-            meta.old = angular.copy(elem);
-            meta.mode = MODE_EDIT;
-        }
+        _THIS.setProjectMeta(id, MODE_EDIT);
+    };
+    $scope.cancelEditElem = function (id) {
+        _THIS.setProjectMeta(id, MODE_NORMAL);
+        $scope.elements = database.select(ProjectsService.TABLE, [], 3);
     };
     $scope.isEditElem = function (id) {
         var meta = _THIS.getProjectMeta(id);
