@@ -263,7 +263,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
                     _THIS.setProjectMeta(elem[ProjectsService.PKEY], MODE_NORMAL);
                 }
 
-                database.insert('ProjectsMeta', id, { id: '34', status: STATUS_COMPLETE});
+                database.insert('ProjectsMeta', "1", { id: "1", status: STATUS_COMPLETE});
 
                 _THIS.setProjectMeta("1", MODE_EDIT);
                 console.log(database.select('ProjectsMeta', [], 0));
@@ -295,7 +295,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     this.setProjectMeta = function (id, mode) {
         var meta = database.get('ProjectsMeta', id, 0);
         if(angular.isUndefined(meta)) {
-            meta = { id: '34', mode: mode };
+            meta = { "id": id, "mode": mode };
         } else {
             meta[MODE_KEY] = mode;
         }
