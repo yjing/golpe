@@ -320,7 +320,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         }
     };
     $scope.isDeleteElem = function (id) {
-        var meta = this.getProjectMeta(id);
+        var meta = _THIS.getProjectMeta(id);
         if(angular.isDefined(meta)) {
             return meta.mode == MODE_DELETING
         } else {
