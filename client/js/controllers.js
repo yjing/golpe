@@ -291,7 +291,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
 
     // PROJECTS RELATED FUNCTIONS
     $scope.elem = function (id) {
-        var test = database.get(ProjectsService.TABLE, id, 0);
+        var test = database.get(ProjectsService.TABLE, id, 1);
         console.log(test);
         return test;
     };
