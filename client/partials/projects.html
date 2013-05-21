@@ -20,18 +20,18 @@
                         <button class="btn-link function" ng-click="deleteElem(false, p.id);" ng-hide="isDeleteElem(p.id) || isEditElem(p.id)"><i class="icon-remove"></i></button>
                     </div>
                     <div class="confirms">
-                        <button class="btn btn-danger confirm" ng-click="deleteProject(true, p.id);" ng-show="isDeleteProject(p.id)">Delete</button>
-                        <button class="btn btn-success confirm" ng-click="cancelDeleteProject(p.id)" ng-show="isDeleteProject(p.id)">Keep</button>
+                        <button class="btn btn-danger confirm" ng-click="deleteElem(true, p.id);" ng-show="isDeleteElem(p.id)">Delete</button>
+                        <button class="btn btn-success confirm" ng-click="cancelDeleteElem(p.id)" ng-show="isDeleteElem(p.id)">Keep</button>
                     </div>
                 </li>
-                <li ng-show="isNewProject()" ng-class="isSelectedProject(new_project_id)">
-                    <a href="#" ng-click="selectProject(new_project_id);">{{new_project.name}} <i class="icon-edit"></i></a>
+                <li ng-show="isNewElem()" ng-class="isSelectedElem(new_project_id)">
+                    <a href="#" ng-click="selectElem(new_project_id);">{{new_project.name}} <i class="icon-edit"></i></a>
                 </li>
             </ul>
             <div>
                 <a href="#" class="text-right">
-                    <button ng-click="newProject();" ng-hide="isNewProject()" class="btn btn-success">New Project</button>
-                    <button ng-click="cancelNewProject();" ng-show="isNewProject()" class="btn btn-warning">Cancel</button>
+                    <button ng-click="newElem();" ng-hide="isNewElem()" class="btn btn-success">New Project</button>
+                    <button ng-click="cancelNewElem();" ng-show="isNewElem()" class="btn btn-warning">Cancel</button>
                 </a>
             </div>
         </div>

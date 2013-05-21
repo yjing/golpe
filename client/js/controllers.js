@@ -327,6 +327,9 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
             return false;
         }
     };
+    $scope.cancelDeleteElem = function (id) {
+        _THIS.setProjectMeta(id, MODE_NORMAL);
+    };
 
     this.getProjectMeta = function(id) {
         return database.get('ProjectsMeta', id, 0);
