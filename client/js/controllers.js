@@ -456,19 +456,19 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
             ProjectsService.save(
                 data,
                 function(d, h){
-                    if(angular.isDefined(index)) {
-
-                    } else {
-                        id = d['Project']['id'];
-                        var new_proj = database.get('Projects', id, 3);
-
-                        $scope.meta[id] = { index: $scope.projectsData.length };
-                        $scope.meta[id][MODE_KEY] = MODE_NORMAL;
-                        $scope.projectsData.push(new_proj);
-                        $scope.cancelNewProject();
-                        $scope.selectProject(id);
-
-                    }
+//                    if(angular.isDefined(index)) {
+//
+//                    } else {
+//                        id = d['Project']['id'];
+//                        var new_proj = database.get('Projects', id, 3);
+//
+//                        $scope.meta[id] = { index: $scope.projectsData.length };
+//                        $scope.meta[id][MODE_KEY] = MODE_NORMAL;
+//                        $scope.projectsData.push(new_proj);
+//                        $scope.cancelNewProject();
+//                        $scope.selectProject(id);
+//
+//                    }
                 },
                 function(e){
                     $rootScope.handleError(error);
@@ -480,13 +480,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
         ProjectsService.loadAll(
             // SUCCESS
             function(d, h){
-                var data = database.select(ProjectsService.TABLE, [], 2);
-                for (var i = 0; i < data.length; i++) {
-                    $scope.meta[data[i][ProjectsService.PKEY]] = { index: i };
-                    $scope.meta[data[i][ProjectsService.PKEY]][MODE_KEY] = MODE_NORMAL;
-                    $scope.meta[data[i][ProjectsService.PKEY]].teams = {};
-                }
-                $scope.projectsData = data;
+                $scope.setupData(true);
             },
             // ERROR
             function(error){
