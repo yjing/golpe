@@ -306,7 +306,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
                 }
                 $scope.meta[data[i][ProjectsService.PKEY]] = { index: i };
                 $scope.meta[data[i][ProjectsService.PKEY]][MODE_KEY] = MODE_NORMAL;
-                $scope.meta[data[i][ProjectsService.PKEY]].teams = {};
+//                $scope.meta[data[i][ProjectsService.PKEY]].teams = {};
             }
         }
         $scope.projectsData = data;
@@ -464,7 +464,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
 //                        $scope.meta[id][MODE_KEY] = MODE_NORMAL;
 //                        $scope.projectsData.push(new_proj);
 
-                        $scope.setupData(false);
+                        $scope.setupData(true);
                         id = d['Project']['id'];
                         $scope.selectProject(id);
                         $scope.cancelNewProject();
