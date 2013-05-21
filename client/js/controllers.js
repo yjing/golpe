@@ -274,10 +274,12 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
 
     $scope.new_project_id = -1;
     $scope.new_project = null;
+    $scope.selected_project = null;
+
     $scope.new_team_id = -1;
     $scope.new_team = null;
-    $scope.selected_project = null;
     $scope.selected_team = null;
+
     $scope.meta = {};
 
     // MAIN METHOD
@@ -490,21 +492,21 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
 //            return $scope.meta[id].mode == MODE_DELETING;
         }
     };
-    $scope.deleteTeam = function (confirm, id) {
+    $scope.deleteTeam = function (confirm, id, proj_id) {
         if(confirm) {
-            ProjectsService.delete(id,
-                function(d, h){
-                    console.log($scope.meta);
-                    console.log($scope.meta[id]);
-                    var index = $scope.meta[id].index;
-                    $scope.projectsData.splice(index, 1);
-                },
-                function(e) {
-                    $rootScope.handleError(error);
-                }
-            );
+//            ProjectsService.delete(id,
+//                function(d, h){
+//                    console.log($scope.meta);
+//                    console.log($scope.meta[id]);
+//                    var index = $scope.meta[id].index;
+//                    $scope.projectsData.splice(index, 1);
+//                },
+//                function(e) {
+//                    $rootScope.handleError(error);
+//                }
+//            );
         } else {
-            $scope.meta[id][MODE_KEY] = MODE_DELETING;
+            $scope.meta[proj_id][id][MODE_KEY] = MODE_DELETING;
         }
     };
 
