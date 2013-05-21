@@ -466,6 +466,8 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                 function(d, h) {
                     BusyService.busy(false);
 
+                    _THIS.insertTeam(d[_THIS.DATA_KEY]);
+
                     // CALLBACKS
                     if (angular.isDefined(success)) {
                         success(d, h);
