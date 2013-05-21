@@ -290,6 +290,9 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     }
 
     // PROJECTS RELATED FUNCTIONS
+    $scope.elem = function (id) {
+        return database.get(ProjectsService.TABLE, id, 0);
+    };
     $scope.selectElem = function (id) {
         $scope.seleced_elem = id;
     };
@@ -336,8 +339,40 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     $scope.cancelDeleteElem = function (id) {
         _THIS.setProjectMeta(id, MODE_NORMAL);
     };
-    $scope.save = function () {
-        
+    $scope.saveElem = function () {
+//        if(angular.isDefined(id)) {
+//            var data;
+//            var index;
+//            if(id == $scope.new_project_id) {
+//                data = $scope.new_project;
+//            } else {
+//                index = $scope.meta[id].index;
+//                data = $scope.projectsData[index];
+//                $scope.meta[id][MODE_KEY] = MODE_NORMAL;
+//            }
+//
+//            ProjectsService.save(
+//                data,
+//                function(d, h){
+//                    if(angular.isDefined(index)) {
+//
+//                    } else {
+//                        id = d['Project']['id'];
+//                        var new_proj = database.get('Projects', id, 3);
+//
+//                        $scope.meta[id] = { index: $scope.projectsData.length };
+//                        $scope.meta[id][MODE_KEY] = MODE_NORMAL;
+//                        $scope.projectsData.push(new_proj);
+//                        $scope.cancelNewProject();
+//                        $scope.selectProject(id);
+//
+//                    }
+//                },
+//                function(e){
+//                    $rootScope.handleError(error);
+//                }
+//            );
+//        }
     };
 
 

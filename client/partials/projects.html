@@ -41,52 +41,52 @@
         <div class="menu shadow" ng-hide="isNewProject()">
             <div>
                 <span>
-                    <h4 class="clickable" ng-hide="isEditProject(selected_project)" ng-click="editProject(selected_project);">
+                    <h4 class="clickable" ng-hide="isEditElem(selected_project)" ng-click="editElem(selected_project);">
                         {{project(selected_project).name}} <i class="icon-pencil"></i>
                     </h4>
                     <!-- EDIT MODE -->
-                    <span ng-show="isEditProject(selected_project)">
+                    <span ng-show="isEditElem(selected_project)">
                         <input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge"
-                               ng-model="project(selected_project).name">
+                               ng-model="elem(selected_project).name">
                     </span>
                 </span>
             </div>
             <ul>
                 <li>
-                    <p class="selector" ng-hide="isEditProject(selected_project)">
+                    <p class="selector" ng-hide="isEditElem(selected_project)">
                         {{project(selected_project).description}}
                     </p>
                     <!-- EDIT MODE -->
-                    <textarea class="edit-field" ng-model="project(selected_project).description"
-                              ng-show="isEditProject(selected_project)"></textarea>
+                    <textarea class="edit-field" ng-model="elem(selected_project).description"
+                              ng-show="isEditElem(selected_project)"></textarea>
                 </li>
             </ul>
-            <div ng-show="isEditProject(selected_project)">
+            <div ng-show="isEditElem(selected_project)">
                 <span>
                     <div class="btn-group">
-                        <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveProject(selected_project);">Save</button>
-                        <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="cancelEditProject(selected_project);">Cancel</button>
+                        <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveElem(selected_project);">Save</button>
+                        <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="cancelEditElem(selected_project);">Cancel</button>
                     </div>
                 </span>
             </div>
         </div>
-        <div class="menu shadow" ng-show="isNewProject()">
+        <div class="menu shadow" ng-show="isNewElem()">
             <div>
                 <span>
                     <span><input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge"
-                                 ng-model="project(selected_project).name"></span>
+                                 ng-model="elem(selected_project).name"></span>
                 </span>
             </div>
             <ul>
                 <li>
-                    <textarea class="edit-field" ng-model="project(selected_project).description"></textarea>
+                    <textarea class="edit-field" ng-model="elem(selected_project).description"></textarea>
                 </li>
             </ul>
             <div>
                 <span>
                     <div class="btn-group">
-                        <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveProject(selected_project);">Save</button>
-                        <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="cancelEditProject(selected_project);">Cancel</button>
+                        <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveElem(selected_project);">Save</button>
+                        <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="cancelEditElem(selected_project);">Cancel</button>
                     </div>
                 </span>
             </div>
