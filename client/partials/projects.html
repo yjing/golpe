@@ -12,8 +12,8 @@
                 <li>
                     <input type="text" placeholder="Filter Projects..." class="edit-field" ng-model="searchText">
                 </li>
-                <li ng-repeat="p in elements | filter:searchText" ng-class="isSelectedProject(p.id)">
-                    <a href="#" ng-click="selectProject(p.id);">{{p.name}}
+                <li ng-repeat="p in elements | filter:searchText" ng-class="isSelectedElem(p.id)">
+                    <a href="#" ng-click="selectElem(p.id);">{{p.name}}
                         <i ng-show="isEditProject(p.id)" class="icon-pencil"></i>
                     </a>
                     <div class="functions">

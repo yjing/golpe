@@ -293,7 +293,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     $scope.selectElem = function (id) {
         this.seleced_elem = id;
     };
-    $scope.isSelectedProject = function (id) {
+    $scope.isSelectedElem = function (id) {
         return (id == this.seleced_elem ? 'active' : '');
     };
 
