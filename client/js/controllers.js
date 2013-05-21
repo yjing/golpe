@@ -249,7 +249,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
 }
 
 function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, ProjectsService, database){
-
+    var _THIS = this;
     $scope.main_menu = [];
 
     // MAIN METHOD
@@ -257,16 +257,13 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         ProjectsService.loadAll(
             // SUCCESS
             function(data, handlers){
-                ProjectsService.load("1",
-                    // SUCCESS
-                    function(data, handlers){
-                        console.log(database.select(ProjectsService.TABLE, [], 3));
-                    },
-                    // ERROR
-                    function(error){
-                        $rootScope.handleError(error);
-                    }
-                );
+                var elems = database.select(ProjectsService.TABLE, [], 3);
+                for (var i = 0; i < elems.length; i++) {
+                    var elem = elems[i];
+                    _THIS.setProjectMeta(elem[ProjectsService.PKEY], MODE_NORMAL);
+                }
+
+                console.log(database.select('ProjectsMeta', [], 0));
             },
             // ERROR
             function(error){
@@ -291,6 +288,16 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         $scope.main();
     }
 
+
+    this.setProjectMeta = function (id, mode) {
+        var meta = database.get('ProjectsMeta', id, 0);
+        if(angular.isUndefined(meta)) {
+            meta = { id: '34', mode: mode };
+        } else {
+            meta[MODE_KEY] = mode;
+        }
+        database.insert('ProjectsMeta', id, meta);
+    };
 
     // TOP BAR
     $rootScope.top_bar = {

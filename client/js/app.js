@@ -43,7 +43,8 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
         DBService.createTable("comments");
 
 
-        database.createTable('Meta');
+        database.createTable('ProjectsMeta');
+        database.createTable('TeamsMeta');
         database.createTable('Projects', 'id', {},
             { Teams:{table:'Teams', fkey:'project_id'} }
         );
