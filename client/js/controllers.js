@@ -348,9 +348,14 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
                     $scope.projectsData[index] = proj;
 
                     if(angular.isDefined(proj.Teams)) {
-                        console.log(proj.Teams);
                         $scope.meta[id].teams = {};
+                        for (var i = 0; i < proj.Teams.length; i++) {
+                            var t = proj.Teams[i];
+                            $scope.meta[id].teams[t.id] = {};
+                            $scope.meta[id].teams[t.id][MODE_KEY] = MODE_NORMAL;
+                        }
                     }
+                    console.log($scope.meta);
 
                 },
                 function(e) {
