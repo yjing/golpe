@@ -456,19 +456,19 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
             ProjectsService.save(
                 data,
                 function(d, h){
-//                    if(angular.isDefined(index)) {
-//
-//                    } else {
-//                        id = d['Project']['id'];
+                    if(angular.isDefined(index)) {
+
+                    } else {
 //                        var new_proj = database.get('Projects', id, 3);
-//
 //                        $scope.meta[id] = { index: $scope.projectsData.length };
 //                        $scope.meta[id][MODE_KEY] = MODE_NORMAL;
 //                        $scope.projectsData.push(new_proj);
-//                        $scope.cancelNewProject();
-//                        $scope.selectProject(id);
-//
-//                    }
+
+                        $scope.setupData(false);
+                        id = d['Project']['id'];
+                        $scope.selectProject(id);
+                        $scope.cancelNewProject();
+                    }
                 },
                 function(e){
                     $rootScope.handleError(error);
