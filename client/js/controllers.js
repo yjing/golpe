@@ -497,7 +497,6 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
         if(confirm) {
             TeamsService.delete(id,
                 function(d, h){
-                    var index = $scope.meta[proj_id].teams[id].index;
                     $scope.setupData(false);
                 },
                 function(e) {
@@ -518,6 +517,16 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
             $scope.new_team = {};
             $scope.selected_team = $scope.new_team_id;
         } else {
+            console.log($scope.new_team);
+            $scope.new_team['project_id'] = proj_id;
+//            TeamsService.save(team,
+//                function(d, h){
+//                    $scope.setupData(false);
+//                },
+//                function(e){
+//                    $rootScope.handleError(error);
+//                }
+//            );
             $scope.cancelNewTeam();
         }
     };

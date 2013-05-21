@@ -458,6 +458,8 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
             }
         }
 
+        this.
+
         this.delete = function(id, success, error){
             var params = {};
                 params[this.PKEY] = id;
