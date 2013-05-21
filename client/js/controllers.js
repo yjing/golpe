@@ -263,6 +263,8 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
                     _THIS.setProjectMeta(elem[ProjectsService.PKEY], MODE_NORMAL);
                 }
 
+                database.insert('ProjectsMeta', id, { id: '34', status: STATUS_COMPLETE});
+
                 _THIS.setProjectMeta("1", MODE_EDIT);
                 console.log(database.select('ProjectsMeta', [], 0));
             },
