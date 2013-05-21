@@ -514,6 +514,10 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
             $scope.meta[proj_id].teams[id][MODE_KEY] = MODE_NORMAL;
         }
     };
+    $scope.newTeam = function (proj_id) {
+        $scope.new_team = {};
+        $scope.selected_team = $scope.new_team_id;
+    };
 
 }
 
