@@ -296,6 +296,14 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     $scope.isSelectedElem = function (id) {
         return (id == $scope.seleced_elem ? 'active' : '');
     };
+    $scope.editElem = function (id) {
+        var meta = _THIS.getProjectMeta(id);
+        if(angular.isDefined(meta)) {
+            var elem = database.get(ProjectsService.TABLE, id, 3);
+            meta.old = angular.copy(elem);
+            meta.mode = MODE_EDIT;
+        }
+    };
     $scope.isEditElem = function (id) {
         var meta = _THIS.getProjectMeta(id);
         if(angular.isDefined(meta)) {
@@ -331,6 +339,8 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         _THIS.setProjectMeta(id, MODE_NORMAL);
     };
 
+
+    // INTERNAL FUNCTIONS
     this.getProjectMeta = function(id) {
         return database.get('ProjectsMeta', id, 0);
     }
