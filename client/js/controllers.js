@@ -287,16 +287,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
         ProjectsService.loadAll(
             // SUCCESS
             function(data, handlers){
-                var data = database.select(ProjectsService.TABLE, [], 2);
-                for (var i = 0; i < data.length; i++) {
-                    if(i==0) {
-                        $scope.selectProject(data[i][ProjectsService.PKEY]);
-                    }
-                    $scope.meta[data[i][ProjectsService.PKEY]] = { index: i };
-                    $scope.meta[data[i][ProjectsService.PKEY]][MODE_KEY] = MODE_NORMAL;
-                    $scope.meta[data[i][ProjectsService.PKEY]].teams = {};
-                }
-                $scope.projectsData = data;
+                $scope.setupData(true);
             },
             // ERROR
             function(error){
@@ -304,6 +295,22 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
             }
         );
     }
+
+    $scope.setupData = function (after_download) {
+        var data = database.select(ProjectsService.TABLE, [], 3);
+        if(after_download) {
+            $scope.meta = {};
+            for (var i = 0; i < data.length; i++) {
+                if(i==0) {
+                    $scope.selectProject(data[i][ProjectsService.PKEY]);
+                }
+                $scope.meta[data[i][ProjectsService.PKEY]] = { index: i };
+                $scope.meta[data[i][ProjectsService.PKEY]][MODE_KEY] = MODE_NORMAL;
+                $scope.meta[data[i][ProjectsService.PKEY]].teams = {};
+            }
+        }
+        $scope.projectsData = data;
+    };
 
     // BEFORE MAIN: CHECK USER LOGIN
     if($rootScope.user == null || !$rootScope.user['logged']) {
