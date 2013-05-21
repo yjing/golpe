@@ -459,15 +459,15 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
                     if(angular.isDefined(index)) {
 
                     } else {
-//                        var new_proj = database.get('Projects', id, 3);
-//                        $scope.meta[id] = { index: $scope.projectsData.length };
-//                        $scope.meta[id][MODE_KEY] = MODE_NORMAL;
-//                        $scope.projectsData.push(new_proj);
-
-                        $scope.setupData(true);
                         id = d['Project']['id'];
-                        $scope.selectProject(id);
+                        var new_proj = database.get('Projects', id, 3);
+
+                        $scope.meta[id] = { index: $scope.projectsData.length };
+                        $scope.meta[id][MODE_KEY] = MODE_NORMAL;
+                        $scope.projectsData.push(new_proj);
                         $scope.cancelNewProject();
+                        $scope.selectProject(id);
+
                     }
                 },
                 function(e){
