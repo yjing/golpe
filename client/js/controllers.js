@@ -519,7 +519,8 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
         } else {
             console.log($scope.new_team);
             $scope.new_team['project_id'] = proj_id;
-            TeamsService.save(team,
+            TeamsService.save(
+                $scope.new_team,
                 function(d, h){
                     $scope.setupData(false);
                 },
