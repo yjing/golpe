@@ -248,7 +248,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
     }
 }
 
-function ProjectsCtrl($scope, $rootScope, $location, auth, ProjectsService, database){
+function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, ProjectsService, database){
 
     $scope.main_menu = [];
 
