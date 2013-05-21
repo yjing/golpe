@@ -289,6 +289,20 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         $scope.main();
     }
 
+
+    this.getProjectMeta = function(id) {
+        return database.get('ProjectsMeta', id, 0);
+    }
+    this.setProjectMeta = function (id, mode) {
+        var meta = database.get('ProjectsMeta', id, 0);
+        if(angular.isUndefined(meta)) {
+            meta = { "id": id, "mode": mode };
+        } else {
+            meta[MODE_KEY] = mode;
+        }
+        database.insert('ProjectsMeta', id, meta);
+    };
+
     // PROJECTS RELATED FUNCTIONS
     $scope.selectElem = function (id) {
         $scope.seleced_elem = id;
@@ -328,19 +342,6 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         } else {
             return false;
         }
-    };
-
-    this.getProjectMeta = function(id) {
-        return database.get('ProjectsMeta', id, 0);
-    }
-    this.setProjectMeta = function (id, mode) {
-        var meta = database.get('ProjectsMeta', id, 0);
-        if(angular.isUndefined(meta)) {
-            meta = { "id": id, "mode": mode };
-        } else {
-            meta[MODE_KEY] = mode;
-        }
-        database.insert('ProjectsMeta', id, meta);
     };
 
     // TOP BAR
