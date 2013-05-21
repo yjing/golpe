@@ -489,7 +489,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
     };
     $scope.isDeleteTeam = function (id, proj_id) {
         if(angular.isDefined(id)) {
-            $scope.meta[proj_id].teams[id][MODE_KEY] == MODE_DELETING;
+            return $scope.meta[proj_id].teams[id][MODE_KEY] == MODE_DELETING;
         }
     };
     $scope.deleteTeam = function (confirm, id, proj_id) {
