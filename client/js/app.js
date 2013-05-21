@@ -440,9 +440,12 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
         }
     })
     .service('TeamsService', function(database){
+        var _THIS = this;
         this.DATA_KEY = 'Team';
         this.TABLE = 'Teams';
         this.PKEY = 'id';
+
+        this.Teams = $resource('/teams/:id', { id:'@id' }, {});
 
         this.insertTeam = function(data) {
             if(angular.isDefined(data)) {
@@ -454,6 +457,36 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                 database.insert(this.TABLE, data[this.PKEY], data);
             }
         }
+
+        this.delete = function(id, success, error){
+            var params = {};
+                params[this.PKEY] = id;
+
+
+            BusyService.busy(true);
+            this.Teams.delete(
+                params,
+                {},
+                function(d, h) {
+                    BusyService.busy(false);
+
+                    database.delete(_THIS.TABLE, id);
+
+                    // CALLBACKS
+                    if (angular.isDefined(success)) {
+                        success(d, h);
+                    }
+                },
+                function(e) {
+                    BusyService.busy(false);
+
+                    // CALLBACKS
+                    if (angular.isDefined(error)) {
+                        error(e);
+                    }
+                }
+            );
+        };
     })
     .service('UsersService', function ($rootScope, $resource, BusyService, DBService, TeamsService, database) {
 

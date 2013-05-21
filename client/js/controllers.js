@@ -248,7 +248,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
     }
 }
 
-function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsService, Users, BusyService, database) {
+function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsService, TeamsService, Users, BusyService, database) {
 
     // TOP BAR
     $rootScope.top_bar = {
@@ -495,17 +495,15 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
     };
     $scope.deleteTeam = function (confirm, id, proj_id) {
         if(confirm) {
-//            ProjectsService.delete(id,
-//                function(d, h){
-//                    console.log($scope.meta);
-//                    console.log($scope.meta[id]);
-//                    var index = $scope.meta[id].index;
-//                    $scope.projectsData.splice(index, 1);
-//                },
-//                function(e) {
-//                    $rootScope.handleError(error);
-//                }
-//            );
+            TeamsService.delete(id,
+                function(d, h){
+                    var index = $scope.meta[proj_id].teams[id].index;
+                    $scope.projectsData.splice(index, 1);
+                },
+                function(e) {
+                    $rootScope.handleError(error);
+                }
+            );
         } else {
             $scope.meta[proj_id].teams[id][MODE_KEY] = MODE_DELETING;
         }
