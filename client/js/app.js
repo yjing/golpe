@@ -458,6 +458,30 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
             }
         }
 
+        this.save = function(team, success, error){
+            BusyService.busy(true);
+            this.Teams.save(
+                {},
+                team,
+                function(d, h) {
+                    BusyService.busy(false);
+
+                    // CALLBACKS
+                    if (angular.isDefined(success)) {
+                        success(d, h);
+                    }
+                },
+                function(e) {
+                    BusyService.busy(false);
+
+                    // CALLBACKS
+                    if (angular.isDefined(error)) {
+                        error(e);
+                    }
+                }
+            );
+        }
+
         this.delete = function(id, success, error){
             var params = {};
                 params[this.PKEY] = id;

@@ -519,14 +519,14 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
         } else {
             console.log($scope.new_team);
             $scope.new_team['project_id'] = proj_id;
-//            TeamsService.save(team,
-//                function(d, h){
-//                    $scope.setupData(false);
-//                },
-//                function(e){
-//                    $rootScope.handleError(error);
-//                }
-//            );
+            TeamsService.save(team,
+                function(d, h){
+                    $scope.setupData(false);
+                },
+                function(e){
+                    $rootScope.handleError(error);
+                }
+            );
             $scope.cancelNewTeam();
         }
     };
