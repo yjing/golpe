@@ -248,7 +248,64 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
     }
 }
 
-function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsService, TeamsService, Users, BusyService, database) {
+function ProjectsController($scope, $rootScope, $location, auth, ProjectsService, database){
+
+    $scope.main_menu = [];
+
+    // MAIN METHOD
+    $scope.main = function() {
+        ProjectsService.loadAll(
+            // SUCCESS
+            function(data, handlers){
+                console.log(database.select(ProjectsService.TABLE, [], 3));
+            },
+            // ERROR
+            function(error){
+                $rootScope.handleError(error);
+            }
+        );
+    }
+
+    // BEFORE MAIN: CHECK USER LOGIN
+    if($rootScope.user == null || !$rootScope.user['logged']) {
+        BusyService.busy(true);
+        $rootScope.user = auth.user();
+        $rootScope.user.$then(function(){
+            BusyService.busy(false);
+            if(!$rootScope.user['logged']) {
+                $location.url('/client/login');
+            } else {
+                $scope.main();
+            }
+        });
+    } else {
+        $scope.main();
+    }
+
+
+    // TOP BAR
+    $rootScope.top_bar = {
+        page_title: 'Projects',
+        title_icon: 'icon-th-list',
+        title_menu: [
+            {
+                label: 'Users',
+                func: function() {
+                    $rootScope.toggleTitleMenu();
+                    $location.url('/client/users');
+                }
+            }
+        ],
+        main_menu_items: [
+            { type: 'item', label: 'Log Out', func: $rootScope.logout, icon: 'icon-lock' },
+            { type: 'divider' },
+            { type: 'item', label: 'Help', func: $rootScope.help },
+            { type: 'item', label: 'Info', func: $rootScope.info }
+        ]
+    };
+}
+
+function ProjectsCtrlOLD($scope, $rootScope, $location, auth, Projects, ProjectsService, TeamsService, Users, BusyService, database) {
 
     var METATATBLE = 'Meta';
     database.insert(METATATBLE, 'DB_TABLE_AUTO_ID', {
