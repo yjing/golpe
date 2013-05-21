@@ -105,7 +105,7 @@
                         <li ng-repeat="t in project(selected_project).Teams" ng-class="isSelectedTeam(t.id)">
                             <a href="#" ng-click="selectTeam(t.id);">{{t.name}}</a>
                             <div class="functions">
-                                <button class="btn-link function" ng-click="deleteTeam(false, t.id, selected_project);" ng-hide="DB.m.teams[t.id].mode == 'deleting' || DB.m.teams[t.id].mode == 'edit'"><i class="icon-remove"></i></button>
+                                <button class="btn-link function" ng-click="deleteTeam(false, t.id);" ng-hide="DB.m.teams[t.id].mode == 'deleting' || DB.m.teams[t.id].mode == 'edit'"><i class="icon-remove"></i></button>
                             </div>
                             <div class="confirms">
                                 <button class="btn btn-danger confirm" ng-click="deleteTeam(true, t.id, selected_project);" ng-show="DB.m.teams[t.id].mode == 'deleting';">Delete</button>
