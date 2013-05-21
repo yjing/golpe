@@ -516,7 +516,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
         }
     };
     $scope.newTeam = function (confirm, proj_id) {
-        if(confirm) {
+        if(!confirm) {
             $scope.new_team = {};
             $scope.selected_team = $scope.new_team_id;
         } else {
