@@ -506,6 +506,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
 //                }
 //            );
         } else {
+            console.log("HERE");
             $scope.meta[proj_id].teams[id][MODE_KEY] = MODE_DELETING;
         }
     };
