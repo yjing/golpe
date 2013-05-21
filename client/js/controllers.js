@@ -292,6 +292,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
                     }
                     $scope.meta[data[i][ProjectsService.PKEY]] = { index: i };
                     $scope.meta[data[i][ProjectsService.PKEY]][MODE_KEY] = MODE_NORMAL;
+                    $scope.meta[data[i][ProjectsService.PKEY]].teams = {};
                 }
                 $scope.projectsData = data;
             },
@@ -348,7 +349,6 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
                     $scope.projectsData[index] = proj;
 
                     if(angular.isDefined(proj.Teams)) {
-                        $scope.meta[id].teams = {};
                         for (var i = 0; i < proj.Teams.length; i++) {
                             var t = proj.Teams[i];
                             $scope.meta[id].teams[t.id] = { index : i };
@@ -475,6 +475,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, Projects, ProjectsSer
                 for (var i = 0; i < data.length; i++) {
                     $scope.meta[data[i][ProjectsService.PKEY]] = { index: i };
                     $scope.meta[data[i][ProjectsService.PKEY]][MODE_KEY] = MODE_NORMAL;
+                    $scope.meta[data[i][ProjectsService.PKEY]].teams = {};
                 }
                 $scope.projectsData = data;
             },
