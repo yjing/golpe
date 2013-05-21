@@ -251,6 +251,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
 function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, ProjectsService, database){
     var _THIS = this;
     $scope.elements = [];
+    $scope.seleced_elem = null;
 
     // MAIN METHOD
     $scope.main = function() {
@@ -288,6 +289,13 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         $scope.main();
     }
 
+    // PROJECTS RELATED FUNCTIONS
+    $scope.selectElem = function (id) {
+        this.seleced_elem = id;
+    };
+    $scope.isSelectedProject = function (id) {
+        return (id == this.seleced_elem ? 'active' : '');
+    };
 
     this.setProjectMeta = function (id, mode) {
         var meta = database.get('ProjectsMeta', id, 0);
