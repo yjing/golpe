@@ -136,15 +136,14 @@
                 </div>
             </div>
 
-            <div class="span4" ng-show="selected_team != null && selected_team > 0;">
+            <div class="span4" ng-show="selected_team != null">
                 <div class="menu shadow">
                     <div class="text-right">
                         <span><strong>Team Members <i class="icon-user"></i></strong></span>
-                        {{project(selected_project).Teams[selected_team]}}
                     </div>
                     <ul>
-                        <li ng-repeat="u in project(selected_project).Teams[selected_team].Users">
-                            <a>{{DB.d.users[u.id].username}}</a>
+                        <li ng-repeat="u in selcted_team.Students">
+                            <a>{{u.username}}</a>
                             <div class="functions">
                                 <button class="btn-link function" ng-click="removeMember(false, u.id, selected_team);" ng-hide="DB.m.users[u.id].mode == 'deleting' || DB.m.users[u.id].mode == 'edit'"><i class="icon-remove"></i></button>
                             </div>
