@@ -395,6 +395,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     $scope.cancelNewElem = function () {
         $scope.new_elem = null;
         $scope.selected_elem_id = null;
+        $scope.validation_errors['name'] = [];
     };
     $scope.saveNewElem = function () {
 
