@@ -143,7 +143,7 @@
                     </div>
                     <ul>
                         <li ng-repeat="u in selected_team.Student">
-                            <a>{{u.username}}</a>
+                            <a>{{u.username}} - {{u.id}}</a>
                             <div class="functions">
                                 <button class="btn-link function" ng-click="removeMember(false, u.id);" ng-hide="isRemoveMember(u.id)"><i class="icon-remove"></i></button>
                             </div>
