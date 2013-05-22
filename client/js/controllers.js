@@ -259,7 +259,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     $scope.new_elem_id = -1;
 
     $scope.validation_errors = {
-        name: ['test1', 'test2']
+        name: []
     }
 
     // MAIN METHOD
@@ -406,6 +406,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
             },
             function(e){
                 $rootScope.handleError(error);
+                console.log(e);
             }
         );
 
