@@ -567,14 +567,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
             UsersService.loadAll(
                 function(d, h){
                     var users = database.select(UsersService.TABLE, [{field:'role',value:'STUDENT'}], 1);
-                    var list = [];
-                    for (var i = 0; i < users.length; i++) {
-                        if(angular.isUndefined(users[i].Team) || users[i].Team == null){
-                            list.push(users[i]);
-                        }
-
-                    }
-                    $scope.member_list = list;
+                    $scope.member_list = _THIS.filterTeamedStudents(users);
                 },
                 function(e) {
                     $rootScope.handleError(e);
@@ -660,6 +653,17 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
             }
         }
     };
+
+    this.filterTeamedStudents = function(students) {
+        var list = [];
+        for (var i = 0; i < students.length; i++) {
+            if(angular.isUndefined(students[i].Team) || students[i].Team == null){
+                list.push(students[i]);
+            }
+
+        }
+        return list;
+    }
 
     // TOP BAR
     $rootScope.top_bar = {
