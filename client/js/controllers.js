@@ -376,10 +376,29 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
                 $scope.cancelEditElem(id);
             },
             function(e){
-                $rootScope.handleError(error);
+                $rootScope.handleError(e);
+                if(e.status == 400) {
+                    var validation_errors = e.data.data_validation_errors;
+                    if(angular.isDefined(validation_errors)
+                        && angular.isDefined(validation_errors[ProjectsService.DATA_KEY])
+                        && angular.isDefined(validation_errors[ProjectsService.DATA_KEY]['name'])) {
+                        var id = data[ProjectsService.PKEY];
+                        _THIS.setProjectMeta(id, {
+                            validation_errors: {
+                                name: validation_errors[ProjectsService.DATA_KEY]['name']
+                            }
+                        });
+                    }
+                }
             }
         );
 
+    };
+    $scope.getValidationsErrors = function (id) {
+        var meta = _THIS.getProjectMeta(id);
+        if(angular.isDefined(meta)) {
+            return meta.validation_errors;
+        }
     };
     $scope.newElem = function () {
         $scope.new_elem = {

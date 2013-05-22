@@ -47,8 +47,8 @@
                     </h4>
                     <!-- EDIT MODE -->
                     <span ng-show="isEditElem(selected_elem_id)">
-                        <input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge"
-                               ng-model="selected_elem.name">
+                        <input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge" ng-model="selected_elem.name">
+                        <span class="text-error" ng-repeat="error in getValidationsErrors(selected_elem_id).name"><br>{{error}}</span>
                     </span>
                 </span>
             </div>
