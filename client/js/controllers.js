@@ -542,10 +542,10 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
 
         } else {
             _THIS.setUserMeta(id, { 'mode': MODE_REMOVING });
-            console.log(_THIS.getUserMeta(id));
         }
     };
     $scope.isRemoveMember = function (id) {
+        console.log(_THIS.setUserMeta(id, 'mode'));
         return _THIS.setUserMeta(id, 'mode') == MODE_REMOVING;
     };
     $scope.cancelRemoveMember = function (id) {
