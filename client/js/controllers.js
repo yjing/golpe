@@ -566,7 +566,15 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         } else {
             UsersService.loadAll(
                 function(d, h){
-                    console.log(database.select(UsersService.TABLE, [{field:'role',value:'STUDENT'}], 1));
+                    var users = database.select(UsersService.TABLE, [{field:'role',value:'STUDENT'}], 1);
+                    var list = [];
+                    for (var i = 0; i < users.length; i++) {
+                        if(angular.isDefined(users[i].Team) && users[i].Team != null){
+                            list.push(users[i]);
+                        }
+
+                    }
+                    $scope.member_list = list;
                 },
                 function(e) {
                     $rootScope.handleError(e);

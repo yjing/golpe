@@ -165,7 +165,7 @@
                         <span><strong>Add Memeber <i class="icon-plus"></i></strong></span>
                     </div>
                     <ul>
-                        <li ng-repeat="u in DB.d.users | filter:'s.'">
+                        <li ng-repeat="u in member_list">
                             <a href="#" ng-click="addMember(true, add_member_to, u.id)">
                                 {{u.username}}
                             </a>
