@@ -455,18 +455,19 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
 
     // TEAMS RELATED FUNCTIONS
     $scope.selectTeam = function (id) {
-        $scope.selected_team = angular.copy( _THIS.getTeamFromElem(id, $scope.selected_elem_id) );
+        $scope.selected_team = _THIS.getTeamFromElem(id, $scope.selected_elem_id);
         $scope.selected_team_id = $scope.selected_team[TeamsService.PKEY];
     };
     $scope.isSelectedTeam = function (id) {
         return (id == $scope.selected_team_id ? 'active' : '');
     };
     $scope.editTeam = function (id) {
-        _THIS.setTeamMeta(id, { mode: MODE_EDIT });
+        var oldTeam = _THIS.getTeamFromElem(id, $scope.selected_elem_id);
+        _THIS.setTeamMeta(id, { mode: MODE_EDIT, old:oldTeam });
     };
     $scope.cancelEditTeam = function (id) {
         _THIS.setTeamMeta(id, { mode: MODE_NORMAL });
-        $scope.elements = database.select(ProjectsService.TABLE, [], 3);
+        _THIS.setTeamInElem(selected_elem, id, _THIS.getTeamMeta(id, 'old'));
     };
     $scope.isEditTeam = function (id) {
         return _THIS.getTeamMeta(id, MODE_KEY) == MODE_EDIT;
@@ -554,6 +555,16 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
             for (var i = 0; i < elem.Teams.length; i++) {
                 if(elem.Teams[i][TeamsService.PKEY] == team_id) {
                     return elem.Teams[i];
+                }
+            }
+        }
+    };
+    this.setTeamInElem = function (elem_id, team_id, team) {
+        var elem = this.getElemFromList(elem_id);
+        if(angular.isDefined(elem)) {
+            for (var i = 0; i < elem.Teams.length; i++) {
+                if(elem.Teams[i][TeamsService.PKEY] == team_id) {
+                    elem.Teams[i] = team;
                 }
             }
         }
