@@ -473,7 +473,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     $scope.saveTeam = function (id) {
 
         var data = $scope.selected_team;
-
+        console.log(data);
         TeamsService.save(
             data,
             function(d, h){
