@@ -539,7 +539,15 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     // USERS RELATED FUNCTIONS
     $scope.removeMember = function (confirm, id) {
         if(confirm) {
-
+            TeamsService.removeMember($scope.selected_team_id, id,
+                function(d, h) {
+                    $scope.elements = database.select(ProjectsService.TABLE, [], 3);
+                    $scope.selectElem($scope.selected_elem_id);
+                },
+                function(e) {
+                    $rootScope.handleError(e);
+                }
+            );
         } else {
             _THIS.setUserMeta(id, { mode: MODE_REMOVING });
         }

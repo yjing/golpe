@@ -449,15 +449,81 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
         this.TABLE = 'Teams';
         this.PKEY = 'id';
 
-        this.Teams = $resource('/teams/:id', { id:'@id' }, {});
+        this.Teams = $resource('/teams/:id', { id:'@id' }, {
+            addMember:{
+                url:'/teams/addMember/:tid/:uid',
+                method:'POST'
+            },
+            removeMember:{
+                url:'/teams/removeMember/:tid/:uid',
+                method:'DELETE'
+            }
+        });
+
+        this.addMember = function (t_id, u_id, success, error) {
+            if (!angular.isDefined(t_id)) {
+                throw "Missing team ID";
+            }
+            if (!angular.isDefined(u_id)) {
+                throw "Missing user ID";
+            }
+
+            this.Teams.addMember(
+                { "tid":t_id, "uid":u_id },
+                {},
+                function (d, h) {
+                    BusyService.busy(false);
+                    _THIS.insertTeam(d['Team']);
+
+                    // CALLBACKS
+                    if (angular.isDefined(success)) {
+                        success(d, h);
+                    }
+                },
+                function (data) {
+                    BusyService.busy(false);
+
+                    // CALLBACKS
+                    if (angular.isDefined(error)) {
+                        error(e);
+                    }
+                }
+            )
+
+        }
+        this.removeMember = function (t_id, u_id, success, error) {
+            if (!angular.isDefined(t_id)) {
+                throw "Missing team ID";
+            }
+            if (!angular.isDefined(u_id)) {
+                throw "Missing user ID";
+            }
+
+            this.Teams.removeMember(
+                { "tid":t_id, "uid":u_id },
+                {},
+                function (d, h) {
+                    BusyService.busy(false);
+
+                    // CALLBACKS
+                    if (angular.isDefined(success)) {
+                        success(d, h);
+                    }
+                },
+                function (data) {
+                    BusyService.busy(false);
+
+                    // CALLBACKS
+                    if (angular.isDefined(error)) {
+                        error(e);
+                    }
+                }
+            )
+
+        }
 
         this.insertTeam = function(data) {
             if(angular.isDefined(data)) {
-//                var project = data[ProjectsService.DATA_KEY];
-//                if(angular.isDefined(project) && project!=null) {
-//                    ProjectsService.insertProject(project);
-//                }
-//                delete data[ProjectsService.DATA_KEY];
                 database.insert(this.TABLE, data[this.PKEY], data);
             }
         }
@@ -490,8 +556,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                     }
                 }
             );
-        }
-
+        };
         this.delete = function(id, success, error){
             var params = {};
                 params[this.PKEY] = id;
@@ -521,6 +586,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                 }
             );
         };
+
     })
     .service('UsersService', function ($rootScope, $resource, BusyService, DBService, TeamsService, database) {
 
