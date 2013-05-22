@@ -310,6 +310,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
                     var elem = _THIS.getElemFromList(id);
                     if(elem.status != STATUS_COMPLETE) {
                         elem = angular.copy( database.get(ProjectsService.TABLE, id, 3) );
+                        console.log(elem);
                         _THIS.setElemInList(id, elem);
                     }
                     $scope.selected_elem = _THIS.getElemFromList(id);
