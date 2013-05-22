@@ -74,19 +74,19 @@
             <div>
                 <span>
                     <span><input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge"
-                                 ng-model="selected_elem.name"></span>
+                                 ng-model="new_elem.name"></span>
                 </span>
             </div>
             <ul>
                 <li>
-                    <textarea class="edit-field" ng-model="selected_elem.description"></textarea>
+                    <textarea class="edit-field" ng-model="new_elem.description"></textarea>
                 </li>
             </ul>
             <div>
                 <span>
                     <div class="btn-group">
-                        <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveElem();">Save</button>
-                        <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="cancelEditElem(selected_elem_id);">Cancel</button>
+                        <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveNewElem();">Save</button>
+                        <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="cancelNewElem();">Cancel</button>
                     </div>
                 </span>
             </div>
