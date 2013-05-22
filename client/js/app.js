@@ -481,8 +481,10 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                             team.Student = [];
                         }
                         team.Student.push(user);
+                        user[_THIS.TEAM_FKEY] = t_id;
                     }
                     database.insert(_THIS.TABLE, t_id, team);
+                    database.insert('Users', u_id, user);
 
                     // CALLBACKS
                     if (angular.isDefined(success)) {
