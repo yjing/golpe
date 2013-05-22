@@ -339,6 +339,10 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         if(confirm) {
             ProjectsService.delete(id,
                 function(d, h){
+                    if(id == $scope.selected_elem_id) {
+                        $scope.selected_elem = null;
+                        $scope.selected_elem_id = null;
+                    }
                     $scope.elements = database.select(ProjectsService.TABLE, [], 3);
                 },
                 function(e) {
