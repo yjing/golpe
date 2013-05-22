@@ -287,7 +287,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
                 var elems = database.select(ProjectsService.TABLE, [], 3);
                 for (var i = 0; i < elems.length; i++) {
                     var elem = elems[i];
-                    _THIS.setProjectMeta(elem[ProjectsService.PKEY], MODE_NORMAL);
+                    _THIS.setProjectMeta(elem[ProjectsService.PKEY], { mode:MODE_NORMAL });
 
                 }
                 $scope.elements = elems;
@@ -318,7 +318,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         return (id == $scope.selected_elem_id ? 'active' : '');
     };
     $scope.editElem = function (id) {
-        _THIS.setProjectMeta(id, MODE_EDIT);
+        _THIS.setProjectMeta(id, { mode: MODE_EDIT });
     };
     $scope.cancelEditElem = function (id) {
         _THIS.setProjectMeta(id, MODE_NORMAL);
@@ -350,7 +350,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
                 }
             );
         } else {
-            _THIS.setProjectMeta(id, MODE_DELETING);
+            _THIS.setProjectMeta(id, { mode: MODE_DELETING });
         }
     };
     $scope.isDeleteElem = function (id) {
@@ -422,16 +422,18 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     this.getProjectMeta = function(id) {
         return database.get('ProjectsMeta', id, 0);
     }
-    this.setProjectMeta = function (id, mode, old) {
+    this.setProjectMeta = function (id, props) {
         var meta = database.get('ProjectsMeta', id, 0);
+
+
         if(angular.isUndefined(meta)) {
-            meta = { "id": id, "mode": mode };
-        } else {
-            meta[MODE_KEY] = mode;
+            meta = { "id": id };
         }
-        if(angular.isDefined(old)) {
-            meta.old = old;
-        }
+
+        angular.forEach(props, function(v, k) {
+            meta[k] = v;
+        });
+
         database.insert('ProjectsMeta', id, meta);
     };
     this.getElemFromList = function (id) {
