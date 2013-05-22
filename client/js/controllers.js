@@ -536,6 +536,21 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         _THIS.setTeamMeta(id, { mode: MODE_NORMAL });
     };
 
+    // USERS RELATED FUNCTIONS
+    $scope.removeMember = function (confirm, id) {
+        if(confirm) {
+
+        } else {
+            _THIS.setUserMeta(id, { mode: MODE_REMOVING });
+        }
+    };
+    $scope.isRemoveMember = function (id) {
+        return _THIS.setUserMeta(id, 'mode') == MODE_REMOVING;
+    };
+    $scope.cancelRemoveMember = function (id) {
+        _THIS.setUserMeta(id, { mode: MODE_NORMAL });
+    };
+
     // INTERNAL FUNCTIONS
     this.getProjectMeta = function(id, key) {
         return this.getMeta('ProjectsMeta', id, key);
@@ -548,6 +563,12 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     }
     this.setTeamMeta = function(id, props) {
         this.setMeta('TeamsMeta', id, props);
+    }
+    this.getUserMeta = function(id, key) {
+        return this.getMeta('UsersMeta', id, key);
+    }
+    this.setUserMeta = function(id, props) {
+        this.setMeta('UsersMeta', id, props);
     }
     this.getMeta = function(table, id, key) {
         var res = database.get(table, id, 0);

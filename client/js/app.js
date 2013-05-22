@@ -45,6 +45,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
 
         database.createTable('ProjectsMeta');
         database.createTable('TeamsMeta');
+        database.createTable('UsersMeta');
         database.createTable('Projects', 'id', {},
             { Teams:{table:'Teams', fkey:'project_id'} }
         );
@@ -1722,6 +1723,7 @@ var MODE_KEY = 'mode';
 var MODE_EDIT = 'edit'
 var MODE_NORMAL = 'normal'
 var MODE_DELETING = 'deleting';
+var MODE_REMOVING = 'removing';
 // STATUS CONSTANTS
 var STATUS_KEY = 'status';
 var STATUS_PARTIAL = 'partial';

@@ -145,16 +145,16 @@
                         <li ng-repeat="u in selected_team.Student">
                             <a>{{u.username}}</a>
                             <div class="functions">
-                                <button class="btn-link function" ng-click="removeMember(false, u.id, selected_team);" ng-hide="DB.m.users[u.id].mode == 'deleting' || DB.m.users[u.id].mode == 'edit'"><i class="icon-remove"></i></button>
+                                <button class="btn-link function" ng-click="removeMember(false, u.id);" ng-hide="isRemoveMember(u.id)"><i class="icon-remove"></i></button>
                             </div>
                             <div class="confirms">
-                                <button class="btn btn-danger confirm" ng-click="removeMember(true, u.id, selected_team);" ng-show="DB.m.users[u.id].mode == 'deleting';">Remove Member</button>
-                                <button class="btn btn-success confirm" ng-click="DB.m.users[u.id].mode = 'normal';" ng-show="DB.m.users[u.id].mode == 'deleting';">Keep</button>
+                                <button class="btn btn-danger confirm" ng-click="removeMember(true, u.id);" ng-show="isRemoveMember(u.id)">Remove Member</button>
+                                <button class="btn btn-success confirm" ng-click="cancelRemoveMember(u.id)" ng-show="isRemoveMember(u.id)">Keep</button>
                             </div>
                         </li>
                     </ul>
                     <div class="text-right">
-                        <span><button ng-click="addMember(false, selected_team);" ng-disabled="add_member" class="btn btn-success">Add Member</button></span>
+                        <span><button ng-click="addMember();" ng-disabled="add_member" class="btn btn-success">Add Member</button></span>
                     </div>
                 </div>
             </div>
