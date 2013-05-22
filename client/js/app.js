@@ -506,7 +506,16 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                     BusyService.busy(false);
 
                     var team = database.get(_THIS.TABLE, t_id, 0);
-                    console.log(team);
+                    if(angular.isDefined(team) && angular.isDefined(team.Student) && angular.isArray(team.Student)) {
+                        for (var i = 0; i < team.Student.length; i++) {
+                            if(team.Student[i].id == u_id) {
+                                delete team.Student[i];
+                                break;
+                            }
+
+                        }
+                    }
+                    database.insert(_THIS.TABLE, t_id, team);
 
                     // CALLBACKS
                     if (angular.isDefined(success)) {
