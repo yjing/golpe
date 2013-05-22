@@ -491,7 +491,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     };
     $scope.newTeam = function () {
         $scope.new_team = {
-            "project_id": $scope.selected_elem
+            "project_id": $scope.selected_elem_id
         };
     };
     $scope.saveNewTeam = function () {
@@ -505,6 +505,9 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
                 $rootScope.handleError(e);
             }
         );
+    };
+    $scope.cancelNewTeam = function () {
+        $scope.new_team = null;
     };
 
     // INTERNAL FUNCTIONS
