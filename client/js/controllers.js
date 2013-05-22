@@ -566,7 +566,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         } else {
             UsersService.loadAll(
                 function(d, h){
-                    console.log(database.select(UsersService.TABLE, [], 0));
+                    console.log(database.select(UsersService.TABLE, [{field:'role',value:'STUDENT'}], 1));
                 },
                 function(e) {
                     $rootScope.handleError(e);
