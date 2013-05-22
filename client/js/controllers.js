@@ -569,7 +569,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
                     var users = database.select(UsersService.TABLE, [{field:'role',value:'STUDENT'}], 1);
                     var list = [];
                     for (var i = 0; i < users.length; i++) {
-                        if(angular.isDefined(users[i].Team) && users[i].Team != null){
+                        if(angular.isUndefined(users[i].Team) || users[i].Team == null){
                             list.push(users[i]);
                         }
 
