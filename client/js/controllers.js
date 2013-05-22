@@ -291,9 +291,8 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     }
 
     // PROJECTS RELATED FUNCTIONS
-    $scope.selectElem = function (index) {
-        console.log(index);
-        $scope.selected_elem = $scope.elements[index];
+    $scope.selectElem = function (id) {
+        $scope.selected_elem = this.getElemFromList(id);
         $scope.selected_elem_id = $scope.selected_elem[ProjectsService.PKEY];
     };
     $scope.isSelectedElem = function (id) {
@@ -386,6 +385,16 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
             meta[MODE_KEY] = mode;
         }
         database.insert('ProjectsMeta', id, meta);
+    };
+    this.getElemFromList = function (id) {
+        var ret = null;
+        for (var i = 0; i < $scope.elements.length; i++) {
+            if($scope.elements[i][ProjectsService.PKEY] == id) {
+                ret = $scope.elements[i];
+                break;
+            }
+        }
+        return ret;
     };
 
     // TOP BAR
