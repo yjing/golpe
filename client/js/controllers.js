@@ -255,7 +255,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     $scope.selected_elem = null;
     $scope.selected_elem_id = null;
 
-    $scope.new_elem = -1;
+    $scope.new_elem = null;
     $scope.new_elem_id = -1;
 
     // MAIN METHOD
