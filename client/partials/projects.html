@@ -41,11 +41,11 @@
         <div class="menu shadow" ng-hide="isNewElem()">
             <div>
                 <span>
-                    <h4 class="clickable" ng-hide="isEditElem(selected_elem)" ng-click="editElem(selected_elem);">
+                    <h4 class="clickable" ng-hide="isEditElem(selected_elem_id)" ng-click="editElem(selected_elem_id);">
                         {{selected_elem.name}} <i class="icon-pencil"></i>
                     </h4>
                     <!-- EDIT MODE -->
-                    <span ng-show="isEditElem(selected_elem)">
+                    <span ng-show="isEditElem(selected_elem_id)">
                         <input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge"
                                ng-model="selected_elem.name">
                     </span>
