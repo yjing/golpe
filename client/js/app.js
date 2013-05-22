@@ -505,7 +505,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                 function (d, h) {
                     BusyService.busy(false);
 
-                    var team = database.get(_THIS.TABLE, t_id, 1);
+                    var team = database.get(_THIS.TABLE, t_id, 0);
                     console.log(team);
 
                     // CALLBACKS
