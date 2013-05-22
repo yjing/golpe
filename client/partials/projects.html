@@ -24,7 +24,7 @@
                         <button class="btn btn-success confirm" ng-click="cancelDeleteElem(p.id)" ng-show="isDeleteElem(p.id)">Keep</button>
                     </div>
                 </li>
-                <li ng-show="isNewElem()" ng-class="isSelectedElem(new_project_id)">
+                <li ng-show="isNewElem()" ng-class="isSelectedElem(new_elem_id)">
                     <a href="#" ng-click="selectElem(new_elem_id);">{{new_elem.name}} <i class="icon-edit"></i></a>
                 </li>
             </ul>
