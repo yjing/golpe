@@ -462,9 +462,13 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
         }
 
         this.save = function(team, success, error){
+            var params = {};
+            if(angular.isDefined(team[this.PKEY])) {
+                params.id = team[this.PKEY];
+            }
             BusyService.busy(true);
             this.Teams.save(
-                {},
+                params,
                 { "Team": team },
                 function(d, h) {
                     BusyService.busy(false);
