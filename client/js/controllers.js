@@ -314,7 +314,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
                         if(angular.isDefined(elem.Teams)) {
                             for (var i = 0; i < elem.Teams.length; i++) {
                                 var team = elem.Teams[i];
-                                _THIS.setTeamMeta(team[TeamsService.PKEY], {mode:MODE_NORMAL});
+                                _THIS.setTeamMeta(team['id'], {mode:MODE_NORMAL});
                                 console.log(_THIS.getTeamMeta(team[TeamsService.PKEY]));
                             }
                         }
