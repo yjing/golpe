@@ -490,7 +490,9 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
 
     };
     $scope.newTeam = function () {
-        $scope.new_team = {};
+        $scope.new_team = {
+            "project_id": $scope.selected_elem
+        };
     };
     $scope.saveNewTeam = function () {
         TeamsService.save(
