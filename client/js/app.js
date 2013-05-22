@@ -517,7 +517,8 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                     BusyService.busy(false);
 
                     var team = database.get(_THIS.TABLE, t_id, 0);
-                    if(angular.isDefined(team) && angular.isDefined(team.Student) && angular.isArray(team.Student)) {
+                    var user = database.get('Users', u_id, 0);
+                    if(angular.isDefined(user) && angular.isDefined(team) && angular.isDefined(team.Student) && angular.isArray(team.Student)) {
                         for (var i = 0; i < team.Student.length; i++) {
                             if(team.Student[i].id == u_id) {
                                 team.Student.splice(i, 1);
@@ -525,8 +526,10 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                             }
 
                         }
+                        delete user['team_id'];
                     }
                     database.insert(_THIS.TABLE, t_id, team);
+                    database.insert('Users', u_id, user);
 
                     // CALLBACKS
                     if (angular.isDefined(success)) {
