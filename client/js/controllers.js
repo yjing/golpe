@@ -260,22 +260,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
 
     // MAIN METHOD
     $scope.main = function() {
-        ProjectsService.loadAll(
-            // SUCCESS
-            function(data, handlers){
-                var elems = database.select(ProjectsService.TABLE, [], 3);
-                for (var i = 0; i < elems.length; i++) {
-                    var elem = elems[i];
-                    _THIS.setProjectMeta(elem[ProjectsService.PKEY], MODE_NORMAL);
-
-                }
-                $scope.elements = elems;
-            },
-            // ERROR
-            function(error){
-                $rootScope.handleError(error);
-            }
-        );
+        $scope.loadAll();
     }
 
     // BEFORE MAIN: CHECK USER LOGIN
@@ -295,6 +280,24 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     }
 
     // PROJECTS RELATED FUNCTIONS
+    $scope.loadAll = function(){
+        ProjectsService.loadAll(
+            // SUCCESS
+            function(data, handlers){
+                var elems = database.select(ProjectsService.TABLE, [], 3);
+                for (var i = 0; i < elems.length; i++) {
+                    var elem = elems[i];
+                    _THIS.setProjectMeta(elem[ProjectsService.PKEY], MODE_NORMAL);
+
+                }
+                $scope.elements = elems;
+            },
+            // ERROR
+            function(error){
+                $rootScope.handleError(error);
+            }
+        );
+    }
     $scope.selectElem = function (id) {
         if(id == $scope.new_elem_id) {
             $scope.selected_elem_id = $scope.new_elem_id;
