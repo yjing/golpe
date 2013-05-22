@@ -545,12 +545,12 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
                     _THIS.setUserMeta(id, { mode: MODE_NORMAL });
 
                     var team_id = $scope.selected_team_id;
-//                    $scope.elements = database.select(ProjectsService.TABLE, [], 3);
-//                    $scope.selectElem($scope.selected_elem_id);
-//                    $scope.selectTeam(team_id);
-//
-//                    var users = database.select(UsersService.TABLE, [{field:'role',value:'STUDENT'}], 1);
-//                    $scope.member_list = _THIS.filterTeamedStudents(users);
+                    $scope.elements = database.select(ProjectsService.TABLE, [], 3);
+                    $scope.selectElem($scope.selected_elem_id);
+                    $scope.selectTeam(team_id);
+
+                    var users = database.select(UsersService.TABLE, [{field:'role',value:'STUDENT'}], 1);
+                    $scope.member_list = _THIS.filterTeamedStudents(users);
                 },
                 function(e) {
                     $rootScope.handleError(e);
