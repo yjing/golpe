@@ -464,6 +464,9 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     $scope.editTeam = function (id) {
         _THIS.setTeamMeta(id, { mode: MODE_EDIT });
     };
+    $scope.cancelEditTeam = function (id) {
+        _THIS.setTeamMeta(id, { mode: MODE_NORMAL });
+    };
     $scope.isEditTeam = function (id) {
         return _THIS.getTeamMeta(id, MODE_KEY) == MODE_EDIT;
     };
