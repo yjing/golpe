@@ -454,23 +454,38 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     $scope.isSelectedTeam = function (id) {
         return (id == $scope.selected_team_id ? 'active' : '');
     };
+    $scope.editTeam = function (id) {
+        _THIS.setTeamMeta(id, { mode: MODE_EDIT });
+    };
+    $scope.isEditTeam = function (id) {
+        return _THIS.getTeamMeta(id, mode) == MODE_EDIT;
+    };
 
     // INTERNAL FUNCTIONS
     this.getProjectMeta = function(id, key) {
-        var res = database.get('ProjectsMeta', id, 0);
+        this.getMeta('ProjectsMeta', id, key);
+    }
+    this.setProjectMeta = function(id, props) {
+        this.setMeta('ProjectsMeta', id, props);
+    }
+    this.getTeamMeta = function(id, key) {
+        this.getMeta('TeamsMeta', id, key);
+    }
+    this.setTeamMeta = function(id, props) {
+        this.setMeta('TeamsMeta', id, props);
+    }
+    this.getMeta = function(table, id, key) {
+        var res = database.get(table, id, 0);
         if(angular.isDefined(res) && angular.isDefined(key)) {
             res = res[key];
         }
         return res;
     }
-    this.setProjectMeta = function (id, props) {
-        var meta = database.get('ProjectsMeta', id, 0);
-
-
+    this.setMeta = function (table, id, props) {
+        var meta = database.get(table, id, 0);
         if(angular.isUndefined(meta)) {
             meta = { "id": id };
         }
-
         angular.forEach(props, function(v, k) {
             meta[k] = v;
         });
