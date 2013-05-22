@@ -399,8 +399,10 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         ProjectsService.save(
             $scope.new_elem,
             function(d, h){
+                var id = d[ProjectsService.DATA_KEY][ProjectsService.PKEY];
                 $scope.elements = database.select(ProjectsService.TABLE, [], 3);
                 $scope.cancelNewElem();
+                $scope.selectElem(id);
             },
             function(e){
                 $rootScope.handleError(e);
