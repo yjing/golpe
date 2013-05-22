@@ -474,8 +474,6 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                 function (d, h) {
                     BusyService.busy(false);
 
-                    var team = database.get(this.TABLE, t_id, 1);
-                    console.log(team);
 
                     // CALLBACKS
                     if (angular.isDefined(success)) {
@@ -510,10 +508,8 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                 function (d, h) {
                     BusyService.busy(false);
 
-                    console.log(u_id);
-                    user = database.select('Users', [{field:'id',value:u_id}], 1);
-                    console.log(user);
-                    delete user[this.TEAM_FKEY];
+                    var team = database.get(this.TABLE, t_id, 1);
+                    console.log(team);
 
                     // CALLBACKS
                     if (angular.isDefined(success)) {
