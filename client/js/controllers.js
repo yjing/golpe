@@ -381,6 +381,10 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     $scope.isNewElem = function () {
         return $scope.new_elem != null;
     };
+    $scope.cancelNewElem = function () {
+        $scope.new_elem = null;
+        $scope.selected_elem_id = null;
+    };
 
 
     // INTERNAL FUNCTIONS
