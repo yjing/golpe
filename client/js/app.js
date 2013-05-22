@@ -476,15 +476,13 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
 
                     var team = database.get(_THIS.TABLE, t_id, 0);
                     var user = database.get('Users', u_id, 0);
-                    console.log(user);
                     if(angular.isDefined(team) && angular.isDefined(user)) {
                         if(angular.isUndefined(team.Student) || team.Student == null) {
                             team.Student = [];
                         }
                         team.Student.push(user);
-                        user[_THIS.TEAM_FKEY] = t_id;
+                        user['team_id'] = t_id;
                     }
-                    console.log(user);
                     database.insert(_THIS.TABLE, t_id, team);
                     database.insert('Users', u_id, user);
 
