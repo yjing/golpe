@@ -38,6 +38,7 @@
     </div>
 
     <div class="span9" ng-show="selected_elem_id != null">
+        <!-- EXISTING ELEMENTS DISPLAY -->
         <div class="menu shadow" ng-hide="isSelectedElem(new_elem_id)">
             <div>
                 <span>
@@ -70,11 +71,12 @@
                 </span>
             </div>
         </div>
+        <!-- NEW ELEMENT DISPLAY -->
         <div class="menu shadow" ng-show="isSelectedElem(new_elem_id)">
             <div>
                 <span>
-                    <span><input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge"
-                                 ng-model="new_elem.name"></span>
+                    <span><input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge" ng-model="new_elem.name"></span>
+                    <span class="text-error" ng-repeat="error in valudation_error.name">{{error}}</span>
                 </span>
             </div>
             <ul>
@@ -92,7 +94,7 @@
             </div>
         </div>
 
-        <!-- DOWN LINE -->
+        <!-- DOWN LINE - FOR EXISTING ELEMENTS -->
 
         <div class="row-fluid" ng-hide="isSelectedElem(new_elem_id)">
 

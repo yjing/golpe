@@ -258,6 +258,10 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     $scope.new_elem = null;
     $scope.new_elem_id = -1;
 
+    $scope.validation_error = {
+        name: ['test1', 'test2']
+    }
+
     // MAIN METHOD
     $scope.main = function() {
         $scope.loadAll();
@@ -346,7 +350,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
                     $scope.elements = database.select(ProjectsService.TABLE, [], 3);
                 },
                 function(e) {
-                    $rootScope.handleError(error);
+                    $rootScope.handleError(e);
                 }
             );
         } else {
