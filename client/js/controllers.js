@@ -405,7 +405,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
                 $scope.cancelNewElem();
             },
             function(e){
-                $rootScope.handleError(error);
+                $rootScope.handleError(e);
                 console.log(e);
             }
         );
