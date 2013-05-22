@@ -470,6 +470,35 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     $scope.isEditTeam = function (id) {
         return _THIS.getTeamMeta(id, MODE_KEY) == MODE_EDIT;
     };
+    $scope.saveTeam = function (t.id) {
+
+        var data = $scope.selected_team;
+
+        TeamsService.save(
+            data,
+            function(d, h){
+                $scope.elements = database.select(ProjectsService.TABLE, [], 3);
+                $scope.cancelEditTeam(id);
+            },
+            function(e){
+                $rootScope.handleError(e);
+//                if(e.status == 400) {
+//                    var validation_errors = e.data.data_validation_errors;
+//                    if(angular.isDefined(validation_errors)
+//                        && angular.isDefined(validation_errors[ProjectsService.DATA_KEY])
+//                        && angular.isDefined(validation_errors[ProjectsService.DATA_KEY]['name'])) {
+//                        var id = data[ProjectsService.PKEY];
+//                        _THIS.setProjectMeta(id, {
+//                            validation_errors: {
+//                                name: validation_errors[ProjectsService.DATA_KEY]['name']
+//                            }
+//                        });
+//                    }
+//                }
+            }
+        );
+
+    };
 
     // INTERNAL FUNCTIONS
     this.getProjectMeta = function(id, key) {
