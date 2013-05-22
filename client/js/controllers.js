@@ -546,6 +546,9 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
                     $scope.elements = database.select(ProjectsService.TABLE, [], 3);
                     $scope.selectElem($scope.selected_elem_id);
                     $scope.selectTeam(team_id);
+
+                    var users = database.select(UsersService.TABLE, [{field:'role',value:'STUDENT'}], 1);
+                    $scope.member_list = _THIS.filterTeamedStudents(users);
                 },
                 function(e) {
                     $rootScope.handleError(e);
