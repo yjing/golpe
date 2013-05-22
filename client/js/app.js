@@ -507,6 +507,9 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                 function (d, h) {
                     BusyService.busy(false);
 
+                    var user = database.get('Users', u_id, 0);
+                    delete user[this.TEAM_FKEY];
+
                     // CALLBACKS
                     if (angular.isDefined(success)) {
                         success(d, h);
