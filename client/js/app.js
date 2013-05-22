@@ -507,7 +507,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                 function (d, h) {
                     BusyService.busy(false);
 
-                    var user = database.get('Users', u_id, 0);
+                    var user = database.get('Users', u_id, 1);
                     console.log(user);
                     delete user[this.TEAM_FKEY];
 
