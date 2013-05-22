@@ -501,8 +501,8 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
             meta[k] = v;
         });
 
-        console.log(meta);
         database.insert(table, id, meta);
+        console.log(database.get(table, id, 0));
     };
     this.getElemFromList = function (id) {
         var ret = null;
