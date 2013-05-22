@@ -562,7 +562,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     };
     $scope.addMember = function(confirm, id){
         if(confirm) {
-            TeamsService.addMember($scope.selected_team, id,
+            TeamsService.addMember($scope.selected_team_id, id,
                 function(d, h){
                     var users = database.select(UsersService.TABLE, [{field:'role',value:'STUDENT'}], 1);
                     $scope.member_list = _THIS.filterTeamedStudents(users);
