@@ -473,7 +473,9 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                 {},
                 function (d, h) {
                     BusyService.busy(false);
-                    _THIS.insertTeam(d['Team']);
+
+                    var user = database.get('Users', u_id, 0);
+                    user[this.TEAM_FKEY] = t_id;
 
                     // CALLBACKS
                     if (angular.isDefined(success)) {
