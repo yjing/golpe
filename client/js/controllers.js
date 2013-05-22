@@ -385,6 +385,20 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         $scope.new_elem = null;
         $scope.selected_elem_id = null;
     };
+    $scope.saveNewElem = function () {
+
+        ProjectsService.save(
+            $scope.new_elem,
+            function(d, h){
+                $scope.elements = database.select(ProjectsService.TABLE, [], 3);
+                $scope.cancelNewElem();
+            },
+            function(e){
+                $rootScope.handleError(error);
+            }
+        );
+
+    };
 
 
     // INTERNAL FUNCTIONS
