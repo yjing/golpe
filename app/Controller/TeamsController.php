@@ -97,6 +97,7 @@ class TeamsController extends RESTController {
         }
         
         $saved = $this->TeamUser->find('first', array(
+            'fields' => array('TeamUser.user_id', 'TeamUser.team_id'),
             'recursive' => -1,
             'conditions' => array(
                 'TeamUser.user_id' => $user_id,
@@ -124,6 +125,7 @@ class TeamsController extends RESTController {
     public function removeMember($team_id, $user_id) {
         parent::delete();
         $data = $this->TeamUser->find('first', array(
+            'fields' => array('TeamUser.user_id', 'TeamUser.team_id'),
             'recursive' => -1,
             'conditions' => array(
                 'TeamUser.user_id' => $user_id,
