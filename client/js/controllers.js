@@ -311,6 +311,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
                     if(elem.status != STATUS_COMPLETE) {
                         elem = angular.copy( database.select(ProjectsService.TABLE, [{field:'id', value:id}], 3)[0]);
 
+                        console.log(elem);
                         for (var i = 0; i < elem.Teams.length; i++) {
                             var team = elem.Teams[i];
                             _THIS.setTeamMeta(team[TeamsService.PKEY], {mode:MODE_NORMAL});
