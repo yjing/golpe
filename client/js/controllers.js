@@ -296,16 +296,20 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
 
     // PROJECTS RELATED FUNCTIONS
     $scope.selectElem = function (id) {
-        ProjectsService.load(id,
-            function(d, h){
-                $scope.elements = database.select(ProjectsService.TABLE, [], 3);
-                $scope.selected_elem = _THIS.getElemFromList(id);
-                $scope.selected_elem_id = $scope.selected_elem[ProjectsService.PKEY];
-            },
-            function(e) {
-                $rootScope.handleError(e);
-            }
-        )
+        if(id == $scope.new_elem_id) {
+            $scope.selected_elem_id = $scope.new_elem_id;
+        } else {
+            ProjectsService.load(id,
+                function(d, h){
+                    $scope.elements = database.select(ProjectsService.TABLE, [], 3);
+                    $scope.selected_elem = _THIS.getElemFromList(id);
+                    $scope.selected_elem_id = $scope.selected_elem[ProjectsService.PKEY];
+                },
+                function(e) {
+                    $rootScope.handleError(e);
+                }
+            );
+        }
     };
     $scope.isSelectedElem = function (id) {
         return (id == $scope.selected_elem_id ? 'active' : '');
