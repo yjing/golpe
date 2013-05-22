@@ -170,7 +170,11 @@ function Table(name, pkey, blgTo, hsMany) {
             var put = true;
             for (var i = 0; i < where.length; i++) {
                 var cond = where[i];
-                if(!angular.equals(v[cond.field], cond.value)) {
+                if(angular.isDefined(v)) {
+                    if(!angular.equals(v[cond.field], cond.value)) {
+                        put = false;
+                    }
+                } else {
                     put = false;
                 }
 
