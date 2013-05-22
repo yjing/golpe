@@ -470,7 +470,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     $scope.isEditTeam = function (id) {
         return _THIS.getTeamMeta(id, MODE_KEY) == MODE_EDIT;
     };
-    $scope.saveTeam = function (t.id) {
+    $scope.saveTeam = function (id) {
 
         var data = $scope.selected_team;
 
