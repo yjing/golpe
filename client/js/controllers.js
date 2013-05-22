@@ -258,7 +258,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     $scope.new_elem = null;
     $scope.new_elem_id = -1;
 
-    $scope.validation_error = {
+    $scope.validation_errors = {
         name: ['test1', 'test2']
     }
 
