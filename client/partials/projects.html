@@ -37,8 +37,8 @@
         </div>
     </div>
 
-    <div class="span9" ng-show="selected_elem != null">
-        <div class="menu shadow" ng-hide="isNewElem()">
+    <div class="span9" ng-show="selected_elem_id != null">
+        <div class="menu shadow" ng-hide="isNewElem(selected_elem_id)">
             <div>
                 <span>
                     <h4 class="clickable" ng-hide="isEditElem(selected_elem_id)" ng-click="editElem(selected_elem_id);">
@@ -70,7 +70,7 @@
                 </span>
             </div>
         </div>
-        <div class="menu shadow" ng-show="isNewElem()">
+        <div class="menu shadow" ng-show="isNewElem(selected_elem_id)">
             <div>
                 <span>
                     <span><input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge"
@@ -94,7 +94,7 @@
 
         <!-- DOWN LINE -->
 
-        <div class="row-fluid">
+        <div class="row-fluid" ng-hide="isNewElem(selected_elem_id)">
 
             <div class="span4">
                 <div class="menu shadow">

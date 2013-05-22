@@ -251,8 +251,12 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
 function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, ProjectsService, database){
     var _THIS = this;
     $scope.elements = [];
+
     $scope.selected_elem = null;
     $scope.selected_elem_id = null;
+
+    $scope.new_elem = -1;
+    $scope.new_elem_id = -1;
 
     // MAIN METHOD
     $scope.main = function() {
@@ -357,29 +361,21 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
             data,
             function(d, h){
                 $scope.elements = database.select(ProjectsService.TABLE, [], 3);
-
                 var id = data[ProjectsService.PKEY];
                 $scope.cancelEditElem(id);
-
-//                if(angular.isDefined(index)) {
-//
-//                } else {
-//                    id = d['Project']['id'];
-//                    var new_proj = database.get('Projects', id, 3);
-//
-//                    $scope.meta[id] = { index: $scope.projectsData.length };
-//                    $scope.meta[id][MODE_KEY] = MODE_NORMAL;
-//                    $scope.projectsData.push(new_proj);
-//                    $scope.cancelNewProject();
-//                    $scope.selectProject(id);
-//
-//                }
             },
             function(e){
                 $rootScope.handleError(error);
             }
         );
 
+    };
+    $scope.newElem = function () {
+        $scope.new_elem = {};
+        $scope.selected_elem_id = $scope.new_elem_id;
+    };
+    $scope.isNewElem = function (id) {
+        return $scope.new_elem_id == id;
     };
 
 
