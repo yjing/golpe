@@ -313,7 +313,6 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
 
                         if(angular.isDefined(elem.Teams)) {
                             for (var i = 0; i < elem.Teams.length; i++) {
-                                console.log(TeamsService.PKEY);
                                 var team = elem.Teams[i];
                                 _THIS.setTeamMeta(team[TeamsService.PKEY], {mode:MODE_NORMAL});
                             }
@@ -468,8 +467,6 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         _THIS.setTeamMeta(id, { mode: MODE_EDIT });
     };
     $scope.isEditTeam = function (id) {
-        console.log("tid" + id);
-        console.log(database.get('TeamsMeta',[],0));
         return _THIS.getTeamMeta(id, MODE_KEY) == MODE_EDIT;
     };
 
@@ -484,6 +481,8 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         this.getMeta('TeamsMeta', id, key);
     }
     this.setTeamMeta = function(id, props) {
+        console.log(id);
+        console.log(props);
         this.setMeta('TeamsMeta', id, props);
     }
     this.getMeta = function(table, id, key) {
