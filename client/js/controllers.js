@@ -258,10 +258,6 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     $scope.new_elem = null;
     $scope.new_elem_id = -1;
 
-    $scope.validation_errors = {
-        name: []
-    }
-
     // MAIN METHOD
     $scope.main = function() {
         $scope.loadAll();
@@ -386,7 +382,9 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
 
     };
     $scope.newElem = function () {
-        $scope.new_elem = {};
+        $scope.new_elem = {
+            validation_errors: {}
+        };
         $scope.selected_elem_id = $scope.new_elem_id;
     };
     $scope.isNewElem = function () {
@@ -395,7 +393,6 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     $scope.cancelNewElem = function () {
         $scope.new_elem = null;
         $scope.selected_elem_id = null;
-        $scope.validation_errors['name'] = [];
     };
     $scope.saveNewElem = function () {
 
@@ -412,7 +409,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
                     if(angular.isDefined(validation_errors)
                         && angular.isDefined(validation_errors[ProjectsService.DATA_KEY])
                         && angular.isDefined(validation_errors[ProjectsService.DATA_KEY]['name'])) {
-                        $scope.validation_errors['name'] = validation_errors[ProjectsService.DATA_KEY]['name'];
+                        $scope.new_elem.validation_errors['name'] = validation_errors[ProjectsService.DATA_KEY]['name'];
                     }
                 }
             }
