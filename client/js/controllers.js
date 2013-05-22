@@ -462,7 +462,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         return (id == $scope.selected_team_id ? 'active' : '');
     };
     $scope.editTeam = function (id) {
-        var oldTeam = _THIS.getTeamFromElem(id, $scope.selected_elem_id);
+        var oldTeam = angular.copy( _THIS.getTeamFromElem(id, $scope.selected_elem_id) );
         _THIS.setTeamMeta(id, { mode: MODE_EDIT, old:oldTeam });
     };
     $scope.cancelEditTeam = function (id) {
