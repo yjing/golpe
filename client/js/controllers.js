@@ -321,6 +321,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
                         }
 
                         _THIS.setElemInList(id, elem);
+                        console.log($scope.elements);
                     }
                     $scope.selected_elem = _THIS.getElemFromList(id);
                     $scope.selected_elem_id = $scope.selected_elem[ProjectsService.PKEY];
