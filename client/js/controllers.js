@@ -304,6 +304,9 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     $scope.cancelEditElem = function (id) {
         _THIS.setProjectMeta(id, MODE_NORMAL);
         $scope.elements = database.select(ProjectsService.TABLE, [], 3);
+        if(id == $scope.selected_elem_id) {
+            $scope.selected_elem = _THIS.getElemFromList(id);
+        }
     };
     $scope.isEditElem = function (id) {
         var meta = _THIS.getProjectMeta(id);
@@ -377,12 +380,15 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     this.getProjectMeta = function(id) {
         return database.get('ProjectsMeta', id, 0);
     }
-    this.setProjectMeta = function (id, mode) {
+    this.setProjectMeta = function (id, mode, old) {
         var meta = database.get('ProjectsMeta', id, 0);
         if(angular.isUndefined(meta)) {
             meta = { "id": id, "mode": mode };
         } else {
             meta[MODE_KEY] = mode;
+        }
+        if(angular.isDefined(old)) {
+            meta.old = old;
         }
         database.insert('ProjectsMeta', id, meta);
     };
