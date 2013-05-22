@@ -292,7 +292,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
 
     // PROJECTS RELATED FUNCTIONS
     $scope.selectElem = function (id) {
-        $scope.selected_elem = this.getElemFromList(id);
+        $scope.selected_elem = _THIS.getElemFromList(id);
         $scope.selected_elem_id = $scope.selected_elem[ProjectsService.PKEY];
     };
     $scope.isSelectedElem = function (id) {
