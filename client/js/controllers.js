@@ -457,16 +457,15 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     $scope.selectTeam = function (id) {
         $scope.selected_team = _THIS.getTeamFromElem(id, $scope.selected_elem_id);
         $scope.selected_team_id = $scope.selected_team[TeamsService.PKEY];
-        console.log($scope.selected_team);
     };
     $scope.isSelectedTeam = function (id) {
         return (id == $scope.selected_team_id ? 'active' : '');
     };
     $scope.editTeam = function (id) {
-        console.log(id);
         _THIS.setTeamMeta(id, { mode: MODE_EDIT });
     };
     $scope.isEditTeam = function (id) {
+        console.log(_THIS.getTeamMeta(id, MODE_KEY));
         return _THIS.getTeamMeta(id, MODE_KEY) == MODE_EDIT;
     };
 
@@ -481,8 +480,6 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         this.getMeta('TeamsMeta', id, key);
     }
     this.setTeamMeta = function(id, props) {
-        console.log(id);
-        console.log(props);
         this.setMeta('TeamsMeta', id, props);
     }
     this.getMeta = function(table, id, key) {
@@ -502,7 +499,6 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         });
 
         database.insert(table, id, meta);
-        console.log(database.get(table, id, 0));
     };
     this.getElemFromList = function (id) {
         var ret = null;
