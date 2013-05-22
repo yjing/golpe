@@ -106,7 +106,7 @@
                     <ul>
                         <li ng-repeat="t in selected_elem.Teams" ng-class="isSelectedTeam(t.id)">
                             <a href="#" ng-hide="isEditTeam(t.id)" ng-click="selectTeam(t.id);">{{t.name}}</a>
-                            <span ng-show="isEditTeam(t.id)">
+                            <span ng-show="isEditTeam(t.id)" class="selector">
                                 <input autofocus="true" onload="this.focus()" type="text" class="edit-field" ng-model="new_team.name">
                             </span>
                             <div class="functions">
