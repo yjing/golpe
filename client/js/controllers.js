@@ -248,7 +248,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
     }
 }
 
-function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, ProjectsService, TeamsService, database){
+function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, ProjectsService, TeamsService, UsersService, database){
     var _THIS = this;
     $scope.elements = [];
 
@@ -262,7 +262,8 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     $scope.selected_team_id = null;
 
     $scope.new_team = null;
-    $scope.add_member = false;
+
+    $scope.member_list = null;
 
     // MAIN METHOD
     $scope.main = function() {
@@ -563,9 +564,19 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         if(confirm) {
 
         } else {
-            $scope.add_member = true;
+            UsersService.loadAll(
+                function(d, h){
+                    console.log(d);
+                },
+                function(e) {
+                    $rootScope.handleError(e);
+                }
+            );
         }
     }
+    $scope.isAddMember = function () {
+        return $scope.member_list != null;
+    };
 
     // INTERNAL FUNCTIONS
     this.getProjectMeta = function(id, key) {
