@@ -455,7 +455,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
 
     // TEAMS RELATED FUNCTIONS
     $scope.selectTeam = function (id) {
-        $scope.selected_team = _THIS.getTeamFromElem(id, $scope.selected_elem_id);
+        $scope.selected_team = angular.copy( _THIS.getTeamFromElem(id, $scope.selected_elem_id) );
         $scope.selected_team_id = $scope.selected_team[TeamsService.PKEY];
     };
     $scope.isSelectedTeam = function (id) {
