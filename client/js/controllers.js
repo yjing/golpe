@@ -304,6 +304,9 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         );
     }
     $scope.selectElem = function (id) {
+        $scope.selected_team = null;
+        $scope.selected_team_id = null;
+
         if(id == $scope.new_elem_id) {
             $scope.selected_elem_id = $scope.new_elem_id;
         } else {
