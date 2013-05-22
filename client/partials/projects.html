@@ -42,30 +42,30 @@
             <div>
                 <span>
                     <h4 class="clickable" ng-hide="isEditElem(selected_elem)" ng-click="editElem(selected_elem);">
-                        {{elem(selected_elem).name}} <i class="icon-pencil"></i>
+                        {{selected_elem.name}} <i class="icon-pencil"></i>
                     </h4>
                     <!-- EDIT MODE -->
                     <span ng-show="isEditElem(selected_elem)">
                         <input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge"
-                               ng-model="elem(selected_elem).name">
+                               ng-model="selected_elem.name">
                     </span>
                 </span>
             </div>
             <ul>
                 <li>
-                    <p class="selector" ng-hide="isEditElem(selected_elem)">
+                    <p class="selector" ng-hide="isEditElem(selected_elem_id)">
                         {{elem(selected_elem).description}}
                     </p>
                     <!-- EDIT MODE -->
-                    <textarea class="edit-field" ng-model="elem(selected_elem).description"
-                              ng-show="isEditElem(selected_elem)"></textarea>
+                    <textarea class="edit-field" ng-model="selected_elem.description"
+                              ng-show="isEditElem(selected_elem_id)"></textarea>
                 </li>
             </ul>
-            <div ng-show="isEditElem(selected_elem)">
+            <div ng-show="isEditElem(selected_elem_id)">
                 <span>
                     <div class="btn-group">
-                        <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveElem(selected_elem);">Save</button>
-                        <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="cancelEditElem(selected_elem);">Cancel</button>
+                        <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveElem();">Save</button>
+                        <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="cancelEditElem(selected_elem_id);">Cancel</button>
                     </div>
                 </span>
             </div>
@@ -74,19 +74,19 @@
             <div>
                 <span>
                     <span><input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge"
-                                 ng-model="elem(selected_elem).name"></span>
+                                 ng-model="selected_elem.name"></span>
                 </span>
             </div>
             <ul>
                 <li>
-                    <textarea class="edit-field" ng-model="elem(selected_elem).description"></textarea>
+                    <textarea class="edit-field" ng-model="selected_elem.description"></textarea>
                 </li>
             </ul>
             <div>
                 <span>
                     <div class="btn-group">
-                        <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveElem(selected_elem);">Save</button>
-                        <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="cancelEditElem(selected_elem);">Cancel</button>
+                        <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveElem();">Save</button>
+                        <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="cancelEditElem(selected_elem_id);">Cancel</button>
                     </div>
                 </span>
             </div>
