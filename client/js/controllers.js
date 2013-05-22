@@ -358,6 +358,9 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
             function(d, h){
                 $scope.elements = database.select(ProjectsService.TABLE, [], 3);
 
+                var id = data[ProjectsService.PKEY];
+                $scope.cancelEditElem(id);
+
 //                if(angular.isDefined(index)) {
 //
 //                } else {
