@@ -406,7 +406,14 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
             },
             function(e){
                 $rootScope.handleError(e);
-                console.log(e);
+                if(e.status == 400) {
+                    var validation_errors = e.data.data_validation_errors;
+                    if(angular.isDefined(validation_errors)
+                        && angular.isDefined(validation_errors[ProjectsService.DATA_KEY])
+                        && angular.isDefined(validation_errors[ProjectsService.DATA_KEY]['name'])) {
+                        $scope.validation_errors['name'] = validation_errors[ProjectsService.DATA_KEY]['name'];
+                    }
+                }
             }
         );
 
