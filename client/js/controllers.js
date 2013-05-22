@@ -315,7 +315,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
                             var team = elem.Teams[i];
                             _THIS.setTeamMeta(team[TeamsService.PKEY], {mode:MODE_NORMAL});
                         }
-
+                        console.log(database.select('TeamsMeta', [], 0));
                         _THIS.setElemInList(id, elem);
                     }
                     $scope.selected_elem = _THIS.getElemFromList(id);
