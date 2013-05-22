@@ -305,7 +305,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         _THIS.setProjectMeta(id, MODE_NORMAL);
         $scope.elements = database.select(ProjectsService.TABLE, [], 3);
         if(id == $scope.selected_elem_id) {
-            $scope.selected_elem = _THIS.getElemFromList(id);
+            $scope.selectElem(id);
         }
     };
     $scope.isEditElem = function (id) {
