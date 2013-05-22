@@ -390,8 +390,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         var ret = null;
         for (var i = 0; i < $scope.elements.length; i++) {
             if($scope.elements[i][ProjectsService.PKEY] == id) {
-                ret = $scope.elements[i];
-                break;
+                return $scope.elements[i];
             }
         }
         return ret;
