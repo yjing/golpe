@@ -107,7 +107,7 @@
                         <li ng-repeat="t in selected_elem.Teams" ng-class="isSelectedTeam(t.id)">
                             <a href="#" ng-hide="isEditTeam(t.id)" ng-click="selectTeam(t.id);">{{t.name}}</a>
                             <span ng-show="isEditTeam(t.id)">
-                                <input autofocus="true" onload="this.focus()" type="text" class="edit-field" ng-model="new_team.name">
+                                <input autofocus="true" onload="this.focus()" type="text" class="edit-field" ng-model="t.name"><br>
                                 <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveTeam();">Save</button>
                                 <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="cancelEditTeam();">Cancel</button>
                             </span>
