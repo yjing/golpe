@@ -469,7 +469,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         var test = _THIS.getTeamMeta(id, MODE_KEY);
         console.log(test);
         console.log("IS EDIT TEAM");
-        return tesy == MODE_EDIT;
+        return test == MODE_EDIT;
     };
 
     // INTERNAL FUNCTIONS
