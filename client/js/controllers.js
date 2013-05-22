@@ -487,6 +487,9 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         if(angular.isDefined(res) && angular.isDefined(key)) {
             res = res[key];
         }
+        console.log("GET META");
+        console.log(res);
+        console.log("GET META");
         return res;
     }
     this.setMeta = function (table, id, props) {
