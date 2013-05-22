@@ -465,8 +465,11 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         _THIS.setTeamMeta(id, { mode: MODE_EDIT });
     };
     $scope.isEditTeam = function (id) {
-        console.log(_THIS.getTeamMeta(id, MODE_KEY));
-        return _THIS.getTeamMeta(id, MODE_KEY) == MODE_EDIT;
+        console.log("IS EDIT TEAM");
+        var test = _THIS.getTeamMeta(id, MODE_KEY);
+        console.log(test);
+        console.log("IS EDIT TEAM");
+        return tesy == MODE_EDIT;
     };
 
     // INTERNAL FUNCTIONS
