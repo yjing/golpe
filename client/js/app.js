@@ -510,7 +510,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                     if(angular.isDefined(team) && angular.isDefined(team.Student) && angular.isArray(team.Student)) {
                         for (var i = 0; i < team.Student.length; i++) {
                             if(team.Student[i].id == u_id) {
-                                delete team.Student[i];
+                                team.Student.splice(i, 1);
                                 break;
                             }
 
