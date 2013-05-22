@@ -465,6 +465,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         _THIS.setTeamMeta(id, { mode: MODE_EDIT });
     };
     $scope.isEditTeam = function (id) {
+        console.log(_THIS.getTeamMeta(id, MODE_KEY));
         return _THIS.getTeamMeta(id, MODE_KEY) == MODE_EDIT;
     };
 
@@ -483,11 +484,9 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     }
     this.getMeta = function(table, id, key) {
         var res = database.get(table, id, 0);
-        console.log(res);
         if(angular.isDefined(res) && angular.isDefined(key)) {
             res = res[key];
         }
-        console.log(res);
         return res;
     }
     this.setMeta = function (table, id, props) {
