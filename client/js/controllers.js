@@ -304,7 +304,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         } else {
             ProjectsService.load(id,
                 function(d, h){
-                    $scope.elements = database.select(ProjectsService.TABLE, [], 3);
+//                    $scope.elements = database.select(ProjectsService.TABLE, [], 3);
                     $scope.selected_elem = _THIS.getElemFromList(id);
                     $scope.selected_elem_id = $scope.selected_elem[ProjectsService.PKEY];
                 },
