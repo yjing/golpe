@@ -545,7 +545,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
                     _THIS.setUserMeta(id, { mode: MODE_NORMAL });
 
                     var team_id = $scope.selected_team_id;
-                    $scope.elements = database.select(ProjectsService.TABLE, [], 3);
+//                    $scope.elements = database.select(ProjectsService.TABLE, [], 3);
 //                    $scope.selectElem($scope.selected_elem_id);
 //                    $scope.selectTeam(team_id);
 //
