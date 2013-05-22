@@ -499,16 +499,13 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                 throw "Missing user ID";
             }
 
-            var user = database.select('Users', [], 1);
-            console.log(user);
-
             this.Teams.removeMember(
                 { "tid":t_id, "uid":u_id },
                 {},
                 function (d, h) {
                     BusyService.busy(false);
 
-                    var team = database.get(this.TABLE, t_id, 1);
+                    var team = database.get(_THIS.TABLE, t_id, 1);
                     console.log(team);
 
                     // CALLBACKS
