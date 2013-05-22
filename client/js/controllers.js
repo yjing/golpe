@@ -252,8 +252,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     var _THIS = this;
     $scope.elements = [];
     $scope.selected_elem = null;
-    $scope.new_elem_id = -1;
-    $scope.new_elem = null;
+    $scope.selected_elem_id = null;
 
     // MAIN METHOD
     $scope.main = function() {
@@ -292,15 +291,12 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     }
 
     // PROJECTS RELATED FUNCTIONS
-    $scope.elem = function (id) {
-        var test = database.get(ProjectsService.TABLE, id, 0);
-        return test;
-    };
-    $scope.selectElem = function (id) {
-        $scope.selected_elem = id;
+    $scope.selectElem = function (index) {
+        $scope.selected_elem = $scope.elements[index];
+        $scope.selected_elem_id = $scope.selecred_elem[ProjectsService.PKEY];
     };
     $scope.isSelectedElem = function (id) {
-        return (id == $scope.selected_elem ? 'active' : '');
+        return (id == $scope.selected_elem_id ? 'active' : '');
     };
     $scope.editElem = function (id) {
         _THIS.setProjectMeta(id, MODE_EDIT);
