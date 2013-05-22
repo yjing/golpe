@@ -463,6 +463,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         return (id == $scope.selected_team_id ? 'active' : '');
     };
     $scope.editTeam = function (id) {
+        console.log(id);
         _THIS.setTeamMeta(id, { mode: MODE_EDIT });
     };
     $scope.isEditTeam = function (id) {
