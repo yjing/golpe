@@ -541,7 +541,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         if(confirm) {
 
         } else {
-            _THIS.setUserMeta(id, { mode: MODE_REMOVING });
+            _THIS.setUserMeta(id, { 'mode': MODE_REMOVING });
             console.log(_THIS.getUserMeta(id));
         }
     };
