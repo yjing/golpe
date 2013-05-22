@@ -293,9 +293,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     // PROJECTS RELATED FUNCTIONS
     $scope.selectElem = function (index) {
         $scope.selected_elem = $scope.elements[index];
-        console.log($scope.elements[index]);
-        console.log($scope.selected_elem);
-        $scope.selected_elem_id = $scope.selecred_elem[ProjectsService.PKEY];
+        $scope.selected_elem_id = $scope.selected_elem[ProjectsService.PKEY];
     };
     $scope.isSelectedElem = function (id) {
         return (id == $scope.selected_elem_id ? 'active' : '');
