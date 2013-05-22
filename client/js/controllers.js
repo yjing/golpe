@@ -306,7 +306,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
                 function(d, h){
                     var elem = _THIS.getElemFromList(id);
                     if(elem.status != STATUS_COMPLETE) {
-                        elem = database.get(ProjectsService.TABLE, id, 3);
+                        elem = angular.copy( database.get(ProjectsService.TABLE, id, 3) );
                         _THIS.setElemInList(id, elem);
                     }
                     $scope.selected_elem = _THIS.getElemFromList(id);
@@ -326,7 +326,6 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     };
     $scope.cancelEditElem = function (id) {
         _THIS.setProjectMeta(id, { mode: MODE_NORMAL });
-        console.log(database.select(ProjectsService.TABLE, [], 3));
         $scope.elements = database.select(ProjectsService.TABLE, [], 3);
         if(id == $scope.selected_elem_id) {
             $scope.selectElem(id);
