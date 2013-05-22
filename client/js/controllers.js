@@ -498,7 +498,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         TeamsService.save(
             $scope.new_team,
             function(d, h){
-                $scope.elements = database.select(ProjectsService.TABLE, [], 3);
+                $scope.selectElem($scope.selected_elem);
                 $scope.cancelNewTeam();
             },
             function(e){
