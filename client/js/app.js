@@ -501,7 +501,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                 throw "Missing user ID";
             }
 
-            var user = database.select('Users', [{field:'id',value:u_id}], 1);
+            var user = database.select('Users', [], 1);
             console.log(user);
 
             this.Teams.removeMember(
