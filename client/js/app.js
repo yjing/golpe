@@ -475,7 +475,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                     BusyService.busy(false);
 
                     var team = database.get(_THIS.TABLE, t_id, 0);
-                    var user = database.get(_THIS.TABLE, u_id, 0);
+                    var user = database.get('Users', u_id, 0);
                     console.log(team);
                     console.log(user);
                     if(angular.isDefined(team) && angular.isDefined(user)) {
