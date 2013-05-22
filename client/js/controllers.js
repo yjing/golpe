@@ -349,38 +349,34 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     $scope.cancelDeleteElem = function (id) {
         _THIS.setProjectMeta(id, MODE_NORMAL);
     };
-    $scope.saveElem = function (id) {
-        if(angular.isDefined(id)) {
-            var data;
-            if(id == $scope.new_elem_id) {
-                data = $scope.new_elem;
-            } else {
-                data = $scope.projectsData[index];
-                $scope.meta[id][MODE_KEY] = MODE_NORMAL;
+    $scope.saveElem = function () {
+
+        var data = $scope.selected_elem;
+
+        ProjectsService.save(
+            data,
+            function(d, h){
+                $scope.elements = database.select(ProjectsService.TABLE, [], 3);
+
+//                if(angular.isDefined(index)) {
+//
+//                } else {
+//                    id = d['Project']['id'];
+//                    var new_proj = database.get('Projects', id, 3);
+//
+//                    $scope.meta[id] = { index: $scope.projectsData.length };
+//                    $scope.meta[id][MODE_KEY] = MODE_NORMAL;
+//                    $scope.projectsData.push(new_proj);
+//                    $scope.cancelNewProject();
+//                    $scope.selectProject(id);
+//
+//                }
+            },
+            function(e){
+                $rootScope.handleError(error);
             }
+        );
 
-            ProjectsService.save(
-                data,
-                function(d, h){
-                    if(angular.isDefined(index)) {
-
-                    } else {
-                        id = d['Project']['id'];
-                        var new_proj = database.get('Projects', id, 3);
-
-                        $scope.meta[id] = { index: $scope.projectsData.length };
-                        $scope.meta[id][MODE_KEY] = MODE_NORMAL;
-                        $scope.projectsData.push(new_proj);
-                        $scope.cancelNewProject();
-                        $scope.selectProject(id);
-
-                    }
-                },
-                function(e){
-                    $rootScope.handleError(error);
-                }
-            );
-        }
     };
 
 
