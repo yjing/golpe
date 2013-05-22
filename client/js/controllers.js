@@ -374,8 +374,8 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         $scope.new_elem = {};
         $scope.selected_elem_id = $scope.new_elem_id;
     };
-    $scope.isNewElem = function (id) {
-        return $scope.new_elem_id == id;
+    $scope.isNewElem = function () {
+        return $scope.new_elem != null;
     };
 
 
