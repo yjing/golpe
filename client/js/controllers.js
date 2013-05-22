@@ -466,6 +466,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     };
     $scope.cancelEditTeam = function (id) {
         _THIS.setTeamMeta(id, { mode: MODE_NORMAL });
+        $scope.elements = database.select(ProjectsService.TABLE, [], 3);
     };
     $scope.isEditTeam = function (id) {
         return _THIS.getTeamMeta(id, MODE_KEY) == MODE_EDIT;
