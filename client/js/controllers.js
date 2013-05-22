@@ -562,7 +562,15 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     };
     $scope.addMember = function(confirm){
         if(confirm) {
-
+            TeamsService.addMember($scope.selected_team, id,
+                function(d, h){
+                    var users = database.select(UsersService.TABLE, [{field:'role',value:'STUDENT'}], 1);
+                    $scope.member_list = _THIS.filterTeamedStudents(users);
+                },
+                function(e){
+                    $rootScope.handleError(e);
+                }
+            );
         } else {
             UsersService.loadAll(
                 function(d, h){
