@@ -303,8 +303,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
             $scope.selected_elem_id = $scope.new_elem_id;
         } else {
             var meta = _THIS.getProjectMeta(id);
-            console.log($scope.selected_elem);
-            if(angular.isDefined(meta) && meta.status == STATUS_COMPLETE) {
+            if($scope.selected_elem.status == STATUS_COMPLETE) {
                 $scope.selected_elem = _THIS.getElemFromList(id);
                 $scope.selected_elem_id = $scope.selected_elem[ProjectsService.PKEY];
             } else {
