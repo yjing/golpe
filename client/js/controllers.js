@@ -510,6 +510,23 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     $scope.cancelNewTeam = function () {
         $scope.new_team = null;
     };
+    $scope.deleteTeam = function (confirm, id) {
+        if(confirm) {
+            TeamService.delete(id,
+                function(d, h){
+                    $scope.elements = database.select(ProjectsService.TABLE, [], 3);
+                },
+                function(e) {
+                    $rootScope.handleError(e);
+                }
+            );
+        } else {
+            _THIS.setTeamMeta(id, { mode: MODE_DELETING });
+        }
+    };
+    $scope.isDeleteTeam = function (id) {
+        return _THIS.getTeamMeta(id, 'mode') == MODE_DELETING;
+    };
 
     // INTERNAL FUNCTIONS
     this.getProjectMeta = function(id, key) {
