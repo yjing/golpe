@@ -499,7 +499,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
             $scope.new_team,
             function(d, h){
                 $scope.elements = database.select(ProjectsService.TABLE, [], 3);
-//                $scope.selectElem($scope.selected_elem_id)
+                $scope.selectElem($scope.selected_elem_id)
                 $scope.cancelNewTeam();
             },
             function(e){
