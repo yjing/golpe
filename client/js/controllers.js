@@ -560,7 +560,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     $scope.cancelRemoveMember = function (id) {
         _THIS.setUserMeta(id, { mode: MODE_NORMAL });
     };
-    $scope.addMember = function(confirm){
+    $scope.addMember = function(confirm, id){
         if(confirm) {
             TeamsService.addMember($scope.selected_team, id,
                 function(d, h){
