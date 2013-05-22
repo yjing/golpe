@@ -302,23 +302,20 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         if(id == $scope.new_elem_id) {
             $scope.selected_elem_id = $scope.new_elem_id;
         } else {
-            var meta = _THIS.getProjectMeta(id);
-            var elem = _THIS.getElemFromList(id);
-            if(elem.status == STATUS_COMPLETE) {
-                $scope.selected_elem = elem;
-                $scope.selected_elem_id = $scope.selected_elem[ProjectsService.PKEY];
-            } else {
-                ProjectsService.load(id,
-                    function(d, h){
-                        $scope.elements = database.select(ProjectsService.TABLE, [], 3);
-                        $scope.selected_elem = _THIS.getElemFromList(id);
-                        $scope.selected_elem_id = $scope.selected_elem[ProjectsService.PKEY];
-                    },
-                    function(e) {
-                        $rootScope.handleError(e);
+            ProjectsService.load(id,
+                function(d, h){
+                    var elem = _THIS.getElemFromList(id);
+                    if(elem.status != STATUS_COMPLETE) {
+                        elem = database.get(ProjectsService.TABLE, id, 3);
+                        _THIS.setElemInList(id, elem);
                     }
-                );
-            }
+                    $scope.selected_elem = _THIS.getElemFromList(id);
+                    $scope.selected_elem_id = $scope.selected_elem[ProjectsService.PKEY];
+                },
+                function(e) {
+                    $rootScope.handleError(e);
+                }
+            );
         }
     };
     $scope.isSelectedElem = function (id) {
