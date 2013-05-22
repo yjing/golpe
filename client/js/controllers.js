@@ -261,7 +261,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     $scope.selected_team = null;
     $scope.selected_team_id = null;
 
-    $scope.new_team = {};
+    $scope.new_team = null;
 
     // MAIN METHOD
     $scope.main = function() {
@@ -488,6 +488,21 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
             }
         );
 
+    };
+    $scope.newTeam = function () {
+        $scope.new_team = {};
+    };
+    $scope.saveNewTeam = function () {
+        TeamsService.save(
+            $scope.new_team,
+            function(d, h){
+                $scope.elements = database.select(ProjectsService.TABLE, [], 3);
+                $scope.cancelNewTeam();
+            },
+            function(e){
+                $rootScope.handleError(e);
+            }
+        );
     };
 
     // INTERNAL FUNCTIONS
