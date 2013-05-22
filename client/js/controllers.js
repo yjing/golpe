@@ -512,7 +512,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     };
     $scope.deleteTeam = function (confirm, id) {
         if(confirm) {
-            TeamService.delete(id,
+            TeamsService.delete(id,
                 function(d, h){
                     $scope.elements = database.select(ProjectsService.TABLE, [], 3);
                 },
@@ -526,6 +526,9 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     };
     $scope.isDeleteTeam = function (id) {
         return _THIS.getTeamMeta(id, 'mode') == MODE_DELETING;
+    };
+    $scope.cancelDeleteTeam = function (id) {
+        _THIS.setTeamMeta(id, { mode: MODE_NORMAL });
     };
 
     // INTERNAL FUNCTIONS
