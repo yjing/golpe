@@ -262,6 +262,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     $scope.selected_team_id = null;
 
     $scope.new_team = null;
+    $scope.add_member = false;
 
     // MAIN METHOD
     $scope.main = function() {
@@ -558,6 +559,13 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     $scope.cancelRemoveMember = function (id) {
         _THIS.setUserMeta(id, { mode: MODE_NORMAL });
     };
+    $scope.addMember = function(confirm){
+        if(confirm) {
+
+        } else {
+            $scope.add_member = true;
+        }
+    }
 
     // INTERNAL FUNCTIONS
     this.getProjectMeta = function(id, key) {

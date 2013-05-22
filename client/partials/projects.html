@@ -154,12 +154,12 @@
                         </li>
                     </ul>
                     <div class="text-right">
-                        <span><button ng-click="addMember();" ng-disabled="add_member" class="btn btn-success">Add Member</button></span>
+                        <span><button ng-click="addMember(false);" ng-disabled="add_member" class="btn btn-success">Add Member</button></span>
                     </div>
                 </div>
             </div>
 
-            <div class="span4" ng-show="add_member && selected_team > 0;">
+            <div class="span4" ng-show="add_member && selected_team != null">
                 <div class="menu shadow">
                     <div class="text-right">
                         <span><strong>Add Memeber <i class="icon-plus"></i></strong></span>
