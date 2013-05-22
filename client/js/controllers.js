@@ -309,7 +309,13 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
                 function(d, h){
                     var elem = _THIS.getElemFromList(id);
                     if(elem.status != STATUS_COMPLETE) {
-                        elem = angular.copy( database.select(ProjectsService.TABLE, [{field:'id', value:id}], 3)[0] );
+                        elem = angular.copy( database.select(ProjectsService.TABLE, [{field:'id', value:id}], 3)[0]);
+
+                        for (var i = 0; i < elem.Teams.length; i++) {
+                            var team = elem.Teams[i];
+                            _THIS.setTeamMeta(team[TeamsService.PKEY], {mode:MODE_NORMAL});
+                        }
+
                         _THIS.setElemInList(id, elem);
                     }
                     $scope.selected_elem = _THIS.getElemFromList(id);
