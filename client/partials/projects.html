@@ -107,7 +107,7 @@
                         <li ng-repeat="t in selected_elem.Teams" ng-class="isSelectedTeam(t.id)">
                             <a href="#" ng-hide="isEditTeam(t.id)" ng-click="selectTeam(t.id);">{{t.name}}</a>
                             <span ng-show="isEditTeam(t.id)">
-                                <input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge" ng-model="new_team.name">
+                                <input autofocus="true" onload="this.focus()" type="text" class="edit-field" ng-model="new_team.name">
                             </span>
                             <div class="functions">
                                 <button class="btn-link function" ng-click="deleteTeam(false, t.id);" ng-hide="isDeleteTeam(t.id, selected_project) || isEditTeam(t.id, selected_project)"><i class="icon-remove"></i></button>
