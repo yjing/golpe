@@ -483,7 +483,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     }
     this.getMeta = function(table, id, key) {
         var res = database.get(table, id, 0);
-        console.log(res);
+        console.log(res[key]);
         if(angular.isDefined(res) && angular.isDefined(key)) {
             res = res[key];
         }
