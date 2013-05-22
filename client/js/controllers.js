@@ -464,6 +464,7 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
     $scope.selectTeam = function (id) {
         $scope.selected_team = _THIS.getTeamFromElem(id, $scope.selected_elem_id);
         $scope.selected_team_id = $scope.selected_team[TeamsService.PKEY];
+        $scope.member_list = null;
     };
     $scope.isSelectedTeam = function (id) {
         return (id == $scope.selected_team_id ? 'active' : '');
