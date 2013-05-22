@@ -474,6 +474,16 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                 function (d, h) {
                     BusyService.busy(false);
 
+                    var team = database.get(_THIS.TABLE, t_id, 0);
+                    var user = database.get(_THIS.TABLE, u_id, 0);
+                    if(angular.isDefined(team) && angular.isDefined(user)) {
+                        if(angular.isUndefined(team.Student) || team.Student == null) {
+                            team.Student = [];
+                        }
+                        team.Student.push(user);
+                    }
+                    console.log(team);
+                    database.insert(_THIS.TABLE, t_id, team);
 
                     // CALLBACKS
                     if (angular.isDefined(success)) {
@@ -506,7 +516,6 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
                     BusyService.busy(false);
 
                     var team = database.get(_THIS.TABLE, t_id, 0);
-                    console.log(team);
                     if(angular.isDefined(team) && angular.isDefined(team.Student) && angular.isArray(team.Student)) {
                         for (var i = 0; i < team.Student.length; i++) {
                             if(team.Student[i].id == u_id) {
@@ -516,7 +525,6 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
 
                         }
                     }
-                    console.log(team);
                     database.insert(_THIS.TABLE, t_id, team);
 
                     // CALLBACKS
