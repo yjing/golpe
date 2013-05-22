@@ -248,7 +248,7 @@ function UsersCtrl($scope, $rootScope, $location, Users, auth, UsersService, Bus
     }
 }
 
-function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, ProjectsService, database){
+function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, ProjectsService, TeamsService, database){
     var _THIS = this;
     $scope.elements = [];
 
@@ -257,6 +257,9 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
 
     $scope.new_elem = null;
     $scope.new_elem_id = -1;
+
+    $scope.selected_team = null;
+    $scope.selected_team_id = null;
 
     // MAIN METHOD
     $scope.main = function() {
@@ -442,10 +445,23 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
 
     };
 
+    // TEAMS RELATED FUNCTIONS
+    $scope.selectTeam = function (id) {
+        $scope.selected_team = _THIS.getTeamFromElem(id, $scope.selected_elem_id);
+        $scope.selected_team_id = $scope.selected_team[TeamsService.PKEY];
+        console.log($scope.selected_team);
+    };
+    $scope.isSelectedTeam = function (id) {
+        return (id == $scope.selected_team_id ? 'active' : '');
+    };
 
     // INTERNAL FUNCTIONS
-    this.getProjectMeta = function(id) {
-        return database.get('ProjectsMeta', id, 0);
+    this.getProjectMeta = function(id, key) {
+        var res = database.get('ProjectsMeta', id, 0);
+        if(angular.isDefined(res) && angular.isDefined(key)) {
+            res = res[key];
+        }
+        return res;
     }
     this.setProjectMeta = function (id, props) {
         var meta = database.get('ProjectsMeta', id, 0);
@@ -474,6 +490,17 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
         for (var i = 0; i < $scope.elements.length; i++) {
             if($scope.elements[i][ProjectsService.PKEY] == id) {
                 $scope.elements[i] = elem;
+            }
+        }
+    };
+
+    this.getTeamFromElem = function (team_id, elem_id) {
+        var elem = this.getElemFromList(elem_id);
+        if(angular.isDefined(elem)) {
+            for (var i = 0; i < elem.Teams.length; i++) {
+                if(elem.Teams[i][TeamsService.PKEY] == team_id) {
+                    return elem.Teams[i];
+                }
             }
         }
     };
