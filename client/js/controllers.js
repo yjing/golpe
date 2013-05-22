@@ -312,9 +312,9 @@ function ProjectsCtrl($scope, $rootScope, $location, auth, BusyService, Projects
                         elem = angular.copy( database.select(ProjectsService.TABLE, [{field:'id', value:id}], 3)[0]);
 
                         if(angular.isDefined(elem.Teams)) {
-                            console.log("HERE");
                             for (var i = 0; i < elem.Teams.length; i++) {
                                 var team = elem.Teams[i];
+                                console.log(team);
                                 _THIS.setTeamMeta(team[TeamsService.PKEY], {mode:MODE_NORMAL});
                             }
                         }
