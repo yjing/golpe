@@ -97,7 +97,7 @@ class HasMediaBehavior extends ModelBehavior {
             foreach ($model->data[HasMediaBehavior::$MediaModelName] as $key => $value) {
                 // DO NOT CONSIDER 'EMPTY' MEDIA
                 if($value['location'] == null || count($value['location']) == 0) {
-                    contiune;
+                    continue;
                 }
                 
                 // IMAGE RELATED OPERATIONS
