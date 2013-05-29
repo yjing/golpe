@@ -95,6 +95,7 @@ class HasMediaBehavior extends ModelBehavior {
             
             $media_saved = true;
             foreach ($model->data[HasMediaBehavior::$MediaModelName] as $key => $value) {
+                debug($value);die();
                 // IMAGE RELATED OPERATIONS
                 // CALCULATES DIMENSIONS AND CREATE THUMBS
                 $img = null;
