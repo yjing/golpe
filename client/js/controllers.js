@@ -1028,7 +1028,7 @@ function ProjectsCtrlOLD($scope, $rootScope, $location, auth, Projects, Projects
 
 }
 
-function ProjectsCtrlOLD($scope, $rootScope, $location, auth, Projects, ProjectsService, Users, BusyService, DBService) {
+function ProjectsCtrlOLD2($scope, $rootScope, $location, auth, Projects, ProjectsService, Users, BusyService, DBService) {
 
     // TOP BAR
     $rootScope.top_bar = {
@@ -1367,7 +1367,9 @@ function ProjectsCtrlOLD($scope, $rootScope, $location, auth, Projects, Projects
 
 }
 
-function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService, DBService){
+function StudentCtrl($scope, $rootScope, $location, auth, database){
+
+
 
     // TOP BAR
     $rootScope.top_bar = {
@@ -1397,6 +1399,10 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
             { type: 'item', label: 'Info', func: $rootScope.info }
         ]
     };
+}
+
+function StudentCtrlOLD($scope, $rootScope, $location, auth, BusyService, ALService, DBService){
+
 
     if(false) {
         var iframe = document.getElementById('iframe');
@@ -1714,6 +1720,37 @@ function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService
         return null;
     }
 
+
+
+    // TOP BAR
+    $rootScope.top_bar = {
+//        back_button: {
+//            icon: 'icon-chevron-left'
+//        },
+        page_title: 'Activity Logs',
+        title_icon: 'icon-th-list',
+//        title_menu: [
+//            {
+//                label: 'Users',
+//                func: function() {
+//                    $rootScope.toggleTitleMenu();
+//                    $location.url('/client/users');
+//                }
+//            }
+//        ],
+        buttons: [
+            { type: 'item', label: 'New Activity Log', func: function(){ $scope.al = {}; }, icon: 'icon-plus' }
+//            ,{ type: 'divider-vertical' },
+//            { type: 'item', label: 'Users', func: $scope.login, icon: 'icon-chevron-left' }
+        ],
+        main_menu_items: [
+            { type: 'item', label: 'Log Out', func: $rootScope.logout, icon: 'icon-lock' },
+            { type: 'divider' },
+            { type: 'item', label: 'Help', func: $rootScope.help },
+            { type: 'item', label: 'Info', func: $rootScope.info }
+        ]
+    };
+
 }
 
 // UTIL FUNCTIONS
@@ -1756,8 +1793,4 @@ function separateFirstToken(arrayStr, separator) {
     var array = arrayStr.split(separator);
     var token = array.splice(0, 1).toString();
     return [token, array.join(separator)];
-}
-
-function deb(elem) {
-    console.log(elem);
 }
