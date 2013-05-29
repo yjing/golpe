@@ -76,7 +76,6 @@ class HasMediaBehavior extends ModelBehavior {
     
     public function afterSave(Model $model, $created) {
         $this->_restoreMediaModelName($model);
-        debug($model->data[HasMediaBehavior::$MediaModelName]);die();
         if(isset($model->data[HasMediaBehavior::$MediaModelName])){
             // NEW MODEL OBJECT HAS MEDIA TO SAVE AND LINK
             // GET REFERENCE TO THE SAVED DATA
@@ -96,6 +95,11 @@ class HasMediaBehavior extends ModelBehavior {
             
             $media_saved = true;
             foreach ($model->data[HasMediaBehavior::$MediaModelName] as $key => $value) {
+                // DO NOT CONSIDER 'EMPTY' MEDIA
+                if($value['location'] == null || count($value['location']) == 0) {
+                    contiune;
+                }
+                
                 // IMAGE RELATED OPERATIONS
                 // CALCULATES DIMENSIONS AND CREATE THUMBS
                 $img = null;
