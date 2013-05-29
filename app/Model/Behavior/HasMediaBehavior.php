@@ -76,6 +76,7 @@ class HasMediaBehavior extends ModelBehavior {
     
     public function afterSave(Model $model, $created) {
         $this->_restoreMediaModelName($model);
+        debug($model->data[HasMediaBehavior::$MediaModelName]);die();
         if(isset($model->data[HasMediaBehavior::$MediaModelName])){
             // NEW MODEL OBJECT HAS MEDIA TO SAVE AND LINK
             // GET REFERENCE TO THE SAVED DATA
@@ -87,7 +88,6 @@ class HasMediaBehavior extends ModelBehavior {
 //                $model->read();
                 $has_media_obj_id = $model->id;
             }
-            debug($model->data[HasMediaBehavior::$MediaModelName]);die();
            
             // SAVE RELATED MEDIA
             $this->Media->getDataSource()->begin();
