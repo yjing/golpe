@@ -51,9 +51,12 @@
                         <b class="icon-chevron-down"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">one</a></li>
-                        <li><a href="#">two</a></li>
-                        <li><a href="#">three</a></li>
+                        <li ng-repeat="i in top_bar.main_menu_items" class="{{i.type}}">
+                            <a ng-hide="i.type == 'divider'" href="#" ng-click="i.func(i);">
+                                <i ng-show="i.icon!=null" class="{{i.icon}}"></i>
+                                {{i.label}}
+                            </a>
+                        </li>
                     </ul>
                 </li>
             </ul>
