@@ -2,11 +2,21 @@ function LoginCtrl($scope, $rootScope){
 
     // TOP BAR
     $rootScope.top_bar = {
-        back_button: {
-            icon: 'icon-chevron-left',
-            func: function(){ alert('test'); }
-        },
+//        back_button: {
+//            icon: 'icon-chevron-left',
+//            func: function(){ alert('test'); }
+//        },
         page_title: 'Login',
+        title_icon: 'icon-th-list',
+        title_menu: [
+            {
+                label: 'Projects',
+                func: function() {
+                    $rootScope.toggleTitleMenu();
+                    $location.url('/client/projects');
+                }
+            }
+        ],
 //        buttons: [
 //            { type: 'item', label: 'Users', func: $scope.login, icon: 'icon-chevron-left' },
 //            { type: 'divider-vertical' },
