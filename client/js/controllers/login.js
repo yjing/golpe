@@ -5,9 +5,9 @@ function LoginCtrl($scope, $rootScope, auth){
 
     auth.login($scope.username, $scope.password,
         function (user){
-            console.log();
+            console.log(user);
             auth.logout (function (user){
-
+                console.log(user);
             });
         }
     );
