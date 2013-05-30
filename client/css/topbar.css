@@ -1,6 +1,10 @@
 ul.nav.back-button {
     margin-right: 0;
 }
+ul.nav.back-button > li > a {
+    padding-left: 10px;
+    padding-right: 10px;
+}
 
 /* Any Desktop*/
 @media (min-width: 980px) {
