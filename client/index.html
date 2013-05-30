@@ -22,18 +22,16 @@
                 </li>
             </ul>
             <ul class="nav">
-                <li ng-hide="topbar[pageID].hasDropDownTitle">
+                <li ng-hide="topbar[pageID].hasTitleDropDown">
                     <a class="brand">{{topbar[pageID].title}}</a>
                 </li>
-                <li ng-show="topbar[pageID].hasDropDownTitle">
+                <li ng-show="topbar[pageID].hasTitleDropDown">
                     <a href="#" class="brand dropdown-toggle" data-toggle="dropdown">
                         {{topbar[pageID].title}}
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">one</a></li>
-                        <li><a href="#">two</a></li>
-                        <li><a href="#">three</a></li>
+                        <li ng-repeat="item in topbar[pageID].hasTitleDropDown"><a href="#">one</a></li>
                     </ul>
                 </li>
             </ul>

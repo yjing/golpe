@@ -15,8 +15,11 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
 }).run(function ($rootScope, $location) {
         $rootScope.topbar = {
             login: {
-                hasDropDownTitle: false,
-                title: "Login"
+                title: "Login",
+                hasTitleDropDown: true,
+                titleDropDown: [
+                    { label: 'Test', link: '/', icon:'icon-chevron-down' }
+                ]
             }
         }
     });
