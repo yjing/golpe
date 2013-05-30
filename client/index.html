@@ -43,8 +43,10 @@
                 </li>
             </ul>
             <ul class="nav pull-right">
-                <li>
-                    <a href="#"><i class="icon-plus"></i></a>
+                <li ng-repeat="i in top_bar.buttons" class="{{i.type}}" ng-click="i.func(this);">
+                    <a href="#" ng-hide="i.type == 'divider-vertical'">
+                        <span>{{i.label}} </span><i ng-class="i.icon"></i>
+                    </a>
                 </li>
                 <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">

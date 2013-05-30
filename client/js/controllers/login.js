@@ -16,11 +16,11 @@ function LoginCtrl($scope, $rootScope){
                 }
             }
         ],
-//        buttons: [
-//            { type: 'item', label: 'Users', func: $scope.login, icon: 'icon-chevron-left' },
-//            { type: 'divider-vertical' },
-//            { type: 'item', label: 'Users', func: $scope.login, icon: 'icon-chevron-left' }
-//        ],
+        buttons: [
+            { type: 'item', label: 'Users', func: $scope.login, icon: 'icon-chevron-left' },
+            { type: 'divider-vertical' },
+            { type: 'item', label: 'Users', func: $scope.login, icon: 'icon-chevron-left' }
+        ],
         main_menu_items: [
             { type: 'item', label: 'Help', func: $rootScope.help },
             { type: 'item', label: 'Info', func: $rootScope.info }
