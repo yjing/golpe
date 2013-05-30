@@ -8,6 +8,10 @@
 
 }
 
+.box.dark {
+    background-color: #f4f4f4;
+}
+
 .login-form {
     margin-top: 2em;
     margin-left: 2em;
