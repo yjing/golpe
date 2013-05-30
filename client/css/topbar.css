@@ -23,6 +23,9 @@ ul.nav.back-button li a {
     .navbar-fixed-top {
        margin-bottom: 5px;
     }
+    .navbar-fixed-top .navbar-inner {
+        margin-right: 0;
+    }
 }
 
 @media (max-width: 768px) {
