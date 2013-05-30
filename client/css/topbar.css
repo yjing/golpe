@@ -14,13 +14,16 @@
     body {
         padding: 0;
     }
-    .navbar-fixed-top .navbar-inner {
+    .navbar-fixed-top {
         margin-bottom: 5px;
     }
 }
 
 /* Portrait tablet to landscape and desktop */
 @media (min-width: 768px) and (max-width: 979px) {
+    .navbar-fixed-top .navbar-inner {
+        padding-left: 0;
+    }
 }
 
 /* Landscape phone to portrait tablet */
