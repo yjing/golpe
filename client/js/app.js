@@ -46,6 +46,9 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
         database.createTable('ProjectsMeta');
         database.createTable('TeamsMeta');
         database.createTable('UsersMeta');
+
+        database.createTable('ALs');
+        database.createTable('Media');
         database.createTable('Projects', 'id', {},
             { Teams:{table:'Teams', fkey:'project_id'} }
         );
@@ -1131,6 +1134,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'SSDB' ],function ($route
 //        }
 //
 //    })
+
     .service('ALService', function ($rootScope, $resource, BusyService, DBService) {
         var _THIS = this;
 
