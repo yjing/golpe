@@ -12,7 +12,13 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
     // configure html5 to get links working
     // If you don't do this, you URLs will be base.com/#/home rather than base.com/home
     $locationProvider.html5Mode(true).hashPrefix('!');
-}).run(function ($rootScope, $location) {});
+}).run(function ($rootScope, $location) {
+        $rootScope.topbar = {
+            login: {
+                title: "Login"
+            }
+        }
+    });
 
 function supports_html5_storage() {
     try {
