@@ -14,39 +14,40 @@
 </head>
 <body ng-controller="TestCtrl">
 
-    <div class="container-fluid">
-        <!--<div ng-view></div>-->
 
-        <div class="navbar navbar-fixed-top">
-            <div class="navbar-inner">
-                <ul class="nav">
-                    <li>
-                        <a href="#" class="brand dropdown-toggle" data-toggle="dropdown">
-                            Account
-                            <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">one</a></li>
-                            <li><a href="#">two</a></li>
-                            <li><a href="#">three</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <ul class="nav pull-right">
-                    <li>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <b class="icon-th-list"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">one</a></li>
-                            <li><a href="#">two</a></li>
-                            <li><a href="#">three</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <ul class="nav">
+                <li>
+                    <a href="#" class="brand dropdown-toggle" data-toggle="dropdown">
+                        Account
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">one</a></li>
+                        <li><a href="#">two</a></li>
+                        <li><a href="#">three</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav pull-right">
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <b class="icon-th-list"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">one</a></li>
+                        <li><a href="#">two</a></li>
+                        <li><a href="#">three</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </div>
+
+    <!--<div class="container-fluid">-->
+        <!--<div ng-view></div>-->
+    <!--</div>-->
 
     <button class="btn" ng-click="isCollapsed = !isCollapsed">Toggle collapse</button>
     <hr>
