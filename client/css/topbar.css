@@ -1,8 +1,10 @@
+.navbar-fixed-top .navbar-inner {
+    padding-left: 0;
+}
+
 /* Large desktop */
 @media (min-width: 1200px) {
-    .navbar-fixed-top .navbar-inner {
-        padding-left: 2em;
-    }
+
 }
 
 /* Portrait tablet to landscape and desktop */
