@@ -3,9 +3,6 @@
     .navbar-clearer {
         margin-top: 45px;
     }
-    .navbar-fixed-top .navbar-inner {
-        padding: 5px;
-    }
 }
 /* Any Mobile */
 @media (max-width: 979px) {
