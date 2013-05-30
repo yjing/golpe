@@ -4,6 +4,9 @@
 
 /* Large desktop */
 @media (min-width: 1200px) {
+    .navbar-fixed-top .navbar-inner {
+        padding-left: 3em;
+    }
 }
 
 @media (min-width: 980px) {
