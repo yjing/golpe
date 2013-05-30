@@ -23,6 +23,21 @@ function LoginCtrl($scope, $rootScope, $location, auth){
         );
     }
 
+    $scope.redirectUser = function (user) {
+        var role = user.role;
+        switch (role) {
+            case 'STUDENT':
+                $location.url('/client/student');
+                break;
+            case 'SUPERVISOR':
+                $location.url('/client/supervisor');
+                break;
+            case 'ADMIN':
+                $location.url('/client/users');
+                break;
+        }
+    };
+
     // TOP BAR
     $rootScope.top_bar = {
         page_title: 'Login',
