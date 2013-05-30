@@ -6,6 +6,7 @@ app.service('auth', function(resources){
         if(angular.isUndefined(logged_user)) {
             resources.Users.user(
                 function(d, h){
+                    console.log("LOADED");
                     if(d.logged) {
                         logged_user = d.User;
                     } else {
