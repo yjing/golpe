@@ -1,9 +1,7 @@
-function LoginCtrl($scope, $rootScope, comm){
+function LoginCtrl($scope, $rootScope, resources){
 
     $scope.username = "s.susini";
     $scope.password = "30071980";
-
-    comm.test();
 
     // TOP BAR
     $rootScope.top_bar = {
