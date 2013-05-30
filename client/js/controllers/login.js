@@ -1,5 +1,8 @@
 function LoginCtrl($scope, $rootScope){
 
+    $scope.username = "s.susini";
+    $scope.password = "30071980";
+
     // TOP BAR
     $rootScope.top_bar = {
         page_title: 'Login',
