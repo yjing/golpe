@@ -15,8 +15,8 @@ function StudentCtrl($scope, $rootScope, auth){
             { type: 'item', label: 'Add Activity Log', icon: 'icon-plus', func: $rootScope.logout },
             { type: 'divider' },
             { type: 'item', label: 'Logout', icon: 'icon-lock', func: $rootScope.logout },
-            { type: 'item', label: 'Help', func: $rootScope.help },
-            { type: 'item', label: 'Info', func: $rootScope.info }
+            { type: 'item', label: 'Help', icon: 'icon-question-sign', func: $rootScope.help },
+            { type: 'item', label: 'Info', icon: 'icon-info-sign', func: $rootScope.info }
         ]
     };
 }
