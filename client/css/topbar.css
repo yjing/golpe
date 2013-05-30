@@ -17,6 +17,10 @@
     .navbar-fixed-top {
         margin-bottom: 5px;
     }
+
+    .navbar-fixed-top .navbar-inner {
+        padding-left: 5em;
+    }
 }
 
 /* Portrait tablet to landscape and desktop */
