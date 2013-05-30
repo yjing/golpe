@@ -59,7 +59,7 @@ class Comment extends AssociativeModel {
                         )
                     )
                 );
-                
+                debug($this->targetObject);die();
                 // If the object is NULL the comment won't be saved
                 if($this->targetObject == null || count($this->targetObject) == 0) {
                     return false;
