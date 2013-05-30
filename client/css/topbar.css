@@ -21,7 +21,7 @@
 
 @media (max-width: 768px) {
     .navbar-fixed-top {
-        margin-left: 0;
-        margin-right: 0;
+        margin-left: 5px;
+        margin-right: 5px;
     }
 }
