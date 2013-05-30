@@ -1,3 +1,7 @@
+.navbar-fixed-top .navbar-inner {
+    padding-left: 1em;
+}
+
 /* Large desktop */
 @media (min-width: 1200px) {
 
@@ -10,14 +14,14 @@
 
 /* Landscape phone to portrait tablet */
 @media (max-width: 767px) {
-
+    .navbar-fixed-top .navbar-inner {
+        padding-left: 0.5em;
+    }
 }
 
 /* Landscape phones and down */
 @media (max-width: 480px) {
-
-}
-
-.navbar-fixed-top .navbar-inner {
-    padding-left: 1em;
+    .navbar-fixed-top .navbar-inner {
+        padding-left: 0.5em;
+    }
 }
