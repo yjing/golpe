@@ -11,7 +11,6 @@ function StudentCtrl($scope, $rootScope, auth){
     // TOP BAR
     $rootScope.top_bar = {
         page_title: 'Activity Logs',
-        title_icon: 'icon-th-list',
         main_menu_items: [
             { type: 'item', label: 'Logout', icon: 'icon-user', func: $rootScope.logout },
             { type: 'divider' },
