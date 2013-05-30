@@ -12,6 +12,9 @@
     body {
         padding: 0;
     }
+    .navbar-fixed-top {
+       margin-bottom: 5px;
+    }
 }
 
 
