@@ -10,10 +10,11 @@
     <link href="/client/css/bootstrap.css" rel="stylesheet" media="screen">
     <link href="/client/css/bootstrap-responsive.css" rel="stylesheet" media="screen">
 </head>
-<body>
+<body ng-controller="TestCtrl">
 
     <div class="container-fluid">
         <!--<div ng-view></div>-->
+
         <div class="navbar">
             <div class="navbar-inner">
                 <ul class="nav">
@@ -45,22 +46,10 @@
         </div>
     </div>
 
-    <!-- Button to trigger modal -->
-    <a href="#myModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
-
-    <!-- Modal -->
-    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="myModalLabel">Modal header</h3>
-        </div>
-        <div class="modal-body">
-            <p>One fine body…</p>
-        </div>
-        <div class="modal-footer">
-            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-            <button class="btn btn-primary">Save changes</button>
-        </div>
+    <button class="btn" ng-click="isCollapsed = !isCollapsed">Toggle collapse</button>
+    <hr>
+    <div collapse="isCollapsed">
+        <div class="well well-large">Some content</div>
     </div>
 
     <!-- JQuery -->
@@ -68,8 +57,9 @@
     <!-- Bootstrap JS -->
     <script src="/client/js/bootstrap.js"></script>
     <!-- AngularJS -->
-    <script src="/client/angularjs/angular.js"></script>
-    <script src="/client/angularjs/angular-resource.min.js"></script>
+    <script src="/client/js/ui-bootstrap-tpls-0.3.0.js"></script>
+    <script src="/client/js/angular.js"></script>
+    <script src="/client/js/angular-resource.min.js"></script>
     <!-- APP JS -->
     <script src="/client/js/app.js"></script>
 </body>
