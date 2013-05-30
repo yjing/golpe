@@ -7,20 +7,6 @@
     .navbar-clearer {
         margin-top: 45px;
     }
-    .navbar-fixed-top {
-        margin-left: 0;
-        margin-left: 0;
-    }
-}
-
-/* Any Mobile Device */
-@media (max-width: 979px) {
-    body {
-        padding: 0;
-    }
-    .navbar-fixed-top {
-        margin-bottom: 5px;
-    }
 }
 
 /* Portrait tablet to landscape and desktop */
@@ -34,4 +20,16 @@
 
 /* Landscape phones and down */
 @media (max-width: 480px) {
+}
+
+
+/* Any Mobile Device */
+@media (max-width: 979px) {
+    body {
+        padding: 0;
+    }
+    .navbar-fixed-top {
+        margin-left: 0;
+        margin-left: 0;
+    }
 }
