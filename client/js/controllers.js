@@ -1367,7 +1367,7 @@ function ProjectsCtrlOLD2($scope, $rootScope, $location, auth, Projects, Project
 
 }
 
-function StudentCtrl($scope, $rootScope, $location, auth, database){
+function StudentCtrlOLD($scope, $rootScope, $location, auth, database){
 
 
 
@@ -1401,7 +1401,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, database){
     };
 }
 
-function StudentCtrlOLD($scope, $rootScope, $location, auth, BusyService, ALService, DBService){
+function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService, DBService){
 
 
     if(false) {
