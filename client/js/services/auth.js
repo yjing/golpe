@@ -6,7 +6,6 @@ app.service('auth', function(resources){
         if(angular.isUndefined(logged_user)) {
             resources.Users.user(
                 function(d, h){
-                    console.log("LOADED");
                     if(d.logged) {
                         logged_user = d.User;
                     } else {
@@ -26,5 +25,28 @@ app.service('auth', function(resources){
         }
     }
 
+    this.login = function (username, password) {
+        var xsrf = $.param({
+            "data[User][username]":username,
+            "data[User][password]":password
+        });
+        resources.Users.login(xsrf,
+            function(d, h){
+                if(d.logged) {
+                    logged_user = d.User;
+                } else {
+                    logged_user = null;
+                }
+                if(angular.isDefined(callback)) {
+                    callback(logged_user);
+                }
+            },
+            function(e){
+                console.log("ERROR:");
+                console.log(e);
+            }
+        );
+
+    }
 
 });
