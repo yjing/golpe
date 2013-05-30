@@ -1,3 +1,8 @@
+ul.nav.back-button li a {
+    padding-left: 0;
+    padding-right: 5px;
+}
+
 /* Any Desktop*/
 @media (min-width: 980px) {
     body {
@@ -8,11 +13,6 @@
     }
     .navbar-fixed-top .navbar-inner {
         padding-left: 1em;
-    }
-
-    ul.nav li a {
-        padding-left: 0;
-        padding-right: 5px;
     }
 }
 /* Any Mobile */
@@ -25,11 +25,6 @@
     }
     .navbar-fixed-top .navbar-inner {
         margin-right: 0;
-    }
-
-    ul.nav li a {
-        padding-left: 0;
-        padding-right: 5px;
     }
 }
 
