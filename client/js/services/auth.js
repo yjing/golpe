@@ -49,4 +49,23 @@ app.service('auth', function(resources){
 
     }
 
+    this.logout = function(callback) {
+        resources.Users.logout(
+            function(d, h){
+                if(!d.logged) {
+                    logged_user = null;
+                } else {
+                    logged_user = d.User;
+                }
+                if(angular.isDefined(callback)) {
+                    callback(logged_user);
+                }
+            },
+            function(e){
+                console.log("ERROR:");
+                console.log(e);
+            }
+        );
+    }
+
 });

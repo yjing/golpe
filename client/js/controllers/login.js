@@ -1,11 +1,14 @@
 function LoginCtrl($scope, $rootScope, auth){
 
-    $scope.username = "s.susinix";
+    $scope.username = "s.susini";
     $scope.password = "30071980";
 
     auth.login($scope.username, $scope.password,
-        function(user){
-            console.log(user);
+        function (user){
+            console.log();
+            auth.logout (function (user){
+
+            });
         }
     );
 
