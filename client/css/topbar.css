@@ -1,7 +1,3 @@
-.navbar-fixed-top .navbar-inner {
-    padding-left: 1em;
-}
-
 /* Large Desktop */
 @media (min-width: 1200px) {
 }
@@ -9,7 +5,7 @@
 /* Any Desktop*/
 @media (min-width: 980px) {
     .navbar-clearer {
-        margin-top: 40px;
+        margin-top: 45px;
     }
 }
 
@@ -17,6 +13,9 @@
 @media (max-width: 979px) {
     body {
         padding: 0;
+    }
+    .navbar-fixed-top .navbar-inner {
+        margin-bottom: 5px;
     }
 }
 
