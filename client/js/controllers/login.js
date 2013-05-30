@@ -1,5 +1,14 @@
 function LoginCtrl($scope, $rootScope, resources){
 
+    resources.Users.user(
+        function (d, h){
+            console.log(d);
+        },
+        function (e) {
+            alert('error');
+        }
+    );
+
     $scope.username = "s.susini";
     $scope.password = "30071980";
 
