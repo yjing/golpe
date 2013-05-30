@@ -7,6 +7,10 @@
     .navbar-clearer {
         margin-top: 45px;
     }
+    .navbar-fixed-top {
+        margin-left: 0;
+        margin-left: 0;
+    }
 }
 
 /* Any Mobile Device */
@@ -16,10 +20,6 @@
     }
     .navbar-fixed-top {
         margin-bottom: 5px;
-    }
-
-    .navbar-fixed-top .navbar-inner {
-        padding-left: 5em;
     }
 }
 
