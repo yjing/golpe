@@ -9,6 +9,12 @@
     }
 }
 
+@media (min-width: 980px) {
+    .navbar-clearer {
+        margin-top: 40px;
+    }
+}
+
 /* Portrait tablet to landscape and desktop */
 @media (min-width: 768px) and (max-width: 979px) {
     .navbar-fixed-top .navbar-inner {
@@ -21,19 +27,11 @@
     .navbar-fixed-top .navbar-inner {
         padding-left: 9em;
     }
-
-    .navbar-clearer {
-        margin-top: 40px;
-    }
 }
 
 /* Landscape phones and down */
 @media (max-width: 480px) {
     .navbar-fixed-top .navbar-inner {
         padding-left: 11em;
-    }
-
-    .navbar-clearer {
-        margin-top: 40px;
     }
 }
