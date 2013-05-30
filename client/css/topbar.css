@@ -1,10 +1,10 @@
 /* Any Desktop*/
 @media (min-width: 980px) {
     body {
-        padding: 5px;
+        padding: 10px;
     }
     .navbar-clearer {
-        margin-top: 50px;
+        margin-top: 45px;
     }
     .navbar-fixed-top .navbar-inner {
         padding-left: 1em;
