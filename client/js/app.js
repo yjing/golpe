@@ -22,6 +22,6 @@ function supports_html5_storage() {
     }
 }
 
-function TestCtrl(){
+function TestCtrl($scope){
     $scope.isCollapsed = false;
 }
