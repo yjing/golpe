@@ -16,18 +16,20 @@
 
     <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
-            <ul class="nav back-button">
+            <ul class="nav back-button" ng-show="top_bar.back_button != null">
                 <li>
-                    <a href="#"><em class="icon-chevron-left"></em></a>
+                    <a href="#" ng-click="top_bar.back_button.func(this);"><em class="icon-chevron-left"></em></a>
                 </li>
             </ul>
             <ul class="nav">
-                <li ng-hide="topbar[pageID].hasTitleDropDown">
-                    <a class="brand">{{topbar[pageID].title}}</a>
+                <li ng-hide="top_bar.title_menu != null">
+                    <i ng-show="top_bar.title_icon != null" class="{{top_bar.title_icon}}"></i>
+                    <a class="brand">{{top_bar.page_title}}</a>
                 </li>
-                <li ng-show="topbar[pageID].hasTitleDropDown">
+                <li ng-show="top_bar.title_menu != null">
                     <a href="#" class="brand dropdown-toggle" data-toggle="dropdown">
-                        {{topbar[pageID].title}}
+                        <i ng-hide="top_bar.title_icon != null" class="{{top_bar.title_icon}}"></i>
+                        {{top_bar.page_title}}
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
