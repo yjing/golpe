@@ -12,8 +12,7 @@ function LoginCtrl($scope, $rootScope){
             {
                 label: 'Projects',
                 func: function() {
-                    $rootScope.toggleTitleMenu();
-                    $location.url('/client/projects');
+                    alert('Ciao');
                 }
             }
         ],
