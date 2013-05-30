@@ -31,7 +31,3 @@
 /* Landscape phones and down */
 @media (max-width: 480px) {
 }
-
-.navbar-fixed-top .navbar-inner {
-    padding-left: 0;
-}
