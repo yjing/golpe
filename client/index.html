@@ -31,7 +31,9 @@
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li ng-repeat="item in topbar[pageID].hasTitleDropDown"><a href="#">one</a></li>
+                        <li ng-repeat="item in topbar[pageID].titleDropDown">
+                            <a href="#">{{item.label}}</a>
+                        </li>
                     </ul>
                 </li>
             </ul>
