@@ -4,3 +4,9 @@
         margin-top: 45px;
     }
 }
+/* Any Mobile */
+@media (max-width: 979px) {
+    body {
+        padding: 0;
+    }
+}
