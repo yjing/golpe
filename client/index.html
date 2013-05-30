@@ -22,10 +22,10 @@
                 </li>
             </ul>
             <ul class="nav">
-                <!--<li>-->
-                    <!--<a class="brand">Students</a>-->
-                <!--</li>-->
-                <li>
+                <li ng-hide="topbar[pageID].hasDropDownTitle">
+                    <a class="brand">{{topbar[pageID].title}}</a>
+                </li>
+                <li ng-show="topbar[pageID].hasDropDownTitle">
                     <a href="#" class="brand dropdown-toggle" data-toggle="dropdown">
                         {{topbar[pageID].title}}
                         <b class="caret"></b>
