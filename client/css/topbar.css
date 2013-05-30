@@ -3,13 +3,10 @@
     .navbar-clearer {
         margin-top: 45px;
     }
-    .navbar-fixed-top {
-        margin-left: 0;
-        margin-right: 0;
-    }
-    .navbar-fixed-top .navbar-inner {
-        padding: 5px;
-    }
+    /*.navbar-fixed-top {*/
+        /*margin-left: 0;*/
+        /*margin-right: 0;*/
+    /*}*/
 }
 /* Any Mobile */
 @media (max-width: 979px) {
