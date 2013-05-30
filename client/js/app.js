@@ -9,7 +9,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
     });
     $routeProvider.when('/client/student', {
         templateUrl:'/client/parts/student.html',
-        controller:"Student©cCtrl"
+        controller:"StudentCtrl"
     });
     $routeProvider.otherwise({redirectTo:'/client/login'});
 
