@@ -13,6 +13,7 @@
 }
 
 .login-form {
+    width: 80%;
     margin-top: 2em;
-    margin-left: 2em;
+    margin-left: 10%;
 }
