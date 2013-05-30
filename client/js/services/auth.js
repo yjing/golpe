@@ -25,7 +25,7 @@ app.service('auth', function(resources){
         }
     }
 
-    this.login = function (username, password) {
+    this.login = function (username, password, callback) {
         var xsrf = $.param({
             "data[User][username]":username,
             "data[User][password]":password
