@@ -1,6 +1,6 @@
 /* Large desktop */
 @media (min-width: 1200px) {
-    .navbar-fixed-top {
+    .navbar-fixed-top .navbar-inner {
         padding-left: 2em;
     }
 }
