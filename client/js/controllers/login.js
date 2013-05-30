@@ -1,4 +1,4 @@
-function LoginCtrl($scope, $rootScope){
+function LoginCtrl($scope, $rootScope, comm){
 
     $scope.username = "s.susini";
     $scope.password = "30071980";
