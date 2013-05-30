@@ -30,7 +30,7 @@ ul.nav.back-button {
     }
     ul.nav.back-button > li > a {
         padding-left: 10px;
-        padding-right: 5px;
+        padding-right: 0;
     }
 }
 
