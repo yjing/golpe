@@ -1,4 +1,4 @@
-function LoginCtrl($scope, $rootScope, auth){
+function StudentCtrl($scope, $rootScope, auth){
 
     auth.user(
         function (user){
