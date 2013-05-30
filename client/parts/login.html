@@ -9,13 +9,13 @@
             <div class="control-group">
                 <label class="control-label" for="inputEmail">User Name</label>
                 <div class="controls">
-                    <input autofocus="true" type="text" id="inputEmail" placeholder="User Name" ng-model="username" value="s.susini">
+                    <input autofocus="true" type="text" ng-change="login_message = '';" id="inputEmail" placeholder="User Name" ng-model="username" value="s.susini">
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label" for="inputPassword">Password</label>
                 <div class="controls">
-                    <input type="password" id="inputPassword" placeholder="Password" ng-model="password" value="30071980">
+                    <input type="password" ng-change="login_message = '';" id="inputPassword" placeholder="Password" ng-model="password" value="30071980">
                 </div>
             </div>
             <div class="control-group">
