@@ -2,39 +2,32 @@
     padding-left: 1em;
 }
 
-/* Large desktop */
+/* Large Desktop */
 @media (min-width: 1200px) {
-    .navbar-fixed-top .navbar-inner {
-        padding-left: 3em;
-    }
 }
 
+/* Any Desktop*/
 @media (min-width: 980px) {
-    .navbar-fixed-top .navbar-inner {
-        padding-left: 5em;
-    }
     .navbar-clearer {
         margin-top: 40px;
     }
 }
 
+/* Any Mobile Device */
+@media (max-width: 979px) {
+    body {
+        margin: 0;
+    }
+}
+
 /* Portrait tablet to landscape and desktop */
 @media (min-width: 768px) and (max-width: 979px) {
-    .navbar-fixed-top .navbar-inner {
-        padding-left: 7em;
-    }
 }
 
 /* Landscape phone to portrait tablet */
 @media (max-width: 767px) {
-    .navbar-fixed-top .navbar-inner {
-        padding-left: 9em;
-    }
 }
 
 /* Landscape phones and down */
 @media (max-width: 480px) {
-    .navbar-fixed-top .navbar-inner {
-        padding-left: 11em;
-    }
 }
