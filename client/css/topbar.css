@@ -4,12 +4,12 @@
 
 /* Large desktop */
 @media (min-width: 1200px) {
-    .navbar-fixed-top .navbar-inner {
-        padding-left: 5em;
-    }
 }
 
 @media (min-width: 980px) {
+    .navbar-fixed-top .navbar-inner {
+        padding-left: 5em;
+    }
     .navbar-clearer {
         margin-top: 40px;
     }
