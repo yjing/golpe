@@ -34,14 +34,8 @@
                         <button class="btn btn-success confirm" ng-click="DB.m.als[al.id].mode = 'normal';" ng-show="DB.m.als[al.id].mode == 'deleting';">Keep</button>
                     </div>
                 </li>
-                <!--<li ng-show="new_project != null" ng-class="isSelectedProject(-1)">-->
-                    <!--<a href="#" ng-click="selectProject(-1);">{{new_project.name}} <i class="icon-edit"></i></a>-->
-                <!--</li>-->
             </ul>
             <div>
-                <!--<a href="#" class="text-right">-->
-                    <!--{{selected_al == null}}-->
-                <!--</a>-->
             </div>
         </div>
     </div>
@@ -209,7 +203,7 @@
                 <li ng-show="showComments(selected_al) && (DB.m.als[selected_al].comments == null || DB.m.als[selected_al].comments.length == 0);">
                     <div class="selector"><em>No Comments yet...</em></div>
                 </li>
-                <li ng-repeat="c in DB.m.als[selected_al].comments" ng-show="showComments(selected_al);">
+                <li ng-repeat="c in DB.m.als[selected_al].comments | orderBy:'-modified'" ng-show="showComments(selected_al);">
                     <p class="selector"><strong>{{DB.d.users[DB.d.comments[c].user_id].username}} says:</strong></p>
                     <p class="selector">{{DB.d.comments[c].content}}</p>
                     <p class="selector"><strong>on:</strong> {{DB.d.comments[c].modified}}</p>

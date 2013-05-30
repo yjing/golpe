@@ -1367,40 +1367,6 @@ function ProjectsCtrlOLD2($scope, $rootScope, $location, auth, Projects, Project
 
 }
 
-function StudentCtrlOLD($scope, $rootScope, $location, auth, database){
-
-
-
-    // TOP BAR
-    $rootScope.top_bar = {
-//        back_button: {
-//            icon: 'icon-chevron-left'
-//        },
-        page_title: 'Activity Logs',
-        title_icon: 'icon-th-list',
-//        title_menu: [
-//            {
-//                label: 'Users',
-//                func: function() {
-//                    $rootScope.toggleTitleMenu();
-//                    $location.url('/client/users');
-//                }
-//            }
-//        ],
-        buttons: [
-            { type: 'item', label: 'New Activity Log', func: function(){ $scope.al = {}; }, icon: 'icon-plus' }
-//            ,{ type: 'divider-vertical' },
-//            { type: 'item', label: 'Users', func: $scope.login, icon: 'icon-chevron-left' }
-        ],
-        main_menu_items: [
-            { type: 'item', label: 'Log Out', func: $rootScope.logout, icon: 'icon-lock' },
-            { type: 'divider' },
-            { type: 'item', label: 'Help', func: $rootScope.help },
-            { type: 'item', label: 'Info', func: $rootScope.info }
-        ]
-    };
-}
-
 function StudentCtrl($scope, $rootScope, $location, auth, BusyService, ALService, DBService){
 
 
