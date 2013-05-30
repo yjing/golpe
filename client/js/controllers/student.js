@@ -12,8 +12,9 @@ function StudentCtrl($scope, $rootScope, auth){
     $rootScope.top_bar = {
         page_title: 'Activity Logs',
         main_menu_items: [
-            { type: 'item', label: 'Logout', icon: 'icon-lock', func: $rootScope.logout },
+            { type: 'item', label: 'Add Activity Log', icon: 'icon-plus', func: $rootScope.logout },
             { type: 'divider' },
+            { type: 'item', label: 'Logout', icon: 'icon-lock', func: $rootScope.logout },
             { type: 'item', label: 'Help', func: $rootScope.help },
             { type: 'item', label: 'Info', func: $rootScope.info }
         ]
