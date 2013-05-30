@@ -10,3 +10,12 @@
         padding: 0;
     }
 }
+
+
+
+@media (max-width: 768px) {
+    .navbar-fixed-top {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
