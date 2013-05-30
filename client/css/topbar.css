@@ -1,5 +1,8 @@
 /* Any Desktop*/
 @media (min-width: 980px) {
+    body {
+        padding: 5px;
+    }
     .navbar-clearer {
         margin-top: 45px;
     }
