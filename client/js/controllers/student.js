@@ -1,5 +1,7 @@
 function StudentCtrl($scope, $rootScope, $location, auth, als, database){
 
+    $scope.data = null;
+
     auth.user(
         function (user){
             if(user == null) {
@@ -11,16 +13,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, als, database){
                 'all',                          // MODE
                 function(d, h) {                // SUCCESS
                     if(angular.isArray(d) && d.length > 0) {
-                        als.get(
-                            d[0].id,
-                            function(d, h) {
-                                console.log(d);
-                                d['id'] = 21;
-                                console.log(database.select('als', [], 3));
-                            },
-                            function(e) {
-                            }
-                        );
+                        $scope.data = d;
                     }
                 },
                 function(e) {                   // ERROR
