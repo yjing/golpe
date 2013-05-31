@@ -53,8 +53,7 @@ app.factory('als_db',function (database) {
                     busy.busy(false);
 
                     d = als_db.insertAls(d, mode);
-                    console.log(present_modes.indexOf(mode));
-                    if(!present_modes.indexOf(mode)) {
+                    if(present_modes.indexOf(mode) < 0) {
                         present_modes.push(mode);
                     }
 
