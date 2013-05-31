@@ -108,7 +108,7 @@ app.factory('als_db',function (database, comments_db, media_db) {
 
         this.get = function(id, success, error){
             busy.busy(true);
-            resources.get(
+            resources.Als.get(
                 { 'id':id }, //PARAMS
                 {}, //DATA
                 function (d, h) {
