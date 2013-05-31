@@ -1,4 +1,4 @@
-app.factory('als_db',function (database, comments_db, media_db, user_db) {
+app.factory('als_db',function (database, comments_db, media_db, users_db) {
     return new function () {
         this.insertAls = function (d, mode) {
             var ret = [];
@@ -37,7 +37,7 @@ app.factory('als_db',function (database, comments_db, media_db, user_db) {
             }
             var user;
             if(angular.isDefined(al['User'])) {
-                user = user_db.insertuser(al['User']);
+                user = users_db.insertuser(al['User']);
                 delete al['User'];
             }
 
