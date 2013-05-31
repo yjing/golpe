@@ -23,7 +23,7 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
                         als.get(
                             $scope.selected_al_id,
                             function (datum, h) {    // SUCCESS
-                                console.log($scope.data);
+                                console.log(database.select('als', [], 3));
                                 $scope.selected_al = datum;
                             }
                         );

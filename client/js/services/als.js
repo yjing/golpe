@@ -12,69 +12,69 @@ app.factory('als_db',function (database, comments_db, media_db, users_db) {
         }
 
         this.insertAl = function (al, mode) {
-//            var complete = false;
-//
-//            // MANAGE ASSOCIATIONS
-//            var comments;
-//            if(angular.isDefined(al['Comment'])) {
-//                if(angular.isArray(al['Comment']) && al['Comment'].length > 0) {
-//                    comments = comments_db.insertComments(al['Comment'], al['id']);
-//                    if(angular.isDefined(comments[0]['content'])) {
-//                        complete = true;
-//                    }
-//                }
-//                delete al['Comment'];
-//            }
-//            var media;
-//            if(angular.isDefined(al['Media'])) {
-//                if(angular.isArray(al['Media']) && al['Media'].length > 0) {
-//                    media = media_db.insertMedia(al['Media'], 'al', al['id']);
-//                    if(angular.isDefined(media[0]['filename'])) {
-//                        complete = true;
-//                    }
-//                }
-//                delete al['Media'];
-//            }
-//            var user;
-//            if(angular.isDefined(al['User'])) {
-//                user = users_db.insertUser(al['User']);
-//                delete al['User'];
-//            }
-//
-//            // MANAGE MODES
-//            if(angular.isDefined(mode)) {
-//                var existing = database.get('als', al['id'], 0);
-//                if (angular.isDefined(existing)) {
-//                    var modes = existing.modes;
-//                    if (modes.indexOf(mode) < 0) {
-//                        modes.push(mode);
-//                    }
-//                    al.modes = modes;
-//                } else {
-//                    al.modes = [mode];
-//                }
-//            }
-//
-//            // SET COMPLETENESS
-//            if(complete) {
-//                al.status = 'complete';
-//            } else {
-//                al.status = 'partial';
-//            }
+            var complete = false;
+
+            // MANAGE ASSOCIATIONS
+            var comments;
+            if(angular.isDefined(al['Comment'])) {
+                if(angular.isArray(al['Comment']) && al['Comment'].length > 0) {
+                    comments = comments_db.insertComments(al['Comment'], al['id']);
+                    if(angular.isDefined(comments[0]['content'])) {
+                        complete = true;
+                    }
+                }
+                delete al['Comment'];
+            }
+            var media;
+            if(angular.isDefined(al['Media'])) {
+                if(angular.isArray(al['Media']) && al['Media'].length > 0) {
+                    media = media_db.insertMedia(al['Media'], 'al', al['id']);
+                    if(angular.isDefined(media[0]['filename'])) {
+                        complete = true;
+                    }
+                }
+                delete al['Media'];
+            }
+            var user;
+            if(angular.isDefined(al['User'])) {
+                user = users_db.insertUser(al['User']);
+                delete al['User'];
+            }
+
+            // MANAGE MODES
+            if(angular.isDefined(mode)) {
+                var existing = database.get('als', al['id'], 0);
+                if (angular.isDefined(existing)) {
+                    var modes = existing.modes;
+                    if (modes.indexOf(mode) < 0) {
+                        modes.push(mode);
+                    }
+                    al.modes = modes;
+                } else {
+                    al.modes = [mode];
+                }
+            }
+
+            // SET COMPLETENESS
+            if(complete) {
+                al.status = 'complete';
+            } else {
+                al.status = 'partial';
+            }
 
             // INSERT IN DB
             al = database.insert('als', al['id'], al);
 
-//            // ADD EVENTUAL ASSOCIATION TO RETURNED DATA
-//            if(angular.isDefined(comments)) {
-//                al.comments = comments;
-//            }
-//            if(angular.isDefined(media)) {
-//                al.media = media;
-//            }
-//            if(angular.isDefined(user)) {
-//                al.user = user;
-//            }
+            // ADD EVENTUAL ASSOCIATION TO RETURNED DATA
+            if(angular.isDefined(comments)) {
+                al.comments = comments;
+            }
+            if(angular.isDefined(media)) {
+                al.media = media;
+            }
+            if(angular.isDefined(user)) {
+                al.user = user;
+            }
             return al;
         }
     };
