@@ -119,7 +119,7 @@ app.factory('als_db',function (database, comments_db, media_db, users_db) {
             );
         }
 
-        this.get = function(id, success, error){
+        this.get = function(id, success, errorCB){
             busy.busy(true);
             resources.Als.get(
                 { 'id':id }, //PARAMS
@@ -135,8 +135,8 @@ app.factory('als_db',function (database, comments_db, media_db, users_db) {
                 },
                 function (e) {
                     busy.busy(false);
-                    if(!$rootScope.error(e) && error != undefined) {
-                        error(e);
+                    if(!$rootScope.error(e) && errorCB != undefined) {
+                        errorCB(e);
                     }
                 }
             );
