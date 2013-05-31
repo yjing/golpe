@@ -10,6 +10,7 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
                 $location.url('/client/login');
                 return;
             }
+            $rootScope.user = user;
             als.all(
                 false, // RELOAD
                 'all', // MODE
