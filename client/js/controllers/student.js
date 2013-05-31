@@ -9,7 +9,14 @@ function StudentCtrl($scope, $rootScope, $location, auth, als, database){
             als.all(
                 'all',
                 function(d, h) {
-                    console.log(d);
+                    als.all(
+                        'mine',
+                        function(d, h) {
+                            console.log(d);
+                        },
+                        function(e) {
+                        }
+                    );
                 },
                 function(e) {
                 }
