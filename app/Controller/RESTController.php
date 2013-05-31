@@ -30,7 +30,7 @@ abstract class RESTController extends AppController {
         // In a REST service, if unauthorized, I just need to send a 501 status code to the client
         $this->Auth->autoRedirect = false;
         if (!$this->Auth->loggedIn() && !in_array($this->action, $this->Auth->allowedActions)) {
-            throw new UnauthorizedException(array('logged'=>false));
+            throw new UnauthorizedException("NO-LOGGED");
         }
         
         $this->Auth->authorize = 'Controller';
