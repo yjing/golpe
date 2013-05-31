@@ -1,35 +1,34 @@
 app.factory('als_db',function (database) {
-
-    this.insertAls = function (d, mode) {
-        var ret = [];
-        if (angular.isArray(d)) {
-            for (var i = 0; i < d.length; i++) {
-                var al = d[i]['ActivityLog'];
-                ret.push(this.insertAl(al, mode));
+    return function() {
+        this.insertAls = function (d, mode) {
+            var ret = [];
+            if (angular.isArray(d)) {
+                for (var i = 0; i < d.length; i++) {
+                    var al = d[i]['ActivityLog'];
+                    ret.push(this.insertAl(al, mode));
+                }
             }
+            return ret;
         }
-        return ret;
-    }
 
-    this.insertAl = function (al, mode) {
-        delete al['Comment'];
-        delete al['Media'];
-        delete al['User'];
+        this.insertAl = function (al, mode) {
+            delete al['Comment'];
+            delete al['Media'];
+            delete al['User'];
 
-        var existing = database.get('als', al['id'], 0);
-        if (angular.isDefined(existing)) {
-            var modes = existing.modes;
-            if (modes.indexOf(mode) < 0) {
-                modes.push(mode);
+            var existing = database.get('als', al['id'], 0);
+            if (angular.isDefined(existing)) {
+                var modes = existing.modes;
+                if (modes.indexOf(mode) < 0) {
+                    modes.push(mode);
+                }
+                al.modes = modes;
+            } else {
+                al.modes = [mode];
             }
-            al.modes = modes;
-        } else {
-            al.modes = [mode];
+            return database.insert('als', al['id'], al);
         }
-        return database.insert('als', al['id'], al);
     }
-    return this;
-
 }).service('als', function ($rootScope, als_db, resources, busy) {
     this.all = function (mode, success, error) {
         busy.busy(true);
