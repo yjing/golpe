@@ -1,10 +1,10 @@
 app.factory('media_db', function(database){
     return new function(){
-        this.insertMedia = function(media, target_id) {
+        this.insertMedia = function(media, target_type, target_id) {
             var ret = [];
             if(angular.isArray(media)) {
                 for (var i = 0; i < media.length; i++) {
-                    ret.push(this.insertMedium(media[i], target_id));
+                    ret.push(this.insertMedium(media[i], target_type, target_id));
                 }
             }
             return ret;
