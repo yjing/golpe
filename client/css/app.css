@@ -17,3 +17,20 @@
     margin-top: 2em;
     margin-left: 10%;
 }
+
+
+/* MODAL */
+div.modal {
+    bottom: 5%;
+    top: 5%;
+    padding: 10px;
+}
+div.modal-body {
+    max-height: none;
+    height: 100%;
+    padding: 0;
+}
+
+div.modal-body > img {
+    width: 100%;
+}
