@@ -1,4 +1,4 @@
-app.factory('comments_db', function(database, users_db){
+app.factory('comments_db', function(database, media_db, users_db){
     return new function(){
         this.insertComments = function(comments, target_id) {
             var ret = [];
@@ -11,6 +11,14 @@ app.factory('comments_db', function(database, users_db){
         }
         this.insertComment = function(comment, target_id) {
 
+            var media;
+            if(angular.isDefined(comment['Media'])) {
+                if(angular.isArray(comment['Media']) && comment['Media'].length > 0) {
+                    media = media_db.insertMedia(comment['Media'], 'comment', comment['id']);
+                    comment.media = media;
+                }
+                delete al['Media'];
+            }
             var user;
             if(angular.isDefined(comment['User'])) {
                 user = users_db.insertUser(comment['User']);
