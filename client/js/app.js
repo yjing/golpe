@@ -86,7 +86,6 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
 
         // THUMBS HELPER
         $rootScope.getThumbUrl = function (media) {
-            console.log(media);
             if (angular.isDefined(media) && media['has_thumb']) {
                 return "/media/download/" + media['id'] + "?thumb=BIG";
             } else {
