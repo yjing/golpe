@@ -15,6 +15,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, als, database){
                             d[0].id,
                             function(d, h) {
                                 console.log(d);
+                                console.log(database.select('als', [], 3));
                             },
                             function(e) {
                             }
