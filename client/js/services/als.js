@@ -37,10 +37,9 @@ app.factory('als_db',function (database) {
 
             if(!reload && present_modes.indexOf(mode) >= 0) {
                 var als = database.select('als', [
-                    { field:'mode', value:mode }
+                    { field:'modes', value:mode }
                 ], 0);
 
-                console.log(als);
                 if (angular.isDefined(success)) {
                     success(als);
                 }
