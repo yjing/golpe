@@ -16,7 +16,7 @@
                         <i ng-show="isEditElem(p.id)" class="icon-pencil"></i>
                     </a>
                     <div class="functions">
-                        <button class="btn-link function" ng-click="deleteElem(false, p.id);" ng-hide="isDeleteElem(p.id) || isEditElem(p.id)"><i class="icon-remove"></i></button>
+                        <button class="btn-link function" ng-click="item.deleting = true" ng-hide="item.deleting"><i class="icon-remove"></i></button>
                     </div>
                     <div class="confirms">
                         <button class="btn btn-danger confirm" ng-click="deleteElem(true, p.id);" ng-show="isDeleteElem(p.id)">Delete</button>
