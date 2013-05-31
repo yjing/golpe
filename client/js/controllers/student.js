@@ -10,15 +10,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, als, database){
                 false,                          // RELOAD
                 'all',                          // MODE
                 function(d, h) {                // SUCCESS
-                    als.all(
-                        true,
-                        'all',
-                        function(d, h) {
-                            console.log(d);
-                        },
-                        function(e) {
-                        }
-                    );
+                    console.log(database.select('als', [], 2));
                 },
                 function(e) {                   // ERROR
                 }
