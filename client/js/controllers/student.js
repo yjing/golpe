@@ -1,6 +1,7 @@
-function StudentCtrl($scope, $rootScope, $location, auth, als, database){
+function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, database){
 
     $scope.data = null;
+    $scope.selected_al_id = $routeParams.id;
 
     auth.user(
         function (user){
