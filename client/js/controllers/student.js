@@ -1,7 +1,5 @@
 function StudentCtrl($scope, $rootScope, $location, auth, als){
 
-
-
     auth.user(
         function (user){
             if(user == null) {
