@@ -51,6 +51,10 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
         );
     };
 
+    $scope.selected = function (id) {
+        return $scope.selected_al_id == id ? 'active' : '';
+    };
+
     // TOP BAR
     $rootScope.top_bar = {
         page_title:'Activity Logs',
