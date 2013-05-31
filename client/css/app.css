@@ -21,9 +21,9 @@
 
 /* MODAL */
 div.modal {
-    bottom: 5%;
-    top: 5%;
-    padding: 10px;
+    bottom: 8%;
+    top: 8%;
+    padding: 15px;
 }
 div.modal-body {
     max-height: none;
