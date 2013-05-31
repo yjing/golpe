@@ -43,6 +43,7 @@ app.factory('als_db',function (database) {
                 if (angular.isDefined(success)) {
                     success(als);
                 }
+                console.log("HERE");
                 return;
             }
 
