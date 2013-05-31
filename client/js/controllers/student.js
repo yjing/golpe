@@ -14,8 +14,7 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
                 false, // RELOAD
                 'all', // MODE
                 function (d, h) {                // SUCCESS
-                    $scope.data = d;
-                    console.log($scope.data);
+                    $scope.data = angular.copy(d);
                     if (angular.isDefined($scope.selected_al_id)
                         && $scope.selected_al_id != null
                         ) {
@@ -23,6 +22,7 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
                         als.get(
                             $scope.selected_al_id,
                             function (datum, h) {    // SUCCESS
+                                console.log("TEST");
                                 console.log(database.select('als', [], 3));
                                 $scope.selected_al = datum;
                             }
