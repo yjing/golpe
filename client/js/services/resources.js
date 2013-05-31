@@ -24,4 +24,19 @@ app.service('resources', function($resource){
         }
     });
 
+    this.Als = $resource('/activity_logs/:id', { id:'@id' }, {
+        all:{
+            method:'GET',
+            isArray:true
+        },
+        load:{
+            method:'GET',
+            isArray:false
+        },
+        modes:{
+            method:'GET',
+            url:'/activity_logs/modes'
+        }
+    });
+
 });

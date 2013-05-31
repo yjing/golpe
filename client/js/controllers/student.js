@@ -1,4 +1,4 @@
-function StudentCtrl($scope, $rootScope, $location, auth){
+function StudentCtrl($scope, $rootScope, $location, auth, als){
 
 
 
@@ -8,7 +8,14 @@ function StudentCtrl($scope, $rootScope, $location, auth){
                 $location.url('/client/login');
                 return;
             }
-
+            als.all(
+                function(d, h) {
+                    console.log("DOWN");
+                },
+                function(e) {
+                    $rootScope.error(e);
+                }
+            );
         }
     );
 
