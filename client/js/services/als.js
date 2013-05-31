@@ -2,6 +2,7 @@ app.service('als', function(resources, busy){
     this.all = function(success, error){
         busy.busy(true);
         resources.Als.all(
+            { mode:'all' },
             function (d, h) {
                 busy.busy(false);
                 console.log(d);
