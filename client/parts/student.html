@@ -11,11 +11,12 @@
                 <li>
                     <input type="text" placeholder="Filter Activity Logs..." class="edit-field" ng-model="searchText">
                 </li>
-                <li ng-repeat="item in data | filter:searchText | orderBy:'question;-modified'" ng-class="isSelectedElem(p.id)">
+                <li ng-repeat="item in data | filter:searchText | orderBy:'-modified'" ng-class="isSelectedElem(p.id)">
                     <a href="#" ng-click="selectElem(p.id);">
                         <i ng-show="item.question == true" class="icon-question-sign"></i>
-                        {{item.title}}
-                        <i ng-show="isEditElem(p.id)" class="icon-pencil"></i>
+                        {{item.title}} <i ng-show="isEditElem(p.id)" class="icon-pencil"></i><br>
+                        <span class="badge badge-info" ng-show="item.media.length > 0">HAS MEDIA</span>
+                        <span class="badge badge-info" ng-show="item.comments.length > 0">HAS COMMENTS</span>
                     </a>
                     <div class="functions">
                         <button class="btn-link function" ng-click="item.deleting = true" ng-hide="item.deleting"><i class="icon-remove"></i></button>
