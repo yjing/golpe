@@ -12,7 +12,15 @@ app.factory('als_db',function (database) {
         }
 
         this.insertAl = function (al, mode) {
-            delete al['Comment'];
+            var complete = false;
+            var comments;
+            if(angular.isDefined(al['Comment'])) {
+                if(angular.isDefined(al['Comment']['content'])) {
+                    complete = true;
+                }
+                comments = comments_db.insertComments(al['Comment']);
+                delete al['Comment'];
+            }
             delete al['Media'];
             delete al['User'];
 
@@ -26,7 +34,17 @@ app.factory('als_db',function (database) {
             } else {
                 al.modes = [mode];
             }
-            return database.insert('als', al['id'], al);
+
+            if(complete) {
+                al.status = 'complete';
+            } else {
+                al.status = 'partial';
+            }
+            al = database.insert('als', al['id'], al);
+            if(angular.isDefined(comments)) {
+                al.comments = comments;
+            }
+            return al;
         }
     }
 }).service('als', function ($rootScope, als_db, database, resources, busy) {
