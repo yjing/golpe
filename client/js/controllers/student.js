@@ -19,12 +19,11 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
                     $scope.data = database.select('als',[],3);
 
                     if (angular.isDefined($scope.selected_al_id)
-                        && $scope.selected_al_id != null
-                        ) {
-
+                        && $scope.selected_al_id != null) {
                         als.get(
                             $scope.selected_al_id,
                             function (datum, h) {    // SUCCESS
+                                console.log(database.select('als', [], 3));
                                 $scope.selected_al = database.get('als', $scope.selected_al_id, 2);
                             }
                         );
