@@ -55,7 +55,6 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
     };
 
     $scope.download = function (id) {
-        console.log("DWD");
         console.log(id);
 //        window.location.href = '/media/download/' + id + '?download=true';
     };
