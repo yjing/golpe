@@ -3,7 +3,7 @@
 
     <div modal="imageIsOpen" close="closeImage()" options="optsImage">
         <div class="modal-body">
-            <img src="/media/download/{{imageID}}" >
+            <img src="/media/download/{{imageID}}" ng-click="download(imageID);">
         </div>
     </div>
 
@@ -173,7 +173,7 @@
                                 <img src="{{getThumbUrl(m);}}" alt="{{m.filename}}"
                                      ng-hide="m['content-type'].indexOf('image/') == 0"
                                      ng-click="download(m.id);">
-                                <p>{{m.filename}}</p>
+                                <p>{{m.filename}}</p>{{m['content-type'].indexOf('image/') == 0}}
                             </div>
                         </li>
                     </ul>
