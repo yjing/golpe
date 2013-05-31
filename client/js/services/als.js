@@ -89,7 +89,7 @@ app.factory('als_db',function (database, comments_db, media_db, users_db) {
                     { field:'modes', value:mode }
                 ], 3);
 
-                if (angular.isDefined(success)) {
+                if (angular.isFunction(success)) {
                     success(als);
                 }
                 return;
@@ -106,13 +106,13 @@ app.factory('als_db',function (database, comments_db, media_db, users_db) {
                         present_modes.push(mode);
                     }
 
-                    if (angular.isDefined(success)) {
+                    if (angular.isFunction(success)) {
                         success(d, h);
                     }
                 },
                 function (e) {
                     busy.busy(false);
-                    if (!$rootScope.error(e) && angular.isDefined(error)) {
+                    if (!$rootScope.error(e) && angular.isFunction(error) ) {
                         error(e);
                     }
                 }
@@ -129,13 +129,13 @@ app.factory('als_db',function (database, comments_db, media_db, users_db) {
 
                     var al = als_db.insertAl(d['ActivityLog']);
 
-                    if(angular.isDefined(success)) {
+                    if(angular.isFunction(success)) {
                         success(al, h);
                     }
                 },
                 function (e) {
                     busy.busy(false);
-                    if(!$rootScope.error(e) && angular.isDefined(error)) {
+                    if(!$rootScope.error(e) && angular.isFunction(error)) {
                         error(e);
                     }
                 }
