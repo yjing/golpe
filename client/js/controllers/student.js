@@ -12,7 +12,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, als, database){
                 function(d, h) {                // SUCCESS
                     als.all(
                         false,
-                        'mine',
+                        'all',
                         function(d, h) {
                             console.log(d);
                         },
