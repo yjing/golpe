@@ -37,7 +37,7 @@ app.factory('als_db',function (database, comments_db, media_db, users_db) {
             }
             var user;
             if(angular.isDefined(al['User'])) {
-                user = users_db.insertuser(al['User']);
+                user = users_db.insertUser(al['User']);
                 delete al['User'];
             }
 
