@@ -2,6 +2,7 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
 
     $scope.data = null;
     $scope.selected_al_id = $routeParams.id;
+    $scope.selected_al = null;
 
     auth.user(
         function (user){
@@ -14,11 +15,11 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
                 'all',                          // MODE
                 function(d, h) {                // SUCCESS
                     $scope.data = d;
-                    if (angular.isDefined($scope.selected_al_id) && $scope.selected_al_id != null) {
+                    if (angular.isDefined($scope.selected_al_id) && $scope.selected_al_id != null && angular.isNumber($scope.selected_al_id)) {
                         als.get(
                             $scope.selected_al_id,
                             function(d, h) {    // SUCCESS
-                                console.log(d);
+                                $scope.selected_al = d;
                             }
                         );
                     }
