@@ -12,15 +12,21 @@ function StudentCtrl($scope, $rootScope, $location, auth, als, database){
                 false,                          // RELOAD
                 'all',                          // MODE
                 function(d, h) {                // SUCCESS
-                    if(angular.isArray(d) && d.length > 0) {
-                        $scope.data = d;
-                    }
-                },
-                function(e) {                   // ERROR
+                    $scope.data = d;
                 }
             );
         }
     );
+
+    $scope.reload = function () {
+        als.all(
+            true,
+            'all',
+            function(d, h) {    // SUCCESS
+                $scope.data = d;
+            }
+        );
+    };
 
     // TOP BAR
     $rootScope.top_bar = {
