@@ -14,6 +14,14 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
                 'all',                          // MODE
                 function(d, h) {                // SUCCESS
                     $scope.data = d;
+                    if (angular.isDefined($scope.selected_al_id) && $scope.selected_al_id != null) {
+                        als.get(
+                            $scope.selected_al_id,
+                            function(d, h) {    // SUCCESS
+                                console.log(d);
+                            }
+                        );
+                    }
                 }
             );
         }
