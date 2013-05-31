@@ -172,8 +172,18 @@ function Table(name, pkey, blgTo, hsMany) {
             for (var i = 0; i < where.length; i++) {
                 var cond = where[i];
                 if(angular.isDefined(v)) {
-                    if(!angular.equals(v[cond.field], cond.value)) {
-                        put = false;
+                    if(angular.isArray(v[cond.field])) {
+                        var isin = false;
+                        for (var j = 0; j < v[cond.field].length; j++) {
+                            if(angular.equals(v[cond.field][j], cond.value)) {
+                                isin = true;
+                            }
+                        }
+                        put = isin;
+                    } else {
+                        if(!angular.equals(v[cond.field], cond.value)) {
+                            put = false;
+                        }
                     }
                 } else {
                     put = false;

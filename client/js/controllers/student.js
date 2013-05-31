@@ -1,21 +1,27 @@
-function StudentCtrl($scope, $rootScope, $location, auth, als){
+function StudentCtrl($scope, $rootScope, $location, auth, als, database){
 
-    auth.user(
-        function (user){
-            if(user == null) {
-                $location.url('/client/login');
-                return;
-            }
-            als.all(
-                'all',
-                function(d, h) {
-                    console.log(d);
-                },
-                function(e) {
-                }
-            );
-        }
-    );
+//    auth.user(
+//        function (user){
+//            if(user == null) {
+//                $location.url('/client/login');
+//                return;
+//            }
+//            als.all(
+//                'all',
+//                function(d, h) {
+//                    console.log(d);
+//                },
+//                function(e) {
+//                }
+//            );
+//        }
+//    );
+
+    database.insert('asl', 1, {test:['ciccio', 'pasticcio']});
+    database.insert('asl', 2, {test:['ciccio', 'spasticcio']});
+
+    var d = database.select('als', [ {field:'test', value:'pasticcio'} ], 0);
+    console.log(d);
 
     // TOP BAR
     $rootScope.top_bar = {
