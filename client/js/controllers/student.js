@@ -7,8 +7,9 @@ function StudentCtrl($scope, $rootScope, $location, auth, als){
                 return;
             }
             als.all(
+                'all',
                 function(d, h) {
-                    console.log("DOWN");
+                    console.log(d);
                 },
                 function(e) {
                 }
