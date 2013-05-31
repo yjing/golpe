@@ -158,14 +158,14 @@
 
                     <p class="selector"><strong>on:</strong> {{c.modified}}</p>
                     <ul class="thumbnails">
-                        <li ng-repeat="m in DB.m.comments[c].media" class="span3" style="margin: 3px">
+                        <li ng-repeat="m in c.media" class="span3" style="margin: 3px">
                             <div class="thumbnail" ng-click="download(m);" class="clickable">
-                                <img src="/media/download/{{DB.d.media[m].id}}?thumb=BIG" alt="{{DB.d.media[m].filename}}"
-                                     ng-show="DB.d.media[m]['content-type'].indexOf('image/') == 0">
-                                <img src="{{getThumbUrl(DB.d.media[m]['content-type']);}}" alt="{{DB.d.media[m].filename}}"
-                                     ng-hide="DB.d.media[m]['content-type'].indexOf('image/') == 0">
+                                <img src="/media/download/{{m.id}}?thumb=BIG" alt="{{m.filename}}"
+                                     ng-show="m['content-type'].indexOf('image/') == 0">
+                                <!--<img src="{{getThumbUrl(DB.d.media[m]['content-type']);}}" alt="{{DB.d.media[m].filename}}"-->
+                                     <!--ng-hide="DB.d.media[m]['content-type'].indexOf('image/') == 0">-->
 
-                                <p>{{DB.d.media[m].filename}}</p>
+                                <p>{{m.filename}}</p>
                             </div>
                         </li>
                     </ul>
