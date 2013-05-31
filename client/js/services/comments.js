@@ -17,7 +17,7 @@ app.factory('comments_db', function(database, media_db, users_db){
                     media = media_db.insertMedia(comment['Media'], 'comment', comment['id']);
                     comment.media = media;
                 }
-                delete al['Media'];
+                delete comment['Media'];
             }
             var user;
             if(angular.isDefined(comment['User'])) {
