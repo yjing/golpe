@@ -10,12 +10,20 @@ app.factory('media_db', function(database){
             return ret;
         }
         this.insertMedium = function(medium, target_type, target_id) {
-            medium.status = 'partial';
+            var status = 'partial';
+            if(angular.isDefined(medium['filename'])) {
+                status = 'complete';
+            }
+
+            delete medium['User'];
+
             if(target_type == 'al') {
                 medium.activity_log_id = target_id;
             } else if (target_type == 'comment') {
                 medium.comment_id = target_id;
             }
+
+            medium.status = status;
             return database.insert('media', medium['id'], medium);
         }
     }
