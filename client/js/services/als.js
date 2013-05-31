@@ -35,6 +35,8 @@ app.factory('als_db',function (database) {
 
         this.all = function (reload, mode, success, error) {
 
+            console.log(present_modes);
+
             if(!reload && present_modes.indexOf(mode) > 0) {
                 var als = database.select('als', [
                     { field:'mode', value:mode }
@@ -43,7 +45,6 @@ app.factory('als_db',function (database) {
                 if (angular.isDefined(success)) {
                     success(als);
                 }
-                console.log("HERE");
                 return;
             }
 
