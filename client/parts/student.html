@@ -40,7 +40,7 @@
         </div>
     </div>
 
-    <div class="span8" ng-show="selected_al != null;">{{user}}
+    <div class="span8" ng-show="selected_al != null;">
         <div class="menu shadow">
             <div>
                 <span ng-show="selected_al.user_id == user.id;">
@@ -49,8 +49,7 @@
                         ng-click="editAl(selected_al);">
                         <button ng-show="isMobile" class="btn btn-link" ng-click="selected_al = null;"><i
                                 class="icon-backward"></i></button>
-                        {{DB.d.als[selected_al].title}} <i class="icon-pencil"></i>
-                        <!--{{DB.d.als[selected_al].modified}} / {{DB.d.als[selected_al].created}}-->
+                        {{selected_al.title}} <i class="icon-pencil"></i>
                     </h4>
                     <!-- EDIT MODE -->
                     <span ng-show="selected_al.mode == 'edit'">
@@ -58,7 +57,7 @@
                                ng-model="selected_al.title">
                     </span>
                 </span>
-                <span ng-hide="selected_al.user_id == user.User.id;">
+                <span ng-hide="selected_al.user_id == user.id;">
                     <h4>
                         <button ng-show="isMobile" class="btn btn-link" ng-click="selected_al = null;"><i
                                 class="icon-backward"></i></button>
@@ -68,15 +67,15 @@
             </div>
             <ul>
                 <li>
-                    <p class="selector" ng-hide="DB.m.als[selected_al].mode == 'edit'">
-                        {{DB.d.als[selected_al].content}}
+                    <p class="selector" ng-hide="selected_al.mode == 'edit'">
+                        {{selected_al.content}}
                     </p>
                     <!-- EDIT MODE -->
-                    <textarea class="edit-field" ng-model="DB.d.als[selected_al].content"
-                              ng-show="DB.m.als[selected_al].mode == 'edit'"></textarea>
+                    <textarea class="edit-field" ng-model="selected_al.content"
+                              ng-show="selected_al.mode == 'edit'"></textarea>
                 </li>
             </ul>
-            <div ng-show="DB.m.als[selected_al].mode == 'edit'">
+            <div ng-show="selected_al.mode == 'edit'">
                 <span>
                     <div class="btn-group">
                         <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveAl(selected_al);">
