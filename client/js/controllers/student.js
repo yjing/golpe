@@ -12,7 +12,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, als, database){
                     als.all(
                         'mine',
                         function(d, h) {
-                            console.log(d);
+                            console.log(database.select('als', [ {field:'modes', value:'all'} ], 0));
                         },
                         function(e) {
                         }
