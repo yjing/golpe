@@ -93,14 +93,14 @@
                     <i class="icon-circle-arrow-down" ng-show="showInfo(selected_al);"></i>
                 </a>
             </div>
-            <ul ng-show="showInfo(selected_al);">
+            <ul>
                 <li>
                     <span class="selector">
-                        <p><strong>Author:</strong> {{DB.d.users[ DB.d.als[selected_al].user_id ].username}}<span
-                                ng-show="DB.d.users[ DB.d.als[selected_al].user_id ].id == user.User.id;"> ( You )</span>
+                        <p><strong>Author:</strong> {{selected_al.user.username}}<span
+                                ng-show="selected_al.user_id == user.id;"> ( You )</span>
                         </p>
-                        <p><strong>Created:</strong> {{DB.d.als[selected_al].created}}<br></p>
-                        <p><strong>Modified:</strong> {{DB.d.als[selected_al].modified}}</p>
+                        <p><strong>Created:</strong> {{selected_al.created}}<br></p>
+                        <p><strong>Modified:</strong> {{selected_al.modified}}</p>
                     </span>
                 </li>
             </ul>
