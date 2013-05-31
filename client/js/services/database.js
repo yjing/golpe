@@ -152,6 +152,7 @@ function Table(name, pkey, blgTo, hsMany) {
 
         // GET ASSOCIATIONS
         if(recursive > 0) {
+            console.log("HERE");
             ret = addBelongsTo(ret, recursive);
             ret = addHasMany(ret, recursive);
         }
