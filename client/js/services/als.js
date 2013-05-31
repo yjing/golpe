@@ -5,7 +5,7 @@ app.service('als_db',function (database) {
         if (angular.isArray(d)) {
             for (var i = 0; i < d.length; i++) {
                 var al = d[i]['ActivityLog'];
-                ret.push(insertAl(al, mode));
+                ret.push(this.insertAl(al, mode));
             }
         }
         return ret;
