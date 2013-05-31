@@ -18,6 +18,10 @@
     margin-left: 10%;
 }
 
+.clickable {
+    cursor: pointer;
+}
+
 
 /* MODAL */
 div.modal {
