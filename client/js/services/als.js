@@ -1,4 +1,4 @@
-app.service('als_db',function (database) {
+app.service('alsdb',function (database) {
 
     var insertAls = function (d, mode) {
         var ret = [];
@@ -29,7 +29,7 @@ app.service('als_db',function (database) {
         return database.insert('als', al['id'], al);
     }
 
-}).service('als', function ($rootScope, als_db, resources, busy) {
+}).service('als', function ($rootScope, alsdb, resources, busy) {
     this.all = function (mode, success, error) {
         busy.busy(true);
         resources.Als.all(
@@ -37,7 +37,7 @@ app.service('als_db',function (database) {
             function (d, h) {
                 busy.busy(false);
 
-                d = als_db.insertAls(d, mode);
+                d = alsdb.insertAls(d, mode);
 
                 if (angular.isDefined(success)) {
                     success(d, h);
