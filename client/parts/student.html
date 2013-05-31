@@ -43,9 +43,9 @@
     <div class="span8" ng-hide="selected_al_id == 'new';">
         <div class="menu shadow">
             <div>
-                <span ng-show="selected_al.user_id == user.id;">test
+                <span ng-show="selected_al.user_id == user.id;">
 
-                    <h4 class="clickable" ng-hide="DB.m.als[selected_al].mode == 'edit'"
+                    <h4 class="clickable" ng-hide="selected_al.mode == 'edit'"
                         ng-click="editAl(selected_al);">
                         <button ng-show="isMobile" class="btn btn-link" ng-click="selected_al = null;"><i
                                 class="icon-backward"></i></button>
@@ -53,16 +53,16 @@
                         <!--{{DB.d.als[selected_al].modified}} / {{DB.d.als[selected_al].created}}-->
                     </h4>
                     <!-- EDIT MODE -->
-                    <span ng-show="DB.m.als[selected_al].mode == 'edit'">
+                    <span ng-show="selected_al.mode == 'edit'">
                         <input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge"
-                               ng-model="DB.d.als[selected_al].title">
+                               ng-model="selected_al.title">
                     </span>
                 </span>
-                <span ng-hide="DB.d.users[ DB.d.als[selected_al].user_id ].id == user.User.id;">
+                <span ng-hide="selected_al.user_id == user.User.id;">
                     <h4>
                         <button ng-show="isMobile" class="btn btn-link" ng-click="selected_al = null;"><i
                                 class="icon-backward"></i></button>
-                        {{DB.d.als[selected_al].title}}
+                        {{selected_al.title}}
                     </h4>
                 </span>
             </div>
