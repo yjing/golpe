@@ -135,20 +135,20 @@
                     </ul>
                 </li>
             </ul>
-            <div>
-                <a href="#" ng-click="toggleShowComments(selected_al);">
+            <div ng-init="showComments = false">
+                <a href="#" ng-click="showComments = !showComments">
                     <strong>Comments</strong>
                     <span class="badge"
                           ng-show="selected_al.comments != null && selected_al.comments.length"
                           style="float: right">
                         {{selected_al.comments.length}}
                     </span>
-                    <i class="icon-circle-arrow-right" ng-hide="showComments(selected_al);"></i>
-                    <i class="icon-circle-arrow-down" ng-show="showComments(selected_al);"></i>
+                    <i class="icon-circle-arrow-right" ng-hide="showComments"></i>
+                    <i class="icon-circle-arrow-down" ng-show="showComments"></i>
                 </a>
             </div>
-            <ul>
-                <li ng-show="(selected_al.comments == null || selected_al.comments.length == 0);">
+            <ul ng-show="showComments">
+                <li ng-show="showComments && (selected_al.comments == null || selected_al.comments.length == 0);">
                     <div class="selector"><em>No Comments yet...</em></div>
                 </li>
                 <li ng-repeat="c in selected_al.comments">
