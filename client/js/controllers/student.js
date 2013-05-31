@@ -54,6 +54,18 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
         return $scope.selected_al_id == id ? 'active' : '';
     };
 
+    // SHOW IMAGE
+    $scope.openImage = function () {
+        $scope.imageIsOpen = true;
+    };
+    $scope.closeImage = function () {
+        $scope.imageIsOpen = false;
+    };
+    $scope.optsImage = {
+        backdropFade: true,
+        dialogFade:true
+    };
+
     // TOP BAR
     $rootScope.top_bar = {
         page_title:'Activity Logs',
