@@ -29,6 +29,11 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
         database.createTable('media', 'id', {
             als: { table:'als', fkey:'activity_log_id' }
         }, {});
+        database.createTable('user', 'id', {
+            als: { table:'als', fkey:'user_id' },
+            media: { table:'media', fkey:'user_id' },
+            comments: { table:'comments', fkey:'user_id' }
+        }, {});
 
         // GENERAL FUNCTIONS
         $rootScope.info = function () {

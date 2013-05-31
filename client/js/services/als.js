@@ -1,4 +1,4 @@
-app.factory('als_db',function (database, comments_db, media_db) {
+app.factory('als_db',function (database, comments_db, media_db, user_db) {
     return new function () {
         this.insertAls = function (d, mode) {
             var ret = [];
@@ -35,7 +35,11 @@ app.factory('als_db',function (database, comments_db, media_db) {
                 }
                 delete al['Media'];
             }
-            delete al['User'];
+            var user;
+            if(angular.isDefined(al['User'])) {
+                user = user_db.insertuser(al['User']);
+                delete al['User'];
+            }
 
             // MANAGE MODES
             if(angular.isDefined(mode)) {
@@ -67,6 +71,9 @@ app.factory('als_db',function (database, comments_db, media_db) {
             }
             if(angular.isDefined(media)) {
                 al.media = media;
+            }
+            if(angular.isDefined(user)) {
+                al.user = user;
             }
             return al;
         }
