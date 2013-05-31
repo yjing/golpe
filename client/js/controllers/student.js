@@ -14,9 +14,8 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
                 false, // RELOAD
                 'all', // MODE
                 function (d, h) {                // SUCCESS
-                    for (var i = 0; i < d.length; i++) {
-                        $scope.data.push(angular.copy(d[i]));
-                    }
+
+                    $scope.data = database.select('als',[],3);
 
                     if (angular.isDefined($scope.selected_al_id)
                         && $scope.selected_al_id != null
@@ -25,9 +24,7 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
                         als.get(
                             $scope.selected_al_id,
                             function (datum, h) {    // SUCCESS
-                                console.log("TEST");
-                                console.log(database.select('als', [], 3));
-                                $scope.selected_al = datum;
+                                $scope.selected_al = database.get('als', $scope.selected_al_id, 2);
                             }
                         );
                     }
@@ -49,9 +46,7 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
             true,
             'all',
             function (d, h) {    // SUCCESS
-                for (var i = 0; i < d.length; i++) {
-                    $scope.data.push(angular.copy(d[i]));
-                }
+                $scope.data = database.select('als',[],3);
             }
         );
     };
