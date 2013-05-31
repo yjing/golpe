@@ -15,7 +15,11 @@ app.factory('media_db', function(database){
                 status = 'complete';
             }
 
-            delete medium['User'];
+            if(angular.isDefined(medium['User'])) {
+                var user = users_db.insertUser(medium['User']);
+                medium.user = user;
+                delete medium['User'];
+            }
 
             if(target_type == 'al') {
                 medium.activity_log_id = target_id;
