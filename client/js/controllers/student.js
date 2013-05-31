@@ -17,7 +17,7 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
                     $scope.data = d;
                     if (angular.isDefined($scope.selected_al_id)
                         && $scope.selected_al_id != null
-                        && !angular.isString($scope.selected_al_id)) {
+                        ) {
 
                         als.get(
                             $scope.selected_al_id,
