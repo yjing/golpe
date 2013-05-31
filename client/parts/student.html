@@ -104,23 +104,23 @@
                     </span>
                 </li>
             </ul>
-            <div>
-                <a href="#" ng-click="toggleShowMedia(selected_al);">
+            <div ng-init="showMedia = false">
+                <a href="#" ng-click="showMedia = true">
                     <strong>Media</strong>
                     <span class="badge"
                           ng-show="selected_al.media != null && selected_al.media.length > 0;"
                           style="float: right">
                         {{selected_al.media.length}}
                     </span>
-                    <i class="icon-circle-arrow-right" ng-hide="showMedia(selected_al);"></i>
-                    <i class="icon-circle-arrow-down" ng-show="showMedia(selected_al);"></i>
+                    <i class="icon-circle-arrow-right" ng-hide="showMedia"></i>
+                    <i class="icon-circle-arrow-down" ng-show="showMedia"></i>
                 </a>
             </div>
             <ul>
-                <li ng-show="(selected_al.media == null || selected_al.media.length == 0);">
+                <li ng-show="showMedia && (selected_al.media == null || selected_al.media.length == 0);">
                     <div class="selector"><em>No Media present...</em></div>
                 </li>
-                <li ng-show="(selected_al.media != null && selected_al.media.length > 0);">
+                <li ng-show="showMedia && (selected_al.media != null && selected_al.media.length > 0);">
                     <ul class="thumbnails">
                         <li ng-repeat="m in selected_al.media" class="span3" style="margin: 3px">
                             <div class="thumbnail" ng-click="download(m);" class="clickable">
