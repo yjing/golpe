@@ -1,4 +1,7 @@
-app.service('busy', function(resources){
+app.service('busy', function($rootScope){
+
+    $rootScope.BUSY = this;
+
     var BUSY_CLASS_BUSY = "busy";
     var BUSY_CLASS_NOT_BUSY = "";
 
