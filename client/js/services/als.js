@@ -64,6 +64,7 @@ app.factory('als_db',function (database, comments_db, media_db, users_db) {
 
             // INSERT IN DB
             database.insert('als', al['id'], al);
+            al = database.get('als', al['id'], 2);
 
             // ADD EVENTUAL ASSOCIATION TO RETURNED DATA
             if(angular.isDefined(comments)) {
