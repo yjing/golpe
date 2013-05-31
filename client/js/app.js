@@ -18,6 +18,40 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
     $locationProvider.html5Mode(true).hashPrefix('!');
 }).run(function ($rootScope) {
 
+        // GENERAL FUNCTIONS
+        $rootScope.info = function () {
+            $rootScope.toggleMenu();
+        }
+
+        $rootScope.help = function () {
+            $rootScope.toggleMenu();
+        }
+
+        $rootScope.logout = function () {
+            $rootScope.toggleMenu();
+            BusyService.busy(true);
+
+            $rootScope.user = auth.logout();
+            $rootScope.user.$then(
+                function () {
+                    console.log($rootScope.user);
+                    BusyService.busy(false);
+                    $location.url('/client/login');
+                },
+                function () {
+                    BusyService.busy(false);
+                    $location.url('/client/login');
+                }
+            )
+        }
+
+        $rootScope.handleError = function (err_data) {
+            if (err_data.status == 401 && err_data.message == 'NO-LOGGED') {
+                $location.url('/client/login');
+                return true;
+            }
+            return false;
+        }
         $rootScope.windowWidth = $(window).width();
         $rootScope.isMobile = $rootScope.windowWidth < 767;
         $(window).resize(function () {

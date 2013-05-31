@@ -1,4 +1,4 @@
-app.service('als', function(resources, busy){
+app.service('als', function($rootScope, resources, busy){
     this.all = function(success, error){
         busy.busy(true);
         resources.Als.all(
@@ -12,7 +12,7 @@ app.service('als', function(resources, busy){
             },
             function (e) {
                 busy.busy(false);
-                if(angular.isDefined(error)) {
+                if(!$rootScope.error(e) && angular.isDefined(error)) {
                     error(e);
                 }
             }

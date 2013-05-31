@@ -11,7 +11,6 @@ function StudentCtrl($scope, $rootScope, $location, auth, als){
                     console.log("DOWN");
                 },
                 function(e) {
-                    $rootScope.error(e);
                 }
             );
         }
