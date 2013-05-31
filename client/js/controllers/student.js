@@ -10,8 +10,16 @@ function StudentCtrl($scope, $rootScope, $location, auth, als, database){
                 false,                          // RELOAD
                 'all',                          // MODE
                 function(d, h) {                // SUCCESS
-                    console.log("HERE");
-                    console.log(database.select('als', [], 2));
+                    if(angular.isArray(d) && d.length > 0) {
+                        als.get(
+                            d[0].id,
+                            function(d, h) {
+                                console.log(d);
+                            },
+                            function(e) {
+                            }
+                        );
+                    }
                 },
                 function(e) {                   // ERROR
                 }

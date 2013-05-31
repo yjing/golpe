@@ -29,7 +29,7 @@ app.service('resources', function($resource){
             method:'GET',
             isArray:true
         },
-        load:{
+        get:{
             method:'GET',
             isArray:false
         },

@@ -64,7 +64,7 @@ app.factory('als_db',function (database, comments_db, media_db) {
             }
             return al;
         }
-    }
+    };
 }).service('als', function ($rootScope, als_db, database, resources, busy) {
 
         var present_modes = [];
@@ -100,6 +100,27 @@ app.factory('als_db',function (database, comments_db, media_db) {
                 function (e) {
                     busy.busy(false);
                     if (!$rootScope.error(e) && angular.isDefined(error)) {
+                        error(e);
+                    }
+                }
+            );
+        }
+
+        this.get = function(id, success, error){
+            busy.busy(true);
+            resources.get(
+                { 'id':id }, //PARAMS
+                {}, //DATA
+                function (d, h) {
+                    busy.busy(false);
+
+                    if(angular.isDefined(success)) {
+                        success(d, h);
+                    }
+                },
+                function (e) {
+                    busy.busy(false);
+                    if(!$rootScope.error(e) && angular.isDefined(error)) {
                         error(e);
                     }
                 }
