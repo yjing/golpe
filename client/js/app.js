@@ -16,7 +16,19 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
     // configure html5 to get links working
     // If you don't do this, you URLs will be base.com/#/home rather than base.com/home
     $locationProvider.html5Mode(true).hashPrefix('!');
-}).run(function ($rootScope) {
+}).run(function ($rootScope, database) {
+
+        // DATABASE
+        database.createTable('als', 'id', {}, {
+            comments: { table:'comments', fkey:'activity_log_id' },
+            media: { table:'media', fkey:'activity_log_id' }
+        });
+        database.createTable('comments', 'id', {
+            als: { table:'als', fkey:'activity_log_id' }
+        }, {});
+        database.createTable('media', 'id', {
+            als: { table:'als', fkey:'activity_log_id' }
+        }, {});
 
         // GENERAL FUNCTIONS
         $rootScope.info = function () {
