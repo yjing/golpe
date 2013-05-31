@@ -17,8 +17,8 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
                     $scope.data = d;
                     if (angular.isDefined($scope.selected_al_id)
                         && $scope.selected_al_id != null
-                        && angular.isNumber($scope.selected_al_id)) {
-                        console.log('loading');
+                        && !angular.isString($scope.selected_al_id)) {
+
                         als.get(
                             $scope.selected_al_id,
                             function (d, h) {    // SUCCESS
