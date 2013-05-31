@@ -1,4 +1,4 @@
-app.factory('als_db',function (database, comments_db) {
+app.factory('als_db',function (database, comments_db, media_db) {
     return new function () {
         this.insertAls = function (d, mode) {
             var ret = [];
@@ -13,6 +13,8 @@ app.factory('als_db',function (database, comments_db) {
 
         this.insertAl = function (al, mode) {
             var complete = false;
+
+            // MANAGE ASSOCIATIONS
             var comments;
             if(angular.isDefined(al['Comment'])) {
                 if(angular.isDefined(al['Comment']['content'])) {
@@ -21,9 +23,17 @@ app.factory('als_db',function (database, comments_db) {
                 comments = comments_db.insertComments(al['Comment']);
                 delete al['Comment'];
             }
-            delete al['Media'];
+            var media;
+            if(angular.isDefined(al['Media'])) {
+                if(angular.isDefined(al['Media']['filename'])) {
+                    complete = true;
+                }
+                media = media_db.insertMedia(al['Media']);
+                delete al['Media'];
+            }
             delete al['User'];
 
+            // MANAGE MODES
             var existing = database.get('als', al['id'], 0);
             if (angular.isDefined(existing)) {
                 var modes = existing.modes;
@@ -35,14 +45,22 @@ app.factory('als_db',function (database, comments_db) {
                 al.modes = [mode];
             }
 
+            // SET COMPLETENESS
             if(complete) {
                 al.status = 'complete';
             } else {
                 al.status = 'partial';
             }
+
+            // INSERT IN DB
             al = database.insert('als', al['id'], al);
+
+            // ADD EVENTUAL ASSOCIATION TO RETURNED DATA
             if(angular.isDefined(comments)) {
                 al.comments = comments;
+            }
+            if(angular.isDefined(media)) {
+                al.media = media;
             }
             return al;
         }

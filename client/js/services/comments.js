@@ -12,6 +12,7 @@ app.factory('comments_db', function(database){
         this.insertComment = function(comment, target_id) {
             delete comment['Media'];
             comment.status = 'partial';
+            comment.activity_log_id = target_id;
             return database.insert('comments', comment['id'], comment);
         }
     }
