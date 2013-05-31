@@ -131,7 +131,7 @@
                 <li ng-show="showMedia && (selected_al.media != null && selected_al.media.length > 0);">
                     <ul class="thumbnails">
                         <li ng-repeat="m in selected_al.media" class="span3" style="margin: 3px">
-                            <div class="thumbnail" ng-click="download(m);" class="clickable">
+                            <div class="thumbnail clickable" ng-click="download(m);">
                                 <img src="/media/download/{{m.id}}?thumb=BIG" alt="{{m.filename}}"
                                      ng-show="m['content-type'].indexOf('image/') == 0" ng-click="openImage(m.id)">
                                 <img src="{{getThumbUrl(m);}}" alt="{{m.filename}}"
@@ -166,7 +166,7 @@
                     <p class="selector"><strong>on:</strong> {{c.modified}}</p>
                     <ul class="thumbnails">
                         <li ng-repeat="m in c.media" class="span3" style="margin: 3px">
-                            <div class="thumbnail" ng-click="download(m);" class="clickable">
+                            <div class="thumbnail clickable" ng-click="download(m);" class="clickable">
                                 <img src="/media/download/{{m.id}}?thumb=BIG" alt="{{m.filename}}"
                                      ng-show="m['content-type'].indexOf('image/') == 0" ng-click="openImage(m.id)">
                                 <img src="{{getThumbUrl(m);}}" alt="{{m.filename}}"
