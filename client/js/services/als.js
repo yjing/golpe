@@ -49,7 +49,7 @@ app.factory('als_db',function (database, comments_db, media_db, users_db) {
                     if (modes.indexOf(mode) < 0) {
                         modes.push(mode);
                     }
-                    al.modes = angular.copy(modes);
+                    al.modes = modes;
                 } else {
                     al.modes = [mode];
                 }
@@ -63,7 +63,7 @@ app.factory('als_db',function (database, comments_db, media_db, users_db) {
             }
 
             // INSERT IN DB
-            al = database.insert('als', al['id'], al);
+//            al = database.insert('als', al['id'], al);
 
             // ADD EVENTUAL ASSOCIATION TO RETURNED DATA
             if(angular.isDefined(comments)) {
