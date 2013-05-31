@@ -11,6 +11,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, als, database){
                 'all',                          // MODE
                 function(d, h) {                // SUCCESS
                     als.all(
+                        false,
                         'mine',
                         function(d, h) {
                             console.log(d);

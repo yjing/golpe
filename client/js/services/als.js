@@ -49,7 +49,7 @@ app.factory('als_db',function (database) {
 
             busy.busy(true);
             resources.Als.all(
-                { mode:mode},
+                { mode:mode },
                 function (d, h) {
                     busy.busy(false);
 
