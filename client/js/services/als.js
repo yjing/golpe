@@ -17,18 +17,22 @@ app.factory('als_db',function (database, comments_db, media_db) {
             // MANAGE ASSOCIATIONS
             var comments;
             if(angular.isDefined(al['Comment'])) {
-                if(angular.isDefined(al['Comment']['content'])) {
-                    complete = true;
+                if(angular.isArray(al['Comment']) && al['Comment'].length > 0) {
+                    comments = comments_db.insertComments(al['Comment'], al['id']);
+                    if(angular.isDefined(comments[0]['content'])) {
+                        complete = true;
+                    }
                 }
-                comments = comments_db.insertComments(al['Comment'], al['id']);
                 delete al['Comment'];
             }
             var media;
             if(angular.isDefined(al['Media'])) {
-                if(angular.isDefined(al['Media']['filename'])) {
-                    complete = true;
+                if(angular.isArray(al['Media']) && al['Media'].length > 0) {
+                    media = media_db.insertMedia(al['Media'], 'al', al['id']);
+                    if(angular.isDefined(media[0]['filename'])) {
+                        complete = true;
+                    }
                 }
-                media = media_db.insertMedia(al['Media'], 'al', al['id']);
                 delete al['Media'];
             }
             delete al['User'];
