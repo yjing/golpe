@@ -1,4 +1,4 @@
-app.factory('als_db',function (database) {
+app.factory('als_db',function (database, comments_db) {
     return new function () {
         this.insertAls = function (d, mode) {
             var ret = [];
