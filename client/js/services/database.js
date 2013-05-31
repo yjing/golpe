@@ -136,7 +136,7 @@ function Table(name, pkey, blgTo, hsMany) {
         if(id == 'DB_TABLE_AUTO_ID') {
             id = lastId++;
         }
-        data[id] = obj;
+        data[id] = angular.copy(obj);
         return angular.copy(obj);
     }
     this.get = function (id, recursive) {
