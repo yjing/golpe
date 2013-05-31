@@ -7,8 +7,9 @@ function StudentCtrl($scope, $rootScope, $location, auth, als, database){
                 return;
             }
             als.all(
-                'all',
-                function(d, h) {
+                false,                          // RELOAD
+                'all',                          // MODE
+                function(d, h) {                // SUCCESS
                     als.all(
                         'mine',
                         function(d, h) {
@@ -18,7 +19,7 @@ function StudentCtrl($scope, $rootScope, $location, auth, als, database){
                         }
                     );
                 },
-                function(e) {
+                function(e) {                   // ERROR
                 }
             );
         }

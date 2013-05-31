@@ -1,5 +1,5 @@
 app.factory('als_db',function (database) {
-    return new function() {
+    return new function () {
         this.insertAls = function (d, mode) {
             var ret = [];
             if (angular.isArray(d)) {
@@ -29,26 +29,44 @@ app.factory('als_db',function (database) {
             return database.insert('als', al['id'], al);
         }
     }
-}).service('als', function ($rootScope, als_db, resources, busy) {
-    this.all = function (mode, success, error) {
-        busy.busy(true);
-        resources.Als.all(
-            { mode:mode},
-            function (d, h) {
-                busy.busy(false);
+}).service('als', function ($rootScope, als_db, database, resources, busy) {
 
-                d = als_db.insertAls(d, mode);
+        var present_modes = [];
+
+        this.all = function (reload, mode, success, error) {
+
+            if(!reload && present_modes.indexOf(mode) > 0) {
+                var als = database.select('als', [
+                    { field:'mode', value:mode }
+                ], 0);
 
                 if (angular.isDefined(success)) {
-                    success(d, h);
+                    success(als);
                 }
-            },
-            function (e) {
-                busy.busy(false);
-                if (!$rootScope.error(e) && angular.isDefined(error)) {
-                    error(e);
-                }
+                return;
             }
-        );
-    }
-});
+
+            busy.busy(true);
+            resources.Als.all(
+                { mode:mode},
+                function (d, h) {
+                    busy.busy(false);
+
+                    d = als_db.insertAls(d, mode);
+                    if(!present_modes.indexOf(mode)) {
+                        present_modes.push(mode);
+                    }
+
+                    if (angular.isDefined(success)) {
+                        success(d, h);
+                    }
+                },
+                function (e) {
+                    busy.busy(false);
+                    if (!$rootScope.error(e) && angular.isDefined(error)) {
+                        error(e);
+                    }
+                }
+            );
+        }
+    });
