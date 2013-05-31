@@ -24,7 +24,7 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
                             $scope.selected_al_id,
                             function (datum, h) {    // SUCCESS
                                 console.log($scope.data);
-                                $scope.selected_al = datum;
+//                                $scope.selected_al = datum;
                             }
                         );
                     }
