@@ -29,7 +29,7 @@ app.service('als_db',function (database) {
         return database.insert('als', al['id'], al);
     }
 
-}).service('als', function ($rootScope, als_db, resources, busy) {
+}).factory('als', function ($rootScope, als_db, resources, busy) {
     this.all = function (mode, success, error) {
         busy.busy(true);
         resources.Als.all(
@@ -51,4 +51,5 @@ app.service('als_db',function (database) {
             }
         );
     }
+    return this;
 });
