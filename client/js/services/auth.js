@@ -1,4 +1,4 @@
-app.service('auth', function(resources, busy){
+app.service('auth', function(resources2, busy){
 
     var logged_user;
     
