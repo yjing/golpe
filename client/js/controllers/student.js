@@ -18,6 +18,10 @@ function StudentCtrl($scope, $rootScope, $location, auth, als, database){
         }
     );
 
+    $scope.go = function (id) {
+        $location.url('/client/student/' + id);
+    };
+
     $scope.reload = function () {
         als.all(
             true,

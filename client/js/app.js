@@ -7,7 +7,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
         templateUrl:'/client/parts/login.html',
         controller:"LoginCtrl"
     });
-    $routeProvider.when('/client/student', {
+    $routeProvider.when('/client/student/:id', {
         templateUrl:'/client/parts/student.html',
         controller:"StudentCtrl"
     });

@@ -12,7 +12,7 @@
                     <input type="text" placeholder="Filter Activity Logs..." class="edit-field" ng-model="searchText">
                 </li>
                 <li ng-repeat="item in data | filter:searchText | orderBy:'-modified'" ng-class="isSelectedElem(p.id)">
-                    <a href="#" ng-click="selectElem(p.id);">
+                    <a href="#" ng-click="go(item.id);">
                         <span class="label label-important" ng-show="item.question == true">Q</span>
                         {{item.title}} <i ng-show="isEditElem(p.id)" class="icon-pencil"></i><br>
                         <small>posted: {{item.modified_human}}
