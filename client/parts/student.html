@@ -132,8 +132,9 @@
                     <ul class="thumbnails">
                         <li ng-repeat="m in selected_al.media" class="span3" style="margin: 3px">
                             <div class="thumbnail clickable" ng-click="download(m);">
-                                <img src="/media/download/{{m.id}}?thumb=BIG" alt="{{m.filename}}"
-                                     ng-show="m['content-type'].indexOf('image/') == 0" ng-click="openImage(m.id)">
+                                <!--<img src="/media/download/{{m.id}}?thumb=BIG" alt="{{m.filename}}"-->
+                                     <!--ng-show="m['content-type'].indexOf('image/') == 0" ng-click="openImage(m.id)">-->
+
                                 <img src="{{getThumbUrl(m);}}" alt="{{m.filename}}"
                                      ng-hide="m['content-type'].indexOf('image/') == 0"
                                      ng-click="download(m['id']);">
@@ -168,8 +169,8 @@
                     <ul class="thumbnails">
                         <li ng-repeat="m in c.media" class="span3" style="margin: 3px">
                             <div class="thumbnail clickable" ng-click="download(m);" class="clickable">
-                                <img src="/media/download/{{m.id}}?thumb=BIG" alt="{{m.filename}}"
-                                     ng-show="m['content-type'].indexOf('image/') == 0" ng-click="openImage(m.id)">
+                                <!--<img src="/media/download/{{m.id}}?thumb=BIG" alt="{{m.filename}}"-->
+                                     <!--ng-show="m['content-type'].indexOf('image/') == 0" ng-click="openImage(m.id)">-->
 
                                 <img src="{{getThumbUrl(m);}}" alt="{{m.filename}}"
                                      ng-hide="m['content-type'].indexOf('image/') == 0"
