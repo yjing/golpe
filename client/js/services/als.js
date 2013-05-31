@@ -51,5 +51,5 @@ app.service('als_db',function (database) {
             }
         );
     }
-    return this;
+//    return this;
 });
