@@ -87,7 +87,7 @@ app.factory('als_db',function (database, comments_db, media_db, users_db) {
             if(!reload && present_modes.indexOf(mode) >= 0) {
                 var als = database.select('als', [
                     { field:'modes', value:mode }
-                ], 0);
+                ], 3);
 
                 if (angular.isDefined(success)) {
                     success(als);
