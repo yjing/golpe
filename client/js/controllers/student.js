@@ -14,7 +14,10 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
                 false, // RELOAD
                 'all', // MODE
                 function (d, h) {                // SUCCESS
-                    $scope.data = angular.copy(d);
+                    for (var i = 0; i < d.length; i++) {
+                        $scope.data.push(angular.copy(d[i]));
+                    }
+
                     if (angular.isDefined($scope.selected_al_id)
                         && $scope.selected_al_id != null
                         ) {
@@ -46,7 +49,9 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
             true,
             'all',
             function (d, h) {    // SUCCESS
-                $scope.data = d;
+                for (var i = 0; i < d.length; i++) {
+                    $scope.data.push(angular.copy(d[i]));
+                }
             }
         );
     };
