@@ -13,7 +13,7 @@
                 </li>
                 <li ng-repeat="item in data | filter:searchText | orderBy:'-modified'" ng-class="isSelectedElem(p.id)">
                     <a href="#" ng-click="selectElem(p.id);">
-                        <i ng-show="item.question == true" class="icon-question-sign"></i>
+                        <span class="label label-important" ng-show="item.question == true">Q</span>
                         {{item.title}} <i ng-show="isEditElem(p.id)" class="icon-pencil"></i><br>
                         <small>posted: {{item.modified_human}}
                         <span class="label label-info" ng-show="item.media.length > 0">M:{{item.media.length}}</span>
