@@ -42,18 +42,18 @@ app.factory('als_db',function (database, comments_db, media_db, users_db) {
             }
 
             // MANAGE MODES
-//            if(angular.isDefined(mode)) {
-//                var existing = database.get('als', al['id'], 0);
-//                if (angular.isDefined(existing)) {
-//                    var modes = existing.modes;
-//                    if (modes.indexOf(mode) < 0) {
-//                        modes.push(mode);
-//                    }
-//                    al.modes = modes;
-//                } else {
-//                    al.modes = [mode];
-//                }
-//            }
+            if(angular.isDefined(mode)) {
+                var existing = angular.copy(database.get('als', al['id'], 0));
+                if (angular.isDefined(existing)) {
+                    var modes = existing.modes;
+                    if (modes.indexOf(mode) < 0) {
+                        modes.push(mode);
+                    }
+                    al.modes = modes;
+                } else {
+                    al.modes = [mode];
+                }
+            }
 
             // SET COMPLETENESS
             if(complete) {
