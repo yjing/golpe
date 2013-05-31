@@ -33,7 +33,7 @@
             </ul>
             <div>
                 <a href="#" class="text-right" ng-init="new_al = false">
-                    <button ng-click="new_al = true" ng-hide="new_al" class="btn btn-success">New Activity Log</button>
+                    <button ng-click="new_al = true; go('new');" ng-hide="new_al" class="btn btn-success">New Activity Log</button>
                     <button ng-click="new_al = false" ng-show="new_al" class="btn btn-warning">Cancel New Activity Log</button>
                 </a>
             </div>
