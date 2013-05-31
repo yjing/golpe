@@ -96,6 +96,8 @@ class ActivityLogsController extends RESTController {
             if(count($result) == 0) {
                 throw new UnauthorizedException();
             }
+            
+            $result = $this->_formatDates($result, time(), array('created', 'modified'));
         }
         
         $this->_setResponseJSON($result);
