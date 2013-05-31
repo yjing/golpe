@@ -40,9 +40,11 @@ app.service('als', function($rootScope, database, resources, busy){
 
         var existing = database.get('als', al['id'], 0);
         if(angular.isDefined(existing)) {
-
-        } else {
-            al.mode
+            var modes = existing.modes;
+            if(modes.indexOf(mode) < 0) {
+                modes.push(mode);
+            }
+            al.modes = modes;
         }
         return database.insert('als', al['id'], al);
     }
