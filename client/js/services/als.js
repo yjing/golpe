@@ -61,10 +61,10 @@ app.factory('als_db',function (database, comments_db, media_db, users_db) {
 //            } else {
 //                al.status = 'partial';
 //            }
-//
-//            // INSERT IN DB
-//            al = database.insert('als', al['id'], al);
-//
+
+            // INSERT IN DB
+            al = database.insert('als', al['id'], al);
+
 //            // ADD EVENTUAL ASSOCIATION TO RETURNED DATA
 //            if(angular.isDefined(comments)) {
 //                al.comments = comments;
