@@ -19,12 +19,12 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
                         && $scope.selected_al_id != null
                         ) {
 
-//                        als.get(
-//                            $scope.selected_al_id,
-//                            function (datum, h) {    // SUCCESS
-//                                $scope.selected_al = datum;
-//                            }
-//                        );
+                        als.get(
+                            $scope.selected_al_id,
+                            function (datum, h) {    // SUCCESS
+                                $scope.selected_al = datum;
+                            }
+                        );
                     }
                 }
             );
