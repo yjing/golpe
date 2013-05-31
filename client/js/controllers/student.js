@@ -55,7 +55,8 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
     };
 
     // SHOW IMAGE
-    $scope.openImage = function () {
+    $scope.openImage = function (id) {
+        $scopeimageID = id;
         $scope.imageIsOpen = true;
     };
     $scope.closeImage = function () {

@@ -3,7 +3,7 @@
 
     <div modal="imageIsOpen" close="closeImage()" options="optsImage">
         <div class="modal-body">
-            Test
+            <img src="/media/download/{{imageID}}">
         </div>
         <div class="modal-footer">
             <button class="btn btn-warning cancel" ng-click="closeImage()">Cancel</button>
@@ -136,10 +136,9 @@
                         <li ng-repeat="m in selected_al.media" class="span3" style="margin: 3px">
                             <div class="thumbnail" ng-click="download(m);" class="clickable">
                                 <img src="/media/download/{{m.id}}?thumb=BIG" alt="{{m.filename}}"
-                                     ng-show="m['content-type'].indexOf('image/') == 0" ng-click="openImage()">
-                                <img src="{{getThumbUrl(DB.d.media[m]['content-type']);}}" alt="{{DB.d.media[m].filename}}"
-                                     ng-hide="DB.d.media[m]['content-type'].indexOf('image/') == 0">
-
+                                     ng-show="m['content-type'].indexOf('image/') == 0" ng-click="openImage(m.id)">
+                                <img src="{{getThumbUrl(m['content-type']);}}" alt="{{m.filename}}"
+                                     ng-hide="m['content-type'].indexOf('image/') == 0">
                                 <p>{{m.filename}}</p>
                             </div>
                         </li>
