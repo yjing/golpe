@@ -1,6 +1,6 @@
-app.service('alsdb',function (database) {
+app.service('als_db',function (database) {
 
-    var insertAls = function (d, mode) {
+    this.insertAls = function (d, mode) {
         var ret = [];
         if (angular.isArray(d)) {
             for (var i = 0; i < d.length; i++) {
@@ -11,7 +11,7 @@ app.service('alsdb',function (database) {
         return ret;
     }
 
-    var insertAl = function (al, mode) {
+    this.insertAl = function (al, mode) {
         delete al['Comment'];
         delete al['Media'];
         delete al['User'];
@@ -29,7 +29,7 @@ app.service('alsdb',function (database) {
         return database.insert('als', al['id'], al);
     }
 
-}).service('als', function ($rootScope, alsdb, resources, busy) {
+}).service('als', function ($rootScope, als_db, resources, busy) {
     this.all = function (mode, success, error) {
         busy.busy(true);
         resources.Als.all(
@@ -37,7 +37,7 @@ app.service('alsdb',function (database) {
             function (d, h) {
                 busy.busy(false);
 
-                d = alsdb.insertAls(d, mode);
+                d = als_db.insertAls(d, mode);
 
                 if (angular.isDefined(success)) {
                     success(d, h);
