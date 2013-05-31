@@ -136,7 +136,7 @@
                                      ng-show="m['content-type'].indexOf('image/') == 0" ng-click="openImage(m.id)">
                                 <img src="{{getThumbUrl(m);}}" alt="{{m.filename}}"
                                      ng-hide="m['content-type'].indexOf('image/') == 0"
-                                     ng-click="download(m.id);">
+                                     ng-click="download(m['id']);">
                                 <p>{{m.filename}}</p>
                             </div>
                         </li>
@@ -173,9 +173,8 @@
 
                                 <img src="{{getThumbUrl(m);}}" alt="{{m.filename}}"
                                      ng-hide="m['content-type'].indexOf('image/') == 0"
-                                     ng-click="download(m.id);">
+                                     ng-click="download(m['id']);">
                                 <p>{{m.filename}}</p>
-                                {{m.id}}
                             </div>
                         </li>
                     </ul>
