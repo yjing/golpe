@@ -23,7 +23,9 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
 }).run(function ($rootScope, database) {
 
         // DATABASE
-        database.createTable('als', 'id', {}, {
+        database.createTable('als', 'id', {
+            user: { table:'users', fkey:'user_id' }
+        }, {
             comments: { table:'comments', fkey:'activity_log_id' },
             media: { table:'media', fkey:'activity_log_id' }
         });
