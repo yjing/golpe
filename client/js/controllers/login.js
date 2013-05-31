@@ -3,6 +3,7 @@ function LoginCtrl($scope, $rootScope, $location, auth){
     auth.user(
         function (user){
             if(user != null) {
+                $rootScope.user = user;
                 $scope.redirectUser(user);
             }
         }
