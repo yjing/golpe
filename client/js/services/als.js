@@ -1,5 +1,5 @@
 app.factory('als_db',function (database) {
-    return function() {
+    return new function() {
         this.insertAls = function (d, mode) {
             var ret = [];
             if (angular.isArray(d)) {
