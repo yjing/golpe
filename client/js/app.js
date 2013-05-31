@@ -84,6 +84,50 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
             });
         });
 
+        // THUMBS HELPER
+        $rootScope.getThumbUrl = function (media) {
+            console.log(media);
+            if (angular.isDefined(media) && media['has_thumb']) {
+                return "/media/download/" + media['id'] + "?thumb=BIG";
+            } else {
+                switch (media['content-type']) {
+                    case "image/png":
+                        return "/client/img/default_thumbs/png.png";
+                        break;
+                    case "image/jpeg":
+                        return "/client/img/default_thumbs/jpeg.png";
+                        break;
+                    case "image/gif":
+                        return "/client/img/default_thumbs/gif.png";
+                        break;
+                    case "application/json":
+                        return "/client/img/default_thumbs/json.png";
+                        break;
+                    case "application/zip":
+                        return "/client/img/default_thumbs/zip.png";
+                        break;
+                    case "application/pdf":
+                        return "/client/img/default_thumbs/pdf.png";
+                        break;
+                    case "text/xml":
+                        return "/client/img/default_thumbs/xml.png";
+                        break;
+                    case "text/html":
+                        return "/client/img/default_thumbs/html.png";
+                        break;
+                    case "application/msword":
+                        return "/client/img/default_thumbs/doc.png";
+                        break;
+                    case "application/vnd.openxmlformats-officedocument":
+                        return "/client/img/default_thumbs/office.png";
+                        break;
+                    default:
+                        return "/client/img/default_thumbs/file.png";
+                        break;
+                }
+            }
+        }
+
     });
 
 function supports_html5_storage() {

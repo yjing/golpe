@@ -134,7 +134,7 @@
                             <div class="thumbnail" ng-click="download(m);" class="clickable">
                                 <img src="/media/download/{{m.id}}?thumb=BIG" alt="{{m.filename}}"
                                      ng-show="m['content-type'].indexOf('image/') == 0" ng-click="openImage(m.id)">
-                                <img src="{{getThumbUrl(m['content-type']);}}" alt="{{m.filename}}"
+                                <img src="{{getThumbUrl(m);}}" alt="{{m.filename}}"
                                      ng-hide="m['content-type'].indexOf('image/') == 0">
                                 <p>{{m.filename}}</p>
                             </div>
@@ -169,8 +169,8 @@
                             <div class="thumbnail" ng-click="download(m);" class="clickable">
                                 <img src="/media/download/{{m.id}}?thumb=BIG" alt="{{m.filename}}"
                                      ng-show="m['content-type'].indexOf('image/') == 0" ng-click="openImage(m.id)">
-                                <img src="{{getThumbUrl(DB.d.media[m]['content-type']);}}" alt="{{DB.d.media[m].filename}}"
-                                     ng-hide="DB.d.media[m]['content-type'].indexOf('image/') == 0">
+                                <img src="{{getThumbUrl(m);}}" alt="{{m.filename}}"
+                                     ng-hide="m['content-type'].indexOf('image/') == 0">
 
                                 <p>{{m.filename}}</p>
                             </div>
