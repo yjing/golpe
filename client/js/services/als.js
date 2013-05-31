@@ -28,7 +28,7 @@ app.factory('als_db',function (database, comments_db, media_db) {
                 if(angular.isDefined(al['Media']['filename'])) {
                     complete = true;
                 }
-                media = media_db.insertMedia(al['Media'], al['id']);
+                media = media_db.insertMedia(al['Media'], 'al', al['id']);
                 delete al['Media'];
             }
             delete al['User'];
