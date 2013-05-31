@@ -135,28 +135,28 @@
                     </ul>
                 </li>
             </ul>
-            <div ng-show="isSelectedAl();">
+            <div>
                 <a href="#" ng-click="toggleShowComments(selected_al);">
                     <strong>Comments</strong>
                     <span class="badge"
-                          ng-show="DB.m.als[selected_al].comments != null && DB.m.als[selected_al].comments.length"
+                          ng-show="selected_al.comments != null && selected_al.comments.length"
                           style="float: right">
-                        {{DB.m.als[selected_al].comments.length}}
+                        {{selected_al.comments.length}}
                     </span>
                     <i class="icon-circle-arrow-right" ng-hide="showComments(selected_al);"></i>
                     <i class="icon-circle-arrow-down" ng-show="showComments(selected_al);"></i>
                 </a>
             </div>
             <ul>
-                <li ng-show="showComments(selected_al) && (DB.m.als[selected_al].comments == null || DB.m.als[selected_al].comments.length == 0);">
+                <li ng-show="(selected_al.comments == null || selected_al.comments.length == 0);">
                     <div class="selector"><em>No Comments yet...</em></div>
                 </li>
-                <li ng-repeat="c in DB.m.als[selected_al].comments" ng-show="showComments(selected_al);">
-                    <p class="selector"><strong>{{DB.d.users[DB.d.comments[c].user_id].username}} says:</strong></p>
+                <li ng-repeat="c in selected_al.comments">
+                    <p class="selector"><strong>{{selected_al.user.username}} says:</strong></p>
 
-                    <p class="selector">{{DB.d.comments[c].content}}</p>
+                    <p class="selector">{{c.content}}</p>
 
-                    <p class="selector"><strong>on:</strong> {{DB.d.comments[c].modified}}</p>
+                    <p class="selector"><strong>on:</strong> {{c.modified}}</p>
                     <ul class="thumbnails">
                         <li ng-repeat="m in DB.m.comments[c].media" class="span3" style="margin: 3px">
                             <div class="thumbnail" ng-click="download(m);" class="clickable">
