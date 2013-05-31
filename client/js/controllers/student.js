@@ -54,6 +54,10 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
         return $scope.selected_al_id == id ? 'active' : '';
     };
 
+    $scope.download = function (id) {
+        window.location.href = '/media/download/' + id + '?download=true';
+    };
+
     // SHOW IMAGE
     $scope.openImage = function (id) {
         $scope.imageID = id;
