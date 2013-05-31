@@ -40,5 +40,144 @@
         </div>
     </div>
 
+    <div class="span8" ng-hide="selected_al_id != 'new';">
+        <div class="menu shadow" ng-show="selected(selected_al_id);">
+            <div>
+                <span ng-show="selected_al.user_id == user.id;">
+
+                    <h4 class="clickable" ng-hide="DB.m.als[selected_al].mode == 'edit'"
+                        ng-click="editAl(selected_al);">
+                        <button ng-show="isMobile" class="btn btn-link" ng-click="selected_al = null;"><i
+                                class="icon-backward"></i></button>
+                        {{DB.d.als[selected_al].title}} <i class="icon-pencil"></i>
+                        <!--{{DB.d.als[selected_al].modified}} / {{DB.d.als[selected_al].created}}-->
+                    </h4>
+                    <!-- EDIT MODE -->
+                    <span ng-show="DB.m.als[selected_al].mode == 'edit'">
+                        <input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge"
+                               ng-model="DB.d.als[selected_al].title">
+                    </span>
+                </span>
+                <span ng-hide="DB.d.users[ DB.d.als[selected_al].user_id ].id == user.User.id;">
+                    <h4>
+                        <button ng-show="isMobile" class="btn btn-link" ng-click="selected_al = null;"><i
+                                class="icon-backward"></i></button>
+                        {{DB.d.als[selected_al].title}}
+                    </h4>
+                </span>
+            </div>
+            <ul>
+                <li>
+                    <p class="selector" ng-hide="DB.m.als[selected_al].mode == 'edit'">
+                        {{DB.d.als[selected_al].content}}
+                    </p>
+                    <!-- EDIT MODE -->
+                    <textarea class="edit-field" ng-model="DB.d.als[selected_al].content"
+                              ng-show="DB.m.als[selected_al].mode == 'edit'"></textarea>
+                </li>
+            </ul>
+            <div ng-show="DB.m.als[selected_al].mode == 'edit'">
+                <span>
+                    <div class="btn-group">
+                        <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveAl(selected_al);">
+                            Save
+                        </button>
+                        <button ng-disabled="" type="button" class="btn" ng-click="cancelEditAl(selected_al);">Cancel
+                        </button>
+                    </div>
+                </span>
+            </div>
+            <div ng-show="isSelectedAl();">
+                <a href="#" ng-click="toggleShowInfo(selected_al);">
+                    <strong>Info</strong>
+                    <i class="icon-circle-arrow-right" ng-hide="showInfo(selected_al);"></i>
+                    <i class="icon-circle-arrow-down" ng-show="showInfo(selected_al);"></i>
+                </a>
+            </div>
+            <ul ng-show="showInfo(selected_al);">
+                <li>
+                    <span class="selector">
+                        <p><strong>Author:</strong> {{DB.d.users[ DB.d.als[selected_al].user_id ].username}}<span
+                                ng-show="DB.d.users[ DB.d.als[selected_al].user_id ].id == user.User.id;"> ( You )</span>
+                        </p>
+                        <p><strong>Created:</strong> {{DB.d.als[selected_al].created}}<br></p>
+                        <p><strong>Modified:</strong> {{DB.d.als[selected_al].modified}}</p>
+                    </span>
+                </li>
+            </ul>
+            <div ng-show="isSelectedAl();">
+                <a href="#" ng-click="toggleShowMedia(selected_al);">
+                    <strong>Media</strong>
+                    <span class="badge"
+                          ng-show="DB.m.als[selected_al].media != null && DB.m.als[selected_al].media.length > 0;"
+                          style="float: right">
+                        {{DB.m.als[selected_al].media.length}}
+                    </span>
+                    <i class="icon-circle-arrow-right" ng-hide="showMedia(selected_al);"></i>
+                    <i class="icon-circle-arrow-down" ng-show="showMedia(selected_al);"></i>
+                </a>
+            </div>
+            <ul>
+                <li ng-show="showMedia(selected_al) && (DB.m.als[selected_al].media == null || DB.m.als[selected_al].media.length == 0);">
+                    <div class="selector"><em>No Media present...</em></div>
+                </li>
+                <li ng-show="showMedia(selected_al) && (DB.m.als[selected_al].media != null && DB.m.als[selected_al].media.length > 0);">
+                    <ul class="thumbnails">
+                        <li ng-repeat="m in DB.m.als[selected_al].media" class="span3" style="margin: 3px">
+                            <div class="thumbnail" ng-click="download(m);" class="clickable">
+                                <img src="/media/download/{{m}}?thumb=BIG" alt="{{DB.d.media[m].filename}}"
+                                     ng-show="DB.d.media[m]['content-type'].indexOf('image/') == 0">
+                                <img src="{{getThumbUrl(DB.d.media[m]['content-type']);}}" alt="{{DB.d.media[m].filename}}"
+                                     ng-hide="DB.d.media[m]['content-type'].indexOf('image/') == 0">
+
+                                <p>{{DB.d.media[m].filename}}</p>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div ng-show="isSelectedAl();">
+                <a href="#" ng-click="toggleShowComments(selected_al);">
+                    <strong>Comments</strong>
+                    <span class="badge"
+                          ng-show="DB.m.als[selected_al].comments != null && DB.m.als[selected_al].comments.length"
+                          style="float: right">
+                        {{DB.m.als[selected_al].comments.length}}
+                    </span>
+                    <i class="icon-circle-arrow-right" ng-hide="showComments(selected_al);"></i>
+                    <i class="icon-circle-arrow-down" ng-show="showComments(selected_al);"></i>
+                </a>
+            </div>
+            <ul>
+                <li ng-show="showComments(selected_al) && (DB.m.als[selected_al].comments == null || DB.m.als[selected_al].comments.length == 0);">
+                    <div class="selector"><em>No Comments yet...</em></div>
+                </li>
+                <li ng-repeat="c in DB.m.als[selected_al].comments" ng-show="showComments(selected_al);">
+                    <p class="selector"><strong>{{DB.d.users[DB.d.comments[c].user_id].username}} says:</strong></p>
+
+                    <p class="selector">{{DB.d.comments[c].content}}</p>
+
+                    <p class="selector"><strong>on:</strong> {{DB.d.comments[c].modified}}</p>
+                    <ul class="thumbnails">
+                        <li ng-repeat="m in DB.m.comments[c].media" class="span3" style="margin: 3px">
+                            <div class="thumbnail" ng-click="download(m);" class="clickable">
+                                <img src="/media/download/{{DB.d.media[m].id}}?thumb=BIG" alt="{{DB.d.media[m].filename}}"
+                                     ng-show="DB.d.media[m]['content-type'].indexOf('image/') == 0">
+                                <img src="{{getThumbUrl(DB.d.media[m]['content-type']);}}" alt="{{DB.d.media[m].filename}}"
+                                     ng-hide="DB.d.media[m]['content-type'].indexOf('image/') == 0">
+
+                                <p>{{DB.d.media[m].filename}}</p>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div>
+
+            </div>
+        </div>
+
+    </div>
+
 </div>
 <script src="/client/js/controllers/student.js"></script>
