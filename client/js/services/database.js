@@ -137,7 +137,7 @@ function Table(name, pkey, blgTo, hsMany) {
             id = lastId++;
         }
         data[id] = obj;
-        return obj;
+        return angular.copy(obj);
     }
     this.get = function (id, recursive) {
         var ret = [];
