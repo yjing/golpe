@@ -15,6 +15,7 @@
 </head>
 <body>
 
+    <div class="activity_bar {{BUSY.busy_class}}" ng-show="BUSY.busy()"></div>
     <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
             <ul class="nav back-button" ng-show="top_bar.back_button != null">
@@ -81,6 +82,7 @@
     <script src="/client/js/ui-bootstrap-tpls-0.3.0.js"></script>
     <!-- APP JS -->
     <script src="/client/js/app.js"></script>
+    <script src="/client/js/services/busy.js"></script>
     <script src="/client/js/services/resources.js"></script>
     <script src="/client/js/services/auth.js"></script>
 </body>

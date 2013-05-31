@@ -1,10 +1,14 @@
-function StudentCtrl($scope, $rootScope, auth){
+function StudentCtrl($scope, $rootScope, $location, auth){
+
+
 
     auth.user(
         function (user){
-            if(user != null) {
-                $scope.redirectUser(user);
+            if(user == null) {
+                $location.url('/client/login');
+                return;
             }
+
         }
     );
 
