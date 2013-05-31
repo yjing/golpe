@@ -56,10 +56,11 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
 
     // SHOW IMAGE
     $scope.openImage = function (id) {
-        $scopeimageID = id;
+        $scope.imageID = id;
         $scope.imageIsOpen = true;
     };
     $scope.closeImage = function () {
+        $scope.imageID = null;
         $scope.imageIsOpen = false;
     };
     $scope.optsImage = {
