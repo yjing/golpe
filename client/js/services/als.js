@@ -35,8 +35,6 @@ app.factory('als_db',function (database) {
 
         this.all = function (reload, mode, success, error) {
 
-            console.log(present_modes);
-
             if(!reload && present_modes.indexOf(mode) > 0) {
                 var als = database.select('als', [
                     { field:'mode', value:mode }
@@ -55,7 +53,7 @@ app.factory('als_db',function (database) {
                     busy.busy(false);
 
                     d = als_db.insertAls(d, mode);
-                    if(!present_modes.indexOf(mode)) {
+                    if(!present_modes.indexOf(mode)) {console.log(present_modes);
                         present_modes.push(mode);
                     }
 
