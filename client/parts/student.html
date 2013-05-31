@@ -138,7 +138,6 @@
                                      ng-hide="m['content-type'].indexOf('image/') == 0"
                                      ng-click="download(m.id);">
                                 <p>{{m.filename}}</p>
-                                {{m['content-type']}}
                             </div>
                         </li>
                     </ul>
@@ -176,7 +175,7 @@
                                      ng-hide="m['content-type'].indexOf('image/') == 0"
                                      ng-click="download(m.id);">
                                 <p>{{m.filename}}</p>
-                                {{m['content-type']}}
+                                {{m.id}}
                             </div>
                         </li>
                     </ul>
