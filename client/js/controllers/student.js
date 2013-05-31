@@ -55,8 +55,7 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
     };
 
     $scope.download = function (id) {
-        console.log(id);
-//        window.location.href = '/media/download/' + id + '?download=true';
+        window.location.href = '/media/download/' + id + '?download=true';
     };
 
     // SHOW IMAGE
