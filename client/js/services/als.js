@@ -40,6 +40,7 @@ app.factory('als_db',function (database) {
                     { field:'mode', value:mode }
                 ], 0);
 
+                console.log(als);
                 if (angular.isDefined(success)) {
                     success(als);
                 }
