@@ -1,4 +1,4 @@
-app.service('resources', function(resources, busy){
+app.service('als', function(resources, busy){
     this.all = function(success, error){
         busy.busy(true);
         resources.all(
