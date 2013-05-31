@@ -15,6 +15,7 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
                 'all', // MODE
                 function (d, h) {                // SUCCESS
                     $scope.data = d;
+                    console.log($scope.data);
                     if (angular.isDefined($scope.selected_al_id)
                         && $scope.selected_al_id != null
                         ) {
@@ -22,6 +23,7 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
                         als.get(
                             $scope.selected_al_id,
                             function (datum, h) {    // SUCCESS
+                                console.log($scope.data);
                                 $scope.selected_al = datum;
                             }
                         );
