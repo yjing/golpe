@@ -20,7 +20,7 @@ app.factory('als_db',function (database, comments_db, media_db) {
                 if(angular.isDefined(al['Comment']['content'])) {
                     complete = true;
                 }
-                comments = comments_db.insertComments(al['Comment']);
+                comments = comments_db.insertComments(al['Comment'], al['id']);
                 delete al['Comment'];
             }
             var media;
@@ -28,7 +28,7 @@ app.factory('als_db',function (database, comments_db, media_db) {
                 if(angular.isDefined(al['Media']['filename'])) {
                     complete = true;
                 }
-                media = media_db.insertMedia(al['Media']);
+                media = media_db.insertMedia(al['Media'], al['id']);
                 delete al['Media'];
             }
             delete al['User'];
