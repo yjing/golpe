@@ -17,8 +17,8 @@ function StudentCtrl($scope, $rootScope, $location, auth, als, database){
 //        }
 //    );
 
-    database.insert('asl', 1, {test:['ciccio', 'pasticcio']});
-    database.insert('asl', 2, {test:['ciccio', 'spasticcio']});
+    database.insert('als', 1, {test:['ciccio', 'pasticcio']});
+    database.insert('als', 2, {test:['ciccio', 'spasticcio']});
 
     var d = database.select('als', [ {field:'test', value:'pasticcio'} ], 0);
     console.log(d);
