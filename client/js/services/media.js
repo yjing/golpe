@@ -1,4 +1,4 @@
-app.factory('media_db', function(database){
+app.factory('media_db', function(database, users_db){
     return new function(){
         this.insertMedia = function(media, target_type, target_id) {
             var ret = [];
