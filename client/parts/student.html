@@ -86,14 +86,14 @@
                     </div>
                 </span>
             </div>
-            <div>
-                <a href="#" ng-click="toggleShowInfo(selected_al);">
+            <div ng-init="showInfo = false">
+                <a href="#" ng-click="showInfo = !showInfo">
                     <strong>Info</strong>
-                    <i class="icon-circle-arrow-right" ng-hide="showInfo(selected_al);"></i>
-                    <i class="icon-circle-arrow-down" ng-show="showInfo(selected_al);"></i>
+                    <i class="icon-circle-arrow-right" ng-hide="showInfo"></i>
+                    <i class="icon-circle-arrow-down" ng-show="showInfo"></i>
                 </a>
             </div>
-            <ul>
+            <ul ng-show="showInfo">
                 <li>
                     <span class="selector">
                         <p><strong>Author:</strong> {{selected_al.user.username}}<span
@@ -104,8 +104,8 @@
                     </span>
                 </li>
             </ul>
-            <div ng-init="showMedia = !showMedia">
-                <a href="#" ng-click="showMedia = true">
+            <div ng-init="showMedia = false">
+                <a href="#" ng-click="showMedia = !showMedia">
                     <strong>Media</strong>
                     <span class="badge"
                           ng-show="selected_al.media != null && selected_al.media.length > 0;"
