@@ -135,7 +135,7 @@ app.factory('als_db',function (database, comments_db, media_db, users_db) {
                 },
                 function (e) {
                     busy.busy(false);
-                    if(!$rootScope.error(e) && errorCB != undefined) {
+                    if(angular.isFunction(error)) {
                         errorCB(e);
                     }
                 }
