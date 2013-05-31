@@ -19,8 +19,8 @@
                         <button class="btn-link function" ng-click="item.deleting = true" ng-hide="item.deleting"><i class="icon-remove"></i></button>
                     </div>
                     <div class="confirms">
-                        <button class="btn btn-danger confirm" ng-click="deleteElem(true, p.id);" ng-show="isDeleteElem(p.id)">Delete</button>
-                        <button class="btn btn-success confirm" ng-click="cancelDeleteElem(p.id)" ng-show="isDeleteElem(p.id)">Keep</button>
+                        <button class="btn btn-danger confirm" ng-click="deleteElem(item.id);" ng-show="item.deleting">Delete</button>
+                        <button class="btn btn-success confirm" ng-click="item.deleting = false" ng-show="item.deleting">Keep</button>
                     </div>
                 </li>
                 <li ng-show="isNewElem()" ng-class="isSelectedElem(new_elem_id)">
