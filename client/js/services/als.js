@@ -45,6 +45,8 @@ app.service('als', function($rootScope, database, resources, busy){
                 modes.push(mode);
             }
             al.modes = modes;
+        } else {
+            al.modes = [mode];
         }
         return database.insert('als', al['id'], al);
     }
