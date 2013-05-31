@@ -66,7 +66,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
             )
         }
 
-        $rootScope.handleError = function (err_data) {
+        $rootScope.error = function (err_data) {
             if (err_data.status == 401 && err_data.message == 'NO-LOGGED') {
                 $location.url('/client/login');
                 return true;
