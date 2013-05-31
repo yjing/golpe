@@ -29,7 +29,11 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
     );
 
     $scope.go = function (id) {
-        $location.url('/client/student/' + id);
+        var url = '/client/student';
+        if(angular.isDefined(id)) {
+            url += '/' + id;
+        }
+        $location.url(url);
     };
 
     $scope.reload = function () {
