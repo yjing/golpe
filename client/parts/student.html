@@ -61,8 +61,8 @@
     </div>
 
     <div class="span8" ng-show="selected_al != null;">
-        <div class="menu shadow" ng-init="edit = false; old = anguler.copy(selected_al);">
-            <div>
+        <div class="menu shadow" ng-init="edit = false;">
+            <div ng-init="old = anguler.copy(selected_al);">
                 <span ng-show="selected_al.user_id == user.id;">
 
                     <h4 class="clickable" ng-hide="edit == true;"
