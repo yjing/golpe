@@ -74,7 +74,7 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
 
                         als.all(
                             false, // RELOAD
-                            'all', // MODE
+                            $rootScope.mode, // MODE
                             function (d, h) {                // SUCCESS
                                 $scope.data = database.select('als',[],3);
                             }
