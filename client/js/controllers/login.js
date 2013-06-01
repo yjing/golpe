@@ -1,5 +1,14 @@
 function LoginCtrl($scope, $rootScope, $location, auth){
 
+    auth.user(
+        function (user){
+            if(user != null) {
+                $rootScope.user = user;
+                $rootScope.redirectUser(user);
+            }
+        }
+    );
+
     $scope.username = "s.susini";
     $scope.password = "30071980";
 
@@ -15,30 +24,6 @@ function LoginCtrl($scope, $rootScope, $location, auth){
             }
         );
     }
-
-    $scope.redirectUser = function (user) {
-        var role = user.role;
-        switch (role) {
-            case 'STUDENT':
-                $location.url('/client/student');
-                break;
-            case 'SUPERVISOR':
-                $location.url('/client/supervisor');
-                break;
-            case 'ADMIN':
-                $location.url('/client/users');
-                break;
-        }
-    };
-
-    auth.user(
-        function (user){
-            if(user != null) {
-                $rootScope.user = user;
-                $scope.redirectUser(user);
-            }
-        }
-    );
 
     // TOP BAR
     $rootScope.top_bar = {

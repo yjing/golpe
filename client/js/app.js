@@ -68,6 +68,21 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
             )
         }
 
+        $rootScope.redirectUser = function (user) {
+            var role = user.role;
+            switch (role) {
+                case 'STUDENT':
+                    $location.url('/client/student');
+                    break;
+                case 'SUPERVISOR':
+                    $location.url('/client/supervisor');
+                    break;
+                case 'ADMIN':
+                    $location.url('/client/users');
+                    break;
+            }
+        };
+
         $rootScope.error = function (err_data) {
             if (err_data.status == 401 && err_data.data.message == 'NO-LOGGED') {
                 $location.url('/client/login');
