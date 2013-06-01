@@ -25,7 +25,7 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
 
                 }
             );
-
+return;
             if (angular.isDefined($scope.selected_al_id) && $scope.selected_al_id != null) {
                 als.get(
                     $scope.selected_al_id,

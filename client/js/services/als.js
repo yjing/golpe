@@ -190,7 +190,7 @@ app.factory('als_db',function (database, comments_db, media_db, users_db) {
                     },
                     function (e) {
                         busy.busy(false);
-                        if(!$rootScope.error(e) && angular.isDefined(error)) {
+                        if(!$rootScope.handleError(e) && angular.isDefined(error)) {
                             error(e);
                         }
                     }
