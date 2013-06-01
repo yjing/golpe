@@ -5,7 +5,8 @@ function LoginCtrl($scope, $rootScope, $location, auth){
             if(user != null) {
                 $rootScope.redirectUser();
             }
-        }
+        },
+        true
     );
 
     $scope.username = "s.susini";
