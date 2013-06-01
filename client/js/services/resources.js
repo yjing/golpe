@@ -36,6 +36,10 @@ app.service('resources', function($resource){
         modes:{
             method:'GET',
             url:'/activity_logs/modes'
+        },
+        save:{
+            method: 'POST',
+            type: 'multipart/form-data'
         }
     });
 
