@@ -24,13 +24,11 @@
                         <span class="label label-important" ng-show="item.question == true">Q</span>
                         {{item.title}} <i ng-show="isEditElem(p.id)" class="icon-pencil"></i><br>
                         <small>
-                            by: {{item.user.username}}
+                            <em>{{item.modified_human}}</em> by: {{item.user.username}}
                             <span class="label label-info"
                                   ng-show="item.media.length > 0">M:{{item.media.length}}</span>
                             <span class="label label-info"
                                   ng-show="item.comments.length > 0">C:{{item.comments.length}}</span>
-                            <br>
-                            <em>{{item.modified_human}}</em>
                         </small>
                     </a>
 
