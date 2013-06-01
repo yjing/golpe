@@ -103,8 +103,9 @@ class Comment extends AssociativeModel {
                     Inflector::underscore($this->alias) . "_" . $this->primaryKey => $this->data[$this->alias]['id']
                 )
             );
-            
-            $this->joinModel->create();
+            debug("join");
+            debug($join);
+            //$this->joinModel->create();
             $new_join = $this->joinModel->save($join);
             debug("afterSave::new_join");
             debug($new_join);
