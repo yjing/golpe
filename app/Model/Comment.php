@@ -103,16 +103,12 @@ class Comment extends AssociativeModel {
                     Inflector::underscore($this->alias) . "_" . $this->primaryKey => $this->data[$this->alias]['id']
                 )
             );
-            debug("join");
-            debug($join);
-            //$this->joinModel->create();
+            
+            $this->joinModel->create();
             $new_join = $this->joinModel->save($join);
-            debug("afterSave::new_join");
-            debug($new_join);
             
             
-            if(!$new_join && false) {
-                debug("afterSave::rollback");
+            if(!$new_join) {
                 $this->getDataSource()->rollback();
                 $this->targetModel->getDataSource()->rollback();
                 $this->joinModel->getDataSource()->rollback();
@@ -121,10 +117,9 @@ class Comment extends AssociativeModel {
             
         }
         
-        //$this->getDataSource()->commit();
-        //$this->targetModel->getDataSource()->commit();
-        //$this->joinModel->getDataSource()->commit();
-        debug("afterSave::COMMITTED");
+        $this->getDataSource()->commit();
+        $this->targetModel->getDataSource()->commit();
+        $this->joinModel->getDataSource()->commit();
     }
     
 }
