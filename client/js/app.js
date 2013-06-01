@@ -51,19 +51,11 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
         }
 
         $rootScope.logout = function () {
-            $rootScope.toggleMenu();
-            BusyService.busy(true);
-
-            $rootScope.user.$then(
-                function () {
-                    BusyService.busy(false);
-                    $location.url('/client/login');
-                },
-                function () {
-                    BusyService.busy(false);
-                    $location.url('/client/login');
+            auth.logout(
+                function(user){
+                    $scope.redirectUser();
                 }
-            )
+            );
         }
 
         $rootScope.redirectUser = function () {
