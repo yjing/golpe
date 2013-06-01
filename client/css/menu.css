@@ -158,4 +158,8 @@ textarea.edit-field {
     font-size: 1.2em;
     -webkit-appearance: none;
     appearance: none;
+
+    width: 98%;
+    padding: 1%;
+    height: 6em;
 }
