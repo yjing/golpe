@@ -133,7 +133,7 @@ app.factory('als_db',function (database, comments_db, media_db, users_db) {
                 function (d, h) {
                     busy.busy(false);
 
-                    var al = als_db.insertAl(d['ActivityLog']);
+                    var al = als_db.insertAl(d['ActivityLog'], $rootScope);
 
                     if(angular.isDefined(success) && angular.isFunction(success)) {
                         success(al, h);
