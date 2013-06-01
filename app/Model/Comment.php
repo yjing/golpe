@@ -29,7 +29,6 @@ class Comment extends AssociativeModel {
     private $joinModel = null;
     
     public function beforeSave($options = array()) {
-        return true;
         parent::beforeSave($options);
         
         // A TARGET MODEL id required to save the comment
@@ -76,9 +75,9 @@ class Comment extends AssociativeModel {
                 $joinTable_CLASS = new ReflectionClass($joinModel_name);
                 $this->joinModel = $joinTable_CLASS->newInstanceArgs();
 
-                $this->getDataSource()->begin();
-                $this->targetModel->getDataSource()->begin();
-                $this->joinModel->getDataSource()->begin();
+                //$this->getDataSource()->begin();
+                //$this->targetModel->getDataSource()->begin();
+                //$this->joinModel->getDataSource()->begin();
                 
                 return true;
                 
@@ -111,7 +110,7 @@ class Comment extends AssociativeModel {
             debug($new_join);
             
             
-            if(!$new_join) {
+            if(!$new_join && false) {
                 debug("afterSave::rollback");
                 $this->getDataSource()->rollback();
                 $this->targetModel->getDataSource()->rollback();
@@ -121,9 +120,9 @@ class Comment extends AssociativeModel {
             
         }
         
-        $this->getDataSource()->commit();
-        $this->targetModel->getDataSource()->commit();
-        $this->joinModel->getDataSource()->commit();
+        //$this->getDataSource()->commit();
+        //$this->targetModel->getDataSource()->commit();
+        //$this->joinModel->getDataSource()->commit();
         debug("afterSave::COMMITTED");
     }
     
