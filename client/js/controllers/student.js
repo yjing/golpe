@@ -18,12 +18,24 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
     $scope.edit = false;
 
     auth.user(
-        function (user) {
-            if (user == null) {
-                $location.url('/client/login');
-                return;
+        function (/*user*/) {
+
+            als.modes(
+                function(d, h) {    // SUCCESS
+
+                }
+            );
+
+            if (angular.isDefined($scope.selected_al_id) && $scope.selected_al_id != null) {
+                als.get(
+                    $scope.selected_al_id,
+                    function (datum, h) {    // SUCCESS
+                        $scope.selected_al = database.select('als', [ {field:'id',value:$scope.selected_al_id} ], 2)[0];
+                    }
+                );
             }
-            $rootScope.user = user;
+
+
             als.all(
                 false, // RELOAD
                 'all', // MODE

@@ -10,6 +10,7 @@ app.service('auth', function($rootScope, resources, busy){
                         $rootScope.user = d.User;
                     } else {
                         $rootScope.user = null;
+                        $rootScope.redirectUser();
                     }
                     if(angular.isDefined(callback)) {
                         callback($rootScope.user);
