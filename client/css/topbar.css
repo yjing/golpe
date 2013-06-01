@@ -32,6 +32,11 @@ ul.nav.back-button {
         padding-left: 10px;
         padding-right: 0;
     }
+    .dropdown-menu li {
+        font-size: 1.15em;
+        padding-top: 0.35em;
+        padding-bottom: 0.35em;
+    }
 }
 
 @media (max-width: 768px) {
