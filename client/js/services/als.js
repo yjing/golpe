@@ -46,8 +46,10 @@ app.factory('als_db',function (database, comments_db, media_db, users_db) {
                 var existing = database.get('als', al['id'], 0);
                 if (angular.isDefined(existing)) {
                     var modes = existing.modes;
-                    if (modes.indexOf(mode) < 0) {
+                    if (angular.isDefined(modes) && modes.indexOf(mode) < 0) {
                         modes.push(mode);
+                    } else {
+                        modes = [mode];
                     }
                     al.modes = modes;
                 } else {
