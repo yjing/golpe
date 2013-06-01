@@ -151,7 +151,7 @@ app.factory('als_db',function (database, comments_db, media_db, users_db) {
             }
 
             busy.busy(true);
-            resources.save(
+            resources.Als.save(
                 params, //PARAMS
                 data, //DATA
                 function (d, h) {
