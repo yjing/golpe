@@ -62,14 +62,12 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
         $rootScope.redirectUser = function () {
             if(angular.isUndefined($rootScope.user) || $rootScope.user == null) {
                 $location.url('/client/login');
-                console.log("REDIR login");
                 return;
             }
 
             if(angular.isDefined($rootScope.redirectAfterLogin) && $rootScope.redirectAfterLogin != null) {
                 $location.url($rootScope.redirectAfterLogin);
                 $rootScope.redirectAfterLogin = null;
-                console.log("REDIR after");
                 return;
             }
 
@@ -77,7 +75,6 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
             switch (role) {
                 case 'STUDENT':
                     $location.url('/client/student');
-                    console.log("REDIR stud");
                     break;
                 case 'SUPERVISOR':
                     $location.url('/client/supervisor');
@@ -87,7 +84,6 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
                     break;
                 default:
                     $location.url('/client/login');
-                    console.log("REDIR log");
             }
         };
 
