@@ -24,15 +24,23 @@
                         <span class="label label-important" ng-show="item.question == true">Q</span>
                         {{item.title}} <i ng-show="isEditElem(p.id)" class="icon-pencil"></i><br>
                         <small>posted: {{item.modified_human}}
-                        <span class="label label-info" ng-show="item.media.length > 0">M:{{item.media.length}}</span>
-                        <span class="label label-info" ng-show="item.comments.length > 0">C:{{item.comments.length}}</span></small>
+                            <span class="label label-info"
+                                  ng-show="item.media.length > 0">M:{{item.media.length}}</span>
+                            <span class="label label-info"
+                                  ng-show="item.comments.length > 0">C:{{item.comments.length}}</span></small>
                     </a>
+
                     <div class="functions">
-                        <button class="btn-link function" ng-click="item.deleting = true" ng-hide="item.deleting"><i class="icon-remove"></i></button>
+                        <button class="btn-link function" ng-click="item.deleting = true" ng-hide="item.deleting"><i
+                                class="icon-remove"></i></button>
                     </div>
                     <div class="confirms">
-                        <button class="btn btn-danger confirm" ng-click="deleteElem(item.id);" ng-show="item.deleting">Delete</button>
-                        <button class="btn btn-success confirm" ng-click="item.deleting = false" ng-show="item.deleting">Keep</button>
+                        <button class="btn btn-danger confirm" ng-click="deleteElem(item.id);" ng-show="item.deleting">
+                            Delete
+                        </button>
+                        <button class="btn btn-success confirm" ng-click="item.deleting = false"
+                                ng-show="item.deleting">Keep
+                        </button>
                     </div>
                 </li>
                 <li ng-show="isNewElem()" ng-class="isSelectedElem(new_elem_id)">
@@ -41,8 +49,12 @@
             </ul>
             <div>
                 <a href="#" class="text-right">
-                    <button ng-click="selected_al_id != 'new'; go('new');" ng-hide="selected_al_id == 'new'" class="btn btn-success">New Activity Log</button>
-                    <button ng-click="go();" ng-show="selected_al_id == 'new'" class="btn btn-warning">Cancel New Activity Log</button>
+                    <button ng-click="selected_al_id != 'new'; go('new');" ng-hide="selected_al_id == 'new'"
+                            class="btn btn-success">New Activity Log
+                    </button>
+                    <button ng-click="go();" ng-show="selected_al_id == 'new'" class="btn btn-warning">Cancel New
+                        Activity Log
+                    </button>
                 </a>
             </div>
         </div>
@@ -53,7 +65,7 @@
             <div>
                 <span ng-show="selected_al.user_id == user.id;">
 
-                    <h4 class="clickable" ng-hide="edit == true"
+                    <h4 class="clickable" ng-hide="edit == true; old = anguler.copy(selected_al);"
                         ng-click="edit = true">
                         <button ng-show="isMobile" class="btn btn-link" ng-click="go();"><i
                                 class="icon-backward"></i></button>
@@ -89,7 +101,7 @@
                         <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveAl(selected_al);">
                             Save
                         </button>
-                        <button ng-disabled="" type="button" class="btn" ng-click="edit = false">Cancel
+                        <button ng-disabled="" type="button" class="btn" ng-click="edit = false; selected_al = old;">Cancel
                         </button>
                     </div>
                 </span>
@@ -138,6 +150,7 @@
                                 <img ng-src="{{getThumbUrl(m);}}" alt="{{m.filename}}"
                                      ng-hide="m['content-type'].indexOf('image/') == 0"
                                      ng-click="download(m['id']);">
+
                                 <p>{{m.filename}}</p>
                             </div>
                         </li>
@@ -175,6 +188,7 @@
                                 <img ng-src="{{getThumbUrl(m);}}" alt="{{m.filename}}"
                                      ng-hide="m['content-type'].indexOf('image/') == 0"
                                      ng-click="download(m['id']);">
+
                                 <p>{{m.filename}}</p>
                             </div>
                         </li>
