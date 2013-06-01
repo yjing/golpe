@@ -47,12 +47,15 @@ app.factory('als_db',function (database, comments_db, media_db, users_db) {
                 console.log(existing);
                 if (angular.isDefined(existing)) {
                     var modes = existing.modes;
-                    if (angular.isDefined(modes) && modes.indexOf(mode) < 0) {
-                        modes.push(mode);
+                    if (angular.isArray(modes)) {
+                        al.modes = modes;
+                        if(al.modes.indexOf(mode) < 0){
+                            al.modes.push(mode);
+                        }
                     } else {
-                        modes = [mode];
+                        al.modes = [ mode ];
                     }
-                    al.modes = modes;
+
                 } else {
                     al.modes = [mode];
                 }
