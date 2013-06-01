@@ -3,9 +3,8 @@ function LoginCtrl($scope, $rootScope, $location, auth){
     auth.user(
         function (user){
             if(user != null) {
-                console.log(user);
-                $rootScope.user = user;
-                $rootScope.redirectUser(user);
+                $rootScope.user = user['User'];
+                $rootScope.redirectUser();
             }
         }
     );
