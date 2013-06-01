@@ -91,6 +91,7 @@ class Comment extends AssociativeModel {
     
     public function afterSave($created) {
         parent::afterSave($created);
+        debug("afterSave");
         if ($created) {
             
             // After Comment insertion change Target MODIFICATION DATE
