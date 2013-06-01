@@ -73,13 +73,13 @@ app.service('auth', function($rootScope, resources, busy){
                 } else {
                     $rootScope.user = d.User;
                 }
+                $rootScope.loggingOut = true;
                 if(angular.isDefined(callback)) {
                     callback($rootScope.user);
                 }
             },
             function(e){
                 busy.busy(false);
-                console.log("ERROR???");
                 if(!$rootScope.handleError(e) && angular.isDefined(callback)) {
                     callback(e);
                 }
