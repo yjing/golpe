@@ -70,47 +70,21 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
                         );
                     }
 
-                }
-            );
-return;
+                    if($scope.selected_al_id == null || !$rootScope.isMobile) {
 
-
-            als.all(
-                false, // RELOAD
-                'all', // MODE
-                function (d, h) {                // SUCCESS
-
-                    $scope.data = database.select('als',[],3);
-
-                    if (angular.isDefined($scope.selected_al_id)
-                        && $scope.selected_al_id != null) {
-                        als.get(
-                            $scope.selected_al_id,
-                            function (datum, h) {    // SUCCESS
-                                $scope.selected_al = database.select('als', [ {field:'id',value:$scope.selected_al_id} ], 2)[0];
+                        als.all(
+                            false, // RELOAD
+                            'all', // MODE
+                            function (d, h) {                // SUCCESS
+                                $scope.data = database.select('als',[],3);
                             }
                         );
-                    } else {
 
-                        $rootScope.top_bar.page_title = 'Activity Logs - ALL';
-                        $rootScope.top_bar.title_menu = [
-                            {
-                                label: 'Activity Logs - MINE',
-                                func: function() {}
-                            },{
-                                label: 'Activity Logs - NEWS',
-                                func: function() {}
-                            },{
-                                label: 'Activity Logs - TEAM',
-                                func: function() {}
-                            },{
-                                label: 'Activity Logs - PUBLIC',
-                                func: function() {}
-                            }
-                        ];
                     }
+
                 }
             );
+
         }
     );
 
