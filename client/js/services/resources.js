@@ -39,7 +39,7 @@ app.service('resources', function($resource){
         },
         save:{
             method: 'POST',
-            type: 'multipart/form-data'
+            headers:{'Content-Type':'application/json'}
         }
     });
 
