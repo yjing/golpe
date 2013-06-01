@@ -32,6 +32,7 @@ class ActivityLogsController extends RESTController {
                 break;
             case "news":
                 $last_access = $this->Log->getLastAccess();
+                debug($last_access);
                 // RETRIEVE NEWS... TODO
                 if($role == 'SUPERVISOR') {
                     $conditions["StudentsSupervisor.supervisor_id"] = $user['id'];
