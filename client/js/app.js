@@ -54,10 +54,8 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
             $rootScope.toggleMenu();
             BusyService.busy(true);
 
-            $rootScope.user = auth.logout();
             $rootScope.user.$then(
                 function () {
-                    console.log($rootScope.user);
                     BusyService.busy(false);
                     $location.url('/client/login');
                 },

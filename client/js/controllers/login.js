@@ -3,8 +3,6 @@ function LoginCtrl($scope, $rootScope, $location, auth){
     auth.user(
         function (user){
             if(user != null) {
-                console.log(user);
-                $rootScope.user = user;
                 $rootScope.redirectUser();
             }
         }
@@ -17,7 +15,6 @@ function LoginCtrl($scope, $rootScope, $location, auth){
         auth.login($scope.username, $scope.password,
             function(user){
                 if(user != null) {
-                    $rootScope.user = user;
                     $scope.redirectUser();
                 } else {
                     $scope.login_message = "Error";

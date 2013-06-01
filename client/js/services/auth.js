@@ -1,20 +1,18 @@
 app.service('auth', function($rootScope, resources, busy){
 
-    var logged_user;
-    
     this.user = function(callback){
-        if(angular.isUndefined(logged_user)) {
+        if(angular.isUndefined($rootScope.user) || $rootScope.user == null) {
             busy.busy(true);
             resources.Users.user(
                 function(d, h){
                     busy.busy(false);
                     if(d.logged) {
-                        logged_user = d.User;
+                        $rootScope.user = d.User;
                     } else {
-                        logged_user = null;
+                        $rootScope.user = null;
                     }
                     if(angular.isDefined(callback)) {
-                        callback(logged_user);
+                        callback($rootScope.user);
                     }
                 },
                 function(e){
@@ -25,7 +23,7 @@ app.service('auth', function($rootScope, resources, busy){
                 }
             );
         } else if(angular.isDefined(callback)) {
-            callback(logged_user);
+            callback($rootScope.user);
         }
     }
 
@@ -39,12 +37,12 @@ app.service('auth', function($rootScope, resources, busy){
             function(d, h){
                 busy.busy(false);
                 if(d.logged) {
-                    logged_user = d.User;
+                    $rootScope.user = d.User;
                 } else {
-                    logged_user = null;
+                    $rootScope.user = null;
                 }
                 if(angular.isDefined(callback)) {
-                    callback(logged_user);
+                    callback($rootScope.user);
                 }
             },
             function(e){
@@ -63,12 +61,12 @@ app.service('auth', function($rootScope, resources, busy){
             function(d, h){
                 busy.busy(false);
                 if(!d.logged) {
-                    logged_user = null;
+                    $rootScope.user = null;
                 } else {
-                    logged_user = d.User;
+                    $rootScope.user = d.User;
                 }
                 if(angular.isDefined(callback)) {
-                    callback(logged_user);
+                    callback($rootScope.user);
                 }
             },
             function(e){
