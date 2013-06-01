@@ -176,7 +176,7 @@ app.factory('als_db',function (database, comments_db, media_db, users_db) {
         }
 
         this.modes = function () {
-            this.Als.modes = function(success, error){
+            resources.Als.modes = function(success, error){
                 busy.busy(true);
                 resources.Als.modes(
                     {}, //PARAMS
