@@ -110,7 +110,7 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
     $scope.reload = function () {
         als.all(
             true,
-            'all',
+            $rootScope.mode,
             function (d, h) {    // SUCCESS
                 $scope.data = database.select('als',[ {field:'modes',value:$rootScope.mode} ],3);
             }
