@@ -94,14 +94,14 @@
                     </div>
                 </span>
             </div>
-            <div ng-init="showInfo = false">
+            <div ng-hide="edit == true" ng-init="showInfo = false">
                 <a href="#" ng-click="showInfo = !showInfo">
                     <strong>Info</strong>
                     <i class="icon-circle-arrow-right" ng-hide="showInfo"></i>
                     <i class="icon-circle-arrow-down" ng-show="showInfo"></i>
                 </a>
             </div>
-            <ul ng-show="showInfo">
+            <ul ng-show="edit == false && showInfo">
                 <li>
                     <span class="selector">
                         <p><strong>Author:</strong> {{selected_al.user.username}}<span
@@ -112,7 +112,7 @@
                     </span>
                 </li>
             </ul>
-            <div ng-init="showMedia = false">
+            <div ng-hide="edit == true" ng-init="showMedia = false">
                 <a href="#" ng-click="showMedia = !showMedia">
                     <strong>Media</strong>
                     <span class="badge"
@@ -124,7 +124,7 @@
                     <i class="icon-circle-arrow-down" ng-show="showMedia"></i>
                 </a>
             </div>
-            <ul>
+            <ul ng-hide="edit == true">
                 <li ng-show="showMedia && (selected_al.media == null || selected_al.media.length == 0);">
                     <div class="selector"><em>No Media present...</em></div>
                 </li>
@@ -144,7 +144,7 @@
                     </ul>
                 </li>
             </ul>
-            <div ng-init="showComments = false">
+            <div ng-hide="edit == true" ng-init="showComments = false">
                 <a href="#" ng-click="showComments = !showComments">
                     <strong>Comments</strong>
                     <span class="badge"
@@ -156,7 +156,7 @@
                     <i class="icon-circle-arrow-down" ng-show="showComments"></i>
                 </a>
             </div>
-            <ul ng-show="showComments">
+            <ul ng-show="edit == false && showComments">
                 <li ng-show="showComments && (selected_al.comments == null || selected_al.comments.length == 0);">
                     <div class="selector"><em>No Comments yet...</em></div>
                 </li>
