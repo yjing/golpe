@@ -48,24 +48,8 @@ app.factory('als_db',function (database, comments_db, media_db, users_db) {
             } else {
                 al.modes = [];
             }
-
             if(angular.isDefined(mode) && al.modes.indexOf(mode) < 0) {
                 al.modes.push(mode);
-//                var existing = database.get('als', al['id'], 0);
-//                if (angular.isDefined(existing)) {
-//                    var modes = existing.modes;
-//                    if (angular.isArray(modes)) {
-//                        al.modes = modes;
-//                        if(al.modes.indexOf(mode) < 0){
-//                            al.modes.push(mode);
-//                        }
-//                    } else {
-//                        al.modes = [ mode ];
-//                    }
-//
-//                } else {
-//                    al.modes = [mode];
-//                }
             }
 
             // SET COMPLETENESS
