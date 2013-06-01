@@ -51,21 +51,7 @@ class CommentsController extends RESTController {
         if ($this->request->data) {
             $data = Set::remove($this->request->data, 'Comment.id');
 
-            $res = $this->Comment->save($data);
-            debug("saved??");
-            debug($res);
-            
-            $test = $this->ActivityLog->find('first', array(
-                'conditions' => array('ActivityLog.id' => $data['Target']['id']),
-                'associations' => array(
-                    'Comment' => array(
-                        'fields' => array('id', 'content')
-                    )
-                )
-            ));
-            debug($test);
-            
-            if($res) {
+            if($this->Comment->save($data);) {
                 $this->_setResponseJSON( $this->getDafaultFormattedComment($this->Comment->id) );
             } else {
                 if(count($this->Comment->validationErrors) > 0) {
