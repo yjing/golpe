@@ -2,7 +2,6 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
     // TOP BAR
     $scope.setupTopBar = function () {
 
-//        $rootScope.top_bar = null;
         $rootScope.top_bar = {
             page_title:'Activity Logs',
             main_menu_items:[
