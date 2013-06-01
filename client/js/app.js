@@ -60,6 +60,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
         }
 
         $rootScope.redirectUser = function () {
+            console.log("REDIR");
             if(angular.isUndefined($rootScope.user) || $rootScope.user == null) {
                 $location.url('/client/login');
                 return;
