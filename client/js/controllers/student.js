@@ -25,8 +25,8 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
                     $rootScope.top_bar.title_menu.push({
                         label: manuLabel,
                         func: function() {
-                            console.log(mode);
-                            $rootScope.mode = mode;
+                            var m = mode;
+                            $rootScope.mode = m;
                             $scope.setupTopBar();
                         }
                     });
