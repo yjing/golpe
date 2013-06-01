@@ -24,7 +24,7 @@
                         <span class="label label-important" ng-show="item.question == true">Q</span>
                         {{item.title}} <i ng-show="isEditElem(p.id)" class="icon-pencil"></i><br>
                         <small>
-                            <em>{{item.modified_human}}</em> by: {{item.user.username}}
+                            <em>{{item.modified_human}}</em> <strong>by:</strong> {{item.user.username}}
                             <span class="label label-info"
                                   ng-show="item.media.length > 0">M:{{item.media.length}}</span>
                             <span class="label label-info"
