@@ -75,9 +75,9 @@ class Comment extends AssociativeModel {
                 $joinTable_CLASS = new ReflectionClass($joinModel_name);
                 $this->joinModel = $joinTable_CLASS->newInstanceArgs();
 
-                $this->getDataSource()->begin();
-                $this->targetModel->getDataSource()->begin();
-                $this->joinModel->getDataSource()->begin();
+                //$this->getDataSource()->begin();
+                //$this->targetModel->getDataSource()->begin();
+                //$this->joinModel->getDataSource()->begin();
                 
                 return true;
                 

@@ -4,7 +4,7 @@ App::import('Controller', 'REST');
 
 class CommentsController extends RESTController {
 
-    public $uses = array('Comment');
+    public $uses = array('Comment', 'ActivityLog');
     public $components = array('LogActions');
     
     public function index() {
@@ -51,7 +51,7 @@ class CommentsController extends RESTController {
         if ($this->request->data) {
             $data = Set::remove($this->request->data, 'Comment.id');
 
-            if($this->Comment->save($data)) {
+            if($this->Comment->save($data);) {
                 $this->_setResponseJSON( $this->getDafaultFormattedComment($this->Comment->id) );
             } else {
                 if(count($this->Comment->validationErrors) > 0) {
