@@ -11,7 +11,6 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
         ]
     };
     $scope.setupTopBar = function () {
-        console.log(!$rootScope.isMobile);
         if(!$rootScope.isMobile) {
             var baseTitle = "Activity Logs - ";
             $rootScope.top_bar.title_menu = [];
