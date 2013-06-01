@@ -53,6 +53,7 @@ class CommentsController extends RESTController {
 
             $res = $this->Comment->save($data);
             debug("saved??");
+            debug($res);
             
             $test = $this->ActivityLog->find('first', array(
                 'conditions' => array('ActivityLog.id' => $data['Target']['id']),
