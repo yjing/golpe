@@ -109,7 +109,6 @@ class Comment extends AssociativeModel {
             
             
             if(!$new_join) {
-                debug("ROLLBACK");
                 $this->getDataSource()->rollback();
                 $this->targetModel->getDataSource()->rollback();
                 $this->joinModel->getDataSource()->rollback();
@@ -118,6 +117,7 @@ class Comment extends AssociativeModel {
             
         }
         
+        debug("COMMIT");
         $this->getDataSource()->commit();
         $this->targetModel->getDataSource()->commit();
         $this->joinModel->getDataSource()->commit();
