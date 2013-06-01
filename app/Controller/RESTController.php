@@ -47,7 +47,8 @@ abstract class RESTController extends AppController {
                 $this->request->data = Set::remove($this->request->data, $this->modelClass . '.modified');
                 debug($this->request->data);
                 
-                $this->request->data[$this->modelClass]['modified'] = time();
+                $date = new DateTime();
+                $this->request->data[$this->modelClass]['modified'] = $date->getTimestamp();
                 debug($this->request->data);
                 
                 if($this->action == 'add') {
