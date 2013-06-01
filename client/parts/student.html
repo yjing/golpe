@@ -132,10 +132,10 @@
                     <ul class="thumbnails">
                         <li ng-repeat="m in selected_al.media" class="span3" style="margin: 3px">
                             <div class="thumbnail clickable">
-                                <img src="/media/download/{{m.id}}?thumb=BIG" alt="{{m.filename}}"
+                                <img ng-src="/media/download/{{m.id}}?thumb=BIG" alt="{{m.filename}}"
                                      ng-show="m['content-type'].indexOf('image/') == 0" ng-click="openImage(m.id)">
 
-                                <img src="{{getThumbUrl(m);}}" alt="{{m.filename}}"
+                                <img ng-src="{{getThumbUrl(m);}}" alt="{{m.filename}}"
                                      ng-hide="m['content-type'].indexOf('image/') == 0"
                                      ng-click="download(m['id']);">
                                 <p>{{m.filename}}</p>
@@ -169,10 +169,10 @@
                     <ul class="thumbnails">
                         <li ng-repeat="m in c.media" class="span3" style="margin: 3px">
                             <div class="thumbnail clickable" class="clickable">
-                                <img src="/media/download/{{m.id}}?thumb=BIG" alt="{{m.filename}}"
+                                <img ng-src="/media/download/{{m.id}}?thumb=BIG" alt="{{m.filename}}"
                                      ng-show="m['content-type'].indexOf('image/') == 0" ng-click="openImage(m.id)">
 
-                                <img src="{{getThumbUrl(m);}}" alt="{{m.filename}}"
+                                <img ng-src="{{getThumbUrl(m);}}" alt="{{m.filename}}"
                                      ng-hide="m['content-type'].indexOf('image/') == 0"
                                      ng-click="download(m['id']);">
                                 <p>{{m.filename}}</p>
