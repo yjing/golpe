@@ -61,6 +61,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
         $rootScope.redirectUser = function () {
             if(angular.isUndefined($rootScope.user) || $rootScope.user == null) {
                 $location.url('/client/login');
+                return;
             }
 
             var role = $rootScope.user.role;

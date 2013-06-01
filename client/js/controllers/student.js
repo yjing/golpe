@@ -1,4 +1,15 @@
 function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, database) {
+    // TOP BAR
+    $rootScope.top_bar = {
+        page_title:'Activity Logs',
+        main_menu_items:[
+            { type:'item', label:'New Activity Log', icon:'icon-plus', func:$rootScope.logout },
+            { type:'divider' },
+            { type:'item', label:'Logout', icon:'icon-lock', func:$rootScope.logout },
+            { type:'item', label:'Help', icon:'icon-question-sign', func:$rootScope.help },
+            { type:'item', label:'Info', icon:'icon-info-sign', func:$rootScope.info }
+        ]
+    };
 
     $scope.data = [];
     $scope.selected_al_id = $routeParams.id;
@@ -28,6 +39,17 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
                                 $scope.selected_al = database.select('als', [ {field:'id',value:$scope.selected_al_id} ], 2)[0];
                             }
                         );
+                    } else {
+
+                        $rootScope.top_bar.title_menu = [
+                            {
+                                label: 'Projects',
+                                func: function() {
+                                    $rootScope.toggleTitleMenu();
+                                    $location.url('/client/projects');
+                                }
+                            }
+                        ];
                     }
                 }
             );
@@ -95,17 +117,5 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
     $scope.optsImage = {
         backdropFade: true,
         dialogFade:true
-    };
-
-    // TOP BAR
-    $rootScope.top_bar = {
-        page_title:'Activity Logs',
-        main_menu_items:[
-            { type:'item', label:'New Activity Log', icon:'icon-plus', func:$rootScope.logout },
-            { type:'divider' },
-            { type:'item', label:'Logout', icon:'icon-lock', func:$rootScope.logout },
-            { type:'item', label:'Help', icon:'icon-question-sign', func:$rootScope.help },
-            { type:'item', label:'Info', icon:'icon-info-sign', func:$rootScope.info }
-        ]
     };
 }
