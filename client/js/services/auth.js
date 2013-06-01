@@ -19,7 +19,7 @@ app.service('auth', function($rootScope, resources, busy){
                 },
                 function(e){
                     busy.busy(false);
-                    if(!$rootScope.error(e) && angular.isDefined(callback)) {
+                    if(!$rootScope.handleError(e) && angular.isDefined(callback)) {
                         callback(e);
                     }
                 }
@@ -49,7 +49,7 @@ app.service('auth', function($rootScope, resources, busy){
             },
             function(e){
                 busy.busy(false);
-                if(!$rootScope.error(e) && angular.isDefined(callback)) {
+                if(!$rootScope.handleError(e) && angular.isDefined(callback)) {
                     callback(e);
                 }
             }
@@ -73,7 +73,7 @@ app.service('auth', function($rootScope, resources, busy){
             },
             function(e){
                 busy.busy(false);
-                if(!$rootScope.error(e) && angular.isDefined(callback)) {
+                if(!$rootScope.handleError(e) && angular.isDefined(callback)) {
                     callback(e);
                 }
             }
