@@ -88,6 +88,9 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
                                     );
 
                                 });
+                                $rootScope.$watch('isMobile', function(){
+                                    $scope.setupTopBar();
+                                });
                             }
                         );
 

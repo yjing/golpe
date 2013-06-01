@@ -59,7 +59,6 @@ app.factory('als_db',function (database, comments_db, media_db, users_db) {
                 } else {
                     al.modes = [mode];
                 }
-                console.log(al.modes);
             }
 
             // SET COMPLETENESS
