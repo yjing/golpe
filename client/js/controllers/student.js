@@ -15,18 +15,18 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
             var baseTitle = "Activity Logs - ";
             $rootScope.top_bar.title_menu = [];
 
+            var modeA = [];
             for (var i = 0; i < $rootScope.modes.modes.length; i++) {
-                var mode = $rootScope.modes.modes[i];
+                modeA[i] = $rootScope.modes.modes[i];
                 var manuLabel = baseTitle + angular.uppercase(mode);
 
-                if(mode == $rootScope.mode) {
+                if(modeA[i] == $rootScope.mode) {
                     $rootScope.top_bar.page_title = manuLabel;
                 } else {
                     $rootScope.top_bar.title_menu.push({
                         label: manuLabel,
                         func: function() {
-                            var m = mode;
-                            $rootScope.mode = m;
+                            $rootScope.mode = modeA[i];
                             $scope.setupTopBar();
                         }
                     });
