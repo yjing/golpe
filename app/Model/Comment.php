@@ -89,7 +89,7 @@ class Comment extends AssociativeModel {
         
     }
     
-    public function afterSave($created) {return;
+    public function afterSave($created) {
         parent::afterSave($created);
         if ($created) {
             
