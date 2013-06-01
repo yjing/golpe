@@ -67,16 +67,12 @@
             <div>
                 <span ng-show="selected_al.user_id == user.id;">
 
-                    <h4 class="clickable" ng-hide="edit == true;"
-                        ng-click="editSelected();">
-                        <button ng-show="isMobile" class="btn btn-link" ng-click="go();"><i
-                                class="icon-backward"></i></button>
+                    <h4 class="clickable" ng-hide="edit == true;" ng-click="editSelected();">
                         {{selected_al.title}} <i class="icon-pencil"></i>
                     </h4>
                     <!-- EDIT MODE -->
                     <span ng-show="edit == true">
-                        <input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge"
-                               ng-model="edit_selected.title">
+                        <input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge" ng-model="edit_selected.title">
                     </span>
                 </span>
                 <span ng-hide="selected_al.user_id == user.id;">
