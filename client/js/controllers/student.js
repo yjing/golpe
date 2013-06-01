@@ -41,13 +41,20 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
                         );
                     } else {
 
+                        $rootScope.top_bar.page_title = 'Activity Logs - ALL';
                         $rootScope.top_bar.title_menu = [
                             {
-                                label: 'Projects',
-                                func: function() {
-                                    $rootScope.toggleTitleMenu();
-                                    $location.url('/client/projects');
-                                }
+                                label: 'Activity Logs - MINE',
+                                func: function() {}
+                            },{
+                                label: 'Activity Logs - NEWS',
+                                func: function() {}
+                            },{
+                                label: 'Activity Logs - TEAM',
+                                func: function() {}
+                            },{
+                                label: 'Activity Logs - PUBLIC',
+                                func: function() {}
                             }
                         ];
                     }
