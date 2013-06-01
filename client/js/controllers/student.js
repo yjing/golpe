@@ -18,7 +18,7 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
             var modeA = [];
             for (var i = 0; i < $rootScope.modes.modes.length; i++) {
                 modeA[i] = $rootScope.modes.modes[i];
-                var manuLabel = baseTitle + angular.uppercase(mode);
+                var manuLabel = baseTitle + angular.uppercase(modeA[i]);
 
                 if(modeA[i] == $rootScope.mode) {
                     $rootScope.top_bar.page_title = manuLabel;
