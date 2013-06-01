@@ -15,7 +15,7 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
             $rootScope.top_bar.page_title = "Activity Log";
             $rootScope.top_bar.back_button = {
                 icon: 'icon-chevron-left',
-                func: function(){ go(); }
+                func: function(){ $scope.go(); }
             }
             return;
         }
