@@ -143,4 +143,33 @@ app.factory('als_db',function (database, comments_db, media_db, users_db) {
                 }
             );
         }
+
+        this.save = function(data, success, error){
+            var params = {};
+            if(angular.isDefined(data.id)) {
+                params.id = data.id;
+            }
+
+            busy.busy(true);
+            resources.save(
+                params, //PARAMS
+                data, //DATA
+                function (d, h) {
+                    busy.busy(false);
+
+                    console.log(d);
+
+                    if(angular.isDefined(success)) {
+                        success(d, h);
+                    }
+                },
+                function (e) {
+                    busy.busy(false);
+                    if(!$rootScope.error(e) && angular.isDefined(error)) {
+                        error(e);
+                    }
+                }
+            );
+        }
+
     });

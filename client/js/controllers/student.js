@@ -70,6 +70,19 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
         window.location.href = '/media/download/' + id + '?download=true';
     };
 
+    $scope.save = function () {
+        als.save(
+            $scope.edit_selected,
+            function(d, h) {    // SUCCESS
+                $scope.data = database.select('als',[],3);
+                $scope.selected_al = database.select('als', [ {field:'id',value:$scope.selected_al_id} ], 2)[0];
+                $scope.unEditSelected();
+            },
+            function(e) {       // ERROR
+            }
+        );
+    };
+
     // SHOW IMAGE
     $scope.openImage = function (id) {
         $scope.imageID = id;
