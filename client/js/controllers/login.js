@@ -1,14 +1,5 @@
 function LoginCtrl($scope, $rootScope, $location, auth){
 
-    auth.user(
-        function (user){
-            if(user != null) {
-                $rootScope.user = user;
-                $scope.redirectUser(user);
-            }
-        }
-    );
-
     $scope.username = "s.susini";
     $scope.password = "30071980";
 
@@ -39,6 +30,15 @@ function LoginCtrl($scope, $rootScope, $location, auth){
                 break;
         }
     };
+
+    auth.user(
+        function (user){
+            if(user != null) {
+                $rootScope.user = user;
+                $scope.redirectUser(user);
+            }
+        }
+    );
 
     // TOP BAR
     $rootScope.top_bar = {
