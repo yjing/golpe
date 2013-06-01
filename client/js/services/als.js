@@ -44,6 +44,7 @@ app.factory('als_db',function (database, comments_db, media_db, users_db) {
             // MANAGE MODES
             if(angular.isDefined(mode)) {
                 var existing = database.get('als', al['id'], 0);
+                console.log(existing);
                 if (angular.isDefined(existing)) {
                     var modes = existing.modes;
                     if (angular.isDefined(modes) && modes.indexOf(mode) < 0) {
