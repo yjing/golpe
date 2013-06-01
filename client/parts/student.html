@@ -3,7 +3,7 @@
 
     <div modal="imageIsOpen" close="closeImage()" options="optsImage">
         <div class="modal-body clickable">
-            <img src="/media/download/{{imageID}}" ng-click="download(imageID);">
+            <img ng-src="/media/download/{{imageID}}" ng-click="download(imageID);">
         </div>
     </div>
 
@@ -49,25 +49,25 @@
     </div>
 
     <div class="span8" ng-show="selected_al != null;">
-        <div class="menu shadow">
+        <div class="menu shadow" ng-init="edit = false">
             <div>
                 <span ng-show="selected_al.user_id == user.id;">
 
-                    <h4 class="clickable" ng-hide="selected_al.mode == 'edit'"
-                        ng-click="editAl(selected_al);">
+                    <h4 class="clickable" ng-hide="edit == true"
+                        ng-click="edit = true">
                         <button ng-show="isMobile" class="btn btn-link" ng-click="go();"><i
                                 class="icon-backward"></i></button>
                         {{selected_al.title}} <i class="icon-pencil"></i>
                     </h4>
                     <!-- EDIT MODE -->
-                    <span ng-show="selected_al.mode == 'edit'">
+                    <span ng-show="edit == true">
                         <input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge"
                                ng-model="selected_al.title">
                     </span>
                 </span>
                 <span ng-hide="selected_al.user_id == user.id;">
                     <h4>
-                        <button ng-show="isMobile" class="btn btn-link" ng-click="selected_al = null;"><i
+                        <button ng-show="isMobile" class="btn btn-link" ng-click="go();"><i
                                 class="icon-backward"></i></button>
                         {{selected_al.title}}
                     </h4>
@@ -75,21 +75,21 @@
             </div>
             <ul>
                 <li>
-                    <p class="selector" ng-hide="selected_al.mode == 'edit'">
+                    <p class="selector" ng-hide="edit == true">
                         {{selected_al.content}}
                     </p>
                     <!-- EDIT MODE -->
                     <textarea class="edit-field" ng-model="selected_al.content"
-                              ng-show="selected_al.mode == 'edit'"></textarea>
+                              ng-show="edit == true"></textarea>
                 </li>
             </ul>
-            <div ng-show="selected_al.mode == 'edit'">
+            <div ng-show="edit == true">
                 <span>
                     <div class="btn-group">
                         <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveAl(selected_al);">
                             Save
                         </button>
-                        <button ng-disabled="" type="button" class="btn" ng-click="cancelEditAl(selected_al);">Cancel
+                        <button ng-disabled="" type="button" class="btn" ng-click="edit = false">Cancel
                         </button>
                     </div>
                 </span>
