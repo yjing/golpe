@@ -22,13 +22,18 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
                 if(mode == $rootScope.mode) {
                     $rootScope.top_bar.page_title = manuLabel;
                 } else {
+                    var test = function(elem){
+                        console.log(elem);
+                    };
+                    test.mode = mode;
                     $rootScope.top_bar.title_menu.push({
                         label: manuLabel,
-                        func: function(elem) {
-                            console.log(elem);
-                            $rootScope.mode = mode;
-                            $scope.setupTopBar();
-                        }
+                        func: test
+//                            function(elem) {
+//                            console.log(elem);
+//                            $rootScope.mode = mode;
+//                            $scope.setupTopBar();
+//                        }
                     });
                 }
             }
