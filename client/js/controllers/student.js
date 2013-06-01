@@ -26,7 +26,7 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
                         label: manuLabel,
                         func: function(elem) {
                             console.log(elem);
-                            $rootScope.mode = modeA[i];
+                            $rootScope.mode = mode;
                             $scope.setupTopBar();
                         }
                     });
