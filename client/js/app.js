@@ -68,9 +68,9 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
             if(angular.isDefined($rootScope.redirectAfterLogin) && $rootScope.redirectAfterLogin != null
                 && !$rootScope.loggingOut) {
                 $location.url($rootScope.redirectAfterLogin);
-                $rootScope.redirectAfterLogin = null;
                 return;
             }
+            $rootScope.redirectAfterLogin = null;
             $rootScope.loggingOut = false;
 
             var role = $rootScope.user.role;
