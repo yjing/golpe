@@ -61,11 +61,11 @@
     </div>
 
     <div class="span8" ng-show="selected_al != null;">
-        <div class="menu shadow" ng-init="edit = false">
+        <div class="menu shadow" ng-init="edit = false; old = anguler.copy(selected_al);">
             <div>
                 <span ng-show="selected_al.user_id == user.id;">
 
-                    <h4 class="clickable" ng-hide="edit == true; old = anguler.copy(selected_al);"
+                    <h4 class="clickable" ng-hide="edit == true;"
                         ng-click="edit = true">
                         <button ng-show="isMobile" class="btn btn-link" ng-click="go();"><i
                                 class="icon-backward"></i></button>
