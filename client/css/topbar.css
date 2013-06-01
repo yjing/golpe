@@ -30,9 +30,9 @@ ul.nav.back-button {
     }
     ul.nav.back-button > li > a {
         padding-left: 10px;
-        padding-right: 0;
+        padding-right: 10px;
     }
-    .dropdown-menu li {
+    .dropdown-menu li.touch {
         font-size: 1.15em;
         padding-top: 0.35em;
         padding-bottom: 0.35em;
