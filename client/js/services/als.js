@@ -175,27 +175,25 @@ app.factory('als_db',function (database, comments_db, media_db, users_db) {
             );
         }
 
-        this.modes = function () {
-            resources.Als.modes = function(success, error){
-                busy.busy(true);
-                resources.Als.modes(
-                    {}, //PARAMS
-                    {}, //DATA
-                    function (d, h) {
-                        busy.busy(false);
-                        console.log(d);
-                        if(angular.isDefined(success)) {
-                            success(d, h);
-                        }
-                    },
-                    function (e) {
-                        busy.busy(false);
-                        if(!$rootScope.handleError(e) && angular.isDefined(error)) {
-                            error(e);
-                        }
+        this.modes = function(success, error){
+            busy.busy(true);
+            resources.modes(
+                {}, //PARAMS
+                {}, //DATA
+                function (d, h) {
+                    busy.busy(false);
+                    console.log(d);
+                    if(angular.isDefined(success)) {
+                        success(d, h);
                     }
-                );
-            }
-        };
+                },
+                function (e) {
+                    busy.busy(false);
+                    if(!$rootScope.handleError(e) && angular.isDefined(error)) {
+                        error(e);
+                    }
+                }
+            );
+        }
 
     });
