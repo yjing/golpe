@@ -77,6 +77,9 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
                             $rootScope.mode, // MODE
                             function (d, h) {                // SUCCESS
                                 $scope.data = database.select('als',[],3);
+                                $rootScope.$watch('mode', function(){
+                                    console.log($rootScope.mode);
+                                });
                             }
                         );
 
