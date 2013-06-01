@@ -14,9 +14,9 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
         if(!$rootScope.isMobile) {
             var baseTitle = "Activity Logs - ";
             $rootScope.top_bar.title_menu = [];
-            console.log($rootScope.modes);
+
             for (var i = 0; i < $rootScope.modes.modes.length; i++) {
-                var mode = $rootScope.modes[i];
+                var mode = $rootScope.modes.modes[i];
                 var manuLabel = baseTitle + angular.uppercase(mode);
 
                 if(mode == $rootScope.mode) {
