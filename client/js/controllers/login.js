@@ -6,7 +6,7 @@ function LoginCtrl($scope, $rootScope, $location, auth){
                 $rootScope.redirectUser();
             }
         },
-        true
+        false       //HANDLE ERROR default true
     );
 
     $scope.username = "s.susini";

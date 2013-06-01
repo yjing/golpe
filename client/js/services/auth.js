@@ -2,7 +2,7 @@ app.service('auth', function($rootScope, resources, busy){
 
     this.user = function(callback, handle_error){
         if(angular.isUndefined(handle_error)) {
-            handle_error = false;
+            handle_error = true;
         }
         if(angular.isUndefined($rootScope.user) || $rootScope.user == null) {
             busy.busy(true);
