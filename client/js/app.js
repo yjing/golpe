@@ -87,12 +87,10 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
             }
         };
 
-        $rootScope.handleError = function (err_data, is_login) {
+        $rootScope.handleError = function (err_data) {
             if (err_data.status == 401 && err_data.data.message == 'NO-LOGGED') {
                 $rootScope.user = null;
-                if(!is_login) {
-                    $rootScope.redirectAfterLogin = $location.url();
-                }
+                $rootScope.redirectAfterLogin = $location.url();
                 $location.url('/client/login');
                 return true;
             }

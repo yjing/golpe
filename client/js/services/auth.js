@@ -1,6 +1,9 @@
 app.service('auth', function($rootScope, resources, busy){
 
-    this.user = function(callback){
+    this.user = function(callback, handle_error){
+        if(angular.isUndefined(handle_error)) {
+            handle_error = false;
+        }
         if(angular.isUndefined($rootScope.user) || $rootScope.user == null) {
             busy.busy(true);
             resources.Users.user(
@@ -18,7 +21,11 @@ app.service('auth', function($rootScope, resources, busy){
                 },
                 function(e){
                     busy.busy(false);
-                    if(!$rootScope.handleError(e) && angular.isDefined(callback)) {
+                    var ehandled = false;
+                    if(handle_error) {
+                        ehandled = $rootScope.handleError(e);
+                    }
+                    if(!ehandled && angular.isDefined(callback)) {
                         callback(e);
                     }
                 }
