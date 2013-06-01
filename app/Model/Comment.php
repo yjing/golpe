@@ -29,6 +29,7 @@ class Comment extends AssociativeModel {
     private $joinModel = null;
     
     public function beforeSave($options = array()) {
+        return true;
         parent::beforeSave($options);
         
         // A TARGET MODEL id required to save the comment
@@ -89,7 +90,7 @@ class Comment extends AssociativeModel {
         
     }
     
-    public function afterSave($created) {
+    public function afterSave($created) {return;
         parent::afterSave($created);
         if ($created) {
             
