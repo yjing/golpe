@@ -3,6 +3,7 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
     $scope.data = [];
     $scope.selected_al_id = $routeParams.id;
     $scope.selected_al = null;
+    $scope.edit_selected = null;
 
     auth.user(
         function (user) {
@@ -24,6 +25,7 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
                             $scope.selected_al_id,
                             function (datum, h) {    // SUCCESS
                                 $scope.selected_al = database.select('als', [ {field:'id',value:$scope.selected_al_id} ], 2)[0];
+                                $scope.edit_selected = angular.copy($scope.selected_al);
                             }
                         );
                     }

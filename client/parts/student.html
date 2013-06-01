@@ -62,7 +62,7 @@
 
     <div class="span8" ng-show="selected_al != null;">
         <div class="menu shadow" ng-init="edit = false;">
-            <div ng-init="old = angular.copy(selected_al);">
+            <div>
                 <span ng-show="selected_al.user_id == user.id;">
 
                     <h4 class="clickable" ng-hide="edit == true;"
@@ -74,7 +74,7 @@
                     <!-- EDIT MODE -->
                     <span ng-show="edit == true">
                         <input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge"
-                               ng-model="selected_al.title">
+                               ng-model="edit_selected.title">
                     </span>
                 </span>
                 <span ng-hide="selected_al.user_id == user.id;">
@@ -91,7 +91,7 @@
                         {{selected_al.content}}
                     </p>
                     <!-- EDIT MODE -->
-                    <textarea class="edit-field" ng-model="selected_al.content"
+                    <textarea class="edit-field" ng-model="edit_selected.content"
                               ng-show="edit == true"></textarea>
                 </li>
             </ul>
