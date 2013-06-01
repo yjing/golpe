@@ -42,23 +42,30 @@ app.factory('als_db',function (database, comments_db, media_db, users_db) {
             }
 
             // MANAGE MODES
-            if(angular.isDefined(mode)) {
-                var existing = database.get('als', al['id'], 0);
-                if (angular.isDefined(existing)) {
-                    var modes = existing.modes;
-                    if (angular.isArray(modes)) {
-                        al.modes = modes;
-                        if(al.modes.indexOf(mode) < 0){
-                            al.modes.push(mode);
-                        }
-                    } else {
-                        al.modes = [ mode ];
-                    }
+            var existing = database.get('als', al['id'], 0);
+            if (angular.isDefined(existing)) {
+                al.modes = existing.modes;
+            } else {
+                al.modes = [];
+            }
 
-                } else {
-                    al.modes = [mode];
-                }
-                console.log(al.modes);
+            if(angular.isDefined(mode) && al.modes.indexOf(mode) < 0) {
+                al.modes.push(mode);
+//                var existing = database.get('als', al['id'], 0);
+//                if (angular.isDefined(existing)) {
+//                    var modes = existing.modes;
+//                    if (angular.isArray(modes)) {
+//                        al.modes = modes;
+//                        if(al.modes.indexOf(mode) < 0){
+//                            al.modes.push(mode);
+//                        }
+//                    } else {
+//                        al.modes = [ mode ];
+//                    }
+//
+//                } else {
+//                    al.modes = [mode];
+//                }
             }
 
             // SET COMPLETENESS
@@ -133,7 +140,7 @@ app.factory('als_db',function (database, comments_db, media_db, users_db) {
                 function (d, h) {
                     busy.busy(false);
 
-                    var al = als_db.insertAl(d['ActivityLog'], $rootScope);
+                    var al = als_db.insertAl(d['ActivityLog']);
 
                     if(angular.isDefined(success) && angular.isFunction(success)) {
                         success(al, h);
