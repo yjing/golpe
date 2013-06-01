@@ -150,6 +150,9 @@ app.factory('als_db',function (database, comments_db, media_db, users_db) {
                 params.id = data.id;
             }
 
+            delete data['created'];
+            delete data['modified'];
+
             busy.busy(true);
             resources.Als.save(
                 params, //PARAMS
