@@ -68,7 +68,7 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
                             $scope.selected_al_id,
                             function (datum, h) {    // SUCCESS
                                 $scope.selected_al = database.select('als', [ {field:'id',value:$scope.selected_al_id} ], 2)[0];
-                                $scope.data = database.select('als',[ {field:'modes',value:$rootScope.mode} ],3);
+                                console.log(database.select('als',[ {field:'modes',value:$rootScope.mode} ],3));
                             }
                         );
                     }
