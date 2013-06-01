@@ -100,11 +100,8 @@
             <div ng-show="edit == true">
                 <span>
                     <div class="btn-group">
-                        <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveAl(selected_al);">
-                            Save
-                        </button>
-                        <button ng-disabled="" type="button" class="btn" ng-click="unEditSelected();">Cancel
-                        </button>
+                        <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="save();">Save</button>
+                        <button ng-disabled="" type="button" class="btn" ng-click="unEditSelected();">Cancel</button>
                     </div>
                 </span>
             </div>
