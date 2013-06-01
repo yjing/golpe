@@ -114,6 +114,7 @@ class ActivityLogsController extends RESTController {
             $saved = $this->ActivityLog->save($this->request->data);
             if ($saved) {
                 $saved = $this->getDafaultFormattedAL($saved['ActivityLog']['id']);
+                $saved = $this->_formatDates($saved, time(), array('created', 'modified'));
                 $this->_setResponseJSON($saved);
 
                 $this->Notification->createNotification('ActivityLog', $saved['ActivityLog']['id']);
@@ -154,6 +155,7 @@ class ActivityLogsController extends RESTController {
             $saved = $this->ActivityLog->save($this->request->data);
             if ($saved) {
                 $saved = $this->getDafaultFormattedAL($id);
+                $saved = $this->_formatDates($saved, time(), array('created', 'modified'));
                 $this->_setResponseJSON($saved);
 
                 $this->Notification->createNotification('ActivityLog', $id);
