@@ -33,8 +33,9 @@
                     </a>
 
                     <div class="functions">
-                        <button class="btn-link function" ng-click="item.deleting = true" ng-hide="item.deleting"><i
-                                class="icon-remove"></i></button>
+                        <button class="btn-link function" ng-click="item.deleting = true" ng-hide="item.deleting || selected_al.user_id != user.id;">
+                            <i class="icon-remove"></i>
+                        </button>
                     </div>
                     <div class="confirms">
                         <button class="btn btn-danger confirm" ng-click="deleteElem(item.id);" ng-show="item.deleting">
