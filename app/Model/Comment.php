@@ -91,7 +91,6 @@ class Comment extends AssociativeModel {
     
     public function afterSave($created) {
         parent::afterSave($created);
-        debug("afterSave");
         if ($created) {
             
             // After Comment insertion change Target MODIFICATION DATE
@@ -107,9 +106,12 @@ class Comment extends AssociativeModel {
             
             $this->joinModel->create();
             $new_join = $this->joinModel->save($join);
+            debug("afterSave::new_join");
+            debug($new_join);
             
             
             if(!$new_join) {
+                debug("afterSave::rollback");
                 $this->getDataSource()->rollback();
                 $this->targetModel->getDataSource()->rollback();
                 $this->joinModel->getDataSource()->rollback();
@@ -121,6 +123,7 @@ class Comment extends AssociativeModel {
         $this->getDataSource()->commit();
         $this->targetModel->getDataSource()->commit();
         $this->joinModel->getDataSource()->commit();
+        debug("afterSave::COMMITTED");
     }
     
 }
