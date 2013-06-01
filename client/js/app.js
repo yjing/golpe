@@ -90,11 +90,11 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
             return false;
         }
         $rootScope.windowWidth = $(window).width();
-        $rootScope.isMobile = $rootScope.windowWidth < 767;
+        $rootScope.isMobile = $rootScope.windowWidth < 768;
         $(window).resize(function () {
             $rootScope.$apply(function () {
                 $rootScope.windowWidth = $(window).width();
-                $rootScope.isMobile = ($rootScope.windowWidth < 767);
+                $rootScope.isMobile = ($rootScope.windowWidth < 768);
             });
         });
 
