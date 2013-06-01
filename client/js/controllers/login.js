@@ -15,7 +15,7 @@ function LoginCtrl($scope, $rootScope, $location, auth){
         auth.login($scope.username, $scope.password,
             function(user){
                 if(user != null) {
-                    $scope.redirectUser();
+                    $rootScope.redirectUser();
                 } else {
                     $scope.login_message = "Error";
                 }

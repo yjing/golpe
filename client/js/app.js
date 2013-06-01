@@ -53,7 +53,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
         $rootScope.logout = function () {
             auth.logout(
                 function(user){
-                    $scope.redirectUser();
+                    $rootScope.redirectUser();
                 }
             );
         }
