@@ -80,10 +80,14 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
                 case 'ADMIN':
                     $location.url('/client/users');
                     break;
+                default:
+                    $location.url('/client/login');
+                    break;
             }
         };
 
         $rootScope.error = function (err_data) {
+            console.log(err_data);
             if (err_data.status == 401 && err_data.data.message == 'NO-LOGGED') {
                 $location.url('/client/login');
                 return true;
