@@ -176,24 +176,30 @@ app.factory('als_db',function (database, comments_db, media_db, users_db) {
         }
 
         this.modes = function(success, error){
-            busy.busy(true);
-            resources.Als.modes(
-                {}, //PARAMS
-                {}, //DATA
-                function (d, h) {
-                    busy.busy(false);
-                    console.log(d);
-                    if(angular.isDefined(success)) {
-                        success(d, h);
+            if(angular.isUndefined($rootScope.modes) || $rootScope.modes == null) {
+                busy.busy(true);
+                resources.Als.modes(
+                    {}, //PARAMS
+                    {}, //DATA
+                    function (d, h) {
+                        busy.busy(false);
+                        $rootScope.modes = d;
+                        if(angular.isDefined(success)) {
+                            success(d, h);
+                        }
+                    },
+                    function (e) {
+                        busy.busy(false);
+                        if(!$rootScope.handleError(e) && angular.isDefined(error)) {
+                            error(e);
+                        }
                     }
-                },
-                function (e) {
-                    busy.busy(false);
-                    if(!$rootScope.handleError(e) && angular.isDefined(error)) {
-                        error(e);
-                    }
+                );
+            } else {
+                if(angular.isDefined(success)) {
+                    success($rootScope.modes);
                 }
-            );
+            }
         }
 
     });

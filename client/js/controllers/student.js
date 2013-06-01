@@ -10,6 +10,27 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
             { type:'item', label:'Info', icon:'icon-info-sign', func:$rootScope.info }
         ]
     };
+    $scope.setupTopBar = function () {
+        if(!$rootScope.isMobile) {
+            var baseTitle = "Activity Logs - ";
+            $rootScope.top_bar.title_menu = [];
+            for (var i = 0; i < $rootScope.modes.modes.length; i++) {
+                var mode = $rootScope.modes[i];
+                var manuLabel = baseTitle + uppercase(mode);
+
+                if(mode == $rootScope.mode) {
+                    $rootScope.top_bar.page_title = manuLabel;
+                } else {
+                    $rootScope.top_bar.title_menu.push({
+                        label: manuLabel,
+                        func: function() {
+                            $rootScope.mode = mode;
+                        }
+                    });
+                }
+            }
+        }
+    };
 
     $scope.data = [];
     $scope.selected_al_id = $routeParams.id;
@@ -23,17 +44,24 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
             als.modes(
                 function(d, h) {    // SUCCESS
 
+                    if(angular.isUndefined($rootScope.mode) || $rootScope.mode == null) {
+                        $rootScope.mode = $rootScope.modes.default;
+                    }
+                    $scope.setupTopBar();
+
+
+                    if (angular.isDefined($scope.selected_al_id) && $scope.selected_al_id != null) {
+                        als.get(
+                            $scope.selected_al_id,
+                            function (datum, h) {    // SUCCESS
+                                $scope.selected_al = database.select('als', [ {field:'id',value:$scope.selected_al_id} ], 2)[0];
+                            }
+                        );
+                    }
+
                 }
             );
 return;
-            if (angular.isDefined($scope.selected_al_id) && $scope.selected_al_id != null) {
-                als.get(
-                    $scope.selected_al_id,
-                    function (datum, h) {    // SUCCESS
-                        $scope.selected_al = database.select('als', [ {field:'id',value:$scope.selected_al_id} ], 2)[0];
-                    }
-                );
-            }
 
 
             als.all(
