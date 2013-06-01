@@ -90,6 +90,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
             if (err_data.status == 401 && err_data.data.message == 'NO-LOGGED') {
                 $rootScope.user = null;
                 $location.url('/client/login');
+                console.log(err_data.data.message);
                 return true;
             }
             return false;
