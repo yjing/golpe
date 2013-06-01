@@ -13,6 +13,10 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
     $scope.setupTopBar = function () {
         if($scope.selected_al_id != null && $rootScope.isMobile) {
             $rootScope.top_bar.page_title = "Activity Log";
+            $rootScope.top_bar.back_button = {
+                icon: 'icon-chevron-left',
+                func: function(){ go(); }
+            }
             return;
         }
 
