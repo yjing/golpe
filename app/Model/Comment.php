@@ -117,7 +117,6 @@ class Comment extends AssociativeModel {
             
         }
         
-        debug("COMMIT");
         $this->getDataSource()->commit();
         $this->targetModel->getDataSource()->commit();
         $this->joinModel->getDataSource()->commit();
