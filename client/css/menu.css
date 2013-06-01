@@ -150,14 +150,14 @@ div.menu > ul > li.active.question:focus {
 }
 
 textarea.edit-field {
-    position: relative;
-    margin: 0;
-    top: 0;
-    left: 0;
-    border: none;
-    font-size: 1.2em;
-    -webkit-appearance: none;
-    appearance: none;
+    /*position: relative;*/
+    /*margin: 0;*/
+    /*top: 0;*/
+    /*left: 0;*/
+    /*border: none;*/
+    /*font-size: 1.2em;*/
+    /*-webkit-appearance: none;*/
+    /*appearance: none;*/
 
     width: 98%;
     padding: 1%;
