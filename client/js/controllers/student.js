@@ -112,7 +112,7 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
             true,
             'all',
             function (d, h) {    // SUCCESS
-                $scope.data = database.select('als',[],3);
+                $scope.data = database.select('als',[ {field:'modes',value:$rootScope.mode} ],3);
             }
         );
     };
