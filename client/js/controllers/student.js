@@ -48,9 +48,6 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
             'all',
             function (d, h) {    // SUCCESS
                 $scope.data = database.select('als',[],3);
-            },
-            function(e){
-                $rootScope.handleError(e);
             }
         );
     };
