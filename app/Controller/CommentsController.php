@@ -4,7 +4,7 @@ App::import('Controller', 'REST');
 
 class CommentsController extends RESTController {
 
-    public $uses = array('Comment');
+    public $uses = array('Comment', 'ActivityLog');
     public $components = array('LogActions');
     
     public function index() {
@@ -53,6 +53,17 @@ class CommentsController extends RESTController {
 
             $res = $this->Comment->save($data);
             debug("saved??");
+            
+            $test = $this->ActivityLog->find('first', array(
+                'conditions' => array('ActivityLog.id' => $data['Target']['id']),
+                'associations' => array(
+                    'Comment' => array(
+                        'fields' => array('id', 'content')
+                    )
+                )
+            ));
+            debug($test);
+            
             if($res) {
                 $this->_setResponseJSON( $this->getDafaultFormattedComment($this->Comment->id) );
             } else {
