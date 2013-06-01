@@ -4,6 +4,7 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
     $scope.selected_al_id = $routeParams.id;
     $scope.selected_al = null;
     $scope.edit_selected = null;
+    $scope.edit = false;
 
     auth.user(
         function (user) {
@@ -25,7 +26,6 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
                             $scope.selected_al_id,
                             function (datum, h) {    // SUCCESS
                                 $scope.selected_al = database.select('als', [ {field:'id',value:$scope.selected_al_id} ], 2)[0];
-                                $scope.edit_selected = angular.copy($scope.selected_al);
                             }
                         );
                     }
@@ -54,6 +54,16 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
 
     $scope.selected = function (id) {
         return $scope.selected_al_id == id ? 'active' : '';
+    };
+
+    $scope.editSelected = function () {
+        $scope.edit = true;
+        $scope.edit_selected = angular.copy($scope.selected_al);
+    };
+
+    $scope.unEditSelected = function () {
+        $scope.edit = false;
+        $scope.edit_selected = null;
     };
 
     $scope.download = function (id) {

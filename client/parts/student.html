@@ -66,7 +66,7 @@
                 <span ng-show="selected_al.user_id == user.id;">
 
                     <h4 class="clickable" ng-hide="edit == true;"
-                        ng-click="edit = true">
+                        ng-click="editSelected();">
                         <button ng-show="isMobile" class="btn btn-link" ng-click="go();"><i
                                 class="icon-backward"></i></button>
                         {{selected_al.title}} <i class="icon-pencil"></i>
@@ -101,7 +101,7 @@
                         <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveAl(selected_al);">
                             Save
                         </button>
-                        <button ng-disabled="" type="button" class="btn" ng-click="edit = false; selected_al = old;">Cancel
+                        <button ng-disabled="" type="button" class="btn" ng-click="editSelected();">Cancel
                         </button>
                     </div>
                 </span>
