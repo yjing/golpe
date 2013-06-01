@@ -32,7 +32,6 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
                     });
                 }
             }
-            console.log(modeA);
         }
     };
 
