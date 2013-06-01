@@ -11,28 +11,30 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
         ]
     };
     $scope.setupTopBar = function () {
-        if(!$rootScope.isMobile) {
-            var baseTitle = "Activity Logs - ";
-            $rootScope.top_bar.title_menu = [];
+        if($scope.selected_al_id != null && $rootScope.isMobile) {
+            $rootScope.top_bar.page_title = "Activity Log";
+            return;
+        }
 
-            for (var i = 0; i < $rootScope.modes.modes.length; i++) {
-                var mode = $rootScope.modes.modes[i];
-                var manuLabel = baseTitle + angular.uppercase(mode);
+        var baseTitle = "Activity Logs - ";
+        $rootScope.top_bar.title_menu = [];
 
-                if(mode == $rootScope.mode) {
-                    $rootScope.top_bar.page_title = manuLabel;
+        for (var i = 0; i < $rootScope.modes.modes.length; i++) {
+            var mode = $rootScope.modes.modes[i];
+            var manuLabel = baseTitle + angular.uppercase(mode);
 
-                } else {
-                    var modeSelector = function(elem){
-                        $rootScope.mode = elem.func.mode;
-                        $scope.setupTopBar();
-                    };
-                    modeSelector.mode = mode;
-                    $rootScope.top_bar.title_menu.push({
-                        label: manuLabel,
-                        func: modeSelector
-                    });
-                }
+            if(mode == $rootScope.mode) {
+                $rootScope.top_bar.page_title = manuLabel;
+            } else {
+                var modeSelector = function(elem){
+                    $rootScope.mode = elem.func.mode;
+                    $scope.setupTopBar();
+                };
+                modeSelector.mode = mode;
+                $rootScope.top_bar.title_menu.push({
+                    label: manuLabel,
+                    func: modeSelector
+                });
             }
         }
     };
