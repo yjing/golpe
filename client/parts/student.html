@@ -52,7 +52,7 @@
             </ul>
             <div>
                 <a href="#" class="text-right">
-                    <button ng-click="selected_al_id != 'new'; go('new');" ng-hide="selected_al_id == 'new'"
+                    <button ng-click="go('new');" ng-hide="selected_al_id == 'new'"
                             class="btn btn-success">New Activity Log
                     </button>
                     <button ng-click="go();" ng-show="selected_al_id == 'new'" class="btn btn-warning">Cancel New
@@ -194,6 +194,80 @@
             </div>
         </div>
 
+    </div>
+
+    <div class="span8" ng-show="selected_al_id == 'new'">
+        <form id="alform" ng-submit="submitNewAl();" class="" target="iframe" action='/activity_logs' method='POST'
+              enctype='multipart/form-data'>
+            <div class="menu shadow">
+                <div>
+                <span>
+                    <input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge" placeholder="Title"
+                           name="data[ActivityLog][title]">
+                </span>
+                </div>
+                <ul>
+                    <li>
+                        <div class="selector">
+                            <!--<textarea class="edit-field" ng-model="new_activity_log.content" name="data[ActivityLog][title]"></textarea>-->
+                            <div class="control-group">
+                                <!--<label class="control-label" for="data[ActivityLog][content]">Content</label>-->
+                                <div class="controls">
+                                    <textarea name='data[ActivityLog][content]' placeholder="Content"></textarea>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="data[ActivityLog][visibility_level]">Visibility
+                                    level</label>
+
+                                <div class="controls">
+                                    <select name='data[ActivityLog][visibility_level]'>
+                                        <option selected>PRIVATE</option>
+                                        <option>SUPERVISOR</option>
+                                        <option>TEAM</option>
+                                        <option>PUBLIC</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="controls">
+                                    <label class="checkbox">
+                                        <input name='data[ActivityLog][question]' type="checkbox"> Question
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <div class="controls">
+                                    <label class="cont rol-label" for="data[ActivityLog][visibility_level]">Files</label>
+                                </div>
+                            </div>
+                            <div class="control-group" ng-repeat="file in files">
+                                <div class="controls">
+                                    <input type='file' name='data[Media][{{$index}}]'>
+                                <span class="btn btn-link" ng-click='removeFile($index);'><button
+                                        class="btn btn-mini btn-warning"><i class="icon-remove"></i></button></span>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="controls">
+                                    <span tabindex="-1" class="btn" ng-click='addFile();'><i class="icon-file"></i> add file</span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div>
+                <span>
+                    <div class="btn-group">
+                        <button ng-disabled="BUSY.busy();" ng-click="startWatching();" type="submit" class="btn">Save
+                        </button>
+                        <button type="button" class="btn" ng-click="removeNewAl();">Cancel</button>
+                    </div>
+                </span>
+                </div>
+            </div>
+        </form>
     </div>
 
 </div>
