@@ -208,9 +208,9 @@
                         </div>
                     </div>
                     <div class="btn-group">
-                        <button ng-disabled="BUSY.busy();" ng-click="startWatchingC();" type="submit" class="btn">Comment
+                        <button ng-disabled="BUSY.busy();" ng-click="startWatching('iframec');" type="submit" class="btn">Comment
                         </button>
-                        <button type="button" class="btn" ng-click="">Cancel</button>
+                        <button type="button" class="btn" ng-click="this.reset(); add_comment = false;">Cancel</button>
                     </div>
                 </form>
             </div>
@@ -280,7 +280,7 @@
                 <div>
                 <span>
                     <div class="btn-group">
-                        <button ng-disabled="BUSY.busy();" ng-click="startWatching();" type="submit" class="btn">Save
+                        <button ng-disabled="BUSY.busy();" ng-click="startWatching('iframe');" type="submit" class="btn">Save
                         </button>
                         <button type="button" class="btn" ng-click="go();">Cancel</button>
                     </div>

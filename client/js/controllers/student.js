@@ -175,9 +175,9 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
         );
     };
 
-    $scope.startWatching = function () {
+    $scope.startWatching = function (iframe_id) {
         var id = window.setInterval(function(){
-            var iframe = document.getElementById('iframe');
+            var iframe = document.getElementById(iframe_id);
 
             var content;
             // Message from server...
@@ -200,30 +200,19 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
                     iframe.document.body.innerHTML = "";
                 }
 
-                als.all(
-                    true, // RELOAD
-                    $rootScope.mode, // MODE
-                    function (d, h) {                // SUCCESS
-                        $scope.data = database.select('als',[ {field:'modes',value:$rootScope.mode} ],3);
-                        $scope.go();
-                    }
-                );
+                if(iframe_id == 'iframe') {
+                    als.all(
+                        true, // RELOAD
+                        $rootScope.mode, // MODE
+                        function (d, h) {                // SUCCESS
+                            $scope.data = database.select('als',[ {field:'modes',value:$rootScope.mode} ],3);
+                            $scope.go();
+                        }
+                    );
+                } else {
 
-//                // Refresh DATA
-//                ALService.loadAll(
-//                    {reload: true, mode:$scope.mode},
-//                    // SUCCESS
-//                    function(data, handlers){
-//                        BusyService.busy(false);
-//                        $scope.reload();
-//                        $scope.files = [];
-//                        document.getElementById('alform').reset();
-//                    },
-//                    // ERROR
-//                    function(error){
-//                        $rootScope.handleError(error);
-//                    }
-//                );
+                }
+
             }
 
         }, 1000);
