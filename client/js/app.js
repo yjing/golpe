@@ -92,9 +92,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
             if (err_data.status == 401 && err_data.data.message == 'NO-LOGGED') {
                 $rootScope.user = null;
                 if(angular.isUndefined($rootScope.redirectAfterLogin) || $rootScope.redirectAfterLogin == null) {
-                    console.log("BEFORE: " + $rootScope.redirectAfterLogin);
                     $rootScope.redirectAfterLogin = $location.url();
-                    console.log("AFTER: " + $rootScope.redirectAfterLogin);
                 }
                 $location.url('/client/login');
                 return true;

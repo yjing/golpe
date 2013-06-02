@@ -62,8 +62,12 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
     }
 
     auth.user(
-        function (/*user*/) {
-
+        function (user) {
+            if(angular.isUndefined(user) || user == null) {
+                $rootScope.redirectAfterLogin = $location.url();
+                $location.url('/client/login');
+                return;
+            }
             als.modes(
                 function(d, h) {    // SUCCESS
 
