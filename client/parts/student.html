@@ -198,12 +198,19 @@
                 <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="add_comment = true">Comment</button>
             </div>
             <div ng-show="add_comment">
-                <form id="cform" class="" target="ciframe" action='/activity_logs' method='POST'
+                <form id="cform" class="" target="ciframe" action='/comments' method='POST'
                       enctype='multipart/form-data'>
+                    <input type="hidden" name="data[Target][alias]" value="ActivityLog">
+                    <input type="hidden" name="data[Target][id]" value="{{selected_al_id}}">
                     <div class="control-group">
                         <div class="controls">
                             <textarea name='data[ActivityLog][content]' class="edit-field" placeholder="Content" style="border: 1px solid #f4f4f4"></textarea>
                         </div>
+                    </div>
+                    <div class="btn-group">
+                        <button ng-disabled="BUSY.busy();" ng-click="startWatchingC();" type="submit" class="btn">Comment
+                        </button>
+                        <button type="button" class="btn" ng-click="">Cancel</button>
                     </div>
                 </form>
             </div>
