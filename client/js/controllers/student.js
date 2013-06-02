@@ -144,7 +144,7 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
     $scope.delete = function (id) {
         als.delete(id,
             function(d, h) {    // SUCCESS
-                $scope.data = database.select('als',[],3);
+                $scope.data = database.select('als',[ {field:'modes',value:$rootScope.mode} ],3);
                 if(id == $scope.selected_al_id) {
                     $scope.go();
                 }
@@ -156,7 +156,7 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
         als.save(
             $scope.edit_selected,
             function(d, h) {    // SUCCESS
-                $scope.data = database.select('als',[],3);
+                $scope.data = database.select('als',[ {field:'modes',value:$rootScope.mode} ],3);
                 $scope.selected_al = database.select('als', [ {field:'id',value:$scope.selected_al_id} ], 2)[0];
                 $scope.unEditSelected();
             },
