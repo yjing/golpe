@@ -200,16 +200,16 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
                     iframe.document.body.innerHTML = "";
                 }
 
-                if(iframe_id == 'iframe') {
-                    als.all(
-                        true, // RELOAD
-                        $rootScope.mode, // MODE
-                        function (d, h) {                // SUCCESS
-                            $scope.data = database.select('als',[ {field:'modes',value:$rootScope.mode} ],3);
-                            $scope.go();
-                        }
-                    );
-                } else {
+
+                als.all(
+                    true, // RELOAD
+                    $rootScope.mode, // MODE
+                    function (d, h) {                // SUCCESS
+                        $scope.data = database.select('als',[ {field:'modes',value:$rootScope.mode} ],3);
+                    }
+                );
+
+                if(iframe_id == 'iframec') {
                     als.get(
                         $scope.selected_al_id,
                         function (datum, h) {    // SUCCESS
@@ -218,6 +218,8 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
                             document.formc.reset();
                         }
                     );
+                } else {
+                    $scope.go();
                 }
 
             }
