@@ -51,6 +51,16 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
     $scope.edit_selected = null;
     $scope.edit = false;
 
+    $scope.files = [];
+    $scope.addFile = function() {
+        $scope.files.push({});
+    }
+    $scope.removeFile = function(index) {
+        if (index < $scope.files.length) {
+            $scope.files.splice(index, 1);
+        }
+    }
+
     auth.user(
         function (/*user*/) {
 
