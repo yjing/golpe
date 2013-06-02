@@ -66,7 +66,9 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
             }
 
             if(angular.isDefined($rootScope.redirectAfterLogin) && $rootScope.redirectAfterLogin != null) {
+                console.log("BEFORE: " + $rootScope.redirectAfterLogin);
                 $location.url($rootScope.redirectAfterLogin);
+                console.log("AFTER: " + $rootScope.redirectAfterLogin);
                 $rootScope.redirectAfterLogin = null;
                 return;
             }
