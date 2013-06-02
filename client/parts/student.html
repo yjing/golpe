@@ -34,6 +34,8 @@
                                   ng-show="item.media.length > 0">M:{{item.media.length}}</span>
                             <span class="label label-info"
                                   ng-show="item.comments.length > 0">C:{{item.comments.length}}</span>
+                            <span class="label label-info"
+                                  ng-show="item.visibility_level == 'PUBLIC'"><small>PUBLIC</small></span>
                         </small>
                     </a>
 
