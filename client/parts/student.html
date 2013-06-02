@@ -10,7 +10,6 @@
         </div>
     </div>
 
-
     <div class="span4" ng-hide="isMobile && selected_al != null;">
         <div class="menu shadow">
             <div>
@@ -200,7 +199,7 @@
     </div>
 
     <div class="span8" ng-show="selected_al_id == 'new'">
-        <form id="alform" ng-submit="submitNewAl();" class="" target="iframe" action='/activity_logs' method='POST'
+        <form id="alform" class="" target="iframe" action='/activity_logs' method='POST'
               enctype='multipart/form-data'>
             <div class="menu shadow">
                 <div>
@@ -216,7 +215,7 @@
                             <div class="control-group">
                                 <!--<label class="control-label" for="data[ActivityLog][content]">Content</label>-->
                                 <div class="controls">
-                                    <textarea name='data[ActivityLog][content]' placeholder="Content"></textarea>
+                                    <textarea name='data[ActivityLog][content]' class="edit-field" placeholder="Content"></textarea>
                                 </div>
                             </div>
                             <div class="control-group">
