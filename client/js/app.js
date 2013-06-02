@@ -66,14 +66,10 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
             }
 
             if(angular.isDefined($rootScope.redirectAfterLogin) && $rootScope.redirectAfterLogin != null) {
-                console.log("BEFORE: " + $rootScope.redirectAfterLogin);
                 $location.url($rootScope.redirectAfterLogin);
-                console.log("AFTER: " + $rootScope.redirectAfterLogin);
                 $rootScope.redirectAfterLogin = null;
                 return;
             }
-            $rootScope.redirectAfterLogin = null;
-            $rootScope.loggingOut = false;
 
             var role = $rootScope.user.role;
             switch (role) {
@@ -95,7 +91,9 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
             if (err_data.status == 401 && err_data.data.message == 'NO-LOGGED') {
                 $rootScope.user = null;
                 if(angular.isUndefined($rootScope.redirectAfterLogin) || $rootScope.redirectAfterLogin == null) {
+                    console.log("BEFORE: " + $rootScope.redirectAfterLogin);
                     $rootScope.redirectAfterLogin = $location.url();
+                    console.log("AFTER: " + $rootScope.redirectAfterLogin);
                 }
                 $location.url('/client/login');
                 return true;
