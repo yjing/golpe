@@ -38,11 +38,11 @@
                         </button>
                     </div>
                     <div class="confirms">
-                        <button class="btn btn-danger confirm" ng-click="deleteElem(item.id);" ng-show="item.deleting">
+                        <button class="btn btn-danger confirm" ng-click="delete(item.id);" ng-show="item.deleting">
                             Delete
                         </button>
-                        <button class="btn btn-success confirm" ng-click="item.deleting = false"
-                                ng-show="item.deleting">Keep
+                        <button class="btn btn-success confirm" ng-click="item.deleting = false" ng-show="item.deleting">
+                            Keep
                         </button>
                     </div>
                 </li>

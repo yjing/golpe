@@ -11,6 +11,10 @@ app.factory('als_db',function (database, comments_db, media_db, users_db) {
             return ret;
         }
 
+        this.deleteAl = function (id) {
+            database.delete('als', id)
+        }
+
         this.insertAl = function (al, mode) {
             var complete = false;
 
@@ -133,6 +137,27 @@ app.factory('als_db',function (database, comments_db, media_db, users_db) {
                 function (e) {
                     busy.busy(false);
                     if(!$rootScope.handleError(e) && angular.isFunction(error)) {
+                        error(e);
+                    }
+                }
+            );
+        }
+
+        this.delete = function(id, success, error){
+            busy.busy(true);
+            resources.delete(
+                { 'id':id }, //PARAMS
+                {}, //DATA
+                function (d, h) {
+                    busy.busy(false);
+                    als_db.deleteAl(id);
+                    if(angular.isDefined(success)) {
+                        success(d, h);
+                    }
+                },
+                function (e) {
+                    busy.busy(false);
+                    if(!$rootScope.handleError(e) && angular.isDefined(error)) {
                         error(e);
                     }
                 }

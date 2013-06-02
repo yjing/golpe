@@ -141,6 +141,17 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
         window.location.href = '/media/download/' + id + '?download=true';
     };
 
+    $scope.delete = function (id) {
+        als.delete(id,
+            function(d, h) {    // SUCCESS
+                $scope.data = database.select('als',[],3);
+                if(id == $scope.selected_al_id) {
+                    $scope.go();
+                }
+            }
+        );
+    };
+
     $scope.save = function () {
         als.save(
             $scope.edit_selected,
