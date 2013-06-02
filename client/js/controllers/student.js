@@ -210,7 +210,7 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
                         }
                     );
                 } else {
-
+                    $location.url($location.url());
                 }
 
             }
