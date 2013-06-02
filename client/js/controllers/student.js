@@ -210,7 +210,14 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
                         }
                     );
                 } else {
-                    $location.url($location.url());
+                    als.get(
+                        $scope.selected_al_id,
+                        function (datum, h) {    // SUCCESS
+                            $scope.selected_al = database.select('als', [ {field:'id',value:$scope.selected_al_id} ], 2)[0];
+                            $scope.add_comment = false;
+                            document.formc.reset();
+                        }
+                    );
                 }
 
             }
