@@ -61,7 +61,6 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
         }
     }
 
-    console.log("ST::BEFORE AUTH.USER");
     auth.user(
         function (/*user*/) {
 
