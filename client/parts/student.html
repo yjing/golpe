@@ -1,6 +1,9 @@
 <iframe style="position: fixed; display: block; width: 0px; height: 0px; visibility: hidden; right: 0;" id="iframe"
         name="iframe">
 </iframe>
+<iframe style="position: fixed; display: block; width: 0px; height: 0px; visibility: hidden; right: 0;" id="ciframe"
+        name="ciframe">
+</iframe>
 
 <div class="row-fluid">
 
@@ -191,8 +194,18 @@
                     </ul>
                 </li>
             </ul>
-            <div>
-
+            <div ng-init="add_comment = false" ng-hide="add_comment">
+                <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="add_comment = true">Comment</button>
+            </div>
+            <div ng-show="add_comment">
+                <form id="cform" class="" target="ciframe" action='/activity_logs' method='POST'
+                      enctype='multipart/form-data'>
+                    <div class="control-group">
+                        <div class="controls">
+                            <textarea name='data[ActivityLog][content]' class="edit-field" placeholder="Content" style="border: 1px solid #f4f4f4"></textarea>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
 
@@ -203,10 +216,10 @@
               enctype='multipart/form-data'>
             <div class="menu shadow">
                 <div>
-                <span>
-                    <input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge" placeholder="Title"
-                           name="data[ActivityLog][title]">
-                </span>
+                    <span>
+                        <input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge" placeholder="Title"
+                               name="data[ActivityLog][title]">
+                    </span>
                 </div>
                 <ul>
                     <li>
