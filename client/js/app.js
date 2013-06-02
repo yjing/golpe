@@ -72,7 +72,6 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
             }
             $rootScope.redirectAfterLogin = null;
             $rootScope.loggingOut = false;
-            console.log("LO");
 
             var role = $rootScope.user.role;
             switch (role) {
