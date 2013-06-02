@@ -13,7 +13,9 @@ app.service('auth', function($rootScope, resources, busy){
                         $rootScope.user = d.User;
                     } else {
                         $rootScope.user = null;
-                        $rootScope.redirectUser();
+                        if(handle_error) {
+                            $rootScope.redirectUser();
+                        }
                     }
                     if(angular.isDefined(callback)) {
                         callback($rootScope.user);
@@ -21,13 +23,11 @@ app.service('auth', function($rootScope, resources, busy){
                 },
                 function(e){
                     busy.busy(false);
-                    var ehandled = false;
-                    console.log(handle_error);
+                    var handled = false;
                     if(handle_error) {
-                        ehandled = $rootScope.handleError(e);
+                        handled = $rootScope.handleError(e);
                     }
-                    console.log(ehandled);
-                    if(!ehandled && angular.isDefined(callback)) {
+                    if(!handled && angular.isDefined(callback)) {
                         callback(e);
                     }
                 }
