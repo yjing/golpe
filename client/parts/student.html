@@ -209,6 +209,13 @@
                             <textarea name='data[Comment][content]' class="edit-field" placeholder="Content" style="border: 1px solid #f4f4f4"></textarea>
                         </div>
                     </div>
+                    <div class="control-group" ng-repeat="file in files">
+                        <div class="controls">
+                            <input type='file' name='data[Media][{{$index}}]'>
+                                <span class="btn btn-link" ng-click='removeFile($index);'><button
+                                        class="btn btn-mini btn-warning"><i class="icon-remove"></i></button></span>
+                        </div>
+                    </div>
                     <div class="btn-group">
                         <button ng-disabled="BUSY.busy();" ng-click="startWatching('iframec');" type="submit" class="btn">Comment
                         </button>
