@@ -175,6 +175,60 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
         );
     };
 
+    $scope.startWatching = function () {
+        var id = window.setInterval(function(){
+            var iframe = document.getElementById('iframe');
+
+            var content;
+            // Message from server...
+            if (iframe.contentDocument) {
+                content = iframe.contentDocument.body.innerHTML;
+            } else if (iframe.contentWindow) {
+                content = iframe.contentWindow.document.body.innerHTML;
+            } else if (iframe.document) {
+                content = iframe.document.body.innerHTML;
+            }
+
+            if(content.length > 0) {
+                window.clearInterval(id);
+
+                if (iframe.contentDocument) {
+                    iframe.contentDocument.body.innerHTML = "";
+                } else if (iframe.contentWindow) {
+                    iframe.contentWindow.document.body.innerHTML = "";
+                } else if (iframe.document) {
+                    iframe.document.body.innerHTML = "";
+                }
+
+                als.all(
+                    true, // RELOAD
+                    $rootScope.mode, // MODE
+                    function (d, h) {                // SUCCESS
+                        $scope.data = database.select('als',[ {field:'modes',value:$rootScope.mode} ],3);
+                        $scope.go();
+                    }
+                );
+
+//                // Refresh DATA
+//                ALService.loadAll(
+//                    {reload: true, mode:$scope.mode},
+//                    // SUCCESS
+//                    function(data, handlers){
+//                        BusyService.busy(false);
+//                        $scope.reload();
+//                        $scope.files = [];
+//                        document.getElementById('alform').reset();
+//                    },
+//                    // ERROR
+//                    function(error){
+//                        $rootScope.handleError(error);
+//                    }
+//                );
+            }
+
+        }, 1000);
+    };
+
     // SHOW IMAGE
     $scope.openImage = function (id) {
         $scope.imageID = id;
