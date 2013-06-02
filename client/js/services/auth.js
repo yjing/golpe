@@ -26,7 +26,7 @@ app.service('auth', function($rootScope, resources, busy){
                     if(handle_error) {
                         ehandled = $rootScope.handleError(e);
                     }
-                    console.log(ehandled));
+                    console.log(ehandled);
                     if(!ehandled && angular.isDefined(callback)) {
                         callback(e);
                     }
