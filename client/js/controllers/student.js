@@ -215,7 +215,8 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
                         function (datum, h) {    // SUCCESS
                             $scope.selected_al = database.select('als', [ {field:'id',value:$scope.selected_al_id} ], 2)[0];
                             $scope.add_comment = false;
-                            document.getElementById('formc').reset();
+//                            document.getElementById('formc').reset();
+                            $scope.resetFormC();
                         }
                     );
                 } else {
@@ -225,6 +226,9 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
             }
 
         }, 1000);
+    };
+    $scope.resetFormC = function () {
+        document.getElementById('formc').reset();
     };
 
     // SHOW IMAGE
