@@ -65,9 +65,9 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
                 return;
             }
 
-            if(angular.isDefined($rootScope.redirectAfterLogin) && $rootScope.redirectAfterLogin != null
-                && !$rootScope.loggingOut) {
+            if(angular.isDefined($rootScope.redirectAfterLogin) && $rootScope.redirectAfterLogin != null) {
                 $location.url($rootScope.redirectAfterLogin);
+                $rootScope.redirectAfterLogin = null;
                 return;
             }
             $rootScope.redirectAfterLogin = null;
@@ -92,7 +92,9 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
         $rootScope.handleError = function (err_data) {
             if (err_data.status == 401 && err_data.data.message == 'NO-LOGGED') {
                 $rootScope.user = null;
-                $rootScope.redirectAfterLogin = $location.url();
+                if(angular.isUndefined($rootScope.redirectAfterLogin) || $rootScope.redirectAfterLogin == null) {
+                    $rootScope.redirectAfterLogin = $location.url();
+                }
                 $location.url('/client/login');
                 return true;
             }
