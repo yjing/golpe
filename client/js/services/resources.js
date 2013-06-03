@@ -39,4 +39,15 @@ app.service('resources', function($resource){
         }
     });
 
+    this.Projects = $resource('/projects/:id', { id:'@id' }, {
+        all:{
+            method:'GET',
+            isArray:true
+        },
+        load:{
+            method:'GET',
+            isArray:false
+        }
+    });
+
 });
