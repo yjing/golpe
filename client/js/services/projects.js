@@ -3,7 +3,7 @@ app.factory('projects_db',function (database) {
         this.insertProjects = function (projects) {
             if(angular.isArray(projects)) {
                 for (var i = 0; i < projects.length; i++) {
-                    this.insertComment(projects[i]);
+                    this.insertComment(projects[i]['Project']);
                 }
             }
         };
