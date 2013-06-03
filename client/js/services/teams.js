@@ -1,4 +1,4 @@
-app.factory('teams_db',function (database) {
+app.factory('teams_db',function (database, users_db) {
     return new function () {
         this.insertTeams = function (teams) {
             if(angular.isArray(teams)) {
@@ -9,8 +9,8 @@ app.factory('teams_db',function (database) {
         };
         this.insertTeam = function (team) {
             if(angular.isDefined(team['Student'])) {
+                users_db.insertUsers(team['Student'], { team_id:team.id });
                 team.status = 'complete';
-                console.log(team['Student']);
                 delete team['Student'];
             }
 
