@@ -96,7 +96,7 @@
 
         <!-- DOWN LINE - FOR EXISTING ELEMENTS -->
 
-        <div class="row-fluid" ng-hide="isSelectedElem(new_elem_id)">
+        <div class="row-fluid" ng-hide="selected_p_id == 'new'">
 
             <div class="span4">
                 <div class="menu shadow">
@@ -104,7 +104,7 @@
                         <span><strong>Teams <i class="icon-briefcase"></i></strong></span>
                     </div>
                     <ul>
-                        <li ng-repeat="t in selected_elem.Teams" ng-class="isSelectedTeam(t.id)">
+                        <li ng-repeat="t in selected_p.teams" ng-class="isSelectedTeam(t.id)">
                             <a href="#" ng-hide="isEditTeam(t.id)" ng-click="selectTeam(t.id);">{{t.name}}</a>
                             <span ng-show="isEditTeam(t.id)">
                                 <input autofocus="true" onload="this.focus()" type="text" class="edit-field" ng-model="t.name">

@@ -1,4 +1,4 @@
-app.factory('projects_db',function (database) {
+app.factory('projects_db',function (database, teams_db) {
     return new function () {
         this.insertProjects = function (projects) {
             if(angular.isArray(projects)) {
@@ -9,10 +9,9 @@ app.factory('projects_db',function (database) {
         };
         this.insertProject = function (project) {
             if(angular.isDefined(project['Team'])) {
-//                if(angular.isArray(project['Media']) && project['Media'].length > 0) {
-//                    var media = media_db.insertMedia(project['Media'], 'comment', project['id']);
-//                    project.media = media;
-//                }
+                if(angular.isArray(project['team']) && project['Team'].length > 0) {
+                    teams_db.insertTeams(project['Team']);
+                }
                 project.status = 'complete';
                 delete project['Team'];
             }
