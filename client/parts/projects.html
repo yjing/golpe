@@ -14,7 +14,7 @@
                 </li>
                 <li ng-repeat="p in data | filter:searchText | orderBy:'name'" ng-class="selectedP(p.id)">
                     <a href="#" ng-click="go(p.id);">{{p.name}}
-                        <i ng-show="edit_p == true;" class="icon-pencil"></i>
+                        <i ng-show="selected_p_id == p.id && edit_p == true;" class="icon-pencil"></i>
                     </a>
                     <div class="functions" ng-show="selected_p_id == p.id">
                         <button class="btn-link function" ng-click="delete_p = true;" ng-hide="delete_p || edit_p"><i class="icon-remove"></i></button>
