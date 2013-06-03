@@ -19,7 +19,7 @@ app.factory('projects_db',function (database) {
             database.insert('projects', project['id'], project);
         };
     };
-}).service('projects', function ($rootScope, busy, resources, projects_db) {
+}).service('projects', function ($rootScope, busy, resources, projects_db, database) {
 
         var loaded = false;
 
