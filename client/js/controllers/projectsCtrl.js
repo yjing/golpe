@@ -46,7 +46,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, auth, databas
 
             projects.all(
                 false,               // RELOAD
-                function(d, h) {    // SUCCESS
+                function(d, h) {     // SUCCESS
                     $scope.data = database.select('projects',[], 3);
                 }
             );
