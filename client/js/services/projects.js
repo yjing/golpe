@@ -16,7 +16,7 @@ app.factory('projects_db',function (database) {
                 delete project['Team'];
 //            }
 
-            database.insert('project', project['id'], project);
+            database.insert('projects', project['id'], project);
         };
     };
 }).service('projects', function ($rootScope, busy, resources, projects_db) {
