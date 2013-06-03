@@ -13,7 +13,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, auth, databas
 
     $scope.setupTopBar();
 
-    $scope.data = [];
+//    $scope.data = [];
     $scope.selected_p_id = $routeParams.id;
     $scope.selected_p = null;
     $scope.edit_selected = false;
