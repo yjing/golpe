@@ -6,8 +6,7 @@ app.factory('users_db',function (database) {
                 for (var i = 0; i < users.length; i++) {
                     if(opt) {
                         angular.forEach(options, function(v, k){
-                            console.log(k);
-                            console.log(v);
+                            users[i][k] = v;
                         }, this);
                     }
                     this.insertUser(users[i]);
@@ -15,6 +14,7 @@ app.factory('users_db',function (database) {
             }
         };
         this.insertUser = function(user){
+            console.log(user);
             delete user['Supervisor'];
             return database.insert('users', user['id'], user);
         };
