@@ -10,6 +10,7 @@ app.factory('teams_db',function (database) {
         this.insertTeam = function (team) {
             if(angular.isDefined(team['Student'])) {
                 team.status = 'complete';
+                console.log(team['Student']);
                 delete team['Student'];
             }
 
