@@ -88,7 +88,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
                     $location.url('/client/supervisor');
                     break;
                 case 'ADMIN':
-                    $location.url('/client/users');
+                    $location.url('/client/projects');
                     break;
                 default:
                     $location.url('/client/login');
