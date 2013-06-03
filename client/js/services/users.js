@@ -5,8 +5,7 @@ app.factory('users_db',function (database) {
             if(users instanceof Array) {
                 for (var i = 0; i < users.length; i++) {
                     if(opt) {
-                        console.log("HERE");
-                        angular.forEach(function(v, k){
+                        angular.forEach(options, function(v, k){
                             console.log(k);
                             console.log(v);
                         }, this);
