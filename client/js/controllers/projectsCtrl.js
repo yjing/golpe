@@ -17,6 +17,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, auth, databas
     $scope.selected_p_id = $routeParams.id;
     $scope.selected_p = null;
     $scope.edit_p = false;
+    $scope.delete_p = false;
 
     $scope.selected_t_id = $routeParams.tid;
     $scope.selected_t = null;

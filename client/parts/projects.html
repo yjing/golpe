@@ -12,21 +12,18 @@
                 <li>
                     <input type="text" placeholder="Filter Projects..." class="edit-field" ng-model="searchText">
                 </li>
-                <li ng-repeat="p in data | filter:searchText | orderBy:'name'" ng-class="selectedP(p.id)" ng-init="delete = false; edit_p = false">
+                <li ng-repeat="p in data | filter:searchText | orderBy:'name'" ng-class="selectedP(p.id)">
                     <a href="#" ng-click="go(p.id);">{{p.name}}
                         <i ng-show="edit_p == true;" class="icon-pencil"></i>
                     </a>
-                    <div class="functions">
-                        <button class="btn-link function" ng-click="delete = true;" ng-hide="delete || edit_p"><i class="icon-remove"></i></button>
+                    <div class="functions" ng-show="selected_p_id == p.id">
+                        <button class="btn-link function" ng-click="delete_p = true;" ng-hide="delete_p || edit_p"><i class="icon-remove"></i></button>
                     </div>
                     <div class="confirms">
-                        <button class="btn btn-danger confirm" ng-click="delete(p.id);" ng-show="delete">Delete</button>
-                        <button class="btn btn-success confirm" ng-click="delete = false;" ng-show="delete">Keep</button>
+                        <button class="btn btn-danger confirm" ng-click="deleteP();" ng-show="delete_p">Delete</button>
+                        <button class="btn btn-success confirm" ng-click="delete_p = false;" ng-show="delete_p">Keep</button>
                     </div>
                 </li>
-                <!--<li ng-show="isNewElem()" ng-class="isSelectedElem(new_elem_id)">-->
-                    <!--<a href="#" ng-click="selectElem(new_elem_id);">{{new_elem.name}} <i class="icon-edit_p"></i></a>-->
-                <!--</li>-->
             </ul>
             <div>
                 <a href="#" class="text-right">
