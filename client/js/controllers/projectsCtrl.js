@@ -13,7 +13,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, auth, databas
 
     $scope.setupTopBar();
 
-//    $scope.data = [];
+    $scope.data = [];
     $scope.selected_p_id = $routeParams.id;
     $scope.selected_p = null;
     $scope.edit_selected = false;
@@ -38,7 +38,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, auth, databas
             }
 
             projects.all(
-                true,               // RELOAD
+                false,               // RELOAD
                 function(d, h) {    // SUCCESS
                     $scope.data = database.select('projects',[], 3);
                     console.log($scope.elements);
