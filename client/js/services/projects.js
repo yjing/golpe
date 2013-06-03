@@ -11,6 +11,7 @@ app.factory('projects_db',function (database, teams_db) {
             if(angular.isDefined(project['Team'])) {
                 console.log(project['Team']);
                 console.log(angular.isArray(project['team']));
+                console.log(project['Team'] instanceof Array);
                 console.log(project['Team'].length > 0);
                 if(angular.isArray(project['team']) && project['team'].length > 0) {
                     teams_db.insertTeams(project['Team']);
