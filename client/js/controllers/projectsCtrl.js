@@ -16,9 +16,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, database, pro
     $scope.data = [];
     $scope.selected_p_id = $routeParams.id;
     $scope.selected_p = null;
-
-
-    $scope.selected_project_id = null;
+    $scope.edit_selected = false;
 
     projects.all(
         function(d, h) {    // SUCCESS

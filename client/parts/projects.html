@@ -42,7 +42,7 @@
         <div class="menu shadow" ng-hide="selected_p_id == 'new'">
             <div>
                 <span>
-                    <h4 class="clickable" ng-hide="isEditElem(selected_elem_id)" ng-click="editElem(selected_elem_id);">
+                    <h4 class="clickable" ng-hide="edit_selected" ng-click="editElem(selected_elem_id);">
                         {{selected_elem.name}} <i class="icon-pencil"></i>
                     </h4>
                     <!-- EDIT MODE -->
