@@ -67,7 +67,7 @@ app.factory('projects_db',function (database, teams_db) {
                 {}, //DATA
                 function (d, h) {
                     busy.busy(false);
-
+                    console.log(d['Project']);
                     projects_db.insertProject(d['Project']);
 
                     if(angular.isDefined(success)) {

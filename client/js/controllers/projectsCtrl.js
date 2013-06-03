@@ -32,7 +32,6 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, auth, databas
                 projects.load(
                     $scope.selected_p_id,
                 function (d, h) {    // SUCCESS
-                        console.log(d['Team']);
                         $scope.selected_p = database.select('projects', [ {field:'id',value:$scope.selected_p_id} ], 3)[0];
                     }
                 );
