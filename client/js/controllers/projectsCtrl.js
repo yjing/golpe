@@ -31,7 +31,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, auth, databas
             if (angular.isDefined($scope.selected_p_id) && $scope.selected_p_id != null) {
                 projects.load(
                     $scope.selected_p_id,
-                function (d, h) {    // SUCCESS
+                    function (d, h) {    // SUCCESS
                         $scope.selected_p = database.select('projects', [ {field:'id',value:$scope.selected_p_id} ], 3)[0];
                     }
                 );
