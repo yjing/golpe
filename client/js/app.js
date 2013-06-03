@@ -15,6 +15,14 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
         templateUrl:'/client/parts/student.html',
         controller:"StudentCtrl"
     });
+    $routeProvider.when('/client/projects', {
+        templateUrl:'/client/parts/projects.html',
+        controller:"ProjectsCtrl"
+    });
+    $routeProvider.when('/client/projects/:id', {
+        templateUrl:'/client/parts/projects.html',
+        controller:"ProjectsCtrl"
+    });
     $routeProvider.otherwise({redirectTo:'/client/login'});
 
     // configure html5 to get links working

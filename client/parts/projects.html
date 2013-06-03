@@ -1,0 +1,183 @@
+<div ng-include src="top_bar_url"></div>
+<div class="row-fluid content">
+
+    <div class="span3">
+        <div class="menu shadow">
+            <div>
+                <a href="#" class="text-right" ng-click="loadAll();">
+                    Refresh Projects <i class="icon-refresh"></i>
+                </a>
+            </div>
+            <ul>
+                <li>
+                    <input type="text" placeholder="Filter Projects..." class="edit-field" ng-model="searchText">
+                </li>
+                <li ng-repeat="p in elements | filter:searchText | orderBy:'name'" ng-class="isSelectedElem(p.id)">
+                    <a href="#" ng-click="selectElem(p.id);">{{p.name}}
+                        <i ng-show="isEditElem(p.id)" class="icon-pencil"></i>
+                    </a>
+                    <div class="functions">
+                        <button class="btn-link function" ng-click="deleteElem(false, p.id);" ng-hide="isDeleteElem(p.id) || isEditElem(p.id)"><i class="icon-remove"></i></button>
+                    </div>
+                    <div class="confirms">
+                        <button class="btn btn-danger confirm" ng-click="deleteElem(true, p.id);" ng-show="isDeleteElem(p.id)">Delete</button>
+                        <button class="btn btn-success confirm" ng-click="cancelDeleteElem(p.id)" ng-show="isDeleteElem(p.id)">Keep</button>
+                    </div>
+                </li>
+                <li ng-show="isNewElem()" ng-class="isSelectedElem(new_elem_id)">
+                    <a href="#" ng-click="selectElem(new_elem_id);">{{new_elem.name}} <i class="icon-edit"></i></a>
+                </li>
+            </ul>
+            <div>
+                <a href="#" class="text-right">
+                    <button ng-click="newElem();" ng-hide="isNewElem()" class="btn btn-success">New Project</button>
+                    <button ng-click="cancelNewElem();" ng-show="isNewElem()" class="btn btn-warning">Cancel New Project</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="span9" ng-show="selected_elem_id != null">
+        <!-- EXISTING ELEMENTS DISPLAY -->
+        <div class="menu shadow" ng-hide="isSelectedElem(new_elem_id)">
+            <div>
+                <span>
+                    <h4 class="clickable" ng-hide="isEditElem(selected_elem_id)" ng-click="editElem(selected_elem_id);">
+                        {{selected_elem.name}} <i class="icon-pencil"></i>
+                    </h4>
+                    <!-- EDIT MODE -->
+                    <span ng-show="isEditElem(selected_elem_id)">
+                        <input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge" ng-model="selected_elem.name">
+                        <span class="text-error" ng-repeat="error in getValidationsErrors(selected_elem_id).name"><br>{{error}}</span>
+                    </span>
+                </span>
+            </div>
+            <ul>
+                <li>
+                    <p class="selector" ng-hide="isEditElem(selected_elem_id)">
+                        {{selected_elem.description}}
+                    </p>
+                    <!-- EDIT MODE -->
+                    <textarea class="edit-field" ng-model="selected_elem.description"
+                              ng-show="isEditElem(selected_elem_id)"></textarea>
+                </li>
+            </ul>
+            <div ng-show="isEditElem(selected_elem_id)">
+                <span>
+                    <div class="btn-group">
+                        <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveElem();">Save</button>
+                        <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="cancelEditElem(selected_elem_id);">Cancel</button>
+                    </div>
+                </span>
+            </div>
+        </div>
+        <!-- NEW ELEMENT DISPLAY -->
+        <div class="menu shadow" ng-show="isSelectedElem(new_elem_id)">
+            <div>
+                <span>
+                    <span><input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge" ng-model="new_elem.name"></span>
+                    <span class="text-error" ng-repeat="error in new_elem.validation_errors.name"><br>{{error}}</span>
+                </span>
+            </div>
+            <ul>
+                <li>
+                    <textarea class="edit-field" ng-model="new_elem.description"></textarea>
+                </li>
+            </ul>
+            <div>
+                <span>
+                    <div class="btn-group">
+                        <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveNewElem();">Save</button>
+                        <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="cancelNewElem();">Cancel</button>
+                    </div>
+                </span>
+            </div>
+        </div>
+
+        <!-- DOWN LINE - FOR EXISTING ELEMENTS -->
+
+        <div class="row-fluid" ng-hide="isSelectedElem(new_elem_id)">
+
+            <div class="span4">
+                <div class="menu shadow">
+                    <div class="text-right">
+                        <span><strong>Teams <i class="icon-briefcase"></i></strong></span>
+                    </div>
+                    <ul>
+                        <li ng-repeat="t in selected_elem.Teams" ng-class="isSelectedTeam(t.id)">
+                            <a href="#" ng-hide="isEditTeam(t.id)" ng-click="selectTeam(t.id);">{{t.name}}</a>
+                            <span ng-show="isEditTeam(t.id)">
+                                <input autofocus="true" onload="this.focus()" type="text" class="edit-field" ng-model="t.name">
+                            </span>
+                            <div class="functions">
+                                <button ng-disabled="BUSY.busy();" ng-show="isEditTeam(t.id)" type="submit" class="btn-link function" ng-click="saveTeam(t.id);"><i class="icon-ok"></i></button>
+                                <button ng-disabled="BUSY.busy();" ng-show="isEditTeam(t.id)" type="submit" class="btn-link function" ng-click="cancelEditTeam(t.id);"><i class="icon-remove"></i></button>
+
+                                <button class="btn-link function" ng-click="deleteTeam(false, t.id);" ng-hide="isDeleteTeam(t.id, selected_project) || isEditTeam(t.id, selected_project)"><i class="icon-remove"></i></button>
+                                <button class="btn-link function" ng-click="editTeam(t.id);" ng-hide="isDeleteTeam(t.id, selected_project) || isEditTeam(t.id, selected_project)"><i class="icon-pencil"></i></button>
+                            </div>
+                            <div class="confirms">
+                                <button class="btn btn-danger confirm" ng-click="deleteTeam(true, t.id, selected_project);" ng-show="isDeleteTeam(t.id, selected_project)">Delete</button>
+                                <button class="btn btn-success confirm" ng-click="cancelDeleteTeam(t.id, selected_project);" ng-show="isDeleteTeam(t.id, selected_project)">Keep</button>
+                            </div>
+                        </li>
+                        <li ng-show="new_team != null" ng-class="isSelectedTeam(new_team_id);" ng-click="selectTeam(new_team_id);">
+                            <input class="edit_field" placeholder="New Team..." onfocus="this.focus()" autofocus="true" ng-model="new_team.name">
+                        </li>
+                    </ul>
+                    <div class="text-right">
+                        <a href="#" class="text-right">
+                            <!--<button ng-click="newProject();" ng-disabled="new_project != null" class="btn btn-success">New Project</button>-->
+                            <button ng-click="newTeam();" class="btn btn-success" ng-show="new_team == null;">New Team</button>
+                            <button ng-click="saveNewTeam();" class="btn btn-warning" ng-show="new_team != null;">Create</button>
+                            <button ng-click="cancelNewTeam();" class="btn btn-success" ng-show="new_team != null;">Cancel</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="span4" ng-show="selected_team != null">
+                <div class="menu shadow">
+                    <div class="text-right">
+                        <span><strong>Team Members <i class="icon-user"></i></strong></span>
+                    </div>
+                    <ul>
+                        <li ng-repeat="u in selected_team.Student">
+                            <a>{{u.username}}</a>
+                            <div class="functions">
+                                <button class="btn-link function" ng-click="removeMember(false, u.id);" ng-hide="isRemoveMember(u.id)"><i class="icon-remove"></i></button>
+                            </div>
+                            <div class="confirms">
+                                <button class="btn btn-danger confirm" ng-click="removeMember(true, u.id);" ng-show="isRemoveMember(u.id)">Remove Member</button>
+                                <button class="btn btn-success confirm" ng-click="cancelRemoveMember(u.id)" ng-show="isRemoveMember(u.id)">Keep</button>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="text-right">
+                        <span><button ng-click="addMember(false);" ng-disabled="add_member" class="btn btn-success">Add Member</button></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="span4" ng-show="isAddMember()">
+                <div class="menu shadow">
+                    <div class="text-right">
+                        <span><strong>Add Memeber <i class="icon-plus"></i></strong></span>
+                    </div>
+                    <ul>
+                        <li ng-repeat="u in member_list">
+                            <a href="#" ng-click="addMember(true, u.id)">
+                                <i class="icon-chevron-left"></i> {{u.username}}
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="text-right">
+                        <span><button ng-click="cancelAddMember();" class="btn btn-warning">Close</button></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="/client/js/controllers/projects.js"></script>
