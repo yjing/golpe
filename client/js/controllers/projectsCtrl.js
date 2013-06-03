@@ -33,6 +33,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, auth, databas
                     $scope.selected_p_id,
                     function (d, h) {    // SUCCESS
                         $scope.selected_p = database.select('als', [ {field:'id',value:$scope.selected_p_id} ], 3)[0];
+                        console.log($scope.selected_p);
                     }
                 );
             }
@@ -41,7 +42,6 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, auth, databas
                 false,               // RELOAD
                 function(d, h) {    // SUCCESS
                     $scope.data = database.select('projects',[], 3);
-                    console.log($scope.elements);
                 }
             );
         }
