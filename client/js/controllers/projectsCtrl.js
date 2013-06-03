@@ -22,12 +22,12 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, database, projects){
 
     projects.all(
         function(d, h) {    // SUCCESS
-            $scope.elements = database.select('projects',[], 3);
+            $scope.data = database.select('projects',[], 3);
             console.log($scope.elements);
         }
     );
 
-    $scope.go = function(){
+    $scope.go = function(id){
         var url = '/client/projects';
         if (angular.isDefined(id)) {
             url += '/' + id;
