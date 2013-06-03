@@ -38,6 +38,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, auth, databas
             }
 
             projects.all(
+                true,               // RELOAD
                 function(d, h) {    // SUCCESS
                     $scope.data = database.select('projects',[], 3);
                     console.log($scope.elements);

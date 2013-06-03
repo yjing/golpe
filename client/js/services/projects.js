@@ -21,13 +21,23 @@ app.factory('projects_db',function (database) {
     };
 }).service('projects', function ($rootScope, busy, resources, projects_db) {
 
-        this.all = function (success, error) {
+        var loaded = false;
+
+        this.all = function (reload, success, error) {
+            if(!reload && loaded) {
+                if(angular.isDefined(success)) {
+                    success(database.select('projects',[], 3));
+                }
+                return;
+            }
+
             busy.busy(true);
             resources.Projects.all(
                 {}, //PARAMS
                 {}, //DATA
                 function (d, h) {
                     busy.busy(false);
+                    loaded = true;
 
                     projects_db.insertProjects(d);
 
