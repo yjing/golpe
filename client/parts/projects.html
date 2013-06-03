@@ -31,15 +31,15 @@
             <div>
                 <a href="#" class="text-right">
                     <button ng-click="go('new');" ng-hide="selected_p_id == 'new'" class="btn btn-success">New Project</button>
-                    <button ng-click="go();" ng-show="selected_al_id == 'new'" class="btn btn-warning">Cancel New Project</button>
+                    <button ng-click="go();" ng-show="selected_p_id == 'new'" class="btn btn-warning">Cancel New Project</button>
                 </a>
             </div>
         </div>
     </div>
 
-    <div class="span9" ng-show="selected_elem_id != null">
+    <div class="span9" ng-show="selected_p_id != null">
         <!-- EXISTING ELEMENTS DISPLAY -->
-        <div class="menu shadow" ng-hide="isSelectedElem(new_elem_id)">
+        <div class="menu shadow" ng-hide="selected_p_id == 'new'">
             <div>
                 <span>
                     <h4 class="clickable" ng-hide="isEditElem(selected_elem_id)" ng-click="editElem(selected_elem_id);">
