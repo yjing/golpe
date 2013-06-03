@@ -18,10 +18,31 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, database, pro
     $scope.selected_p = null;
     $scope.edit_selected = false;
 
-    projects.all(
-        function(d, h) {    // SUCCESS
-            $scope.data = database.select('projects',[], 3);
-            console.log($scope.elements);
+
+    auth.user(
+        function (user) {
+            if(angular.isUndefined(user) || user == null) {
+                $rootScope.redirectAfterLogin = $location.url();
+                $location.url('/client/login');
+                return;
+            }
+
+
+            if (angular.isDefined($scope.selected_p_id) && $scope.selected_p_id != null) {
+                projects.get(
+                    $scope.selected_p_id,
+                    function (datum, h) {    // SUCCESS
+                        $scope.selected_p = database.select('als', [ {field:'id',value:$scope.selected_p_id} ], 3)[0];
+                    }
+                );
+            }
+
+            projects.all(
+                function(d, h) {    // SUCCESS
+                    $scope.data = database.select('projects',[], 3);
+                    console.log($scope.elements);
+                }
+            );
         }
     );
 
