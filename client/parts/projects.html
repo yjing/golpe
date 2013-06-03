@@ -133,16 +133,16 @@
                 </div>
             </div>
 
-            <div class="span4" ng-show="selected_team != null">
+            <div class="span4" ng-show="selected_t != null">
                 <div class="menu shadow">
                     <div class="text-right">
                         <span><strong>Team Members <i class="icon-user"></i></strong></span>
                     </div>
                     <ul>
-                        <li ng-repeat="u in selected_team.Student">
+                        <li ng-repeat="u in selected_t.students">
                             <a>{{u.username}}</a>
                             <div class="functions">
-                                <button class="btn-link function" ng-click="removeMember(false, u.id);" ng-hide="isRemoveMember(u.id)"><i class="icon-remove"></i></button>
+                                <button class="btn-link function" ng-click="removeMember(u.id);" ng-hide="isRemoveMember(u.id)"><i class="icon-remove"></i></button>
                             </div>
                             <div class="confirms">
                                 <button class="btn btn-danger confirm" ng-click="removeMember(true, u.id);" ng-show="isRemoveMember(u.id)">Remove Member</button>

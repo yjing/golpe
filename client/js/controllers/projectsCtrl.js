@@ -42,8 +42,6 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, auth, databas
 
                         if(angular.isDefined($scope.selected_t_id) && $scope.selected_t_id) {
                             $scope.selected_t = database.select('teams', [ {field:'id',value:$scope.selected_t_id} ], 3)[0];
-                            console.log("TEST");
-                            console.log($scope.selected_t);
                         }
                     }
                 );
