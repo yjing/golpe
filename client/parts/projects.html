@@ -109,7 +109,7 @@
                             <span ng-show="isEditTeam(t.id)">
                                 <input autofocus="true" onload="this.focus()" type="text" class="edit-field" ng-model="t.name">
                             </span>
-                            <div class="functions" ng-show="selected_t_id = t.id">
+                            <div class="functions" ng-show="selected_t_id == t.id">
                                 <button ng-disabled="BUSY.busy();" ng-show="isEditTeam(t.id)" type="submit" class="btn-link function" ng-click="saveTeam(t.id);"><i class="icon-ok"></i></button>
                                 <button ng-disabled="BUSY.busy();" ng-show="isEditTeam(t.id)" type="submit" class="btn-link function" ng-click="cancelEditTeam(t.id);"><i class="icon-remove"></i></button>
 
