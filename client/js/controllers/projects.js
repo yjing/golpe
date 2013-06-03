@@ -1,4 +1,4 @@
-function ProjectsCtrl(){
+function ProjectsCtrl($scopoe, $rootScope){
     // TOP BAR
     $scope.setupTopBar = function () {
         $rootScope.top_bar = {
