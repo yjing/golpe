@@ -3,9 +3,6 @@ app.factory('projects_db',function (database) {
         this.insertProjects = function (projects) {
             if(angular.isArray(projects)) {
                 for (var i = 0; i < projects.length; i++) {
-                    console.log(projects[i]);
-                    console.log(projects[i]['Project']);
-                    console.log("///");
                     this.insertProject(projects[i]['Project']);
                 }
             }
@@ -32,7 +29,7 @@ app.factory('projects_db',function (database) {
                 function (d, h) {
                     busy.busy(false);
 
-                    projects_db.insertProject(d);
+                    projects_db.insertProjects(d);
 
                     if (angular.isDefined(success)) {
                         success(d, h);
