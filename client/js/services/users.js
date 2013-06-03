@@ -2,8 +2,7 @@ app.factory('users_db',function (database) {
     return new function () {
         this.insertUsers = function (users, options) {
             var opt = angular.isObject(options);
-            console.log(options);
-            if(angular.isArray(users)) {
+            if(users instanceof Array) {
                 for (var i = 0; i < users.length; i++) {
                     if(opt) {
                         angular.forEach(function(v, k){
