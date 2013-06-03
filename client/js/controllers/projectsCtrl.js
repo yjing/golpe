@@ -16,7 +16,11 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, auth, databas
     $scope.data = [];
     $scope.selected_p_id = $routeParams.id;
     $scope.selected_p = null;
-    $scope.edit_selected = false;
+    $scope.edit_p = false;
+
+    $scope.selected_t_id = $routeParams.t_id;
+    $scope.selected_t = null;
+    $scope.edit_t = false;
 
 
     auth.user(
@@ -47,17 +51,23 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, auth, databas
         }
     );
 
-    $scope.go = function(id){
+    $scope.go = function(id, t_id){
         var url = '/client/projects';
         if (angular.isDefined(id)) {
             url += '/' + id;
         }
+        if (angular.isDefined(t_id)) {
+            url += '/' + t_id;
+        }
         $location.url(url);
     };
 
-
     $scope.selectedP = function (id) {
         return $scope.selected_p_id == id ? 'active' : '';
+    };
+
+    $scope.selectedT = function (id) {
+        return $scope.selected_t_id == id ? 'active' : '';
     };
 
 }

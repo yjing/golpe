@@ -12,12 +12,12 @@
                 <li>
                     <input type="text" placeholder="Filter Projects..." class="edit-field" ng-model="searchText">
                 </li>
-                <li ng-repeat="p in data | filter:searchText | orderBy:'name'" ng-class="selectedP(p.id)" ng-init="delete = false; edit = false">
+                <li ng-repeat="p in data | filter:searchText | orderBy:'name'" ng-class="selectedP(p.id)" ng-init="delete = false; edit_p = false">
                     <a href="#" ng-click="go(p.id);">{{p.name}}
-                        <i ng-show="edit == true;" class="icon-pencil"></i>
+                        <i ng-show="edit_p == true;" class="icon-pencil"></i>
                     </a>
                     <div class="functions">
-                        <button class="btn-link function" ng-click="delete = true;" ng-hide="delete || edit"><i class="icon-remove"></i></button>
+                        <button class="btn-link function" ng-click="delete = true;" ng-hide="delete || edit_p"><i class="icon-remove"></i></button>
                     </div>
                     <div class="confirms">
                         <button class="btn btn-danger confirm" ng-click="delete(p.id);" ng-show="delete">Delete</button>
@@ -25,7 +25,7 @@
                     </div>
                 </li>
                 <!--<li ng-show="isNewElem()" ng-class="isSelectedElem(new_elem_id)">-->
-                    <!--<a href="#" ng-click="selectElem(new_elem_id);">{{new_elem.name}} <i class="icon-edit"></i></a>-->
+                    <!--<a href="#" ng-click="selectElem(new_elem_id);">{{new_elem.name}} <i class="icon-edit_p"></i></a>-->
                 <!--</li>-->
             </ul>
             <div>
@@ -42,11 +42,11 @@
         <div class="menu shadow" ng-hide="selected_p_id == 'new'">
             <div>
                 <span>
-                    <h4 class="clickable" ng-hide="edit_selected" ng-click="edit_selected = true;">
+                    <h4 class="clickable" ng-hide="edit_p" ng-click="edit_p = true;">
                         {{selected_p.name}} <i class="icon-pencil"></i>
                     </h4>
                     <!-- EDIT MODE -->
-                    <span ng-show="edit_selected">
+                    <span ng-show="edit_p">
                         <input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge" ng-model="selected_p.name">
                         <span class="text-error" ng-repeat="error in getValidationsErrors(selected_elem_id).name"><br>{{error}}</span>
                     </span>
@@ -54,18 +54,18 @@
             </div>
             <ul>
                 <li>
-                    <p class="selector" ng-hide="edit_selected">
+                    <p class="selector" ng-hide="edit_p">
                         {{selected_p.description}}
                     </p>
                     <!-- EDIT MODE -->
                     <textarea class="edit-field" ng-model="selected_p.description"
-                              ng-show="edit_selected"></textarea>
+                              ng-show="edit_p"></textarea>
                 </li>
             </ul>
-            <div ng-show="edit_selected">
+            <div ng-show="edit_p">
                 <span>
                     <div class="btn-group">
-                        <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="save();">Save</button>
+                        <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveP();">Save</button>
                         <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="unEditSelected();">Cancel</button>
                     </div>
                 </span>
@@ -75,20 +75,20 @@
         <div class="menu shadow" ng-show="selected_p_id == 'new'">
             <div>
                 <span>
-                    <span><input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge" ng-model="new_elem.name"></span>
-                    <span class="text-error" ng-repeat="error in new_elem.validation_errors.name"><br>{{error}}</span>
+                    <span><input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge" ng-model="selected_p.name"></span>
+                    <span class="text-error" ng-repeat="error in selected_p.validation_errors.name"><br>{{error}}</span>
                 </span>
             </div>
             <ul>
                 <li>
-                    <textarea class="edit-field" ng-model="new_elem.description"></textarea>
+                    <textarea class="edit-field" ng-model="selected_p.description"></textarea>
                 </li>
             </ul>
             <div>
                 <span>
                     <div class="btn-group">
-                        <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveNewElem();">Save</button>
-                        <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="cancelNewElem();">Cancel</button>
+                        <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveP();">Save</button>
+                        <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="cancelNewP();">Cancel</button>
                     </div>
                 </span>
             </div>
@@ -105,7 +105,7 @@
                     </div>
                     <ul>
                         <li ng-repeat="t in selected_p.teams" ng-class="isSelectedTeam(t.id)">
-                            <a href="#" ng-hide="isEditTeam(t.id)" ng-click="selectTeam(t.id);">{{t.name}}</a>
+                            <a href="#" ng-hide="edit_t" ng-click="go(selected_p_id, t.id);">{{t.name}}</a>
                             <span ng-show="isEditTeam(t.id)">
                                 <input autofocus="true" onload="this.focus()" type="text" class="edit-field" ng-model="t.name">
                             </span>
