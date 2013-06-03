@@ -31,6 +31,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
 }).run(function ($rootScope, $location, auth, database) {
 
         // DATABASE
+        // database.createTable = function(table_name, pkey, belongsTo, hasMany){
         database.createTable('als', 'id', {
             user: { table:'users', fkey:'user_id' }
         }, {
@@ -44,10 +45,22 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
             als: { table:'als', fkey:'activity_log_id' }
         }, {});
         database.createTable('users', 'id', {
+            team: { table:'teams', fkey:'team_id' },
+            supervisor: { table:'users', fkey:'supervisor_id' }
+        }, {
             als: { table:'als', fkey:'user_id' },
             media: { table:'media', fkey:'user_id' },
             comments: { table:'comments', fkey:'user_id' }
-        }, {});
+        });
+
+        database.createTable('projects', 'id', {}, {
+            teams: { table:'teams', fkey:'project_id' }
+        });
+        database.createTable('teams', 'id', {
+            project: { table:'projects', fkey:'project_id' }
+        }, {
+            students: { table:'users', fkey:'team_id' }
+        });
 
         // GENERAL FUNCTIONS
         $rootScope.info = function () {

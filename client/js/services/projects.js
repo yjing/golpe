@@ -1,30 +1,22 @@
 app.factory('projects_db',function (database) {
     return new function () {
-        this.insertPeojects = function (projects) {
-//            var ret = [];
-//            if(angular.isArray(comments)) {
-//                for (var i = 0; i < comments.length; i++) {
-//                    ret.push(this.insertComment(comments[i], target_id));
-//                }
-//            }
-//            return ret;
+        this.insertProjects = function (projects) {
+            if(angular.isArray(projects)) {
+                for (var i = 0; i < projects.length; i++) {
+                    this.insertComment(projects[i]);
+                }
+            }
         };
         this.insertProject = function (project) {
-//            if(angular.isDefined(comment['Media'])) {
-//                if(angular.isArray(comment['Media']) && comment['Media'].length > 0) {
-//                    var media = media_db.insertMedia(comment['Media'], 'comment', comment['id']);
-//                    comment.media = media;
+//            if(angular.isDefined(project['Media'])) {
+//                if(angular.isArray(project['Media']) && project['Media'].length > 0) {
+//                    var media = media_db.insertMedia(project['Media'], 'comment', project['id']);
+//                    project.media = media;
 //                }
-//                delete comment['Media'];
+                delete project['Team'];
 //            }
-//            if(angular.isDefined(comment['User'])) {
-//                var user = users_db.insertUser(comment['User']);
-//                comment.user = user;
-//                delete comment['User'];
-//            }
-//
-//            comment.activity_log_id = target_id;
-//            return database.insert('comments', comment['id'], comment);
+
+            database.insert('project', project['id'], project);
         };
     };
 }).service('projects', function ($rootScope, busy, resources, projects_db) {
@@ -37,7 +29,7 @@ app.factory('projects_db',function (database) {
                 function (d, h) {
                     busy.busy(false);
 
-                    console.log(d);
+                    projects_db.insertProject(d);
 
                     if (angular.isDefined(success)) {
                         success(d, h);

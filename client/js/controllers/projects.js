@@ -15,7 +15,7 @@ function ProjectsCtrl($scope, $rootScope, projects){
 
     projects.all(
         function(d, h) {    // SUCCESS
-
+            $scope.elements = database.select('projects',[], 3);
         }
     );
 
