@@ -104,21 +104,21 @@
                         <span><strong>Teams <i class="icon-briefcase"></i></strong></span>
                     </div>
                     <ul>
-                        <li ng-repeat="t in selected_p.teams" ng-class="isSelectedTeam(t.id)">
+                        <li ng-repeat="t in selected_p.teams" ng-class="selectedT(t.id)">
                             <a href="#" ng-hide="edit_t" ng-click="go(selected_p_id, t.id);">{{t.name}}</a>
-                            <span ng-show="isEditTeam(t.id)">
+                            <span ng-show="edit_t">
                                 <input autofocus="true" onload="this.focus()" type="text" class="edit-field" ng-model="t.name">
                             </span>
                             <div class="functions" ng-show="selected_t_id == t.id">
-                                <button ng-disabled="BUSY.busy();" ng-show="isEditTeam(t.id)" type="submit" class="btn-link function" ng-click="saveTeam(t.id);"><i class="icon-ok"></i></button>
-                                <button ng-disabled="BUSY.busy();" ng-show="isEditTeam(t.id)" type="submit" class="btn-link function" ng-click="cancelEditTeam(t.id);"><i class="icon-remove"></i></button>
+                                <button ng-disabled="BUSY.busy();" ng-show="edit_t" type="submit" class="btn-link function" ng-click="saveT();"><i class="icon-ok"></i></button>
+                                <button ng-disabled="BUSY.busy();" ng-show="edit_t" type="submit" class="btn-link function" ng-click="unEditT();"><i class="icon-remove"></i></button>
 
-                                <button class="btn-link function" ng-click="deleteTeam(false, t.id);" ng-hide="isDeleteTeam(t.id, selected_project) || isEditTeam(t.id, selected_project)"><i class="icon-remove"></i></button>
-                                <button class="btn-link function" ng-click="editTeam(t.id);" ng-hide="isDeleteTeam(t.id, selected_project) || isEditTeam(t.id, selected_project)"><i class="icon-pencil"></i></button>
+                                <button class="btn-link function" ng-click="delete_t = true;" ng-hide="delete_t || edit_t"><i class="icon-remove"></i></button>
+                                <button class="btn-link function" ng-click="editTeam(t.id);" ng-hide="delete_t || edit_t"><i class="icon-pencil"></i></button>
                             </div>
                             <div class="confirms">
-                                <button class="btn btn-danger confirm" ng-click="deleteTeam(true, t.id, selected_project);" ng-show="isDeleteTeam(t.id, selected_project)">Delete</button>
-                                <button class="btn btn-success confirm" ng-click="cancelDeleteTeam(t.id, selected_project);" ng-show="isDeleteTeam(t.id, selected_project)">Keep</button>
+                                <button class="btn btn-danger confirm" ng-click="deleteT();" ng-show="delete_t">Delete</button>
+                                <button class="btn btn-success confirm" ng-click="delete_t = false" ng-show="delete_t">Keep</button>
                             </div>
                         </li>
                         <li ng-show="new_team != null" ng-class="isSelectedTeam(new_team_id);" ng-click="selectTeam(new_team_id);">
