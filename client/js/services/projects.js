@@ -3,6 +3,9 @@ app.factory('projects_db',function (database) {
         this.insertProjects = function (projects) {
             if(angular.isArray(projects)) {
                 for (var i = 0; i < projects.length; i++) {
+                    console.log(projects[i]);
+                    console.log(projects[i]['Project']);
+                    console.log("///");
                     this.insertProject(projects[i]['Project']);
                 }
             }
