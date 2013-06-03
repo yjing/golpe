@@ -12,26 +12,26 @@
                 <li>
                     <input type="text" placeholder="Filter Projects..." class="edit-field" ng-model="searchText">
                 </li>
-                <li ng-repeat="p in elements | filter:searchText | orderBy:'name'" ng-class="isSelectedElem(p.id)" ng-init="delete = false; edit = false">
-                    <a href="#" ng-click="selectElem(p.id);">{{p.name}}
-                        <i ng-show="isEditElem(p.id)" class="icon-pencil"></i>
+                <li ng-repeat="p in data | filter:searchText | orderBy:'name'" ng-class="isSelectedElem(p.id)" ng-init="delete = false; edit = false">
+                    <a href="#" ng-click="go(p.id);">{{p.name}}
+                        <i ng-show="edit == true;" class="icon-pencil"></i>
                     </a>
                     <div class="functions">
                         <button class="btn-link function" ng-click="delete = true;" ng-hide="delete || edit"><i class="icon-remove"></i></button>
                     </div>
                     <div class="confirms">
-                        <button class="btn btn-danger confirm" ng-click="deleteElem(p.id);" ng-show="delete">Delete</button>
+                        <button class="btn btn-danger confirm" ng-click="delete(p.id);" ng-show="delete">Delete</button>
                         <button class="btn btn-success confirm" ng-click="delete = false;" ng-show="delete">Keep</button>
                     </div>
                 </li>
-                <li ng-show="isNewElem()" ng-class="isSelectedElem(new_elem_id)">
-                    <a href="#" ng-click="selectElem(new_elem_id);">{{new_elem.name}} <i class="icon-edit"></i></a>
-                </li>
+                <!--<li ng-show="isNewElem()" ng-class="isSelectedElem(new_elem_id)">-->
+                    <!--<a href="#" ng-click="selectElem(new_elem_id);">{{new_elem.name}} <i class="icon-edit"></i></a>-->
+                <!--</li>-->
             </ul>
             <div>
                 <a href="#" class="text-right">
-                    <button ng-click="newElem();" ng-hide="isNewElem()" class="btn btn-success">New Project</button>
-                    <button ng-click="cancelNewElem();" ng-show="isNewElem()" class="btn btn-warning">Cancel New Project</button>
+                    <button ng-click="go('new');" ng-hide="selected_p_id == 'new'" class="btn btn-success">New Project</button>
+                    <button ng-click="go();" ng-show="selected_al_id == 'new'" class="btn btn-warning">Cancel New Project</button>
                 </a>
             </div>
         </div>

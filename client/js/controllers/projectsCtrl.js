@@ -1,4 +1,4 @@
-function ProjectsCtrl($scope, $rootScope, database, projects){
+function ProjectsCtrl($scope, $rootScope, $routeParams, database, projects){
     // TOP BAR
     $scope.setupTopBar = function () {
         $rootScope.top_bar = {
@@ -13,11 +13,26 @@ function ProjectsCtrl($scope, $rootScope, database, projects){
 
     $scope.setupTopBar();
 
+    $scope.data = [];
+    $scope.selected_p_id = $routeParams.id;
+    $scope.selected_p = null;
+
+
+    $scope.selected_project_id = null;
+
     projects.all(
         function(d, h) {    // SUCCESS
             $scope.elements = database.select('projects',[], 3);
             console.log($scope.elements);
         }
     );
+
+    $scope.go = function(){
+        var url = '/client/projects';
+        if (angular.isDefined(id)) {
+            url += '/' + id;
+        }
+        $location.url(url);
+    };
 
 }
