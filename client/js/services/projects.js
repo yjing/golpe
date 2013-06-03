@@ -1,6 +1,7 @@
 app.factory('projects_db',function (database, teams_db) {
     return new function () {
         this.insertProjects = function (projects) {
+            console.log(projects);
             if(angular.isArray(projects)) {
                 for (var i = 0; i < projects.length; i++) {
                     this.insertProject(projects[i]['Project']);
@@ -8,7 +9,6 @@ app.factory('projects_db',function (database, teams_db) {
             }
         };
         this.insertProject = function (project) {
-            console.log(project);
             if(angular.isDefined(project['Team'])) {
                 if(angular.isArray(project['team']) && project['Team'].length > 0) {
                     teams_db.insertTeams(project['Team']);
