@@ -9,8 +9,9 @@ app.factory('projects_db',function (database, teams_db) {
         };
         this.insertProject = function (project) {
             if(angular.isDefined(project['Team'])) {
-                if(angular.isArray(project['team']) && project['Team'].length > 0) {
-                    console.log(project['Team']);
+                console.log(project['Team']);
+                console.log(project['Team'].length);
+                if(angular.isArray(project['team']) && project['team'].length > 0) {
                     teams_db.insertTeams(project['Team']);
                 }
                 project.status = 'complete';
