@@ -27,7 +27,7 @@ app.factory('projects_db',function (database) {
 //            return database.insert('comments', comment['id'], comment);
         };
     };
-}).service('projects', function (resources, projects_db) {
+}).service('projects', function ($rootScope, busy, resources, projects_db) {
 
         this.all = function (success, error) {
             busy.busy(true);
