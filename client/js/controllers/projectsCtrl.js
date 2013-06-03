@@ -33,6 +33,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, auth, databas
                     $scope.selected_p_id,
                     function (d, h) {    // SUCCESS
                         $scope.selected_p = database.select('projects', [ {field:'id',value:$scope.selected_p_id} ], 3)[0];
+                        console.log($scope.selected_p);
                     }
                 );
             }
