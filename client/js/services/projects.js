@@ -8,13 +8,14 @@ app.factory('projects_db',function (database) {
             }
         };
         this.insertProject = function (project) {
-//            if(angular.isDefined(project['Media'])) {
+            if(angular.isDefined(project['Team'])) {
 //                if(angular.isArray(project['Media']) && project['Media'].length > 0) {
 //                    var media = media_db.insertMedia(project['Media'], 'comment', project['id']);
 //                    project.media = media;
 //                }
+                project.status = 'complete';
                 delete project['Team'];
-//            }
+            }
 
             database.insert('projects', project['id'], project);
         };
@@ -55,6 +56,12 @@ app.factory('projects_db',function (database) {
         };
 
         this.load = function(id, success, error){
+            var existing = database.select('projects', [ {field:'id', value:id} ], 3)[0];
+            if(angular.isDefined(existing) && existing != null && existing.status == 'complete' && angular.isDefined(success)) {
+                success(existing);
+                return;
+            }
+
             busy.busy(true);
             resources.Projects.load(
                 { 'id':id }, //PARAMS
