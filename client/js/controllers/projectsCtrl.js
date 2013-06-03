@@ -29,9 +29,9 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, auth, databas
 
 
             if (angular.isDefined($scope.selected_p_id) && $scope.selected_p_id != null) {
-                projects.get(
+                projects.load(
                     $scope.selected_p_id,
-                    function (datum, h) {    // SUCCESS
+                    function (d, h) {    // SUCCESS
                         $scope.selected_p = database.select('als', [ {field:'id',value:$scope.selected_p_id} ], 3)[0];
                     }
                 );
