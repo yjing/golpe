@@ -8,6 +8,7 @@ app.factory('projects_db',function (database, teams_db) {
             }
         };
         this.insertProject = function (project) {
+            console.log(project['Team']);
             if(angular.isDefined(project['Team'])) {
                 if(angular.isArray(project['team']) && project['Team'].length > 0) {
                     teams_db.insertTeams(project['Team']);
@@ -67,8 +68,7 @@ app.factory('projects_db',function (database, teams_db) {
                 {}, //DATA
                 function (d, h) {
                     busy.busy(false);
-                    console.log(d['Project']);
-//                    projects_db.insertProject(d['Project']);
+                    projects_db.insertProject(d['Project']);
 
                     if(angular.isDefined(success)) {
                         success(d, h);
