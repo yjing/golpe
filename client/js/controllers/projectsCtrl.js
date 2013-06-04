@@ -194,12 +194,12 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
 
         var d = $dialog.dialog($scope.opts);
         d.open().then(function(result){
-            if(angular.isDefined(result)) {
+            if(angular.isDefined(result) && result != oldN) {
                 $scope.selected_t.name = result;
                 teams.save(
                     $scope.selected_t,
                     function(d, h){
-                        $scope.go($scope.selected_p_id, $scope.selected_t_id);
+                        $scope.selected_t = database.select('teams', [ {field:'id',value:$scope.selected_t_id} ], 3)[0];
                     }
                 );
             }
