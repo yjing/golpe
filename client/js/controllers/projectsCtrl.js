@@ -137,34 +137,37 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
 //    });
 
     // Inlined template for demo
-    var t = '<div class="modal-header">'+
+    var new_team_t = '<div class="modal-header">'+
         '<h1>New Team</h1>'+
         '</div>'+
         '<div class="modal-body">'+
         '<p>Name: <input ng-model="result" /></p>'+
         '</div>'+
         '<div class="modal-footer">'+
-        '<button ng-click="close(false)" class="btn btn-primary" >Cancel</button>'+
-        '<button ng-click="close(result)" class="btn btn-primary" >Create</button>'+
+        '<button ng-click="closeNewTeam(false)" class="btn btn-primary" >Cancel</button>'+
+        '<button ng-click="closeNewTeam(result)" class="btn btn-primary" >Create</button>'+
         '</div>';
 
     $scope.opts = {
         backdrop: true,
         keyboard: true,
         backdropClick: true,
-        template:  t
+        template:  new_team_t
     };
 
+    $scope.dialog_nt = null;
+
     $scope.newTeam = function(){
-        var d = $dialog.dialog($scope.opts);
-        d.open().then(function(result){
-            if(result)
-            {
-                alert('dialog closed with result: ' + result);
-            }
+        $scope.dialog_nt = $dialog.dialog($scope.opts)
+            .open().then(function(result){
+                if(result)
+                {
+                    alert('dialog closed with result: ' + result);
+                }
         });
-        $scope.close = function(result){
-            dialog.close(result);
-        };
+    };
+
+    $scope.closeNewTeam = function(result){
+        $scope.dialog_nt.close(result);
     };
 }
