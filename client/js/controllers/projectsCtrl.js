@@ -115,7 +115,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
     };
 
     $scope.deleteP = function () {
-        projects.save(
+        projects.delete(
             $scope.selected_p_id,
             function(d, h) {    // SUCCESS
                 $scope.go();
