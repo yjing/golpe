@@ -7,9 +7,11 @@
 
 <div class="row-fluid">
 
-    <div modal="imageIsOpen" close="closeImage()" options="optsImage">
-        <div class="modal-body clickable">
-            <img ng-src="/media/download/{{imageID}}" ng-click="download(imageID);">
+    <div class="image-shower">
+        <div modal="imageIsOpen" close="closeImage()" options="optsImage">
+            <div class="modal-body clickable">
+                <img ng-src="/media/download/{{imageID}}" ng-click="download(imageID);">
+            </div>
         </div>
     </div>
 
