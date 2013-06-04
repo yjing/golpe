@@ -118,6 +118,19 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
             }
         );
     };
+
+    $scope.addMember = function(t_id, u_id){
+        teams.addMemeber(
+            t_id,
+            u_id,
+            function(d, h) {    // SUCCESS
+                $scope.selected_t = database.select('teams', [ {field:'id',value:$scope.selected_t_id} ], 3)[0];
+                if($scope.add_member) {
+                    $scope.setMemberList();
+                }
+            }
+        );
+    };
 //    var msgbox = $dialog.messageBox('Delete Item', 'Are you sure?', [{label:'Yes, I\'m sure', result: 'yes'},{label:'Nope', result: 'no'}]);
 //    msgbox.open().then(function(result){
 //        if(result === 'yes') {deleteItem(item);}
