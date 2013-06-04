@@ -101,7 +101,8 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
         projects.save(
             $scope.selected_p,
             function(d, h) {    // SUCCESS
-                $scope.selected_p = database.select('projects', [ {field:'id',value:$scope.selected_p_id} ], 3)[0];
+                $scope.data = database.select('projects',[], 3);
+                $scope.unEditSelectedP();
             }
         );
     };
