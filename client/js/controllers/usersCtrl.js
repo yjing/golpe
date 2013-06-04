@@ -15,23 +15,26 @@ function UsersCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth, d
     $scope.setupTopBar();
 
     $scope.data = [];
+    $scope.selected_u = null;
+    $scope.selected_u_id = null;
+
+    $scope.go = function(id){
+        var url = '/client/users';
+        if (angular.isDefined(id)) {
+            url += '/' + id;
+        }
+        $location.url(url);
+    };
 
     $scope.loadAll = function (reload) {
-        if (angular.isDefined($scope.selected_p_id) && $scope.selected_p_id != null) {
-            if($scope.selected_p_id == 'new') {
-                $scope.selected_p = {};
+        if (angular.isDefined($scope.selected_u_id) && $scope.selected_u_id != null) {
+            if($scope.selected_u_id == 'new') {
+                $scope.selected_u = {};
             } else {
-                projects.load(
-                    $scope.selected_p_id,
+                users.load(
+                    $scope.selected_u_id,
                     function (d, h) {    // SUCCESS
-                        $scope.selected_p = database.select('projects', [ {field:'id',value:$scope.selected_p_id} ], 3)[0];
-                        users.all(false,
-                            function(d, h){
-                                if(angular.isDefined($scope.selected_t_id) && $scope.selected_t_id) {
-                                    $scope.selected_t = database.select('teams', [ {field:'id',value:$scope.selected_t_id} ], 3)[0];
-                                }
-                            }
-                        );
+                        $scope.selected_u = database.select('users', [ {field:'id',value:$scope.selected_u_id} ], 3)[0];
                     }
                 );
             }
