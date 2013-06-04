@@ -35,6 +35,7 @@ function UsersCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth, d
                     $scope.selected_u_id,
                     function (d, h) {    // SUCCESS
                         $scope.selected_u = database.select('users', [ {field:'id',value:$scope.selected_u_id} ], 3)[0];
+                        console.log($scope.selected_u);
                     }
                 );
             }
