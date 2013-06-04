@@ -194,7 +194,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
 
         var d = $dialog.dialog($scope.opts);
         d.open().then(function(result){
-            if(angular.isDefined(result) && result != oldN) {
+            if(angular.isDefined(result)) {
                 $scope.selected_t.name = result;
                 teams.save(
                     $scope.selected_t,
