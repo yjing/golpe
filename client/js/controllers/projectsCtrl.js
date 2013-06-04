@@ -164,9 +164,8 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
                 alert('dialog closed with result: ' + result);
             }
         });
-    };
-
-    $scope.close = function(result){
-        dialog.close(result);
+        $scope.close = function(result){
+            dialog.close(result);
+        };
     };
 }
