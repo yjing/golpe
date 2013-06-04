@@ -20,18 +20,21 @@ app.factory('users_db',function (database) {
         this.insertUser = function (user) {
             if(angular.isDefined(user['Profile'])) {
                 user['profile'] = user['Profile'];
+                user.status = 'complete';
                 delete user['Profile'];
             }
             if(angular.isDefined(user['Team'])) {
                 if(user['Team'] != null && user['Team'].length > 0) {
                     user['team_id'] = user['Team'][0].id;
                 }
+                user.status = 'complete';
                 delete user['Team'];
             }
             if(angular.isDefined(user['Supervisor'])) {
                 if(user['Supervisor'] != null) {
                     user['supervisor_id'] = user['Supervisor'].id;
                 }
+                user.status = 'complete';
                 delete user['Supervisor'];
             }
             return database.insert('users', user['id'], user);
@@ -73,6 +76,14 @@ app.factory('users_db',function (database) {
         }
 
         this.load = function(id, success, error){
+            var existing = database.select('users', [ {field:'id',value:id} ], 3);
+            if(angular.isDefined(existing) && existing != null && existing.status == 'complete') {
+                if(angular.isDefined(success)) {
+                    success(existing);
+                    return;
+                }
+            }
+
             busy.busy(true);
             resources.Users.load(
                 {'id':id}, //PARAMS
