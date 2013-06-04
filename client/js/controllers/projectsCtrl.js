@@ -34,7 +34,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, auth, databas
     $scope.filterTeamedStudents = function(students) {
         var list = [];
         for (var i = 0; i < students.length; i++) {
-            if(angular.isUndefined(students[i].team_id) || students[i].team_id != null){
+            if(angular.isUndefined(students[i].team_id) || students[i].team_id == null){
                 list.push(students[i]);
             }
 
