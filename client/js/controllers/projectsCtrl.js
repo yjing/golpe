@@ -63,7 +63,6 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
             if (angular.isDefined($scope.selected_p_id) && $scope.selected_p_id != null) {
                 if($scope.selected_p_id == 'new') {
                     $scope.selected_p = {};
-                    $scope.selected_p.name = "Roy";
                 } else {
                     projects.load(
                         $scope.selected_p_id,
@@ -106,7 +105,11 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
             $scope.selected_p,
             function(d, h) {    // SUCCESS
                 $scope.data = database.select('projects',[], 3);
-                $scope.unEditSelectedP();
+                if($scope.selected_p_id == 'new') {
+                    $scope.go(d['Project'].id);
+                } else {
+                    $scope.unEditSelectedP();
+                }
             }
         );
     };
