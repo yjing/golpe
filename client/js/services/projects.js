@@ -18,6 +18,9 @@ app.factory('projects_db',function (database, teams_db) {
 
             database.insert('projects', project['id'], project);
         };
+        this.deleteProject = function (id) {
+            database.delete('projects', id);
+        };
     };
 }).service('projects', function ($rootScope, busy, resources, projects_db, database) {
 
@@ -96,6 +99,29 @@ app.factory('projects_db',function (database, teams_db) {
                     busy.busy(false);
 
                     projects_db.insertProject(d['Project']);
+
+                    if(angular.isDefined(success)) {
+                        success(d, h);
+                    }
+                },
+                function (e) {
+                    busy.busy(false);
+                    if(!$rootScope.handleError(e) && angular.isDefined(error)) {
+                        error(e);
+                    }
+                }
+            );
+        }
+
+        this.save = function(p_id, success, error){
+            busy.busy(true);
+            resources.Projects.save(
+                { id:p_id }, //PARAMS
+                {}, //DATA
+                function (d, h) {
+                    busy.busy(false);
+
+                    projects_db.deleteProject(p_id);
 
                     if(angular.isDefined(success)) {
                         success(d, h);

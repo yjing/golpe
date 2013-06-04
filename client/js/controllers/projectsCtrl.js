@@ -114,6 +114,15 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
         );
     };
 
+    $scope.deleteP = function () {
+        projects.save(
+            $scope.selected_p_id,
+            function(d, h) {    // SUCCESS
+                $scope.go();
+            }
+        );
+    };
+
     $scope.selectedP = function (id) {
         return $scope.selected_p_id == id ? 'active' : '';
     };
@@ -156,10 +165,6 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
             }
         );
     };
-//    var msgbox = $dialog.messageBox('Delete Item', 'Are you sure?', [{label:'Yes, I\'m sure', result: 'yes'},{label:'Nope', result: 'no'}]);
-//    msgbox.open().then(function(result){
-//        if(result === 'yes') {deleteItem(item);}
-//    });
 
     $scope.new_team_t = '<div class="modal-header">'+
         '<h1>New Team</h1>'+
