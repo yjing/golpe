@@ -139,14 +139,14 @@
                         <span><strong>Team Members <i class="icon-user"></i></strong></span>
                     </div>
                     <ul>
-                        <li ng-repeat="u in selected_t.students">
+                        <li ng-repeat="u in selected_t.students" ng-init="remove_m = false">
                             <a>{{u.username}}</a>
                             <div class="functions">
-                                <button class="btn-link function" ng-click="removeMember(u.id);" ng-hide="isRemoveMember(u.id)"><i class="icon-remove"></i></button>
+                                <button class="btn-link function" ng-click="remove_m = true" ng-hide="remove_m == true"><i class="icon-remove"></i></button>
                             </div>
                             <div class="confirms">
-                                <button class="btn btn-danger confirm" ng-click="removeMember(true, u.id);" ng-show="isRemoveMember(u.id)">Remove Member</button>
-                                <button class="btn btn-success confirm" ng-click="cancelRemoveMember(u.id)" ng-show="isRemoveMember(u.id)">Keep</button>
+                                <button class="btn btn-danger confirm" ng-click="removeMember(selected_t_id, u.id);" ng-show="remove_m == true">Remove Member</button>
+                                <button class="btn btn-success confirm" ng-click="remove_m = false" ng-show="remove_m == true">Keep</button>
                             </div>
                         </li>
                     </ul>
