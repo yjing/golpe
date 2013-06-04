@@ -15,7 +15,7 @@
                     <a href="#" ng-click="go(u.id);">{{u.username}}
                         <i ng-show="isEditUser(u.id)" class="icon-pencil"></i>
                     </a>
-                    <div class="functions" ng-show="selected_u_id != null">
+                    <div class="functions" ng-show="selected_u_id == u.id">
                         <button class="btn-link function" ng-click="deleteUser(false, u.id);" ng-hide="isDeleteUser(u.id) || isEditUser(u.id)"><i class="icon-remove"></i></button>
                     </div>
                     <div class="confirms">
