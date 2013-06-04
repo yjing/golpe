@@ -152,8 +152,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
         backdrop: true,
         keyboard: true,
         backdropClick: true,
-        template:  t, // OR: templateUrl: 'path/to/view.html',
-        controller: 'ProjectsCtrl'
+        template:  t
     };
 
     $scope.newTeam = function(){
