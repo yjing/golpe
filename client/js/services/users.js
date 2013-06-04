@@ -34,7 +34,6 @@ app.factory('users_db',function (database) {
                 }
                 delete user['Supervisor'];
             }
-            console.log(user);
             return database.insert('users', user['id'], user);
         };
     };
