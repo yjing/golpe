@@ -16,7 +16,7 @@ function UsersCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth, d
 
     $scope.data = [];
     $scope.selected_u = null;
-    $scope.selected_u_id = null;
+    $scope.selected_u_id = $routeParams.id;
 
     $scope.go = function(id){
         var url = '/client/users';
