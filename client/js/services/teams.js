@@ -60,7 +60,7 @@ app.factory('teams_db',function (database, users_db) {
                 function (d, h) {
                     busy.busy(false);
 
-                    teams_db.delete(id);
+                    teams_db.delete(t_id);
 
                     if(angular.isDefined(success)) {
                         success(d, h);
