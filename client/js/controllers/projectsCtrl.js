@@ -105,12 +105,12 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
     $scope.removeMember = function(t_id, u_id){
         var title = 'Remove Member';
         var msg = 'Are you sure you want to remove the member from the team?';
-        var btns = [{result:'cancel', label: 'Cancel'}, {result:true, label: 'OK', cssClass: 'btn-primary'}];
+        var btns = [{result:'cancel', label: 'Cancel'}, {result:'ok', label: 'OK', cssClass: 'btn-primary'}];
 
         $dialog.messageBox(title, msg, btns)
             .open()
             .then(function(result){
-                if(result) {
+                if(result == 'ok') {
                     alert('YES');
                 } else {
                     alert('NO');
