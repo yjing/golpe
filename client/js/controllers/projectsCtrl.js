@@ -16,6 +16,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
     $scope.data = [];
     $scope.selected_p_id = $routeParams.id;
     $scope.selected_p = null;
+    $scope.selected_p_edit = null;
     $scope.edit_p = false;
     $scope.delete_p = false;
 
@@ -101,10 +102,13 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
     };
 
     $scope.editSelectedP = function () {
+        $scope.selected_p_old = $scope.selected_p;
         $scope.edit_p = true;
     };
 
     $scope.unEditSelectedP = function () {
+        $scope.selected_p = $scope.selected_p_old;
+        $scope.selected_p_old = null;
         $scope.edit_p = false;
     };
 
