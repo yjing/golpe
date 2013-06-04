@@ -51,6 +51,35 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
         return list;
     }
 
+    $scope.loadAll = function (reload) {
+        if (angular.isDefined($scope.selected_p_id) && $scope.selected_p_id != null) {
+            if($scope.selected_p_id == 'new') {
+                $scope.selected_p = {};
+            } else {
+                projects.load(
+                    $scope.selected_p_id,
+                    function (d, h) {    // SUCCESS
+                        $scope.selected_p = database.select('projects', [ {field:'id',value:$scope.selected_p_id} ], 3)[0];
+                        users.all(false,
+                            function(d, h){
+                                if(angular.isDefined($scope.selected_t_id) && $scope.selected_t_id) {
+                                    $scope.selected_t = database.select('teams', [ {field:'id',value:$scope.selected_t_id} ], 3)[0];
+                                }
+                            }
+                        );
+                    }
+                );
+            }
+        }
+
+        projects.all(
+            reload,               // RELOAD
+            function(d, h) {     // SUCCESS
+                $scope.data = database.select('projects',[], 3);
+            }
+        );
+    };
+
     auth.user(
         function (user) {
 
@@ -60,32 +89,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
                 return;
             }
 
-            if (angular.isDefined($scope.selected_p_id) && $scope.selected_p_id != null) {
-                if($scope.selected_p_id == 'new') {
-                    $scope.selected_p = {};
-                } else {
-                    projects.load(
-                        $scope.selected_p_id,
-                        function (d, h) {    // SUCCESS
-                            $scope.selected_p = database.select('projects', [ {field:'id',value:$scope.selected_p_id} ], 3)[0];
-                            users.all(false,
-                                function(d, h){
-                                    if(angular.isDefined($scope.selected_t_id) && $scope.selected_t_id) {
-                                        $scope.selected_t = database.select('teams', [ {field:'id',value:$scope.selected_t_id} ], 3)[0];
-                                    }
-                                }
-                            );
-                        }
-                    );
-                }
-            }
-
-            projects.all(
-                false,               // RELOAD
-                function(d, h) {     // SUCCESS
-                    $scope.data = database.select('projects',[], 3);
-                }
-            );
+            $scope.loadAll(false);
         }
     );
 
