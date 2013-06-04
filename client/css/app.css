@@ -38,3 +38,20 @@ div.image-shower div.modal-body {
 div.image-shower div.modal-body > img {
     width: 100%;
 }
+
+
+div.menu div.edit-field.btn-group {
+    width: 100%;
+}
+
+div.menu .st {
+    width: 33%;
+}
+
+div.menu .su {
+    width: 40%;
+}
+
+div.menu .ad {
+    width: 26%;
+}
