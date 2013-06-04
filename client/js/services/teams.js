@@ -9,12 +9,18 @@ app.factory('teams_db',function (database, users_db) {
         };
         this.insertTeam = function (team) {
             if(angular.isDefined(team['Student'])) {
-//                users_db.insertUsers(team['Student'], { team_id:team.id });
                 team.status = 'complete';
                 delete team['Student'];
             }
-
             database.insert('teams', team['id'], team);
+        };
+        this.delete = function (id) {
+            var users = database.select('users', [{field:'team_id',value:id}], 0);
+            for (var i = 0; i < users.length; i++) {
+                delete users[i].team_id;
+                users_db.insertUser(users[i]);
+            }
+            database.delete('teams', t_id);
         };
     };
 }).service('teams', function ($rootScope, busy, resources, teams_db, database) {
@@ -54,7 +60,7 @@ app.factory('teams_db',function (database, users_db) {
                 function (d, h) {
                     busy.busy(false);
 
-                    database.delete('teams', t_id);
+                    teams_db.delete(id);
 
                     if(angular.isDefined(success)) {
                         success(d, h);
