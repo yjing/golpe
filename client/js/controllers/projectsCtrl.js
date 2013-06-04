@@ -165,4 +165,8 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
             }
         });
     };
+
+    $scope.close = function(result){
+        dialog.close(result);
+    };
 }
