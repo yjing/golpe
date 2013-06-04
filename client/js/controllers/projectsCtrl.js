@@ -107,7 +107,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
     };
 
     $scope.removeMember = function(t_id, u_id){
-        teams.removeMemeber(
+        teams.removeMember(
             t_id,
             u_id,
             function(d, h) {    // SUCCESS
@@ -120,7 +120,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
     };
 
     $scope.addMember = function(t_id, u_id){
-        teams.addMemeber(
+        teams.addMember(
             t_id,
             u_id,
             function(d, h) {    // SUCCESS
