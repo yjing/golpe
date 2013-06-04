@@ -82,4 +82,32 @@ app.factory('projects_db',function (database, teams_db) {
             );
         }
 
+        this.save = function(project, success, error){
+            var params = {};
+            if(angular.isDefined(project.id)) {
+                params.id = project.id;
+            }
+
+            busy.busy(true);
+            resources.Projects.save(
+                params, //PARAMS
+                {}, //DATA
+                function (d, h) {
+                    busy.busy(false);
+
+                    projects_db.insertProject(d['Project']);
+
+                    if(angular.isDefined(success)) {
+                        success(d, h);
+                    }
+                },
+                function (e) {
+                    busy.busy(false);
+                    if(!$rootScope.handleError(e) && angular.isDefined(error)) {
+                        error(e);
+                    }
+                }
+            );
+        }
+
     });

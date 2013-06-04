@@ -97,6 +97,15 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
         $location.url(url);
     };
 
+    $scope.saveP = function () {
+        projects.save(
+            $scope.selected_p,
+            function(d, h) {    // SUCCESS
+                $scope.selected_p = database.select('projects', [ {field:'id',value:$scope.selected_p_id} ], 3)[0];
+            }
+        );
+    };
+
     $scope.selectedP = function (id) {
         return $scope.selected_p_id == id ? 'active' : '';
     };
