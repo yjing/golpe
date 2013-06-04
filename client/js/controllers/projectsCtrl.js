@@ -211,7 +211,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
 
     $scope.editTeam = function () {
         $scope.opts.template = $scope.edit_team_t;
-        $scope.opts.controller = 'DialogCtrl';
+        $scope.opts.controller = 'DialogCtrl2';
         console.log($scope.opts);
         $rootScope.result = $scope.selected_t.name;
         var oldN = $scope.selected_t.name;
@@ -243,6 +243,11 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
 }
 
 function DialogCtrl($scope, dialog){
+    $scope.close = function(result){
+        dialog.close(result);
+    };
+}
+function DialogCtrl2($scope, dialog){
     $scope.close = function(result){
         dialog.close(result);
     };
