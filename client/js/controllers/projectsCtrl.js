@@ -102,7 +102,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
     };
 
     $scope.editSelectedP = function () {
-        $scope.selected_p_old = $scope.selected_p;
+        $scope.selected_p_old = angular.copy($scope.selected_p);
         $scope.edit_p = true;
     };
 
