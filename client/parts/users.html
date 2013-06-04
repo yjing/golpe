@@ -11,8 +11,8 @@
                 <li>
                     <input type="text" placeholder="Filter Users..." class="edit-field" ng-model="searchText">
                 </li>
-                <li ng-repeat="u in usersData | filter:searchText" ng-class="isSelectedUser(u.id);">
-                    <a href="#" ng-click="selectUser(u.id);">{{u.username}}
+                <li ng-repeat="u in data | filter:searchText" ng-class="selectedU(u.id);">
+                    <a href="#" ng-click="go(u.id);">{{u.username}}
                         <i ng-show="isEditUser(u.id)" class="icon-pencil"></i>
                     </a>
                     <div class="functions">
