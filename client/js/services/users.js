@@ -43,7 +43,7 @@ app.factory('users_db',function (database) {
 
                     users_db.insertUsers(d);
                     console.log(database.select('users', [
-//                        {field:'role', value:'STUDENT'}
+                        {field:'role', value:'STUDENT'}
                     ], 3));
 
                     if (angular.isDefined(success)) {
