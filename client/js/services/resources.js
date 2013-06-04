@@ -51,6 +51,9 @@ app.service('resources', function($resource){
     });
 
     this.Teams = $resource('/teams/:id', { id:'@id' }, {
+        delete:{
+            method:'DELETE'
+        },
         addMember:{
             url:'/teams/addMember/:tid/:uid',
             method:'POST'
