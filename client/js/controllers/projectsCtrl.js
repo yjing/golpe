@@ -52,6 +52,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
     }
 
     $scope.loadAll = function (reload) {
+        console.log("HERE");
         if (angular.isDefined($scope.selected_p_id) && $scope.selected_p_id != null) {
             if($scope.selected_p_id == 'new') {
                 $scope.selected_p = {};
