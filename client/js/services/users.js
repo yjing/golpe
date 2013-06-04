@@ -74,7 +74,7 @@ app.factory('users_db',function (database) {
 
         this.load = function(id, success, error){
             busy.busy(true);
-            resources.load(
+            resources.Users.load(
                 {'id':id}, //PARAMS
                 {}, //DATA
                 function (d, h) {
