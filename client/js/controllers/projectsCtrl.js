@@ -112,6 +112,9 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
             u_id,
             function(d, h) {    // SUCCESS
                 $scope.selected_t = database.select('teams', [ {field:'id',value:$scope.selected_t_id} ], 3)[0];
+                if($scope.add_member) {
+                    $scope.setMemberList();
+                }
             }
         );
     };
