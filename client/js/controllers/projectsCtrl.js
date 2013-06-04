@@ -25,6 +25,23 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, auth, databas
     $scope.delete_t = false;
 
 
+
+    $scope.showAddMember = function () {
+        $scope.member_list = $scope.filterTeamedStudents(database.select('users', [ {field:'role',value:'STUDENT'} ], 1));
+    };
+
+
+    $scope.filterTeamedStudents = function(students) {
+        var list = [];
+        for (var i = 0; i < students.length; i++) {
+            if(angular.isUndefined(students[i].teams) || students[i].teams == null){
+                list.push(students[i]);
+            }
+
+        }
+        return list;
+    }
+
     auth.user(
         function (user) {
             users.all(false);
@@ -77,21 +94,5 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, auth, databas
     $scope.selectedT = function (id) {
         return $scope.selected_t_id == id ? 'active' : '';
     };
-
-    $scope.showAddMember = function () {
-        $scope.member_list = $scope.filterTeamedStudents(database.select('users', [ {field:'role',value:'STUDENT'} ], 1));
-    };
-
-
-    $scope.filterTeamedStudents = function(students) {
-        var list = [];
-        for (var i = 0; i < students.length; i++) {
-            if(angular.isUndefined(students[i].teams) || students[i].teams == null){
-                list.push(students[i]);
-            }
-
-        }
-        return list;
-    }
 
 }
