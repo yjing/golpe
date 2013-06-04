@@ -43,6 +43,7 @@ app.factory('users_db',function (database) {
                     console.log(database.select('users', [
                         {field:'role', value:'STUDENT'}
                     ], 1));
+                    console.log("THERE");
 
                     if (angular.isDefined(success)) {
                         success(d, h);
