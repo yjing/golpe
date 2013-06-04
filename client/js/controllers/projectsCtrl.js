@@ -136,4 +136,32 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
 //        if(result === 'yes') {deleteItem(item);}
 //    });
 
+    // Inlined template for demo
+    var t = '<div class="modal-header">'+
+        '<h1>This is the title</h1>'+
+        '</div>'+
+        '<div class="modal-body">'+
+        '<p>Enter a value to pass to <code>close</code> as the result: <input ng-model="result" /></p>'+
+        '</div>'+
+        '<div class="modal-footer">'+
+        '<button ng-click="close(result)" class="btn btn-primary" >Close</button>'+
+        '</div>';
+
+    $scope.opts = {
+        backdrop: true,
+        keyboard: true,
+        backdropClick: true,
+//        template:  t, // OR: templateUrl: 'path/to/view.html',
+//        controller: 'TestDialogController'
+    };
+
+    $scope.openDialog = function(){
+        var d = $dialog.dialog($scope.opts);
+        d.open().then(function(result){
+            if(result)
+            {
+                alert('dialog closed with result: ' + result);
+            }
+        });
+    };
 }
