@@ -63,6 +63,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
             if (angular.isDefined($scope.selected_p_id) && $scope.selected_p_id != null) {
                 if($scope.selected_p_id == 'new') {
                     $scope.selected_p = {};
+                    $scope.selected_p.name = "Roy";
                 } else {
                     projects.load(
                         $scope.selected_p_id,
