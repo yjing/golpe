@@ -129,11 +129,11 @@ div.menu > ul > li > input.edit-field.function {
     padding: 2% 18% 2% 2%;
 }
 
-div.menu div.edit_field.btn-group {
+div.menu div.edit-field.btn-group {
     width: 100%;
 }
 
-div.menu div.edit_field.btn-group .btn {
+div.menu div.edit-field.btn-group .btn {
     width: 33%;
 }
 
