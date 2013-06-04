@@ -3,13 +3,13 @@ app.factory('users_db',function (database) {
         this.insertUsers = function (users, options) {
             var opt = angular.isObject(options);
             if (users instanceof Array) {
+                console.log(users);
                 for (var i = 0; i < users.length; i++) {
                     if (opt) {
                         angular.forEach(options, function (v, k) {
                             users[i][k] = v;
                         }, this);
                     }
-                    console.log("INSERT USER");
                     this.insertUser(users[i]);
                 }
             }
@@ -39,11 +39,9 @@ app.factory('users_db',function (database) {
                     busy.busy(false);
 
                     users_db.insertUsers(d);
-                    console.log("HERE");
-                    console.log(database.select('users', [
-//                        {field:'role', value:'STUDENT'}
-                    ], 1));
-                    console.log("THERE");
+//                    console.log(database.select('users', [
+////                        {field:'role', value:'STUDENT'}
+//                    ], 1));
 
                     if (angular.isDefined(success)) {
                         success(d, h);
