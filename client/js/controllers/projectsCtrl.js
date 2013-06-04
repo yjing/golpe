@@ -159,8 +159,8 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
 
     $scope.newTeam = function(){
         $scope.opts.template = new_team_t;
-        $scope.dialog_nt = $dialog.dialog($scope.opts)
-            .open().then(function(result){
+        $scope.dialog_nt = $dialog.dialog($scope.opts);
+        $scope.dialog_nt.open().then(function(result){
                 if(result)
                 {
                     alert('dialog closed with result: ' + result);
