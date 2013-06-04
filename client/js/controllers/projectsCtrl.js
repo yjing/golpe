@@ -168,7 +168,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
                 }
                 teams.save(team,
                     function(d, h){
-                        var t_id = d['Team'][0].id;
+                        var t_id = d['Team'].id;
                         $scope.selected_t = database.select('teams', [ {field:'id',value:t_id} ], 3)[0];
                         if($scope.add_member) {
                             $scope.setMemberList();
