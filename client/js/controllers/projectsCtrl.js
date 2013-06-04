@@ -189,6 +189,11 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
     };
 
     $scope.newTeam = function(){
+        var opts = {
+            backdrop: true,
+            keyboard: true,
+            backdropClick: true
+        };
         opts.template = new_team_t;
         opts.controller = 'DialogCtrl';
         var d = $dialog.dialog(opts);
@@ -209,6 +214,11 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
     };
 
     $scope.editTeam = function () {
+        var opts = {
+            backdrop: true,
+            keyboard: true,
+            backdropClick: true
+        };
         opts.template = edit_team_t;
         opts.controller = 'DialogCtrl';
 
