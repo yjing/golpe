@@ -3,6 +3,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
     $scope.setupTopBar = function () {
         $rootScope.top_bar = {
             page_title:'Projects',
+            title_menu: [ { label: 'Users', func: function(){ $location.url('/client/users') } } ],
             main_menu_items:[
                 { type:'item', label:'Logout', icon:'icon-lock', func:$rootScope.logout },
                 { type:'item', label:'Help', icon:'icon-question-sign', func:$rootScope.help },
@@ -52,7 +53,6 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
     }
 
     $scope.loadAll = function (reload) {
-        console.log("HERE");
         if (angular.isDefined($scope.selected_p_id) && $scope.selected_p_id != null) {
             if($scope.selected_p_id == 'new') {
                 $scope.selected_p = {};
