@@ -102,13 +102,11 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
     };
 
     $scope.editSelectedP = function () {
-        $scope.selected_p_old = angular.copy($scope.selected_p);
         $scope.edit_p = true;
     };
 
     $scope.unEditSelectedP = function () {
-        $scope.selected_p = $scope.selected_p_old;
-        $scope.selected_p_old = null;
+        $scope.selected_p = database.select('projects', [ {field:'id',value:$scope.selected_p_id} ], 3)[0];
         $scope.edit_p = false;
     };
 
