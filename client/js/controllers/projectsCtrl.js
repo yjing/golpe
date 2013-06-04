@@ -144,24 +144,38 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
         '<p>Name: <input ng-model="result" /></p>'+
         '</div>'+
         '<div class="modal-footer">'+
-        '<button ng-click="closeNewTeam(false)" class="btn btn-primary" >Cancel</button>'+
+        '<button ng-click="closeNewTeam()" class="btn btn-primary" >Cancel</button>'+
         '<button ng-click="closeNewTeam(result)" class="btn btn-primary" >Create</button>'+
         '</div>';
 
     $scope.opts = {
         backdrop: true,
         keyboard: true,
-        backdropClick: true,
-        controller: 'NewItemDCtrl'
+        backdropClick: true
     };
 
     $scope.dialog_nt = null;
 
     $scope.newTeam = function(){
         $scope.opts.template = new_team_t;
+        $scope.opts.controller = 'NewItemDCtrl';
         var d = $dialog.dialog($scope.opts);
         d.open().then(function(result){
-            alert('dialog closed with result: ' + result);
+            if(angular.isDefined(result)) {
+                var team = {
+                    name: result,
+                    project_id: $scope.selected_p_id
+                }
+                teams.save(team,
+                    function(d, h){
+                        var t_id = d['Team'][0].id;
+                        $scope.selected_t = database.select('teams', [ {field:'id',value:t_id} ], 3)[0];
+                        if($scope.add_member) {
+                            $scope.setMemberList();
+                        }
+                    }
+                );
+            }
         });
     };
 }
