@@ -15,12 +15,12 @@
                     <a href="#" ng-click="go(u.id);">{{u.username}}
                         <i ng-show="isEditUser(u.id)" class="icon-pencil"></i>
                     </a>
-                    <div class="functions" ng-show="selected_u_id == u.id" ng-init="delete = false; edit = false;">
-                        <button class="btn-link function" ng-click="delete = true;" ng-hide="delete || edit"><i class="icon-remove"></i></button>
+                    <div class="functions" ng-show="selected_u_id == u.id" ng-init="delete_u = false; edit_u = false;">
+                        <button class="btn-link function" ng-click="delete_u = true;" ng-hide="delete_u || edit_u"><i class="icon-remove"></i></button>
                     </div>
                     <div class="confirms">
-                        <button class="btn btn-danger confirm" ng-click="deleteu();" ng-show="delete">Delete</button>
-                        <button class="btn btn-success confirm" ng-click="delete = false;" ng-show="delete">Keep</button>
+                        <button class="btn btn-danger confirm" ng-click="deleteSelectedU();" ng-show="delete_u">Delete</button>
+                        <button class="btn btn-success confirm" ng-click="delete_u = false;" ng-show="delete_u">Keep</button>
                     </div>
                 </li>
             </ul>
@@ -34,22 +34,22 @@
     </div>
 
     <div class="span9">
-        <div class="menu shadow" ng-hide="isNewUser() || user(selected_user) == null">
+        <div class="menu shadow" ng-hide="selected_u_id == 'new' || selected_u_id == null">
             <div>
                 <span>
-                    <h4 class="clickable" ng-hide="isEditUser(selected_user)" ng-click="editUser(selected_user);">
-                        {{user(selected_user).username}} <i class="icon-pencil"></i>
+                    <h4 class="clickable" ng-hide="edit_u" ng-click="editSelectedU();">
+                        {{selected_u.username}} <i class="icon-pencil"></i>
                     </h4>
                     <!-- EDIT MODE -->
-                    <span ng-show="isEditUser(selected_user)">
+                    <span ng-show="edit_u">
                         <input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge"
-                               ng-model="user(selected_user).username">
+                               ng-model="selected_u.username">
                     </span>
                 </span>
             </div>
             <ul>
                 <li>
-                    <dl class="selector" ng-hide="isEditUser(selected_user)">
+                    <dl class="selector" ng-hide="edit_u">
                         <dt><strong>Name:</strong></dt>
                         <dd>{{user(selected_user).Profile.name}}</dd>
                         <dt><strong>Id number:</strong></dt>
@@ -58,33 +58,33 @@
                         <dd>{{user(selected_user).email}}</dd>
                         <dt><strong>Role:</strong></dt>
                         <dd>{{user(selected_user).role}}</dd>
-                        <dt ng-show="user(selected_user).role == 'STUDENT'"><strong>Supervisor:</strong></dt>
-                        <dd ng-show="user(selected_user).role == 'STUDENT' && user(selected_user).Supervisor != null">
-                            {{user(selected_user).Supervisor.username}}
+                        <dt ng-show="selected_u.role == 'STUDENT'"><strong>Supervisor:</strong></dt>
+                        <dd ng-show="selected_u.role == 'STUDENT' && selected_u.supervisor != null">
+                            {{selected_u.supervisor.username}}
                         </dd>
-                        <dd ng-hide="user(selected_user).Supervisor != null">
-                            not assigned [ <a href="#" ng-click="assignSupervisor(selected_user)">Assign Supervisor</a> ]
+                        <dd ng-hide="selected_u.supervisor != null">
+                            not assigned [ <a href="#" ng-click="assignSupervisor()">Assign Supervisor</a> ]
                         </dd>
                     </dl>
-                    <dl class="selector" ng-show="isEditUser(selected_user)">
+                    <dl class="selector" ng-show="edit_u">
                         <dt><strong>Name:</strong></dt>
-                        <dd><input ng-model="user(selected_user).Profile.name"></dd>
+                        <dd><input ng-model="selected_u.profile.name"></dd>
                         <dt><strong>Id number:</strong></dt>
-                        <dd><input ng-model="user(selected_user).Profile.id_number"></dd>
+                        <dd><input ng-model="selected_u.profile.id_number"></dd>
                         <dt><strong>E-Mail:</strong></dt>
-                        <dd><input ng-model="user(selected_user).email"></dd>
+                        <dd><input ng-model="selected_u.email"></dd>
                         <dt><strong>Role:</strong></dt>
                         <dd>
-                            <select ng-model="user(selected_user).role">
+                            <select ng-model="selected_u.role">
                                 <option ng-repeat="r in [ 'STUDENT', 'SUPERVISOR', 'ADMIN' ]">{{r}}</option>
                             </select>
                         </dd>
-                        <dt ng-show="user(selected_user).role == 'STUDENT'"><strong>Supervisor:</strong></dt>
-                        <dd ng-show="user(selected_user).role == 'STUDENT' && user(selected_user).Supervisor != null">
-                            {{user(selected_user).Supervisor.username}}
+                        <dt ng-show="selected_u.role == 'STUDENT'"><strong>Supervisor:</strong></dt>
+                        <dd ng-show="selected_u.role == 'STUDENT' && selected_u.supervisor != null">
+                            {{selected_u.supervisor.username}}
                         </dd>
-                        <dd ng-hide="user(selected_user).Supervisor != null">
-                            not assigned [ <a href="#" ng-click="assignSupervisor(selected_user)">Assign Supervisor</a> ]
+                        <dd ng-hide="selected_u.supervisor != null">
+                            not assigned [ <a href="#" ng-click="assignSupervisor()">Assign Supervisor</a> ]
                         </dd>
                     </dl>
                     <!-- EDIT MODE -->
@@ -92,11 +92,11 @@
                               <!--ng-show="isEditUser(selected_user)"></textarea>-->
                 </li>
             </ul>
-            <div ng-show="isEditUser(selected_user)">
+            <div ng-show="edit_u">
                 <span>
                     <div class="btn-group">
-                        <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveUser(selected_user);">Save</button>
-                        <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="cancelEditUser(selected_user);">Cancel</button>
+                        <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveU();">Save</button>
+                        <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="unEditUser();">Cancel</button>
                     </div>
                 </span>
             </div>
