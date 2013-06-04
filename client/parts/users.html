@@ -1,0 +1,110 @@
+<div class="row-fluid content">
+
+    <div class="span3">
+        <div class="menu shadow">
+            <div>
+                <a href="#" class="text-right" ng-click="reloadUsers();">
+                    Refresh Users' List <i class="icon-refresh"></i>
+                </a>
+            </div>
+            <ul>
+                <li>
+                    <input type="text" placeholder="Filter Users..." class="edit-field" ng-model="searchText">
+                </li>
+                <li ng-repeat="u in usersData | filter:searchText" ng-class="isSelectedUser(u.id);">
+                    <a href="#" ng-click="selectUser(u.id);">{{u.username}}
+                        <i ng-show="isEditUser(u.id)" class="icon-pencil"></i>
+                    </a>
+                    <div class="functions">
+                        <button class="btn-link function" ng-click="deleteUser(false, u.id);" ng-hide="isDeleteUser(u.id) || isEditUser(u.id)"><i class="icon-remove"></i></button>
+                    </div>
+                    <div class="confirms">
+                        <button class="btn btn-danger confirm" ng-click="deleteProject(true, p.id);" ng-show="isDeleteUser(u.id)">Delete</button>
+                        <button class="btn btn-success confirm" ng-click="cancelDeleteUser(u.id)" ng-show="isDeleteUser(u.id)">Keep</button>
+                    </div>
+                </li>
+                <li ng-show="isNewUser()" ng-class="isSelectedUser(new_user_id)">
+                    <a href="#" ng-click="selectUser(new_user_id);">{{new_project.name}} <i class="icon-edit"></i></a>
+                </li>
+            </ul>
+            <div>
+                <a href="#" class="text-right">
+                    <button ng-click="newUser();" ng-hide="isNewUser()" class="btn btn-success">New User</button>
+                    <button ng-click="cancelNewUser();" ng-show="isNewUser()" class="btn btn-warning">Cancel</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="span9">
+        <div class="menu shadow" ng-hide="isNewUser() || user(selected_user) == null">
+            <div>
+                <span>
+                    <h4 class="clickable" ng-hide="isEditUser(selected_user)" ng-click="editUser(selected_user);">
+                        {{user(selected_user).username}} <i class="icon-pencil"></i>
+                    </h4>
+                    <!-- EDIT MODE -->
+                    <span ng-show="isEditUser(selected_user)">
+                        <input autofocus="true" onload="this.focus()" type="text" class="input-xxlarge"
+                               ng-model="user(selected_user).username">
+                    </span>
+                </span>
+            </div>
+            <ul>
+                <li>
+                    <dl class="selector" ng-hide="isEditUser(selected_user)">
+                        <dt><strong>Name:</strong></dt>
+                        <dd>{{user(selected_user).Profile.name}}</dd>
+                        <dt><strong>Id number:</strong></dt>
+                        <dd>{{user(selected_user).Profile.id_number}}</dd>
+                        <dt><strong>E-Mail:</strong></dt>
+                        <dd>{{user(selected_user).email}}</dd>
+                        <dt><strong>Role:</strong></dt>
+                        <dd>{{user(selected_user).role}}</dd>
+                        <dt ng-show="user(selected_user).role == 'STUDENT'"><strong>Supervisor:</strong></dt>
+                        <dd ng-show="user(selected_user).role == 'STUDENT' && user(selected_user).Supervisor != null">
+                            {{user(selected_user).Supervisor.username}}
+                        </dd>
+                        <dd ng-hide="user(selected_user).Supervisor != null">
+                            not assigned [ <a href="#" ng-click="assignSupervisor(selected_user)">Assign Supervisor</a> ]
+                        </dd>
+                    </dl>
+                    <dl class="selector" ng-show="isEditUser(selected_user)">
+                        <dt><strong>Name:</strong></dt>
+                        <dd><input ng-model="user(selected_user).Profile.name"></dd>
+                        <dt><strong>Id number:</strong></dt>
+                        <dd><input ng-model="user(selected_user).Profile.id_number"></dd>
+                        <dt><strong>E-Mail:</strong></dt>
+                        <dd><input ng-model="user(selected_user).email"></dd>
+                        <dt><strong>Role:</strong></dt>
+                        <dd>
+                            <select ng-model="user(selected_user).role">
+                                <option ng-repeat="r in [ 'STUDENT', 'SUPERVISOR', 'ADMIN' ]">{{r}}</option>
+                            </select>
+                        </dd>
+                        <dt ng-show="user(selected_user).role == 'STUDENT'"><strong>Supervisor:</strong></dt>
+                        <dd ng-show="user(selected_user).role == 'STUDENT' && user(selected_user).Supervisor != null">
+                            {{user(selected_user).Supervisor.username}}
+                        </dd>
+                        <dd ng-hide="user(selected_user).Supervisor != null">
+                            not assigned [ <a href="#" ng-click="assignSupervisor(selected_user)">Assign Supervisor</a> ]
+                        </dd>
+                    </dl>
+                    <!-- EDIT MODE -->
+                    <!--<textarea class="edit-field" ng-model=""-->
+                              <!--ng-show="isEditUser(selected_user)"></textarea>-->
+                </li>
+            </ul>
+            <div ng-show="isEditUser(selected_user)">
+                <span>
+                    <div class="btn-group">
+                        <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveUser(selected_user);">Save</button>
+                        <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="cancelEditUser(selected_user);">Cancel</button>
+                    </div>
+                </span>
+            </div>
+        </div>
+
+    </div>
+
+</div>

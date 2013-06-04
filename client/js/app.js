@@ -7,6 +7,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
         templateUrl:'/client/parts/login.html',
         controller:"LoginCtrl"
     });
+    // STUDENT
     $routeProvider.when('/client/student', {
         templateUrl:'/client/parts/student.html',
         controller:"StudentCtrl"
@@ -15,6 +16,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
         templateUrl:'/client/parts/student.html',
         controller:"StudentCtrl"
     });
+    // PROJECTS
     $routeProvider.when('/client/projects', {
         templateUrl:'/client/parts/projects.html',
         controller:"ProjectsCtrl"
@@ -26,6 +28,15 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
     $routeProvider.when('/client/projects/:id/:tid', {
         templateUrl:'/client/parts/projects.html',
         controller:"ProjectsCtrl"
+    });
+    // USERS
+    $routeProvider.when('/client/users', {
+        templateUrl:'/client/parts/users.html',
+        controller:"UsersCtrl"
+    });
+    $routeProvider.when('/client/users/:id', {
+        templateUrl:'/client/parts/users.html',
+        controller:"UsersCtrl"
     });
     $routeProvider.otherwise({redirectTo:'/client/login'});
 
