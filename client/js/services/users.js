@@ -42,9 +42,7 @@ app.factory('users_db',function (database) {
                     busy.busy(false);
 
                     users_db.insertUsers(d);
-                    console.log(database.select('users', [
-                        {field:'role', value:'STUDENT'}
-                    ], 3));
+                    loaded = true;
 
                     if (angular.isDefined(success)) {
                         success(d, h);

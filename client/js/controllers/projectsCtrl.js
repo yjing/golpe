@@ -29,32 +29,33 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, auth, databas
         function (user) {
             users.all(false);
 
-//            if(angular.isUndefined(user) || user == null) {
-//                $rootScope.redirectAfterLogin = $location.url();
-//                $location.url('/client/login');
-//                return;
-//            }
-//
-//
-//            if (angular.isDefined($scope.selected_p_id) && $scope.selected_p_id != null) {
-//                projects.load(
-//                    $scope.selected_p_id,
-//                    function (d, h) {    // SUCCESS
-//                        $scope.selected_p = database.select('projects', [ {field:'id',value:$scope.selected_p_id} ], 3)[0];
-//
-//                        if(angular.isDefined($scope.selected_t_id) && $scope.selected_t_id) {
-//                            $scope.selected_t = database.select('teams', [ {field:'id',value:$scope.selected_t_id} ], 3)[0];
-//                        }
-//                    }
-//                );
-//            }
-//
-//            projects.all(
-//                false,               // RELOAD
-//                function(d, h) {     // SUCCESS
-//                    $scope.data = database.select('projects',[], 3);
-//                }
-//            );
+            if(angular.isUndefined(user) || user == null) {
+                $rootScope.redirectAfterLogin = $location.url();
+                $location.url('/client/login');
+                return;
+            }
+
+
+            if (angular.isDefined($scope.selected_p_id) && $scope.selected_p_id != null) {
+                projects.load(
+                    $scope.selected_p_id,
+                    function (d, h) {    // SUCCESS
+                        $scope.selected_p = database.select('projects', [ {field:'id',value:$scope.selected_p_id} ], 3)[0];
+
+                        if(angular.isDefined($scope.selected_t_id) && $scope.selected_t_id) {
+                            $scope.selected_t = database.select('teams', [ {field:'id',value:$scope.selected_t_id} ], 3)[0];
+                            $scope.showAddMember();
+                        }
+                    }
+                );
+            }
+
+            projects.all(
+                false,               // RELOAD
+                function(d, h) {     // SUCCESS
+                    $scope.data = database.select('projects',[], 3);
+                }
+            );
         }
     );
 
@@ -76,5 +77,21 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, auth, databas
     $scope.selectedT = function (id) {
         return $scope.selected_t_id == id ? 'active' : '';
     };
+
+    $scope.showAddMember = function () {
+        $scope.member_list = $scope.filterTeamedStudents(database.select('users', {}));
+    };
+
+
+    $scope.filterTeamedStudents = function(students) {
+        var list = [];
+        for (var i = 0; i < students.length; i++) {
+            if(angular.isUndefined(students[i].teams) || students[i].teams == null){
+                list.push(students[i]);
+            }
+
+        }
+        return list;
+    }
 
 }
