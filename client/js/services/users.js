@@ -4,6 +4,9 @@ app.factory('users_db',function (database) {
             var opt = angular.isObject(options);
             if (users instanceof Array) {
                 for (var i = 0; i < users.length; i++) {
+                    if(angular.isDefined(users[i]['User'])) {
+                        users[i] = users[i]['User'];
+                    }
                     if (opt) {
                         angular.forEach(options, function (v, k) {
                             users[i][k] = v;
