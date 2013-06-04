@@ -191,6 +191,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
     $scope.newTeam = function(){
         $scope.opts.template = $scope.new_team_t;
         $scope.opts.controller = 'DialogCtrl';
+        console.log($scope.opts);
         var d = $dialog.dialog($scope.opts);
         d.open().then(function(result){
             if(angular.isDefined(result)) {
@@ -211,7 +212,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
     $scope.editTeam = function () {
         $scope.opts.template = $scope.edit_team_t;
         $scope.opts.controller = 'DialogCtrl';
-
+        console.log($scope.opts);
         $rootScope.result = $scope.selected_t.name;
         var oldN = $scope.selected_t.name;
 
