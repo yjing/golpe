@@ -188,7 +188,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
     $scope.editTeam = function () {
         $scope.opts.template = edit_team_t;
         $scope.opts.controller = 'DialogCtrl';
-        $scope.ttttt = 'ciao';
+        $rootScope.ttttt = 'ciao';
         var d = $dialog.dialog($scope.opts);
         d.open().then(function(result){
             if(angular.isDefined(result)) {
