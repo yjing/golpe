@@ -138,24 +138,24 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
 
     // Inlined template for demo
     var t = '<div class="modal-header">'+
-        '<h1>This is the title</h1>'+
+        '<h1>New Team</h1>'+
         '</div>'+
         '<div class="modal-body">'+
-        '<p>Enter a value to pass to <code>close</code> as the result: <input ng-model="result" /></p>'+
+        '<p>Name: <input ng-model="result" /></p>'+
         '</div>'+
         '<div class="modal-footer">'+
-        '<button ng-click="close(result)" class="btn btn-primary" >Close</button>'+
+        '<button ng-click="close(false)" class="btn btn-primary" >Cancel</button>'+
+        '<button ng-click="close(result)" class="btn btn-primary" >Create</button>'+
         '</div>';
 
     $scope.opts = {
         backdrop: true,
         keyboard: true,
         backdropClick: true,
-//        template:  t, // OR: templateUrl: 'path/to/view.html',
-//        controller: 'TestDialogController'
+        template:  t // OR: templateUrl: 'path/to/view.html',
     };
 
-    $scope.openDialog = function(){
+    $scope.newTeam = function(){
         var d = $dialog.dialog($scope.opts);
         d.open().then(function(result){
             if(result)
