@@ -1,6 +1,6 @@
 app.service('resources', function($resource){
 
-    this.Users = $resource('/projects/:id', { id:'@id' }, {
+    this.Users = $resource('/users/:id', { id:'@id' }, {
         all:{
             method:'GET',
             isArray:true
