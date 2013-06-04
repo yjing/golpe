@@ -9,6 +9,7 @@ app.factory('users_db',function (database) {
                             users[i][k] = v;
                         }, this);
                     }
+                    console.log("INSERT USER");
                     this.insertUser(users[i]);
                 }
             }
