@@ -24,11 +24,16 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, auth, databas
     $scope.edit_t = false;
     $scope.delete_t = false;
 
+    $scope.member_list = null;
+    $scope.add_member = false;
 
-
-    $scope.showAddMember = function () {
-        $scope.member_list = $scope.filterTeamedStudents(database.select('users', [ {field:'role',value:'STUDENT'} ], 1));
-    };
+    $scope.$watch('add_member', function(){
+        if($scope.add_member) {
+            $scope.member_list = $scope.filterTeamedStudents(database.select('users', [ {field:'role',value:'STUDENT'} ], 1));
+        } else {
+            $scope.member_list = null;
+        }
+    });
 
 
     $scope.filterTeamedStudents = function(students) {
@@ -61,7 +66,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, auth, databas
 
                         if(angular.isDefined($scope.selected_t_id) && $scope.selected_t_id) {
                             $scope.selected_t = database.select('teams', [ {field:'id',value:$scope.selected_t_id} ], 3)[0];
-                            $scope.showAddMember();
+                            $scope.add_member = true;
                         }
                     }
                 );

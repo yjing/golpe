@@ -151,25 +151,25 @@
                         </li>
                     </ul>
                     <div class="text-right">
-                        <span><button ng-click="addMember(false);" ng-disabled="add_member" class="btn btn-success">Add Member</button></span>
+                        <span><button ng-click="add_member = true;" ng-disabled="add_member" class="btn btn-success">Add Member</button></span>
                     </div>
                 </div>
             </div>
 
-            <div class="span4" ng-show="member_list != null">
+            <div class="span4" ng-show="add_member">
                 <div class="menu shadow">
                     <div class="text-right">
                         <span><strong>Add Memeber <i class="icon-plus"></i></strong></span>
                     </div>
                     <ul>
                         <li ng-repeat="u in member_list">
-                            <a href="#" ng-click="addMember(true, u.id)">
+                            <a href="#" ng-click="addMember(selected_t_id, u.id)">
                                 <i class="icon-chevron-left"></i> {{u.username}}
                             </a>
                         </li>
                     </ul>
                     <div class="text-right">
-                        <span><button ng-click="cancelAddMember();" class="btn btn-warning">Close</button></span>
+                        <span><button ng-click="add_member = false;" class="btn btn-warning">Close</button></span>
                     </div>
                 </div>
             </div>
