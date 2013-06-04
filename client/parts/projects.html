@@ -111,10 +111,10 @@
                                 <button ng-disabled="BUSY.busy();" ng-show="edit_t" type="submit" class="btn-link function" ng-click="unEditT();"><i class="icon-remove"></i></button>
 
                                 <button class="btn-link function" ng-click="delete_t = true;" ng-hide="delete_t || edit_t"><i class="icon-remove"></i></button>
-                                <button class="btn-link function" ng-click="editTeam(t.id);" ng-hide="delete_t || edit_t"><i class="icon-pencil"></i></button>
+                                <button class="btn-link function" ng-click="editTeam();" ng-hide="delete_t || edit_t"><i class="icon-pencil"></i></button>
                             </div>
                             <div class="confirms">
-                                <button class="btn btn-danger confirm" ng-click="deleteT(t.id);" ng-show="delete_t">Delete</button>
+                                <button class="btn btn-danger confirm" ng-click="deleteT();" ng-show="delete_t">Delete</button>
                                 <button class="btn btn-success confirm" ng-click="delete_t = false" ng-show="delete_t">Keep</button>
                             </div>
                         </li>

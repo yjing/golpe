@@ -136,9 +136,18 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
 //        if(result === 'yes') {deleteItem(item);}
 //    });
 
-    // Inlined template for demo
     var new_team_t = '<div class="modal-header">'+
         '<h1>New Team</h1>'+
+        '</div>'+
+        '<div class="modal-body">'+
+        '<p>Name: <input ng-model="result" /></p>'+
+        '</div>'+
+        '<div class="modal-footer">'+
+        '<button ng-click="closeNewTeam()" class="btn btn-primary" >Cancel</button>'+
+        '<button ng-click="closeNewTeam(result)" class="btn btn-primary" >Create</button>'+
+        '</div>';
+    var edit_team_t = '<div class="modal-header">'+
+        '<h1>Edit Team Name</h1>'+
         '</div>'+
         '<div class="modal-body">'+
         '<p>Name: <input ng-model="result" /></p>'+
@@ -158,7 +167,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
 
     $scope.newTeam = function(){
         $scope.opts.template = new_team_t;
-        $scope.opts.controller = 'NewItemDCtrl';
+        $scope.opts.controller = 'DialogCtrl';
         var d = $dialog.dialog($scope.opts);
         d.open().then(function(result){
             if(angular.isDefined(result)) {
@@ -176,9 +185,26 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
         });
     };
 
-    $scope.deleteT = function (id) {
+    $scope.editTeam = function () {
+        $scope.opts.template = edit_team_t;
+        $scope.opts.controller = 'DialogCtrl';
+        var d = $dialog.dialog($scope.opts);
+        d.open().then(function(result){
+            if(angular.isDefined(result)) {
+                $scope.selected_t.name = result;
+                teams.save(
+                    $scope.selected_t,
+                    function(d, h){
+                        $scope.go($scope.selected_p_id, $scope.selected_t);
+                    }
+                );
+            }
+        });
+    };
+
+    $scope.deleteT = function () {
         teams.delete(
-            id,
+            $scope.selected_t_id,
             function(d, h) {    // SUCCESS
                 $scope.go($scope.selected_p_id);
             }
@@ -186,7 +212,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
     };
 }
 
-function NewItemDCtrl($scope, dialog){
+function DialogCtrl($scope, dialog){
     $scope.closeNewTeam = function(result){
         dialog.close(result);
     };
