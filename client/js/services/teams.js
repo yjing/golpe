@@ -20,7 +20,7 @@ app.factory('teams_db',function (database, users_db) {
                 delete users[i].team_id;
                 users_db.insertUser(users[i]);
             }
-            database.delete('teams', t_id);
+            database.delete('teams', id);
         };
     };
 }).service('teams', function ($rootScope, busy, resources, teams_db, database) {
