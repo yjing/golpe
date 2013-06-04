@@ -40,7 +40,7 @@ function UsersCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth, d
         users.all(
             reload,               // RELOAD
             function(d, h) {     // SUCCESS
-                $scope.data = database.select('users',[], 3);
+                $scope.data = database.select('users', $scope.r_conds, 3);
             }
         );
     };
