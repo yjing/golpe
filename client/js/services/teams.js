@@ -30,6 +30,7 @@ app.factory('teams_db',function (database, users_db) {
                     if(angular.isDefined(user) && user != null) {
                         user['team_id'] = t_id;
                     }
+                    database.insert('users', user['id'], user);
 
                     if(angular.isDefined(success)) {
                         success(d, h);
@@ -56,6 +57,7 @@ app.factory('teams_db',function (database, users_db) {
                     if(angular.isDefined(user) && user != null) {
                         delete user['team_id'];
                     }
+                    database.insert('users', user['id'], user);
 
                     if(angular.isDefined(success)) {
                         success(d, h);
