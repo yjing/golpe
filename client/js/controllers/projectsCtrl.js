@@ -79,7 +79,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, auth, databas
     };
 
     $scope.showAddMember = function () {
-        $scope.member_list = $scope.filterTeamedStudents(database.select('users', {}));
+        $scope.member_list = $scope.filterTeamedStudents(database.select('users', [ {field:'role',value:'STUDENT'} ], 1));
     };
 
 
