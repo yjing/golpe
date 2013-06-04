@@ -125,7 +125,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
         controller: 'TestDialogController'
     };
 
-    $scope.openMessageBox = function(){
+    $scope.removeMember = function(t_id, u_id){
         var title = 'This is a message box';
         var msg = 'This is the content of the message box';
         var btns = [{result:'cancel', label: 'Cancel'}, {result:'ok', label: 'OK', cssClass: 'btn-primary'}];
