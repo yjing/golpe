@@ -91,7 +91,7 @@ app.factory('projects_db',function (database, teams_db) {
             busy.busy(true);
             resources.Projects.save(
                 params, //PARAMS
-                {}, //DATA
+                {Project: project}, //DATA
                 function (d, h) {
                     busy.busy(false);
 
