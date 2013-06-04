@@ -32,7 +32,6 @@ app.factory('teams_db',function (database, users_db) {
                     busy.busy(false);
 
                     teams_db.insertTeam(d['Team']);
-                    console.log(database.select('teams', [{field:'id', value:team.id}], 0));
 
                     if(angular.isDefined(success)) {
                         success(d, h);
