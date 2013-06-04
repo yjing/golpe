@@ -150,11 +150,11 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
         '<h1>Edit Team Name</h1>'+
         '</div>'+
         '<div class="modal-body">'+
-        '<p>Name: <input ng-model="ttttt" autofocus="true" onload="focus()" /></p>'+
+        '<p>Name: <input ng-model="result" autofocus="true" onload="focus()" /></p>'+
         '</div>'+
         '<div class="modal-footer">'+
         '<button ng-click="closeNewTeam()" class="btn btn-primary" >Cancel</button>'+
-        '<button ng-click="closeNewTeam(ttttt)" class="btn btn-primary" >Create</button>'+
+        '<button ng-click="closeNewTeam(result)" class="btn btn-primary" >Create</button>'+
         '</div>';
 
     $scope.opts = {
@@ -188,8 +188,10 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
     $scope.editTeam = function () {
         $scope.opts.template = edit_team_t;
         $scope.opts.controller = 'DialogCtrl';
+
         $rootScope.result = $scope.selected_t.name;
         var oldN = $scope.selected_t.name;
+
         var d = $dialog.dialog($scope.opts);
         d.open().then(function(result){
             if(angular.isDefined(result) && result != oldN) {
