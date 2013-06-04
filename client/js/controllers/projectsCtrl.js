@@ -30,7 +30,6 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, auth, databas
     $scope.$watch('add_member', function(){
         if($scope.add_member) {
             $scope.member_list = $scope.filterTeamedStudents(database.select('users', [ {field:'role',value:'STUDENT'} ], 1));
-            console.log("HERE");
         } else {
             $scope.member_list = null;
         }
@@ -67,7 +66,6 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, auth, databas
 
                         if(angular.isDefined($scope.selected_t_id) && $scope.selected_t_id) {
                             $scope.selected_t = database.select('teams', [ {field:'id',value:$scope.selected_t_id} ], 3)[0];
-                            $scope.add_member = true;
                         }
                     }
                 );
