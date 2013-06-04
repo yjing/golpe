@@ -1,4 +1,4 @@
-function ProjectsCtrl($scope, $rootScope, $routeParams, $location, auth, database, projects){
+function ProjectsCtrl($scope, $rootScope, $routeParams, $location, auth, database, projects, users){
     // TOP BAR
     $scope.setupTopBar = function () {
         $rootScope.top_bar = {
@@ -27,6 +27,8 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, auth, databas
 
     auth.user(
         function (user) {
+            users.all(false);
+
             if(angular.isUndefined(user) || user == null) {
                 $rootScope.redirectAfterLogin = $location.url();
                 $location.url('/client/login');
