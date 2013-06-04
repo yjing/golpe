@@ -10,6 +10,11 @@
             <ul>
                 <li>
                     <input type="text" placeholder="Filter Users..." class="edit-field" ng-model="searchText">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary" ng-model="checkModel.left" btn-checkbox>Left</button>
+                        <button type="button" class="btn btn-primary" ng-model="checkModel.middle" btn-checkbox>Middle</button>
+                        <button type="button" class="btn btn-primary" ng-model="checkModel.right" btn-checkbox>Right</button>
+                    </div>
                 </li>
                 <li ng-repeat="u in data | filter:searchText" ng-class="selectedU(u.id);">
                     <a href="#" ng-click="go(u.id);">{{u.username}}
