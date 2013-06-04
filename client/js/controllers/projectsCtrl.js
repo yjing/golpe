@@ -152,12 +152,13 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
         backdrop: true,
         keyboard: true,
         backdropClick: true,
-        template:  new_team_t
+        controller: 'ProjectsCtrl'
     };
 
     $scope.dialog_nt = null;
 
     $scope.newTeam = function(){
+        $scope.opts.template = new_team_t;
         $scope.dialog_nt = $dialog.dialog($scope.opts)
             .open().then(function(result){
                 if(result)
