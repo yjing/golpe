@@ -122,7 +122,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
         keyboard: true,
         backdropClick: true,
         template:  t, // OR: templateUrl: 'path/to/view.html',
-        controller: 'TestDialogController'
+        controller: 'ProjectsCtrl'
     };
 
     $scope.removeMember = function(t_id, u_id){
