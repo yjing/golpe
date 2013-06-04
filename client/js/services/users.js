@@ -76,7 +76,7 @@ app.factory('users_db',function (database) {
         }
 
         this.load = function(id, success, error){
-            var existing = database.select('users', [ {field:'id',value:id} ], 3);
+            var existing = database.select('users', [ {field:'id',value:id} ], 3)[0];
             if(angular.isDefined(existing) && existing != null && existing.status == 'complete') {
                 if(angular.isDefined(success)) {
                     success(existing);
