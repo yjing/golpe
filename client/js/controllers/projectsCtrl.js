@@ -189,10 +189,14 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
     };
 
     $scope.newTeam = function(){
-        $scope.opts.template = $scope.new_team_t;
-        $scope.opts.controller = 'DialogCtrl';
-        console.log($scope.opts);
-        var d = $dialog.dialog($scope.opts);
+        var opts = {
+            backdrop: true,
+            keyboard: true,
+            backdropClick: true,
+            template: $scope.new_team_t,
+            controller: 'DialogCtrl'
+        };
+        var d = $dialog.dialog(opts);
         d.open().then(function(result){
             if(angular.isDefined(result)) {
                 var team = {
@@ -210,9 +214,13 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
     };
 
     $scope.editTeam = function () {
-        $scope.opts.template = $scope.edit_team_t;
-        $scope.opts.controller = 'DialogCtrl2';
-        console.log($scope.opts);
+        var opts = {
+            backdrop: true,
+            keyboard: true,
+            backdropClick: true,
+            template: $scope.edit_team_t,
+            controller: 'DialogCtrl'
+        };
         $rootScope.result = $scope.selected_t.name;
         var oldN = $scope.selected_t.name;
 
@@ -243,11 +251,6 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
 }
 
 function DialogCtrl($scope, dialog){
-    $scope.close = function(result){
-        dialog.close(result);
-    };
-}
-function DialogCtrl2($scope, dialog){
     $scope.close = function(result){
         dialog.close(result);
     };
