@@ -15,22 +15,19 @@
                     <a href="#" ng-click="go(u.id);">{{u.username}}
                         <i ng-show="isEditUser(u.id)" class="icon-pencil"></i>
                     </a>
-                    <div class="functions" ng-show="selected_u_id == u.id">
-                        <button class="btn-link function" ng-click="deleteUser(false, u.id);" ng-hide="isDeleteUser(u.id) || isEditUser(u.id)"><i class="icon-remove"></i></button>
+                    <div class="functions" ng-show="selected_u_id == u.id" ng-init="delete = false; edit = false;">
+                        <button class="btn-link function" ng-click="delete = true;" ng-hide="delete || edit"><i class="icon-remove"></i></button>
                     </div>
                     <div class="confirms">
-                        <button class="btn btn-danger confirm" ng-click="deleteProject(true, p.id);" ng-show="isDeleteUser(u.id)">Delete</button>
-                        <button class="btn btn-success confirm" ng-click="cancelDeleteUser(u.id)" ng-show="isDeleteUser(u.id)">Keep</button>
+                        <button class="btn btn-danger confirm" ng-click="deleteu();" ng-show="delete">Delete</button>
+                        <button class="btn btn-success confirm" ng-click="delete = false;" ng-show="delete">Keep</button>
                     </div>
-                </li>
-                <li ng-show="isNewUser()" ng-class="isSelectedUser(new_user_id)">
-                    <a href="#" ng-click="selectUser(new_user_id);">{{new_project.name}} <i class="icon-edit"></i></a>
                 </li>
             </ul>
             <div>
                 <a href="#" class="text-right">
-                    <button ng-click="newUser();" ng-hide="isNewUser()" class="btn btn-success">New User</button>
-                    <button ng-click="cancelNewUser();" ng-show="isNewUser()" class="btn btn-warning">Cancel</button>
+                    <button ng-click="newUser();" ng-hide="selected_u_id == 'new'" class="btn btn-success">New User</button>
+                    <button ng-click="cancelNewUser();" ng-show="selected_u_id == 'new'" class="btn btn-warning">Cancel</button>
                 </a>
             </div>
         </div>
