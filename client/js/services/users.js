@@ -12,12 +12,27 @@ app.factory('users_db',function (database) {
                             users[i][k] = v;
                         }, this);
                     }
+
                     this.insertUser(users[i]);
                 }
             }
         };
         this.insertUser = function (user) {
-            delete user['Supervisor'];
+            if(angular.isDefined(user['Profile'])) {
+                user['profile'] = user['Profile'];
+                delete user['Profile'];
+            }
+            if(angular.isDefined(user['Team'])) {
+                if(user['Team'] != null && user['Team'].length > 0) {
+                    user['team_id'] = user['Team'][0].id;
+                }
+                delete user['Team'];
+            }
+            if(angular.isDefined(user['Supervisor']) && user['Supervisor'] != null) {
+                user['supervisor_id'] = user['Supervisor'].id;
+                delete user['Supervisor'];
+            }
+            console.log(user);
             return database.insert('users', user['id'], user);
         };
     };
