@@ -182,18 +182,16 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
         '<button ng-click="closeNewTeam(result)" class="btn btn-primary" >Create</button>'+
         '</div>';
 
-    $scope.opts = {
+    var opts = {
         backdrop: true,
         keyboard: true,
         backdropClick: true
     };
 
-    $scope.dialog_nt = null;
-
     $scope.newTeam = function(){
-        $scope.opts.template = new_team_t;
-        $scope.opts.controller = 'DialogCtrl';
-        var d = $dialog.dialog($scope.opts);
+        opts.template = new_team_t;
+        opts.controller = 'DialogCtrl';
+        var d = $dialog.dialog(opts);
         d.open().then(function(result){
             if(angular.isDefined(result)) {
                 var team = {
@@ -211,13 +209,13 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
     };
 
     $scope.editTeam = function () {
-        $scope.opts.template = edit_team_t;
-        $scope.opts.controller = 'DialogCtrl';
+        opts.template = edit_team_t;
+        opts.controller = 'DialogCtrl';
 
         $rootScope.result = $scope.selected_t.name;
         var oldN = $scope.selected_t.name;
 
-        var d = $dialog.dialog($scope.opts);
+        var d = $dialog.dialog(opts);
         d.open().then(function(result){
             if(angular.isDefined(result) && result != oldN) {
                 $scope.selected_t.name = result;
