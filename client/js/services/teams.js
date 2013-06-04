@@ -9,7 +9,7 @@ app.factory('teams_db',function (database, users_db) {
         };
         this.insertTeam = function (team) {
             if(angular.isDefined(team['Student'])) {
-                users_db.insertUsers(team['Student'], { team_id:team.id });
+//                users_db.insertUsers(team['Student'], { team_id:team.id });
                 team.status = 'complete';
                 delete team['Student'];
             }
