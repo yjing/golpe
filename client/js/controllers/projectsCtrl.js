@@ -161,7 +161,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
 //        if(result === 'yes') {deleteItem(item);}
 //    });
 
-    var new_team_t = '<div class="modal-header">'+
+    $scope.new_team_t = '<div class="modal-header">'+
         '<h1>New Team</h1>'+
         '</div>'+
         '<div class="modal-body">'+
@@ -171,7 +171,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
         '<button ng-click="close()" class="btn btn-primary" >Cancel</button>'+
         '<button ng-click="close(result)" class="btn btn-primary" >Create</button>'+
         '</div>';
-    var edit_team_t = '<div class="modal-header">'+
+    $scope.edit_team_t = '<div class="modal-header">'+
         '<h1>Edit Team Name</h1>'+
         '</div>'+
         '<div class="modal-body">'+
@@ -182,21 +182,16 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
         '<button ng-click="close(result)" class="btn btn-primary" >Create</button>'+
         '</div>';
 
-    var opts = {
+    $scope.opts = {
         backdrop: true,
         keyboard: true,
         backdropClick: true
     };
 
     $scope.newTeam = function(){
-        var opts = {
-            backdrop: true,
-            keyboard: true,
-            backdropClick: true
-        };
-        opts.template = new_team_t;
-        opts.controller = 'DialogCtrl';
-        var d = $dialog.dialog(opts);
+        $scope.opts.template = $scope.new_team_t;
+        $scope.opts.controller = 'DialogCtrl';
+        var d = $dialog.dialog($scope.opts);
         d.open().then(function(result){
             if(angular.isDefined(result)) {
                 var team = {
@@ -214,18 +209,13 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
     };
 
     $scope.editTeam = function () {
-        var opts = {
-            backdrop: true,
-            keyboard: true,
-            backdropClick: true
-        };
-        opts.template = edit_team_t;
-        opts.controller = 'DialogCtrl';
+        $scope.opts.template = $scope.edit_team_t;
+        $scope.opts.controller = 'DialogCtrl';
 
         $rootScope.result = $scope.selected_t.name;
         var oldN = $scope.selected_t.name;
 
-        var d = $dialog.dialog(opts);
+        var d = $dialog.dialog($scope.opts);
         d.open().then(function(result){
             if(angular.isDefined(result) && result != oldN) {
                 $scope.selected_t.name = result;
