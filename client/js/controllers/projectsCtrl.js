@@ -52,7 +52,6 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
 
     auth.user(
         function (user) {
-            users.all(false);
 
             if(angular.isUndefined(user) || user == null) {
                 $rootScope.redirectAfterLogin = $location.url();
@@ -67,9 +66,14 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
                     function (d, h) {    // SUCCESS
                         $scope.selected_p = database.select('projects', [ {field:'id',value:$scope.selected_p_id} ], 3)[0];
 
-                        if(angular.isDefined($scope.selected_t_id) && $scope.selected_t_id) {
-                            $scope.selected_t = database.select('teams', [ {field:'id',value:$scope.selected_t_id} ], 3)[0];
-                        }
+
+                        users.all(false,
+                            function(d, h){
+                                if(angular.isDefined($scope.selected_t_id) && $scope.selected_t_id) {
+                                    $scope.selected_t = database.select('teams', [ {field:'id',value:$scope.selected_t_id} ], 3)[0];
+                                }
+                            }
+                        );
                     }
                 );
             }
@@ -100,22 +104,6 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
 
     $scope.selectedT = function (id) {
         return $scope.selected_t_id == id ? 'active' : '';
-    };
-
-    $scope.removeMember = function(t_id, u_id){
-        var title = 'Remove Member';
-        var msg = 'Are you sure you want to remove the member from the team?';
-        var btns = [{result:'cancel', label: 'Cancel'}, {result:'ok', label: 'OK', cssClass: 'btn-primary'}];
-
-        $dialog.messageBox(title, msg, btns)
-            .open()
-            .then(function(result){
-                if(result == 'ok') {
-                    alert('YES');
-                } else {
-                    alert('NO');
-                }
-            });
     };
 
 }
