@@ -176,7 +176,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
         });
     };
 
-    $scope.deleteT = function (it) {
+    $scope.deleteT = function (id) {
         teams.delete(
             id,
             function(d, h) {    // SUCCESS
