@@ -71,4 +71,28 @@ app.factory('users_db',function (database) {
                 }
             );
         }
+
+        this.load = function(id, success, error){
+            busy.busy(true);
+            resources.load(
+                {'id':id}, //PARAMS
+                {}, //DATA
+                function (d, h) {
+                    busy.busy(false);
+
+                    users_db.insertUser(d['User']);
+
+                    if(angular.isDefined(success)) {
+                        success(d, h);
+                    }
+                },
+                function (e) {
+                    busy.busy(false);
+                    if(!$rootScope.handleError(e) && angular.isDefined(error)) {
+                        error(e);
+                    }
+                }
+            );
+        }
+
     });
