@@ -175,6 +175,15 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
             }
         });
     };
+
+    $scope.removeTeam = function (it) {
+        teams.delete(
+            id,
+            function(d, h) {    // SUCCESS
+                $scope.go($scope.selected_p_id);
+            }
+        );
+    };
 }
 
 function NewItemDCtrl($scope, dialog){

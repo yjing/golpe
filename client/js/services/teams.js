@@ -46,6 +46,29 @@ app.factory('teams_db',function (database, users_db) {
             );
         }
 
+        this.delete = function(t_id, success, error){
+            busy.busy(true);
+            resources.Teams.delete(
+                { id:t_id }, //PARAMS
+                {}, //DATA
+                function (d, h) {
+                    busy.busy(false);
+
+                    database.delete('teams', t_id);
+
+                    if(angular.isDefined(success)) {
+                        success(d, h);
+                    }
+                },
+                function (e) {
+                    busy.busy(false);
+                    if(!$rootScope.handleError(e) && angular.isDefined(error)) {
+                        error(e);
+                    }
+                }
+            );
+        }
+
         this.addMember = function(t_id, u_id, success, error){
             busy.busy(true);
             resources.Teams.addMember(
