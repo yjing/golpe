@@ -39,7 +39,7 @@
         <div class="menu shadow" ng-hide="selected_p_id == 'new'">
             <div>
                 <span>
-                    <h4 class="clickable" ng-hide="edit_p" ng-click="edit_p = true;">
+                    <h4 class="clickable" ng-hide="edit_p" ng-click="editSelectedP()">
                         {{selected_p.name}} <i class="icon-pencil"></i>
                     </h4>
                     <!-- EDIT MODE -->
@@ -63,7 +63,7 @@
                 <span>
                     <div class="btn-group">
                         <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveP();">Save</button>
-                        <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="unEditSelected();">Cancel</button>
+                        <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="unEditSelectedP();">Cancel</button>
                     </div>
                 </span>
             </div>

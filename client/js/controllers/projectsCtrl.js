@@ -100,6 +100,14 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
         return $scope.selected_p_id == id ? 'active' : '';
     };
 
+    $scope.editSelectedP = function () {
+        $scope.edit_p = true;
+    };
+
+    $scope.unEditSelectedP = function () {
+        $scope.edit_p = false;
+    };
+
     $scope.selectedT = function (id) {
         return $scope.selected_t_id == id ? 'active' : '';
     };
