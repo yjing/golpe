@@ -142,7 +142,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
         '<div class="modal-body">'+
         '<p>Name: <input ng-model="result" /></p>'+
         '</div>'+
-        '<div class="modal-footer">'+
+        '<div class="modal-footer" autofocus="true" onload="focus()">'+
         '<button ng-click="closeNewTeam()" class="btn btn-primary" >Cancel</button>'+
         '<button ng-click="closeNewTeam(result)" class="btn btn-primary" >Create</button>'+
         '</div>';
@@ -150,7 +150,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
         '<h1>Edit Team Name</h1>'+
         '</div>'+
         '<div class="modal-body">'+
-        '<p>Name: <input ng-model="result" /></p>'+
+        '<p>Name: <input ng-model="result" autofocus="true" onload="focus()" /></p>'+
         '</div>'+
         '<div class="modal-footer">'+
         '<button ng-click="closeNewTeam()" class="btn btn-primary" >Cancel</button>'+
@@ -195,7 +195,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
                 teams.save(
                     $scope.selected_t,
                     function(d, h){
-                        $scope.go($scope.selected_p_id, $scope.selected_t);
+                        $scope.go($scope.selected_p_id, $scope.selected_t_id);
                     }
                 );
             }
