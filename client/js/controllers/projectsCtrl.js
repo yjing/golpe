@@ -188,10 +188,11 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
     $scope.editTeam = function () {
         $scope.opts.template = edit_team_t;
         $scope.opts.controller = 'DialogCtrl';
-        $rootScope.ttttt = 'ciao';
+        $rootScope.result = $scope.selected_t.name;
+        var oldN = $scope.selected_t.name;
         var d = $dialog.dialog($scope.opts);
         d.open().then(function(result){
-            if(angular.isDefined(result)) {
+            if(angular.isDefined(result) && result != oldN) {
                 $scope.selected_t.name = result;
                 teams.save(
                     $scope.selected_t,
