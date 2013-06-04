@@ -51,13 +51,13 @@
                 <li>
                     <dl class="selector" ng-hide="edit_u">
                         <dt><strong>Name:</strong></dt>
-                        <dd>{{user(selected_user).Profile.name}}</dd>
+                        <dd>{{selected_u.profile.name}}</dd>
                         <dt><strong>Id number:</strong></dt>
-                        <dd>{{user(selected_user).Profile.id_number}}</dd>
+                        <dd>{{selected_u.profile.id_number}}</dd>
                         <dt><strong>E-Mail:</strong></dt>
-                        <dd>{{user(selected_user).email}}</dd>
+                        <dd>{{selected_u.email}}</dd>
                         <dt><strong>Role:</strong></dt>
-                        <dd>{{user(selected_user).role}}</dd>
+                        <dd>{{selected_u.role}}</dd>
                         <dt ng-show="selected_u.role == 'STUDENT'"><strong>Supervisor:</strong></dt>
                         <dd ng-show="selected_u.role == 'STUDENT' && selected_u.supervisor != null">
                             {{selected_u.supervisor.username}}
