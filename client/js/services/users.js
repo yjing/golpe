@@ -28,8 +28,10 @@ app.factory('users_db',function (database) {
                 }
                 delete user['Team'];
             }
-            if(angular.isDefined(user['Supervisor']) && user['Supervisor'] != null) {
-                user['supervisor_id'] = user['Supervisor'].id;
+            if(angular.isDefined(user['Supervisor'])) {
+                if(user['Supervisor'] != null) {
+                    user['supervisor_id'] = user['Supervisor'].id;
+                }
                 delete user['Supervisor'];
             }
             console.log(user);
