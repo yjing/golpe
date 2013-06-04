@@ -111,7 +111,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
             t_id,
             u_id,
             function(d, h) {    // SUCCESS
-                $scope.go(selected_p_id, t_id);
+                $scope.go($scope.selected_p_id, t_id);
             }
         );
     };
