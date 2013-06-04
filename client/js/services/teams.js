@@ -18,67 +18,55 @@ app.factory('teams_db',function (database, users_db) {
         };
     };
 }).service('teams', function ($rootScope, busy, resources, teams_db, database) {
-//
-//        var loaded = false;
-//
-//        this.all = function (reload, success, error) {
-//            if(!reload && loaded) {
-//                if(angular.isDefined(success)) {
-//                    success(database.select('projects',[], 3));
-//                }
-//                return;
-//            }
-//
-//            busy.busy(true);
-//            resources.Projects.all(
-//                {}, //PARAMS
-//                {}, //DATA
-//                function (d, h) {
-//                    busy.busy(false);
-//                    loaded = true;
-//
-//                    projects_db.insertProjects(d);
-//
-//                    if (angular.isDefined(success)) {
-//                        success(d, h);
-//                    }
-//                },
-//                function (e) {
-//                    busy.busy(false);
-//                    if (!$rootScope.handleError(e) && angular.isDefined(error)) {
-//                        error(e);
-//                    }
-//                }
-//            );
-//        };
-//
-//        this.load = function(id, success, error){
-//            var existing = database.select('projects', [ {field:'id', value:id} ], 3)[0];
-//            if(angular.isDefined(existing) && existing != null && existing.status == 'complete' && angular.isDefined(success)) {
-//                success(existing);
-//                return;
-//            }
-//
-//            busy.busy(true);
-//            resources.Projects.load(
-//                { 'id':id }, //PARAMS
-//                {}, //DATA
-//                function (d, h) {
-//                    busy.busy(false);
-//
-//                    projects_db.insertProject(d['Project']);
-//
-//                    if(angular.isDefined(success)) {
-//                        success(d, h);
-//                    }
-//                },
-//                function (e) {
-//                    busy.busy(false);
-//                    if(!$rootScope.handleError(e) && angular.isDefined(error)) {
-//                        error(e);
-//                    }
-//                }
-//            );
-//        }
+        this.addMemeber = function(t_id, u_id, success, error){
+            busy.busy(true);
+            resources.Teams.addMemeber(
+                {tid:t_id, uid:u_id}, //PARAMS
+                {}, //DATA
+                function (d, h) {
+                    busy.busy(false);
 
+                    var user = database.select('users',[ {field:'id', value:u_id} ],0)[0];
+                    if(angular.isDefined(user) && user != null) {
+                        user['team_id'] = t_id;
+                    }
+
+                    if(angular.isDefined(success)) {
+                        success(d, h);
+                    }
+                },
+                function (e) {
+                    busy.busy(false);
+                    if(!$rootScope.handleError(e) && angular.isDefined(error)) {
+                        error(e);
+                    }
+                }
+            );
+        }
+
+        this.removeMemeber = function(t_id, u_id, success, error){
+            busy.busy(true);
+            resources.Teams.removeMemeber(
+                {tid:t_id, uid:u_id}, //PARAMS
+                {}, //DATA
+                function (d, h) {
+                    busy.busy(false);
+
+                    var user = database.select('users',[ {field:'id', value:u_id} ],0)[0];
+                    if(angular.isDefined(user) && user != null) {
+                        delete user['team_id'];
+                    }
+
+                    if(angular.isDefined(success)) {
+                        success(d, h);
+                    }
+                },
+                function (e) {
+                    busy.busy(false);
+                    if(!$rootScope.handleError(e) && angular.isDefined(error)) {
+                        error(e);
+                    }
+                }
+            );
+        }
     });

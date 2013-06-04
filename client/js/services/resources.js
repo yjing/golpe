@@ -50,4 +50,15 @@ app.service('resources', function($resource){
         }
     });
 
+    this.Teams = $resource('/teams/:id', { id:'@id' }, {
+        addMember:{
+            url:'/teams/addMember/:tid/:uid',
+            method:'POST'
+        },
+        removeMember:{
+            url:'/teams/removeMember/:tid/:uid',
+            method:'DELETE'
+        }
+    });
+
 });

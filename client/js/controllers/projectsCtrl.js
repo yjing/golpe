@@ -1,4 +1,4 @@
-function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth, database, projects, users){
+function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth, database, projects, users, teams){
     // TOP BAR
     $scope.setupTopBar = function () {
         $rootScope.top_bar = {
@@ -107,10 +107,17 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
     };
 
     $scope.removeMember = function(t_id, u_id){
-        var msgbox = $dialog.messageBox('Delete Item', 'Are you sure?', [{label:'Yes, I\'m sure', result: 'yes'},{label:'Nope', result: 'no'}]);
-        msgbox.open().then(function(result){
-            if(result === 'yes') {deleteItem(item);}
-        });
+        teams.removeMemeber(
+            t_id,
+            u_id,
+            function(d, h) {    // SUCCESS
+                $scope.go(selected_p_id, t_id);
+            }
+        );
     };
+//    var msgbox = $dialog.messageBox('Delete Item', 'Are you sure?', [{label:'Yes, I\'m sure', result: 'yes'},{label:'Nope', result: 'no'}]);
+//    msgbox.open().then(function(result){
+//        if(result === 'yes') {deleteItem(item);}
+//    });
 
 }
