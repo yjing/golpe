@@ -161,10 +161,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
         $scope.opts.template = new_team_t;
         var d = $dialog.dialog($scope.opts);
         d.open().then(function(result){
-            if(result)
-            {
-                alert('dialog closed with result: ' + result);
-            }
+            alert('dialog closed with result: ' + result);
         });
     };
 }
