@@ -29,12 +29,15 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, auth, databas
 
     $scope.$watch('add_member', function(){
         if($scope.add_member) {
-            $scope.member_list = $scope.filterTeamedStudents(database.select('users', [ {field:'role',value:'STUDENT'} ], 1));
+            $scope.setMemberList();
         } else {
             $scope.member_list = null;
         }
     });
 
+    $scope.setMemberList = function () {
+        $scope.member_list = $scope.filterTeamedStudents(database.select('users', [ {field:'role',value:'STUDENT'} ], 1));
+    };
 
     $scope.filterTeamedStudents = function(students) {
         var list = [];
@@ -97,6 +100,22 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, auth, databas
 
     $scope.selectedT = function (id) {
         return $scope.selected_t_id == id ? 'active' : '';
+    };
+
+    $scope.removeMember = function(t_id, u_id){
+        var title = 'Remove Member';
+        var msg = 'Are you sure you want to remove the member from the team?';
+        var btns = [{result:'cancel', label: 'Cancel'}, {result:true, label: 'OK', cssClass: 'btn-primary'}];
+
+        $dialog.messageBox(title, msg, btns)
+            .open()
+            .then(function(result){
+                if(result) {
+                    alert('YES');
+                } else {
+                    alert('NO');
+                }
+            });
     };
 
 }
