@@ -113,7 +113,7 @@ app.factory('projects_db',function (database, teams_db) {
             );
         }
 
-        this.save = function(p_id, success, error){
+        this.delete = function(p_id, success, error){
             busy.busy(true);
             resources.Projects.delete(
                 { id:p_id }, //PARAMS
