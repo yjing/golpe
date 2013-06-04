@@ -165,11 +165,11 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
         '<h1>New Team</h1>'+
         '</div>'+
         '<div class="modal-body">'+
-        '<p>Name: <input ng-model="result" /></p>'+
+        '<p>Name: <input ng-model="result" autofocus="true" onload="focus()" /></p>'+
         '</div>'+
-        '<div class="modal-footer" autofocus="true" onload="focus()">'+
-        '<button ng-click="closeNewTeam()" class="btn btn-primary" >Cancel</button>'+
-        '<button ng-click="closeNewTeam(result)" class="btn btn-primary" >Create</button>'+
+        '<div class="modal-footer">'+
+        '<button ng-click="close()" class="btn btn-primary" >Cancel</button>'+
+        '<button ng-click="close(result)" class="btn btn-primary" >Create</button>'+
         '</div>';
     var edit_team_t = '<div class="modal-header">'+
         '<h1>Edit Team Name</h1>'+
@@ -178,8 +178,8 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
         '<p>Name: <input ng-model="result" autofocus="true" onload="focus()" /></p>'+
         '</div>'+
         '<div class="modal-footer">'+
-        '<button ng-click="closeNewTeam()" class="btn btn-primary" >Cancel</button>'+
-        '<button ng-click="closeNewTeam(result)" class="btn btn-primary" >Create</button>'+
+        '<button ng-click="close()" class="btn btn-primary" >Cancel</button>'+
+        '<button ng-click="close(result)" class="btn btn-primary" >Create</button>'+
         '</div>';
 
     var opts = {
@@ -251,7 +251,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
 }
 
 function DialogCtrl($scope, dialog){
-    $scope.closeNewTeam = function(result){
+    $scope.close = function(result){
         dialog.close(result);
     };
 }
