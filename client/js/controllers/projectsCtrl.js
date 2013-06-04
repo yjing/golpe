@@ -59,7 +59,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
                 return;
             }
 
-
+            console.log("WENT");
             if (angular.isDefined($scope.selected_p_id) && $scope.selected_p_id != null) {
                 projects.load(
                     $scope.selected_p_id,
