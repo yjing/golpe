@@ -18,9 +18,9 @@ app.factory('teams_db',function (database, users_db) {
         };
     };
 }).service('teams', function ($rootScope, busy, resources, teams_db, database) {
-        this.addMemeber = function(t_id, u_id, success, error){
+        this.addMember = function(t_id, u_id, success, error){
             busy.busy(true);
-            resources.Teams.addMemeber(
+            resources.Teams.addMember(
                 {tid:t_id, uid:u_id}, //PARAMS
                 {}, //DATA
                 function (d, h) {
@@ -46,7 +46,7 @@ app.factory('teams_db',function (database, users_db) {
 
         this.removeMemeber = function(t_id, u_id, success, error){
             busy.busy(true);
-            resources.Teams.removeMemeber(
+            resources.Teams.removeMember(
                 {tid:t_id, uid:u_id}, //PARAMS
                 {}, //DATA
                 function (d, h) {
