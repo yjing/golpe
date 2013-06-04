@@ -85,12 +85,12 @@
                 <span>
                     <div class="btn-group">
                         <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveP();">Save</button>
-                        <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="cancelNewP();">Cancel</button>
+                        <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="go();">Cancel</button>
                     </div>
                 </span>
             </div>
         </div>
-
+        {{selected_p}}
         <!-- DOWN LINE - FOR EXISTING ELEMENTS -->
 
         <div class="row-fluid" ng-hide="selected_p_id == 'new' || edit_p">
