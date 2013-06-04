@@ -41,7 +41,7 @@ app.factory('users_db',function (database) {
                     console.log("HERE");
                     console.log(d);
                     console.log(database.select('users', [
-                        {field:'role', value:'STUDENT'}
+//                        {field:'role', value:'STUDENT'}
                     ], 1));
                     console.log("THERE");
 
