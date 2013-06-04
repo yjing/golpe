@@ -65,8 +65,6 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
                     $scope.selected_p_id,
                     function (d, h) {    // SUCCESS
                         $scope.selected_p = database.select('projects', [ {field:'id',value:$scope.selected_p_id} ], 3)[0];
-
-
                         users.all(false,
                             function(d, h){
                                 if(angular.isDefined($scope.selected_t_id) && $scope.selected_t_id) {
@@ -199,7 +197,7 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
                 teams.save(
                     $scope.selected_t,
                     function(d, h){
-                        console.log(database.select('teams', [ {field:'id',value:$scope.selected_t_id} ], 3)[0]);
+                        $scope.selected_p = database.select('projects', [ {field:'id',value:$scope.selected_p_id} ], 3)[0];
                         $scope.selected_t = database.select('teams', [ {field:'id',value:$scope.selected_t_id} ], 3)[0];
                     }
                 );
