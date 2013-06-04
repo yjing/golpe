@@ -107,22 +107,22 @@ function ProjectsCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth
     };
 
     // DIALOGS AND MESSAGES
-    var t = '<div class="modal-header">'+
-        '<h3>This is the title</h3>'+
-        '</div>'+
-        '<div class="modal-body">'+
-        '<p>Enter a value to pass to <code>close</code> as the result: <input ng-model="result" /></p>'+
-        '</div>'+
-        '<div class="modal-footer">'+
-        '<button ng-click="close(result)" class="btn btn-primary" >Close</button>'+
-        '</div>';
+//    var t = '<div class="modal-header">'+
+//        '<h3>This is the title</h3>'+
+//        '</div>'+
+//        '<div class="modal-body">'+
+//        '<p>Enter a value to pass to <code>close</code> as the result: <input ng-model="result" /></p>'+
+//        '</div>'+
+//        '<div class="modal-footer">'+
+//        '<button ng-click="close(result)" class="btn btn-primary" >Close</button>'+
+//        '</div>';
 
     $scope.opts = {
         backdrop: true,
         keyboard: true,
         backdropClick: true,
-        template:  t, // OR: templateUrl: 'path/to/view.html',
-        controller: 'ProjectsCtrl'
+//        template:  t, // OR: templateUrl: 'path/to/view.html',
+//        controller: 'ProjectsCtrl'
     };
 
     $scope.removeMember = function(t_id, u_id){
