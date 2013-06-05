@@ -41,9 +41,6 @@
                 </a>
             </div>
             <ul>
-                <!--<li>-->
-                    <!--<input type="text" placeholder="Filter Activity Logs..." class="edit-field" ng-model="searchTextALs">-->
-                <!--</li>-->
                 <li ng-repeat="item in als | filter:alsFilter | orderBy:'-modified'" ng-class="selected(item.id)">
                     <a href="#" ng-click="go(item.id);">
                         <span class="label label-important" ng-show="item.question == true">Q</span>
@@ -78,14 +75,6 @@
                 </li>
             </ul>
             <div>
-                <a href="#" class="text-right">
-                    <button ng-click="go('new');" ng-hide="selected_al_id == 'new'"
-                            class="btn btn-success">New Activity Log
-                    </button>
-                    <button ng-click="go();" ng-show="selected_al_id == 'new'" class="btn btn-warning">Cancel New
-                        Activity Log
-                    </button>
-                </a>
             </div>
         </div>
     </div>
