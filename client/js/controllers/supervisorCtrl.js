@@ -81,6 +81,7 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
                 null,
                 function(d, h) {    // SUCCESS
                     $scope.als = database.select('als', [], 3);
+                    console.log($scope.als);
                     if(angular.isDefined($scope.selected_u_id)) {
 
                     }
