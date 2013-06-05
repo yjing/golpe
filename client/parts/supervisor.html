@@ -1,13 +1,8 @@
 <div class="row-fluid content">
 
-    <div class="span3" ng-hide="isMobile && selected_u_id!=null">
+    <div class="span3">
         <div class="menu shadow">
-            <div>
-                <a href="#" class="text-right" ng-click="reloadUsers();">
-                    Refresh Students' List <i class="icon-refresh"></i>
-                </a>
-            </div>
-            <ul>
+            <ul ng-show="showSt">
                 <li>
                     <input type="text" placeholder="Filter Students..." class="edit-field" ng-model="searchText">
                 </li>
@@ -26,8 +21,8 @@
             </ul>
             <div>
                 <a href="#" class="text-right">
-                    <button ng-click="go('new');" ng-hide="selected_u_id == 'new'" class="btn btn-success">New User</button>
-                    <button ng-click="go();" ng-show="selected_u_id == 'new'" class="btn btn-warning">Cancel</button>
+                    <button ng-click="showSt = true" ng-hide="showSt" class="btn btn-success">Show Students' list</button>
+                    <button ng-click="showSt = false" ng-show="showSt" class="btn btn-warning">Hide Students' list</button>
                 </a>
             </div>
         </div>
