@@ -67,6 +67,7 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
                 return;
             }
 
+            console.log("TEST");
             users.all(
                 function(d, h) {    // SUCCESS
                     $scope.data = database.select('users', [], 3);
