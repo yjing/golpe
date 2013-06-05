@@ -17,6 +17,7 @@ function UsersCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth, d
     $scope.data = [];
     $scope.selected_u = null;
     $scope.selected_u_id = $routeParams.id;
+    $scope.edit_u = false;
 
     $scope.go = function(id){
         var url = '/client/users';
@@ -30,6 +31,7 @@ function UsersCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth, d
         if (angular.isDefined($scope.selected_u_id) && $scope.selected_u_id != null) {
             if($scope.selected_u_id == 'new') {
                 $scope.selected_u = {};
+                $scope.edit_u = true;
             } else {
                 users.load(
                     $scope.selected_u_id,
@@ -63,6 +65,7 @@ function UsersCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth, d
     );
 
     $scope.saveU = function () {
+        console.log($scope.selected_u);
         users.save(
             $scope.selected_u,
             function(d, h) {    // SUCCESS
