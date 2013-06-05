@@ -2,7 +2,9 @@
 
     <div class="span3">
         <div class="menu shadow" ng-show="showSt">
-            <div></div>
+            <div>
+                <button ng-click="showSt = false" ng-show="showSt" class="btn">Hide Students' list</button>
+            </div>
             <ul>
                 <li>
                     <input type="text" placeholder="Filter Students..." class="edit-field" ng-model="searchText">
@@ -25,8 +27,7 @@
                 <!--</a>-->
             </div>
         </div>
-        <button ng-click="showSt = true" ng-hide="showSt" class="btn btn-success">Show Students' list</button>
-        <button ng-click="showSt = false" ng-show="showSt" class="btn btn-warning">Hide Students' list</button>
+        <button ng-click="showSt = true" ng-hide="showSt" class="btn">Show Students' list</button>
     </div>
 
     <div class="span9">
