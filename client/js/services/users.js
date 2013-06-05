@@ -113,6 +113,11 @@ app.factory('users_db',function (database) {
                 params.id = user.id;
             }
 
+            if(angular.isDefined(user.profile)) {
+                user.Profile = user.profile;
+                delete user.profile;
+            }
+
             busy.busy(true);
             resources.Users.save(
                 params, //PARAMS
