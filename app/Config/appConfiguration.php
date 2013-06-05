@@ -23,7 +23,7 @@ Configure::write("APPCONFIG", array(
         // RESOURCES/Controllers
         "Users" => array( 
             // Actions
-            "index" => "ADMIN",
+            "index" => array("ADMIN", "SUPERVISOR"),
             "view" => true,
             "add" => "ADMIN",
             "update" => "ADMIN",
