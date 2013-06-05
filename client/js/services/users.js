@@ -59,7 +59,6 @@ app.factory('users_db',function (database) {
                 function (d, h) {
                     busy.busy(false);
 
-                    console.log("TEST HERE");
                     users_db.insertUsers(d);
                     loaded = true;
 

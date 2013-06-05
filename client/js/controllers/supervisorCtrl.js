@@ -68,11 +68,18 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
             }
 
             users.all(
-                false,
+                true,
                 function(d, h) {    // SUCCESS
-                    console.log("TEST");
                     $scope.data = database.select('users', [], 3);
-                    console.log($scope.data);
+                }
+            );
+
+            als.all(
+                true,
+                null,
+                function(d, h) {    // SUCCESS
+                    $scope.als = database.select('als', [], 3);
+                    console.log($scope.als);
                 }
             );
 
