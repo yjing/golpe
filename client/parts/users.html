@@ -26,8 +26,8 @@
             </ul>
             <div>
                 <a href="#" class="text-right">
-                    <button ng-click="newUser();" ng-hide="selected_u_id == 'new'" class="btn btn-success">New User</button>
-                    <button ng-click="cancelNewUser();" ng-show="selected_u_id == 'new'" class="btn btn-warning">Cancel</button>
+                    <button ng-click="go('new');" ng-hide="selected_u_id == 'new'" class="btn btn-success">New User</button>
+                    <button ng-click="go();" ng-show="selected_u_id == 'new'" class="btn btn-warning">Cancel</button>
                 </a>
             </div>
         </div>
@@ -97,7 +97,8 @@
                 <span>
                     <div class="btn-group">
                         <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="saveU();">Save</button>
-                        <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-click="unEditSelectedU();">Cancel</button>
+                        <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-hide="selected_u_id == 'new'" ng-click="unEditSelectedU();">Cancel</button>
+                        <button ng-disabled="BUSY.busy();" type="button" class="btn" ng-show="selected_u_id == 'new'" ng-click="go();">Cancel</button>
                     </div>
                 </span>
             </div>
