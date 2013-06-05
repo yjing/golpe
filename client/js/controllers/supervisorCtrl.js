@@ -12,6 +12,8 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
         };
 
         if($scope.selected_u_id != null) {
+            var user = database.select('users', [ {field:'id',value:$scope.selected_u_id} ], 0)[0];
+            $rootScope.top_bar.page_title = "Student - " + user.username;
             $rootScope.top_bar.back_button = {
                 icon: 'icon-chevron-left',
                 func: function(){ $scope.go(); }
