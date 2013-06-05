@@ -69,7 +69,11 @@ function UsersCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth, d
         users.save(
             $scope.selected_u,
             function(d, h) {    // SUCCESS
-                $scope.unEditSelectedU();
+                if($scope.selected_u_id == 'new') {
+                    $scope.go(d['User'].id);
+                } else {
+                    $scope.unEditSelectedU();
+                }
             }
         );
     };
