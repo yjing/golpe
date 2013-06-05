@@ -83,8 +83,8 @@
                         <dd ng-show="selected_u.role == 'STUDENT' && selected_u.supervisor != null">
                             {{selected_u.supervisor.username}}
                         </dd>
-                        <dd ng-hide="selected_u.supervisor != null">
-                            not assigned [ <a href="#" ng-click="assignSupervisor()" ng-disabled="edit_u">Assign Supervisor</a> ]
+                        <dd ng-show="selected_u.supervisor == null && selected_u.role == 'STUDENT">
+                            not assigned [ <a href="#" ng-click="assignSupervisor()">Assign Supervisor</a> ]
                         </dd>
                     </dl>
                     <!-- EDIT MODE -->
