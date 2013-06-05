@@ -245,6 +245,7 @@ function StudentCtrl($scope, $rootScope, $routeParams, $location, auth, als, dat
     };
     $scope.optsImage = {
         backdropFade: true,
-        dialogFade:true
+        dialogFade:true,
+        dialogClass:'image-shower'
     };
 }
