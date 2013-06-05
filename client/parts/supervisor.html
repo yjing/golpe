@@ -1,6 +1,6 @@
 <div class="row-fluid content">
 
-    <div class="span3">
+    <div class="span3" ng-hide="isMobile">
         <div class="menu shadow">
             <div>
                 <a href="#" class="text-right" ng-click="reloadUsers();">
@@ -74,8 +74,7 @@
                     <a href="#" ng-click="selectElem(new_elem_id);">{{new_elem.name}} <i class="icon-edit"></i></a>
                 </li>
             </ul>
-            <div>{{isMobile}}
-            </div>
+            <div></div>
         </div>
     </div>
 
