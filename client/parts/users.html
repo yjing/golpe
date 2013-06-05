@@ -79,7 +79,7 @@
                                 <option ng-repeat="r in [ 'STUDENT', 'SUPERVISOR', 'ADMIN' ]">{{r}}</option>
                             </select>
                         </dd>
-                        {{selected_u.role}}
+                        {{selected_u.role == 'STUDENT'}}
                         <div ng-show="selected_u.role == 'STUDENT'">
                             <dt><strong>Supervisor:</strong></dt>
                             <dd ng-show="selected_u.supervisor.username != null">
