@@ -11,6 +11,13 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
             ]
         };
 
+        if($scope.selected_u_id != null) {
+            $rootScope.top_bar.back_button = {
+                icon: 'icon-chevron-left',
+                func: function(){ $scope.go(); }
+            }
+        }
+
         if($scope.selected_al_id != null && $rootScope.isMobile) {
             $rootScope.top_bar.page_title = "Activity Log";
             $rootScope.top_bar.back_button = {
