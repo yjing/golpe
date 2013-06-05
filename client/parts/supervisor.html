@@ -33,12 +33,62 @@
         </div>
     </div>
 
+    <div class="span9" ng-hide="isMobile && selected_al != null;">
+        <div class="menu shadow">
+            <div>
+                <a href="#" class="text-right" ng-click="reload();">
+                    Refresh Activity Logs <i class="icon-refresh"></i>
+                </a>
+            </div>
+            <ul>
+                <li>
+                    <input type="text" placeholder="Filter Activity Logs..." class="edit-field" ng-model="searchText">
+                </li>
+                <li ng-repeat="item in data | filter:searchText | orderBy:'-modified'" ng-class="selected(item.id)">
+                    <a href="#" ng-click="go(item.id);">
+                        <span class="label label-important" ng-show="item.question == true">Q</span>
+                        {{item.title}} <i ng-show="isEditElem(p.id)" class="icon-pencil"></i><br>
+                        <small>
+                            <em>{{item.modified_human}}</em> <strong>by:</strong> {{item.user.username}}
+                            <span class="label label-info"
+                                  ng-show="item.media.length > 0">M:{{item.media.length}}</span>
+                            <span class="label label-info"
+                                  ng-show="item.comments.length > 0">C:{{item.comments.length}}</span>
+                            <span class="label label-info"
+                                  ng-show="item.visibility_level == 'PUBLIC'"><small>PUBLIC</small></span>
+                        </small>
+                    </a>
 
-    <ul>
-        <li ng-repeat="al in als | filter:alsFilter">
-            {{al.title}}
-        </li>
-    </ul>
+                    <div class="functions">
+                        <button class="btn-link function" ng-click="item.deleting = true" ng-hide="item.deleting || item.user_id != user.id;">
+                            <i class="icon-remove"></i>
+                        </button>
+                    </div>
+                    <div class="confirms">
+                        <button class="btn btn-danger confirm" ng-click="delete(item.id);" ng-show="item.deleting">
+                            Delete
+                        </button>
+                        <button class="btn btn-success confirm" ng-click="item.deleting = false" ng-show="item.deleting">
+                            Keep
+                        </button>
+                    </div>
+                </li>
+                <li ng-show="isNewElem()" ng-class="isSelectedElem(new_elem_id)">
+                    <a href="#" ng-click="selectElem(new_elem_id);">{{new_elem.name}} <i class="icon-edit"></i></a>
+                </li>
+            </ul>
+            <div>
+                <a href="#" class="text-right">
+                    <button ng-click="go('new');" ng-hide="selected_al_id == 'new'"
+                            class="btn btn-success">New Activity Log
+                    </button>
+                    <button ng-click="go();" ng-show="selected_al_id == 'new'" class="btn btn-warning">Cancel New
+                        Activity Log
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
 
 </div>
 <script src="/client/js/controllers/supervisorCtrl.js"></script>
