@@ -5,7 +5,7 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
         $rootScope.top_bar = {
             page_title:'Students',
             buttons: [
-                { icon:'icon-user', func:function(){ $scope.showSt = true } }
+                { icon:'icon-user', func:$scope.toggleUserList }
             ],
             main_menu_items:[
                 { type:'item', label:'Logout', icon:'icon-lock', func:$rootScope.logout },
@@ -187,6 +187,10 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
     };
     $scope.resetFormC = function () {
         document.getElementById('formc').reset();
+    };
+
+    $scope.toggleUserList = function () {
+        $scope.showSt = !$scope.showSt;
     };
 
     // SHOW IMAGE
