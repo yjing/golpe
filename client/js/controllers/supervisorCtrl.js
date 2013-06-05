@@ -189,10 +189,6 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
         document.getElementById('formc').reset();
     };
 
-    $scope.toggleUserList = function () {
-        $scope.showSt = !$scope.showSt;
-    };
-
     // SHOW IMAGE
     $scope.openImage = function (id) {
         $scope.imageID = id;
