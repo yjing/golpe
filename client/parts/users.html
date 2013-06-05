@@ -58,13 +58,15 @@
                         <dd>{{selected_u.email}}</dd>
                         <dt><strong>Role:</strong></dt>
                         <dd>{{selected_u.role}}</dd>
-                        <dt ng-show="selected_u.role == 'STUDENT'"><strong>Supervisor:</strong></dt>
-                        <dd ng-show="selected_u.role == 'STUDENT' && selected_u.supervisor != null">
-                            {{selected_u.supervisor.username}}
-                        </dd>
-                        <dd ng-hide="selected_u.supervisor != null">
-                            not assigned [ <a href="#" ng-click="assignSupervisor()">Assign Supervisor</a> ]
-                        </dd>
+                        <div ng-show="selected_u.role == 'STUDENT'">
+                            <dt><strong>Supervisor:</strong></dt>
+                            <dd ng-show="selected_u.supervisor != null">
+                                {{selected_u.supervisor.username}}
+                            </dd>
+                            <dd ng-hide="selected_u.supervisor != null">
+                                not assigned [ <a href="#" ng-click="assignSupervisor()">Assign Supervisor</a> ]
+                            </dd>
+                        </div>
                     </dl>
                     <dl class="selector" ng-show="edit_u">
                         <dt><strong>Name:</strong></dt>
@@ -79,14 +81,11 @@
                                 <option ng-repeat="r in [ 'STUDENT', 'SUPERVISOR', 'ADMIN' ]">{{r}}</option>
                             </select>
                         </dd>
-                        sakjfhlasjkdflasjkhflaskjdfljksadhfl
-                        {{selected_u.role == 'STUDENT'}}
                         <div ng-show="selected_u.role == 'STUDENT'">
                             <dt><strong>Supervisor:</strong></dt>
                             <dd ng-show="selected_u.supervisor.username != null">
                                 {{selected_u.supervisor.username}}
                             </dd>
-                            [ {{selected_u.supervisor.username}} ]
                             <dd ng-hide="selected_u.supervisor.username != null">
                                 not assigned [ <a href="#" ng-click="assignSupervisor()">Assign Supervisor</a> ]
                             </dd>
