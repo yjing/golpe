@@ -14,17 +14,18 @@ class UsersController extends RESTController {
     public function index() {
         parent::index();
         
-        $user = $this->Auth->user();
-        $conditions = null;
-        if ($user['role'] == 'SUPERVISOR') {
-            $conditions = array(
-                "StudentsSupervisor.supervisor_id" => $user['id']
-            );
-        }
+        $logged_user = $this->Auth->user();
         
-//        $result = $this->getDafaultFormattedUsers($conditions);
         $result = $this->getDafaultFormattedUsers();
-        $this->_setResponseJSON($result);
+        $final = array();
+        if ($user['role'] == 'SUPERVISOR') {
+            foreach ($re as $index => $user) {
+                if(isset($user['Suervisor'])) {
+                    $final[] = $user;
+                }
+            }
+        }
+        $this->_setResponseJSON($final);
     }
 
     public function view($id = null) {
@@ -261,9 +262,6 @@ class UsersController extends RESTController {
                 )
             )
         );
-        if($conditions != null) {
-            $options['conditions'] = $conditions;
-        }
         if($show_activity_logs) {
             $options['associations']['ActivityLog'] = array(
                 "unArray_if_single_value",
