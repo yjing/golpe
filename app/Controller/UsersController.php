@@ -14,6 +14,14 @@ class UsersController extends RESTController {
     public function index() {
         parent::index();
         
+        $user = $this->Auth->user();
+        $conditions = null;
+        if ($user['role'] == 'SUPERVISOR') {
+            $conditions = array(
+                
+            );
+        }
+        
         $result = $this->getDafaultFormattedUsers();
         $this->_setResponseJSON($result);
     }
@@ -233,7 +241,7 @@ class UsersController extends RESTController {
         return $result;
     }
     
-    private function getDafaultFormattedUsers($show_activity_logs = false) {
+    private function getDafaultFormattedUsers($conditions = null, $show_activity_logs = false) {
         $options = array(
             'associations' => array(
                 'Profile',
@@ -252,6 +260,9 @@ class UsersController extends RESTController {
                 )
             )
         );
+        if($conditions != null) {
+            $options['conditions'] = $conditions;
+        }
         if($show_activity_logs) {
             $options['associations']['ActivityLog'] = array(
                 "unArray_if_single_value",
