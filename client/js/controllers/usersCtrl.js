@@ -75,6 +75,10 @@ function UsersCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth, d
         $scope.edit_u = false;
     };
 
+    $scope.supervisors = function () {
+        return database.select('users', [ {field:'role', value:'SUPERVISOR'} ], 0);
+    };
+
 }
 
 function DialogCtrl($scope, dialog){
