@@ -67,6 +67,10 @@ div.menu > ul {
     list-style-type: none;
 }
 
+div.menu .lead {
+    margin: 0;
+}
+
 div.menu > div > a,
 div.menu > div > span,
 div.menu > ul > li > a,
