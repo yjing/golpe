@@ -20,8 +20,10 @@ class UsersController extends RESTController {
         $final = array();
         if ($logged_user['role'] == 'SUPERVISOR') {
             foreach ($result as $index => $user) {
-                debug($user);
-                if(isset($user['Suervisor'])) {
+                debug($logged_user);
+                if(isset($user['User']['Suervisor']) 
+                        && isset($user['User']['Suervisor']['id'])
+                        && $user['User']['Suervisor']['id'] == $logged_user['id']) {
                     $final[] = $user;
                 }
             }
