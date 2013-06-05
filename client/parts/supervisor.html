@@ -33,5 +33,12 @@
         </div>
     </div>
 
+
+    <ul>
+        <li ng-repeat="al in als | filter:alsFilter">
+            {{al}}
+        </li>
+    </ul>
+
 </div>
 <script src="/client/js/controllers/supervisorCtrl.js"></script>

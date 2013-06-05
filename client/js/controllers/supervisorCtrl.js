@@ -48,6 +48,8 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
     $scope.data = [];
     $scope.selected_u_id = $routeParams.id;
     $scope.selected_u = null;
+    $scope.als = [];
+    $scope.alsFilter = '';
 
     $scope.files = [];
     $scope.addFile = function() {
@@ -79,7 +81,9 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
                 null,
                 function(d, h) {    // SUCCESS
                     $scope.als = database.select('als', [], 3);
-                    console.log($scope.als);
+                    if(angular.isDefined($scope.selected_u_id)) {
+
+                    }
                 }
             );
 
