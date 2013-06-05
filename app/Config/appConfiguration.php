@@ -12,7 +12,7 @@ Configure::write("APPCONFIG", array(
         ),
         'SUPERVISOR' => array(
             'modes' => array('all', 'news', 'public'), 
-            'default' => 'news'
+            'default' => 'all'
         ),
         'ADMIN' => array(
             'modes' => array('all'), 
