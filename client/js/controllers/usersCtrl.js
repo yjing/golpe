@@ -66,7 +66,7 @@ function UsersCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth, d
         users.save(
             $scope.selected_u,
             function(d, h) {    // SUCCESS
-                $scope.selected_u = database.select('users', [ {field:'id',value:$scope.selected_u_id} ], 3)[0];
+                $scope.unEditSelectedU();
             }
         );
     };
