@@ -4,6 +4,9 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
 
         $rootScope.top_bar = {
             page_title:'Students',
+            buttons: [
+                { icon:'icon-user', func:function(){ $scope.showSt = true } }
+            ],
             main_menu_items:[
                 { type:'item', label:'Logout', icon:'icon-lock', func:$rootScope.logout },
                 { type:'item', label:'Help', icon:'icon-question-sign', func:$rootScope.help },
