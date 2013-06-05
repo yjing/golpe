@@ -18,7 +18,7 @@ class UsersController extends RESTController {
         $conditions = null;
         if ($user['role'] == 'SUPERVISOR') {
             $conditions = array(
-                "StudentsSupervisor.supervisor_id" => $user['id']
+                "StudentsSupervisor.supervisor_ids" => $user['id']
             );
         }
         
