@@ -18,11 +18,11 @@ class UsersController extends RESTController {
         $conditions = null;
         if ($user['role'] == 'SUPERVISOR') {
             $conditions = array(
-                "StudentsSupervisor.supervisor_ids" => $user['id']
+                "StudentsSupervisor.supervisor_id" => $user['id']
             );
         }
         
-        $result = $this->getDafaultFormattedUsers();
+        $result = $this->getDafaultFormattedUsers($conditions);
         $this->_setResponseJSON($result);
     }
 
