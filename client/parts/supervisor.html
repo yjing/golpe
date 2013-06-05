@@ -1,0 +1,37 @@
+<div class="row-fluid content">
+
+    <div class="span3">
+        <div class="menu shadow">
+            <div>
+                <a href="#" class="text-right" ng-click="reloadUsers();">
+                    Refresh Students' List <i class="icon-refresh"></i>
+                </a>
+            </div>
+            <ul>
+                <li>
+                    <input type="text" placeholder="Filter Students..." class="edit-field" ng-model="searchText">
+                </li>
+                <li ng-repeat="u in data | filter:searchText" ng-class="selectedU(u.id);">
+                    <a href="#" ng-click="go(u.id);">{{u.username}}
+                        <i ng-show="isEditUser(u.id)" class="icon-pencil"></i>
+                    </a>
+                    <div class="functions" ng-show="selected_u_id == u.id" ng-init="delete_u = false; edit_u = false;">
+                        <button class="btn-link function" ng-click="delete_u = true;" ng-hide="delete_u || edit_u"><i class="icon-remove"></i></button>
+                    </div>
+                    <div class="confirms">
+                        <button class="btn btn-danger confirm" ng-click="deleteSelectedU();" ng-show="delete_u">Delete</button>
+                        <button class="btn btn-success confirm" ng-click="delete_u = false;" ng-show="delete_u">Keep</button>
+                    </div>
+                </li>
+            </ul>
+            <div>
+                <a href="#" class="text-right">
+                    <button ng-click="go('new');" ng-hide="selected_u_id == 'new'" class="btn btn-success">New User</button>
+                    <button ng-click="go();" ng-show="selected_u_id == 'new'" class="btn btn-warning">Cancel</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="/client/js/controllers/supervisorCtrl.js"></script>

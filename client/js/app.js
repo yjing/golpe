@@ -16,6 +16,15 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
         templateUrl:'/client/parts/student.html',
         controller:"StudentCtrl"
     });
+    // SUPERVISOR
+    $routeProvider.when('/client/supervisor', {
+        templateUrl:'/client/parts/supervisor.html',
+        controller:"SupervisorCtrl"
+    });
+    $routeProvider.when('/client/supervisor/:id', {
+        templateUrl:'/client/parts/supervisor.html',
+        controller:"SupervisorCtrl"
+    });
     // PROJECTS
     $routeProvider.when('/client/projects', {
         templateUrl:'/client/parts/projects.html',
