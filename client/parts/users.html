@@ -87,7 +87,7 @@
                             not assigned [ <a href="#" ng-click="assignSupervisor()">Assign Supervisor</a> ]
                         </dd>
                         <dd>
-                            <select ng-model="selected_u.supervisor">
+                            <select ng-model="selected_u.supervisor.username">
                                 <option ng-repeat="s in supervisors()">{{s.username}}</option>
                             </select>
                         </dd>
