@@ -92,6 +92,7 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
                         $scope.alsFilter = {
                             user_id: $scope.selected_u_id
                         }
+                        $scope.setupTopBar();
                     }
                 }
             );
