@@ -5,15 +5,15 @@
         name="iframec">
 </iframe>
 
-<div>
-    <div modal="imageIsOpen" close="closeImage()" options="optsImage">
-        <div class="modal-body clickable">
-            <img ng-src="/media/download/{{imageID}}" ng-click="download(imageID);">
+<div class="row-fluid">
+
+    <div>
+        <div class="image-shower" modal="imageIsOpen" close="closeImage()" options="optsImage">
+            <div class="modal-body clickable">
+                <img ng-src="/media/download/{{imageID}}" ng-click="download(imageID);">
+            </div>
         </div>
     </div>
-</div>
-
-<div class="row-fluid">
 
     <div class="span4" ng-hide="isMobile && selected_al != null;">
         <div class="menu shadow">
