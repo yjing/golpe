@@ -43,11 +43,11 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
 //        }
     };
 
+    $scope.setupTopBar();
+
     $scope.data = [];
-    $scope.selected_al_id = $routeParams.id;
-    $scope.selected_al = null;
-    $scope.edit_selected = null;
-    $scope.edit = false;
+    $scope.selected_u_id = $routeParams.id;
+    $scope.selected_u = null;
 
     $scope.files = [];
     $scope.addFile = function() {
@@ -70,6 +70,7 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
             users.all(
                 function(d, h) {    // SUCCESS
                     $scope.data = database.select('users', [], 3);
+                    console.log($scope.data);
                 }
             );
 
