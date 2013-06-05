@@ -24,17 +24,17 @@
 
 
 /* MODAL */
-/*div.image-shower > div {*/
-    /*bottom: 8%;*/
-    /*top: 8%;*/
-    /*padding: 15px;*/
-/*}*/
-/*div.image-shower div.modal-body {*/
-    /*max-height: none;*/
-    /*height: 100%;*/
-    /*padding: 0;*/
-/*}*/
+div.image-shower > div {
+    bottom: 8%;
+    top: 8%;
+    padding: 15px;
+}
+div.image-shower div.modal-body {
+    max-height: none;
+    height: 100%;
+    padding: 0;
+}
 
-/*div.image-shower div.modal-body > img {*/
-    /*width: 100%;*/
-/*}*/
+div.image-shower div.modal-body > img {
+    width: 100%;
+}
