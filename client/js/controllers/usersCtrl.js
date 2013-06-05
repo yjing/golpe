@@ -37,7 +37,6 @@ function UsersCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth, d
                     $scope.selected_u_id,
                     function (d, h) {    // SUCCESS
                         $scope.selected_u = database.select('users', [ {field:'id',value:$scope.selected_u_id} ], 3)[0];
-                        console.log($scope.selected_u);
                     }
                 );
             }
@@ -46,7 +45,7 @@ function UsersCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth, d
         users.all(
             reload,               // RELOAD
             function(d, h) {     // SUCCESS
-                $scope.data = database.select('users', $scope.r_conds, 3);
+                $scope.data = database.select('users', [], 3);
             }
         );
     };
@@ -65,13 +64,13 @@ function UsersCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth, d
     );
 
     $scope.saveU = function () {
-        console.log($scope.selected_u);
         users.save(
             $scope.selected_u,
             function(d, h) {    // SUCCESS
                 if($scope.selected_u_id == 'new') {
                     $scope.go(d['User'].id);
                 } else {
+                    $scope.data = database.select('users', [], 3);
                     $scope.unEditSelectedU();
                 }
             }
