@@ -1,6 +1,6 @@
 <div class="row-fluid content">
 
-    <div class="span3" ng-hide="isMobile">
+    <div class="span3" ng-hide="isMobile && selected_u_id!=null">
         <div class="menu shadow">
             <div>
                 <a href="#" class="text-right" ng-click="reloadUsers();">
@@ -33,7 +33,7 @@
         </div>
     </div>
 
-    <div class="span9" ng-hide="isMobile && selected_al != null;">
+    <div class="span9">
         <div class="menu shadow">
             <div>
                 <a href="#" class="lead" ng-click="reload();">
