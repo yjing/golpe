@@ -66,6 +66,15 @@ function UsersCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth, d
         return $scope.selected_u_id == id ? 'active' : '';
     };
 
+    $scope.editSelectedU = function () {
+        $scope.edit_u = true;
+    };
+
+    $scope.unEditSelectedU = function () {
+        $scope.selected_u = database.select('users', [ {field:'id',value:$scope.selected_u_id} ], 3)[0];
+        $scope.edit_u = false;
+    };
+
 }
 
 function DialogCtrl($scope, dialog){
