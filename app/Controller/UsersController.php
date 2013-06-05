@@ -22,8 +22,8 @@ class UsersController extends RESTController {
             );
         }
         
-        $result = $this->getDafaultFormattedUsers($conditions);
-//        $result = $this->getDafaultFormattedUsers();
+//        $result = $this->getDafaultFormattedUsers($conditions);
+        $result = $this->getDafaultFormattedUsers();
         $this->_setResponseJSON($result);
     }
 
