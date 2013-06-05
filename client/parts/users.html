@@ -69,8 +69,10 @@
                         </div>
                     </dl>
                     <dl class="selector" ng-show="edit_u">
-                        <dt><strong>Password:</strong></dt>
-                        <dd><input ng-model="selected_u.password"></dd>
+                        <div ng-show="selected_u_id == 'new'">
+                            <dt><strong>Password:</strong></dt>
+                            <dd><input ng-model="selected_u.password"></dd>
+                        </div>
                         <dt><strong>Name:</strong></dt>
                         <dd><input ng-model="selected_u.profile.name"></dd>
                         <dt><strong>Id number:</strong></dt>
