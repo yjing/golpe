@@ -81,19 +81,16 @@
                                 <option ng-repeat="r in [ 'STUDENT', 'SUPERVISOR', 'ADMIN' ]">{{r}}</option>
                             </select>
                         </dd>
-                        <div ng-show="selected_u.role == 'STUDENT'">
-                            <dt><strong>Supervisor:</strong></dt>
-                            <dd ng-show="selected_u.supervisor.username != null">
-                                {{selected_u.supervisor.username}}
-                            </dd>
-                            <dd ng-hide="selected_u.supervisor.username != null">
-                                not assigned [ <a href="#" ng-click="assignSupervisor()">Assign Supervisor</a> ]
-                            </dd>
-                        </div>
+                        <!--<div ng-show="selected_u.role == 'STUDENT'">-->
+                            <!--<dt><strong>Supervisor:</strong></dt>-->
+                            <!--<dd ng-show="selected_u.supervisor.username != null">-->
+                                <!--{{selected_u.supervisor.username}}-->
+                            <!--</dd>-->
+                            <!--<dd ng-hide="selected_u.supervisor.username != null">-->
+                                <!--not assigned [ <a href="#" ng-click="assignSupervisor()">Assign Supervisor</a> ]-->
+                            <!--</dd>-->
+                        <!--</div>-->
                     </dl>
-                    <!-- EDIT MODE -->
-                    <!--<textarea class="edit-field" ng-model=""-->
-                              <!--ng-show="isEditUser(selected_user)"></textarea>-->
                 </li>
             </ul>
             <div ng-show="edit_u">

@@ -106,4 +106,33 @@ app.factory('users_db',function (database) {
             );
         }
 
+        this.save = function(user, success, error){
+
+            var params = {};
+            if(angular.isDefined(user.id)) {
+                params.id = user.id;
+            }
+
+            busy.busy(true);
+            resources.Users.save(
+                params, //PARAMS
+                { User: user }, //DATA
+                function (d, h) {
+                    busy.busy(false);
+
+                    users_db.insertUser(d['User']);
+
+                    if(angular.isDefined(success)) {
+                        success(d, h);
+                    }
+                },
+                function (e) {
+                    busy.busy(false);
+                    if(!$rootScope.handleError(e) && angular.isDefined(error)) {
+                        error(e);
+                    }
+                }
+            );
+        }
+
     });
