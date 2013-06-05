@@ -19,7 +19,7 @@ class UsersController extends RESTController {
         $result = $this->getDafaultFormattedUsers();
         $final = array();
         if ($logged_user['role'] == 'SUPERVISOR') {
-            foreach ($re as $index => $user) {
+            foreach ($result as $index => $user) {
                 if(isset($user['Suervisor'])) {
                     $final[] = $user;
                 }
