@@ -82,7 +82,9 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
                 function(d, h) {    // SUCCESS
                     $scope.als = database.select('als', [], 3);
                     if(angular.isDefined($scope.selected_u_id)) {
-                        $scope.alsFilter.user_id = $scope.selected_u_id;
+                        $scope.alsFilter = {
+                            user_id: $scope.selected_u_id
+                        }
                     }
                 }
             );
