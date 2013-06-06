@@ -7,10 +7,13 @@ function ResolverCtrl($rootScope, $location, auth, $routeParams){
             }
 
             var url = '/client/'
-            if($rootScope.user.role == 'SUPERVISOR') {
+            if($rootScope.user.role == 'STUDENT') {
                 url += 'student/'
-            } else {
+            } else if($rootScope.user.role == 'SUPERVISOR') {
                 url += 'supervisor/'
+            } else {
+                $location.url('/client/projects');
+                return;
             }
 
             var res = $routeParams.res;
