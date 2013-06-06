@@ -26,8 +26,9 @@ class UsersController extends RESTController {
                     $final[] = $user;
                 }
             }
+            $result = $final;
         }
-        $this->_setResponseJSON($final);
+        $this->_setResponseJSON($result);
     }
 
     public function view($id = null) {
