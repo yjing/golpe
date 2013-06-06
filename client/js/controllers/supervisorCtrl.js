@@ -149,7 +149,7 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
     };
 
     $scope.selected = function (id) {
-        return $scope.selected_al_id == id ? 'active' : '';
+        return $scope.selected_a_id == id ? 'active' : '';
     };
 
     $scope.selectedU = function (id) {
