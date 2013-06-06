@@ -84,7 +84,8 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
             users.all(
                 true,
                 function(d, h) {    // SUCCESS
-                    $scope.data = database.select('users', [], 3);
+                    $scope.data = $scope.prepareAls(database.select('users', [], 3));
+                    console.log($scope.data);
                 }
             );
 
@@ -106,6 +107,24 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
 
         }
     );
+
+    $scope.prepareAls = function (als) {
+        if(angular.isDefined(als) && angular.isArray(als) && als.length > 0) {
+            for (var i = 0; i < als.length; i++) {
+                if(angular.isDefined(als[i].comments) && angular.isArray(als[i].comments) && als[i].comments.length > 0) {
+                    var toAnswer = true;
+                    for (var j = 0; j < als[i].comments.length; j++) {
+                        if(als[i].comments[j].user_id == $rootScope.user.id) {
+                            toAnswer = true
+                        } else {
+                            toAnswer = false;
+                        }
+                    }
+                    als[i].comments[j].toAnswer = toAnswer;
+                }
+            }
+        }
+    };
 
     $scope.go = function (id) {
         var url = '/client/supervisor';
