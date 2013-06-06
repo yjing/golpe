@@ -4,7 +4,7 @@ function ResolverCtrl($location, $routeParams){
         function (user){
             if(user != null) {
                 console.log('RESOLVER2');
-                $rootScope.redirectUser();
+//                $rootScope.redirectUser();
             } else {
                 console.log('RESOLVER3');
                 var res = $routeParams.res;
