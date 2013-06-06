@@ -62,6 +62,7 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
     $scope.selected_u = null;
     $scope.als = [];
     $scope.alsFilter = null;
+    $scope.order = '-toAnswer';
 
     $scope.files = [];
     $scope.addFile = function() {
@@ -93,7 +94,6 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
                 null,
                 function(d, h) {    // SUCCESS
                     $scope.als = $scope.prepareAls(database.select('als', [], 3));
-                    console.log($scope.als);
                     if(angular.isDefined($scope.selected_u_id)) {
                         $scope.alsFilter = {
                             user_id: $scope.selected_u_id
