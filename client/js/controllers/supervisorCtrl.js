@@ -72,7 +72,7 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
             users.all(
                 true,
                 function(d, h) {    // SUCCESS
-                    $scope.data = database.select('users', [ {field:'role',value:'STUDENT'} ], 3);
+                    $scope.data = database.select('users', [ {field:'role',value:'STUDENT'}, {field:'supervisor_id',value:$rootScope.user.id} ], 3);
                     console.log($scope.data);
                 }
             );
