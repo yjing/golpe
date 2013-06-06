@@ -62,7 +62,7 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
     $scope.selected_u = null;
     $scope.als = [];
     $scope.alsFilter = null;
-    $scope.order = ['toAnswer', '-modified'];
+    $scope.order = ['-toAnswer', '-modified'];
 
     $scope.files = [];
     $scope.addFile = function() {
@@ -111,19 +111,21 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
     $scope.prepareAls = function (als) {
         if(angular.isDefined(als) && angular.isArray(als) && als.length > 0) {
             for (var i = 0; i < als.length; i++) {
-                if(angular.isDefined(als[i].comments) && angular.isArray(als[i].comments) && als[i].comments.length > 0) {
-                    var toAnswer = true;
-                    for (var j = 0; j < als[i].comments.length; j++) {
-                        if(als[i].comments[j].user_id == $rootScope.user.id) {
-                            toAnswer = false;
-                        } else {
-                            toAnswer = true;
+                var toAnswer = false;
+                if(als[i].question) {
+                    if(angular.isDefined(als[i].comments) && angular.isArray(als[i].comments) && als[i].comments.length > 0) {
+                        toAnswer = true;
+                        for (var j = 0; j < als[i].comments.length; j++) {
+                            if(als[i].comments[j].user_id == $rootScope.user.id) {
+                                toAnswer = false;
+                            } else {
+                                toAnswer = true; // no break here because if new comments arrive after his answer
+                                                 // the SUPERVISOR should notice them
+                            }
                         }
                     }
-                    als[i].toAnswer = toAnswer;
-                } else {
-                    als[i].toAnswer = false;
                 }
+                als[i].toAnswer = toAnswer;
             }
             return als;
         }
