@@ -129,6 +129,10 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
         return $scope.selected_al_id == id ? 'active' : '';
     };
 
+    $scope.selectedU = function (id) {
+        return $scope.selected_u_id == id ? 'active' : '';
+    };
+
     $scope.download = function (id) {
         window.location.href = '/media/download/' + id + '?download=true';
     };
