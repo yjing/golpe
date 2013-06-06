@@ -5,7 +5,7 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
         $rootScope.top_bar = {
             page_title:'Students',
             buttons: [
-                { icon:'icon-user', class: $rootScope.userButtonClass, func:function(){ $rootScope.showSt = !$rootScope.showSt } }
+                { icon:'icon-user', class: $rootScope.userButtonClass(), func:function(){ $rootScope.showSt = !$rootScope.showSt } }
             ],
             main_menu_items:[
                 { type:'item', label:'Logout', icon:'icon-lock', func:$rootScope.logout },
@@ -55,7 +55,6 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
 //        }
     };
     $rootScope.userButtonClass = function(){
-        console.log($rootScope.showSt);
         return $rootScope.showSt ? 'users-button-active' : '';
     }
     $rootScope.$watch('showSt', function() {
