@@ -87,6 +87,7 @@ class NotificationComponent extends Component {
             );
             if($type == 'Comment') {
                 $associations['ActivityLog'] = array(
+                    "unArray_if_single_value",
                     'fields' => array('id', 'user_id'),
                     'associations' => array( 
                         'User' => array(
