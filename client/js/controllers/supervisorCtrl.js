@@ -62,6 +62,7 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
     $scope.selected_u = null;
     $scope.als = [];
     $scope.alsFilter = null;
+    $scope.showSt = true;
 
     $scope.files = [];
     $scope.addFile = function() {
