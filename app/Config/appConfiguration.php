@@ -90,7 +90,6 @@ Configure::write("APPCONFIG", array(
             )
         )
     ),
-    'AzureConnectionString' => 'DefaultEndpointsProtocol=http;AccountName=portalvhds6cy79yt8ky5b5;AccountKey=XxNdzdygZNwLJ3E7uvNTp00D8fQHftypaN0njds2+ZGBmcJAbiVPZ78ktwebQBi0gayqL5894FJulm7wpd2e5Q==',
     'notification' => array(
         'providers' => array(
             'Email'=>array(
