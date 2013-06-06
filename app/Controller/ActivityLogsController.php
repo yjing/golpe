@@ -38,11 +38,11 @@ class ActivityLogsController extends RESTController {
             switch ($mode) {
                 case "all":
                     break;
-                case "news":
-                    $last_access = $this->Log->getLastAccess();
-                    $conditions["ActivityLog.user_id !="] =  $user['id'];
-                    $conditions[] = "ActivityLog.modified > timestamp('$last_access')";
-                    break;
+//                case "news":
+//                    $last_access = $this->Log->getLastAccess();
+//                    $conditions["ActivityLog.user_id !="] =  $user['id'];
+//                    $conditions[] = "ActivityLog.modified > timestamp('$last_access')";
+//                    break;
                 case "team":
                     $conditions["ActivityLog.user_id"] = $this->User->getTeamComponentsId($user['id']);
                     break;

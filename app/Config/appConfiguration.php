@@ -7,8 +7,9 @@ Configure::write("APPCONFIG", array(
     'visibility_levels' => array('PRIVATE', 'SUPERVISOR', 'TEAM', 'PUBLIC', 'SYSTEM'),
     'activity_logs_modes' => array( 
         'STUDENT' => array(
-            'modes' => array('all', 'news', 'mine', 'team', 'public'), 
-            'default' => 'news'
+//            'modes' => array('all', 'news', 'mine', 'team', 'public'), 
+            'modes' => array('all', 'mine', 'team', 'public'), 
+            'default' => 'all'
         ),
         'SUPERVISOR' => array(
             'modes' => array('all', 'news', 'public'), 
