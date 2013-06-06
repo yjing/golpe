@@ -57,8 +57,10 @@ class CommentsController extends RESTController {
                 $this->Notification->createNotification('Comment', 
                         $result['Comment']['id'],
                         array( 
-                            'Target' => 'ActivityLog', 
-                            'id' => $result['Comment']['ActivityLog'][0]['id']
+                            'Target' => array(
+                                'name'=> 'ActivityLog',
+                                'id' => $result['Comment']['ActivityLog'][0]['id']
+                            )
                         ));
                 $this->_setResponseJSON( $result );
             } else {

@@ -121,8 +121,8 @@ class NotificationComponent extends Component {
                         case 'Comment':
                             //message & priority
                             $res_id = Set::get($element, "/Comment/id");
-                            $target = $options['Target'];
-                            $target_id = $options['id'];
+                            $target = $options['Target']['name'];
+                            $target_id = $options['Target']['id'];
                             $notification['Notification']['resource'] = "Comment:$res_id=>$target:$target_id";
                             $notification['Notification']['message'] = Set::get($element, "/Comment/content");
                             $notification['Notification']['priority'] = false;
