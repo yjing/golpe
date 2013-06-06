@@ -2,11 +2,12 @@
 
     <div class="span4">
         <div class="menu shadow" ng-show="showSt">
-            <div><li><input type="text" placeholder="Filter Students..." class="edit-field" ng-model="searchText"></li></div>
+            <div>
+            </div>
             <ul>
-                <!--<li>-->
-                    <!---->
-                <!--</li>-->
+                <li>
+                    <input type="text" placeholder="Filter Students..." class="edit-field" ng-model="searchText">
+                </li>
                 <li ng-repeat="u in data | filter:searchText" ng-class="selectedU(u.id);">
                     <a href="#" ng-click="go(u.id);">{{u.username}}
                         <i ng-show="isEditUser(u.id)" class="icon-pencil"></i>
