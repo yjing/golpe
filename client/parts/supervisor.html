@@ -177,7 +177,7 @@
             <div ng-show="add_comment">
                 <form id="formc" class="" target="iframec" action='/comments' method='POST'
                       enctype='multipart/form-data' style="margin-bottom: 3px;">
-                    <input type="hidden" name="data[Comment][visibility_level]" value="selected_a.visibility_level">
+                    <input type="hidden" name="data[Comment][visibility_level]" value="{{selected_a.visibility_level}}">
                     <input type="hidden" name="data[Target][alias]" value="ActivityLog">
                     <input type="hidden" name="data[Target][id]" value="{{selected_a_id}}">
                     <div class="control-group">
