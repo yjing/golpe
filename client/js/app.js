@@ -51,7 +51,7 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
         templateUrl:'/client/parts/users.html',
         controller:"UsersCtrl"
     });
-    $routeProvider.when('/client/resolve?res=:res', {
+    $routeProvider.when('/client/resolve/:res', {
         templateUrl:'/client/parts/resolver.html',
         controller:"ResolverCtrl"
     });
