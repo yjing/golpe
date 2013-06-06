@@ -1,10 +1,10 @@
 function ResolverCtrl($rootScope, $location, auth, $routeParams){
     auth.user(
         function (user){
+            console.log(user);
             if(user != null) {
                 $rootScope.redirectUser();
             } else {
-                console.log(user);
                 var res = $routeParams.res;
                 console.log(res);
                 if(user.role == 'SUPERVISOR') {
