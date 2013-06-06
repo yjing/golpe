@@ -223,7 +223,7 @@ class ActivityLogsController extends RESTController {
                         )
                     ),
                     'Comment' => array(
-                        'fields' => array('id')
+                        'fields' => array('id', 'user_id')
                     ),
                     'Media' => array(
                         'fields' => array('id')
