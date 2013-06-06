@@ -84,8 +84,7 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
             users.all(
                 true,
                 function(d, h) {    // SUCCESS
-                    $scope.data = $scope.prepareAls(database.select('users', [], 3));
-                    console.log($scope.data);
+                    $scope.data = database.select('users', [], 3);
                 }
             );
 
@@ -93,7 +92,8 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
                 true,
                 null,
                 function(d, h) {    // SUCCESS
-                    $scope.als = database.select('als', [], 3);
+                    $scope.als = $scope.prepareAls(database.select('als', [], 3));
+                    console.log($scope.als);
                     if(angular.isDefined($scope.selected_u_id)) {
                         $scope.alsFilter = {
                             user_id: $scope.selected_u_id
