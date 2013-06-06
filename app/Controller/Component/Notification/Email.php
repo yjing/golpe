@@ -65,6 +65,7 @@ class Email implements NotificationProvider {
         
         $email_body = str_replace('##BODY##', $inset, Email::$email_template);
         
+        debug($emails);
         debug($email_body);
         
 //        $Email = new CakeEmail();
