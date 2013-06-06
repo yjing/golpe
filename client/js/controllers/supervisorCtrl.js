@@ -26,7 +26,7 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
 
         if($scope.selected_u_id != null) {
             var user = database.select('users', [ {field:'id',value:$scope.selected_u_id} ], 0)[0];
-            $rootScope.top_bar.page_title = user.username + " Logs";
+            $rootScope.top_bar.page_title = capitalise(user.username) + " Logs";
             $rootScope.top_bar.back_button = {
                 icon: 'icon-chevron-left',
                 func: function(){ $scope.go(); }
@@ -229,4 +229,9 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
         dialogFade:true,
         dialogClass:'image-shower modal'
     };
+}
+
+function capitalise(string)
+{
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
