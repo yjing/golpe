@@ -69,7 +69,140 @@
         </div>
     </div>
 
-    <div class="span8">
+    <!-- ACTIVITY LOG -->
+
+    <div class="span8" ng-show="selected_a">
+        <div class="menu shadow">
+            <div>
+                <span><h4>{{selected_a.title}}</h4></span>
+            </div>
+            <ul>
+                <li>
+                    <p class="selector">{{selected_a.content}}</p>
+                </li>
+            </ul>
+            <div ng-init="showInfo = false">
+                <a href="#" ng-click="showInfo = !showInfo">
+                    <strong>Info</strong>
+                    <i class="icon-circle-arrow-right" ng-hide="showInfo"></i>
+                    <i class="icon-circle-arrow-down" ng-show="showInfo"></i>
+                </a>
+            </div>
+            <ul ng-show="showInfo">
+                <li>
+                    <span class="selector">
+                        <p><strong>Author:</strong> {{selected_a.user.username}}</p>
+                        <p><strong>Created:</strong> {{selected_a.created_human}}<br></p>
+                        <p><strong>Modified:</strong> {{selected_a.modified_human}}</p>
+                    </span>
+                </li>
+            </ul>
+            <div ng-init="showMedia = false">
+                <a href="#" ng-click="showMedia = !showMedia">
+                    <strong>Media</strong>
+                    <span class="badge"
+                          ng-show="selected_a.media != null && selected_a.media.length > 0;"
+                          style="float: right">
+                        {{selected_a.media.length}}
+                    </span>
+                    <i class="icon-circle-arrow-right" ng-hide="showMedia"></i>
+                    <i class="icon-circle-arrow-down" ng-show="showMedia"></i>
+                </a>
+            </div>
+            <ul>
+                <li ng-show="showMedia && (selected_a.media == null || selected_a.media.length == 0);">
+                    <div class="selector"><em>No Media present...</em></div>
+                </li>
+                <li ng-show="showMedia && (selected_a.media != null && selected_a.media.length > 0);">
+                    <ul class="thumbnails">
+                        <li ng-repeat="m in selected_a.media" class="span3" style="margin: 3px">
+                            <div class="thumbnail clickable">
+                                <img ng-src="/media/download/{{m.id}}?thumb=BIG" alt="{{m.filename}}"
+                                     ng-show="m['content-type'].indexOf('image/') == 0" ng-click="openImage(m.id)">
+
+                                <img ng-src="{{getThumbUrl(m);}}" alt="{{m.filename}}"
+                                     ng-hide="m['content-type'].indexOf('image/') == 0"
+                                     ng-click="download(m['id']);">
+
+                                <p>{{m.filename}}</p>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div ng-init="showComments = false">
+                <a href="#" ng-click="showComments = !showComments">
+                    <strong>Comments</strong>
+                    <span class="badge"
+                          ng-show="selected_a.comments != null && selected_a.comments.length"
+                          style="float: right">
+                        {{selected_a.comments.length}}
+                    </span>
+                    <i class="icon-circle-arrow-right" ng-hide="showComments"></i>
+                    <i class="icon-circle-arrow-down" ng-show="showComments"></i>
+                </a>
+            </div>
+            <ul ng-show="showComments">
+                <li ng-show="showComments && (selected_a.comments == null || selected_a.comments.length == 0);">
+                    <div class="selector"><em>No Comments yet...</em></div>
+                </li>
+                <li ng-repeat="c in selected_a.comments">
+                    <p class="selector"><strong>{{c.user.username}} says:</strong></p>
+
+                    <p class="selector">{{c.content}}</p>
+
+                    <p class="selector"><strong>on:</strong> {{c.modified}}</p>
+                    <ul class="thumbnails">
+                        <li ng-repeat="m in c.media" class="span3" style="margin: 3px">
+                            <div class="thumbnail clickable" class="clickable">
+                                <img ng-src="/media/download/{{m.id}}?thumb=BIG" alt="{{m.filename}}"
+                                     ng-show="m['content-type'].indexOf('image/') == 0" ng-click="openImage(m.id)">
+
+                                <img ng-src="{{getThumbUrl(m);}}" alt="{{m.filename}}"
+                                     ng-hide="m['content-type'].indexOf('image/') == 0"
+                                     ng-click="download(m['id']);">
+
+                                <p>{{m.filename}}</p>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div ng-init="add_comment = false" ng-hide="add_comment">
+                <button ng-disabled="BUSY.busy();" type="submit" class="btn" ng-click="add_comment = true">Comment</button>
+            </div>
+            <div ng-show="add_comment">
+                <form id="formc" class="" target="iframec" action='/comments' method='POST'
+                      enctype='multipart/form-data' style="margin-bottom: 3px;">
+                    <input type="hidden" name="data[Comment][visibility_level]" value="selected_a.visibility_level">
+                    <input type="hidden" name="data[Target][alias]" value="ActivityLog">
+                    <input type="hidden" name="data[Target][id]" value="{{selected_a_id}}">
+                    <div class="control-group">
+                        <div class="controls">
+                            <textarea name='data[Comment][content]' class="edit-field" placeholder="Content" style="border: 1px solid #f4f4f4"></textarea>
+                        </div>
+                    </div>
+                    <div class="control-group" ng-repeat="file in files">
+                        <div class="controls">
+                            <input type='file' name='data[Media][{{$index}}]'>
+                                <span class="btn btn-link" ng-click='removeFile($index);'><button
+                                        class="btn btn-mini btn-warning"><i class="icon-remove"></i></button></span>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls">
+                            <span tabindex="-1" class="btn" ng-click='addFile();'><i class="icon-file"></i> add file</span>
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <button ng-disabled="BUSY.busy();" ng-click="startWatching('iframec');" type="submit" class="btn">Comment
+                        </button>
+                        <button type="button" class="btn" ng-click="resetFormC(); add_comment = false;">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
     </div>
 
 </div>
