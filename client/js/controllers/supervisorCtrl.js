@@ -62,7 +62,7 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
     $scope.selected_u = null;
     $scope.als = [];
     $scope.alsFilter = null;
-    $scope.order = '-toAnswer';
+    $scope.order = ['-toAnswer', '-modified'];
 
     $scope.files = [];
     $scope.addFile = function() {
