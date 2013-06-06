@@ -92,14 +92,14 @@ class NotificationComponent extends Component {
                 );
             }
             
-            debug($associations);die();
-            
             $element = $model->find('first', array(
                 'conditions' => array(
                     $model->alias . '.' . $model->primaryKey => $id
                 ),
                 'associations' => $associations
             ));
+            
+            debug($element);die();
             if($element) {
                 
                 $visibility_level = Set::get($element, "/$model->alias/visibility_level");
