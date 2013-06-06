@@ -54,13 +54,13 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
 //            }
 //        }
     };
-    $scope.setupTopBar();
     $rootScope.userButtonClass = function(){
         return $rootScope.showSt ? 'users-button-active' : '';
     }
     $rootScope.$watch('showSt', function() {
-        $rootScope.top_bar.buttons[0].class = $rootScope.userButtonClass();
+        $scope.setupTopBar();
     })
+    $scope.setupTopBar();
 
     $scope.data = [];
     $scope.selected_u_id = $routeParams.id;
