@@ -55,6 +55,7 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
 //        }
     };
     $scope.setupTopBar();
+    $rootScope.userButtonClass = 'users-button-active';
     $rootScope.$watch('showSt', function() {
         if($rootScope.showSt) {
             $rootScope.userButtonClass = 'users-button-active';
