@@ -55,6 +55,7 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
 //        }
     };
 
+    $scope.userButtonClass = 'shadow';
     $scope.setupTopBar();
 
     $scope.data = [];
@@ -73,7 +74,6 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
             $scope.files.splice(index, 1);
         }
     }
-    $scope.userButtonClass = 'shadow';
 
     auth.user(
         function (user) {
