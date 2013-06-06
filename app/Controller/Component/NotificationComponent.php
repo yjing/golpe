@@ -171,10 +171,8 @@ class NotificationComponent extends Component {
         $user = $this->Session->read("Auth.User");
         if($user['role'] == 'SUPERVISOR') {
             if($visibility_level == 'SUPERVISOR') {
-                debug("SUP");
                 $student_id = Set::get($element, "/Comment/ActivityLog/User/id");
-                debug($student_id);
-                if(isset($supervisor_id)) {
+                if(isset($student_id)) {
                     $ret[] = $student_id;
                 }
             } else if ($visibility_level == 'TEAM') {
