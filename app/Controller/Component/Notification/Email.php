@@ -64,7 +64,7 @@ class Email implements NotificationProvider {
             $type = $value['Notification']['type'];
             $resource = urldecode($value['Notification']['resource']);
             $message = $value['Notification']['message'];
-            $inset .= "<a href='http://msc.cloudapp.net/client/resolve?res=$resource'>[ $type: $message ]</a><br>\n";
+            $inset .= "<a href='http://msc.cloudapp.net/client/resolve/$resource'>[ $type: $message ]</a><br>\n";
         }
         $inset .= "</p>";
         
