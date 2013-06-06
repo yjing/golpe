@@ -140,8 +140,6 @@ class NotificationComponent extends Component {
     private function generateRecipients($element, $model){
         $ret = array();
         $visibility_level = Set::get($element, "/$model->alias/visibility_level");
-        debug($element);
-        debug($visibility_level);die();
         if(in_array($visibility_level, array('SUPERVISOR', 'TEAM'))) {
             $supervisor_id = Set::get($element, "/$model->alias/User/Supervisor/id");
             if(isset($supervisor_id)) {
