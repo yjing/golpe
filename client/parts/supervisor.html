@@ -27,7 +27,7 @@
             </div>
             <ul>
                 <li ng-repeat="item in als | filter:alsFilter | orderBy:order" ng-class="selected(item.id)">
-                    <a href="#" ng-click="go(selected_u_id, item.id);">
+                    <a href="#" ng-click="go(item.user_id, item.id);">
                         <span class="label label-important" ng-show="item.question == true">Q<span ng-show="item.toAnswer">:ANSWER!!</span></span>
                         {{item.title}}<br>
                         <small>
