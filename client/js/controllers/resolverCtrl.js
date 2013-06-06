@@ -6,15 +6,18 @@ function ResolverCtrl($rootScope, $location, auth, $routeParams){
                 $location.url('/client/login');
             }
 
-            var res = $routeParams.res;
-            console.log(res);
+            var url = '/client/'
             if(user.role == 'SUPERVISOR') {
-                console.log('SU');
-//                    $location.url('/client/supervisor');
+                url += 'student/'
             } else {
-                console.log('ST');
-//                    $location.url('/client/student');
+                url += 'supervisor/'
             }
+
+            var res = $routeParams.res;
+            var res_id = res.lastIndexOf('ActivityLog:') + 'ActivityLog:'.length;
+            res_id = res.substr(res_id);
+            $location.url(url + res_id);
+
         }, true
     );
 }
