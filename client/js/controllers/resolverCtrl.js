@@ -1,8 +1,11 @@
 function ResolverCtrl($rootScope, $location, auth, $routeParams){
     auth.user(
         function (user){
-            console.log(user);
-            console.log($rootScope.user);
+            if(angular.isUndefined(user) || user == null) {
+                $rootScope.redirectAfterLogin = $location.url();
+                $location.url('/client/login');
+            }
+
             var res = $routeParams.res;
             console.log(res);
             if(user.User.role == 'SUPERVISOR') {
