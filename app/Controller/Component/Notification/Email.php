@@ -29,6 +29,8 @@ class Email implements NotificationProvider {
         
         $this->User = new User();
         
+        debug($user_notifications);die();
+        
         $this->_sendUserNotifications($user_notifications);
         $this->_sendPabilcNotifications($public_notifications);
         
@@ -57,9 +59,11 @@ class Email implements NotificationProvider {
         
         $inset = "<p class='lead'>There's some news for you: </p><p>";
         foreach ($notifications as $key => $value) {
-            $resource = split(':', $value['Notification']['resource']);
-            $message = $value['Notification']['message'];
-            $inset .= "<a href='http://mscazure.dyndns.org/client/al/$resource[1]'>[ $message ]</a><br>\n";
+            if($value['Notification']['type'] == 'ActivityLog') {
+                $resource = split(':', $value['Notification']['resource']);
+                $message = $value['Notification']['message'];
+                $inset .= "<a href='http://msc.cloudapp.net/client/resolve/$resource[1]'>[ $message ]</a><br>\n";
+            }
         }
         $inset .= "</p>";
         
