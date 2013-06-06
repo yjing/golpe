@@ -42,4 +42,6 @@ div.image-shower div.modal-body > img {
 /* USERS BUTTON */
 .users-button-active {
     background-color: #bebebe;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
 }
