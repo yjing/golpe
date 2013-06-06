@@ -39,7 +39,7 @@ class NotificationComponent extends Component {
                     'conditions' => array('Notification.created >' => $last_notification_t),
                     'recursive' => -1
                 ));
-        debug($result);die();
+                
                 $count = count($result);
                 if($count > 0) {
 
@@ -140,6 +140,7 @@ class NotificationComponent extends Component {
     private function generateRecipients($element, $model){
         $ret = array();
         $visibility_level = Set::get($element, "/$model->alias/visibility_level");
+        debug($visibility_level);die();
         if(in_array($visibility_level, array('SUPERVISOR', 'TEAM'))) {
             $supervisor_id = Set::get($element, "/$model->alias/User/Supervisor/id");
             if(isset($supervisor_id)) {
