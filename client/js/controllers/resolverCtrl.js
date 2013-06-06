@@ -11,6 +11,6 @@ function ResolverCtrl($rootScope, $location, auth, $routeParams){
                 console.log('ST');
 //                    $location.url('/client/student');
             }
-        }
+        }, true
     );
 }
