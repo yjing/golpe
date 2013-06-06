@@ -9,10 +9,10 @@ function ResolverCtrl($location, $routeParams){
                 console.log(res);
                 if(user.role == 'SUPERVISOR') {
                     console.log('SU');
-                    $location.url('/client/supervisor');
+//                    $location.url('/client/supervisor');
                 } else {
                     console.log('ST');
-                    $location.url('/client/student');
+//                    $location.url('/client/student');
                 }
             }
         }
