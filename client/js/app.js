@@ -51,6 +51,10 @@ var app = angular.module('mscproject', [ 'ngResource', 'ui.bootstrap'],function 
         templateUrl:'/client/parts/users.html',
         controller:"UsersCtrl"
     });
+    $routeProvider.when('/client/resolve?res=:res', {
+//        templateUrl:'/client/parts/users.html',
+        controller:"ResolverCtrl"
+    });
     $routeProvider.otherwise({redirectTo:'/client/login'});
 
     // configure html5 to get links working
