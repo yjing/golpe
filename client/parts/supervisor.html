@@ -1,13 +1,16 @@
+<iframe style="position: fixed; display: block; width: 0px; height: 0px; visibility: hidden; right: 0;" id="iframec"
+        name="iframec">
+</iframe>
 <div class="row-fluid content">
 
+    <div class="image-shower" modal="imageIsOpen" close="closeImage()" options="optsImage">
+        <div class="modal-body clickable">
+            <img ng-src="/media/download/{{imageID}}" ng-click="download(imageID);">
+        </div>
+    </div>
+
     <div class="span4">
-        <!--<div class="menu shadow">-->
-            <!--<div>-->
-                <!--mob:{{isMobile}}<br>-->
-                <!--st:{{selected_u_id}}<br>-->
-                <!--al:{{selected_a_id}}<br>-->
-            <!--</div>-->
-        <!--</div>-->
+
         <div class="menu shadow" ng-show="showSt">
             <div></div>
             <ul>
