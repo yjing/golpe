@@ -188,7 +188,7 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
 
                 als.all(
                     true, // RELOAD
-                    $rootScope.mode, // MODE
+                    null, // MODE
                     function (d, h) {                // SUCCESS
                         $scope.data = database.select('als',[ {field:'modes',value:$rootScope.mode} ],3);
                     }
@@ -196,16 +196,13 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
 
                 if(iframe_id == 'iframec') {
                     als.get(
-                        $scope.selected_al_id,
+                        $scope.selected_a_id,
                         function (datum, h) {    // SUCCESS
-                            $scope.selected_al = database.select('als', [ {field:'id',value:$scope.selected_al_id} ], 2)[0];
+                            $scope.selected_a = database.select('als', [ {field:'id',value:$scope.selected_a_id} ], 2)[0];
                             $scope.add_comment = false;
-//                            document.getElementById('formc').reset();
                             $scope.resetFormC();
                         }
                     );
-                } else {
-                    $scope.go();
                 }
 
             }
