@@ -8,7 +8,7 @@ function ResolverCtrl($rootScope, $location, auth, $routeParams){
 
             var res = $routeParams.res;
             console.log(res);
-            if(user.User.role == 'SUPERVISOR') {
+            if(user.role == 'SUPERVISOR') {
                 console.log('SU');
 //                    $location.url('/client/supervisor');
             } else {
