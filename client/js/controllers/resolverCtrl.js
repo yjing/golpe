@@ -2,7 +2,7 @@ function ResolverCtrl($rootScope, $location, auth, $routeParams){
     auth.user(
         function (user){
             console.log(user);
-            if(user != null) {
+            if(angular.isUndefined(user) || user != null) {
                 $rootScope.redirectUser();
             } else {
                 var res = $routeParams.res;
