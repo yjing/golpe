@@ -15,7 +15,7 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
         };
 
 
-        if($scope.selected_a_id != null) {
+        if($scope.selected_a_id != null && $rootScope.isMobile) {
             $rootScope.top_bar.page_title = "Activity Log";
             $rootScope.top_bar.back_button = {
                 icon: 'icon-chevron-left',
