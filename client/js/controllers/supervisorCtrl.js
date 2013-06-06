@@ -19,7 +19,7 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
             $rootScope.top_bar.page_title = "Activity Log";
             $rootScope.top_bar.back_button = {
                 icon: 'icon-chevron-left',
-                func: function(){ $scope.go(); }
+                func: function(){ $scope.go($scope.selected_u_id); }
             }
             return;
         }
