@@ -123,6 +123,7 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
                     als[i].comments[j].toAnswer = toAnswer;
                 }
             }
+            return als;
         }
     };
 
