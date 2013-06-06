@@ -52,7 +52,9 @@ class CommentsController extends RESTController {
             $data = Set::remove($this->request->data, 'Comment.id');
 
             if($this->Comment->save($data)) {
-                $this->_setResponseJSON( $this->getDafaultFormattedComment($this->Comment->id) );
+                $result = $this->getDafaultFormattedComment($this->Comment->id);
+                $this->Notification->createNotification('Comment', $result['Comment']['id']);
+                $this->_setResponseJSON( $result );
             } else {
                 if(count($this->Comment->validationErrors) > 0) {
                     $this->_ReportDataValidationErrors($this->Comment->validationErrors);
