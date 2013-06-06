@@ -1,4 +1,4 @@
-function ResolverCtrl(auth, $location, $routeParams){
+function ResolverCtrl($rootScope, $location, auth, $routeParams){
     auth.user(
         function (user){
             if(user != null) {
