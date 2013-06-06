@@ -190,7 +190,7 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
                     true, // RELOAD
                     null, // MODE
                     function (d, h) {                // SUCCESS
-                        $scope.data = database.select('als',[ {field:'modes',value:$rootScope.mode} ],3);
+                        $scope.als = database.select('als',[ {field:'modes',value:$rootScope.mode} ],3);
                     }
                 );
 
