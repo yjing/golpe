@@ -10,7 +10,7 @@ use WindowsAzure\Blob\Models;
 use WindowsAzure\Blob\Models\CreateBlobOptions;
 
 class UploaderShell extends AppShell {
-    private static $connectionString = Configure::read("APPCONFIG.AzureConnectionString"));
+    private static $connectionString = Configure::read("APPCONFIG.AzureConnectionString");
     debug($connectionString);
     //private static $connectionString = 'DefaultEndpointsProtocol=http;AccountName=portalvhds6cy79yt8ky5b5;AccountKey=XxNdzdygZNwLJ3E7uvNTp00D8fQHftypaN0njds2+ZGBmcJAbiVPZ78ktwebQBi0gayqL5894FJulm7wpd2e5Q==';
     //private static $connectionString = 'DefaultEndpointsProtocol=http;AccountName=mscproject;AccountKey=kDb7vEfCwC56US6nOQgPzUgPkW511tgpf4spyuzd4f0LHnmoMXSq40Fjys6+vaK+n93hADHoRBpovkD6gQfMxg==';
