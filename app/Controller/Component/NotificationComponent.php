@@ -124,12 +124,8 @@ class NotificationComponent extends Component {
                             $notification['Notification']['resource'] = "Comment:$res_id";
                             $notification['Notification']['message'] = Set::get($element, "/Comment/content");
                             $notification['Notification']['priority'] = false;
-    //                        $notification['Notification']['priority'] = Set::get($element, "/ActivityLog/question") == true;
-
                             break;
                     }
-
-                    debug($notification);
                     
                     $Notification = $this->getModel('Notification');
                     $Notification->save($notification);

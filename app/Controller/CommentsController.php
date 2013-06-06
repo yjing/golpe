@@ -5,7 +5,7 @@ App::import('Controller', 'REST');
 class CommentsController extends RESTController {
 
     public $uses = array('Comment', 'ActivityLog');
-    public $components = array('LogActions');
+    public $components = array('LogActions', 'Notification');
     
     public function index() {
         parent::index();
