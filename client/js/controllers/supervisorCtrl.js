@@ -5,7 +5,7 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
         $rootScope.top_bar = {
             page_title:'Students',
             buttons: [
-                { icon:'icon-user', func:function(){ $scope.showSt = !$scope.showSt } }
+                { icon:'icon-user', func:function(){ $rootScope.showSt = !$rootScope.showSt } }
             ],
             main_menu_items:[
                 { type:'item', label:'Logout', icon:'icon-lock', func:$rootScope.logout },
@@ -62,7 +62,6 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
     $scope.selected_u = null;
     $scope.als = [];
     $scope.alsFilter = null;
-    $scope.showSt = true;
 
     $scope.files = [];
     $scope.addFile = function() {
