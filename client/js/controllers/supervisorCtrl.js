@@ -31,28 +31,6 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
             }
             return;
         }
-
-//        var baseTitle = "Activity Logs - ";
-//        $rootScope.top_bar.title_menu = [];
-//
-//        for (var i = 0; i < $rootScope.modes.modes.length; i++) {
-//            var mode = $rootScope.modes.modes[i];
-//            var manuLabel = baseTitle + angular.uppercase(mode);
-//
-//            if(mode == $rootScope.mode) {
-//                $rootScope.top_bar.page_title = manuLabel;
-//            } else {
-//                var modeSelector = function(elem){
-//                    $rootScope.mode = elem.func.mode;
-//                    $scope.setupTopBar();
-//                };
-//                modeSelector.mode = mode;
-//                $rootScope.top_bar.title_menu.push({
-//                    label: manuLabel,
-//                    func: modeSelector
-//                });
-//            }
-//        }
     };
     $rootScope.userButtonClass = function(){
         return $rootScope.showSt ? 'users-button-active' : '';
@@ -65,7 +43,10 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
     $scope.data = [];
     $scope.selected_u_id = $routeParams.id;
     $scope.selected_u = null;
+
     $scope.als = [];
+    $scope.selected_a = null;
+    $scope.selected_a_id = $routeParams.alid;
     $scope.alsFilter = null;
     $scope.order = ['-toAnswer', '-modified'];
 

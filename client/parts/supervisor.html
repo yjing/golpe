@@ -3,7 +3,13 @@
     <div class="span4">
         <div class="menu shadow" ng-show="showSt">
             <div>
+                mob:{{isMobile}}<br>
+                st:{{selected_u_id}}<br>
+                al:{{selected_a_id}}<br>
             </div>
+        </div>
+        <div class="menu shadow" ng-show="showSt">
+            <div></div>
             <ul>
                 <li>
                     <input type="text" placeholder="Filter Students..." class="edit-field" ng-model="searchText">
