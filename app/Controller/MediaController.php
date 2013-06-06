@@ -68,7 +68,9 @@ class MediaController extends RESTController {
             }
             
             if($result['Media']['status']=="AVAILABLE") {
-                $connectionString = 'DefaultEndpointsProtocol=http;AccountName=mscproject;AccountKey=kDb7vEfCwC56US6nOQgPzUgPkW511tgpf4spyuzd4f0LHnmoMXSq40Fjys6+vaK+n93hADHoRBpovkD6gQfMxg==';
+            	
+                $connectionString = Configure::read("APPCONFIG.AzureConnectionString"));
+                //$connectionString = 'DefaultEndpointsProtocol=http;AccountName=mscproject;AccountKey=kDb7vEfCwC56US6nOQgPzUgPkW511tgpf4spyuzd4f0LHnmoMXSq40Fjys6+vaK+n93hADHoRBpovkD6gQfMxg==';
                 $blobRestProxy = ServicesBuilder::getInstance()->createBlobService($connectionString);
                 
                 try {
