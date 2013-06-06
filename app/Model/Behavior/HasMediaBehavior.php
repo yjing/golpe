@@ -84,7 +84,6 @@ class HasMediaBehavior extends ModelBehavior {
             if($created) {
                 $has_media_obj_id = $has_media_obj['id'];
             } else {
-//                $model->read();
                 $has_media_obj_id = $model->id;
             }
            
@@ -96,6 +95,7 @@ class HasMediaBehavior extends ModelBehavior {
             $media_saved = true;
             foreach ($model->data[HasMediaBehavior::$MediaModelName] as $key => $value) {
                 // DO NOT CONSIDER 'EMPTY' MEDIA
+                debug($value);die();
                 if($value['location'] == null || count($value['location']) == 0) {
                     continue;
                 }
