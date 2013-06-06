@@ -7,6 +7,7 @@ function ResolverCtrl($rootScope, $location, auth, $routeParams){
             }
 
             var url = '/client/'
+            console.log(user);
             if(user.role == 'SUPERVISOR') {
                 url += 'student/'
             } else {
