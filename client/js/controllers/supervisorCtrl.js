@@ -119,8 +119,8 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
                         } else {
                             toAnswer = false;
                         }
-                        als[i].comments[j].toAnswer = toAnswer;
                     }
+                    als[i].toAnswer = toAnswer;
                 }
             }
             return als;
