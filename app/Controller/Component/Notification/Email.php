@@ -55,6 +55,10 @@ class Email implements NotificationProvider {
     
     private function _sendEmail($emails, $notifications, $subject = "Notifications") {
         
+        if(!isset($notifications) || count($notifications) == 0) {
+            return;
+        }
+        
         $inset = "<p class='lead'>There's some news for you: </p><p>";
         foreach ($notifications as $key => $value) {
             $resource = urldecode($value['Notification']['resource']);
