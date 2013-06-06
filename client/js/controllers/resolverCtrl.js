@@ -2,6 +2,7 @@ function ResolverCtrl($rootScope, $location, auth, $routeParams){
     auth.user(
         function (user){
             console.log(user);
+            console.log($rootScope.user);
             var res = $routeParams.res;
             console.log(res);
             if(user.User.role == 'SUPERVISOR') {
