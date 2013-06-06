@@ -92,7 +92,7 @@ Configure::write("APPCONFIG", array(
     'notification' => array(
         'providers' => array(
             'Email'=>array(
-                'time_lapse' => 30*60
+                'time_lapse' => 0.25*60 // seconds
             ),
 //            'Android'=>array(
 //                'time_lapse' => 60
