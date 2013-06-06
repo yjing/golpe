@@ -90,7 +90,7 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
                         });
                     }
                     if(angular.isDefined($scope.selected_a_id)) {
-                        als.load(
+                        als.get(
                             $scope.selected_a_id,
                             function(d, h) {    // SUCCESS
                                 $scope.selected_a = database.select('als', [ {field:'id', value:$scope.selected_a_id} ], 3);
