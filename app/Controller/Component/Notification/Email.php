@@ -67,19 +67,19 @@ class Email implements NotificationProvider {
         
         $email_body = str_replace('##BODY##', $inset, Email::$email_template);
         
-        debug($email_body);die();
+        debug($email_body);
         
-        $Email = new CakeEmail();
-        try {
-            $Email->from(array('notifier@msc.cloudapp.net' => 'MSCProject Notifier'))
-                ->to('notifier@msc.cloudapp.net')
-                ->bcc($emails)
-                ->subject($subject)
-                ->emailFormat('html')
-                ->send($email_body);
-        } catch (Exception $e) {
-            
-        }
+//        $Email = new CakeEmail();
+//        try {
+//            $Email->from(array('notifier@msc.cloudapp.net' => 'MSCProject Notifier'))
+//                ->to('notifier@msc.cloudapp.net')
+//                ->bcc($emails)
+//                ->subject($subject)
+//                ->emailFormat('html')
+//                ->send($email_body);
+//        } catch (Exception $e) {
+//            
+//        }
     }
     
     private static $email_template = '
