@@ -31,8 +31,8 @@
             <ul>
                 <li ng-repeat="item in als | filter:alsFilter | orderBy:order" ng-class="selected(item.id)">
                     <a href="#" ng-click="go(item.id);">
-                        <span class="label label-important" ng-show="item.question == true">Q<span ng-hide="item.toAnswer">:ANSWER!!</span></span>
-                        {{item.title}} <i ng-show="isEditElem(p.id)" class="icon-pencil"></i><br>
+                        <span class="label label-important" ng-show="item.question == true">Q<span ng-show="item.toAnswer">:ANSWER!!</span></span>
+                        {{item.title}} {{item.toAnsware}}<br>
                         <small>
                             <em>{{item.modified_human}}</em> <strong>by:</strong> {{item.user.username}}
                             <span class="label label-info"
