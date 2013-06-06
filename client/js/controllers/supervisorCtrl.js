@@ -131,10 +131,13 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
         }
     };
 
-    $scope.go = function (id) {
+    $scope.go = function (id, al_id) {
         var url = '/client/supervisor';
         if (angular.isDefined(id)) {
             url += '/' + id;
+        }
+        if (angular.isDefined(al_id)) {
+            url += '/' + al_id;
         }
         $location.url(url);
     };
