@@ -1,12 +1,10 @@
-function ResolverCtrl($location, $routeParams){
-    console.log('RESOLVER1');
+function ResolverCtrl(auth, $location, $routeParams){
     auth.user(
         function (user){
             if(user != null) {
-                console.log('RESOLVER2');
-//                $rootScope.redirectUser();
+                $rootScope.redirectUser();
             } else {
-                console.log('RESOLVER3');
+                console.log(user);
                 var res = $routeParams.res;
                 console.log(res);
                 if(user.role == 'SUPERVISOR') {
