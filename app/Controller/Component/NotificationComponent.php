@@ -113,7 +113,7 @@ class NotificationComponent extends Component {
                 'associations' => $associations
             ));
             
-            debug($element);die();
+            debug($element);
             if($element) {
                 
                 $visibility_level = Set::get($element, "/$model->alias/visibility_level");
@@ -124,6 +124,7 @@ class NotificationComponent extends Component {
                     if($visibility_level != 'PUBLIC') {
                         $recipients = $this->generateRecipients($element, $model);
                     }
+                    debug($recipients);die();
 
                     $notification = array(
                         'Notification' => array(
@@ -164,18 +165,37 @@ class NotificationComponent extends Component {
     private function generateRecipients($element, $model){
         $ret = array();
         $visibility_level = Set::get($element, "/$model->alias/visibility_level");
-        if(in_array($visibility_level, array('SUPERVISOR', 'TEAM'))) {
-            $supervisor_id = Set::get($element, "/$model->alias/User/Supervisor/id");
-            if(isset($supervisor_id)) {
-                $ret[] = $supervisor_id;
+        
+        // Get the LOGGED USER
+        $this->Session = new SessionComponent(new ComponentCollection());
+        $user = $this->Session->read("Auth.User");
+        if($user['role'] == 'SUPERVISOR') {
+            if($visibility_level == 'SUPERVISOR') {
+                $student_id = Set::get($element, "/Comment/ActivityLog/User/id");
+                if(isset($supervisor_id)) {
+                    $ret[] = $student_id;
+                }
+            } else if ($visibility_level == 'TEAM') {
+                $team_members = Set::extract($element, "/Comment/ActivityLog/User/Team/Student/id");
+                if(isset($team_members)) {
+                    $ret = array_merge($ret, $team_members);
+                }
+            }
+        } else if($user['role'] == 'STUDENT') {
+            if(in_array($visibility_level, array('SUPERVISOR', 'TEAM'))) {
+                $supervisor_id = Set::get($element, "/$model->alias/User/Supervisor/id");
+                if(isset($supervisor_id)) {
+                    $ret[] = $supervisor_id;
+                }
+            }
+            if($visibility_level == 'TEAM') {
+                $team_members = Set::extract($element, "/$model->alias/User/Team/Student/id");
+                if(isset($team_members)) {
+                    $ret = array_merge($ret, $team_members);
+                }
             }
         }
-        if($visibility_level == 'TEAM') {
-            $team_members = Set::extract($element, "/$model->alias/User/Team/Student/id");
-            if(isset($team_members)) {
-                $ret = array_merge($ret, $team_members);
-            }
-        }
+        
         return $ret;
     }
 
