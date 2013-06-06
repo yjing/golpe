@@ -12,9 +12,6 @@
                     <a href="#" ng-click="go(u.id);">{{u.username}}
                         <i ng-show="isEditUser(u.id)" class="icon-pencil"></i>
                     </a>
-                    <div class="functions" ng-show="selected_u_id == u.id" ng-init="delete_u = false; edit_u = false;">
-                        <button class="btn-link function" ng-click="delete_u = true;" ng-hide="delete_u || edit_u"><i class="icon-remove"></i></button>
-                    </div>
                 </li>
             </ul>
             <div>
@@ -30,9 +27,9 @@
             </div>
             <ul>
                 <li ng-repeat="item in als | filter:alsFilter | orderBy:order" ng-class="selected(item.id)">
-                    <a href="#" ng-click="go(item.id);">
+                    <a href="#" ng-click="go(selected_u_id, item.id);">
                         <span class="label label-important" ng-show="item.question == true">Q<span ng-show="item.toAnswer">:ANSWER!!</span></span>
-                        {{item.title}} {{item.toAnsware}}<br>
+                        {{item.title}}<br>
                         <small>
                             <em>{{item.modified_human}}</em> <strong>by:</strong> {{item.user.username}}
                             <span class="label label-info"
