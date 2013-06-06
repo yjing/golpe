@@ -29,8 +29,6 @@ class Email implements NotificationProvider {
         
         $this->User = new User();
         
-        debug($user_notifications);die();
-        
         $this->_sendUserNotifications($user_notifications);
         $this->_sendPabilcNotifications($public_notifications);
         
@@ -60,19 +58,21 @@ class Email implements NotificationProvider {
         $inset = "<p class='lead'>There's some news for you: </p><p>";
         foreach ($notifications as $key => $value) {
             if($value['Notification']['type'] == 'ActivityLog') {
-                $resource = split(':', $value['Notification']['resource']);
+                $resource = urldecode($value['Notification']['resource']);
                 $message = $value['Notification']['message'];
-                $inset .= "<a href='http://msc.cloudapp.net/client/resolve/$resource[1]'>[ $message ]</a><br>\n";
+                $inset .= "<a href='http://msc.cloudapp.net/client/resolve?res=$resource'>[ $message ]</a><br>\n";
             }
         }
         $inset .= "</p>";
         
         $email_body = str_replace('##BODY##', $inset, Email::$email_template);
         
+        debug($email_body);die();
+        
         $Email = new CakeEmail();
         try {
-            $Email->from(array('notifier@mscazure.dyndns.org' => 'MSCProject Notifier'))
-                ->to('notifier@mscazure.dyndns.org')
+            $Email->from(array('notifier@msc.cloudapp.net' => 'MSCProject Notifier'))
+                ->to('notifier@msc.cloudapp.net')
                 ->bcc($emails)
                 ->subject($subject)
                 ->emailFormat('html')
