@@ -38,3 +38,8 @@ div.image-shower div.modal-body {
 div.image-shower div.modal-body > img {
     width: 100%;
 }
+
+/* USERS BUTTON */
+.users-button-active {
+    background-color: #bebebe;
+}

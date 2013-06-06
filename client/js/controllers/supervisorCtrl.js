@@ -55,7 +55,7 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
 //        }
     };
 
-    $rootScope.userButtonClass = 'shadow';
+    $rootScope.userButtonClass = 'users-button-active';
     $scope.setupTopBar();
 
     $scope.data = [];
