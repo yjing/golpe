@@ -72,23 +72,33 @@ class NotificationComponent extends Component {
         
         $model = $this->getModel($type);
         if(isset($model->belongsTo['User'])){
-            $element = $model->find('first', array(
-                'conditions' => array(
-                    $model->alias . '.' . $model->primaryKey => $id
-                ),
-                'associations' => array(
-                    'User' => array(
-                        'associations' => array(
-                            'Supervisor' => array("unArray_if_single_value"),
-                            'Team' => array(
-                                "unArray_if_single_value",
-                                'associations' => array(
-                                    'Student'
-                                )
+            $associations = array(
+                'User' => array(
+                    'associations' => array(
+                        'Supervisor' => array("unArray_if_single_value"),
+                        'Team' => array(
+                            "unArray_if_single_value",
+                            'associations' => array(
+                                'Student'
                             )
                         )
                     )
                 )
+            );
+            if($type == 'Comment') {
+                $associations['ActivityLog'] = array(
+                    'fields' => array('id'),
+                    'associations' => array( 'User' )
+                );
+            }
+            
+            debug($associations);die();
+            
+            $element = $model->find('first', array(
+                'conditions' => array(
+                    $model->alias . '.' . $model->primaryKey => $id
+                ),
+                'associations' => $associations
             ));
             if($element) {
                 
