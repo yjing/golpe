@@ -115,9 +115,9 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
                     var toAnswer = true;
                     for (var j = 0; j < als[i].comments.length; j++) {
                         if(als[i].comments[j].user_id == $rootScope.user.id) {
-                            toAnswer = true
-                        } else {
                             toAnswer = false;
+                        } else {
+                            toAnswer = true;
                         }
                     }
                     als[i].toAnswer = toAnswer;
