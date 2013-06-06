@@ -2,7 +2,7 @@ function LoginCtrl($scope, $rootScope, $location, auth){
 
     auth.user(
         function (user){
-            if(user != null) {
+            if(angular.isUndefined(user) || user != null) {
                 $rootScope.redirectUser();
             }
         },
