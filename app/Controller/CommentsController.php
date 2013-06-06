@@ -53,6 +53,10 @@ class CommentsController extends RESTController {
 
             if($this->Comment->save($data)) {
                 $result = $this->getDafaultFormattedComment($this->Comment->id);
+                
+                debug($result['Comment']['id'] 
+                        . ':' . $result['Comment']['ActivityLog'][0]['id']);
+                
                 $this->Notification->createNotification('Comment', $result['Comment']['id'] 
                         . ':' . $result['Comment']['ActivityLog'][0]['id']);
                 $this->_setResponseJSON( $result );
