@@ -3,7 +3,7 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
     $scope.setupTopBar = function () {
 
         $rootScope.top_bar = {
-            page_title:'Students',
+            page_title:'All Students Logs',
             buttons: [
                 { icon:'icon-user', class: $rootScope.userButtonClass(), func:function(){ $rootScope.showSt = !$rootScope.showSt } }
             ],
@@ -26,7 +26,7 @@ function SupervisorCtrl($scope, $rootScope, $routeParams, $location, auth, als, 
 
         if($scope.selected_u_id != null) {
             var user = database.select('users', [ {field:'id',value:$scope.selected_u_id} ], 0)[0];
-            $rootScope.top_bar.page_title = "Student - " + user.username;
+            $rootScope.top_bar.page_title = user.username + " Logs";
             $rootScope.top_bar.back_button = {
                 icon: 'icon-chevron-left',
                 func: function(){ $scope.go(); }
