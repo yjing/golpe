@@ -21,6 +21,10 @@ app.service('resources', function($resource){
         logout:{
             method:'GET',
             url:'/users/logout'
+        },
+        assignSupervisor: {
+            method:'POST',
+            url:'/users/assignSupervisor/:uid/:sid'
         }
     });
 

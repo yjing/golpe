@@ -93,13 +93,15 @@ function UsersCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth, d
         $scope.edit_u = false;
     };
 
-//    $scope.supervisors = function () {
-//        return database.select('users', [ {field:'role', value:'SUPERVISOR'} ], 0);
-//    };
-
     $scope.assignS = function (sup) {
-        console.log($scope.selected_u_id);
-        console.log($scope.sup);
+        if(angular.isDefined(sup) && sup != null) {
+            users.assignSupervisor(
+                function(d, h) {    // SUCCESS
+                    $scope.selected_u = database.select('users', [ {field:'id',value:$scope.selected_u_id} ], 3)[0];
+                    $scope.assigningSupervisor = false;
+                }
+            );
+        }
     };
 
 }

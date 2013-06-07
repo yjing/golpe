@@ -140,4 +140,27 @@ app.factory('users_db',function (database) {
             );
         }
 
+        this.assignSupervisor = function(u_id, s_id, success, error){
+            busy.busy(true);
+            resources.Users.assignSupervisor(
+                { uid:u_id, sid:s_id }, //PARAMS
+                {}, //DATA
+                function (d, h) {
+                    busy.busy(false);
+
+                    users_db.insertUser(d['User']);
+
+                    if(angular.isDefined(success)) {
+                        success(d, h);
+                    }
+                },
+                function (e) {
+                    busy.busy(false);
+                    if(!$rootScope.handleError(e) && angular.isDefined(error)) {
+                        error(e);
+                    }
+                }
+            );
+        }
+
     });
