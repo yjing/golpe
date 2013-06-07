@@ -73,7 +73,7 @@
                                 <span ng-show="assigningSupervisor">
                                     [
                                         <select ng-model="sup">
-                                            <option ng-repeat="s in supervisors">{{s.username}}</option>
+                                            <option ng-repeat="s in supervisors" value="{{s.id}}">{{s.username}}</option>
                                         </select>
                                         <button type="button" class="btn" ng-click="assignS(sup);">Assign</button>
                                         <button type="button" class="btn" ng-click="assigningSupervisor = false">Cancel</button>
