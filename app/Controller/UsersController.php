@@ -186,7 +186,6 @@ class UsersController extends RESTController {
     
     public function assignSupervisor($u_id = null, $s_id = null) {
         if($u_id == null || $s_id == null) {
-            debug("IDS = NULL");
             throw new BadRequestException();
         }
         $student = $this->User->find('first', array(
@@ -201,14 +200,13 @@ class UsersController extends RESTController {
             'recursive' => -1
         ));
         if($student == null || $sup == null) {
-            debug("SOMEONE NOT EXISTS");
+            throw new BadRequestException();
+        }
+        if($sup['User']['role'] != 'SUPERVISOR') {
             throw new BadRequestException();
         }
         
-        debug($student);
         $existing = $student['User']['Supervisor'];
-        debug("EXISTING");
-        debug($existing);
         if($existing && count($existing) >0 ) {
             $query = "update students_supervisors set supervisor_id = $s_id where student_id = $u_id";
             $result = $this->User->query($query);
@@ -220,7 +218,6 @@ class UsersController extends RESTController {
             $result = $this->getDafaultFormattedUser($u_id);
             $this->_setResponseJSON($result);
         } else {
-            debug("NO RESULT");
             throw new BadRequestException();
         }
     }
