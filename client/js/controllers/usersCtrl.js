@@ -47,6 +47,7 @@ function UsersCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth, d
             function(d, h) {     // SUCCESS
                 $scope.data = database.select('users', [], 3);
                 $scope.supervisors = database.select('users', [ {field:'role', value:'SUPERVISOR'} ], 1);
+                console.log(database.select('users', [ ], 1));
             }
         );
     };
