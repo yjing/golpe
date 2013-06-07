@@ -59,13 +59,15 @@
                         <dt><strong>Role:</strong></dt>
                         <dd>{{selected_u.role}}</dd>
                         <div ng-show="selected_u.role == 'STUDENT'">
+                            <form class="form-inline" ng-submit="">
                             <dt><strong>Supervisor:</strong></dt>
-                            <dd ng-show="selected_u.supervisor != null">
-                                {{selected_u.supervisor.username}}
-                            </dd>
-                            <form class="form-inline">
-                            <dd ng-hide="selected_u.supervisor != null">
-                                not assigned
+                                <dd ng-show="selected_u.supervisor != null">
+                                    {{selected_u.supervisor.username}}
+                                </dd>
+                                <dd ng-hide="selected_u.supervisor != null">
+                                    not assigned
+                                </dd>
+                                <span ng-show="selected_u.supervisor != null && !assigningSupervisor">[ <a href="#" ng-click="assigningSupervisor = true">Change Supervisor</a> ]</span>
                                 <span ng-hide="assigningSupervisor">[ <a href="#" ng-click="assigningSupervisor = true">Assign Supervisor</a> ]</span>
                                 <span ng-show="assigningSupervisor">
                                     [
@@ -76,7 +78,6 @@
                                         <button type="button" class="btn" ng-click="assigningSupervisor = false">Cancel</button>
                                     ]
                                 </span>
-                            </dd>
                             </form>
                         </div>
                     </dl>
