@@ -64,7 +64,18 @@
                                 {{selected_u.supervisor.username}}
                             </dd>
                             <dd ng-hide="selected_u.supervisor != null">
-                                not assigned [ <a href="#" ng-click="assignSupervisor()">Assign Supervisor</a> ]
+                                not assigned
+                                <span ng-hide="assigningSupervisor">[ <a href="#" ng-click="assigningSupervisor = true">Assign Supervisor</a> ]</span>
+                                <span ng-show="assigningSupervisor">
+                                    [
+                                    <select>
+                                        <option>Select</option>
+                                        <option ng-repeat="s in supervisors">{{s.username}}</option>
+                                    </select>
+                                    <button type="button" class="btn" ng-click="assignS();">Assign</button>
+                                    <button type="button" class="btn" ng-click="assigningSupervisor = false">Cancel</button>
+                                    ]
+                                </span>
                             </dd>
                         </div>
                     </dl>
