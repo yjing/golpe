@@ -217,7 +217,7 @@ class UsersController extends RESTController {
             $result = $this->User->query($query);
         }
         if($result){
-            $result = $this->getDafaultFormattedUser($id);
+            $result = $this->getDafaultFormattedUser($u_id);
             $this->_setResponseJSON($result);
         } else {
             debug("NO RESULT");
