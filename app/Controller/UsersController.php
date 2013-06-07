@@ -184,6 +184,38 @@ class UsersController extends RESTController {
         );
     }
     
+    public function assignSupervisor($u_id = null, $s_id = null) {
+        if($u_id == null || $s_id == null) {
+            throw new BadRequestException();
+        }
+        $student = $this->User->find('first', array(
+            'conditions' => array('User.id' => $u_id),
+            'recursive' => -1
+        ));
+        $sup = $this->User->find('first', array(
+            'conditions' => array('User.id' => $s_id),
+            'recursive' => -1
+        ));
+        if($student == null || $sup == null) {
+            throw new BadRequestException();
+        }
+        
+        $existing = Set::get($student, "/User/Supervisor");
+        if($existing) {
+            $query = "update students_supervisors set supervisor_id = $s_id where student_id = $u_id";
+            $result = $this->User->query($query);
+        } else {
+            $query = "insert into students_supervisors values ($u_id, $s_id)";
+            $result = $this->User->query($query);
+        }
+        if($result){
+            $result = $this->getDafaultFormattedUser($id);
+            $this->_setResponseJSON($result);
+        } else {
+            throw new BadRequestException();
+        }
+    }
+    
     public function login() {
         if ($this->request->is('post')) {
             $this->Auth->logout();
