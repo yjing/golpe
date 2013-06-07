@@ -29,7 +29,8 @@ Configure::write("APPCONFIG", array(
             "add" => "ADMIN",
             "update" => "ADMIN",
             "edit" => "ADMIN",
-            "delete" => "ADMIN"
+            "delete" => "ADMIN",
+            "assignSupervisor" => "ADMIN"
         ),
         "ActivityLogs" => array( 
             // Actions
