@@ -46,7 +46,7 @@ function UsersCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth, d
             reload,               // RELOAD
             function(d, h) {     // SUCCESS
                 $scope.data = database.select('users', [], 3);
-//                $scope.supervisors = database.select('users', [ {field:'role', value:'SUPERVISOR'} ], 1);
+                $scope.supervisors = database.select('users', [ {field:'role', value:'SUPERVISOR'} ], 1);
 //                console.log($scope.supervisors);
 //                console.log(database.select('users', [ ], 1));
             }
@@ -93,9 +93,9 @@ function UsersCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth, d
         $scope.edit_u = false;
     };
 
-    $scope.supervisors = function () {
-        return database.select('users', [ {field:'role', value:'SUPERVISOR'} ], 0);
-    };
+//    $scope.supervisors = function () {
+//        return database.select('users', [ {field:'role', value:'SUPERVISOR'} ], 0);
+//    };
 
     $scope.assignS = function (sup) {
         console.log($scope.selected_u_id);
