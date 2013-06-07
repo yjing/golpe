@@ -202,8 +202,8 @@ class UsersController extends RESTController {
             throw new BadRequestException();
         }
         
-        $existing = $student['User']['Supervisor'];
         debug($student);
+        $existing = $student['User']['Supervisor'];
         debug("EXISTING");
         debug($existing);
         if($existing) {
