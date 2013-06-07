@@ -203,6 +203,7 @@ class UsersController extends RESTController {
         }
         
         $existing = $student['User']['Supervisor'];
+        debug($student);
         debug("EXISTING");
         debug($existing);
         if($existing) {
