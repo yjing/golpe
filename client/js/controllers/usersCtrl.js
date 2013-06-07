@@ -65,6 +65,7 @@ function UsersCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth, d
     );
 
     $scope.saveU = function () {
+        console.log($scope.selected_u);
         users.save(
             $scope.selected_u,
             function(d, h) {    // SUCCESS
