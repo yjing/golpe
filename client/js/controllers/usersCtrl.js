@@ -96,6 +96,8 @@ function UsersCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth, d
     $scope.assignS = function (sup) {
         if(angular.isDefined(sup) && sup != null) {
             users.assignSupervisor(
+                $scope.selected_u_id,
+                sup,
                 function(d, h) {    // SUCCESS
                     $scope.selected_u = database.select('users', [ {field:'id',value:$scope.selected_u_id} ], 3)[0];
                     $scope.assigningSupervisor = false;
