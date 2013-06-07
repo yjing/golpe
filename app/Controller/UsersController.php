@@ -191,7 +191,10 @@ class UsersController extends RESTController {
         }
         $student = $this->User->find('first', array(
             'conditions' => array('User.id' => $u_id),
-            'recursive' => -1
+            'recursive' => -1,
+            'associations' => array(
+                'Supervisor'
+            )
         ));
         $sup = $this->User->find('first', array(
             'conditions' => array('User.id' => $s_id),
