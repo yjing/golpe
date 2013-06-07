@@ -98,7 +98,7 @@ function UsersCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth, d
     };
 
     $scope.assignS = function (sup) {
-        console.log(selected_u_id);
+        console.log($scope.selected_u_id);
         console.log(sup.id);
     };
 
