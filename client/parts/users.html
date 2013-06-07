@@ -70,7 +70,6 @@
                                 <span ng-show="assigningSupervisor">
                                     [
                                         <select>
-                                            <option>Select</option>
                                             <option ng-repeat="s in supervisors">{{s.username}}</option>
                                         </select>
                                         <button type="button" class="btn" ng-click="assignS();">Assign</button>
@@ -119,7 +118,6 @@
                     </div>
                 </span>
             </div>
-            {{supervisors}}
         </div>
 
     </div>
