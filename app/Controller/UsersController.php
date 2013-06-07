@@ -214,12 +214,12 @@ class UsersController extends RESTController {
             $query = "insert into students_supervisors values ($u_id, $s_id)";
             $result = $this->User->query($query);
         }
-        if($result){
+        //if($result){
             $result = $this->getDafaultFormattedUser($u_id);
             $this->_setResponseJSON($result);
-        } else {
-            throw new BadRequestException();
-        }
+        //} else {
+          //  throw new BadRequestException();
+        //}
     }
     
     public function login() {
