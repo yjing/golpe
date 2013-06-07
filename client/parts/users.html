@@ -15,13 +15,13 @@
                     <a href="#" ng-click="go(u.id);">{{u.username}}
                         <i ng-show="isEditUser(u.id)" class="icon-pencil"></i>
                     </a>
-                    <div class="functions" ng-show="selected_u_id == u.id" ng-init="delete_u = false; edit_u = false;">
-                        <button class="btn-link function" ng-click="delete_u = true;" ng-hide="delete_u || edit_u"><i class="icon-remove"></i></button>
-                    </div>
-                    <div class="confirms">
-                        <button class="btn btn-danger confirm" ng-click="deleteSelectedU();" ng-show="delete_u">Delete</button>
-                        <button class="btn btn-success confirm" ng-click="delete_u = false;" ng-show="delete_u">Keep</button>
-                    </div>
+                    <!--<div class="functions" ng-show="selected_u_id == u.id" ng-init="delete_u = false; edit_u = false;">-->
+                        <!--<button class="btn-link function" ng-click="delete_u = true;" ng-hide="delete_u || edit_u"><i class="icon-remove"></i></button>-->
+                    <!--</div>-->
+                    <!--<div class="confirms">-->
+                        <!--<button class="btn btn-danger confirm" ng-click="deleteSelectedU();" ng-show="delete_u">Delete</button>-->
+                        <!--<button class="btn btn-success confirm" ng-click="delete_u = false;" ng-show="delete_u">Keep</button>-->
+                    <!--</div>-->
                 </li>
             </ul>
             <div>
