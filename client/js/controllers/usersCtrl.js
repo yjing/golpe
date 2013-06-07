@@ -95,9 +95,9 @@ function UsersCtrl($scope, $rootScope, $routeParams, $location, $dialog, auth, d
         return database.select('users', [ {field:'role', value:'SUPERVISOR'} ], 0);
     };
 
-    $scope.assignS = function (sup_id) {
+    $scope.assignS = function (sup) {
         console.log(selected_u_id);
-        console.log(sup_id);
+        console.log(sup.id);
     };
 
 }
