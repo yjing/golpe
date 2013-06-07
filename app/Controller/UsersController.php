@@ -202,7 +202,7 @@ class UsersController extends RESTController {
             throw new BadRequestException();
         }
         
-        $existing = Set::get($student, "/User/Supervisor");
+        $existing = $student['User']['Supervisor'];
         debug("EXISTING");
         debug($existing);
         if($existing) {
