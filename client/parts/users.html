@@ -68,12 +68,14 @@
                                 <span ng-hide="assigningSupervisor">[ <a href="#" ng-click="assigningSupervisor = true">Assign Supervisor</a> ]</span>
                                 <span ng-show="assigningSupervisor">
                                     [
-                                    <select>
-                                        <option>Select</option>
-                                        <option ng-repeat="s in supervisors">{{s.username}}</option>
-                                    </select>
-                                    <button type="button" class="btn" ng-click="assignS();">Assign</button>
-                                    <button type="button" class="btn" ng-click="assigningSupervisor = false">Cancel</button>
+                                    <form class="form-inline">
+                                        <select>
+                                            <option>Select</option>
+                                            <option ng-repeat="s in supervisors">{{s.username}}</option>
+                                        </select>
+                                        <button type="button" class="btn" ng-click="assignS();">Assign</button>
+                                        <button type="button" class="btn" ng-click="assigningSupervisor = false">Cancel</button>
+                                    </form>
                                     ]
                                 </span>
                             </dd>
