@@ -209,7 +209,7 @@ class UsersController extends RESTController {
         $existing = $student['User']['Supervisor'];
         debug("EXISTING");
         debug($existing);
-        if($existing) {
+        if($existing && count($existing) >0 ) {
             $query = "update students_supervisors set supervisor_id = $s_id where student_id = $u_id";
             $result = $this->User->query($query);
         } else {
