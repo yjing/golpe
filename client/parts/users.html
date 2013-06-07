@@ -63,12 +63,13 @@
                             <dt><strong>Supervisor:</strong></dt>
                                 <dd ng-show="selected_u.supervisor != null">
                                     {{selected_u.supervisor.username}}
+                                    <span ng-hide="assigningSupervisor">[ <a href="#" ng-click="assigningSupervisor = true">Change Supervisor</a> ]</span>
                                 </dd>
                                 <dd ng-hide="selected_u.supervisor != null">
                                     not assigned
+                                    <span ng-hide="assigningSupervisor">[ <a href="#" ng-click="assigningSupervisor = true">Assign Supervisor</a> ]</span>
                                 </dd>
-                                <span ng-show="selected_u.supervisor != null && !assigningSupervisor">[ <a href="#" ng-click="assigningSupervisor = true">Change Supervisor</a> ]</span>
-                                <span ng-hide="assigningSupervisor">[ <a href="#" ng-click="assigningSupervisor = true">Assign Supervisor</a> ]</span>
+
                                 <span ng-show="assigningSupervisor">
                                     [
                                         <select>
